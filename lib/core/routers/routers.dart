@@ -27,7 +27,9 @@ class AppRouter {
       GoRoute(
           path: '/',
           name: RouteConstants.initial,
-          builder: (context, state) => StartUpScreen(
+          builder: (context, state) => VerifyOTPScreen(
+                username: "angeloobeta",
+                email: "angeloobeta@gmail.com",
                 key: state.pageKey,
               ),
           routes: [
