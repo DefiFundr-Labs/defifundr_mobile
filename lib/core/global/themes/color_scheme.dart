@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs
 
 // 🐦 Flutter imports:
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
+
 
 class AppColors {
   static const Color white100 = Color(0xFFFFFFFF);
@@ -22,4 +23,7 @@ class AppColors {
   static const Color tooastErrorColor = Color(0xFFFF5353);
   static const Color borderColor = Color(0xFFE2E8F0);
   static const Color warningColor = Color.fromARGB(0, 214, 203, 45);
+  static const Color transparent = Colors.transparent;
+  static const Color borderGrey = Color(0xFFBBBABB);
+
 }

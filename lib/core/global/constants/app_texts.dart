@@ -44,6 +44,7 @@ class AppTexts {
   static String usernameAlreadyTaken = "Username Already Exists";
   static String dashboard = "Get Started";
   static String forgotPassword = "Forget Password";
+  static String neeHelp="Need Help?";
   static String forgotPasswordDesc =
       "Ooops! don’t worry,\nthe process is simpler than you thought";
   static String forgotPasswordButton = "Continue";
