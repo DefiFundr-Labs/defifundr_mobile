@@ -11,6 +11,7 @@ class AppTexts {
   static String firstName = "User Name";
   static String fillEmail = "Your email address";
   static String fillEmailLogin = "Your email address or username";
+  static String forgetPasswordLogin = "Your email address";
   static String emailInvalid = "Email is invalid";
   static String fieldEmpty(String field) => "$field can't be empty";
   static String alreadyHaveAccount = "Already have an account?";
@@ -42,6 +43,10 @@ class AppTexts {
   static String selectAvatarDesc = "Choose your avatar";
   static String usernameAlreadyTaken = "Username Already Exists";
   static String dashboard = "Get Started";
+  static String forgotPassword = "Forget Password";
+  static String forgotPasswordDesc =
+      "Ooops! don’t worry,\nthe process is simpler than you thought";
+  static String forgotPasswordButton = "Continue";
   static String resetPassword = "Reset Password";
   static String resetPasswordDesc =
       "Enter your email or username to reset password";

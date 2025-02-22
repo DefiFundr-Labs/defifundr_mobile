@@ -55,4 +55,5 @@ class AppIcons {
   //! AUTH
   static String keyIcon = '${_baseAssetUrl}solar_key_icon.svg';
   static String cancelRound = '${_baseAssetUrl}cancel_icon.svg';
+  static String userIcon = '${_baseAssetUrl}user.svg';
 }

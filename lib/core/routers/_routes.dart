@@ -3,6 +3,7 @@ import 'package:defifundr_mobile/core/di/injector.dart';
 import 'package:defifundr_mobile/core/routers/routes_constants.dart';
 import 'package:defifundr_mobile/core/secure/secure.dart';
 import 'package:defifundr_mobile/core/shared/bottom_navigator/bottom_navigator.dart';
+import 'package:defifundr_mobile/features/authentication/presentation/forget_password/view/forgot_password_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/forget_password/view/reset_email_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/forget_password/view/reset_otp_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/forget_password/view/reset_password_screen.dart';
