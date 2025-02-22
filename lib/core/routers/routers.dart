@@ -46,6 +46,26 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/',
+        name: RouteConstants.letsGetYouStarted,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: LetGetStartedScreen(
+              
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
           path: '/',
           name: RouteConstants.initial,
           builder: (context, state) => PasscodeScreen(

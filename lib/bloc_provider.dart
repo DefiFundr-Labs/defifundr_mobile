@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/features/authentication/presentation/login/stat
 import 'package:defifundr_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/signup/states/check_user_bloc/bloc/check_username_bloc.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/signup/states/create_password_bloc/bloc/create_password_bloc.dart';
+import 'package:defifundr_mobile/features/authentication/presentation/signup/states/let_get_started_bloc/lets_get_started_bloc.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/signup/states/verify_bloc/bloc/verify_otp_bloc.dart';
 import 'package:defifundr_mobile/features/donation/presentation/state/create_donation/bloc/create_donation_bloc.dart';
 import 'package:defifundr_mobile/features/donation/presentation/state/get_donation/bloc/get_donation_bloc.dart';
@@ -95,6 +96,9 @@ List<SingleChildWidget> get appProviders {
     ),
     BlocProvider<GetPrivateKeyBloc>(
       create: (context) => profileLocator<GetPrivateKeyBloc>(),
+    ),
+    BlocProvider<LetsGetStartedBloc>(
+      create: (context) => profileLocator<LetsGetStartedBloc>(),
     ),
   ];
 }

@@ -11,6 +11,7 @@ import 'package:defifundr_mobile/features/authentication/presentation/login/view
 import 'package:defifundr_mobile/features/authentication/presentation/login/view/reoccurying_login_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/login/view/select_avatar_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/signup/view/create_password_screen.dart';
+import 'package:defifundr_mobile/features/authentication/presentation/signup/view/let_get_started.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/signup/view/signup_screen.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/welcome_screen/view/welcome_screen.dart';
 import 'package:defifundr_mobile/features/donation/presentation/view/create_donation_screen.dart';

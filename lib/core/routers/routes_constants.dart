@@ -28,4 +28,5 @@ class RouteConstants {
   static String importWallet = 'importWallet';
   static String walletConfirmation = 'walletConfirmation';
   static String pasteYourRecoveryPhrase = 'pasteYourRecoveryPhrase';
+  static String letsGetYouStarted = 'letsGetYouStarted';
 }

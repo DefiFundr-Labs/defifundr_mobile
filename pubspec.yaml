@@ -21,6 +21,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   #? flutter_form_bloc is a Flutter package that helps you to easily create forms with validation.
   bloc: any
+  email_validator: '^2.1.17'
   formz: ^0.6.0
   #? Caches images from the internet
   cached_network_image:

@@ -122,7 +122,7 @@ class AppTexts {
   //! Profile
   static String profile = "Profile";
   static String editProfile = "Edit Profile";
-  static String continueTo = "continue";
+  static String continueTo = "Continue";
   static String changePassword = "Change Password";
   static String oldPassword = "Old Password";
   static String newPassword = "New Password";
@@ -131,4 +131,18 @@ class AppTexts {
   static String getPrivateKey = "Get Private Key";
   static String setPasscode = "Set a 6-digit passcode for login";
   static String passcode = "Passcode";
+
+  // ! let's get started
+static String letGetStartedTitle="Lets Get to know you";
+static String letGetStartedSub="Securely access your account and manage payroll with ease.";
+static String email="Email";
+static String istName="Enter First Name";
+static String lastName="Enter Last Name";
+static String gender="Gender";
+static String tacText= "By creating an account, you agree to our ";
+static String tosText= "Terms of Service";
+static String ppText="Privacy Policy";
+static String male ="Male";
+static String female="Female";
+static String signUpSuccess="Sign-up successful!";
 }
