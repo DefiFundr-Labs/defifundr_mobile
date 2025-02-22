@@ -149,6 +149,7 @@ Widget build(BuildContext context) {
                     text: AppTexts.forgotPasswordButton,
                     onTap: () {},
                     textSize: 12,
+                    borderRadius: 47.sp,
                     textColor: AppColors.white100,
                     color: AppColors.primaryColor,
                   )
