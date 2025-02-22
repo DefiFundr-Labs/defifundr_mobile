@@ -6,7 +6,7 @@ import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/button/buttons.dart';
 import 'package:defifundr_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defifundr_mobile/core/shared/textfield/textfield.dart';
-import 'package:defifundr_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
+
 import 'package:defifundr_mobile/features/authentication/presentation/signup/states/let_get_started_bloc/lets_get_started_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -115,6 +115,7 @@ class _LetGetStartedScreenState extends State<LetGetStartedScreen> {
                       decoration: BoxDecoration(
                         color: AppColors.white,
                         borderRadius: BorderRadius.circular(16),
+
                         // Optional border
                       ),
                       child: DropdownButtonFormField<String>(
@@ -140,7 +141,7 @@ class _LetGetStartedScreenState extends State<LetGetStartedScreen> {
                           labelStyle: TextStyle(
                             fontSize: 12.sp,
                           ),
-                          filled: true,
+                          filled: false,
                           fillColor: AppColors.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16.sp),
