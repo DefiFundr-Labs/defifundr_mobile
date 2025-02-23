@@ -126,6 +126,7 @@ Widget build(BuildContext context) {
                       style: Config.b3(context).copyWith(
                         color: AppColors.grey100,
                       )),
+                  // vertical space
                   VerticalMargin(50),
                   AppTextField(
                     controller: _emailController,
