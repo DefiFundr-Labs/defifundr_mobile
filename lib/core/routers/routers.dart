@@ -46,6 +46,24 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/selectNationality',
+        name: RouteConstants.selectNationality,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: SelectNationalityScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                    .animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
           path: '/',
           name: RouteConstants.initial,
           builder: (context, state) => PasscodeScreen(

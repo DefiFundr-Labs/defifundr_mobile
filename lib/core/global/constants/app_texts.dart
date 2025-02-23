@@ -131,4 +131,14 @@ class AppTexts {
   static String getPrivateKey = "Get Private Key";
   static String setPasscode = "Set a 6-digit passcode for login";
   static String passcode = "Passcode";
+
+  //! Select Nationality
+  static const String selectNationalityTitle = 'Select Nationality';
+  static const String selectNationalityHeader = 'Select your nationality';
+  static const String selectNationalitySubHeader = 'Tell us your nationality or where you are from to get to know how to serve you better';
+  static const String selectNationalityLabel = 'Select your nationality';
+  static const String liveInCountryOfNationality = 'I live in my country of nationality';
+  static const String selectCountryOfResidencyLabel = 'Select country of residency';
+  static const String collectCountryInfo = 'We collect your country to tailor your experience based on where you currently reside.';
+  static const String continueButton = 'Continue';
 }
