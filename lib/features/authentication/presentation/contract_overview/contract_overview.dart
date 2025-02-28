@@ -261,7 +261,8 @@ class ContractComplainceDocument extends StatelessWidget {
                   child: Center(
                     child: Text(
                       AppTexts.view,
-                      style: Config.h2(context).copyWith(fontSize: 9, color: AppColors.white100),
+                      style: Config.h2(context)
+                          .copyWith(fontSize: 9, color: AppColors.white100),
                     ),
                   ),
                 ),
