@@ -6,10 +6,12 @@ class CreateTransactionPinScreen extends StatefulWidget {
   const CreateTransactionPinScreen({super.key});
 
   @override
-  State<CreateTransactionPinScreen> createState() => _CreateTransactionPinScreenState();
+  State<CreateTransactionPinScreen> createState() =>
+      _CreateTransactionPinScreenState();
 }
 
-class _CreateTransactionPinScreenState extends State<CreateTransactionPinScreen> {
+class _CreateTransactionPinScreenState
+    extends State<CreateTransactionPinScreen> {
   final TextEditingController _pinController = TextEditingController();
   final int _pinLength = 4;
   String _pin = '';
@@ -115,7 +117,8 @@ class _CreateTransactionPinScreenState extends State<CreateTransactionPinScreen>
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -246,7 +249,8 @@ class _CreateTransactionPinScreenState extends State<CreateTransactionPinScreen>
                   onPressed: _pin.length == _pinLength ? () {} : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1A1A1A),
-                    disabledBackgroundColor: const Color(0xFF1A1A1A).withOpacity(0.5),
+                    disabledBackgroundColor:
+                        const Color(0xFF1A1A1A).withOpacity(0.5),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(28),
@@ -269,4 +273,4 @@ class _CreateTransactionPinScreenState extends State<CreateTransactionPinScreen>
       ),
     );
   }
-} 
+}

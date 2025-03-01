@@ -2,7 +2,7 @@ class AppAssets {
   AppAssets._();
 
   static const defifundrIconPath = 'assets/icons/';
-   //! AUTH
+  //! AUTH
   static String userIcon = '${defifundrIconPath}user.svg';
   static String headSetIcon = '${defifundrIconPath}headset.svg';
   static String smileSuccess = '${defifundrIconPath}smile_success.svg';
@@ -14,7 +14,4 @@ class AppAssets {
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const defifundrImagePath = 'assets/images';
-
-
-
 }

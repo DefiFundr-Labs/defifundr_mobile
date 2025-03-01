@@ -118,7 +118,6 @@ class _ResetEmailScreenState extends State<ForgotPasswordScreen> {
                               textColor: AppColors.white100,
                               color: AppColors.primaryColor,
                             ),
-                           
                           ],
                         ),
                       ),

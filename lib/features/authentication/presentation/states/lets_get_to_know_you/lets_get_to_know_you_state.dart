@@ -10,13 +10,14 @@ class LetsGetToKnowYouInitial extends LetsGetToKnowYouState {
   List<Object> get props => [];
 }
 
-class  LetsGetToKnowYouValid extends LetsGetToKnowYouState {
+class LetsGetToKnowYouValid extends LetsGetToKnowYouState {
   final String email;
   final String firstName;
   final String lastName;
   final String gender;
 
-  const LetsGetToKnowYouValid(this.email, this.firstName, this.lastName, this.gender);
+  const LetsGetToKnowYouValid(
+      this.email, this.firstName, this.lastName, this.gender);
 
   @override
   List<Object> get props => [email, firstName, lastName, gender];

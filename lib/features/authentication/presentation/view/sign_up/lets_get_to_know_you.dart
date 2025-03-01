@@ -27,8 +27,6 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   bool _agreeToTerms = false;
 
-  
-
   void _updateButtonState() {
     setState(() {}); // Triggers UI rebuild when any field changes
   }
@@ -96,7 +94,8 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                     SizedBox(height: 8.h),
                     Text(
                       AppTexts.letsGetToKnowYouSub,
-                      style: TextStyle(fontSize: 14.sp, color: AppColors.grey300),
+                      style:
+                          TextStyle(fontSize: 14.sp, color: AppColors.grey300),
                     ),
                     SizedBox(height: 30.h),
                     AppTextField(
@@ -149,7 +148,8 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                           child: RichText(
                             text: TextSpan(
                               style: TextStyle(
-                                  fontSize: 12.sp, color: AppColors.subtextGreyColor),
+                                  fontSize: 12.sp,
+                                  color: AppColors.subtextGreyColor),
                               children: [
                                 TextSpan(text: AppTexts.tacText),
                                 TextSpan(
@@ -182,20 +182,18 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                       textColor: AppColors.white200,
                       borderRadius: 48.sp,
                       onTap: () {
-                              context.read<LetsGetToKnowYouBloc>().add(
-                                    ValidateSignUp(
-                                      email: _emailController.text,
-                                      firstName: _firstNameController.text,
-                                      lastName: _lastNameController.text,
-                                      gender: _selectedGender.text,
-                                      agreeToTerms: _agreeToTerms,
-                                    ),
-                                  );
-                            }
-                         , // Disable the button
+                        context.read<LetsGetToKnowYouBloc>().add(
+                              ValidateSignUp(
+                                email: _emailController.text,
+                                firstName: _firstNameController.text,
+                                lastName: _lastNameController.text,
+                                gender: _selectedGender.text,
+                                agreeToTerms: _agreeToTerms,
+                              ),
+                            );
+                      }, // Disable the button
                       textSize: 14.sp,
-                      color: AppColors.primaryColor
-                          , // Grey ut if inactive
+                      color: AppColors.primaryColor, // Grey ut if inactive
                     ),
                   ],
                 ),

@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../themes/color_scheme.dart';
 
-
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
@@ -45,7 +44,6 @@ class AppButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 10.sp),
       child: Container(
         height: 56.sp,
-
         decoration: BoxDecoration(
           color: isActive! ? color : AppColors.grey200,
           borderRadius: BorderRadius.circular(30.0),

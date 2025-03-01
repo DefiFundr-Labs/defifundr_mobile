@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
- 
+
 class App extends StatefulWidget {
   const App({super.key});
-    @override
+  @override
   State<App> createState() => _AppState();
 }
 
- class _AppState extends State<App> {
+class _AppState extends State<App> {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(
@@ -46,13 +46,8 @@ class App extends StatefulWidget {
         ),
       ),
     );
-
-
   }
-
-  
 }
-
 
 class _AppScrollBehavior extends ScrollBehavior {
   const _AppScrollBehavior();
@@ -61,4 +56,4 @@ class _AppScrollBehavior extends ScrollBehavior {
   ScrollPhysics getScrollPhysics(BuildContext context) {
     return const BouncingScrollPhysics();
   }
-  }
+}

@@ -2,13 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:email_validator/email_validator.dart';
 
-
-
 part 'lets_get_to_know_you_event.dart';
 part 'lets_get_to_know_you_state.dart';
 
-
-class LetsGetToKnowYouBloc extends Bloc<LetsGetToKnowYouEvent, LetsGetToKnowYouState> {
+class LetsGetToKnowYouBloc
+    extends Bloc<LetsGetToKnowYouEvent, LetsGetToKnowYouState> {
   LetsGetToKnowYouBloc() : super(LetsGetToKnowYouInitial()) {
     on<ValidateSignUp>((event, emit) {
       if (!EmailValidator.validate(event.email)) {
@@ -28,12 +26,15 @@ class LetsGetToKnowYouBloc extends Bloc<LetsGetToKnowYouEvent, LetsGetToKnowYouS
         return;
       }
       if (!event.agreeToTerms) {
-        emit(LetsGetToKnowYouError("You must agree to the terms and conditions"));
+        emit(LetsGetToKnowYouError(
+            "You must agree to the terms and conditions"));
         return;
       }
-      
-      emit(LetsGetToKnowYouValid(event.email, event.firstName, event.lastName, event.gender));
-      print("Email: \${event.email}, First Name: \${event.firstName}, Last Name: \${event.lastName}, Gender: \${event.gender}, Agreed to Terms: \${event.agreeToTerms}");
+
+      emit(LetsGetToKnowYouValid(
+          event.email, event.firstName, event.lastName, event.gender));
+      print(
+          "Email: \${event.email}, First Name: \${event.firstName}, Last Name: \${event.lastName}, Gender: \${event.gender}, Agreed to Terms: \${event.agreeToTerms}");
     });
   }
 }

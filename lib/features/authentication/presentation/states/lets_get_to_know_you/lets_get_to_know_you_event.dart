@@ -1,8 +1,6 @@
 // sign_up_event.dart
 part of 'lets_get_to_know_you_bloc.dart';
 
-
-
 abstract class LetsGetToKnowYouEvent extends Equatable {
   const LetsGetToKnowYouEvent();
 }

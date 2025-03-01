@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import '../../constants/size.dart';
 import '../../themes/color_scheme.dart';
 
-
 class AppTextField extends StatefulWidget {
   final String label;
   final bool isPassword;
@@ -59,7 +58,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-        color:  Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -80,17 +79,16 @@ class _AppTextFieldState extends State<AppTextField> {
               decoration: InputDecoration(
                 labelText: widget.label,
                 labelStyle: Config.b3(context).copyWith(
-                color: AppColors.textHintColor,
-               ),
+                  color: AppColors.textHintColor,
+                ),
                 filled: true,
                 fillColor: Colors.transparent,
                 isDense: true,
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 2.0, horizontal: 10.0),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
-
               ),
             ),
           ],

@@ -59,7 +59,8 @@ class AppTextField extends StatelessWidget {
       this.onTap,
       this.enabled = true,
       this.onFieldSubmitted,
-      this.textInputAction, this.fillColor})
+      this.textInputAction,
+      this.fillColor})
       : super(key: key);
 
   @override
@@ -93,7 +94,7 @@ class AppTextField extends StatelessWidget {
           ),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.all(20),
-             fillColor: fillColor??AppColors.textfieldColor,
+            fillColor: fillColor ?? AppColors.textfieldColor,
             focusColor: AppColors.white100,
             filled: true,
             label: Text(

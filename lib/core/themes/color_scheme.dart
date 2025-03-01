@@ -27,6 +27,4 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color textHintColor = Color(0xFFA6B7D4);
   static const Color purpleColor = Color(0xFF5A42DE);
-
-
 }

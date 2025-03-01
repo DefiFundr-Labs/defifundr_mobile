@@ -4,8 +4,6 @@ import 'package:defifundr_mobile/core/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
 class ThemeNotifier extends StateNotifier<ThemeState> {
   // final appCache = sl<AppCache>();
   ThemeNotifier()

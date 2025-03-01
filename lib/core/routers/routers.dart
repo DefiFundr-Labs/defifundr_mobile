@@ -7,7 +7,6 @@ class AppRouter {
   static final GoRouter _router = GoRouter(
       debugLogDiagnostics: true,
       initialLocation: RouteConstants.initial,
-
       navigatorKey: _rootNavigatorKey,
       routes: [
         GoRoute(
@@ -30,9 +29,7 @@ class AppRouter {
             );
           },
         ),
-      ]
-  );
+      ]);
 
   static GoRouter get router => _router;
-
 }
