@@ -25,6 +25,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.primaryBackgroundColor,
+      scrolledUnderElevation: 0,
       elevation: 0,
       centerTitle: true,
       automaticallyImplyLeading: false,

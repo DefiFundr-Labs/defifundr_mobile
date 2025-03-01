@@ -62,7 +62,7 @@ class AppTexts {
   static String forgotPassword = "Forget Password";
   static String neeHelp = "Need Help?";
   static String forgotPasswordDesc =
-      "Ooops! don’t worry,\nthe process is simpler than you thought";
+      "Ooops! don't worry,\nthe process is simpler than you thought";
   static String forgotPasswordButton = "Continue";
   static String resetPassword = "Reset Password";
   static String resetPasswordDesc =
@@ -90,6 +90,8 @@ class AppTexts {
       "Your private key is a 64 character special kind of password. It is one way to access your account. Never share it with anyone!";
   static String yourRecoveryOrSeedPhrase =
       "Your recovery or seed phrase is a 12 word special kind of password. it is another way to access your account and it must be kept private!";
+    
+     static String passWordForgot = 'Forgot Password?';    
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -130,16 +132,21 @@ class AppTexts {
   static String deadline = "Select Deadline";
   static String emptyMyCampaigns = "No Campaigns Yet";
   static String emptyMyCampaignsDescription = "Create Donation";
-
-  //! NAVIGATION
   static String home = "Home";
-  static String navDonation = "Donations";
-  static String navCampaign = "Campaigns";
-  static String navProfile = "Profile";
-
-  //! My Campaign
-  static String myCampaign = "My Campaign";
-  static String addCampaign = "Add Campaign";
+  static String roleDetails = "Role Details";
+  static String role = "Role";
+  static String seniorityLevel = "Seniority Level:";
+  static String scopeofwork = "Scope of work";
+  static String view = "View";
+  static String paymentDetails = "Payment Details";
+  static String selectedCurrencyorCoin = "Selected Currency or Coin:";
+  static String paymentrate = "Payment rate:";
+  static String paymentFrequency = "Payment Frequency:";
+  static String startDate = "Start Date:";
+  static String endDate = "End Date::";
+  static String invoiceCycle = "Invoice Cycle:";
+  static String compliance = "Compliance";
+  static String complianceDocument = "Compliance Document";
 
   //! Profile
   static String profile = "Profile";
@@ -171,9 +178,103 @@ class AppTexts {
       "Password has been reset successfully, You can proceed to login with your new Password.";
   static String verifyOtp = "Verify OTP";
   static String resendCode = "Resend code 60secs";
+  static String passwordhasbeenresetsuccessfully =
+      'Password has been reset successfully, You can proceed to login with your new Password.';
   static String enterOtpCode =
       "Enter the OTP code sent to the email ending with";
-  static String oppsDontWorry = "Ooops! don’t worry,";
+  static String oppsDontWorry = "Ooops! don't worry,";
   static String theProcessIsSimpler = "the process is simpler than you thought";
   static String confirmOtp = "Confirm OTP";
+
+  static String businessaccount = 'Business account';
+  static String tellusmoreabouttheaccounttypetypeyouare =
+      'Tell us more about the account type type you are trying to open and keep us informed';
+  static String whattypeofaccountareyoucreating =
+      'What type of account are you creating';
+  static String createapersonalizedaccounttoempower =
+      'create a personalized account to empower your self and get paid from any where in the world';
+  static String personalaccount = 'Personal account';
+  static String empoweryourbusinessbyusingDefiFundrtopower =
+      'empower your business by using DefiFundr to power your business and transform your payroll';
+  static String whattypeofpersonalaccount = "What type of personal account?";
+  static String nothankyou = 'No, thank you';
+  static String contractor = 'Contractor';
+  static String freelancer = 'Freelancer';
+  static String contractOverview = 'Contract Overview';
+  static String basicDetails = 'Basic Details';
+  static String countryoftaxresidence = 'Country of tax residence:';
+  static String contractorName = 'Contractor Name:';
+  static String tellusaboutthetypeofpersonal =
+      'Tell us about the type of personal account you are trying to open ';
+
+  //! Select Nationality
+  static const String selectNationalityTitle = 'Select Nationality';
+  static const String selectNationalityHeader = 'Select your nationality';
+  static const String selectNationalitySubHeader =
+      'Tell us your nationality or where you are from to get to know how to serve you better';
+  static const String selectNationalityLabel = 'Select your nationality';
+  static const String liveInCountryOfNationality =
+      'I live in my country of nationality';
+  static const String selectCountryOfResidencyLabel =
+      'Select country of residency';
+  static const String collectCountryInfo =
+      'We collect your country to tailor your experience based on where you currently reside.';
+
+  static String weNotifiedthatyourprofilewasnot =
+      "We Notified that your profile was not completed when you first created your account'";
+
+  //! BVN Verification
+  static String verifyWithBVN = "Verify with your BVN";
+  static String verifyWithBVNDesc = "Verify your account using your Bank Verification Number";
+  static String enterBVN = "Enter BVN";
+  static String bvnSafeAndSecure = "Your BVN is Safe & Secure";
+  static String bvnDigits = "11 digits";
+  static String bvnIdentityDesc = "We only use your BVN to verify your identity—nothing more.";
+  static String bvnSecurityDesc = "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
+  static String getBVNInstruction = "Dial *565*0# on your registered number to get your BVN";
+
+  //! NIN Verification
+  static String verifyWithNIN = "Verify with NIN";
+  static String verifyWithNINDesc = "Enter the NIN number on your slip in the field below.";
+  static String enterNIN = "Enter NIN";
+  static String ninSafeAndSecure = "Your NIN is Safe & Secure";
+  static String ninDigits = "11 digits";
+  static String ninIdentityDesc = "We only use your NIN to verify your identity—nothing more.";
+  static String ninSecurityDesc = "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
+
+  //Select ID
+  static String selectYourIdType = "Select your ID Type";
+  static String wellUseThisInfoToVerify = "We’ll use this information to verify your identity";
+  static String ninSlip = "NIN Slip";
+  static String votersCard = "Voters Card";
+  static String bvn = "BVN";
+    static String machinelearningcomplincePDF = "Machine_learning_complince.PDF";
+  static String driversLicense = "Drivers License";
+  static String internationalPassport = "International Passport";
+  static String yourInfoIsSafe = "Your information is safe";
+  static String weOnlyCollectTheNecessaryDetails = "We only collect the necessary details to confirm your identity—just your name and date of birth. Your information is encrypted and never shared with third parties.";
+
+
+  // scope of work sring
+  static String scopeOfWork = "Scope of work templates";
+  static String createFixedRateContract =
+      "Create a Fixed Rate contract for individual contractors for your company";
+  static String viewAll  = "View All";
+  static String select  = "Select";
+  
+
+  static String createContractDetails = "Create Contract Details";
+  static String fixedRate = "Fixed rate";
+  static String payAsYouGo = "Pay as you go";
+  static String milestone = "Milestone";
+  static String createAPersonalizedAccount =
+      "create a personalized account to empower your self and get paid from any where in the world";
+  static String empowerYourBusiness =
+      "empower your business by using DefiFundr to power your business and transform your payroll";
+  static String kindlyCreateContract =
+      "Please kindly create a contract agreement details you'd like to share with your employer";
+  static const String contractorsTaxResidence = "Contractor's tax residence*";
+  static const String contractName = "Contract name";
+  static const String searchCountry = "Search Country";
+
 }

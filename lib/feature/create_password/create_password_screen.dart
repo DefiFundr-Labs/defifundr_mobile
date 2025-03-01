@@ -121,7 +121,8 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 ),
               )
             ],
-          )),
+          ),
+          ),
       backgroundColor: AppColors.primaryBackgroundColor,
       body: SafeArea(
           child: Padding(

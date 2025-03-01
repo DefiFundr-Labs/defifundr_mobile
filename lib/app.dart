@@ -1,17 +1,24 @@
-import 'package:defifundr_mobile/%20core/routers/_routes.dart';
 import 'package:defifundr_mobile/bloc_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/screens/signin.dart';
+import 'package:flutter/material.dart' show BouncingScrollPhysics, BuildContext, Colors, MaterialApp, ScrollBehavior, ScrollPhysics, StatelessWidget, ThemeData, Widget;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class App extends StatefulWidget {
+import 'core/routers/_routes.dart';
+
+class App extends ConsumerStatefulWidget {
   const App({super.key});
   @override
-  State<App> createState() => _AppState();
+  Widget build(BuildContext context) => const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SignInScreen(),
+      );
+  ConsumerState<App> createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends ConsumerState<App> {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(

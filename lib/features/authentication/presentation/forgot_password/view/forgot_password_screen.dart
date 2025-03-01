@@ -1,9 +1,9 @@
-import 'package:defifundr_mobile/%20core/shared/button/buttons.dart';
-import 'package:defifundr_mobile/%20core/shared/textfield/textfield.dart';
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/constants/color_scheme.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/features/authentication/presentation/forgot_password/state/forgot_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,8 +99,8 @@ class _ResetEmailScreenState extends State<ForgotPasswordScreen> {
                             VerticalMargin(50),
                             AppTextField(
                               controller: _emailController,
-                              hintText: AppTexts.forgetPasswordLogin,
-                              inputType: TextInputType.emailAddress,
+                              label: AppTexts.forgetPasswordLogin,
+                              // inputType: TextInputType.emailAddress,
                               focusNode: _emailNode,
                               prefixIcon: SvgPicture.asset(AppAssets.userIcon,
                                   fit: BoxFit.scaleDown),
