@@ -34,7 +34,7 @@ class AppButton extends StatelessWidget {
   final double? iconSize;
   final double? borderRadius;
   final Color textColor;
-  final double? textSize, height,width;
+  final double? textSize, height, width;
   final bool? gradient;
   final void Function()? onTap;
   final Color? borderColor;
@@ -45,12 +45,12 @@ class AppButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 10.sp),
       child: Container(
-        height: height??56.sp,
+        height: height ?? 56.sp,
         decoration: BoxDecoration(
           color: isActive! ? color : AppColors.grey200,
           borderRadius: BorderRadius.circular(30.0),
           border: Border.all(
-            width:width?? 0.5.sp,
+            width: width ?? 0.5.sp,
             color: borderColor ?? Colors.transparent,
           ),
         ),

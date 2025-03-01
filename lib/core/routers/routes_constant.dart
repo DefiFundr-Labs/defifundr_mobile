@@ -35,7 +35,8 @@ class RouteConstants {
   static const String letsGetToKnowYou = 'letsGetToKnowYou';
   static String selectIdType = 'selectIdType';
 
-
   static const String forgotPassword = 'forgotPassword';
+  static const String contractDetails = 'contractDetails';
   static const String verifyOtp = 'verifyOtp';
+  static const String compliance = 'compliance';
 }
