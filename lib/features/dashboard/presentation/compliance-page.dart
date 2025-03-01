@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:defifundr_mobile/%20core/shared/button/buttons.dart';
 import 'package:defifundr_mobile/%20core/utils/file-picker-utils.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -181,19 +181,19 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () async {
-                        complianceFile.value = await pickFile();
-                      },
-                      child: Text(
-                        'Upload',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue[400],
-                        ),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () async {
+                    //     complianceFile.value = await pickFile();
+                    //   },
+                    //   child: Text(
+                    //     'Upload',
+                    //     style: TextStyle(
+                    //       fontSize: 14.sp,
+                    //       fontWeight: FontWeight.w500,
+                    //       color: Colors.blue[400],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
