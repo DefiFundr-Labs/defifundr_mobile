@@ -181,19 +181,19 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
                         ),
                       ),
                     ),
-                    // TextButton(
-                    //   onPressed: () async {
-                    //     complianceFile.value = await pickFile();
-                    //   },
-                    //   child: Text(
-                    //     'Upload',
-                    //     style: TextStyle(
-                    //       fontSize: 14.sp,
-                    //       fontWeight: FontWeight.w500,
-                    //       color: Colors.blue[400],
-                    //     ),
-                    //   ),
-                    // ),
+                    TextButton(
+                      onPressed: () async {
+                        complianceFile.value = await pickFile();
+                      },
+                      child: Text(
+                        'Upload',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.blue[400],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
