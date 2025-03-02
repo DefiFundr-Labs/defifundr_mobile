@@ -47,6 +47,7 @@ dependencies:
   country_list_pick: ^1.0.1+6
   intl: ^0.20.2
   carousel_slider: ^5.0.0
+  currency_picker: ^2.0.21
   
 
 dev_dependencies:

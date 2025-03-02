@@ -1,5 +1,4 @@
-/app.dart
-import 'package:defifundr_mobile/screens/identity.dart';
+import 'package:defifundr_mobile/screens/votersVerification.dart';
 
 
 import 'package:flutter/material.dart'

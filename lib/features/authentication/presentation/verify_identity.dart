@@ -65,7 +65,7 @@ class VerifyIdentity extends StatelessWidget {
                       horizontal: 16.0, vertical: 26),
                   child: Row(
                     children: [
-                      SvgPicture.asset(AppAssets.sss),
+                      // SvgPicture.asset(AppAssets.sss),
                       SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +105,7 @@ class VerifyIdentity extends StatelessWidget {
                       horizontal: 16.0, vertical: 26),
                   child: Row(
                     children: [
-                      SvgPicture.asset(AppAssets.sss),
+                      // SvgPicture.asset(AppAssets.sss),
                       SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
