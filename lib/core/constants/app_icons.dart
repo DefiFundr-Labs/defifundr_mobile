@@ -17,4 +17,5 @@ class AppIcons {
   static String people = '${_baseImageAssetUrl}people.png';
   static String gradientBackground =
       '${_baseImageAssetUrl}gradientBackground.png';
+  static String driversCard = '${_baseImageAssetUrl}drivers_card.png';
 }

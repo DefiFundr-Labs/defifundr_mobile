@@ -34,7 +34,7 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
-  - flutter_native_splash (2.4.3):
+  - flutter_native_splash (0.0.1):
     - Flutter
   - fluttertoast (0.0.2):
     - Flutter
@@ -77,12 +77,12 @@ SPEC CHECKSUMS:
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
   file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
+  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   fluttertoast: 21eecd6935e7064cc1fcb733a4c5a428f3f24f0f
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
 
-PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
+PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
 COCOAPODS: 1.16.2

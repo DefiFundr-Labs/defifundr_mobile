@@ -90,8 +90,8 @@ class AppTexts {
       "Your private key is a 64 character special kind of password. It is one way to access your account. Never share it with anyone!";
   static String yourRecoveryOrSeedPhrase =
       "Your recovery or seed phrase is a 12 word special kind of password. it is another way to access your account and it must be kept private!";
-    
-     static String passWordForgot = 'Forgot Password?';    
+
+  static String passWordForgot = 'Forgot Password?';
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -225,43 +225,50 @@ class AppTexts {
 
   //! BVN Verification
   static String verifyWithBVN = "Verify with your BVN";
-  static String verifyWithBVNDesc = "Verify your account using your Bank Verification Number";
+  static String verifyWithBVNDesc =
+      "Verify your account using your Bank Verification Number";
   static String enterBVN = "Enter BVN";
   static String bvnSafeAndSecure = "Your BVN is Safe & Secure";
   static String bvnDigits = "11 digits";
-  static String bvnIdentityDesc = "We only use your BVN to verify your identity—nothing more.";
-  static String bvnSecurityDesc = "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
-  static String getBVNInstruction = "Dial *565*0# on your registered number to get your BVN";
+  static String bvnIdentityDesc =
+      "We only use your BVN to verify your identity—nothing more.";
+  static String bvnSecurityDesc =
+      "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
+  static String getBVNInstruction =
+      "Dial *565*0# on your registered number to get your BVN";
 
   //! NIN Verification
   static String verifyWithNIN = "Verify with NIN";
-  static String verifyWithNINDesc = "Enter the NIN number on your slip in the field below.";
+  static String verifyWithNINDesc =
+      "Enter the NIN number on your slip in the field below.";
   static String enterNIN = "Enter NIN";
   static String ninSafeAndSecure = "Your NIN is Safe & Secure";
   static String ninDigits = "11 digits";
-  static String ninIdentityDesc = "We only use your NIN to verify your identity—nothing more.";
-  static String ninSecurityDesc = "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
+  static String ninIdentityDesc =
+      "We only use your NIN to verify your identity—nothing more.";
+  static String ninSecurityDesc =
+      "Your data is encrypted and never shared with third parties. This step helps ensure a secure and compliant experience for all users.";
 
   //Select ID
   static String selectYourIdType = "Select your ID Type";
-  static String wellUseThisInfoToVerify = "We’ll use this information to verify your identity";
+  static String wellUseThisInfoToVerify =
+      "We’ll use this information to verify your identity";
   static String ninSlip = "NIN Slip";
   static String votersCard = "Voters Card";
   static String bvn = "BVN";
-    static String machinelearningcomplincePDF = "Machine_learning_complince.PDF";
+  static String machinelearningcomplincePDF = "Machine_learning_complince.PDF";
   static String driversLicense = "Drivers License";
   static String internationalPassport = "International Passport";
   static String yourInfoIsSafe = "Your information is safe";
-  static String weOnlyCollectTheNecessaryDetails = "We only collect the necessary details to confirm your identity—just your name and date of birth. Your information is encrypted and never shared with third parties.";
-
+  static String weOnlyCollectTheNecessaryDetails =
+      "We only collect the necessary details to confirm your identity—just your name and date of birth. Your information is encrypted and never shared with third parties.";
 
   // scope of work sring
   static String scopeOfWork = "Scope of work templates";
   static String createFixedRateContract =
       "Create a Fixed Rate contract for individual contractors for your company";
-  static String viewAll  = "View All";
-  static String select  = "Select";
-  
+  static String viewAll = "View All";
+  static String select = "Select";
 
   static String createContractDetails = "Create Contract Details";
   static String fixedRate = "Fixed rate";
@@ -276,5 +283,7 @@ class AppTexts {
   static const String contractorsTaxResidence = "Contractor's tax residence*";
   static const String contractName = "Contract name";
   static const String searchCountry = "Search Country";
-
+  static const String verifyDriversCard = "Verify using your Drivers card";
+  static const String enterVotersCardNumber =
+      "Enter your voters card number below";
 }

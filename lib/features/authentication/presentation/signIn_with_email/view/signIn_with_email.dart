@@ -48,8 +48,8 @@ class _SigninWithEmailState extends State<SigninWithEmail> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  'Complete KYC.', style: TextStyle(
-                    color: Colors.black,
+                  'Securely access your account and manage payroll with ease.', style: TextStyle(
+                    color: Color(0xff626F84),
                     fontSize: 15,
                     letterSpacing: 0.0,
                     height: 21 / 15,
