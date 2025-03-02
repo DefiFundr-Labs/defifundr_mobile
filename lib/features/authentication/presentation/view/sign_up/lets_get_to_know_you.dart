@@ -63,15 +63,11 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
         listener: (context, state) {
           if (state is LetsGetToKnowYouError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: AppColors.errorColor),
+              SnackBar(content: Text(state.message), backgroundColor: AppColors.errorColor),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content: Text(AppTexts.signUpSuccess),
-                  backgroundColor: AppColors.successColor),
+              SnackBar(content: Text(AppTexts.signUpSuccess), backgroundColor: AppColors.successColor),
             );
           }
         },
@@ -88,36 +84,31 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                     SizedBox(height: 8.h),
                     Text(
                       AppTexts.letsGetToKnowYouTitle,
-                      style: TextStyle(
-                          fontSize: 22.sp, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8.h),
                     Text(
                       AppTexts.letsGetToKnowYouSub,
-                      style:
-                          TextStyle(fontSize: 14.sp, color: AppColors.grey300),
+                      style: TextStyle(fontSize: 14.sp, color: AppColors.grey300),
                     ),
                     SizedBox(height: 30.h),
                     AppTextField(
                       controller: _emailController,
                       label: AppTexts.email,
                       // inputType: TextInputType.emailAddress,
-                      prefixIcon: SvgPicture.asset(AppAssets.userIcon,
-                          fit: BoxFit.scaleDown),
+                      prefixIcon: SvgPicture.asset(AppAssets.userIcon, fit: BoxFit.scaleDown),
                     ),
                     SizedBox(height: 15.h),
                     AppTextField(
                       controller: _firstNameController,
                       label: AppTexts.istName,
-                      prefixIcon: SvgPicture.asset(AppAssets.userIcon,
-                          fit: BoxFit.scaleDown),
+                      prefixIcon: SvgPicture.asset(AppAssets.userIcon, fit: BoxFit.scaleDown),
                     ),
                     SizedBox(height: 15.h),
                     AppTextField(
                       controller: _lastNameController,
                       label: AppTexts.lastName,
-                      prefixIcon: SvgPicture.asset(AppAssets.userIcon,
-                          fit: BoxFit.scaleDown),
+                      prefixIcon: SvgPicture.asset(AppAssets.userIcon, fit: BoxFit.scaleDown),
                     ),
                     SizedBox(height: 15.h),
                     AppTextField(
@@ -131,8 +122,7 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                           activeColor: AppColors.primaryColor,
                           value: _agreeToTerms,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                4), // Set border radius to 4
+                            borderRadius: BorderRadius.circular(4), // Set border radius to 4
                           ),
                           onChanged: (value) {
                             setState(() {
@@ -143,27 +133,19 @@ class _LetsGetToKnowYouScreenState extends State<LetsGetToKnowYouScreen> {
                         Expanded(
                           child: RichText(
                             text: TextSpan(
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: AppColors.grey200),
+                              style: TextStyle(fontSize: 12.sp, color: AppColors.grey200),
                               children: [
                                 TextSpan(text: AppTexts.tacText),
                                 TextSpan(
                                   text: AppTexts.tosText,
-                                  style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.bold),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
+                                  style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                                  recognizer: TapGestureRecognizer()..onTap = () {},
                                 ),
                                 TextSpan(text: " and "),
                                 TextSpan(
                                   text: AppTexts.ppText,
-                                  style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.bold),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
+                                  style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                                  recognizer: TapGestureRecognizer()..onTap = () {},
                                 ),
                                 TextSpan(text: "."),
                               ],

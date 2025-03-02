@@ -1,12 +1,10 @@
-
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-
 
 class AppColors {
   static const Color white100 = Color(0xFFFFFFFF);
   static const Color white200 = Color(0xFFF9F9F9);
-    static const Color white250 = Color(0xFFFAFAFA);
+  static const Color white250 = Color(0xFFFAFAFA);
   static const Color primaryColor = Color(0xFF000000);
   static const Color secondaryColor = Color(0xFF2B64E3);
   static const Color secondaryTextColor = Color(0xFF8E9BAE);
@@ -25,7 +23,6 @@ class AppColors {
   static const Color warningColor = Color.fromARGB(0, 214, 203, 45);
   static const Color transparent = Colors.transparent;
   static const Color borderGrey = Color(0xFFBBBABB);
-  static const Color gradientColor =  Color(0xFFEDEAFF);
-  static const Color white =  Colors.white;
-
+  static const Color gradientColor = Color(0xFFEDEAFF);
+  static const Color white = Colors.white;
 }
