@@ -35,7 +35,6 @@ dependencies:
   equatable: ^2.0.5
   #? The email_validator package is a lightweight and efficient Dart package for validating email addresses in Flutter and Dart applications.
   email_validator: ^3.0.0
-  flutter_riverpod: ^2.1.1
   #? freezed_annotation is a Dart package that provides a set of utilities for generating code for the freezed package.
   freezed_annotation: ^2.2.0
 
