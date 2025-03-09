@@ -1,9 +1,12 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/screens/auth_screens/create_password/create_password_screen.dart';
 import 'package:defifundr_mobile/screens/auth_screens/get_started/view/get_started.dart';
-import 'package:defifundr_mobile/screens/home/contract/presentation/view/compliance-page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+
+import '../../screens/home/verify_identity/verify_identity.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -20,7 +23,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const ComplianceScreen(),
+              child: const VerifyIdentity(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
