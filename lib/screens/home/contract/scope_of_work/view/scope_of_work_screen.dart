@@ -5,7 +5,6 @@ import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/screens/home/contract/scope_of_work/view/widget/expandable_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ScopeOfWorkScreen extends StatefulWidget {
@@ -126,7 +125,6 @@ class _ScopeOfWorkScreenState extends State<ScopeOfWorkScreen> {
                     onTap: () {},
                   ),
                 ),
-            
                 Expanded(
                   child: AppButton(
                     text: AppTexts.select,

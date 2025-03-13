@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
+import 'package:defifundr_mobile/screens/onboarding/get_usdt_balance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:web3auth_flutter/enums.dart';
+import 'package:web3auth_flutter/input.dart';
+import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -16,6 +22,7 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   int currentIndex = 0;
   late PageController _pageController;
+
   List<OnboardModel> screens = <OnboardModel>[
     OnboardModel(
       bgImage: AppAssets.onBoardingBg1,
@@ -55,6 +62,22 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  Future<void> login() async {
+    await Web3AuthFlutter.initialize();
+    try {
+      final res = await Web3AuthFlutter.login(
+          LoginParams(loginProvider: Provider.google));
+
+      log(res.toString());
+    } on UserCancelledException {
+      log("User cancelled.");
+    } on UnKnownException {
+      log("Unknown exception occurred");
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   @override
@@ -181,11 +204,34 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     ? AppColors.textBlack
                     : AppColors.white100,
                 text: currentIndex == 3 ? "Get Started" : "Next",
-                onTap: () {
+                onTap: () async {
                   if (currentIndex != screens.length - 1) {
                     _pageController.animateToPage(currentIndex + 1,
                         duration: Duration(milliseconds: 400),
                         curve: Curves.easeIn);
+                  } else {
+//                     final privateKey = await Web3AuthFlutter.getPrivKey();
+//                     print(privateKey);
+
+// // Convert the private key string to EthPrivateKey
+//                     final credentials = EthPrivateKey.fromHex(privateKey);
+
+// // Get the public address
+//                     final address = credentials.address;
+//                     print("Public address: ${address.hex}");
+
+// // If you want the checksummed address (mixed case) which is standard
+//                     final ethAddress = address.hexEip55;
+//                     print("Checksummed address: $ethAddress");
+
+                    final tokenService = TokenService();
+                    await tokenService
+                        .initialize(await Web3AuthFlutter.getPrivKey());
+
+                    // Get balances
+                    final balances = await tokenService.getStablecoinBalances();
+                    print('USDT Balance: ${balances['USDT']}');
+                    print('USDC Balance: ${balances['USDC']}');
                   }
                 },
               ),
@@ -196,6 +242,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
     );
   }
+
+  
 }
 
 extension WidgetExt on num {

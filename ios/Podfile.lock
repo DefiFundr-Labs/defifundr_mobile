@@ -1,4 +1,6 @@
 PODS:
+  - BigInt (5.2.0)
+  - curvelib.swift (2.0.0)
   - DKImagePickerController/Core (4.3.9):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
@@ -38,13 +40,25 @@ PODS:
     - Flutter
   - fluttertoast (0.0.2):
     - Flutter
+  - KeychainSwift (20.0.0)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.20.0):
-    - SDWebImage/Core (= 5.20.0)
-  - SDWebImage/Core (5.20.0)
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
   - SwiftyGif (5.4.5)
+  - TorusSessionManager (6.0.2):
+    - curvelib.swift (~> 2.0.0)
+    - KeychainSwift (~> 20.0.0)
+  - Web3Auth (11.0.5):
+    - BigInt (~> 5.2.0)
+    - curvelib.swift (~> 2.0.0)
+    - KeychainSwift (~> 20.0.0)
+    - TorusSessionManager (~> 6.0.2)
+  - web3auth_flutter (2.0.1):
+    - Flutter
+    - Web3Auth (~> 11.0.5)
 
 DEPENDENCIES:
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -52,13 +66,19 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - web3auth_flutter (from `.symlinks/plugins/web3auth_flutter/ios`)
 
 SPEC REPOS:
   trunk:
+    - BigInt
+    - curvelib.swift
     - DKImagePickerController
     - DKPhotoGallery
+    - KeychainSwift
     - SDWebImage
     - SwiftyGif
+    - TorusSessionManager
+    - Web3Auth
 
 EXTERNAL SOURCES:
   file_picker:
@@ -71,18 +91,26 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoast/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  web3auth_flutter:
+    :path: ".symlinks/plugins/web3auth_flutter/ios"
 
 SPEC CHECKSUMS:
+  BigInt: f668a80089607f521586bbe29513d708491ef2f7
+  curvelib.swift: b9223e5cac801effed8a5fe8968e952b3fe427a5
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
-  file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
+  file_picker: a0560bc09d61de87f12d246fc47d2119e6ef37be
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
-  fluttertoast: 21eecd6935e7064cc1fcb733a4c5a428f3f24f0f
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
+  flutter_native_splash: 6cad9122ea0fad137d23137dd14b937f3e90b145
+  fluttertoast: 2c67e14dce98bbdb200df9e1acf610d7a6264ea1
+  KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
+  TorusSessionManager: 3c47c2a4c4d6173a10006eb0af4b86317ee45ff8
+  Web3Auth: cf501e2bccf63d7a9746c0e53eb98cf143841a5c
+  web3auth_flutter: 16143eb089f719cc7629d82dedefe5b1a534e52d
 
-PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
+PODFILE CHECKSUM: ae273562e2241d2b1bd4b6d2d349a48b8fe1a2a7
 
 COCOAPODS: 1.16.2
