@@ -4,13 +4,14 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
-import 'package:defifundr_mobile/screens/onboarding/get_usdt_balance.dart';
+import 'package:defifundr_mobile/screens/onboarding/sepolia_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:web3auth_flutter/enums.dart';
 import 'package:web3auth_flutter/input.dart';
 import 'package:web3auth_flutter/web3auth_flutter.dart';
+import 'package:web3dart/web3dart.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -210,28 +211,46 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         duration: Duration(milliseconds: 400),
                         curve: Curves.easeIn);
                   } else {
-//                     final privateKey = await Web3AuthFlutter.getPrivKey();
-//                     print(privateKey);
+                    final privateKey = await Web3AuthFlutter.getPrivKey();
+                    print(privateKey);
 
-// // Convert the private key string to EthPrivateKey
-//                     final credentials = EthPrivateKey.fromHex(privateKey);
+// Convert the private key string to EthPrivateKey
+                    final credentials = EthPrivateKey.fromHex(privateKey);
 
 // // Get the public address
-//                     final address = credentials.address;
-//                     print("Public address: ${address.hex}");
+                    final address = credentials.address;
+                    print("Public address: ${address.hex}");
 
 // // If you want the checksummed address (mixed case) which is standard
-//                     final ethAddress = address.hexEip55;
-//                     print("Checksummed address: $ethAddress");
+                    final ethAddress = address.hexEip55;
+                    print("Checksummed address: $ethAddress");
 
-                    final tokenService = TokenService();
-                    await tokenService
+                    // final tokenService = TokenService();
+                    // await tokenService
+                    //     .initialize(await Web3AuthFlutter.getPrivKey());
+
+                    // // Get balances
+                    // final balances = await tokenService.getStablecoinBalances();
+                    // print('USDT Balance: ${balances['USDT']}');
+                    // print('USDC Balance: ${balances['USDC']}');
+
+                    // Inside your widget or service
+                    final sepoliaService = SepoliaService();
+                    await sepoliaService
                         .initialize(await Web3AuthFlutter.getPrivKey());
 
-                    // Get balances
-                    final balances = await tokenService.getStablecoinBalances();
-                    print('USDT Balance: ${balances['USDT']}');
-                    print('USDC Balance: ${balances['USDC']}');
+// Get and display ETH balance
+                    final ethBalance = await sepoliaService.getEthBalance();
+                    print('Sepolia ETH Balance: $ethBalance ETH');
+
+                    // // Send ETH
+                    // final txHash = await sepoliaService.sendEth(
+                    //     '0x85FD4d0D9aEE19B1ffb173b59bc47436eDb9C8D2', 0.0003);
+
+                    // ('Transaction hash: $txHash');
+
+// Don't forget to dispose when done
+                    sepoliaService.dispose();
                   }
                 },
               ),
@@ -242,8 +261,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
     );
   }
-
-  
 }
 
 extension WidgetExt on num {

@@ -8,10 +8,8 @@ class TokenService {
   late EthPrivateKey _credentials;
 
   // Token Contract Addresses (Ethereum Mainnet)
-  final String usdtAddress =
-      '0xdAC17F958D2ee523a2206206994597C13D831ec7';
-  final String usdcAddress =
-      '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'; 
+  final String usdtAddress = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+  final String usdcAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
 
   // Initialize with private key
   Future<void> initialize(String privateKey) async {
@@ -77,8 +75,7 @@ class TokenService {
 
     // Create contract instance
     final contract = DeployedContract(
-      ContractAbi.fromJson(
-          erc20Abi, 'ERC20'),
+      ContractAbi.fromJson(erc20Abi, 'ERC20'),
       EthereumAddress.fromHex(tokenAddress),
     );
 
@@ -93,7 +90,46 @@ class TokenService {
         function: transferFunction,
         parameters: [EthereumAddress.fromHex(to), amountInTokenUnits],
       ),
-      chainId: 1, 
+      chainId: 1,
+    );
+
+    return txHash;
+  }
+
+  Future<String> transferUSDTOptimized(String to, double amount) async {
+    // USDT contract on Ethereum
+    const usdtAddress = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+
+    // Create contract instance
+    final contract = DeployedContract(
+      ContractAbi.fromJson(erc20Abi, 'USDT'),
+      EthereumAddress.fromHex(usdtAddress),
+    );
+
+    // Convert amount (USDT has 6 decimals)
+    final amountInTokenUnits = BigInt.from(amount * 1000000);
+
+    // Get current gas price
+    final gasPrice = await _client.getGasPrice();
+    // Optionally reduce it slightly for a "slower" but cheaper transaction
+    final optimizedGasPrice = EtherAmount.fromBigInt(
+        EtherUnit.wei,
+        (gasPrice.getInWei * BigInt.from(90)) ~/
+            BigInt.from(100) // 90% of current gas price
+        );
+
+    // Send the transaction with optimized gas settings
+    final txHash = await _client.sendTransaction(
+      _credentials,
+      Transaction.callContract(
+        contract: contract,
+        function: contract.function('transfer'),
+        parameters: [EthereumAddress.fromHex(to), amountInTokenUnits],
+        gasPrice: optimizedGasPrice,
+        maxGas:
+            75000, // Slightly higher than typical needed to ensure it completes
+      ),
+      chainId: 1, // Change this for other networks
     );
 
     return txHash;
