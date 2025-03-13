@@ -6,17 +6,15 @@ import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EditEmailScreen extends ConsumerStatefulWidget {
+class EditEmailScreen extends StatefulWidget {
   const EditEmailScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _EditEmailScreenState();
+  State<StatefulWidget> createState() => _EditEmailScreenState();
 }
 
-class _EditEmailScreenState extends ConsumerState<EditEmailScreen>
+class _EditEmailScreenState extends State<EditEmailScreen>
     with InputValidationMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _emailController = TextEditingController();

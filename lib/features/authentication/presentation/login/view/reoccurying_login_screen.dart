@@ -15,19 +15,17 @@ import 'package:defiraiser_mobile/features/authentication/presentation/login/sta
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class LastUserLoginScreen extends ConsumerStatefulWidget {
+class LastUserLoginScreen extends StatefulWidget {
   const LastUserLoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _LastUserLoginScreenState();
+  State<StatefulWidget> createState() => _LastUserLoginScreenState();
 }
 
-class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
+class _LastUserLoginScreenState extends State<LastUserLoginScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _passwordController = TextEditingController();
@@ -162,7 +160,7 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                           },
                                           style: ButtonStyle(
                                             overlayColor:
-                                                MaterialStateProperty.all(
+                                                WidgetStateProperty.all(
                                                     Colors.transparent),
                                           ),
                                           child: Row(
@@ -225,7 +223,7 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                 children: [
                                   TextButton(
                                     style: ButtonStyle(
-                                      overlayColor: MaterialStateProperty.all(
+                                      overlayColor: WidgetStateProperty.all(
                                         Colors.transparent,
                                       ),
                                     ),

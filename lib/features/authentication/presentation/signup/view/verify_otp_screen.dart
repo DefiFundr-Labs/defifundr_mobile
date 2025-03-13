@@ -9,7 +9,6 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/st
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,18 +18,17 @@ import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../../../../core/global/constants/app_texts.dart';
 
-class VerifyOTPScreen extends ConsumerStatefulWidget {
+class VerifyOTPScreen extends StatefulWidget {
   final String username;
   final String email;
   const VerifyOTPScreen(
       {required this.username, required this.email, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _VerifyOTPScreenState();
+  State<StatefulWidget> createState() => _VerifyOTPScreenState();
 }
 
-class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
+class _VerifyOTPScreenState extends State<VerifyOTPScreen>
     with LoadingOverlayMixin {
   final ValueNotifier<bool> isEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<String> otp = ValueNotifier<String>("");
@@ -135,11 +133,11 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                         const HorizontalMargin(2),
                         TextButton(
                           style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all(
+                            overlayColor: WidgetStateProperty.all(
                               Colors.transparent,
                             ),
                             enableFeedback: false,
-                            padding: MaterialStateProperty.all<EdgeInsets>(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(0)),
                           ),
                           onPressed: () {

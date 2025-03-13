@@ -6,11 +6,10 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/features/home/domain/entities/campaigns/campaigns_entity.dart';
 import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
 
-class BuildDonationWidget extends ConsumerWidget {
+class BuildDonationWidget extends StatelessWidget {
   final Datum? campaign;
   late final AnimationController controller;
 
@@ -21,7 +20,7 @@ class BuildDonationWidget extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return _buildSearchItem(context, controller);
   }
 

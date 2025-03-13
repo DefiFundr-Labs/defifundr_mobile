@@ -7,22 +7,20 @@ import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class ViewPrivateScreen extends ConsumerStatefulWidget {
+class ViewPrivateScreen extends StatefulWidget {
   final String address;
   final String privateKey;
   const ViewPrivateScreen(
       {required this.address, required this.privateKey, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ViewPrivateScreenState();
+  State<StatefulWidget> createState() => _ViewPrivateScreenState();
 }
 
-class _ViewPrivateScreenState extends ConsumerState<ViewPrivateScreen> {
+class _ViewPrivateScreenState extends State<ViewPrivateScreen> {
   @override
   void dispose() {
     super.dispose();
@@ -68,11 +66,11 @@ class _ViewPrivateScreenState extends ConsumerState<ViewPrivateScreen> {
                       onTap: () {
                         Clipboard.setData(ClipboardData(text: widget.address));
                         context.showToast(
-              title: AppTexts.copied,
-              context: context,
-              toastDurationInSeconds: 1,
-              isSuccess: true,
-            );
+                          title: AppTexts.copied,
+                          context: context,
+                          toastDurationInSeconds: 1,
+                          isSuccess: true,
+                        );
                       },
                       child: Row(
                         children: [
@@ -114,11 +112,11 @@ class _ViewPrivateScreenState extends ConsumerState<ViewPrivateScreen> {
                         Clipboard.setData(
                             ClipboardData(text: widget.privateKey));
                         context.showToast(
-              title: AppTexts.copied,
-              context: context,
-              toastDurationInSeconds: 1,
-              isSuccess: true,
-            );
+                          title: AppTexts.copied,
+                          context: context,
+                          toastDurationInSeconds: 1,
+                          isSuccess: true,
+                        );
                       },
                       child: Row(
                         children: [

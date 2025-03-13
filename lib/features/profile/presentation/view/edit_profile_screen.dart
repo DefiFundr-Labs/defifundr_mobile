@@ -12,18 +12,16 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/st
 import 'package:defiraiser_mobile/features/profile/presentation/state/change_username_bloc/bloc/change_username_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class EditProfileScreen extends ConsumerStatefulWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _EditProfileScreenState();
+  State<StatefulWidget> createState() => _EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends ConsumerState<EditProfileScreen>
+class _EditProfileScreenState extends State<EditProfileScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final TextEditingController _userNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
@@ -180,15 +178,15 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, error: (message) {
       _overlayEntry?.remove();
-    context.showToast(
-              title:message,
-              context: context,
-              toastDurationInSeconds: 1,
-              isSuccess: false,
-            );
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
+      );
     }, loaded: (message) {
       _overlayEntry?.remove();
-     context.showToast(
+      context.showToast(
         title: "Username changed successfully",
         context: context,
         toastDurationInSeconds: 1,
@@ -206,7 +204,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, checkUsernameError: (message) {
       _overlayEntry?.remove();
-    context.showToast(
+      context.showToast(
         title: message,
         context: context,
         toastDurationInSeconds: 1,

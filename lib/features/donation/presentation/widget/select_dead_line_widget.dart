@@ -2,23 +2,21 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class SelectDeadLinePicker extends ConsumerStatefulWidget {
+class SelectDeadLinePicker extends StatefulWidget {
   const SelectDeadLinePicker({
     super.key,
   });
 
   @override
-  ConsumerState<SelectDeadLinePicker> createState() =>
+  State<SelectDeadLinePicker> createState() =>
       _SelectPostCategoryBottomSheetSheetState();
 }
 
 class _SelectPostCategoryBottomSheetSheetState
-    extends ConsumerState<SelectDeadLinePicker> {
+    extends State<SelectDeadLinePicker> {
   DateTime selectedDate = DateTime.now();
-  
 
   @override
   void initState() {

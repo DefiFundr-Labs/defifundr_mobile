@@ -1,16 +1,15 @@
 part of '../_home.dart';
 
-class LatestFundraiserWidget extends ConsumerStatefulWidget {
+class LatestFundraiserWidget extends StatefulWidget {
   const LatestFundraiserWidget({
     super.key,
   });
 
   @override
-  ConsumerState<LatestFundraiserWidget> createState() =>
-      _LatestFundraiserWidgetState();
+  State<LatestFundraiserWidget> createState() => _LatestFundraiserWidgetState();
 }
 
-class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
+class _LatestFundraiserWidgetState extends State<LatestFundraiserWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

@@ -1,15 +1,14 @@
 part of '../_home.dart';
 
-class ViewDonorsScreens extends ConsumerStatefulWidget {
+class ViewDonorsScreens extends StatefulWidget {
   final String campaignId;
   const ViewDonorsScreens({required this.campaignId, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ViewDonorsScreensState();
+  State<StatefulWidget> createState() => _ViewDonorsScreensState();
 }
 
-class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
+class _ViewDonorsScreensState extends State<ViewDonorsScreens> {
   final RefreshController _refreshController1 =
       RefreshController(initialRefresh: false);
   @override

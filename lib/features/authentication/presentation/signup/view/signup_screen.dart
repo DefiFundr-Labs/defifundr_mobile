@@ -13,21 +13,19 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/st
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/check_user_bloc/bloc/check_username_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CreateAccountScreen extends ConsumerStatefulWidget {
+class CreateAccountScreen extends StatefulWidget {
   final String? email;
   final String? username;
   const CreateAccountScreen({this.email, this.username, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CreateAccountScreenState();
+  State<StatefulWidget> createState() => _CreateAccountScreenState();
 }
 
-class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
+class _CreateAccountScreenState extends State<CreateAccountScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -235,7 +233,7 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                     children: [
                       TextButton(
                         style: ButtonStyle(
-                          overlayColor: MaterialStateProperty.all(
+                          overlayColor: WidgetStateProperty.all(
                             Colors.transparent,
                           ),
                         ),

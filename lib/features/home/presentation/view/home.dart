@@ -1,13 +1,13 @@
 part of '../_home.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
+  State<StatefulWidget> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen>
+class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   final isHide = ValueNotifier<bool>(true);
@@ -412,7 +412,7 @@ class LoadingImage extends StatelessWidget {
         highlightColor: AppColors.white100.withOpacity(0.3),
         child: Container(
           width: width ?? 50.sp,
-          height:height?? 50.sp,
+          height: height ?? 50.sp,
           decoration: const BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,

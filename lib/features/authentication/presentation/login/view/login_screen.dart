@@ -13,18 +13,17 @@ import 'package:defiraiser_mobile/features/authentication/presentation/login/sta
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+  State<StatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen>
+class _LoginScreenState extends State<LoginScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _passwordController = TextEditingController();
@@ -138,7 +137,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                           RouteConstants.resetPassword);
                                     },
                                     style: ButtonStyle(
-                                      overlayColor: MaterialStateProperty.all(
+                                      overlayColor: WidgetStateProperty.all(
                                           Colors.transparent),
                                     ),
                                     child: Text(
@@ -180,7 +179,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                 children: [
                                   TextButton(
                                     style: ButtonStyle(
-                                      overlayColor: MaterialStateProperty.all(
+                                      overlayColor: WidgetStateProperty.all(
                                         Colors.transparent,
                                       ),
                                     ),

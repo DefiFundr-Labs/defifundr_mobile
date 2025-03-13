@@ -1,16 +1,15 @@
 part of '../_home.dart';
 
-class SearchCampaignScreen extends ConsumerStatefulWidget {
+class SearchCampaignScreen extends StatefulWidget {
   const SearchCampaignScreen({
     super.key,
   });
 
   @override
-  ConsumerState<SearchCampaignScreen> createState() =>
-      _SearchCampaignScreenState();
+  State<SearchCampaignScreen> createState() => _SearchCampaignScreenState();
 }
 
-class _SearchCampaignScreenState extends ConsumerState<SearchCampaignScreen>
+class _SearchCampaignScreenState extends State<SearchCampaignScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -79,7 +78,9 @@ class _SearchCampaignScreenState extends ConsumerState<SearchCampaignScreen>
             child: SlideAnimation(
               verticalOffset: 50.0,
               child: FadeInAnimation(
-                child: BuildDonationWidget(controller: _controller,),
+                child: BuildDonationWidget(
+                  controller: _controller,
+                ),
               ),
             ),
           );
@@ -87,5 +88,4 @@ class _SearchCampaignScreenState extends ConsumerState<SearchCampaignScreen>
       ),
     );
   }
-
 }

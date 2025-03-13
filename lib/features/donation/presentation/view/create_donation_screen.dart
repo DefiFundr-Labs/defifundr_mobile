@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
@@ -18,21 +17,19 @@ import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:defiraiser_mobile/features/home/presentation/state/get_current_eth_price_bloc/bloc/current_eth_price_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class CreateDonationScreen extends ConsumerStatefulWidget {
+class CreateDonationScreen extends StatefulWidget {
   const CreateDonationScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _DonationScreenViewState();
+  State<StatefulWidget> createState() => _DonationScreenViewState();
 }
 
-class _DonationScreenViewState extends ConsumerState<CreateDonationScreen>
+class _DonationScreenViewState extends State<CreateDonationScreen>
     with SingleTickerProviderStateMixin, LoadingOverlayMixin {
   OverlayEntry? _overlayEntry;
   late AnimationController _controller;
@@ -180,11 +177,11 @@ class _DonationScreenViewState extends ConsumerState<CreateDonationScreen>
                   //     RegExp(r'(^\d*[\.\,]?\d{0,10})')),
                   // always add a decimal to the end of the input if it's not there
                   // CurrencyTextInputFormatter(
-                    
-                    // name: '',
-                    // decimalDigits: 4,
-                    // symbol: 'ETH  ',
-                    // locale: 'en_US',
+
+                  // name: '',
+                  // decimalDigits: 4,
+                  // symbol: 'ETH  ',
+                  // locale: 'en_US',
                   // ),
                 ],
                 inputType: TextInputType.numberWithOptions(decimal: true),

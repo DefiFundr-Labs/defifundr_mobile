@@ -7,7 +7,6 @@ import 'package:defiraiser_mobile/features/authentication/presentation/forget_pa
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,15 +16,15 @@ import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../../../../core/global/constants/app_texts.dart';
 
-class ResetOTPScreen extends ConsumerStatefulWidget {
+class ResetOTPScreen extends StatefulWidget {
   final String email;
   const ResetOTPScreen({required this.email, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ResetOTPScreenState();
+  State<StatefulWidget> createState() => _ResetOTPScreenState();
 }
 
-class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
+class _ResetOTPScreenState extends State<ResetOTPScreen> {
   final ValueNotifier<bool> isEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<String> otp = ValueNotifier<String>("");
   final TextEditingController _otpController = TextEditingController();
@@ -126,11 +125,11 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                         const HorizontalMargin(2),
                         TextButton(
                           style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all(
+                            overlayColor: WidgetStateProperty.all(
                               Colors.transparent,
                             ),
                             enableFeedback: false,
-                            padding: MaterialStateProperty.all<EdgeInsets>(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(0)),
                           ),
                           onPressed: () {

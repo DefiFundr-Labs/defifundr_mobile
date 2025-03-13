@@ -1,19 +1,18 @@
 part of '../signup.dart';
 
-class StartUpScreen extends ConsumerStatefulWidget {
+class StartUpScreen extends StatefulWidget {
   const StartUpScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _StartUpScreenState();
+  State<StatefulWidget> createState() => _StartUpScreenState();
 }
 
-class _StartUpScreenState extends ConsumerState<StartUpScreen>
+class _StartUpScreenState extends State<StartUpScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
 
   @override
   void initState() {
-    
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
     controller.repeat(reverse: true);

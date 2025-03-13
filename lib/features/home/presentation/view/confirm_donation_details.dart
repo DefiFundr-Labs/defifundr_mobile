@@ -1,6 +1,6 @@
 part of '../_home.dart';
 
-class ConfirmDonationDetailsScreen extends ConsumerStatefulWidget {
+class ConfirmDonationDetailsScreen extends StatefulWidget {
   final String address;
   final String amount;
   final String campaignId;
@@ -15,13 +15,11 @@ class ConfirmDonationDetailsScreen extends ConsumerStatefulWidget {
       super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ConfirmDonationDetailsScreenState();
+  State<StatefulWidget> createState() => _ConfirmDonationDetailsScreenState();
 }
 
 class _ConfirmDonationDetailsScreenState
-    extends ConsumerState<ConfirmDonationDetailsScreen>
-    with LoadingOverlayMixin {
+    extends State<ConfirmDonationDetailsScreen> with LoadingOverlayMixin {
   OverlayEntry? _overlayEntry;
   @override
   Widget build(BuildContext context) {

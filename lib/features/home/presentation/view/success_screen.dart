@@ -1,14 +1,14 @@
 part of '../_home.dart';
 
-class SuccessScreen extends ConsumerStatefulWidget {
+class SuccessScreen extends StatefulWidget {
   final String? campaignHash;
   const SuccessScreen({this.campaignHash, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SuccessScreenState();
+  State<StatefulWidget> createState() => _SuccessScreenState();
 }
 
-class _SuccessScreenState extends ConsumerState<SuccessScreen> {
+class _SuccessScreenState extends State<SuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

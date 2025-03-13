@@ -1,6 +1,6 @@
 part of '../_home.dart';
 
-class AmountDonateScreen extends ConsumerStatefulWidget {
+class AmountDonateScreen extends StatefulWidget {
   final String campaignId;
   final String campaignName;
   final String campaignAddress;
@@ -14,11 +14,10 @@ class AmountDonateScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AmountDonateScreenState();
+  State<StatefulWidget> createState() => _AmountDonateScreenState();
 }
 
-class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
+class _AmountDonateScreenState extends State<AmountDonateScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

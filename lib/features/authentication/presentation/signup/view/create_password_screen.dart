@@ -12,20 +12,18 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/st
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class CreatePasswordScreen extends ConsumerStatefulWidget {
+class CreatePasswordScreen extends StatefulWidget {
   final String username;
   const CreatePasswordScreen({required this.username, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CreatePasswordScreenState();
+  State<StatefulWidget> createState() => _CreatePasswordScreenState();
 }
 
-class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
+class _CreatePasswordScreenState extends State<CreatePasswordScreen>
     with
         InputValidationMixin,
         SingleTickerProviderStateMixin,

@@ -3,20 +3,19 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/features/home/presentation/state/categories_bloc/bloc/categories_bloc_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SelectCategoryWidget extends ConsumerStatefulWidget {
+class SelectCategoryWidget extends StatefulWidget {
   const SelectCategoryWidget({
     super.key,
   });
 
   @override
-  ConsumerState<SelectCategoryWidget> createState() =>
+  State<SelectCategoryWidget> createState() =>
       _SelectPostCategoryBottomSheetSheetState();
 }
 
 class _SelectPostCategoryBottomSheetSheetState
-    extends ConsumerState<SelectCategoryWidget> {
+    extends State<SelectCategoryWidget> {
   // Add default synergy home to list
 
   @override

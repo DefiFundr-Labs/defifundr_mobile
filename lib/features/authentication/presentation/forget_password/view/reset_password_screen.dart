@@ -12,22 +12,20 @@ import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class ResetPasswordScreen extends ConsumerStatefulWidget {
+class ResetPasswordScreen extends StatefulWidget {
   final String otp;
   final String email;
   const ResetPasswordScreen(
       {required this.otp, required this.email, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ResetPasswordScreenState();
+  State<StatefulWidget> createState() => _ResetPasswordScreenState();
 }
 
-class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
+class _ResetPasswordScreenState extends State<ResetPasswordScreen>
     with
         InputValidationMixin,
         SingleTickerProviderStateMixin,

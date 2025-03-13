@@ -15,18 +15,17 @@ import 'package:defiraiser_mobile/features/authentication/presentation/login/sta
 import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SelectAvatarScreen2 extends ConsumerStatefulWidget {
+class SelectAvatarScreen2 extends StatefulWidget {
   const SelectAvatarScreen2({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProfileScreenState();
+  State<StatefulWidget> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
+class _ProfileScreenState extends State<SelectAvatarScreen2>
     with SingleTickerProviderStateMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final isValidate = ValueNotifier<bool>(false);

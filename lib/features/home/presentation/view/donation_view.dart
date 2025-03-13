@@ -1,14 +1,14 @@
 part of '../_home.dart';
 
-class DonationView extends ConsumerStatefulWidget {
+class DonationView extends StatefulWidget {
   final Datum? campaign;
   const DonationView({this.campaign, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _DonationViewState();
+  State<StatefulWidget> createState() => _DonationViewState();
 }
 
-class _DonationViewState extends ConsumerState<DonationView>
+class _DonationViewState extends State<DonationView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

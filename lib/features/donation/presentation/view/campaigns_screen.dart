@@ -9,21 +9,19 @@ import 'package:defiraiser_mobile/features/home/presentation/widget/error_state_
 import 'package:defiraiser_mobile/features/home/presentation/widget/loading_campaigns_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class CampaignScreenView extends ConsumerStatefulWidget {
+class CampaignScreenView extends StatefulWidget {
   const CampaignScreenView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CampaignScreenViewState();
+  State<StatefulWidget> createState() => _CampaignScreenViewState();
 }
 
-class _CampaignScreenViewState extends ConsumerState<CampaignScreenView>
+class _CampaignScreenViewState extends State<CampaignScreenView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   final RefreshController _refreshController1 =
@@ -109,11 +107,9 @@ class _CampaignScreenViewState extends ConsumerState<CampaignScreenView>
       return state.maybeWhen(
         orElse: () => Container(),
         loading: () => LoadingCampaigns(),
-        error: (error) => ErrorStateWidget(
-          onTap: (){
-            context.read<MyCampaignsBloc>().add(FetchMyCampaigns());
-          }
-        ),
+        error: (error) => ErrorStateWidget(onTap: () {
+          context.read<MyCampaignsBloc>().add(FetchMyCampaigns());
+        }),
         loaded: (success) => Expanded(
           child: SmartRefresher(
             enablePullDown: true,

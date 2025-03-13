@@ -8,23 +8,21 @@ import 'package:defiraiser_mobile/features/home/presentation/widget/error_state_
 import 'package:defiraiser_mobile/features/home/presentation/widget/loading_campaigns_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class CategoryCampaignScreen extends ConsumerStatefulWidget {
+class CategoryCampaignScreen extends StatefulWidget {
   final String category;
   final String id;
   const CategoryCampaignScreen(
       {required this.category, required this.id, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _DonationScreenViewState();
+  State<StatefulWidget> createState() => _DonationScreenViewState();
 }
 
-class _DonationScreenViewState extends ConsumerState<CategoryCampaignScreen>
+class _DonationScreenViewState extends State<CategoryCampaignScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   final RefreshController _refreshController1 =

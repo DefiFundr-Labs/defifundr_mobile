@@ -15,18 +15,17 @@ import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/profile/presentation/state/get_private_key_bloc/bloc/get_private_key_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SecurityScreen extends ConsumerStatefulWidget {
+class SecurityScreen extends StatefulWidget {
   const SecurityScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SecurityScreenState();
+  State<StatefulWidget> createState() => _SecurityScreenState();
 }
 
-class _SecurityScreenState extends ConsumerState<SecurityScreen>
+class _SecurityScreenState extends State<SecurityScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _passwordController = TextEditingController();
@@ -149,7 +148,7 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
                                           },
                                           style: ButtonStyle(
                                             overlayColor:
-                                                MaterialStateProperty.all(
+                                                WidgetStateProperty.all(
                                                     Colors.transparent),
                                           ),
                                           child: Row(
