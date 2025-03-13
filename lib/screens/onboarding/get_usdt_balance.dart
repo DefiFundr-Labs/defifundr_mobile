@@ -17,7 +17,7 @@ class TokenService {
   Future<void> initialize(String privateKey) async {
     _credentials = EthPrivateKey.fromHex(privateKey);
     _client = Web3Client(
-      'https://mainnet.infura.io/v3/72161e5e7aeb402fa09330f046462e30', // Replace with your provider
+      'https://mainnet.infura.io/v3/72161e5e7aeb402fa09330f046462e30',
       http.Client(),
     );
   }
