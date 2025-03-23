@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 
+import '../../screens/auth_screens/complete_kyc/complete_kyc.dart';
 import '../../screens/home/verify_identity/verify_identity.dart';
 
 class AppRouter {
@@ -23,7 +24,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const VerifyIdentity(),
+              child: const CompleteKyc (),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
