@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/screens/auth_screens/create_password/create_pas
 import 'package:defifundr_mobile/screens/auth_screens/get_started/view/get_started.dart';
 import 'package:defifundr_mobile/screens/auth_screens/verify_bvn/verify_bvn_screen.dart';
 import 'package:defifundr_mobile/screens/auth_screens/verify_with_passport_screen/verify_with_passport.dart';
+import 'package:defifundr_mobile/screens/home/home_screen.dart';
 import 'package:defifundr_mobile/screens/home/identity/verify_with_drivers_card.dart';
 import 'package:defifundr_mobile/screens/voters_verification_screen/votersVerification.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const VerifyWithDriversCard(),
+              child: const HomePage(),
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
                   opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
