@@ -12,6 +12,7 @@ class AppIcons {
   static String userEdit = '${_baseAssetUrl}user_edit.svg';
   static String zeroPercent = '${_baseAssetUrl}zero_percent.svg';
   static String twentyFivePercent = '${_baseAssetUrl}twenty_five_percent.svg';
+  static String hundredPercent = '${_baseAssetUrl}hundred_percent.svg';
 
   ///Image icons
   static String people = '${_baseImageAssetUrl}people.png';

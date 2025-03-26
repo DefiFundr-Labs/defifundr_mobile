@@ -1,4 +1,6 @@
 import 'dart:io';
+
+import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/utils/image_picker.dart';
@@ -14,7 +16,7 @@ class ComplianceScreen extends StatefulWidget {
 }
 
 class _ComplianceScreenState extends State<ComplianceScreen> {
-  int selectedOption = 1; // 0 for Generate, 1 for Write Your Own
+  int selectedOption = 1;
   final TextEditingController _complianceController = TextEditingController();
 
   @override
@@ -42,21 +44,12 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
         ),
         actions: [
           Container(
-            width: 24,
-            height: 24,
-            padding: EdgeInsets.all(8),
-            margin: const EdgeInsets.only(right: 20),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Color(0xff081A5F), width: 4)),
-            child: Text(
-              "100%",
-              style: Config.b3(context).copyWith(
-                fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
-              ),
-            ),
-          ),
+              margin: EdgeInsets.only(right: 20),
+              child: SvgPicture.asset(
+                AppIcons.hundredPercent,
+                width: 20,
+                height: 20,
+              )),
         ],
       ),
       body: SingleChildScrollView(
@@ -166,16 +159,17 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
                     .copyWith(fontWeight: FontWeight.w500, fontSize: 16.sp),
               ),
               SizedBox(height: 8.h),
-
-              // Upload compliance file
               Container(
+                width: double.infinity,
+                height: 125.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey.shade200),
                 ),
                 padding: const EdgeInsets.all(16),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SvgPicture.asset(
                       'assets/icons/upload-compliance.svg',
@@ -183,31 +177,33 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
                       height: 36,
                       fit: BoxFit.contain,
                     ),
-                    const SizedBox(width: 16),
-                    ValueListenableBuilder(
-                      valueListenable: complianceFile,
-                      builder: (context, file, _) => Expanded(
-                        child: Text(
-                          file != null
-                              ? file.getPreview(length: 5)
-                              : 'Upload Compliance',
-                          style: Config.h3(context).copyWith(
-                              fontWeight: FontWeight.w500, fontSize: 16.sp),
+                    Row(
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: complianceFile,
+                          builder: (context, file, _) => Text(
+                            file != null
+                                ? file.getPreview(length: 5)
+                                : 'Upload Compliance',
+                            style: Config.h3(context).copyWith(
+                                fontWeight: FontWeight.w500, fontSize: 16.sp),
+                          ),
                         ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        complianceFile.value = await pickFile();
-                      },
-                      child: Text(
-                        'Upload',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue[400],
+                        Spacer(),
+                        TextButton(
+                          onPressed: () async {
+                            complianceFile.value = await pickFile();
+                          },
+                          child: Text(
+                            'Upload',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blue[400],
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
@@ -223,13 +219,16 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
               SizedBox(height: 8.h),
 
               Container(
+                width: double.infinity,
+                height: 150.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey.shade200),
                 ),
                 padding: const EdgeInsets.all(16),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       padding: const EdgeInsets.all(10),
@@ -240,32 +239,37 @@ class _ComplianceScreenState extends State<ComplianceScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    ValueListenableBuilder(
-                        valueListenable: signatureFile,
-                        builder: (context, file, _) {
-                          return Expanded(
-                            child: Text(
-                              file != null
-                                  ? file.getPreview(length: 5)
-                                  : 'Upload Signature',
-                              style: Config.h3(context).copyWith(
-                                  fontWeight: FontWeight.w500, fontSize: 16.sp),
+                    Row(
+                      children: [
+                        ValueListenableBuilder(
+                            valueListenable: signatureFile,
+                            builder: (context, file, _) {
+                              return Expanded(
+                                child: Text(
+                                  file != null
+                                      ? file.getPreview(length: 5)
+                                      : 'Upload Signature',
+                                  style: Config.h3(context).copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp),
+                                ),
+                              );
+                            }),
+                        Spacer(),
+                        TextButton(
+                          onPressed: () async {
+                            signatureFile.value = await pickFile();
+                          },
+                          child: Text(
+                            'Upload',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blue[400],
                             ),
-                          );
-                        }),
-                    TextButton(
-                      onPressed: () async {
-                        signatureFile.value = await pickFile();
-                      },
-                      child: Text(
-                        'Upload',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue[400],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
