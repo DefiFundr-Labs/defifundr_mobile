@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/constants/fonts.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,7 +26,7 @@ class ContractComplainceDocument extends StatelessWidget {
           children: [
             Text(
               AppTexts.complianceDocument,
-              style: Config.h2(context)
+              style: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
             ),
             Row(
@@ -38,7 +38,7 @@ class ContractComplainceDocument extends StatelessWidget {
                     SizedBox(width: 6),
                     Text(
                       AppTexts.machinelearningcomplincePDF,
-                      style: Config.h2(context)
+                      style: DefiFundrFonts.h2(context)
                           .copyWith(fontSize: 10, color: AppColors.purple505),
                     ),
                   ],
@@ -53,7 +53,7 @@ class ContractComplainceDocument extends StatelessWidget {
                   child: Center(
                     child: Text(
                       AppTexts.view,
-                      style: Config.h2(context)
+                      style: DefiFundrFonts.h2(context)
                           .copyWith(fontSize: 9, color: AppColors.white100),
                     ),
                   ),

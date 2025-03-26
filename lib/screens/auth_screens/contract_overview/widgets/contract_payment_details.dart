@@ -1,5 +1,5 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
-import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/constants/fonts.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/info_field.dart';
 import 'package:flutter/material.dart';
@@ -29,15 +29,15 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
           children: [
             Text(
               AppTexts.paymentDetails,
-              style: Config.h2(context).copyWith(fontSize: 14),
+              style: DefiFundrFonts.h2(context).copyWith(fontSize: 14),
             ),
             SizedBox(height: 9),
             InfoField(
               label: AppTexts.selectedCurrencyorCoin,
               value: 'USDT (₮)',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),
@@ -46,9 +46,9 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
             InfoField(
               label: AppTexts.paymentrate,
               value: '₮ 700.00',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),
@@ -56,9 +56,9 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
             InfoField(
               label: AppTexts.paymentFrequency,
               value: 'Monthly',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),
@@ -67,9 +67,9 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
             InfoField(
               label: AppTexts.startDate,
               value: 'Monthly',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),
@@ -78,9 +78,9 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
             InfoField(
               label: AppTexts.endDate,
               value: '24th Febuary, 2025',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),
@@ -89,9 +89,9 @@ class _ContractPaymentDetailssState extends State<ContractPaymentDetails> {
             InfoField(
               label: AppTexts.invoiceCycle,
               value: 'Weekly',
-              labelStyle: Config.h2(context)
+              labelStyle: DefiFundrFonts.h2(context)
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
-              valueStyle: Config.h2(context).copyWith(
+              valueStyle: DefiFundrFonts.h2(context).copyWith(
                   fontSize: 12,
                   color: AppColors.purple505,
                   fontWeight: FontWeight.w500),

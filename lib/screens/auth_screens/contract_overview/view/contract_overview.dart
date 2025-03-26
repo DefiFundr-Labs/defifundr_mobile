@@ -1,15 +1,16 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/constants/fonts.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/contract_basic_details.dart';
-import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/contract_compliance.dart';
 import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/contract_compliance_document.dart';
 import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/contract_payment_details.dart';
 import 'package:defifundr_mobile/screens/auth_screens/contract_overview/widgets/contract_role_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../widgets/contract_compliance.dart';
 
 class ContractOverview extends StatefulWidget {
   const ContractOverview({super.key});
@@ -39,7 +40,7 @@ class _ContractOverviewState extends State<ContractOverview> {
                 alignment: Alignment.center,
                 child: Text(
                   AppTexts.contractOverview,
-                  style: Config.h2(context).copyWith(fontSize: 26),
+                  style: DefiFundrFonts.h2(context).copyWith(fontSize: 26),
                 ),
               ),
               SizedBox(height: 24),
