@@ -18,6 +18,7 @@ class AppColors {
   static const Color grey400 = Color(0xFFF5F5F5);
   static const Color grey500 = Color(0xFF50555C);
   static const Color textfieldColor = Color(0xFFF4F8FD);
+  static const Color lightPurple = Color(0xFFD6DDFA);
   static const Color errorColor = Color(0xFFE02020);
   static const Color successColor = Color(0xFF00C853);
   static const Color black100 = Color(0xFF000000);
@@ -41,4 +42,6 @@ class AppColors {
   static const Color gradientColor = Color(0xFFEDEAFF);
   static const Color white = Colors.white;
   static const Color buttonBackground = Color.fromRGBO(16, 19, 35, 1);
+  static const Color purple505 = Color(0xFF505780);
+  static const Color lightgrey626 = Color(0xFF626F84);
 }
