@@ -14,7 +14,7 @@ class AppAssets {
   static String downArrow = '${defifundrIconPath}arrow_down.svg';
   static String backgroundImage = '${defifundrIconPath}background.png';
   static String bvnSuffixIcon = '${defifundrIconPath}bvn_suffix.svg';
-  static String ninSlipImage = '${defifundrImagePath}/nin_slip.png';
+  static String ninSlipImage = '$defifundrImagePath/nin_slip.png';
   static String person = '${defifundrIconPath}person.svg';
   static String crossEye = '${defifundrIconPath}cross_eye.svg';
   static String arrowRightCurve = '${defifundrIconPath}arrow_right.svg';
@@ -29,6 +29,14 @@ class AppAssets {
       '${defifundrIconPath}twenty_five_percent.svg';
   static String closeIcon2 = '${defifundrIconPath}closeIcon.svg';
   static String documentsIcon = '${defifundrIconPath}documents.svg';
+  static String notification = '${defifundrIconPath}notification.svg';
+  static String lock = '${defifundrIconPath}lock.svg';
+  static String people2 = '${defifundrIconPath}people.svg';
+  static String money = '${defifundrIconPath}money.svg';
+  static String payslip = '${defifundrIconPath}payslip.svg';
+  static String reciept = '${defifundrIconPath}receipt-minus.svg';
+  static String profileImage = '${defifundrIconPath}profileImage.png';
+  static String people4 = '${defifundrIconPath}people4.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const defifundrImagePath = 'assets/images';
@@ -60,5 +68,5 @@ class AppAssets {
   static const profile = '$defifundrImagePath/profile.png';
   static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
   static const transaction = '$defifundrImagePath/transaction.svg';
-  static String passportImage = '${defifundrImagePath}/passport.png';
+  static String passportImage = '$defifundrImagePath/passport.png';
 }
