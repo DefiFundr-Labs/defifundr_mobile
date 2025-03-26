@@ -31,6 +31,9 @@ class RouteConstants {
   static String selectNationality = 'selectNationality';
   static String verifyBVN = 'verifyBVN';
   static String verifyNIN = 'verifyNIN';
+  static String verifyVotersCard = 'verifyVotersCard';
+  static String verifyPassport = 'verifyPassport';
+  static String verifyDriversCard = 'verifyDriversCard';
   static String createPassword = 'createPassword';
   static const String letsGetToKnowYou = 'letsGetToKnowYou';
   static String selectIdType = 'selectIdType';

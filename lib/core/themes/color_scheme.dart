@@ -40,4 +40,5 @@ class AppColors {
   static const Color white250 = Color(0xFFFAFAFA);
   static const Color gradientColor = Color(0xFFEDEAFF);
   static const Color white = Colors.white;
+  static const Color buttonBackground = Color.fromRGBO(16, 19, 35, 1);
 }

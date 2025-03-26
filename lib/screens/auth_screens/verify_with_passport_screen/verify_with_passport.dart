@@ -1,24 +1,35 @@
-import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class VoterCardScreen extends StatefulWidget {
-  const VoterCardScreen({super.key});
+import '../../../core/themes/color_scheme.dart';
+
+class VerifyPassportScreen extends StatefulWidget {
+  const VerifyPassportScreen({super.key});
 
   @override
-  State<VoterCardScreen> createState() => _VoterCardScreenState();
+  State<VerifyPassportScreen> createState() => _VerifyPassportScreenState();
 }
 
-class _VoterCardScreenState extends State<VoterCardScreen> {
-  final TextEditingController controller = TextEditingController();
+class _VerifyPassportScreenState extends State<VerifyPassportScreen> {
+  final TextEditingController _passportController = TextEditingController();
+  final FocusNode _passportFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _passportFocusNode.requestFocus();
+  }
 
   @override
   void dispose() {
-    controller.dispose();
+    _passportController.dispose();
+    _passportFocusNode.dispose();
     super.dispose();
   }
 
@@ -38,7 +49,7 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Transform.translate(
-                      offset: Offset(-10.w, 0),
+                      offset: Offset(-8.w, 0),
                       child: IconButton(
                         icon: Icon(CupertinoIcons.back, color: Colors.black),
                         onPressed: () => Navigator.pop(context),
@@ -47,7 +58,7 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                       decoration: BoxDecoration(
-                        
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(color: Colors.grey.shade300),
                       ),
@@ -78,34 +89,33 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                   ],
                 ),
                 SizedBox(height: 24.h),
-                Center(
-                  child: Container(
-                    width: double.infinity,
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/idcard.png'),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.circular(8.r),
+                // Passport image
+                Container(
+                  width: double.infinity,
+                  height: 200.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    image: DecorationImage(
+                      image: AssetImage(AppAssets.passportImage),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 SizedBox(height: 32.h),
                 Text(
-                  AppTexts.verifyWithVotersCard,
+                  AppTexts.verifyWithPassport,
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 8.h),
                 Text(
-                  AppTexts.verifyWithVotersCardDesc,
+                  AppTexts.verifyWithPassportDesc,
                   style: TextStyle(
+                    fontSize: 12.sp,
                     color: AppColors.black100,
-                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -116,7 +126,9 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: TextField(
-                    controller: controller,
+                    controller: _passportController,
+                    focusNode: _passportFocusNode,
+                    keyboardType: TextInputType.text,
                     style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.black,
@@ -127,9 +139,9 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                         horizontal: 16.w,
                       ),
                       border: InputBorder.none,
-                      hintText: AppTexts.votersCardNumber,
+                      hintText: AppTexts.enterPassportID,
                       hintStyle: TextStyle(
-                        color: Colors.blueGrey,
+                        color: AppColors.textHintColor,
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
                       ),
@@ -148,7 +160,7 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 240.h),
+                SizedBox(height: 200.h),
                 Center(
                   child: SizedBox(
                     width: 280.w,
@@ -175,7 +187,6 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
                     ),
                   ),
                 ),
-               
                 SizedBox(height: 8.h),
               ],
             ),
@@ -184,4 +195,4 @@ class _VoterCardScreenState extends State<VoterCardScreen> {
       ),
     );
   }
-}
+} 

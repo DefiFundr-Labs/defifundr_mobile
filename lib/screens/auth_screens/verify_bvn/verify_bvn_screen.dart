@@ -226,7 +226,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                       // Handle BVN verification
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: AppColors.black100,
+                      backgroundColor: AppColors.buttonBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r),
                       ),
@@ -243,17 +243,8 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                 ),
               ),
               SizedBox(height: 24.h),
-              Center(
-                child: Container(
-                  width: 134.w,
-                  height: 5.h,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(100.r),
-                  ),
-                ),
-              ),
-              SizedBox(height: 8.h),
+            
+             
             ],
           ),
         ),

@@ -252,7 +252,7 @@ class AppTexts {
   //Select ID
   static String selectYourIdType = "Select your ID Type";
   static String wellUseThisInfoToVerify =
-      "We’ll use this information to verify your identity";
+      "We'll use this information to verify your identity";
   static String ninSlip = "NIN Slip";
   static String votersCard = "Voters Card";
   static String bvn = "BVN";
@@ -286,4 +286,14 @@ class AppTexts {
   static const String verifyDriversCard = "Verify using your Drivers card";
   static const String enterVotersCardNumber =
       "Enter your voters card number below";
+
+  //! Voters Card Verification
+  static String verifyWithVotersCard = "Verify using your voters card";
+  static String verifyWithVotersCardDesc = "Enter your voters card number below";
+  static String votersCardNumber = "Enter Voters Card Number";
+
+  //! Passport Verification
+  static String verifyWithPassport = "Verify using your international passport";
+  static String verifyWithPassportDesc = "Enter your passport number below";
+  static String enterPassportID = "Enter Passport ID";
 }

@@ -14,7 +14,7 @@ class AppAssets {
   static String downArrow = '${defifundrIconPath}arrow_down.svg';
   static String backgroundImage = '${defifundrIconPath}background.png';
   static String bvnSuffixIcon = '${defifundrIconPath}bvn_suffix.svg';
-  static String ninSlipImage = '$defifundrIconPath/nin_slip.png';
+  static String ninSlipImage = '${defifundrImagePath}/nin_slip.png';
   static String person = '${defifundrIconPath}person.svg';
   static String crossEye = '${defifundrIconPath}cross_eye.svg';
   static String arrowRightCurve = '${defifundrIconPath}arrow_right.svg';
@@ -33,7 +33,7 @@ class AppAssets {
   static String people = '${defifundrImagePath}people.png';
   static String gradientBackground =
       '${defifundrImagePath}gradientBackground.png';
-  static String driversCard = '${defifundrImagePath}drivers_card.png';
+  static String driversCard = '$defifundrImagePath/drivers_card.png';
   static const onBoardingBg1 = '$defifundrImagePath/onboarding-bg1.png';
   static const onBoardingBg2 = '$defifundrImagePath/onboarding-bg2.png';
   static const onBoardingFrame1 = '$defifundrImagePath/frame1.png';
@@ -58,4 +58,5 @@ class AppAssets {
   static const profile = '$defifundrImagePath/profile.png';
   static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
   static const transaction = '$defifundrImagePath/transaction.svg';
+  static String passportImage = '${defifundrImagePath}/passport.png';
 }

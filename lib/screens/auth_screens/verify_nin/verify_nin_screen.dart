@@ -175,10 +175,10 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                     height: 52.h,
                     child: TextButton(
                       onPressed: () {
-                    
+                        // Handle NIN verification
                       },
                       style: TextButton.styleFrom(
-                        backgroundColor: AppColors.black100,
+                        backgroundColor: AppColors.buttonBackground,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.r),
                         ),
