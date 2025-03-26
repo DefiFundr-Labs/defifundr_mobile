@@ -27,6 +27,8 @@ class AppAssets {
   static String zeroPercent = '${defifundrIconPath}zero_percent.svg';
   static String twentyFivePercent =
       '${defifundrIconPath}twenty_five_percent.svg';
+  static String closeIcon2 = '${defifundrIconPath}closeIcon.svg';
+  static String documentsIcon = '${defifundrIconPath}documents.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const defifundrImagePath = 'assets/images';
