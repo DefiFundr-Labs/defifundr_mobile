@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/Zeus/fvm/versions/3.29.2/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/Zeus/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/Zeus/Documents/GitHub/defiraise_mobile/android/app/.cxx/Debug/cd4z2q6i/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/Zeus/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/Zeus/Documents/GitHub/defiraise_mobile/android/app/.cxx/Debug/cd4z2q6i/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
