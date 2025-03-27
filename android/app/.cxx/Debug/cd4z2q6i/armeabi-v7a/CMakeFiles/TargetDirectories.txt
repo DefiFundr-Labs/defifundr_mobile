@@ -1,0 +1,2 @@
+/Users/Zeus/Documents/GitHub/defiraise_mobile/android/app/.cxx/Debug/cd4z2q6i/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/Zeus/Documents/GitHub/defiraise_mobile/android/app/.cxx/Debug/cd4z2q6i/armeabi-v7a/CMakeFiles/rebuild_cache.dir

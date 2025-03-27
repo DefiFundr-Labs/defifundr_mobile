@@ -1,4 +1,9 @@
 {
-  "cSpell.words": ["appbar", "Etherium", "RGBO"],
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "cSpell.words": [
+    "appbar",
+    "Etherium",
+    "RGBO"
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "dart.flutterSdkPath": ".fvm/versions/3.29.2"
 }
