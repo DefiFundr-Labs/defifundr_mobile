@@ -10,6 +10,9 @@ import 'package:defifundr_mobile/screens/voters_verification_screen/votersVerifi
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../screens/auth_screens/complete_kyc/complete_kyc.dart';
+import '../../screens/home/verify_identity/verify_identity.dart';
+
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -102,7 +105,7 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/',
+          path: '/get-started',
           name: RouteConstants.initial,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
@@ -120,7 +123,7 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/',
+          path: '/create-password',
           name: RouteConstants.createPassword,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
