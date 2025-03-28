@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/fonts.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
@@ -19,7 +21,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   List<OnboardModel> screens = <OnboardModel>[
     OnboardModel(
       bgImage: AppAssets.onBoardingBg1,
-      title: "Pay anyone, anywhere.",
+      title: "Pay anyone,\nAnywhere.",
       text:
           "Experience Fast, Secure Crypto & Fiat Payroll & Invoicing with Defifundr",
     ),
@@ -226,24 +228,21 @@ class ProgressIndicatorWidget extends StatelessWidget {
     return Center(
       child: SizedBox(
         height: 5.0,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              totalScreens,
-              (index) => AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 2.0),
-                width: MediaQuery.of(context).size.width /
-                    4.9, // Adjusts width dynamically
-                height: 5.0,
-                decoration: BoxDecoration(
-                  color: index <= currentIndex
-                      ? (currentIndex == 0 ? Colors.white : Colors.black)
-                      : Colors.grey.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(
+            totalScreens,
+            (index) => AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 2.0),
+              width: MediaQuery.of(context).size.width /
+                  4.2,
+              height: 5.0,
+              decoration: BoxDecoration(
+                color: index <= currentIndex
+                    ? (currentIndex == 0 ? Colors.white : Colors.black)
+                    : Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10.0),
               ),
             ),
           ),
