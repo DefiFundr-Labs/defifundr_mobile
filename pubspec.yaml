@@ -73,7 +73,13 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
+  fonts:
+    - family: HK
+      fonts:
+        - asset: fonts/HKGrotesk-Bold.ttf
+    - family: HK Grotesk
+      fonts:
+        - asset: fonts/HKGrotesk-Regular.ttf
 flutter_native_splash:
   color: "#000000"
   image: "assets/images/splashLogo.png"

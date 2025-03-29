@@ -1,27 +1,24 @@
-import 'package:defifundr_mobile/core/constants/assets.dart';
+
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/themes/color_scheme.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class CompleteKyc extends StatelessWidget {
   const CompleteKyc({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(CupertinoIcons.back, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
-          ),
+
         ),
       ),
       backgroundColor: AppColors.primaryBackgroundColor,
@@ -30,149 +27,216 @@ class CompleteKyc extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 56),
+            Image(
+                color: Color(0xff000000),
+                height: 24.h,
+                width: 24.w,
+                image: AssetImage('assets/images/bac.png')),
+            SizedBox(height: 56.h),
             Text(
-              'Complete KYC.',
+              'Complete KYC',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 26,
-                letterSpacing: 0.0,
-                height: 21 / 15,
-                fontWeight: FontWeight.w500,
-                fontFamily: GoogleFonts.hankenGrotesk().fontFamily,
-              ),
+                  fontFamily: 'HK',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 26.sp,
+                  height: 1,
+
+
+                  color: Color(0xff16192C), letterSpacing: 0),
             ),
             Text(
-              'Tell us about the type of personal account you are trying to open ',
+              'Tell us about the type of personal account you are trying to open  ',
               style: TextStyle(
-                color: Color(0xff626F84),
-                fontSize: 12,
-                letterSpacing: 0.0,
-                height: 21 / 15,
-                fontWeight: FontWeight.w500,
-                fontFamily: GoogleFonts.hankenGrotesk().fontFamily,
-              ),
+                  fontFamily: 'HK Grotesk',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12.sp,
+                  height: 18/12,
+
+
+                  color: Color(0xff505780), letterSpacing: 0),
             ),
-            SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColors.white100,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: GestureDetector(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 26),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(AppAssets.appIcon),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
+            SizedBox(height: 42.h),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                width: 0.88.sw,
+                height: 72.h,
+                decoration: BoxDecoration(
+                    color: Color(0xffFFFFFF),
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 37.w,
+                      height: 37.h,
+                      decoration: BoxDecoration(
+                        color: Color(0xffFFFFFF),
+                        borderRadius: BorderRadius.circular(10.r),),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 22.h),
+                        child: Image.asset('assets/images/id.png'),
+                      ),
+
+                    ),
+                    SizedBox(width: 0.w,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
                             "Verify Identity",
                             style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
+                                fontFamily: 'HK Grotesk',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 20/16,
+
+
+                                color: Color(0xff000000), letterSpacing: -1),
                           ),
-                          Text(
-                            "Allow us to verify your documents ",
-                            style: TextStyle(
+                        ),
+                        Text(
+                          "Allow us to verify your documents ",
+                          style: TextStyle(
+                              fontFamily: 'HK Grotesk',
+                              fontWeight: FontWeight.w400,
                               fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                              height: 18/12,
+
+
+                              color: Color(0xff505780), letterSpacing: 0),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(height: 6),
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColors.white100,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: GestureDetector(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 26),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(AppAssets.appIcon),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
+            SizedBox(height: 13.h),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                width:  0.88.sw,
+                height: 72.h,
+                decoration: BoxDecoration(
+                    color: Color(0xffFFFFFF),
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: Row(
+                  children: [
+                    Container(
+
+                      width: 37.w,
+                      height: 37.h,
+                      decoration: BoxDecoration(
+                        color: Color(0xffFFFFFF),
+                        borderRadius: BorderRadius.circular(10.r),),
+                      child: Padding(
+                        padding:  EdgeInsets.only(bottom: 15.h),
+                        child: Image.asset('assets/images/book.png'),
+                      ),
+
+                    ),
+                    SizedBox(width: 0.w),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,),
+                          child: Text(
                             "Create a Contract",
                             style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
+                                fontFamily: 'HK Grotesk',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 20/16,
+
+
+                                color: Color(0xff000000), letterSpacing: -1),
                           ),
-                          Text(
-                            "Allow us to verify your documents",
-                            style: TextStyle(
+                        ),
+                        Text(
+                          "Allow us to verify your documents ",
+
+                          style: TextStyle(
+                              fontFamily: 'HK Grotesk',
+                              fontWeight: FontWeight.w400,
                               fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                              height: 18/12,
+
+
+                              color: Color(0xff505780), letterSpacing: 0),
+
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(height: 6),
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColors.white100,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: GestureDetector(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 26),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(AppAssets.appIcon),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
+
+            SizedBox(height: 13.h),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                width:  0.88.sw,
+                height: 72.h,
+                decoration: BoxDecoration(
+                    color: Color(0xffFFFFFF),
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: Row(
+                  children: [
+                    Container(
+
+                      width: 37.w,
+                      height: 37.h,
+                      decoration: BoxDecoration(
+                          color: Color(0xffFFFFFF),
+                          borderRadius: BorderRadius.circular(10.r)),
+                      child: Padding(
+                        padding:  EdgeInsets.only(bottom: 15.h),
+                        child: Image.asset('assets/images/pen.png'),
+                      ),
+
+                    ),
+                    SizedBox(width: 0,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,),
+                          child: Text(
                             "Upload Complice",
                             style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
+                                fontFamily: 'HK Grotesk',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 20/16,
+
+
+                                color: Color(0xff000000), letterSpacing: -1),
                           ),
-                          Text(
-                            "Allow us to verify your documents",
-                            style: TextStyle(
+                        ),
+                        Text(
+                          "Allow us to verify your documents ",
+
+                          style: TextStyle(
+                              fontFamily: 'HK Grotesk',
+                              fontWeight: FontWeight.w400,
                               fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                              height: 18/12,
+
+
+                              color: Color(0xff505780), letterSpacing: 0),
+
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
+
           ],
         ),
       ),
