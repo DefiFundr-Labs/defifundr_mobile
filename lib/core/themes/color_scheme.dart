@@ -44,4 +44,5 @@ class AppColors {
   static const Color buttonBackground = Color.fromRGBO(16, 19, 35, 1);
   static const Color purple505 = Color(0xFF505780);
   static const Color lightgrey626 = Color(0xFF626F84);
+  static const Color greyD7DD = Color(0xFFD7DDF2);
 }

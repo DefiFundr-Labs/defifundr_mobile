@@ -13,6 +13,7 @@ import 'package:defifundr_mobile/screens/auth_screens/signup/view/select_nationa
 import 'package:defifundr_mobile/screens/auth_screens/verify_bvn/verify_bvn_screen.dart';
 import 'package:defifundr_mobile/screens/auth_screens/verify_with_passport_screen/verify_with_passport.dart';
 import 'package:defifundr_mobile/screens/onboarding/onboarding_screen.dart';
+import 'package:defifundr_mobile/screens/payment_screen/payment.dart';
 import 'package:defifundr_mobile/screens/voters_verification_screen/votersVerification.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -32,7 +33,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const CompleteKyc(),
+              child: const PaymentDetailsScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
