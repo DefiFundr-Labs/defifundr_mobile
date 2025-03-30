@@ -1,3 +1,6 @@
+import 'package:defifundr_mobile/core/constants/fonts.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,10 +12,9 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
     final Widget svgEmail = SvgPicture.asset(
-      'assets/icons/email.svg',
+      'assets/icons/Message.svg',
       width: 21,
       height: 17,
-      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
     );
     final Widget svgGoogle = SvgPicture.asset(
       'assets/icons/google.svg',
@@ -20,7 +22,7 @@ class SignInScreen extends StatelessWidget {
       height: 22,
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -28,75 +30,43 @@ class SignInScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-
               Image(
                 width: 29.5,
                 height: 50.9,
                 image: AssetImage('assets/images/defi_icon.png'),
               ),
               const SizedBox(height: 16),
-
               Text(
                 'Sign in to DefiFundr',
-                style: GoogleFonts.hankenGrotesk(
-                  textStyle: TextStyle(
-                    color: Color(0xff000000),
-                    fontSize: 25.7,
-                    letterSpacing: -0.37,
-                    height: 30.85 / 25.7,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                style: DefiFundrFonts.h2(context).copyWith(
+                    fontSize: 26,
+                    color: AppColors.black100,
+                    fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 8),
 
               Text(
                 'Securely access your account and manage payroll with ease.',
-                style: GoogleFonts.hankenGrotesk(
-                  textStyle: TextStyle(
-                    color: Color(0xff626F84),
-                    fontSize: 15,
-                    letterSpacing: 0.0,
-                    height: 21 / 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+                style: DefiFundrFonts.b3(context).copyWith(
+                  fontSize: 15,
+                  color: AppColors.lightgrey626,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 40),
-              // Email field with icon
-              Container(
-                width: 347,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: Color(0xffFFFFFF),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'user email goes here via the controller',
-                    hintStyle: GoogleFonts.hankenGrotesk(
-                      textStyle: TextStyle(
-                        color: Color(0xff626F84),
-                        fontSize: 13,
-                        letterSpacing: 0.0,
-                        height: 15 / 13,
-                        fontWeight: FontWeight.w400,
-                      ),
+              AppTextField(
+                prefixIcon: ClipRRect(
+                  child: SizedBox(
+                    height: 16,
+                    width: 16,
+                    child: Center(
+                      child: SvgPicture.asset('assets/icons/user.svg'),
                     ),
-                    prefixIcon: SvgPicture.asset(
-                      'assets/icons/user.svg', width: 16, height: 16,
-                      //colorFilter: ColorFilter.mode(,
-                      colorFilter: const ColorFilter.mode(
-                          Color(0xff505780), BlendMode.srcIn),
-                    ),
-                    //contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
                   ),
                 ),
+                label: 'test@defiFundr.com',
+                controller: emailController,
               ),
-              const SizedBox(height: 16),
-
+              const SizedBox(height: 7),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -115,8 +85,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-
+              const SizedBox(height: 54),
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -150,14 +119,13 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              // Google button
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.black12),
+                    side: const BorderSide(color: AppColors.black200),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -184,14 +152,13 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              // Apple button
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.black12),
+                    side: const BorderSide(color: AppColors.black200),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
