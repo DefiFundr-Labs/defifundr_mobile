@@ -14,6 +14,9 @@ dependency_overrides:
 dependencies:
   cupertino_icons: ^1.0.2
 
+  flutter_localizations:
+    sdk: flutter
+
   currency_picker: ^2.0.21
   flutter:
     sdk: flutter
@@ -37,15 +40,16 @@ dependencies:
   email_validator: ^3.0.0
   #? freezed_annotation is a Dart package that provides a set of utilities for generating code for the freezed package.
   freezed_annotation: ^2.2.0
+  #? shared_preferences is a Flutter plugin that provides a persistent store for simple data.
+  shared_preferences: ^2.5.3
 
 
-  flutter_native_splash:
-    ^2.2.16
+  flutter_native_splash: ^2.2.16
   get_it: ^8.0.3
   pinput: ^5.0.1
   country_picker: ^2.0.27
   country_list_pick: ^1.0.1+6
-  intl: ^0.20.2
+  intl: ^0.19.0
   carousel_slider: ^5.0.0
 
   file_picker: ^9.0.2
@@ -53,15 +57,12 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.14.3"
   very_good_analysis: ^4.0.0+1
   #? freezed is a code generation library for Dart that helps you to write immutable models with ease.
   freezed: ^2.3.2
   #? build_runner is a Dart package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
   build_runner: ^2.3.3
-
-
-
-
 
 #? For information on the generic Dart part of this file, see the
 import_sorter:
@@ -70,18 +71,113 @@ import_sorter:
 #? The following section is specific to Flutter.
 flutter:
   uses-material-design: true
+  fonts:
+    - family: HankenGrotesk
+      fonts:
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Light.ttf
+          weight: 300
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-Black.ttf
+          weight: 900
+        - asset: assets/fonts/hanken-grotesk/HankenGrotesk-BlackItalic.ttf
+          weight: 900
+          style: italic
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_28pt-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/inter/Inter_28pt-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/inter/Inter_28pt-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Light.ttf
+          weight: 300
+        - asset: assets/fonts/inter/Inter_28pt-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/inter/Inter_28pt-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/inter/Inter_28pt-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter_28pt-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/inter/Inter_28pt-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/inter/Inter_28pt-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Black.ttf
+          weight: 900
+        - asset: assets/fonts/inter/Inter_28pt-BlackItalic.ttf
+          weight: 900
+          style: italic
   assets:
     - assets/images/
     - assets/icons/
 
 flutter_native_splash:
   color: "#000000"
-  image: "assets/images/splashLogo.png"
+  image: "assets/images/logo.png"
   android: true
   ios: true
 
-flutter_icons:
-  android: "launcher_icon"
+flutter_launcher_icons:
   ios: true
-  remove_alpha_ios: true
-  image_path: "assets/images/appLogo.png"
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21
