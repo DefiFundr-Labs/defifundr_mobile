@@ -247,28 +247,28 @@ class AppTheme {
 
     heading3Bold: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3SemiBold: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3Medium: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3Regular: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
       fontFamily: 'Inter',
@@ -510,28 +510,28 @@ class AppTheme {
 
     heading3Bold: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3SemiBold: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3Medium: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
       fontFamily: 'Inter',
     ),
     heading3Regular: const TextStyle(
       fontSize: 20,
-      height: 1.4, // 28px line height
+      height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
       fontFamily: 'Inter',
