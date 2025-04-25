@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
-import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -123,7 +123,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                     hintText: AppTexts.enterBVN,
                     hintStyle: TextStyle(
                       fontSize: 16.sp,
-                      color: AppColors.textHintColor,
+                      color: AppColors.grayTertiary,
                     ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(12.w),
@@ -168,9 +168,9 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
               Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
-                  color: AppColors.purpleLight,
+                  color: AppColors.activeButtonDark,
                   borderRadius: BorderRadius.circular(8.r),
-                  border: Border.all(color: AppColors.purpleColor.withOpacity(0.5), width: 0.5.w),
+                  border: Border.all(color: AppColors.activeButtonDark.withOpacity(0.5), width: 0.5.w),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +180,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.purpleText,
+                        color: AppColors.activeButtonDark,
                       ),
                     ),
                     SizedBox(height: 8.h),
@@ -188,7 +188,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                       AppTexts.bvnIdentityDesc,
                       style: TextStyle(
                         fontSize: 11.sp,
-                        color: AppColors.purpleText,
+                        color: AppColors.activeButtonDark,
                         fontWeight: FontWeight.w200,
                         height: 1.4,
                       ),
@@ -198,7 +198,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                       AppTexts.bvnSecurityDesc,
                       style: TextStyle(
                         fontSize: 11.sp,
-                        color: AppColors.purpleText,
+                        color: AppColors.activeButtonDark,
                         fontWeight: FontWeight.w200,
                         height: 1.4,
                       ),
@@ -209,7 +209,7 @@ class _VerifyBVNScreenState extends State<VerifyBVNScreen> {
                       style: TextStyle(
                         fontSize: 11.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.purpleTextLight,
+                        color: AppColors.activeButtonDark,
                         height: 1.4,
                       ),
                     ),

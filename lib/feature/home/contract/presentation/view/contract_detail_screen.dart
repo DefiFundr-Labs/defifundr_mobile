@@ -1,13 +1,13 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/auth_header.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/themes/color_scheme.dart';
 
 class ContractDetailScreen extends StatefulWidget {
   const ContractDetailScreen({super.key});
@@ -35,7 +35,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen> {
               )
             ],
           )),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.bgB0,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
@@ -88,13 +88,13 @@ class _ContractDetailScreenState extends State<ContractDetailScreen> {
             style: Config.b2(context).copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
-                color: AppColors.subHeadingBlack),
+                color: AppColors.grayTertiary),
           ),
           VerticalMargin(5),
           Text(
             subTitle,
             style: Config.b3(context).copyWith(
-              color: AppColors.subTitleGray,
+              color: AppColors.grayTertiary,
             ),
           ),
         ],

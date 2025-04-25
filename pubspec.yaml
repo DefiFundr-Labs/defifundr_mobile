@@ -14,6 +14,9 @@ dependency_overrides:
 dependencies:
   cupertino_icons: ^1.0.2
 
+  flutter_localizations:
+    sdk: flutter
+
   currency_picker: ^2.0.21
   flutter:
     sdk: flutter
@@ -37,15 +40,16 @@ dependencies:
   email_validator: ^3.0.0
   #? freezed_annotation is a Dart package that provides a set of utilities for generating code for the freezed package.
   freezed_annotation: ^2.2.0
+  #? shared_preferences is a Flutter plugin that provides a persistent store for simple data.
+  shared_preferences: ^2.5.3
 
 
-  flutter_native_splash:
-    ^2.2.16
+  flutter_native_splash: ^2.2.16
   get_it: ^8.0.3
   pinput: ^5.0.1
   country_picker: ^2.0.27
   country_list_pick: ^1.0.1+6
-  intl: ^0.20.2
+  intl: ^0.19.0
   carousel_slider: ^5.0.0
 
   file_picker: ^9.0.2

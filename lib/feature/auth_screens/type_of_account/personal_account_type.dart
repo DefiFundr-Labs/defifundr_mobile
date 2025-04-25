@@ -1,9 +1,9 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/feature/auth_screens/type_of_account/select_account_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +68,7 @@ class _PersonalAccountTypeState extends State<PersonalAccountType> {
           ],
         ),
       ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButtonDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: Column(

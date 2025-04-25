@@ -1,9 +1,9 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/auth_header.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
@@ -20,7 +20,7 @@ final defaultPinTheme = PinTheme(
   height: 44,
   textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
   decoration: BoxDecoration(
-    border: Border.all(color: AppColors.textHintColor, width: 2),
+    border: Border.all(color: AppColors.black200, width: 2),
     borderRadius: BorderRadius.circular(10),
   ),
 );
@@ -36,7 +36,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           title: '',
         ),
       ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButtonDark,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

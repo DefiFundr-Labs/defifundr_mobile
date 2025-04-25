@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -61,8 +61,8 @@ class IncompleteRegistartionScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: AppButton(
                     text: AppTexts.proceed,
-                    textColor: AppColors.white100,
-                    color: AppColors.primaryColor,
+                    textColor: AppColors.bgB0,
+                    color: AppColors.activeButtonDark,
                     onTap: () {},
                   ),
                 ),

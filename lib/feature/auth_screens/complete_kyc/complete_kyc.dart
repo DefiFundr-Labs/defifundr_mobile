@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ class CompleteKyc extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: context.theme.primaryColorDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: Column(
@@ -56,7 +57,7 @@ class CompleteKyc extends StatelessWidget {
             SizedBox(height: 12),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.white100,
+                  color: context.theme.primaryColorDark,
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
               child: GestureDetector(
                 onTap: () {},
@@ -75,7 +76,7 @@ class CompleteKyc extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
+                              color: context.theme.primaryColorDark,
                             ),
                           ),
                           Text(
@@ -83,7 +84,7 @@ class CompleteKyc extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w500,
-                              color: AppColors.black100,
+                              color: context.theme.primaryColorDark,
                             ),
                           ),
                         ],

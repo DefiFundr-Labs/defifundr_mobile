@@ -1,15 +1,11 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IdTypeWidget extends StatelessWidget {
-  const IdTypeWidget({
-    super.key,
-    required this.title,
-    required this.onTap
-  });
+  const IdTypeWidget({super.key, required this.title, required this.onTap});
 
   final String title;
   final Function() onTap;
@@ -18,9 +14,8 @@ class IdTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white100,
-        borderRadius: BorderRadius.all(Radius.circular(10.0))
-      ),
+          color: AppColors.white100,
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
       child: GestureDetector(
         onTap: onTap,
         child: Padding(

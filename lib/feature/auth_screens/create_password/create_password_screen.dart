@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import '../../../core/constants/app_icons.dart';
 import '../../../core/constants/app_texts.dart';
 import '../../../core/shared/appbar/appbar.dart';
 import '../../../core/shared/auth_header.dart';
-import '../../../core/themes/color_scheme.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({Key? key}) : super(key: key);
@@ -123,7 +123,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             ],
           ),
           ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButton,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
@@ -260,9 +260,9 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               height: 12,
               width: 12,
               decoration: BoxDecoration(
-                  color: enabled ? AppColors.purpleColor : AppColors.white100,
+                  color: enabled ? AppColors.activeButtonDark : AppColors.white100,
                   borderRadius: BorderRadius.circular(50.0),
-                  border: Border.all(width: 1, color: AppColors.purpleColor)),
+                  border: Border.all(width: 1, color: AppColors.activeButtonDark)),
             ),
           ),
           HorizontalMargin(5),

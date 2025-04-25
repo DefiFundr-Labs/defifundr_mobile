@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,7 +12,7 @@ class ResetPasswordSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButtonDark,
       body: SafeArea(
         child: Column(
           children: [

@@ -1,10 +1,9 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
-import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,11 +54,13 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SvgPicture.asset(AppAssets.headSetIcon, width: 16.w, height: 16.w),
+                      SvgPicture.asset(AppAssets.headSetIcon,
+                          width: 16.w, height: 16.w),
                       SizedBox(width: 4.w),
                       Text(
                         AppTexts.needHelp,
@@ -120,7 +121,7 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                 Container(
                   height: 72.h,
                   decoration: BoxDecoration(
-                    color: AppColors.textFieldBackground,
+                    color: AppColors.bgB1,
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: TextField(
@@ -139,14 +140,15 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                       hintText: AppTexts.enterNIN,
                       hintStyle: TextStyle(
                         fontSize: 16.sp,
-                        color: AppColors.textHintColor,
+                        color: AppColors.grayTertiary,
                       ),
                       prefixIcon: Padding(
                         padding: EdgeInsets.all(12.w),
-                        child: SvgPicture.asset(AppAssets.userIcon,
+                        child: SvgPicture.asset(
+                          AppAssets.userIcon,
                           width: 20.w,
                           height: 20.w,
-                          color: AppColors.subtitleGrey,
+                          color: AppColors.grayTertiary,
                         ),
                       ),
                       border: OutlineInputBorder(
@@ -162,21 +164,20 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: AppColors.textFieldBackground,
-                      contentPadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
+                      fillColor: AppColors.bgB2,
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 20.h, horizontal: 16.w),
                     ),
                   ),
                 ),
-               
+
                 SizedBox(height: 240.h),
                 Center(
                   child: SizedBox(
                     width: 280.w,
                     height: 52.h,
                     child: TextButton(
-                      onPressed: () {
-                    
-                      },
+                      onPressed: () {},
                       style: TextButton.styleFrom(
                         backgroundColor: AppColors.black100,
                         shape: RoundedRectangleBorder(
@@ -201,4 +202,4 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
       ),
     );
   }
-} 
+}

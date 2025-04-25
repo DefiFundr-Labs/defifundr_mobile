@@ -2,13 +2,13 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
-import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../core/themes/color_scheme.dart';
 
 class VerifyNINScreen extends StatefulWidget {
   const VerifyNINScreen({super.key});
@@ -121,7 +121,7 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                 Container(
                   height: 72.h,
                   decoration: BoxDecoration(
-                    color: AppColors.textFieldBackground,
+                    color: AppColors.bgB2,
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: TextField(
@@ -140,14 +140,14 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                       hintText: "Enter  Passport ID",
                       hintStyle: TextStyle(
                         fontSize: 16.sp,
-                        color: AppColors.textHintColor,
+                        color: AppColors.bgB2,
                       ),
                       prefixIcon: Padding(
                         padding: EdgeInsets.all(12.w),
                         child: SvgPicture.asset(AppAssets.userIcon,
                           width: 20.w,
                           height: 20.w,
-                          color: AppColors.subtitleGrey,
+                          color: AppColors.grayTertiary,
                         ),
                       ),
                       border: OutlineInputBorder(
@@ -163,7 +163,7 @@ class _VerifyNINScreenState extends State<VerifyNINScreen> {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: AppColors.textFieldBackground,
+                      fillColor: AppColors.grayTertiary,
                       contentPadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
                     ),
                   ),

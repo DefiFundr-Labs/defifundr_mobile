@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:defifundr_mobile/feature/home/contract/scope_of_work/view/widget/expandable_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -46,7 +46,7 @@ class _ScopeOfWorkScreenState extends State<ScopeOfWorkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundWhite,
+      backgroundColor: AppColors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: AppBar(
@@ -71,13 +71,13 @@ class _ScopeOfWorkScreenState extends State<ScopeOfWorkScreen> {
                 Text(
                   AppTexts.scopeOfWork,
                   style: Config.h2(context)
-                      .copyWith(fontSize: 26, color: AppColors.titleBlack),
+                      .copyWith(fontSize: 26, color: AppColors.black100),
                 ),
                 VerticalMargin(5),
                 Text(
                   AppTexts.createFixedRateContract,
                   style: Config.b3(context)
-                      .copyWith(color: AppColors.subtitleGrey, fontSize: 14),
+                      .copyWith(color: AppColors.grayTertiary, fontSize: 14),
                 ),
                 VerticalMargin(20),
                 Expanded(

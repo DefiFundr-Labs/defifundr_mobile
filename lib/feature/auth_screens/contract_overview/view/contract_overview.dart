@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,7 +30,7 @@ class _ContractOverviewState extends State<ContractOverview> {
           ),
         ),
       ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButtonDark,
       body: SingleChildScrollView(
         child: Column(
           children: [

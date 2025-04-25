@@ -1,8 +1,8 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../constants/size.dart';
-import '../../themes/color_scheme.dart';
 
 class AppTextField extends StatefulWidget {
   final String label;
@@ -71,7 +71,7 @@ class _AppTextFieldState extends State<AppTextField> {
               obscureText: widget.isPassword,
               focusNode: widget.focusNode ?? _focusNode,
               style: Config.b2(context).copyWith(
-                color: AppColors.primaryColor,
+                color: context.theme.primaryColorDark,
               ),
               obscuringCharacter: '*',
               inputFormatters: widget.inputFormatters,
@@ -79,7 +79,7 @@ class _AppTextFieldState extends State<AppTextField> {
               decoration: InputDecoration(
                 labelText: widget.label,
                 labelStyle: Config.b3(context).copyWith(
-                  color: AppColors.textHintColor,
+                  color: context.theme.primaryColorDark,
                 ),
                 filled: true,
                 fillColor: Colors.transparent,

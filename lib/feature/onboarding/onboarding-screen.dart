@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -149,7 +149,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                   fontWeight: FontWeight.w700,
                                   color: currentIndex == 0
                                       ? AppColors.white100
-                                      : AppColors.textBlack,
+                                      : AppColors.black100,
                                   fontSize: 31.sp),
                             ),
                           12.0.sbH,
@@ -174,12 +174,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               padding: EdgeInsets.symmetric(
                   horizontal: currentIndex == 0 ? 16.w : 32.w),
               child: AppButton(
-                color: currentIndex == 0
-                    ? AppColors.white100
-                    : AppColors.textBlack,
-                textColor: currentIndex == 0
-                    ? AppColors.textBlack
-                    : AppColors.white100,
+                color:
+                    currentIndex == 0 ? AppColors.white100 : AppColors.black100,
+                textColor:
+                    currentIndex == 0 ? AppColors.black100 : AppColors.white100,
                 text: currentIndex == 3 ? "Get Started" : "Next",
                 onTap: () {
                   if (currentIndex != screens.length - 1) {

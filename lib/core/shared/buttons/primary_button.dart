@@ -1,9 +1,9 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../themes/color_scheme.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -47,7 +47,7 @@ class AppButton extends StatelessWidget {
       child: Container(
         height: height ?? 56.sp,
         decoration: BoxDecoration(
-          color: isActive! ? color : AppColors.grey200,
+          color: isActive! ? color : context.theme.primaryColorDark,
           borderRadius: BorderRadius.circular(30.0),
           border: Border.all(
             width: width ?? 0.5.sp,
@@ -74,7 +74,7 @@ class AppButton extends StatelessWidget {
               Text(
                 text,
                 style: Config.b1(context).copyWith(
-                  color: isActive! ? textColor : AppColors.white100,
+                  color: isActive! ? textColor : context.theme.scaffoldBackgroundColor,
                   fontSize: textSize,
                   fontWeight: FontWeight.bold,
                 ),

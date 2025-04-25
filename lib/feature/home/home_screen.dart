@@ -1,9 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.activeButtonDark,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

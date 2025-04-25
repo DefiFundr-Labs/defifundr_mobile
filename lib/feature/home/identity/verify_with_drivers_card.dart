@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
-import 'package:defifundr_mobile/core/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -61,7 +61,7 @@ class _VerifyWithDriversCardState extends State<VerifyWithDriversCard> {
           ],
         ),
       ),
-      backgroundColor: AppColors.primaryBackgroundColor,
+      backgroundColor: AppColors.grayTertiary,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

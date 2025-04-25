@@ -1,5 +1,5 @@
-import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
