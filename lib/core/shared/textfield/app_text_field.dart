@@ -1,31 +1,33 @@
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../constants/size.dart';
+import '../../design_system/theme_extension/app_theme_extension.dart';
 
 class AppTextField extends StatefulWidget {
   final String label;
   final bool obscureText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final VoidCallback? onSuffixIconPressed;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final Function(String)? onChanged;
 
   const AppTextField({
     Key? key,
     required this.label,
     this.obscureText = false,
-    required this.controller,
+    this.controller,
     this.prefixIcon,
     this.suffixIcon,
     this.onSuffixIconPressed,
     this.focusNode,
     this.inputFormatters,
     this.keyboardType,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -70,17 +72,14 @@ class _AppTextFieldState extends State<AppTextField> {
               controller: widget.controller,
               obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
-              style: Config.b2(context).copyWith(
-                color: context.theme.primaryColorDark,
-              ),
+              style: Config.b2(context).copyWith(color: context.theme.primaryColorDark),
               obscuringCharacter: '*',
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
+              onChanged: widget.onChanged,
               decoration: InputDecoration(
                 labelText: widget.label,
-                labelStyle: Config.b3(context).copyWith(
-                  color: context.theme.primaryColorDark,
-                ),
+                labelStyle: Config.b3(context).copyWith(color: context.theme.primaryColorDark),
                 filled: true,
                 fillColor: Colors.transparent,
                 isDense: true,
