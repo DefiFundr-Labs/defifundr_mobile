@@ -53,6 +53,7 @@ dependencies:
   carousel_slider: ^5.0.0
 
   file_picker: ^9.0.2
+  bloc_concurrency: ^0.2.5
 
 
 dev_dependencies:
