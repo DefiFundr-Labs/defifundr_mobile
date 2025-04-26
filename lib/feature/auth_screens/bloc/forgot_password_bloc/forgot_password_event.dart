@@ -12,3 +12,25 @@ class SubmitEmail extends ForgotPasswordEvent {
   @override
   List<Object> get props => [email];
 }
+
+class EnterPasswordString extends ForgotPasswordEvent {
+  final String passwordString;
+  const EnterPasswordString(this.passwordString);
+
+  @override
+  List<Object> get props => [passwordString];
+}
+
+class TogglePasswordVisibility extends ForgotPasswordEvent {
+  const TogglePasswordVisibility();
+
+  @override
+  List<Object> get props => [];
+}
+
+class ToggleConfirmPasswordVisibility extends ForgotPasswordEvent {
+  const ToggleConfirmPasswordVisibility();
+
+  @override
+  List<Object> get props => [];
+}
