@@ -6,7 +6,7 @@ import '../../constants/size.dart';
 
 class AppTextField extends StatefulWidget {
   final String label;
-  final bool isPassword;
+  final bool obscureText;
   final TextEditingController controller;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -18,7 +18,7 @@ class AppTextField extends StatefulWidget {
   const AppTextField({
     Key? key,
     required this.label,
-    this.isPassword = false,
+    this.obscureText = false,
     required this.controller,
     this.prefixIcon,
     this.suffixIcon,
@@ -29,7 +29,7 @@ class AppTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AppTextFieldState createState() => _AppTextFieldState();
+  State<AppTextField> createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
@@ -68,7 +68,7 @@ class _AppTextFieldState extends State<AppTextField> {
           children: [
             TextFormField(
               controller: widget.controller,
-              obscureText: widget.isPassword,
+              obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
               style: Config.b2(context).copyWith(
                 color: context.theme.primaryColorDark,
@@ -85,8 +85,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 fillColor: Colors.transparent,
                 isDense: true,
                 border: InputBorder.none,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
+                contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
               ),
