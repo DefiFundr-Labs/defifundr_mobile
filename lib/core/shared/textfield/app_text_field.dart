@@ -10,7 +10,6 @@ class AppTextField extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final VoidCallback? onSuffixIconPressed;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
@@ -23,7 +22,6 @@ class AppTextField extends StatefulWidget {
     this.controller,
     this.prefixIcon,
     this.suffixIcon,
-    this.onSuffixIconPressed,
     this.focusNode,
     this.inputFormatters,
     this.keyboardType,
