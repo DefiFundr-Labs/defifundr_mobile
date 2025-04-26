@@ -9,12 +9,12 @@ class AppRouter {
 
   static final GoRouter _router = GoRouter(
       debugLogDiagnostics: true,
-      initialLocation: RouteConstants.initial,
+      initialLocation: '/',
       navigatorKey: _rootNavigatorKey,
       routes: [
         GoRoute(
           path: '/',
-          name: RouteConstants.compliance,
+          name: RouteConstants.login,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
