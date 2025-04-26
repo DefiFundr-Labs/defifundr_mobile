@@ -16,17 +16,45 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
       emit(ForgotPasswordSuccess("A reset link has been sent to ${event.email}"));
     });
 
-    on<EnterPasswordString>((event, emit) {
-      emit(ForgotPasswordInitial(newPasswordState: NewPasswordState(password: event.passwordString)));
-    });
-    on<TogglePasswordVisibility>((event, emit) {
-      emit(ForgotPasswordInitial(newPasswordState: state.newPasswordState?.copyWith(showPassword: !(state.newPasswordState?.showPassword ?? false))));
-    });
-    on<ToggleConfirmPasswordVisibility>(
+    on<EnterPasswordString>(
       (event, emit) async {
         // Adding a delay to prevent overloading the UI with state changes
         // This is a simple way to debounce the event and prevent rapid state changes
         await Future.delayed(Duration(milliseconds: 300));
+        emit(
+          ForgotPasswordInitial(
+            newPasswordState:
+                (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(password: event.passwordString),
+          ),
+        );
+      },
+      // Use the `restartable` transformer to prevent multiple rapid state changes
+      // that can occur when the user rapidly toggles the password visibility
+      // This will ensure that only the last event is processed after the delay
+      transformer: restartable(),
+    );
+    on<EnterConfirmPasswordString>(
+      (event, emit) async {
+        // Adding a delay to prevent overloading the UI with state changes
+        // This is a simple way to debounce the event and prevent rapid state changes
+        await Future.delayed(Duration(milliseconds: 300));
+        emit(
+          ForgotPasswordInitial(
+            newPasswordState:
+                (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(confirmPassword: event.passwordString),
+          ),
+        );
+      },
+      // Use the `restartable` transformer to prevent multiple rapid state changes
+      // that can occur when the user rapidly toggles the password visibility
+      // This will ensure that only the last event is processed after the delay
+      transformer: restartable(),
+    );
+    on<TogglePasswordVisibility>((event, emit) {
+      emit(ForgotPasswordInitial(newPasswordState: state.newPasswordState?.copyWith(showPassword: !(state.newPasswordState?.showPassword ?? false))));
+    });
+    on<ToggleConfirmPasswordVisibility>(
+      (event, emit) {
         emit(
           ForgotPasswordInitial(
             newPasswordState: state.newPasswordState?.copyWith(
@@ -35,10 +63,6 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
           ),
         );
       },
-      // Use the `restartable` transformer to prevent multiple rapid state changes
-      // that can occur when the user rapidly toggles the password visibility
-      // This will ensure that only the last event is processed after the delay
-      transformer: restartable(),
     );
   }
 }
