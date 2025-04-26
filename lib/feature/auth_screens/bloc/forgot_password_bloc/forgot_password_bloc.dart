@@ -51,13 +51,15 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
       transformer: restartable(),
     );
     on<TogglePasswordVisibility>((event, emit) {
-      emit(ForgotPasswordInitial(newPasswordState: state.newPasswordState?.copyWith(showPassword: !(state.newPasswordState?.showPassword ?? false))));
+      emit(ForgotPasswordInitial(
+          newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? ''))
+              .copyWith(showPassword: !(state.newPasswordState?.showPassword ?? false))));
     });
     on<ToggleConfirmPasswordVisibility>(
       (event, emit) {
         emit(
           ForgotPasswordInitial(
-            newPasswordState: state.newPasswordState?.copyWith(
+            newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(
               showConfirmPassword: !(state.newPasswordState?.showConfirmPassword ?? false),
             ),
           ),
