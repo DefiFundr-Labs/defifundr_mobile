@@ -21,6 +21,14 @@ class EnterPasswordString extends ForgotPasswordEvent {
   List<Object> get props => [passwordString];
 }
 
+class EnterConfirmPasswordString extends ForgotPasswordEvent {
+  final String passwordString;
+  const EnterConfirmPasswordString(this.passwordString);
+
+  @override
+  List<Object> get props => [passwordString];
+}
+
 class TogglePasswordVisibility extends ForgotPasswordEvent {
   const TogglePasswordVisibility();
 
