@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 /// App color palette constants for light mode
 class AppColors {
   // Text Colors
-  static const Color textPrimary = Color(0xFF000000);
-  static const Color textSecondary = Color(0xFF666666);
-  static const Color textTertiary = Color(0xFF999999);
+  static const Color textPrimary = Color(0xFF18181B);
+  static const Color textSecondary = Color(0xFF71717A);
+  static const Color textTertiary = Color(0xFFA1A1AA);
   static const Color textQuaternary = Color(0xFFCCCCCC);
   static const Color textWhite = Color(0xFFF6F6F7);
 
@@ -113,6 +113,10 @@ class AppColors {
   static const Color borderGrey = Color(0xFFBBBABB);
   static const Color gradientColor = Color(0xFFEDEAFF);
   static const Color white = Colors.white;
+
+  // Miscellaneous colors
+  static const Color contrastBlack = Color(0xFF18181B);
+  static const Color strokeSecondary = Color(0x0F18181B);
 }
 
 /// App color palette constants for dark mode
@@ -203,4 +207,8 @@ class AppColorDark {
   // Icon Colors
   static const Color iconBlue = Color(0xFF0000E5);
   static const Color textHighlightBlue = Color.fromARGB(255, 73, 73, 215);
+
+  //Miscellaneous colors
+  static const Color contrastBlack = Color(0xFFFFFFFF);
+  static const Color strokeSecondary = Color(0x0F18181B);
 }
