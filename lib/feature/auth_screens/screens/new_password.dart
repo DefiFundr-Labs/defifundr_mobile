@@ -48,16 +48,16 @@ class _NewPasswordState extends State<NewPassword> {
             Text(AppTexts.enterNewPasswordDesc, style: Theme.of(context).fonts.textMdRegular),
             SizedBox(height: 24),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.showPassword != current.newPasswordState?.showPassword,
+              buildWhen: (previous, current) => previous.newPasswordState?.hidePassword != current.newPasswordState?.hidePassword,
               builder: (context, state) {
                 return AppTextField(
                   label: AppTexts.newPassword,
-                  obscureText: state.newPasswordState?.showPassword ?? false,
+                  obscureText: state.newPasswordState?.hidePassword ?? false,
                   keyboardType: TextInputType.visiblePassword,
                   suffixIcon: IconButton(
                     onPressed: () => context.read<ForgotPasswordBloc>().add(TogglePasswordVisibility()),
                     icon: Icon(
-                      state.newPasswordState?.showPassword ?? false ? Icons.visibility : Icons.visibility_off,
+                      state.newPasswordState?.hidePassword ?? false ? Icons.visibility : Icons.visibility_off,
                       color: Theme.of(context).colors.graySecondary,
                     ),
                   ),
@@ -85,16 +85,16 @@ class _NewPasswordState extends State<NewPassword> {
             ),
             SizedBox(height: 20),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-                buildWhen: (previous, current) => previous.newPasswordState?.showConfirmPassword != current.newPasswordState?.showConfirmPassword,
+                buildWhen: (previous, current) => previous.newPasswordState?.hideConfirmPassword != current.newPasswordState?.hideConfirmPassword,
                 builder: (BuildContext context, ForgotPasswordState state) {
                   return AppTextField(
                     label: AppTexts.confirmPassword,
-                    obscureText: state.newPasswordState?.showConfirmPassword ?? false,
+                    obscureText: state.newPasswordState?.hideConfirmPassword ?? false,
                     keyboardType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       onPressed: () => context.read<ForgotPasswordBloc>().add(ToggleConfirmPasswordVisibility()),
                       icon: Icon(
-                        state.newPasswordState?.showConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
+                        state.newPasswordState?.hideConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
                         color: Theme.of(context).colors.graySecondary,
                       ),
                     ),

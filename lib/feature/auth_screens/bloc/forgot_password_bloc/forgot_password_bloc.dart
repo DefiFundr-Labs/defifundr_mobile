@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:equatable/equatable.dart';
 
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
@@ -53,14 +53,14 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     on<TogglePasswordVisibility>((event, emit) {
       emit(ForgotPasswordInitial(
           newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? ''))
-              .copyWith(showPassword: !(state.newPasswordState?.showPassword ?? false))));
+              .copyWith(showPassword: !(state.newPasswordState?.hidePassword ?? false))));
     });
     on<ToggleConfirmPasswordVisibility>(
       (event, emit) {
         emit(
           ForgotPasswordInitial(
             newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(
-              showConfirmPassword: !(state.newPasswordState?.showConfirmPassword ?? false),
+              showConfirmPassword: !(state.newPasswordState?.hideConfirmPassword ?? false),
             ),
           ),
         );

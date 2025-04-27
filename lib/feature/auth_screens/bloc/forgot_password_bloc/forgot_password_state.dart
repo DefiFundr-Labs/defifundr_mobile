@@ -32,8 +32,8 @@ class ForgotPasswordError extends ForgotPasswordState {
 class NewPasswordState {
   final String password;
   final String confirmPassword;
-  final bool showPassword;
-  final bool showConfirmPassword;
+  final bool hidePassword;
+  final bool hideConfirmPassword;
 
   bool get has8Characters => password.length >= 8;
 
@@ -49,7 +49,7 @@ class NewPasswordState {
 
   bool get isVerificationPassed => has8Characters && hasNumber && hasUppercaseCharacter && hasLowercaseCharacter && hasSpecialCharacter && passwordConfirmed;
 
-  const NewPasswordState({required this.password, this.confirmPassword = '', this.showPassword = false, this.showConfirmPassword = false});
+  const NewPasswordState({required this.password, this.confirmPassword = '', this.hidePassword = true, this.hideConfirmPassword = true});
 
   NewPasswordState copyWith({
     String? password,
@@ -60,8 +60,8 @@ class NewPasswordState {
     return NewPasswordState(
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      showPassword: showPassword ?? this.showPassword,
-      showConfirmPassword: showConfirmPassword ?? this.showConfirmPassword,
+      hidePassword: showPassword ?? hidePassword,
+      hideConfirmPassword: showConfirmPassword ?? hideConfirmPassword,
     );
   }
 }
