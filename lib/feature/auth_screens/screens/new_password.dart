@@ -101,19 +101,21 @@ class _NewPasswordState extends State<NewPassword> {
                     onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterConfirmPasswordString(p0)),
                   );
                 }),
-            Expanded(child: SizedBox()),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
-              builder: (context, state) {
-                return AppButton(
-                  text: AppTexts.resetPassword,
-                  textColor: Theme.of(context).fonts.textBaseMedium.color!,
-                  color: Theme.of(context).colors.contrastBlack,
-                  isActive: state.newPasswordState?.isVerificationPassed ?? false,
-                  onTap: () {},
-                );
-              },
-            ),
+            if (MediaQuery.viewInsetsOf(context).bottom < 10) ...[
+              Expanded(child: SizedBox()),
+              BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+                buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
+                builder: (context, state) {
+                  return AppButton(
+                    text: AppTexts.resetPassword,
+                    textColor: Theme.of(context).fonts.textBaseMedium.color!,
+                    color: Theme.of(context).colors.contrastBlack,
+                    isActive: state.newPasswordState?.isVerificationPassed ?? false,
+                    onTap: () {},
+                  );
+                },
+              )
+            ],
             SizedBox(height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom)
           ],
         ),
