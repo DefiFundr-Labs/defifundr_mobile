@@ -1,8 +1,8 @@
-import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/app_texts.dart';
+import '../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../core/shared/buttons/primary_button.dart';
 import '../../../core/shared/textfield/app_text_field.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
@@ -19,17 +19,19 @@ class _NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
+      backgroundColor: Theme.of(context).colors.bgB0,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colors.bgB0,
+        elevation: 0,
         actions: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(color: Color(0xFF181818))),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(color: Theme.of(context).colors.textPrimary)),
             child: Row(
               spacing: 4,
               children: [
-                Icon(Icons.headphones_outlined, size: 16, applyTextScaling: true, color: Color(0xFF181818)),
-                Text(AppTexts.needHelp, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xFF181818)))
+                Icon(Icons.headphones_outlined, size: 16, applyTextScaling: true, color: Theme.of(context).colors.textPrimary),
+                Text(AppTexts.needHelp, style: Theme.of(context).fonts.textSmMedium)
               ],
             ),
           ),
@@ -42,11 +44,8 @@ class _NewPasswordState extends State<NewPassword> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 8),
-            Text(AppTexts.enterNewPassword, style: Config.h2(context)),
-            Text(
-              AppTexts.enterNewPasswordDesc,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF71717A)),
-            ),
+            Text(AppTexts.enterNewPassword, style: Theme.of(context).fonts.heading2Bold),
+            Text(AppTexts.enterNewPasswordDesc, style: Theme.of(context).fonts.textMdRegular),
             SizedBox(height: 24),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
               buildWhen: (previous, current) => previous.newPasswordState?.showPassword != current.newPasswordState?.showPassword,
@@ -56,8 +55,12 @@ class _NewPasswordState extends State<NewPassword> {
                   obscureText: state.newPasswordState?.showPassword ?? false,
                   keyboardType: TextInputType.visiblePassword,
                   suffixIcon: IconButton(
-                      onPressed: () => context.read<ForgotPasswordBloc>().add(TogglePasswordVisibility()),
-                      icon: Icon(state.newPasswordState?.showPassword ?? false ? Icons.visibility : Icons.visibility_off)),
+                    onPressed: () => context.read<ForgotPasswordBloc>().add(TogglePasswordVisibility()),
+                    icon: Icon(
+                      state.newPasswordState?.showPassword ?? false ? Icons.visibility : Icons.visibility_off,
+                      color: Theme.of(context).colors.graySecondary,
+                    ),
+                  ),
                   onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterPasswordString(p0)),
                 );
               },
@@ -70,7 +73,7 @@ class _NewPasswordState extends State<NewPassword> {
                   runSpacing: 8,
                   spacing: 8,
                   children: [
-                    Text(AppTexts.passwordRequirements, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF71717A))),
+                    Text(AppTexts.passwordRequirements, style: Theme.of(context).fonts.textSmBold.copyWith(color: Theme.of(context).colors.textSecondary)),
                     PasswordRequirementViewer(isPassed: state.newPasswordState?.has8Characters ?? false, text: AppTexts.eightCharacters),
                     PasswordRequirementViewer(isPassed: state.newPasswordState?.hasNumber ?? false, text: AppTexts.aNumber),
                     PasswordRequirementViewer(isPassed: state.newPasswordState?.hasUppercaseCharacter ?? false, text: AppTexts.anUpperCase),
@@ -89,8 +92,12 @@ class _NewPasswordState extends State<NewPassword> {
                     obscureText: state.newPasswordState?.showConfirmPassword ?? false,
                     keyboardType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                        onPressed: () => context.read<ForgotPasswordBloc>().add(ToggleConfirmPasswordVisibility()),
-                        icon: Icon(state.newPasswordState?.showConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off)),
+                      onPressed: () => context.read<ForgotPasswordBloc>().add(ToggleConfirmPasswordVisibility()),
+                      icon: Icon(
+                        state.newPasswordState?.showConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
+                        color: Theme.of(context).colors.graySecondary,
+                      ),
+                    ),
                     onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterConfirmPasswordString(p0)),
                   );
                 }),
@@ -100,8 +107,8 @@ class _NewPasswordState extends State<NewPassword> {
               builder: (context, state) {
                 return AppButton(
                   text: AppTexts.resetPassword,
-                  textColor: Color(0xFFFFFFFF),
-                  color: Color(0xFF18181B),
+                  textColor: Theme.of(context).fonts.textBaseMedium.color!,
+                  color: Theme.of(context).colors.contrastBlack,
                   isActive: state.newPasswordState?.isVerificationPassed ?? false,
                   onTap: () {},
                 );
