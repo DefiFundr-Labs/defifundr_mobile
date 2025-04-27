@@ -66,7 +66,7 @@ class _AppTextFieldState extends State<AppTextField> {
               obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
               style: Theme.of(context).fonts.textMdRegular,
-              obscuringCharacter: '*',
+              obscuringCharacter: '•',
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
               onChanged: widget.onChanged,
