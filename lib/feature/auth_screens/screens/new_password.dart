@@ -108,7 +108,7 @@ class _NewPasswordState extends State<NewPassword> {
                 builder: (context, state) {
                   return AppButton(
                     text: AppTexts.resetPassword,
-                    textColor: Theme.of(context).fonts.textBaseMedium.color!,
+                    textColor: Theme.of(context).colors.contrastWhite,
                     color: Theme.of(context).colors.contrastBlack,
                     isActive: state.newPasswordState?.isVerificationPassed ?? false,
                     onTap: () {},
