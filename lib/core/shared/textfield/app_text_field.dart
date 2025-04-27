@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show TextInputFormatter;
 
-import '../../constants/size.dart';
 import '../../design_system/theme_extension/app_theme_extension.dart';
 
 class AppTextField extends StatefulWidget {
@@ -55,12 +54,8 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 64,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
+    return ListenableBuilder(
+      listenable: widget.focusNode ?? _focusNode,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: Column(
@@ -70,14 +65,15 @@ class _AppTextFieldState extends State<AppTextField> {
               controller: widget.controller,
               obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
-              style: Config.b2(context).copyWith(color: context.theme.primaryColorDark),
+              style: Theme.of(context).fonts.textMdRegular,
               obscuringCharacter: '*',
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
               onChanged: widget.onChanged,
               decoration: InputDecoration(
                 labelText: widget.label,
-                labelStyle: Config.b3(context).copyWith(color: context.theme.primaryColorDark),
+                labelStyle: Theme.of(context).fonts.textMdRegular.copyWith(color: Theme.of(context).colors.textTertiary),
+                floatingLabelStyle: Theme.of(context).fonts.textSmRegular,
                 filled: true,
                 fillColor: Colors.transparent,
                 isDense: true,
@@ -85,11 +81,29 @@ class _AppTextFieldState extends State<AppTextField> {
                 contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
               ),
             ),
           ],
         ),
       ),
+      builder: (context, child) {
+        return Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).colors.bgB1,
+              border: Border.all(
+                  color: switch ((widget.focusNode ?? _focusNode).hasFocus) {
+                false => Theme.of(context).colors.strokeSecondary,
+                true => Theme.of(context).colors.brandDefault,
+              }),
+              borderRadius: BorderRadius.circular(12)),
+          child: child,
+        );
+      },
     );
   }
 }
