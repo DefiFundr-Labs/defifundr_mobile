@@ -93,6 +93,10 @@ class AppTheme {
     iconRed: AppColors.iconRed,
     iconBlue: AppColors.iconBlue,
     textHighlightBlue: AppColors.textHighlightBlue,
+
+    //Miscellaneous colors
+    contrastBlack: AppColors.contrastBlack,
+    strokeSecondary: AppColorDark.strokeSecondary,
   );
 
   // Dark theme color configurations
@@ -182,6 +186,10 @@ class AppTheme {
     iconRed: AppColorDark.iconRed,
     iconBlue: AppColorDark.iconBlue,
     textHighlightBlue: AppColorDark.textHighlightBlue,
+
+    //Miscellaneous colors
+    contrastBlack: AppColorDark.contrastBlack,
+    strokeSecondary: AppColorDark.strokeSecondary,
   );
 
   // Font styles for light theme
@@ -791,12 +799,9 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         fillColor: _lightAppColorss.bgB0,
         filled: true,
-        labelStyle: _lightFontTheme.textMdRegular
-            .copyWith(color: _lightAppColorss.textTertiary),
-        hintStyle: _lightFontTheme.textMdRegular
-            .copyWith(color: _lightAppColorss.textTertiary),
-        errorStyle: _lightFontTheme.textSmRegular
-            .copyWith(color: _lightAppColorss.redDefault),
+        labelStyle: _lightFontTheme.textMdRegular.copyWith(color: _lightAppColorss.textTertiary),
+        hintStyle: _lightFontTheme.textMdRegular.copyWith(color: _lightAppColorss.textTertiary),
+        errorStyle: _lightFontTheme.textSmRegular.copyWith(color: _lightAppColorss.redDefault),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: _lightAppColorss.grayQuaternary),
           borderRadius: BorderRadius.circular(8),
@@ -817,8 +822,7 @@ class AppTheme {
           borderSide: BorderSide(color: _lightAppColorss.redDefault),
           borderRadius: BorderRadius.circular(8),
         ),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       extensions: [
         _lightAppColorss,
@@ -907,12 +911,9 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         fillColor: _darkAppColorss.bgB0,
         filled: true,
-        labelStyle: _darkFontTheme.textMdRegular
-            .copyWith(color: _darkAppColorss.textTertiary),
-        hintStyle: _darkFontTheme.textMdRegular
-            .copyWith(color: _darkAppColorss.textTertiary),
-        errorStyle: _darkFontTheme.textSmRegular
-            .copyWith(color: _darkAppColorss.redDefault),
+        labelStyle: _darkFontTheme.textMdRegular.copyWith(color: _darkAppColorss.textTertiary),
+        hintStyle: _darkFontTheme.textMdRegular.copyWith(color: _darkAppColorss.textTertiary),
+        errorStyle: _darkFontTheme.textSmRegular.copyWith(color: _darkAppColorss.redDefault),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: _darkAppColorss.grayQuaternary),
           borderRadius: BorderRadius.circular(8),
@@ -933,8 +934,7 @@ class AppTheme {
           borderSide: BorderSide(color: _darkAppColorss.redDefault),
           borderRadius: BorderRadius.circular(8),
         ),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       extensions: [
         _darkAppColorss,
@@ -953,9 +953,7 @@ extension ThemeGetter on BuildContext {
 }
 
 extension AppThemeExtension on ThemeData {
-  AppColorExtension get colors =>
-      extension<AppColorExtension>() ?? AppTheme._lightAppColorss;
+  AppColorExtension get colors => extension<AppColorExtension>() ?? AppTheme._lightAppColorss;
 
-  AppFontThemeExtension get fonts =>
-      extension<AppFontThemeExtension>() ?? AppTheme._lightFontTheme;
+  AppFontThemeExtension get fonts => extension<AppFontThemeExtension>() ?? AppTheme._lightFontTheme;
 }

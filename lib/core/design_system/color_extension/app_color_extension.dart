@@ -93,6 +93,10 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     required this.iconRed,
     required this.iconBlue,
     required this.textHighlightBlue,
+
+    //Miscellaneous colors
+    required this.contrastBlack,
+    required this.strokeSecondary,
   });
 
   // Text colors
@@ -181,6 +185,10 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color iconBlue;
   final Color textHighlightBlue;
 
+  //Miscellaneous colors
+  final Color contrastBlack;
+  final Color strokeSecondary;
+
   @override
   ThemeExtension<AppColorExtension> copyWith({
     // Text colors
@@ -268,6 +276,10 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     Color? iconRed,
     Color? iconBlue,
     Color? textHighlightBlue,
+
+    //Miscellaneous colors
+    Color? contrastBlack,
+    Color? strokeSecondary,
   }) {
     return AppColorExtension(
       // Text colors
@@ -279,8 +291,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       // Constant/Brand colors
       constantDefault: constantDefault ?? this.constantDefault,
-      constantDefaultBorder:
-          constantDefaultBorder ?? this.constantDefaultBorder,
+      constantDefaultBorder: constantDefaultBorder ?? this.constantDefaultBorder,
       brandDefault: brandDefault ?? this.brandDefault,
       brandContrast: brandContrast ?? this.brandContrast,
       brandHover: brandHover ?? this.brandHover,
@@ -356,6 +367,10 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       iconRed: iconRed ?? this.iconRed,
       iconBlue: iconBlue ?? this.iconBlue,
       textHighlightBlue: textHighlightBlue ?? this.textHighlightBlue,
+
+      //Miscellaneous colors
+      contrastBlack: contrastBlack ?? this.contrastBlack,
+      strokeSecondary: strokeSecondary ?? this.strokeSecondary,
     );
   }
 
@@ -378,8 +393,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       // Constant/Brand colors
       constantDefault: Color.lerp(constantDefault, other.constantDefault, t)!,
-      constantDefaultBorder:
-          Color.lerp(constantDefaultBorder, other.constantDefaultBorder, t)!,
+      constantDefaultBorder: Color.lerp(constantDefaultBorder, other.constantDefaultBorder, t)!,
       brandDefault: Color.lerp(brandDefault, other.brandDefault, t)!,
       brandContrast: Color.lerp(brandContrast, other.brandContrast, t)!,
       brandHover: Color.lerp(brandHover, other.brandHover, t)!,
@@ -454,8 +468,11 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       // Icon colors
       iconRed: Color.lerp(iconRed, other.iconRed, t)!,
       iconBlue: Color.lerp(iconBlue, other.iconBlue, t)!,
-      textHighlightBlue:
-          Color.lerp(textHighlightBlue, other.textHighlightBlue, t)!,
+      textHighlightBlue: Color.lerp(textHighlightBlue, other.textHighlightBlue, t)!,
+
+      //Miscellaneous colors
+      contrastBlack: Color.lerp(contrastBlack, other.contrastBlack, t)!,
+      strokeSecondary: Color.lerp(strokeSecondary, other.strokeSecondary, t)!,
     );
   }
 }
@@ -475,7 +492,7 @@ extension ColorSchemeBuilder on AppColorExtension {
       onError: textWhite,
       surface: surface,
       onSurface: textPrimary,
-      surfaceTint: blueDefault.withOpacity(0.05),
+      surfaceTint: blueDefault.withValues(alpha: 0.05),
     );
   }
 }
