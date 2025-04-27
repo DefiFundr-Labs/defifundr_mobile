@@ -43,7 +43,7 @@ class NewPasswordState {
 
   bool get hasLowercaseCharacter => RegExp(r'[a-z]+').hasMatch(password);
 
-  bool get hasSpecialCharacter => RegExp(r'[@#$%_\-&]+').hasMatch(password);
+  bool get hasSpecialCharacter => RegExp(r"[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};:',<>\./\?]+").hasMatch(password);
 
   bool get passwordConfirmed => password == confirmPassword;
 
