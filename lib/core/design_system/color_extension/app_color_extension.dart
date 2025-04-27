@@ -96,6 +96,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
     //Miscellaneous colors
     required this.contrastBlack,
+    required this.contrastWhite,
     required this.strokeSecondary,
   });
 
@@ -187,6 +188,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
   //Miscellaneous colors
   final Color contrastBlack;
+  final Color contrastWhite;
   final Color strokeSecondary;
 
   @override
@@ -279,6 +281,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
     //Miscellaneous colors
     Color? contrastBlack,
+    Color? contrastWhite,
     Color? strokeSecondary,
   }) {
     return AppColorExtension(
@@ -370,6 +373,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       //Miscellaneous colors
       contrastBlack: contrastBlack ?? this.contrastBlack,
+      contrastWhite: contrastWhite ?? this.contrastWhite,
       strokeSecondary: strokeSecondary ?? this.strokeSecondary,
     );
   }
@@ -472,6 +476,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       //Miscellaneous colors
       contrastBlack: Color.lerp(contrastBlack, other.contrastBlack, t)!,
+      contrastWhite: Color.lerp(contrastWhite, other.contrastWhite, t)!,
       strokeSecondary: Color.lerp(strokeSecondary, other.strokeSecondary, t)!,
     );
   }

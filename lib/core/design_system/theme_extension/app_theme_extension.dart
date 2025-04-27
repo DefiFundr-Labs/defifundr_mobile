@@ -96,6 +96,7 @@ class AppTheme {
 
     //Miscellaneous colors
     contrastBlack: AppColors.contrastBlack,
+    contrastWhite: AppColors.contrastWhite,
     strokeSecondary: AppColorDark.strokeSecondary,
   );
 
@@ -189,6 +190,7 @@ class AppTheme {
 
     //Miscellaneous colors
     contrastBlack: AppColorDark.contrastBlack,
+    contrastWhite: AppColorDark.contrastWhite,
     strokeSecondary: AppColorDark.strokeSecondary,
   );
 
