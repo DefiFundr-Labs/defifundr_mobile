@@ -44,6 +44,7 @@ class AppTexts {
   static String password = "Password";
   static String confirmPassword = "Confirm Password";
   static String passwordText = "Create your password";
+  static const passwordRequirements = "Must Contain At Least:";
   static String capitalLetter = "Capital letter";
   static String number = "Must Contain At least One number";
   static String specialCharacter = "At least One special character";
@@ -92,6 +93,11 @@ class AppTexts {
       "Your recovery or seed phrase is a 12 word special kind of password. it is another way to access your account and it must be kept private!";
 
   static String passWordForgot = 'Forgot Password?';
+  static const eightCharacters = '8 characters';
+  static const aNumber = 'A number';
+  static const anUpperCase = 'An uppercase letter';
+  static const anLowerCase = 'An lowercase letter';
+  static const aSpecialCharacter = 'A special character';
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -171,6 +177,9 @@ class AppTexts {
       "At least one special character (!@#\$%^&*)";
   static String passwordMatch = "Password match";
   static String enterPassword = "Enter password";
+  static String enterNewPassword = "Enter password";
+  static String enterNewPasswordDesc =
+      "Enter a new password to regain access to your account.";
   static String continuee = "Continue";
   static String passwordReset = "Password Reset";
   static String forgetPassword = "Forget Password";
@@ -286,4 +295,8 @@ class AppTexts {
   static const String verifyDriversCard = "Verify using your Drivers card";
   static const String enterVotersCardNumber =
       "Enter your voters card number below";
+  static const String enterEmailAddress =
+      "Enter your email address to get a code to reset your password.";
+  static const String sendCode = "Send code";
+  static const String emailAddress = "Email address";
 }

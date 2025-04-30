@@ -48,13 +48,13 @@ class Config {
         height: 1.6,
       );
 
-  static double horizontalMargin(BuildContext context, double height) {
+  static double verticalMargin(BuildContext context, double height) {
     var viewPortHeight = MediaQuery.of(context).size.longestSide;
     viewPortHeight = viewPortHeight > 950 ? 950 : viewPortHeight;
     return height * (viewPortHeight / 100);
   }
 
-  static double verticalMargin(BuildContext context, double width) {
+  static double horizontalMargin(BuildContext context, double width) {
     var viewPortwidth = MediaQuery.of(context).size.shortestSide;
     viewPortwidth = viewPortwidth > 650 ? 650 : viewPortwidth;
     return width * (viewPortwidth / 100);
@@ -76,11 +76,9 @@ class Config {
 }
 
 extension CustomContext on BuildContext {
-  double screenHeight([double percent = 1]) =>
-      MediaQuery.of(this).size.height * percent;
+  double screenHeight([double percent = 1]) => MediaQuery.of(this).size.height * percent;
 
-  double screenWidth([double percent = 1]) =>
-      MediaQuery.of(this).size.width * percent;
+  double screenWidth([double percent = 1]) => MediaQuery.of(this).size.width * percent;
 }
 
 class HorizontalMargin extends StatelessWidget {

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 /// App color palette constants for light mode
 class AppColors {
   // Text Colors
-  static const Color textPrimary = Color(0xFF000000);
-  static const Color textSecondary = Color(0xFF666666);
-  static const Color textTertiary = Color(0xFF999999);
+  static const Color textPrimary = Color(0xFF18181B);
+  static const Color textSecondary = Color(0xFF71717A);
+  static const Color textTertiary = Color(0xFFA1A1AA);
   static const Color textQuaternary = Color(0xFFCCCCCC);
   static const Color textWhite = Color(0xFFF6F6F7);
 
@@ -31,7 +31,7 @@ class AppColors {
   static const Color greenHover = Color(0xFF33B333);
   static const Color greenActive = Color(0xFF26B326);
   static const Color greenStroke = Color(0xFFB2E6B2);
-  static const Color greenFill = Color(0xFFE5F7E5);
+  static const Color greenFill = Color(0xFFF0FDF4);
 
   // Gray Colors
   static const Color grayPrimary = Color(0xFF333333);
@@ -54,11 +54,11 @@ class AppColors {
   static const Color orangeFill = Color(0xFFFFE5E0);
 
   // Red Colors
-  static const Color redDefault = Color(0xFFD90000);
+  static const Color redDefault = Color(0xFFDC2626);
   static const Color redHover = Color(0xFFCC0000);
   static const Color redActive = Color(0xFFB30000);
   static const Color redStroke = Color(0xFFFFBFBF);
-  static const Color redFill = Color(0xFFFFECEC);
+  static const Color redFill = Color(0xFFFEF2F2);
   static const Color iconRed = Color(0xFFE50900);
 
   // Pink Colors
@@ -113,6 +113,11 @@ class AppColors {
   static const Color borderGrey = Color(0xFFBBBABB);
   static const Color gradientColor = Color(0xFFEDEAFF);
   static const Color white = Colors.white;
+
+  // Miscellaneous colors
+  static const Color contrastBlack = Color(0xFF18181B);
+  static const Color contrastWhite = Color(0xFFFFFFFF);
+  static const Color strokeSecondary = Color(0x0F18181B);
 }
 
 /// App color palette constants for dark mode
@@ -146,7 +151,7 @@ class AppColorDark {
   static const Color greenHover = Color(0xFF52B352);
   static const Color greenActive = Color(0xFF66B366);
   static const Color greenStroke = Color(0xFF338833);
-  static const Color greenFill = Color(0xFF267F26);
+  static const Color greenFill = Color(0xFF052E16);
 
   // Gray Colors
   static const Color grayPrimary = Color(0xFFCCCCCC);
@@ -169,11 +174,11 @@ class AppColorDark {
   static const Color orangeFill = Color(0xFF9F3300);
 
   // Red Colors
-  static const Color redDefault = Color(0xFFD90000);
+  static const Color redDefault = Color(0xFFDC2626);
   static const Color redHover = Color(0xFFDD1919);
   static const Color redActive = Color(0xFFE13333);
   static const Color redStroke = Color(0xFFA30000);
-  static const Color redFill = Color(0xFF7F0000);
+  static const Color redFill = Color(0xFF450A0A);
   static const Color iconRed = Color(0xFFE50900);
 
   // Pink Colors
@@ -203,4 +208,9 @@ class AppColorDark {
   // Icon Colors
   static const Color iconBlue = Color(0xFF0000E5);
   static const Color textHighlightBlue = Color.fromARGB(255, 73, 73, 215);
+
+  //Miscellaneous colors
+  static const Color contrastBlack = Color(0xFFFFFFFF);
+  static const Color contrastWhite = Color(0xFF18181B);
+  static const Color strokeSecondary = Color(0x0F18181B);
 }
