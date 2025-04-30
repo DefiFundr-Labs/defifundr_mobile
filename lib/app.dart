@@ -38,7 +38,7 @@ class _AppState extends State<App> {
           debugShowCheckedModeBanner: false,
           title: 'DeFiFundr',
           theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
+          darkTheme: AppTheme.light,
           themeMode: ThemeMode.system,
           scrollBehavior: const _AppScrollBehavior(),
           routeInformationProvider: AppRouter.router.routeInformationProvider,

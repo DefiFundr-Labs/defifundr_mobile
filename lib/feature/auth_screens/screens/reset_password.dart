@@ -77,7 +77,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               VerticalMargin(20),
               AppTextField(
-                isPassword: false,
                 label: AppTexts.emailAddress,
                 controller: _passwordController,
               ),
