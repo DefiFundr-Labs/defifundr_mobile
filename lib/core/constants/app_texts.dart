@@ -261,5 +261,11 @@ class AppTexts {
   static const String contractName = "Contract name";
   static const String searchCountry = "Search Country";
   static const String verifyDriversCard = "Verify using your Drivers card";
+  static const String enterVotersCardNumber =
+      "Enter your voters card number below";
+  static const String enterEmailAddress =
+      "Enter your email address to get a code to reset your password.";
+  static const String sendCode = "Send code";
+  static const String emailAddress = "Email address";
   static const String enterVotersCardNumber = "Enter your voters card number below";
 }
