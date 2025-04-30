@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
@@ -47,7 +46,7 @@ class AppButton extends StatelessWidget {
       child: Container(
         height: height ?? 56.sp,
         decoration: BoxDecoration(
-          color: isActive! ? color : context.theme.primaryColorDark,
+          color: isActive! ? color : Theme.of(context).colors.textTertiary,
           borderRadius: BorderRadius.circular(30.0),
           border: Border.all(
             width: width ?? 0.5.sp,
