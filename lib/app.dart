@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,10 @@ class _AppState extends State<App> {
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'DeFiFundr',
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          themeMode: ThemeMode.system,
           scrollBehavior: const _AppScrollBehavior(),
-          theme: ThemeData(
-            primarySwatch: Colors.grey,
-          ),
           routeInformationProvider: AppRouter.router.routeInformationProvider,
           routeInformationParser: AppRouter.router.routeInformationParser,
           routerDelegate: AppRouter.router.routerDelegate,
