@@ -53,3 +53,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android_backup/
+
+.env
