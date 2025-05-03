@@ -1,53 +1,69 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/web3auth/web3auth_test_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../feature/auth_screens/screens/new_password.dart';
+import '../../feature/auth_screens/screens/verify_otp_.dart';
+
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter _router = GoRouter(
-      debugLogDiagnostics: true,
-      initialLocation: '/',
-      navigatorKey: _rootNavigatorKey,
-      routes: [
-        GoRoute(
-          path: '/',
-          name: RouteConstants.login,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: const Web3AuthTestPage(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
-        GoRoute(
-          path: '/auth',
-          builder: (context, state) {
-            // Handle the authentication callback
-            // The query parameters will be in state.queryParameters
-            final params = state.queryParameters['b64Params'];
-            print('Auth params: $params');
-
-            // Navigate to your desired screen after auth
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.go('/'); // Or wherever you want to navigate after auth
-            });
-
-            // Show a loading screen during transition
-            return Web3AuthTestPage();
-          },
-        ),
-      ]);
+    debugLogDiagnostics: true,
+    initialLocation: '/forgotpassword/verifyotp',
+    navigatorKey: _rootNavigatorKey,
+    routes: [
+      GoRoute(
+        path: '/',
+        name: RouteConstants.login,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const Login(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/forgotpassword/verifyotp',
+        name: RouteConstants.verifyOtp,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const VerifyOtpScreen(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/forgotpassword/newpassword',
+        name: RouteConstants.newPassword,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const NewPassword(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+    ],
+  );
 
   static GoRouter get router => _router;
 }
