@@ -54,6 +54,7 @@ dependencies:
 
   file_picker: ^9.0.2
   bloc_concurrency: ^0.2.5
+  nested: ^1.0.0
 
 
 dev_dependencies:
