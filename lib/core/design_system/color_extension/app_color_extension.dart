@@ -20,6 +20,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     required this.constantDefaultBorder,
     required this.brandDefault,
     required this.brandContrast,
+    required this.brandDefaultContrast,
     required this.brandHover,
     required this.brandActive,
     required this.brandStroke,
@@ -112,6 +113,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color constantDefaultBorder;
   final Color brandDefault;
   final Color brandContrast;
+  final Color brandDefaultContrast;
   final Color brandHover;
   final Color brandActive;
   final Color brandStroke;
@@ -205,6 +207,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     Color? constantDefaultBorder,
     Color? brandDefault,
     Color? brandContrast,
+    Color? brandDefaultContrast,
     Color? brandHover,
     Color? brandActive,
     Color? brandStroke,
@@ -297,6 +300,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       constantDefaultBorder: constantDefaultBorder ?? this.constantDefaultBorder,
       brandDefault: brandDefault ?? this.brandDefault,
       brandContrast: brandContrast ?? this.brandContrast,
+      brandDefaultContrast: brandDefaultContrast ?? this.brandDefaultContrast,
       brandHover: brandHover ?? this.brandHover,
       brandActive: brandActive ?? this.brandActive,
       brandStroke: brandStroke ?? this.brandStroke,
@@ -400,6 +404,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       constantDefaultBorder: Color.lerp(constantDefaultBorder, other.constantDefaultBorder, t)!,
       brandDefault: Color.lerp(brandDefault, other.brandDefault, t)!,
       brandContrast: Color.lerp(brandContrast, other.brandContrast, t)!,
+      brandDefaultContrast: Color.lerp(brandDefaultContrast, other.brandDefaultContrast, t)!,
       brandHover: Color.lerp(brandHover, other.brandHover, t)!,
       brandActive: Color.lerp(brandActive, other.brandActive, t)!,
       brandStroke: Color.lerp(brandStroke, other.brandStroke, t)!,

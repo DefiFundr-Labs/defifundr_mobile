@@ -14,6 +14,7 @@ class AppColors {
   static const Color constantDefaultBorder = Color(0xFFCCCCCC);
   static const Color brandDefault = Color(0xFF4040FF);
   static const Color brandContrast = Color(0xFF3333FF);
+  static const Color brandDefaultContrast = Color(0xFF5A42DE);
   static const Color brandHover = Color(0xFF3333FF);
   static const Color brandActive = Color(0xFF2626FF);
   static const Color brandStroke = Color(0xFFB2B2FF);
@@ -134,6 +135,7 @@ class AppColorDark {
   static const Color constantDefaultBorder = Color(0xFF333333);
   static const Color brandDefault = Color(0xFF4040FF);
   static const Color brandContrast = Color(0xFF5252FF);
+  static const Color brandDefaultContrast = Color(0xFF8685F4);
   static const Color brandHover = Color(0xFF5252FF);
   static const Color brandActive = Color(0xFF6666FF);
   static const Color brandStroke = Color(0xFF3333BB);
