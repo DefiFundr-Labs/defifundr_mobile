@@ -31,7 +31,7 @@ Future<File?> pickFile() async {
 extension FilePreview on File {
   String getPreview({int length = 10}) {
     if (!existsSync()) {
-      throw FileSystemException("File not found", this.path);
+      throw FileSystemException("File not found", path);
     }
 
     final file = openSync(mode: FileMode.read);
