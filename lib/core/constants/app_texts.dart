@@ -31,7 +31,7 @@ class AppTexts {
   static String dontHaveAccount = "Don't have an account?";
   static String verifyOTP = "Verify your Email";
   static String verify = "Verify";
-  static String verifyOTPDescription(String email) => "OTP has been sent to $email";
+  static String verifyOTPDesc = "Please enter the 6 digit OTP code sent to";
   static String notYourEmail(String email) => "Not $email?";
   static String signUp = "Sign up";
   static String resendOTP = "Resend OTP";
@@ -92,6 +92,8 @@ class AppTexts {
   static const anUpperCase = 'An uppercase letter';
   static const anLowerCase = 'An lowercase letter';
   static const aSpecialCharacter = 'A special character';
+  static const cantFindCode = 'Can’t find the code?';
+  static const cantFindCodeDesc = 'Try checking your junk/spam folder, or resend the code.';
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -178,7 +180,7 @@ class AppTexts {
   static String verifyOtp = "Verify OTP";
   static String resendCode = "Resend code 60secs";
   static String passwordhasbeenresetsuccessfully = 'Password has been reset successfully, You can proceed to login with your new Password.';
-  static String enterOtpCode = "Enter the OTP code sent to the email ending with";
+  static String enterCode = "Enter code";
   static String oppsDontWorry = "Ooops! don't worry,";
   static String theProcessIsSimpler = "the process is simpler than you thought";
   static String confirmOtp = "Confirm OTP";
