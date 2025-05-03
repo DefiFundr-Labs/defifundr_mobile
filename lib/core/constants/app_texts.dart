@@ -178,7 +178,7 @@ class AppTexts {
   static String forgetPassword = "Forget Password";
   static String passwordResetSuccessfully = "Password has been reset successfully, You can proceed to login with your new Password.";
   static String verifyOtp = "Verify OTP";
-  static String resendCode = "Resend code 60secs";
+  static String resendCode = "Resend code";
   static String passwordhasbeenresetsuccessfully = 'Password has been reset successfully, You can proceed to login with your new Password.';
   static String enterCode = "Enter code";
   static String oppsDontWorry = "Ooops! don't worry,";

@@ -12,7 +12,7 @@ class AppButton extends StatelessWidget {
     this.isActive = true,
     this.gradient,
     this.icon,
-    this.iconRtr,
+    this.assetIcon,
     this.iconSize,
     this.borderRadius,
     required this.textColor,
@@ -23,13 +23,13 @@ class AppButton extends StatelessWidget {
     this.isRounded = false,
     this.preserveIconColor = false,
     required this.onTap,
-  });
+  }) : assert(icon == null || assetIcon == null, 'You can only use one icon at a time.');
   final Color? color;
   final String text;
   final bool? isActive;
   final bool? isRounded;
-  final String? icon;
-  final String? iconRtr;
+  final IconData? icon;
+  final String? assetIcon;
   final double? iconSize;
   final double? borderRadius;
   final Color textColor;
@@ -60,15 +60,14 @@ class AppButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (iconRtr != null)
+              if (assetIcon != null)
                 SvgPicture.asset(
-                  iconRtr!,
+                  assetIcon!,
                   height: iconSize ?? 16.sp,
                   width: iconSize ?? 16.sp,
                   color: preserveIconColor ? null : textColor,
-                )
-              else
-                const SizedBox(),
+                ),
+              if (icon != null) Icon(icon!, size: iconSize ?? 16.sp, color: textColor, applyTextScaling: true),
               const HorizontalMargin(5),
               Text(
                 text,
@@ -78,16 +77,6 @@ class AppButton extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const HorizontalMargin(7),
-              if (icon != null)
-                SvgPicture.asset(
-                  icon!,
-                  height: iconSize ?? 16.sp,
-                  width: iconSize ?? 16.sp,
-                  color: preserveIconColor ? null : textColor,
-                )
-              else
-                const SizedBox(),
             ],
           ),
         ),

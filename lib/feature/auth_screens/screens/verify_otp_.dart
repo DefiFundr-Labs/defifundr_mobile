@@ -1,8 +1,12 @@
+import 'dart:async' show Timer;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../core/shared/buttons/primary_button.dart';
+import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({super.key});
@@ -12,6 +16,27 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+  late _CountdownNotifier _countdownNotifier;
+
+  @override
+  void initState() {
+    _countdownNotifier = _CountdownNotifier();
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant VerifyOtpScreen oldWidget) {
+    _countdownNotifier.dispose();
+    _countdownNotifier = _CountdownNotifier();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _countdownNotifier.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,17 +66,21 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           children: [
             Text(AppTexts.verifyOTP, style: Theme.of(context).fonts.heading2Bold),
             SizedBox(height: 4),
-            RichText(
-              text: TextSpan(
-                text: AppTexts.verifyOTPDesc,
-                style: Theme.of(context).fonts.textMdRegular,
-                children: [
-                  TextSpan(
-                    text: '\ttempuser12346@mail.com',
-                    style: Theme.of(context).fonts.textMdSemiBold.copyWith(color: Theme.of(context).colors.brandDefaultContrast),
+            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+              builder: (context, state) {
+                return RichText(
+                  text: TextSpan(
+                    text: AppTexts.verifyOTPDesc,
+                    style: Theme.of(context).fonts.textMdRegular,
+                    children: [
+                      TextSpan(
+                        text: "\t${state.emailAddress ?? 'tempuser12346@mail.com'}",
+                        style: Theme.of(context).fonts.textMdSemiBold.copyWith(color: Theme.of(context).colors.brandDefaultContrast),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             ),
             SizedBox(height: 24),
             Text(AppTexts.enterCode, style: Theme.of(context).fonts.textMdMedium),
@@ -156,16 +185,39 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               color: Theme.of(context).colors.contrastBlack,
               onTap: () {},
             ),
-            AppButton(
-              text: AppTexts.resetPassword,
-              textColor: Theme.of(context).colors.contrastWhite,
-              color: Theme.of(context).colors.contrastBlack,
-              onTap: () {},
+            ValueListenableBuilder(
+              valueListenable: _countdownNotifier,
+              builder: (context, value, child) {
+                return AppButton(
+                  text: "${AppTexts.resendCode}${value == 60 ? '' : '\t(00:${value > 9 ? value : '0$value'})'}",
+                  textColor: Theme.of(context).colors.textPrimary,
+                  color: Theme.of(context).colors.fillTertiary,
+                  icon: Icons.refresh,
+                  iconSize: 24,
+                  isActive: value == 60,
+                  onTap: _countdownNotifier.start,
+                );
+              },
             ),
             if (MediaQuery.viewInsetsOf(context).bottom < 10) SizedBox(height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom)
           ],
         ),
       ),
     );
+  }
+}
+
+class _CountdownNotifier extends ValueNotifier<int> {
+  _CountdownNotifier() : super(60);
+
+  void start() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (value > 0) {
+        value--;
+      } else {
+        timer.cancel();
+        value = 60;
+      }
+    });
   }
 }
