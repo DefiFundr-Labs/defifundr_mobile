@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/core/shared/overlay_message.dart';
+import 'package:defifundr_mobile/core/shared/overlay/overlay_message.dart';
 import 'package:defifundr_mobile/core/utils/enum_file.dart';
 import 'package:flutter/material.dart';
 

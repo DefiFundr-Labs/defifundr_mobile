@@ -1,4 +1,4 @@
-package com.example.defifundr_mobile
+package com.defifundr.app
 
 import io.flutter.embedding.android.FlutterActivity
 

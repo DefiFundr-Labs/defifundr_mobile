@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authe
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/enable_fingerprint_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/enable_push_notification_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/pin_created_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/web3auth/web3auth_test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,7 +25,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const PinCreatedScreen(),
+              child: const Web3AuthTestPage(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

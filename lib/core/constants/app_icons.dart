@@ -19,4 +19,13 @@ class AppIcons {
   static String gradientBackground =
       '${_baseImageAssetUrl}gradientBackground.png';
   static String driversCard = '${_baseImageAssetUrl}drivers_card.png';
+
+  // Blockchain icons
+  static String ethereumIcon = '${_baseAssetUrl}ethereumIcon.svg';
+  static String starknetIcon = '${_baseAssetUrl}starknetIcon.svg';
+  static String solanaIcon = '${_baseAssetUrl}solanaIcon.svg';
+  static String steller = '${_baseAssetUrl}steller.svg';
+
+  // App icons
+  static String appIcon = '${_baseAssetUrl}appIcon.svg';
 }

@@ -28,6 +28,22 @@
 		<string>$(APP_NAME) allows you to upload profile images using the gallery. Granting access to the gallery will enable you to take photos and update your profile picture easily</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>$(APP_NAME) allows you to upload profile images using the gallery. Granting access to the gallery will enable you to take photos and update your profile picture easily</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>com.defifundr.mobile</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>defifundr.com</string>
+			</dict>
+		</array>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>https</string>
+			<string>http</string>
+		</array>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>LSRequiresIPhoneOS</key>
