@@ -98,7 +98,8 @@ class AppTheme {
     //Miscellaneous colors
     contrastBlack: AppColors.contrastBlack,
     contrastWhite: AppColors.contrastWhite,
-    strokeSecondary: AppColorDark.strokeSecondary,
+    strokeSecondary: AppColors.strokeSecondary,
+    fillTertiary: AppColors.fillTertiary,
   );
 
   // Dark theme color configurations
@@ -194,6 +195,7 @@ class AppTheme {
     contrastBlack: AppColorDark.contrastBlack,
     contrastWhite: AppColorDark.contrastWhite,
     strokeSecondary: AppColorDark.strokeSecondary,
+    fillTertiary: AppColorDark.fillTertiary,
   );
 
   // Font styles for light theme

@@ -99,6 +99,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     required this.contrastBlack,
     required this.contrastWhite,
     required this.strokeSecondary,
+    required this.fillTertiary,
   });
 
   // Text colors
@@ -192,6 +193,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color contrastBlack;
   final Color contrastWhite;
   final Color strokeSecondary;
+  final Color fillTertiary;
 
   @override
   ThemeExtension<AppColorExtension> copyWith({
@@ -286,6 +288,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     Color? contrastBlack,
     Color? contrastWhite,
     Color? strokeSecondary,
+    Color? fillTertiary,
   }) {
     return AppColorExtension(
       // Text colors
@@ -379,6 +382,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       contrastBlack: contrastBlack ?? this.contrastBlack,
       contrastWhite: contrastWhite ?? this.contrastWhite,
       strokeSecondary: strokeSecondary ?? this.strokeSecondary,
+      fillTertiary: fillTertiary ?? this.fillTertiary,
     );
   }
 
@@ -483,6 +487,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       contrastBlack: Color.lerp(contrastBlack, other.contrastBlack, t)!,
       contrastWhite: Color.lerp(contrastWhite, other.contrastWhite, t)!,
       strokeSecondary: Color.lerp(strokeSecondary, other.strokeSecondary, t)!,
+      fillTertiary: Color.lerp(fillTertiary, other.fillTertiary, t)!,
     );
   }
 }
