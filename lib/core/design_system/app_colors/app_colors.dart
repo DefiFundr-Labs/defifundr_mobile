@@ -14,6 +14,7 @@ class AppColors {
   static const Color constantDefaultBorder = Color(0xFFCCCCCC);
   static const Color brandDefault = Color(0xFF4040FF);
   static const Color brandContrast = Color(0xFF3333FF);
+  static const Color brandDefaultContrast = Color(0xFF5A42DE);
   static const Color brandHover = Color(0xFF3333FF);
   static const Color brandActive = Color(0xFF2626FF);
   static const Color brandStroke = Color(0xFFB2B2FF);
@@ -27,7 +28,7 @@ class AppColors {
   static const Color blueFill = Color(0xFFE5E5FF);
 
   // Green Colors
-  static const Color greenDefault = Color(0xFF40B040);
+  static const Color greenDefault = Color(0xFF16A34A);
   static const Color greenHover = Color(0xFF33B333);
   static const Color greenActive = Color(0xFF26B326);
   static const Color greenStroke = Color(0xFFB2E6B2);
@@ -118,6 +119,7 @@ class AppColors {
   static const Color contrastBlack = Color(0xFF18181B);
   static const Color contrastWhite = Color(0xFFFFFFFF);
   static const Color strokeSecondary = Color(0x0F18181B);
+  static const Color fillTertiary = Color(0x0A18181B);
 }
 
 /// App color palette constants for dark mode
@@ -134,6 +136,7 @@ class AppColorDark {
   static const Color constantDefaultBorder = Color(0xFF333333);
   static const Color brandDefault = Color(0xFF4040FF);
   static const Color brandContrast = Color(0xFF5252FF);
+  static const Color brandDefaultContrast = Color(0xFF8685F4);
   static const Color brandHover = Color(0xFF5252FF);
   static const Color brandActive = Color(0xFF6666FF);
   static const Color brandStroke = Color(0xFF3333BB);
@@ -147,7 +150,7 @@ class AppColorDark {
   static const Color blueFill = Color(0xFF26267F);
 
   // Green Colors
-  static const Color greenDefault = Color(0xFF40B040);
+  static const Color greenDefault = Color(0xFF16A34A);
   static const Color greenHover = Color(0xFF52B352);
   static const Color greenActive = Color(0xFF66B366);
   static const Color greenStroke = Color(0xFF338833);
@@ -167,11 +170,11 @@ class AppColorDark {
   static const Color yellowFill = Color(0xFF7F6926);
 
   // Orange Colors
-  static const Color orangeDefault = Color(0xFFFF5500);
+  static const Color orangeDefault = Color(0xFFDC2626);
   static const Color orangeHover = Color(0xFFFF6619);
   static const Color orangeActive = Color(0xFFFF7733);
   static const Color orangeStroke = Color(0xFFCC4400);
-  static const Color orangeFill = Color(0xFF9F3300);
+  static const Color orangeFill = Color(0xFF450A0A);
 
   // Red Colors
   static const Color redDefault = Color(0xFFDC2626);
@@ -189,8 +192,8 @@ class AppColorDark {
   static const Color pinkFill = Color(0xFF9F1F5F);
 
   // Background Colors
-  static const Color bgB0 = Color(0xFF000000);
-  static const Color bgB1 = Color(0xFF1A1A1A);
+  static const Color bgB0 = Color(0xFF09090B);
+  static const Color bgB1 = Color(0xFF18181B);
   static const Color bgB2 = Color(0xFF262626);
   static const Color bgB3 = Color(0xFF333333);
 
@@ -212,5 +215,6 @@ class AppColorDark {
   //Miscellaneous colors
   static const Color contrastBlack = Color(0xFFFFFFFF);
   static const Color contrastWhite = Color(0xFF18181B);
-  static const Color strokeSecondary = Color(0x0F18181B);
+  static const Color strokeSecondary = Color(0x5252525B);
+  static const Color fillTertiary = Color(0x0AFFFFFF);
 }

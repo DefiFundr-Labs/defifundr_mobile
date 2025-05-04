@@ -29,7 +29,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(410, 890),
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: false,
       child: MultiBlocProvider(
@@ -38,7 +38,7 @@ class _AppState extends State<App> {
           debugShowCheckedModeBanner: false,
           title: 'DeFiFundr',
           theme: AppTheme.light,
-          darkTheme: AppTheme.light,
+          darkTheme: AppTheme.dark,
           themeMode: ThemeMode.system,
           scrollBehavior: const _AppScrollBehavior(),
           routeInformationProvider: AppRouter.router.routeInformationProvider,

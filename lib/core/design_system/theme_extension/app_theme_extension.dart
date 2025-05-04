@@ -20,6 +20,7 @@ class AppTheme {
     constantDefaultBorder: AppColors.constantDefaultBorder,
     brandDefault: AppColors.brandDefault,
     brandContrast: AppColors.brandContrast,
+    brandDefaultContrast: AppColors.brandContrast,
     brandHover: AppColors.brandHover,
     brandActive: AppColors.brandActive,
     brandStroke: AppColors.brandStroke,
@@ -97,7 +98,8 @@ class AppTheme {
     //Miscellaneous colors
     contrastBlack: AppColors.contrastBlack,
     contrastWhite: AppColors.contrastWhite,
-    strokeSecondary: AppColorDark.strokeSecondary,
+    strokeSecondary: AppColors.strokeSecondary,
+    fillTertiary: AppColors.fillTertiary,
   );
 
   // Dark theme color configurations
@@ -114,6 +116,7 @@ class AppTheme {
     constantDefaultBorder: AppColorDark.constantDefaultBorder,
     brandDefault: AppColorDark.brandDefault,
     brandContrast: AppColorDark.brandContrast,
+    brandDefaultContrast: AppColorDark.brandDefaultContrast,
     brandHover: AppColorDark.brandHover,
     brandActive: AppColorDark.brandActive,
     brandStroke: AppColorDark.brandStroke,
@@ -192,6 +195,7 @@ class AppTheme {
     contrastBlack: AppColorDark.contrastBlack,
     contrastWhite: AppColorDark.contrastWhite,
     strokeSecondary: AppColorDark.strokeSecondary,
+    fillTertiary: AppColorDark.fillTertiary,
   );
 
   // Font styles for light theme

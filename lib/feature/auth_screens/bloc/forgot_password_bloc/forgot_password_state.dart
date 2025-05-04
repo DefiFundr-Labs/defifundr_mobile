@@ -2,19 +2,20 @@ part of 'forgot_password_bloc.dart';
 
 abstract class ForgotPasswordState extends Equatable {
   final NewPasswordState? newPasswordState;
+  final String? emailAddress;
   @override
-  List<Object?> get props => [newPasswordState];
-  const ForgotPasswordState({this.newPasswordState});
+  List<Object?> get props => [emailAddress, newPasswordState];
+  const ForgotPasswordState({this.emailAddress, this.newPasswordState});
 }
 
 class ForgotPasswordInitial extends ForgotPasswordState {
-  const ForgotPasswordInitial({super.newPasswordState});
+  const ForgotPasswordInitial({super.emailAddress, super.newPasswordState});
 }
 
 class ForgotPasswordSuccess extends ForgotPasswordState {
   final String message;
 
-  const ForgotPasswordSuccess(this.message);
+  const ForgotPasswordSuccess(this.message, {super.emailAddress, super.newPasswordState});
 
   @override
   List<Object?> get props => super.props..add(message);
@@ -23,7 +24,7 @@ class ForgotPasswordSuccess extends ForgotPasswordState {
 class ForgotPasswordError extends ForgotPasswordState {
   final String error;
 
-  const ForgotPasswordError(this.error);
+  const ForgotPasswordError(this.error, {super.emailAddress, super.newPasswordState});
 
   @override
   List<Object?> get props => super.props..add(error);

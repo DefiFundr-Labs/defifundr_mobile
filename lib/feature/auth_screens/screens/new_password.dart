@@ -8,14 +8,9 @@ import '../../../core/shared/textfield/app_text_field.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import '../widgets/password_requirement_viewer.dart';
 
-class NewPassword extends StatefulWidget {
+class NewPassword extends StatelessWidget {
   const NewPassword({super.key});
 
-  @override
-  State<NewPassword> createState() => _NewPasswordState();
-}
-
-class _NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,22 +96,20 @@ class _NewPasswordState extends State<NewPassword> {
                     onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterConfirmPasswordString(p0)),
                   );
                 }),
-            if (MediaQuery.viewInsetsOf(context).bottom < 10) ...[
-              Expanded(child: SizedBox()),
-              BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-                buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
-                builder: (context, state) {
-                  return AppButton(
-                    text: AppTexts.resetPassword,
-                    textColor: Theme.of(context).colors.contrastWhite,
-                    color: Theme.of(context).colors.contrastBlack,
-                    isActive: state.newPasswordState?.isVerificationPassed ?? false,
-                    onTap: () {},
-                  );
-                },
-              )
-            ],
-            SizedBox(height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom)
+            Expanded(child: SizedBox()),
+            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+              buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
+              builder: (context, state) {
+                return AppButton(
+                  text: AppTexts.resetPassword,
+                  textColor: Theme.of(context).colors.contrastWhite,
+                  color: Theme.of(context).colors.contrastBlack,
+                  isActive: state.newPasswordState?.isVerificationPassed ?? false,
+                  onTap: () {},
+                );
+              },
+            ),
+            if (MediaQuery.viewInsetsOf(context).bottom < 10) SizedBox(height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom)
           ],
         ),
       ),

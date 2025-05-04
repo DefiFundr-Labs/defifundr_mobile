@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
 
-import '../../design_system/theme_extension/app_theme_extension.dart';
-
 class AppTextField extends StatefulWidget {
   final String label;
   final bool obscureText;
@@ -44,7 +42,9 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   void dispose() {
     _focusNode.removeListener(_onFocusChange);
-    _focusNode.dispose();
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
     super.dispose();
   }
 
@@ -65,20 +65,33 @@ class _AppTextFieldState extends State<AppTextField> {
               controller: widget.controller,
               obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
-              style: Theme.of(context).fonts.textMdRegular,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+              ),
               obscuringCharacter: '•',
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
               onChanged: widget.onChanged,
               decoration: InputDecoration(
                 labelText: widget.label,
-                labelStyle: Theme.of(context).fonts.textMdRegular.copyWith(color: Theme.of(context).colors.textTertiary),
-                floatingLabelStyle: Theme.of(context).fonts.textSmRegular,
+                labelStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[600],
+                ),
+                floatingLabelStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[400],
+                ),
                 filled: true,
                 fillColor: Colors.transparent,
                 isDense: true,
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
                 enabledBorder: InputBorder.none,
@@ -94,13 +107,12 @@ class _AppTextFieldState extends State<AppTextField> {
       builder: (context, child) {
         return Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).colors.bgB1,
-              border: Border.all(
-                  color: switch ((widget.focusNode ?? _focusNode).hasFocus) {
-                false => Theme.of(context).colors.strokeSecondary,
-                true => Theme.of(context).colors.brandDefault,
-              }),
-              borderRadius: BorderRadius.circular(12)),
+            color: const Color(0xFF1E1E1E),
+            border: Border.all(
+              color: _focusNode.hasFocus ? Colors.purple : Colors.grey[800]!,
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
           child: child,
         );
       },

@@ -42,3 +42,18 @@ class ToggleConfirmPasswordVisibility extends ForgotPasswordEvent {
   @override
   List<Object> get props => [];
 }
+
+class ResendOtpEvent extends ForgotPasswordEvent {
+  const ResendOtpEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class VerifyOtpEvent extends ForgotPasswordEvent {
+  final String otpCode;
+  const VerifyOtpEvent(this.otpCode);
+
+  @override
+  List<Object> get props => [];
+}
