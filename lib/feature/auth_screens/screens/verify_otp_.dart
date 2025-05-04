@@ -7,6 +7,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../core/shared/buttons/primary_button.dart';
+import '../../../core/utils/message_service.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
@@ -169,6 +170,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 textColor: Theme.of(context).colors.contrastWhite,
                 color: Theme.of(context).colors.contrastBlack,
                 onTap: () {
+                  MessageService.showError(context, AppTexts.invalidOTPCode, AppTexts.invalidOTPCodeDesc);
                   context.read<ForgotPasswordBloc>().add(VerifyOtpEvent(_otpController.text));
                 },
               ),
@@ -187,6 +189,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       iconSize: 24,
                       isActive: value == 60,
                       onTap: () {
+                        MessageService.showSuccess(context, AppTexts.otpCodeResent, AppTexts.otpCodeResentDesc);
                         context.read<ForgotPasswordBloc>().add(ResendOtpEvent());
                         _countdownNotifier.start();
                       },
