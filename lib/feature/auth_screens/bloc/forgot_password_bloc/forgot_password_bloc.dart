@@ -32,7 +32,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     on<TogglePasswordVisibility>(_togglePasswordVisibilityHandler);
     on<ToggleConfirmPasswordVisibility>(_toggleConfirmPasswordVisibilityHandler);
     on<ResendOtpEvent>(_resendOtpHandler);
-    on<VerifyOtp>(_verifyOtpHandler);
+    on<VerifyOtpEvent>(_verifyOtpHandler);
   }
 
   void _submitEmailHandler(SubmitEmail event, Emitter<ForgotPasswordState> emit) {
@@ -91,8 +91,9 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     _snackbarService.showSuccessSnackbar(title: AppTexts.otpCodeResent, message: AppTexts.otpCodeResentDesc);
   }
 
-  void _verifyOtpHandler(VerifyOtp event, Emitter<ForgotPasswordState> emit) {
+  void _verifyOtpHandler(VerifyOtpEvent event, Emitter<ForgotPasswordState> emit) {
     _snackbarService.showErrorSnackbar(title: AppTexts.invalidOTPCode, message: AppTexts.invalidOTPCodeDesc);
     emit(ForgotPasswordError(AppTexts.invalidOTPCode));
+    emit(ForgotPasswordInitial());
   }
 }
