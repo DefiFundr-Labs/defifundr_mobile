@@ -15,33 +15,45 @@ class SnackbarService extends ChangeNotifier {
   SnackbarData? get currentSnackbarData => _currentSnackbarData;
 
   void showSuccessSnackbar({required String title, required String message}) {
-    if (_queue.length == _maxQueueLength) throw Exception("Snackbar queue is full");
+    if (_queue.length == _maxQueueLength) _queue.removeAt(0);
     final snackbarData = SnackbarData(title: title, message: message, isError: false);
-    if (_queue.isNotEmpty || _isSnackbarVisible) return _queue.add(snackbarData);
-    return _displaySnackbar(snackbarData);
+    if (_queue.isNotEmpty || _isSnackbarVisible) {
+      _queue.add(snackbarData);
+      return;
+    }
+    _displaySnackbar(snackbarData);
+    return;
   }
 
   void showErrorSnackbar({required String title, required String message}) {
-    if (_queue.length == _maxQueueLength) throw Exception("Snackbar queue is full");
+    if (_queue.length == _maxQueueLength) _queue.removeAt(0);
     final snackbarData = SnackbarData(title: title, message: message, isError: true);
-    if (_queue.isNotEmpty || _isSnackbarVisible) return _queue.add(snackbarData);
-    return _displaySnackbar(snackbarData);
+    if (_queue.isNotEmpty || _isSnackbarVisible) {
+      _queue.add(snackbarData);
+      return;
+    }
+    _displaySnackbar(snackbarData);
+    return;
   }
 
   void _displaySnackbar(SnackbarData snackbarData) {
     _currentSnackbarData = snackbarData;
     _isSnackbarVisible = true;
     notifyListeners();
-    Future.delayed(Duration(seconds: 4), _insertFromQueue);
+    Future.delayed(Duration(seconds: 4), _displayNextFromQueue);
   }
 
-  void _insertFromQueue() {
+  void _displayNextFromQueue() async {
     if (_queue.isEmpty) {
+      await Future.delayed(Duration(seconds: 1));
       _isSnackbarVisible = false;
       _currentSnackbarData = null;
       notifyListeners();
       return;
     }
+    _currentSnackbarData = null;
+    notifyListeners();
+    await Future.delayed(Duration(seconds: 1));
     _displaySnackbar(_queue.removeAt(0));
   }
 }
