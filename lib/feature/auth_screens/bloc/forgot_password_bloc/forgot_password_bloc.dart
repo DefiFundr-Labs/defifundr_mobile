@@ -1,12 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../../core/services/snackbar_service.dart';
 
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
+  final _snackbarService = SnackbarService();
+
   ForgotPasswordBloc() : super(ForgotPasswordInitial()) {
     on<SubmitEmail>((event, emit) {
       if (!EmailValidator.validate(event.email)) {
@@ -66,5 +71,11 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
         );
       },
     );
+    on<ResendOtpEvent>((event, emit) {
+      _snackbarService.showSuccessSnackbar(title: AppTexts.otpCodeResent, message: AppTexts.otpCodeResentDesc);
+    });
+    on<VerifyOtp>((event, emit) {
+      _snackbarService.showErrorSnackbar(title: AppTexts.invalidOTPCode, message: AppTexts.invalidOTPCodeDesc);
+    });
   }
 }
