@@ -94,6 +94,10 @@ class AppTexts {
   static const aSpecialCharacter = 'A special character';
   static const cantFindCode = 'Can’t find the code?';
   static const cantFindCodeDesc = 'Try checking your junk/spam folder, or resend the code.';
+  static const otpCodeResent = 'OTP code resent!';
+  static const otpCodeResentDesc = 'Check your inbox for the latest OTP code sent.';
+  static const invalidOTPCode = 'Invalid OTP code!';
+  static const invalidOTPCodeDesc = 'The OTP code you entered is incorrect. Please double-check and try again.';
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -177,7 +181,6 @@ class AppTexts {
   static String passwordReset = "Password Reset";
   static String forgetPassword = "Forget Password";
   static String passwordResetSuccessfully = "Password has been reset successfully, You can proceed to login with your new Password.";
-  static String verifyOtp = "Verify OTP";
   static String resendCode = "Resend code";
   static String passwordhasbeenresetsuccessfully = 'Password has been reset successfully, You can proceed to login with your new Password.';
   static String enterCode = "Enter code";
