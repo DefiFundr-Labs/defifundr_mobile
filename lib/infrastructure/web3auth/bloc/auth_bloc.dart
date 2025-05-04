@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:defifundr_mobile/infrastructure/web3auth/exceptions/web3auth_exception.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/interfaces/web3_wallet.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/web3auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,10 +43,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // Determine redirect URL based on platform
       Uri redirectUrl;
       if (Platform.isAndroid) {
-        redirectUrl = Uri.parse('w3a://login-callback');
+        // redirectUrl = Uri.parse('w3a://com.defifundr.app/auth');
+        redirectUrl = Uri.parse('defifundr://auth');
         print("Using Android redirect URL: ${redirectUrl.toString()}");
       } else if (Platform.isIOS) {
-        redirectUrl = Uri.parse('defifundr://login-callback');
+        redirectUrl = Uri.parse('com.defifundr.app://auth');
         print("Using iOS redirect URL: ${redirectUrl.toString()}");
       } else {
         throw Exception('Unsupported platform');
@@ -65,21 +67,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // Initialize the service
       await _web3AuthService.initialize(config);
 
-      // Check if already logged in
-      if (_web3AuthService.isLoggedIn) {
-        await _updateWalletInfo(emit);
-        emit(state.copyWith(
-          status: AuthStatus.authenticated,
-          userInfo: _web3AuthService.userInfo,
-        ));
+      // Check session with our safe method
+      final hasSession = await _web3AuthService.hasActiveSession();
+
+      if (hasSession && _web3AuthService.isLoggedIn) {
+        try {
+          await _updateWalletInfo(emit);
+          emit(state.copyWith(
+            status: AuthStatus.authenticated,
+            userInfo: _web3AuthService.userInfo,
+          ));
+        } catch (e) {
+          // _log('Error updating wallet info: $e', isError: true);
+          // Fall back to initialized state if wallet info update fails
+          emit(state.copyWith(status: AuthStatus.initialized));
+        }
       } else {
         emit(state.copyWith(status: AuthStatus.initialized));
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
       print("Failed to initialize Web3Auth: $e");
+      print("Stack trace: $stackTrace");
+
+      // Extract meaningful error message
+      String errorMessage = "Failed to initialize Web3Auth";
+      if (e is Web3AuthException) {
+        errorMessage = e.message;
+      } else if (e.toString().contains('No user found')) {
+        errorMessage = "Please login to continue";
+      }
+
       emit(state.copyWith(
         status: AuthStatus.initializationFailed,
-        errorMessage: "Failed to initialize: $e",
+        errorMessage: errorMessage,
       ));
     }
   }
@@ -134,10 +154,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ));
     } catch (e) {
       print("Login failed: $e");
-      emit(state.copyWith(
-        status: AuthStatus.authenticationFailed,
-        errorMessage: "Login failed: $e",
-      ));
+
+      // Handle specific cases
+      if (e.toString().contains('No user found')) {
+        // Clear any stale session
+        try {
+          await _web3AuthService.logout();
+        } catch (_) {}
+
+        emit(state.copyWith(
+          status: AuthStatus.authenticationFailed,
+          errorMessage: "Session expired. Please login again.",
+        ));
+      } else {
+        emit(state.copyWith(
+          status: AuthStatus.authenticationFailed,
+          errorMessage: "Login failed: $e",
+        ));
+      }
     }
   }
 

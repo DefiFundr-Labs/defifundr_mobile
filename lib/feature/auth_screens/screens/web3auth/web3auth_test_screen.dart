@@ -23,6 +23,9 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
 
+  // Add this to track email state
+  bool _isEmailValid = false;
+
   // Animation controller for blockchain switching
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -44,6 +47,8 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
         curve: Curves.easeInOut,
       ),
     );
+
+    _emailController.addListener(_validateEmail);
   }
 
   @override
@@ -52,6 +57,14 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
     _messageController.dispose();
     _animationController.dispose();
     super.dispose();
+  }
+
+  void _validateEmail() {
+    setState(() {
+      _isEmailValid = _emailController.text.trim().isNotEmpty &&
+          _emailController.text.contains('@') &&
+          _emailController.text.contains('.');
+    });
   }
 
   @override
@@ -289,22 +302,29 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
           enabled: !isAuthenticating,
         ),
         SizedBox(height: 16.h),
-        PrimaryButton(
-          text: 'Login with Email',
-          onPressed: () {
-            if (_emailController.text.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text('Please enter an email address'),
-                  backgroundColor: colors.redDefault,
-                ),
-              );
-              return;
-            }
-            context.read<AuthBloc>().add(LoginWithEmail(_emailController.text));
+        ValueListenableBuilder<TextEditingValue>(
+          valueListenable: _emailController,
+          builder: (context, value, child) {
+            return PrimaryButton(
+              text: 'Login with Email',
+              onPressed: () {
+                if (_emailController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text('Please enter an email address'),
+                      backgroundColor: colors.redDefault,
+                    ),
+                  );
+                  return;
+                }
+                context
+                    .read<AuthBloc>()
+                    .add(LoginWithEmail(_emailController.text));
+              },
+              isLoading: isAuthenticating,
+              isEnabled: value.text.isNotEmpty,
+            );
           },
-          isLoading: isAuthenticating,
-          isEnabled: _emailController.text.isNotEmpty,
         ),
         SizedBox(height: 24.h),
         Row(

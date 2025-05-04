@@ -41,6 +41,7 @@ class Web3AuthService {
   TorusUserInfo? get userInfo => _userInfo;
 
   /// Initialize the Web3Auth service with the provided configuration
+  /// Initialize the Web3Auth service with the provided configuration
   Future<void> initialize(Web3AuthConfig config) async {
     if (_isInitialized) {
       _log('Web3Auth already initialized');
@@ -58,25 +59,57 @@ class Web3AuthService {
         sessionTime: _config.sessionTime,
       ));
 
-      await Web3AuthFlutter.initialize();
+      // Don't call initialize() immediately after init()
+      // This is where the "No user found" error is likely thrown
+      // We'll handle session checking separately
       _isInitialized = true;
       _log('Web3Auth initialized successfully');
 
-      // Check if user is already logged in
-      final privateKey = await Web3AuthFlutter.getPrivKey();
-      if (privateKey.isNotEmpty) {
-        _privateKey = privateKey;
-        _isLoggedIn = true;
-        _userInfo = await Web3AuthFlutter.getUserInfo();
+      // Try to check for existing session safely
+      try {
+        final privateKey = await Web3AuthFlutter.getPrivKey();
+        if (privateKey.isNotEmpty) {
+          _privateKey = privateKey;
+          _isLoggedIn = true;
+          _userInfo = await Web3AuthFlutter.getUserInfo();
 
-        // Initialize wallets
-        await _initializeWallets();
-        _log('User is already logged in');
+          // Initialize wallets
+          await _initializeWallets();
+          _log('User is already logged in');
+        }
+      } catch (sessionError) {
+        // If getting session fails, continue with unlogged state
+        _log('No active session found: $sessionError');
+        _isLoggedIn = false;
+        _privateKey = null;
+        _userInfo = null;
       }
     } catch (e) {
       _log('Failed to initialize Web3Auth: $e', isError: true);
       _isInitialized = false;
       throw Web3AuthException('Failed to initialize Web3Auth: $e');
+    }
+  }
+
+  /// Safely check if there's an active session
+  Future<bool> hasActiveSession() async {
+    try {
+      final privateKey = await Web3AuthFlutter.getPrivKey();
+      return privateKey.isNotEmpty;
+    } catch (e) {
+      _log('Session check failed: $e');
+      return false;
+    }
+  }
+
+  /// Safely get private key without throwing exceptions
+  Future<String?> getSafePrivateKey() async {
+    try {
+      final privateKey = await Web3AuthFlutter.getPrivKey();
+      return privateKey.isNotEmpty ? privateKey : null;
+    } catch (e) {
+      _log('Failed to get private key: $e');
+      return null;
     }
   }
 

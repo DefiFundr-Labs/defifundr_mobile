@@ -1,11 +1,4 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/login.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/confirm_pin_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/create_pin_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/enable_face_id_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/enable_fingerprint_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/enable_push_notification_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/screens/pin_created_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/web3auth/web3auth_test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -35,6 +28,23 @@ class AppRouter {
                 );
               },
             );
+          },
+        ),
+        GoRoute(
+          path: '/auth',
+          builder: (context, state) {
+            // Handle the authentication callback
+            // The query parameters will be in state.queryParameters
+            final params = state.queryParameters['b64Params'];
+            print('Auth params: $params');
+
+            // Navigate to your desired screen after auth
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              context.go('/'); // Or wherever you want to navigate after auth
+            });
+
+            // Show a loading screen during transition
+            return Web3AuthTestPage();
           },
         ),
       ]);

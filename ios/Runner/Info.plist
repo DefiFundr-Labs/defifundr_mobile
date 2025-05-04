@@ -33,7 +33,7 @@
 			<dict>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>com.defifundr.mobile</string>
+					<string>com.defifundr.app</string>
 				</array>
 				<key>CFBundleURLName</key>
 				<string>defifundr.com</string>
