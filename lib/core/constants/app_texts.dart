@@ -34,8 +34,7 @@ class AppTexts {
   static String dontHaveAccount = "Don't have an account?";
   static String verifyOTP = "Verify your Email";
   static String verify = "Verify";
-  static String verifyOTPDescription(String email) =>
-      "OTP has been sent to $email";
+  static String verifyOTPDesc = "Please enter the 6 digit OTP code sent to";
   static String notYourEmail(String email) => "Not $email?";
   static String signUp = "Sign up";
   static String resendOTP = "Resend OTP";
@@ -98,6 +97,12 @@ class AppTexts {
   static const anUpperCase = 'An uppercase letter';
   static const anLowerCase = 'An lowercase letter';
   static const aSpecialCharacter = 'A special character';
+  static const cantFindCode = 'Can’t find the code?';
+  static const cantFindCodeDesc = 'Try checking your junk/spam folder, or resend the code.';
+  static const otpCodeResent = 'OTP code resent!';
+  static const otpCodeResentDesc = 'Check your inbox for the latest OTP code sent.';
+  static const invalidOTPCode = 'Invalid OTP code!';
+  static const invalidOTPCodeDesc = 'The OTP code you entered is incorrect. Please double-check and try again.';
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -183,14 +188,10 @@ class AppTexts {
   static String continuee = "Continue";
   static String passwordReset = "Password Reset";
   static String forgetPassword = "Forget Password";
-  static String passwordResetSuccessfully =
-      "Password has been reset successfully, You can proceed to login with your new Password.";
-  static String verifyOtp = "Verify OTP";
-  static String resendCode = "Resend code 60secs";
-  static String passwordhasbeenresetsuccessfully =
-      'Password has been reset successfully, You can proceed to login with your new Password.';
-  static String enterOtpCode =
-      "Enter the OTP code sent to the email ending with";
+  static String passwordResetSuccessfully = "Password has been reset successfully, You can proceed to login with your new Password.";
+  static String resendCode = "Resend code";
+  static String passwordhasbeenresetsuccessfully = 'Password has been reset successfully, You can proceed to login with your new Password.';
+  static String enterCode = "Enter code";
   static String oppsDontWorry = "Ooops! don't worry,";
   static String theProcessIsSimpler = "the process is simpler than you thought";
   static String confirmOtp = "Confirm OTP";
