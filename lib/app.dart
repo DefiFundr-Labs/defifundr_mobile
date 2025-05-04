@@ -1,5 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/services/snackbar_service.dart';
+import 'package:defifundr_mobile/feature/common/widgets/animated_snackbar.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,16 +36,32 @@ class _AppState extends State<App> {
       splitScreenMode: false,
       child: MultiBlocProvider(
         providers: appProviders,
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'DeFiFundr',
-          theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
-          themeMode: ThemeMode.system,
-          scrollBehavior: const _AppScrollBehavior(),
-          routeInformationProvider: AppRouter.router.routeInformationProvider,
-          routeInformationParser: AppRouter.router.routeInformationParser,
-          routerDelegate: AppRouter.router.routerDelegate,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              title: 'DeFiFundr',
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              themeMode: ThemeMode.system,
+              scrollBehavior: const _AppScrollBehavior(),
+              routeInformationProvider: AppRouter.router.routeInformationProvider,
+              routeInformationParser: AppRouter.router.routeInformationParser,
+              routerDelegate: AppRouter.router.routerDelegate,
+            ),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: ListenableBuilder(
+                listenable: SnackbarService(),
+                builder: (context, child) {
+                  final data = SnackbarService().currentSnackbarData;
+                  if (data == null) return SizedBox();
+                  return AnimatedSnackbar(snackbarData: data);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
