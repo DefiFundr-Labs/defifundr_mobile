@@ -90,7 +90,7 @@ class _OverlayMessageState extends State<OverlayMessage> with SingleTickerProvid
             child: Container(
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(12.w),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(12),
