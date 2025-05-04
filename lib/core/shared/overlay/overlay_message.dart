@@ -23,8 +23,7 @@ class OverlayMessage extends StatefulWidget {
   State<OverlayMessage> createState() => _OverlayMessageState();
 }
 
-class _OverlayMessageState extends State<OverlayMessage>
-    with SingleTickerProviderStateMixin {
+class _OverlayMessageState extends State<OverlayMessage> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _slideAnimation;
   late Animation<double> _opacityAnimation;
@@ -75,20 +74,11 @@ class _OverlayMessageState extends State<OverlayMessage>
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.theme.colors;
-    final fonts = context.theme.fonts;
+    final Color backgroundColor = widget.type == MessageType.error ? Theme.of(context).colors.redFill : Theme.of(context).colors.greenFill;
 
-    final Color backgroundColor = widget.type == MessageType.error
-        ? colors.redFill.withOpacity(0.3)
-        : colors.greenFill.withOpacity(0.3);
+    final Color borderColor = widget.type == MessageType.error ? Theme.of(context).colors.redDefault : Theme.of(context).colors.greenDefault;
 
-    final Color borderColor = widget.type == MessageType.error
-        ? colors.redDefault
-        : colors.greenDefault;
-
-    final Color iconColor = widget.type == MessageType.error
-        ? colors.redDefault
-        : colors.greenDefault;
+    final Color iconColor = widget.type == MessageType.error ? Theme.of(context).colors.redDefault : Theme.of(context).colors.greenDefault;
 
     return AnimatedBuilder(
       animation: _animationController,
@@ -120,9 +110,7 @@ class _OverlayMessageState extends State<OverlayMessage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(
-                    widget.type == MessageType.error
-                        ? Icons.error_outline
-                        : Icons.check_circle_outline,
+                    widget.type == MessageType.error ? Icons.error_outline : Icons.check_circle_outline,
                     color: iconColor,
                     size: 24.w,
                   ),
@@ -134,14 +122,12 @@ class _OverlayMessageState extends State<OverlayMessage>
                       children: [
                         Text(
                           widget.title,
-                          style: fonts.textLgBold,
+                          style: Theme.of(context).fonts.textLgBold,
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           widget.message,
-                          style: fonts.textMdRegular.copyWith(
-                            color: colors.textQuaternary,
-                          ),
+                          style: Theme.of(context).fonts.textMdRegular.copyWith(color: Theme.of(context).colors.textSecondary),
                         ),
                       ],
                     ),
@@ -156,7 +142,7 @@ class _OverlayMessageState extends State<OverlayMessage>
                     },
                     child: Icon(
                       Icons.close,
-                      color: colors.textQuaternary,
+                      color: Theme.of(context).colors.textQuaternary,
                       size: 20.w,
                     ),
                   ),
