@@ -21,7 +21,6 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
     {'name': 'Anguilla', 'flag': '🇦🇮', 'code': '+1-264'},
     {'name': 'Antigua and Barbuda', 'flag': '🇦🇬', 'code': '+1-268'},
     {'name': 'Argentina', 'flag': '🇦🇷', 'code': '+54'},
-    // Add more countries as needed
   ];
 
   @override
@@ -56,12 +55,10 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header with progress bar
             Container(
               color: const Color(0xFF121212),
               child: Column(
                 children: [
-                  // App bar
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -75,16 +72,13 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                       ],
                     ),
                   ),
-
-                  // Progress bar
                   Container(
                     height: 4,
                     width: double.infinity,
                     color: Colors.grey[800],
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      width: MediaQuery.of(context).size.width *
-                          0.4, // 40% progress
+                      width: MediaQuery.of(context).size.width * 0.4,
                       height: 4,
                       decoration: BoxDecoration(
                         color: Colors.purple[600],
@@ -95,8 +89,6 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                 ],
               ),
             ),
-
-            // Main content
             Expanded(
               child: Container(
                 margin: const EdgeInsets.all(16),
@@ -106,7 +98,6 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                 ),
                 child: Column(
                   children: [
-                    // Title
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Row(
@@ -122,8 +113,6 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                         ],
                       ),
                     ),
-
-                    // Search bar
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Container(
@@ -147,10 +136,7 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 8),
-
-                    // Country list with dial codes
                     Expanded(
                       child: ListView.builder(
                         itemCount: _filteredCountries.length,
@@ -205,8 +191,6 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                 ),
               ),
             ),
-
-            // Bottom home indicator
             Container(
               width: 134,
               height: 5,
