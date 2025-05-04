@@ -50,8 +50,9 @@ class ResendOtpEvent extends ForgotPasswordEvent {
   List<Object> get props => [];
 }
 
-class VerifyOtp extends ForgotPasswordEvent {
-  const VerifyOtp();
+class VerifyOtpEvent extends ForgotPasswordEvent {
+  final String otpCode;
+  const VerifyOtpEvent(this.otpCode);
 
   @override
   List<Object> get props => [];

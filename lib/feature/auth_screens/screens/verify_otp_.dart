@@ -2,6 +2,7 @@ import 'dart:async' show Timer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
@@ -17,6 +18,8 @@ class VerifyOtpScreen extends StatefulWidget {
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   late _CountdownNotifier _countdownNotifier;
+  final _otpController = TextEditingController();
+  bool _hasError = false;
 
   @override
   void initState() {
@@ -67,6 +70,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             Text(AppTexts.verifyOTP, style: Theme.of(context).fonts.heading2Bold),
             SizedBox(height: 4),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+              buildWhen: (previous, current) => false,
               builder: (context, state) {
                 return RichText(
                   text: TextSpan(
@@ -85,70 +89,45 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             SizedBox(height: 24),
             Text(AppTexts.enterCode, style: Theme.of(context).fonts.textMdMedium),
             SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
+            BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
+              listener: (context, state) {
+                if (state is ForgotPasswordError) _hasError = true;
+              },
+              builder: (context, state) {
+                return PinCodeTextField(
+                  appContext: context,
+                  length: 6,
+                  obscureText: false,
+                  showCursor: false,
+                  autoDismissKeyboard: true,
+                  autovalidateMode: AutovalidateMode.onUnfocus,
+                  controller: _otpController,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(12),
+                    activeColor: _hasError ? Theme.of(context).colors.redDefault : Theme.of(context).colors.strokeSecondary,
+                    inactiveColor: _hasError ? Theme.of(context).colors.redDefault : Theme.of(context).colors.strokeSecondary,
+                    selectedColor: _hasError ? Theme.of(context).colors.redDefault : Theme.of(context).colors.brandDefaultContrast,
+                    activeFillColor: Theme.of(context).colors.bgB1,
+                    inactiveFillColor: Theme.of(context).colors.bgB1,
+                    selectedFillColor: Theme.of(context).colors.bgB1,
+                    fieldWidth: 52,
+                    fieldHeight: 52,
+                    borderWidth: 2,
                   ),
-                ),
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-                  ),
-                ),
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-                  ),
-                ),
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-                  ),
-                ),
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-                  ),
-                ),
-                SizedBox(
-                  height: 52,
-                  width: 52,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).fonts.heading1Regular,
-                    maxLines: 1,
-                    decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-                  ),
-                ),
-              ],
+                  enableActiveFill: true,
+                  onChanged: (value) {
+                    if (!_hasError) return;
+                    setState(() => _hasError = false);
+                  },
+                  validator: (value) {
+                    if (_hasError) return '';
+                    return null;
+                  },
+                  keyboardType: TextInputType.number,
+                  textStyle: Theme.of(context).fonts.heading1Regular,
+                );
+              },
             ),
             SizedBox(height: 24),
             Container(
@@ -179,23 +158,40 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
             ),
             Expanded(child: SizedBox()),
-            AppButton(
-              text: AppTexts.resetPassword,
-              textColor: Theme.of(context).colors.contrastWhite,
-              color: Theme.of(context).colors.contrastBlack,
-              onTap: () {},
+            BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+              listener: (context, state) {
+                if (state is ForgotPasswordSuccess) {
+                  // handle navigation to new_password or perform navigation within the bloc
+                }
+              },
+              child: AppButton(
+                text: AppTexts.resetPassword,
+                textColor: Theme.of(context).colors.contrastWhite,
+                color: Theme.of(context).colors.contrastBlack,
+                onTap: () {
+                  context.read<ForgotPasswordBloc>().add(VerifyOtpEvent(_otpController.text));
+                },
+              ),
             ),
-            ValueListenableBuilder(
-              valueListenable: _countdownNotifier,
-              builder: (context, value, child) {
-                return AppButton(
-                  text: "${AppTexts.resendCode}${value == 60 ? '' : '\t(00:${value > 9 ? value : '0$value'})'}",
-                  textColor: Theme.of(context).colors.textPrimary,
-                  color: Theme.of(context).colors.fillTertiary,
-                  icon: Icons.refresh,
-                  iconSize: 24,
-                  isActive: value == 60,
-                  onTap: _countdownNotifier.start,
+            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+              buildWhen: (previous, current) => false,
+              builder: (context, state) {
+                return ValueListenableBuilder(
+                  valueListenable: _countdownNotifier,
+                  builder: (context, value, child) {
+                    return AppButton(
+                      text: "${AppTexts.resendCode}${value == 60 ? '' : '\t(00:${value > 9 ? value : '0$value'})'}",
+                      textColor: Theme.of(context).colors.textPrimary,
+                      color: Theme.of(context).colors.fillTertiary,
+                      icon: Icons.refresh,
+                      iconSize: 24,
+                      isActive: value == 60,
+                      onTap: () {
+                        context.read<ForgotPasswordBloc>().add(ResendOtpEvent());
+                        _countdownNotifier.start();
+                      },
+                    );
+                  },
                 );
               },
             ),
@@ -211,6 +207,7 @@ class _CountdownNotifier extends ValueNotifier<int> {
   _CountdownNotifier() : super(60);
 
   void start() {
+    value--;
     Timer.periodic(Duration(seconds: 1), (timer) {
       if (value > 0) {
         value--;

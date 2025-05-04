@@ -192,8 +192,8 @@ class AppColorDark {
   static const Color pinkFill = Color(0xFF9F1F5F);
 
   // Background Colors
-  static const Color bgB0 = Color(0xFF000000);
-  static const Color bgB1 = Color(0xFF1A1A1A);
+  static const Color bgB0 = Color(0xFF09090B);
+  static const Color bgB1 = Color(0xFF18181B);
   static const Color bgB2 = Color(0xFF262626);
   static const Color bgB3 = Color(0xFF333333);
 
@@ -215,6 +215,6 @@ class AppColorDark {
   //Miscellaneous colors
   static const Color contrastBlack = Color(0xFFFFFFFF);
   static const Color contrastWhite = Color(0xFF18181B);
-  static const Color strokeSecondary = Color(0x0F18181B);
+  static const Color strokeSecondary = Color(0x5252525B);
   static const Color fillTertiary = Color(0x0AFFFFFF);
 }
