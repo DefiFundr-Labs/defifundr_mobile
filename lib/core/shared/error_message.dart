@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/utils/enum_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'overlay_message.dart';
+import 'overlay/overlay_message.dart';
 
 class ErrorMessage extends StatelessWidget {
   final String title;
