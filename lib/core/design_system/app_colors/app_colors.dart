@@ -28,7 +28,7 @@ class AppColors {
   static const Color blueFill = Color(0xFFE5E5FF);
 
   // Green Colors
-  static const Color greenDefault = Color(0xFF40B040);
+  static const Color greenDefault = Color(0xFF16A34A);
   static const Color greenHover = Color(0xFF33B333);
   static const Color greenActive = Color(0xFF26B326);
   static const Color greenStroke = Color(0xFFB2E6B2);
@@ -150,7 +150,7 @@ class AppColorDark {
   static const Color blueFill = Color(0xFF26267F);
 
   // Green Colors
-  static const Color greenDefault = Color(0xFF40B040);
+  static const Color greenDefault = Color(0xFF16A34A);
   static const Color greenHover = Color(0xFF52B352);
   static const Color greenActive = Color(0xFF66B366);
   static const Color greenStroke = Color(0xFF338833);
@@ -170,11 +170,11 @@ class AppColorDark {
   static const Color yellowFill = Color(0xFF7F6926);
 
   // Orange Colors
-  static const Color orangeDefault = Color(0xFFFF5500);
+  static const Color orangeDefault = Color(0xFFDC2626);
   static const Color orangeHover = Color(0xFFFF6619);
   static const Color orangeActive = Color(0xFFFF7733);
   static const Color orangeStroke = Color(0xFFCC4400);
-  static const Color orangeFill = Color(0xFF9F3300);
+  static const Color orangeFill = Color(0xFF450A0A);
 
   // Red Colors
   static const Color redDefault = Color(0xFFDC2626);
