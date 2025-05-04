@@ -1,5 +1,7 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileCreatedScreen extends StatelessWidget {
@@ -8,16 +10,14 @@ class ProfileCreatedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // Dark background
+      backgroundColor: context.theme.primaryColorDark,
       body: SafeArea(
         child: Column(
           children: [
-            // Header with progress bar
             Container(
-              color: const Color(0xFF121212),
+              color: context.theme.primaryColorDark,
               child: Column(
                 children: [
-                  // App bar
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -34,32 +34,13 @@ class ProfileCreatedScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  // Progress bar
-                  Container(
-                    height: 4,
-                    width: double.infinity,
-                    color: Colors.grey[800],
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width, // 100% progress
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.purple[600],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
-
-            // Main content
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Success icon
                   Container(
                     width: 80,
                     height: 80,
@@ -67,15 +48,13 @@ class ProfileCreatedScreen extends StatelessWidget {
                       color: const Color(0xFF3A2A6D),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
-                      Icons.check_circle_outline,
-                      color: Colors.purple[300],
-                      size: 48,
+                    child: SvgPicture.asset(
+                      'assets/icons/UserCircleCheck.svg',
+                      width: 40,
+                      height: 40,
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Success message
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Column(
@@ -105,8 +84,6 @@ class ProfileCreatedScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Proceed to login button
             Padding(
               padding: const EdgeInsets.all(24),
               child: SizedBox(
@@ -132,17 +109,6 @@ class ProfileCreatedScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ),
-
-            // Bottom home indicator
-            Container(
-              width: 134,
-              height: 5,
-              margin: const EdgeInsets.only(bottom: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(2.5),
               ),
             ),
           ],

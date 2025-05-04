@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -29,16 +30,14 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // Dark background
+      backgroundColor: context.theme.primaryColorDark,
       body: SafeArea(
         child: Column(
           children: [
-            // Header with progress bar
             Container(
-              color: const Color(0xFF121212),
+              color: context.theme.primaryColorDark,
               child: Column(
                 children: [
-                  // App bar
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -79,16 +78,13 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       ],
                     ),
                   ),
-
-                  // Progress bar
                   Container(
                     height: 4,
                     width: double.infinity,
                     color: Colors.grey[800],
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      width: MediaQuery.of(context).size.width *
-                          0.6, // 60% progress
+                      width: MediaQuery.of(context).size.width * 0.6,
                       height: 4,
                       decoration: BoxDecoration(
                         color: Colors.purple[600],
@@ -99,8 +95,6 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                 ],
               ),
             ),
-
-            // Main content
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -126,8 +120,6 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       ),
                     ),
                     const SizedBox(height: 24),
-
-                    // Country of residence dropdown
                     GestureDetector(
                       onTap: () {
                         context.pushNamed(RouteConstants.countrySelection);
@@ -161,90 +153,55 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 16),
-
-                    // Address field
-                    Container(
-                      height: 56,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1E1E1E),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: TextField(
-                        controller: _addressController,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: 'Address',
-                          hintStyle: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 14,
-                          ),
-                          border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 18),
+                    TextField(
+                      controller: _addressController,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Address',
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 14,
                         ),
+                        border: InputBorder.none,
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
-
                     const SizedBox(height: 16),
-
-                    // City field
-                    Container(
-                      height: 56,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1E1E1E),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: TextField(
-                        controller: _cityController,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: 'City',
-                          hintStyle: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 14,
-                          ),
-                          border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 18),
+                    TextField(
+                      controller: _cityController,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'City',
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 14,
                         ),
+                        border: InputBorder.none,
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
-
                     const SizedBox(height: 16),
-
-                    // Postal / zip code field
-                    Container(
-                      height: 56,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1E1E1E),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: TextField(
-                        controller: _postalCodeController,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: 'Postal / zip code',
-                          hintStyle: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 14,
-                          ),
-                          border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 18),
+                    TextField(
+                      controller: _postalCodeController,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Postal / zip code',
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 14,
                         ),
+                        border: InputBorder.none,
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-
-            // Finish setup button
             Padding(
               padding: const EdgeInsets.all(24),
               child: SizedBox(
@@ -270,17 +227,6 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     ),
                   ),
                 ),
-              ),
-            ),
-
-            // Bottom home indicator
-            Container(
-              width: 134,
-              height: 5,
-              margin: const EdgeInsets.only(bottom: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(2.5),
               ),
             ),
           ],
