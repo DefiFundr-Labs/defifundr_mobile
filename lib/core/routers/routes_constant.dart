@@ -6,4 +6,6 @@ class RouteConstants {
   static String personalDetails = 'personalDetails';
   static String countrySelection = 'countrySelection';
   static String dialCodeSelection = 'dialCodeSelection';
+  static String addressDetails = 'addressDetails';
+  static String profileCreated = 'profileCreated';
 }
