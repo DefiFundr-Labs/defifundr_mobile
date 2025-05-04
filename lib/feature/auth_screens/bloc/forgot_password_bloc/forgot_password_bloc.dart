@@ -4,14 +4,10 @@ import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/services/snackbar_service.dart';
-
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
-  final _snackbarService = SnackbarService();
-
   ForgotPasswordBloc() : super(ForgotPasswordInitial()) {
     on<SubmitEmail>(_submitEmailHandler);
 
@@ -87,12 +83,9 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     );
   }
 
-  void _resendOtpHandler(ResendOtpEvent event, Emitter<ForgotPasswordState> emit) {
-    _snackbarService.showSuccessSnackbar(title: AppTexts.otpCodeResent, message: AppTexts.otpCodeResentDesc);
-  }
+  void _resendOtpHandler(ResendOtpEvent event, Emitter<ForgotPasswordState> emit) {}
 
   void _verifyOtpHandler(VerifyOtpEvent event, Emitter<ForgotPasswordState> emit) {
-    _snackbarService.showErrorSnackbar(title: AppTexts.invalidOTPCode, message: AppTexts.invalidOTPCodeDesc);
     emit(ForgotPasswordError(AppTexts.invalidOTPCode));
     emit(ForgotPasswordInitial());
   }
