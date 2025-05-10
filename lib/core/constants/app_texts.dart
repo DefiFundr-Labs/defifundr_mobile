@@ -14,6 +14,14 @@ class AppTexts {
   static String female = "Female";
   static String signUpSuccess = "Sign-up successful!";
   static String continueButton = "Continue";
+  static String verifyOTPDesc = "Enter the code we just sent to your email";
+  static String enterCode = "Enter Code";
+  static String cantFindCode = "Can't find the code?";
+  static String cantFindCodeDesc = "Code not received? ";
+  static String invalidOTPCode = "Invalid OTP code";
+  static String invalidOTPCodeDesc = "Please enter a valid OTP code";
+  static String otpCodeResent = "OTP code resent";
+  static String otpCodeResentDesc = "A new code has been sent to your email";
 
   //! AUTHENTICATION
   static String createAccount = "Create an account";
