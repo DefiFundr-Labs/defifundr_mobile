@@ -1,5 +1,7 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatefulWidget {
   final String label;
@@ -56,8 +58,8 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: widget.focusNode ?? _focusNode,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+      child: SizedBox(
+        height: 52.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -65,10 +67,10 @@ class _AppTextFieldState extends State<AppTextField> {
               controller: widget.controller,
               obscureText: widget.obscureText,
               focusNode: widget.focusNode ?? _focusNode,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Colors.white,
+              style: context.theme.textTheme.titleMedium?.copyWith(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                color: context.theme.textTheme.bodyMedium?.color,
               ),
               obscuringCharacter: '•',
               inputFormatters: widget.inputFormatters,
@@ -107,9 +109,10 @@ class _AppTextFieldState extends State<AppTextField> {
       builder: (context, child) {
         return Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF1E1E1E),
             border: Border.all(
-              color: _focusNode.hasFocus ? Colors.purple : Colors.grey[800]!,
+              color: _focusNode.hasFocus
+                  ? Colors.purple
+                  : context.theme.colors.grayTertiary!,
             ),
             borderRadius: BorderRadius.circular(12),
           ),

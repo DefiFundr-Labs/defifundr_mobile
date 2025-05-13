@@ -18,6 +18,10 @@ class AppAssets {
   static String person = '${defifundrIconPath}person.svg';
   static String crossEye = '${defifundrIconPath}cross_eye.svg';
   static String arrowRightCurve = '${defifundrIconPath}arrow_right.svg';
+  static String headset = '${defifundrIconPath}headset.svg';
+  static String googleIcon = '${defifundrIconPath}googleIcon.svg';
+  static String appleIcon = '${defifundrIconPath}appleIcon.svg';
+  static String defiFundrLogo = '${defifundrIconPath}defifundrLogo.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const defifundrImagePath = 'assets/images';
@@ -34,7 +38,8 @@ class AppAssets {
   static const logo = '$defifundrImagePath/logo.png';
   static const rocket = '$defifundrImagePath/rocket.png';
   static const backgroundnewImagePath = '$defifundrImagePath/backgroundnew.png';
-  static const incompleteRegistrationImagePath = '$defifundrIconPath/incompletRegistration.svg';
+  static const incompleteRegistrationImagePath =
+      '$defifundrIconPath/incompletRegistration.svg';
   static const closeIcon = '$defifundrIconPath/close.svg';
   static const lockIcon = '$defifundrIconPath/lock_icon.svg';
   static const groupIcon = '$defifundrIconPath/group.svg';
