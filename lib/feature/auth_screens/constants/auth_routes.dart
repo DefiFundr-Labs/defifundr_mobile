@@ -24,8 +24,8 @@ class AuthRoutes {
   static final paths = _AuthPaths();
   static final routes = [
     GoRoute(
-      path: paths.initial,
-      name: paths.initial,
+      path: paths.login,
+      name: paths.login,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const LoginScreen());
       },
