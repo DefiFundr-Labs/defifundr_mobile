@@ -1,4 +1,3 @@
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/widgets/fade_transition_page_router.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/address_details_screen.dart';
@@ -9,56 +8,66 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
-class AuthRoutes {
+class _AuthPaths {
   final initial = '/';
-  final login = 'login';
-  final newPassword = 'new-password';
-  final personalDetails = 'personalDetails';
-  final countrySelection = 'countrySelection';
-  final dialCodeSelection = 'dialCodeSelection';
-  final addressDetails = 'addressDetails';
-  final profileCreated = 'profileCreated';
-  final accountType = 'accountType';
+  final login = '/auth/login';
+  final newPassword = '/auth/new-password';
+  final personalDetails = '/auth/personalDetails';
+  final countrySelection = '/auth/countrySelection';
+  final dialCodeSelection = '/auth/dialCodeSelection';
+  final addressDetails = '/auth/addressDetails';
+  final profileCreated = '/auth/profileCreated';
+  final accountType = '/auth/accountType';
+}
 
+class AuthRoutes {
+  static final paths = _AuthPaths();
   static final routes = [
     GoRoute(
-      path: RouteConstants.authRoute.initial,
+      path: paths.initial,
+      name: paths.initial,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const LoginScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.accountType,
+      path: paths.accountType,
+      name: paths.accountType,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const AccountTypeScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.personalDetails,
+      path: paths.personalDetails,
+      name: paths.personalDetails,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const PersonalDetailsScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.countrySelection,
+      path: paths.countrySelection,
+      name: paths.countrySelection,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const CountrySelectionScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.dialCodeSelection,
+      path: paths.dialCodeSelection,
+      name: paths.dialCodeSelection,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const DialCodeSelectionScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.addressDetails,
+      path: paths.addressDetails,
+      name: paths.addressDetails,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const AddressDetailsScreen());
       },
     ),
     GoRoute(
-      path: RouteConstants.authRoute.profileCreated,
+      path: paths.profileCreated,
+      name: paths.profileCreated,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const ProfileCreatedScreen());
       },
