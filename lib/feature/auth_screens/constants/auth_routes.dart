@@ -6,12 +6,15 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/new_password.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/verify_your_email.dart';
 import 'package:go_router/go_router.dart';
 
 class _AuthPaths {
   final initial = '/';
   final login = '/auth/login';
   final newPassword = '/auth/new-password';
+  final verifyEmail = '/auth/verifyEmail';
   final personalDetails = '/auth/personalDetails';
   final countrySelection = '/auth/countrySelection';
   final dialCodeSelection = '/auth/dialCodeSelection';
@@ -28,6 +31,20 @@ class AuthRoutes {
       name: paths.login,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const LoginScreen());
+      },
+    ),
+    GoRoute(
+      path: paths.newPassword,
+      name: paths.newPassword,
+      pageBuilder: (context, state) {
+        return FadeTransitionPage(key: state.pageKey, child: const NewPassword());
+      },
+    ),
+    GoRoute(
+      path: paths.verifyEmail,
+      name: paths.verifyEmail,
+      pageBuilder: (context, state) {
+        return FadeTransitionPage(key: state.pageKey, child: const VerifyYourEmail());
       },
     ),
     GoRoute(

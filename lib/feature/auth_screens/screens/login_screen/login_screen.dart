@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.authRoute.accountType);
+                      context.pushNamed(RouteConstants.authRoute.newPassword);
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,

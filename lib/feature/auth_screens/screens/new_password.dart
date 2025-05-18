@@ -1,5 +1,7 @@
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
@@ -105,7 +107,7 @@ class NewPassword extends StatelessWidget {
                   textColor: Theme.of(context).colors.contrastWhite,
                   color: Theme.of(context).colors.contrastBlack,
                   isActive: state.newPasswordState?.isVerificationPassed ?? false,
-                  onTap: () {},
+                  onTap: () => context.pushNamed(RouteConstants.authRoute.verifyEmail),
                 );
               },
             ),

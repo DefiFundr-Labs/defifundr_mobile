@@ -1,6 +1,8 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyYourEmail extends StatefulWidget {
@@ -78,10 +80,7 @@ class _VerifyYourEmailState extends State<VerifyYourEmail> {
                 children: [
                   TextSpan(
                     text: 'pogot42210@nokdot.com',
-                    style: context.theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                        color: context.theme.primaryColor),
+                    style: context.theme.textTheme.bodyMedium?.copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600, color: context.theme.primaryColor),
                   ),
                 ],
               ),
@@ -146,8 +145,7 @@ class _VerifyYourEmailState extends State<VerifyYourEmail> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.info_outlined,
-                            color: context.theme.primaryColorDark),
+                        Icon(Icons.info_outlined, color: context.theme.primaryColorDark),
                         SizedBox(width: 8.w),
                         Text(
                           'Can’t find code sent?',
@@ -162,10 +160,7 @@ class _VerifyYourEmailState extends State<VerifyYourEmail> {
                       padding: const EdgeInsets.only(left: 30),
                       child: Text(
                         'Try checking your junk/spam folder, or resend the code.',
-                        style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
+                        style: context.theme.textTheme.bodyMedium?.copyWith(fontSize: 12.sp, fontWeight: FontWeight.w400, color: Colors.grey),
                       ),
                     ),
                   ],
@@ -173,20 +168,21 @@ class _VerifyYourEmailState extends State<VerifyYourEmail> {
               ),
             ),
             Spacer(),
-            Container(
-              height: 48.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(200),
-              ),
-              child: Center(
-                child: Text(
-                  'Verify code',
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: context.theme.scaffoldBackgroundColor),
+            GestureDetector(
+              onTap: () => context.pushNamed(RouteConstants.authRoute.accountType),
+              child: Container(
+                height: 48.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(200),
+                ),
+                child: Center(
+                  child: Text(
+                    'Verify code',
+                    style: context.theme.textTheme.bodyMedium
+                        ?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w500, color: context.theme.scaffoldBackgroundColor),
+                  ),
                 ),
               ),
             ),
@@ -204,10 +200,7 @@ class _VerifyYourEmailState extends State<VerifyYourEmail> {
                 children: [
                   Text(
                     'Resend code',
-                    style: context.theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
+                    style: context.theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w500, color: Colors.black),
                   ),
                 ],
               ),
