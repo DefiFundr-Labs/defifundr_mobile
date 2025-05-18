@@ -119,7 +119,13 @@ class NewPassword extends StatelessWidget {
                   textColor: Theme.of(context).colors.contrastWhite,
                   color: Theme.of(context).colors.contrastBlack,
                   isActive: state.forgotPasswordState?.newPasswordState?.isVerificationPassed ?? false,
-                  onTap: () => context.pushNamed(RouteConstants.authRoute.verifyEmail),
+                  onTap: () {
+                    if (state.forgotPasswordState == null) {
+                      context.pushNamed(RouteConstants.authRoute.verifyEmail);
+                    } else {
+                      context.pushNamed(RouteConstants.authRoute.login);
+                    }
+                  },
                 );
               },
             ),
