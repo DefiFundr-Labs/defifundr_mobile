@@ -8,7 +8,7 @@ import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../core/shared/buttons/primary_button.dart';
 import '../../../core/utils/message_service.dart';
-import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../auth_bloc/auth_bloc.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({super.key});
@@ -70,7 +70,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           children: [
             Text(AppTexts.verifyOTP, style: Theme.of(context).fonts.heading2Bold),
             SizedBox(height: 4),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+            BlocBuilder<AuthBloc, AuthState>(
               buildWhen: (previous, current) => false,
               builder: (context, state) {
                 return RichText(
@@ -79,7 +79,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     style: Theme.of(context).fonts.textMdRegular,
                     children: [
                       TextSpan(
-                        text: "\t${state.emailAddress ?? 'tempuser12346@mail.com'}",
+                        text: "\t${state.forgotPasswordState?.emailAddress ?? 'tempuser12346@mail.com'}",
                         style: Theme.of(context).fonts.textMdSemiBold.copyWith(color: Theme.of(context).colors.brandDefaultContrast),
                       ),
                     ],
@@ -90,9 +90,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             SizedBox(height: 24),
             Text(AppTexts.enterCode, style: Theme.of(context).fonts.textMdMedium),
             SizedBox(height: 8),
-            BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
+            BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state is ForgotPasswordError) _hasError = true;
+                if (state is AuthErrorState) _hasError = true;
               },
               builder: (context, state) {
                 return PinCodeTextField(
@@ -159,9 +159,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
             ),
             Expanded(child: SizedBox()),
-            BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+            BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state is ForgotPasswordSuccess) {
+                if (state is AuthSuccessState) {
                   // handle navigation to new_password or perform navigation within the bloc
                 }
               },
@@ -171,11 +171,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 color: Theme.of(context).colors.contrastBlack,
                 onTap: () {
                   MessageService.showError(context, AppTexts.invalidOTPCode, AppTexts.invalidOTPCodeDesc);
-                  context.read<ForgotPasswordBloc>().add(VerifyOtpEvent(_otpController.text));
+                  context.read<AuthBloc>().add(VerifyForgotPasswordOtpEvent(_otpController.text));
                 },
               ),
             ),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+            BlocBuilder<AuthBloc, AuthState>(
               buildWhen: (previous, current) => false,
               builder: (context, state) {
                 return ValueListenableBuilder(
@@ -190,7 +190,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       isActive: value == 60,
                       onTap: () {
                         MessageService.showSuccess(context, AppTexts.otpCodeResent, AppTexts.otpCodeResentDesc);
-                        context.read<ForgotPasswordBloc>().add(ResendOtpEvent());
+                        context.read<AuthBloc>().add(ResendForgotPasswordOtpEvent());
                         _countdownNotifier.start();
                       },
                     );

@@ -7,7 +7,7 @@ import '../../../core/constants/app_texts.dart';
 import '../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../core/shared/buttons/primary_button.dart';
 import '../../../core/shared/textfield/app_text_field.dart';
-import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../auth_bloc/auth_bloc.dart';
 import '../widgets/password_requirement_viewer.dart';
 
 class NewPassword extends StatelessWidget {
@@ -44,26 +44,27 @@ class NewPassword extends StatelessWidget {
             Text(AppTexts.enterNewPassword, style: Theme.of(context).fonts.heading2Bold),
             Text(AppTexts.enterNewPasswordDesc, style: Theme.of(context).fonts.textMdRegular),
             SizedBox(height: 24),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.hidePassword != current.newPasswordState?.hidePassword,
+            BlocBuilder<AuthBloc, AuthState>(
+              buildWhen: (previous, current) =>
+                  previous.forgotPasswordState?.newPasswordState?.hidePassword != current.forgotPasswordState?.newPasswordState?.hidePassword,
               builder: (context, state) {
                 return AppTextField(
                   label: AppTexts.newPassword,
-                  obscureText: state.newPasswordState?.hidePassword ?? false,
+                  obscureText: state.forgotPasswordState?.newPasswordState?.hidePassword ?? false,
                   keyboardType: TextInputType.visiblePassword,
                   suffixIcon: IconButton(
-                    onPressed: () => context.read<ForgotPasswordBloc>().add(TogglePasswordVisibility()),
+                    onPressed: () => context.read<AuthBloc>().add(ToggleForgotPasswordVisibility()),
                     icon: Icon(
-                      state.newPasswordState?.hidePassword ?? false ? Icons.visibility : Icons.visibility_off,
+                      state.forgotPasswordState?.newPasswordState?.hidePassword ?? false ? Icons.visibility : Icons.visibility_off,
                       color: Theme.of(context).colors.graySecondary,
                     ),
                   ),
-                  onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterPasswordString(p0)),
+                  onChanged: (p0) => context.read<AuthBloc>().add(EnterForgotPasswordString(p0)),
                 );
               },
             ),
             SizedBox(height: 20),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+            BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
                 return Wrap(
                   direction: Axis.horizontal,
@@ -71,42 +72,53 @@ class NewPassword extends StatelessWidget {
                   spacing: 8,
                   children: [
                     Text(AppTexts.passwordRequirements, style: Theme.of(context).fonts.textSmBold.copyWith(color: Theme.of(context).colors.textSecondary)),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.has8Characters ?? false, text: AppTexts.eightCharacters),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasNumber ?? false, text: AppTexts.aNumber),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasUppercaseCharacter ?? false, text: AppTexts.anUpperCase),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasLowercaseCharacter ?? false, text: AppTexts.anLowerCase),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasSpecialCharacter ?? false, text: AppTexts.specialCharacter),
+                    PasswordRequirementViewer(isPassed: state.forgotPasswordState?.newPasswordState?.has8Characters ?? false, text: AppTexts.eightCharacters),
+                    PasswordRequirementViewer(isPassed: state.forgotPasswordState?.newPasswordState?.hasNumber ?? false, text: AppTexts.aNumber),
+                    PasswordRequirementViewer(
+                      isPassed: state.forgotPasswordState?.newPasswordState?.hasUppercaseCharacter ?? false,
+                      text: AppTexts.anUpperCase,
+                    ),
+                    PasswordRequirementViewer(
+                      isPassed: state.forgotPasswordState?.newPasswordState?.hasLowercaseCharacter ?? false,
+                      text: AppTexts.anLowerCase,
+                    ),
+                    PasswordRequirementViewer(
+                      isPassed: state.forgotPasswordState?.newPasswordState?.hasSpecialCharacter ?? false,
+                      text: AppTexts.specialCharacter,
+                    ),
                   ],
                 );
               },
             ),
             SizedBox(height: 20),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-                buildWhen: (previous, current) => previous.newPasswordState?.hideConfirmPassword != current.newPasswordState?.hideConfirmPassword,
-                builder: (BuildContext context, ForgotPasswordState state) {
+            BlocBuilder<AuthBloc, AuthState>(
+                buildWhen: (previous, current) =>
+                    previous.forgotPasswordState?.newPasswordState?.hideConfirmPassword != current.forgotPasswordState?.newPasswordState?.hideConfirmPassword,
+                builder: (BuildContext context, AuthState state) {
                   return AppTextField(
                     label: AppTexts.confirmPassword,
-                    obscureText: state.newPasswordState?.hideConfirmPassword ?? false,
+                    obscureText: state.forgotPasswordState?.newPasswordState?.hideConfirmPassword ?? false,
                     keyboardType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      onPressed: () => context.read<ForgotPasswordBloc>().add(ToggleConfirmPasswordVisibility()),
+                      onPressed: () => context.read<AuthBloc>().add(ToggleForgotConfirmPasswordVisibility()),
                       icon: Icon(
-                        state.newPasswordState?.hideConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
+                        state.forgotPasswordState?.newPasswordState?.hideConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
                         color: Theme.of(context).colors.graySecondary,
                       ),
                     ),
-                    onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterConfirmPasswordString(p0)),
+                    onChanged: (p0) => context.read<AuthBloc>().add(EnterForgotConfirmPasswordString(p0)),
                   );
                 }),
             Expanded(child: SizedBox()),
-            BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
+            BlocBuilder<AuthBloc, AuthState>(
+              buildWhen: (previous, current) =>
+                  previous.forgotPasswordState?.newPasswordState?.isVerificationPassed != current.forgotPasswordState?.newPasswordState?.isVerificationPassed,
               builder: (context, state) {
                 return AppButton(
                   text: AppTexts.resetPassword,
                   textColor: Theme.of(context).colors.contrastWhite,
                   color: Theme.of(context).colors.contrastBlack,
-                  isActive: state.newPasswordState?.isVerificationPassed ?? false,
+                  isActive: state.forgotPasswordState?.newPasswordState?.isVerificationPassed ?? false,
                   onTap: () => context.pushNamed(RouteConstants.authRoute.verifyEmail),
                 );
               },
