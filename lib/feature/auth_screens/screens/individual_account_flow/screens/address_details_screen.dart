@@ -39,21 +39,18 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.arrow_back_ios,
-                              color: Colors.white, size: 20),
+                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
                           onPressed: () => Navigator.pop(context),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             color: const Color(0xFF1E1E1E),
                             borderRadius: BorderRadius.circular(20),
@@ -61,8 +58,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.headset_mic,
-                                  size: 16, color: Colors.grey[300]),
+                              Icon(Icons.headset_mic, size: 16, color: Colors.grey[300]),
                               const SizedBox(width: 4),
                               Text(
                                 'Need Help?',
@@ -122,7 +118,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     const SizedBox(height: 24),
                     GestureDetector(
                       onTap: () {
-                        context.pushNamed(RouteConstants.countrySelection);
+                        context.pushNamed(RouteConstants.authRoute.countrySelection);
                       },
                       child: Container(
                         height: 56,
@@ -139,9 +135,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                                color: selectedCountry != null
-                                    ? Colors.white
-                                    : Colors.grey[600],
+                                color: selectedCountry != null ? Colors.white : Colors.grey[600],
                               ),
                             ),
                             Icon(
@@ -164,8 +158,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                           fontSize: 14,
                         ),
                         border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -179,8 +172,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                           fontSize: 14,
                         ),
                         border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -194,8 +186,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                           fontSize: 14,
                         ),
                         border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
                       ),
                     ),
                   ],
@@ -209,7 +200,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.pushNamed(RouteConstants.profileCreated);
+                    context.pushNamed(RouteConstants.authRoute.profileCreated);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

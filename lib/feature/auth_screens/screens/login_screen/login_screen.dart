@@ -76,9 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.visiblePassword,
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscurePassword
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
+                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                     color: Theme.of(context).colors.graySecondary,
                   ),
                   onPressed: () {
@@ -92,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => context.pushNamed(RouteConstants.authRoute.personalDetails),
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: const Size(0, 0),
@@ -187,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.accountType);
+                      context.pushNamed(RouteConstants.authRoute.newPassword);
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,

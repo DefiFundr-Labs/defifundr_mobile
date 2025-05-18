@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -36,15 +37,13 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const CustomBackButton(),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             color: const Color(0xFF1E1E1E),
                             borderRadius: BorderRadius.circular(20),
@@ -52,8 +51,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.headset_mic,
-                                  size: 16, color: Colors.grey[300]),
+                              Icon(Icons.headset_mic, size: 16, color: Colors.grey[300]),
                               const SizedBox(width: 4),
                               Text(
                                 'Need Help?',
@@ -112,9 +110,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     ),
                     const SizedBox(height: 24),
                     GestureDetector(
-                      onTap: () {
-                        context.pushNamed('countrySelection');
-                      },
+                      onTap: () => context.pushNamed(RouteConstants.authRoute.countrySelection),
                       child: Container(
                         height: 56,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -130,9 +126,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                                color: selectedCountry != null
-                                    ? Colors.white
-                                    : Colors.grey[600],
+                                color: selectedCountry != null ? Colors.white : Colors.grey[600],
                               ),
                             ),
                             Icon(
@@ -149,8 +143,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                       onTap: () async {
                         final DateTime? picked = await showDatePicker(
                           context: context,
-                          initialDate: DateTime.now()
-                              .subtract(const Duration(days: 365 * 18)),
+                          initialDate: DateTime.now().subtract(const Duration(days: 365 * 18)),
                           firstDate: DateTime(1900),
                           lastDate: DateTime.now(),
                           builder: (context, child) {
@@ -170,8 +163,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         );
                         if (picked != null) {
                           setState(() {
-                            _dateController.text =
-                                "${picked.day}/${picked.month}/${picked.year}";
+                            _dateController.text = "${picked.day}/${picked.month}/${picked.year}";
                           });
                         }
                       },
@@ -186,15 +178,11 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              _dateController.text.isNotEmpty
-                                  ? _dateController.text
-                                  : 'Date of birth',
+                              _dateController.text.isNotEmpty ? _dateController.text : 'Date of birth',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                                color: _dateController.text.isNotEmpty
-                                    ? Colors.white
-                                    : Colors.grey[600],
+                                color: _dateController.text.isNotEmpty ? Colors.white : Colors.grey[600],
                               ),
                             ),
                             Icon(
@@ -216,12 +204,9 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              context.pushNamed('dialCodeSelection');
-                            },
+                            onTap: () => context.pushNamed(RouteConstants.authRoute.dialCodeSelection),
                             child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
                               child: Row(
                                 children: [
                                   Container(
@@ -284,8 +269,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                                   fontSize: 14,
                                 ),
                                 border: InputBorder.none,
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                               ),
                             ),
                           ),
@@ -302,9 +286,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () {
-                    context.pushNamed('addressDetails');
-                  },
+                  onPressed: () => context.pushNamed(RouteConstants.authRoute.addressDetails),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,

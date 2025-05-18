@@ -31,7 +31,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.defifundr.app"
     compileSdk = 35
-    ndkVersion = project.properties["flutter.ndkVersion"] as String? ?: "27.0.12077973"
+    ndkVersion = project.properties["flutter.ndkVersion"] as String? ?: "29.0.13113456"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
