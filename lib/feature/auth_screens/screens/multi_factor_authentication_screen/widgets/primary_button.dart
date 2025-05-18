@@ -26,7 +26,7 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: (isEnabled && !isLoading) ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: context.theme.buttonTheme.colorScheme!.primary,
           foregroundColor: Colors.white,
           disabledBackgroundColor: colors.inactiveButton,
           disabledForegroundColor: colors.textPrimary,

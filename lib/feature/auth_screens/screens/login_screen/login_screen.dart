@@ -1,7 +1,16 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/appbar/appbar_header.dart';
+import 'package:defifundr_mobile/core/shared/or_widget.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
-  bool _showError = false;
+  bool showError = false;
 
   @override
   void dispose() {
@@ -24,140 +33,62 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _login() {
-    if (_passwordController.text != "password123") {
-      setState(() {
-        _showError = true;
-      });
-    } else {
-      setState(() {
-        _showError = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: context.theme.primaryColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.bolt,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: context.theme.primaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.grey[300]!),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.headset_mic,
-                            size: 16, color: context.theme.iconTheme.color),
-                        const SizedBox(width: 4),
-                        Text('Need Help?',
-                            style: context.theme.textTheme.bodySmall),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
+              SizedBox(height: 16.h),
+              AppBarHeaderWidget(),
+              SizedBox(height: 32.h),
               Text(
                 'Welcome Back!',
                 style: context.theme.textTheme.headlineLarge?.copyWith(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 4.h),
               Text(
                 'Enter your details below to login to your account.',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[600],
+                style: context.theme.textTheme.titleMedium?.copyWith(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: context.theme.textTheme.bodyMedium?.color,
                 ),
               ),
-              const SizedBox(height: 24),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey[300]!),
-                ),
-                child: TextField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'Email address',
-                    labelStyle: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
+              SizedBox(height: 24.h),
+              AppTextField(
+                label: 'Email address',
+                obscureText: false,
+                controller: _emailController,
+              ),
+              SizedBox(height: 16.h),
+              AppTextField(
+                label: 'Password',
+                obscureText: _obscurePassword,
+                controller: _passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscurePassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: Theme.of(context).colors.graySecondary,
                   ),
+                  onPressed: () {
+                    setState(() {
+                      _obscurePassword = !_obscurePassword;
+                    });
+                  },
                 ),
               ),
-              const SizedBox(height: 16),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey[300]!),
-                ),
-                child: TextField(
-                  controller: _passwordController,
-                  obscureText: _obscurePassword,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        color: Colors.grey[600],
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -169,72 +100,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: Text(
                     'Forgot password?',
-                    style: TextStyle(
+                    style: context.theme.textTheme.headlineLarge?.copyWith(
                       color: AppColors.brandDefaultContrast,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
               ),
+              SizedBox(height: 16.h),
+              PrimaryButton(
+                text: "Log In",
+                onPressed: () {},
+              ),
+              SizedBox(height: 24.h),
+              ORWidget(),
+              SizedBox(height: 24.h),
               SizedBox(
                 width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: _login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                      side: BorderSide(color: Colors.grey[300]!),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: Text(
-                    'Log in',
-                    style: context.theme.textTheme.titleLarge?.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey[300],
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'or',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey[300],
-                      thickness: 1,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                height: 56,
+                height: 48.h,
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.grey[300]!),
+                    backgroundColor: AppColors.grayQuaternary,
+                    side: BorderSide(color: AppColors.white),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(28),
                     ),
@@ -242,17 +131,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.network(
-                        'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg',
-                        height: 24,
-                        width: 24,
-                      ),
+                      SvgPicture.asset(AppAssets.googleIcon),
                       const SizedBox(width: 12),
-                      const Text(
+                      Text(
                         'Log in using Google',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -260,14 +144,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               SizedBox(
                 width: double.infinity,
-                height: 56,
+                height: 48.h,
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.grey[300]!),
+                    backgroundColor: AppColors.grayQuaternary,
+                    side: BorderSide(color: AppColors.white),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(28),
                     ),
@@ -275,17 +160,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.apple,
-                        size: 24,
-                        color: Colors.black,
-                      ),
+                      SvgPicture.asset(AppAssets.appleIcon),
                       const SizedBox(width: 12),
-                      const Text(
+                      Text(
                         'Log in using Apple',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -293,15 +173,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Don\'t have an account? ',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
+                    style: context.theme.textTheme.titleMedium?.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: context.theme.textTheme.bodyMedium?.color,
                     ),
                   ),
                   TextButton(
@@ -313,12 +194,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       minimumSize: const Size(0, 0),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                    child: const Text(
+                    child: Text(
                       'Sign up',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 14,
+                      style: context.theme.textTheme.titleMedium?.copyWith(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
+                        color: context.theme.buttonTheme.colorScheme!.primary,
                       ),
                     ),
                   ),
