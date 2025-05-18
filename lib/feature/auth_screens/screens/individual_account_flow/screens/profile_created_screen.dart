@@ -19,14 +19,12 @@ class ProfileCreatedScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.arrow_back_ios,
-                              color: Colors.white, size: 20),
+                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
                           onPressed: () => Navigator.pop(context),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
@@ -91,7 +89,7 @@ class ProfileCreatedScreen extends StatelessWidget {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.pushNamed(RouteConstants.login);
+                    context.pushNamed(RouteConstants.authRoute.login);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

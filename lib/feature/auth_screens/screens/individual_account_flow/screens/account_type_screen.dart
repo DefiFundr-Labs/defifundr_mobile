@@ -2,6 +2,7 @@
 
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,15 +28,13 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const CustomBackButton(),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             color: context.theme.primaryColorDark,
                             borderRadius: BorderRadius.circular(20),
@@ -43,14 +42,11 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.headset_mic,
-                                  size: 16,
-                                  color: context.theme.iconTheme.color),
+                              Icon(Icons.headset_mic, size: 16, color: context.theme.iconTheme.color),
                               const SizedBox(width: 4),
                               Text(
                                 'Need Help?',
-                                style: context.theme.textTheme.bodyMedium
-                                    ?.copyWith(
+                                style: context.theme.textTheme.bodyMedium?.copyWith(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -102,14 +98,14 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     ),
                     const SizedBox(height: 24),
                     _buildAccountTypeCard(
-                        context: context,
-                        icon: Icons.person_outline,
-                        iconColor: Colors.purple[600]!,
-                        iconBackgroundColor: Colors.purple[50]!,
-                        title: 'Freelancer Account',
-                        description:
-                            "You work independently, manage your own contracts and payments directly with clients.",
-                        onTap: () => context.pushNamed("personal-details")),
+                      context: context,
+                      icon: Icons.person_outline,
+                      iconColor: Colors.purple[600]!,
+                      iconBackgroundColor: Colors.purple[50]!,
+                      title: 'Freelancer Account',
+                      description: "You work independently, manage your own contracts and payments directly with clients.",
+                      onTap: () => context.pushNamed(RouteConstants.authRoute.personalDetails),
+                    ),
                     const SizedBox(height: 16),
                     _buildAccountTypeCard(
                       context: context,
@@ -117,10 +113,8 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                       iconColor: Colors.blue[600]!,
                       iconBackgroundColor: Colors.blue[50]!,
                       title: 'Contractor Account',
-                      description:
-                          "You're contracted to work for a company or organization on specific projects or terms.",
-                      onTap: () =>
-                          Navigator.pushNamed(context, '/personal-details'),
+                      description: "You're contracted to work for a company or organization on specific projects or terms.",
+                      onTap: () => context.pushNamed(RouteConstants.authRoute.personalDetails),
                     ),
                     const SizedBox(height: 16),
                     _buildAccountTypeCard(
@@ -129,13 +123,10 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                       iconColor: Colors.purple[600]!,
                       iconBackgroundColor: Colors.purple[50]!,
                       title: 'Business/Corporate Account',
-                      description:
-                          "You represent a business that manages contracts on behalf of multiple team members.",
-                      onTap: () =>
-                          Navigator.pushNamed(context, '/personal-details'),
+                      description: "You represent a business that manages contracts on behalf of multiple team members.",
+                      onTap: () => context.pushNamed(RouteConstants.authRoute.personalDetails),
                       badge: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
                           color: Colors.green,
                           borderRadius: BorderRadius.circular(16),
@@ -222,8 +213,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                         children: [
                           Row(
                             children: [
-                              Text(title,
-                                  style: context.theme.textTheme.bodyMedium),
+                              Text(title, style: context.theme.textTheme.bodyMedium),
                             ],
                           ),
                           const SizedBox(height: 4),
