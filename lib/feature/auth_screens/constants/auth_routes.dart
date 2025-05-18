@@ -7,6 +7,8 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/new_password.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/reset_password.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/verify_otp_.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/verify_your_email.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,6 +23,8 @@ class _AuthPaths {
   final addressDetails = '/auth/addressDetails';
   final profileCreated = '/auth/profileCreated';
   final accountType = '/auth/accountType';
+  final resetPassword = '/auth/resetPassword';
+  final verifyOtp = '/auth/verifyOtp';
 }
 
 class AuthRoutes {
@@ -87,6 +91,20 @@ class AuthRoutes {
       name: paths.profileCreated,
       pageBuilder: (context, state) {
         return FadeTransitionPage(key: state.pageKey, child: const ProfileCreatedScreen());
+      },
+    ),
+    GoRoute(
+      path: paths.resetPassword,
+      name: paths.resetPassword,
+      pageBuilder: (context, state) {
+        return FadeTransitionPage(key: state.pageKey, child: const ResetPassword());
+      },
+    ),
+    GoRoute(
+      path: paths.verifyOtp,
+      name: paths.verifyOtp,
+      pageBuilder: (context, state) {
+        return FadeTransitionPage(key: state.pageKey, child: const VerifyOtpScreen());
       },
     ),
   ];

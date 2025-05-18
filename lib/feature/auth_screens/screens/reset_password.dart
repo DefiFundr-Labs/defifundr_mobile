@@ -1,11 +1,12 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart'
-    show AppColors;
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart' show AppColors;
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_icons.dart';
 import '../../../core/constants/app_texts.dart';
@@ -82,10 +83,11 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               Spacer(),
               AppButton(
-                  text: AppTexts.sendCode,
-                  color: AppColors.primaryColor,
-                  textColor: AppColors.white100,
-                  onTap: () {})
+                text: AppTexts.sendCode,
+                color: AppColors.primaryColor,
+                textColor: AppColors.white100,
+                onTap: () => context.pushNamed(RouteConstants.authRoute.verifyOtp),
+              )
             ],
           ),
         ),
