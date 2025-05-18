@@ -7,10 +7,6 @@ version: 1.0.0+1
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
-dependency_overrides:
-  http: ^0.13.4
-  curl_logger_dio_interceptor: ^0.0.1
-
 dependencies:
   cupertino_icons: ^1.0.2
 
