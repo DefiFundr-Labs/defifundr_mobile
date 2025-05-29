@@ -187,7 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.accountType);
+                      // context.pushNamed(RouteConstants.accountType);
+                      context.pushNamed(RouteConstants.verifyIdentity);
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
