@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/select_id_country_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/address_details_screen.dart';
@@ -153,6 +154,24 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: const VerifyIdentityScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/select-country-id',
+          name: RouteConstants.selectIdCountry,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const SelectIdCountryScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

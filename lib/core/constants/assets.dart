@@ -52,4 +52,14 @@ class AppAssets {
   static const profile = '$defifundrImagePath/profile.png';
   static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
   static const transaction = '$defifundrImagePath/transaction.svg';
+
+  // identity verification
+  static const identityVerification =
+      '$defifundrImagePath/IdentificationCard.svg';
+  static const userFocus = '$defifundrImagePath/UserFocus.svg';
+  static const nigeriaSvg = '$defifundrImagePath/nigeria.svg';
+  static const carProfile = '$defifundrImagePath/CarProfile.svg';
+  static const globeSvg = '$defifundrImagePath/Globe.svg';
+  static const ninSvg = '$defifundrImagePath/NIN.svg';
+  static const infoSvg = '$defifundrImagePath/Info.svg';
 }
