@@ -62,4 +62,5 @@ class AppAssets {
   static const globeSvg = '$defifundrImagePath/Globe.svg';
   static const ninSvg = '$defifundrImagePath/NIN.svg';
   static const infoSvg = '$defifundrImagePath/Info.svg';
+  static const verificationProgressSvg = '$defifundrImagePath/verificationProgress.svg';
 }

@@ -10,4 +10,5 @@ class RouteConstants {
   static String accountType = 'accountType';
   static String verifyIdentity = 'verifyIdentity';
   static String selectIdCountry = 'selectIdCountry';
+  static String verificationConfirmed = 'verificationConfirmed';
 }
