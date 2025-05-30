@@ -6,11 +6,11 @@ import 'package:defifundr_mobile/feature/auth_screens/models/new_password_state.
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 
-part 'auth_event.dart';
-part 'auth_state.dart';
+part 'authentication_event.dart';
+part 'authectication_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitialState()) {
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+  AuthenticationBloc() : super(AuthInitialState()) {
     on<SubmitEmail>(_submitEmailHandler);
 
     on<EnterForgotPasswordString>(
@@ -33,7 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifyForgotPasswordOtpEvent>(_verifyForgotPasswordOtpHandler);
   }
 
-  void _submitEmailHandler(SubmitEmail event, Emitter<AuthState> emit) {
+  void _submitEmailHandler(SubmitEmail event, Emitter<AuthenticationState> emit) {
     if (!EmailValidator.validate(event.email)) {
       emit(AuthErrorState("Invalid email format"));
       return;
@@ -41,7 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthSuccessState("A reset link has been sent to ${event.email}"));
   }
 
-  Future<void> _enterForgotPasswordStringHandler(EnterForgotPasswordString event, Emitter<AuthState> emit) async {
+  Future<void> _enterForgotPasswordStringHandler(EnterForgotPasswordString event, Emitter<AuthenticationState> emit) async {
     // Adding a delay to prevent overloading the UI with state changes
     // This is a simple way to debounce the event and prevent rapid state changes
     await Future.delayed(Duration(milliseconds: 300));
@@ -59,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  Future<void> _enterForgotConfirmPasswordStringHandler(EnterForgotConfirmPasswordString event, Emitter<AuthState> emit) async {
+  Future<void> _enterForgotConfirmPasswordStringHandler(EnterForgotConfirmPasswordString event, Emitter<AuthenticationState> emit) async {
     // Adding a delay to prevent overloading the UI with state changes
     // This is a simple way to debounce the event and prevent rapid state changes
     await Future.delayed(Duration(milliseconds: 300));
@@ -77,7 +77,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _toggleForgotPasswordVisibilityHandler(ToggleForgotPasswordVisibility event, Emitter<AuthState> emit) {
+  void _toggleForgotPasswordVisibilityHandler(ToggleForgotPasswordVisibility event, Emitter<AuthenticationState> emit) {
     emit(
       AuthInitialState(
         forgotPasswordState: (state.forgotPasswordState ?? ForgotPasswordState()).copyWith(
@@ -92,7 +92,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _toggleForgotConfirmPasswordVisibilityHandler(ToggleForgotConfirmPasswordVisibility event, Emitter<AuthState> emit) {
+  void _toggleForgotConfirmPasswordVisibilityHandler(ToggleForgotConfirmPasswordVisibility event, Emitter<AuthenticationState> emit) {
     emit(
       AuthInitialState(
         forgotPasswordState: (state.forgotPasswordState ?? ForgotPasswordState()).copyWith(
@@ -107,9 +107,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _resendForgotPasswordOtpHandler(ResendForgotPasswordOtpEvent event, Emitter<AuthState> emit) {}
+  void _resendForgotPasswordOtpHandler(ResendForgotPasswordOtpEvent event, Emitter<AuthenticationState> emit) {}
 
-  void _verifyForgotPasswordOtpHandler(VerifyForgotPasswordOtpEvent event, Emitter<AuthState> emit) {
+  void _verifyForgotPasswordOtpHandler(VerifyForgotPasswordOtpEvent event, Emitter<AuthenticationState> emit) {
     emit(AuthErrorState(AppTexts.invalidOTPCode));
     emit(AuthInitialState());
   }

@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/feature/auth_screens/auth_bloc/auth_bloc.dart';
+import 'package:defifundr_mobile/feature/auth_screens/authentication_bloc/authentication_bloc.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/bloc/auth_bloc.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/bloc/auth_event.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/web3auth_service.dart';
@@ -7,8 +7,8 @@ import 'package:nested/nested.dart';
 
 List<SingleChildWidget> get appProviders {
   return [
-    BlocProvider<AuthBloc>(
-      create: (context) => AuthBloc(),
+    BlocProvider<AuthenticationBloc>(
+      create: (context) => AuthenticationBloc(),
     ),
     BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(
