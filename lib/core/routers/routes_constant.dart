@@ -12,4 +12,5 @@ class RouteConstants {
   static String selectIdCountry = 'selectIdCountry';
   static String verificationConfirmed = 'verificationConfirmed';
   static String quickPayScreen = 'quickPayScreen';
+  static String receivePaymentScreen = 'receivePaymentScreen';
 }

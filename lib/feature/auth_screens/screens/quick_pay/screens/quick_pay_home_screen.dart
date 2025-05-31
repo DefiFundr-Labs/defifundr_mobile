@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
@@ -13,6 +14,7 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/slide_up_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class QuickPayHomeScreen extends StatefulWidget {
   const QuickPayHomeScreen({super.key});
@@ -23,6 +25,11 @@ class QuickPayHomeScreen extends StatefulWidget {
 
 class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
   List<QuickPayment> quickPays = [];
+
+  ValueNotifier<TimeRange?> selectedTimeRange = ValueNotifier<TimeRange?>(null);
+
+  ValueNotifier<Map<QuickPaymentsStatus, bool?>?> statusFilter =
+      ValueNotifier(null);
 
   @override
   void initState() {
@@ -309,6 +316,8 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   CheckBoxStatus(
                                                     onChanged: (value) {
                                                       print(value);
+                                                      statusFilter.value =
+                                                          value;
                                                     },
                                                   ),
                                                 ],
@@ -342,6 +351,8 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   TimeFilterRadio(
                                                     onChanged: (selected) {
                                                       print(selected);
+                                                      selectedTimeRange.value =
+                                                          selected;
                                                     },
                                                   )
                                                 ],
@@ -452,7 +463,51 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                             SizedBox(
                               height: 8 * 2.5,
                             ),
-                            FilledQuickpay(quickPays: quickPays),
+                            ValueListenableBuilder(
+                              valueListenable: selectedTimeRange,
+                              builder: (ctx, selectedTime, __) {
+                                return ValueListenableBuilder(
+                                  valueListenable: statusFilter,
+                                  builder: (__, filterSelect, _) {
+                                    final filteredQuickPays = quickPays.where(
+                                      (payment) {
+                                        if (selectedTime != null) {
+                                          final now = DateTime.now();
+                                          switch (selectedTime) {
+                                            case TimeRange.last7Days:
+                                              return payment.date.isAfter(now
+                                                      .subtract(const Duration(
+                                                          days: 7))) &&
+                                                  payment.date.isBefore(now);
+                                            case TimeRange.last30Days:
+                                              return payment.date.isAfter(now
+                                                      .subtract(const Duration(
+                                                          days: 30))) &&
+                                                  payment.date.isBefore(now);
+                                            default:
+                                              return true;
+                                          }
+                                        }
+                                        if (filterSelect == null) {
+                                          return true;
+                                        }
+                                        return filterSelect.entries.every(
+                                          (entry) {
+                                            if (entry.value == null) {
+                                              return true;
+                                            }
+                                            return payment.status == entry.key;
+                                          },
+                                        );
+                                      },
+                                    ).toList();
+                                    return FilledQuickpay(
+                                      quickPays: filteredQuickPays,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                           ]
                         ],
                       ),
@@ -463,7 +518,9 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                         horizontal: 24, vertical: 16),
                     child: BrandButton(
                       text: "Receive payment",
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(RouteConstants.receivePaymentScreen);
+                      },
                     ),
                   ),
                 ],
