@@ -55,6 +55,12 @@ class CheckBoxStatus extends StatelessWidget {
                           ...checkboxValues.value,
                           status: newValue,
                         };
+                        final allSelected =
+                            checkboxValues.value.values.every((v) => v == true);
+                        final anySelected =
+                            checkboxValues.value.values.any((v) => v == true);
+                        allCheckboxValue.value =
+                            allSelected ? true : (anySelected ? null : false);
                       },
                       fillColor: status.fillColor,
                       borderColor: status.borderColor,
