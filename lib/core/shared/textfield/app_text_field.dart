@@ -77,6 +77,7 @@ class _AppTextFieldState extends State<AppTextField> {
               keyboardType: widget.keyboardType,
               onChanged: widget.onChanged,
               decoration: InputDecoration(
+                alignLabelWithHint: true,
                 labelText: widget.label,
                 labelStyle: TextStyle(
                   fontSize: 14,

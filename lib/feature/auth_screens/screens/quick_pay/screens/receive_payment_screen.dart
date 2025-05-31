@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class ReceivePaymentScreen extends StatefulWidget {
 }
 
 class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
+  TextEditingController titleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +94,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       ),
                     ),
                     const SizedBox(height: 8 * 1.5),
+                    AppTextField(
+                      label: 'Title',
+                      obscureText: false,
+                      controller: titleController,
+                    ),
                   ],
                 ),
               ),
