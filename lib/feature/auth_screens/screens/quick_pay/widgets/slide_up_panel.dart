@@ -26,7 +26,7 @@ slideUpPanel(
             child: Container(
               child: screen,
               constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.80,
+                maxHeight: MediaQuery.of(context).size.height * 0.70,
               ),
             ),
           ),

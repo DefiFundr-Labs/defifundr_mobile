@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/checkbox_status.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/filled_quickPay.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/slide_up_panel.dart';
 import 'package:flutter/material.dart';
@@ -283,7 +284,8 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   color: AppColors.textPrimary,
                                                 ),
                                               ),
-                                            )
+                                            ),
+                                            CheckBoxStatus(),
                                           ],
                                         ),
                                       ),
