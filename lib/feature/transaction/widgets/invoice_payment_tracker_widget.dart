@@ -39,7 +39,7 @@ class InvoicePaymentTrackerWidget extends StatelessWidget {
               PaymentStepStatus.completed => _invoicePaymentTracker.paymentConfirmedAt.toFormattedString1(),
               PaymentStepStatus.failed => AppTexts.paymentWasExpected,
             },
-            dueDate: _invoicePaymentTracker.paymentConfirmationDueDate,
+            dueDate: _invoicePaymentTracker.paymentConfirmationDueDate.toFormattedString2(),
             description2: switch (_invoicePaymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.waiting => '.',
               PaymentStepStatus.processing => '.',
@@ -77,7 +77,9 @@ class InvoicePaymentTrackerWidget extends StatelessWidget {
               PaymentStepStatus.completed => null,
               PaymentStepStatus.failed => null,
             },
-            dueDate: _invoicePaymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting ? _invoicePaymentTracker.paymentConfirmationDueDate : null,
+            dueDate: _invoicePaymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting
+                ? _invoicePaymentTracker.paymentConfirmationDueDate.toFormattedString2()
+                : null,
           ),
         ],
       ),

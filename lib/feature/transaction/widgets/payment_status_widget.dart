@@ -1,5 +1,4 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/extensions/date_time_extension.dart';
 import 'package:defifundr_mobile/feature/transaction/models/enums.dart';
 import 'package:defifundr_mobile/feature/transaction/widgets/payment_tracker_status_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +7,14 @@ class PaymentStatusWidget extends StatelessWidget {
   final PaymentStepStatus _status;
   final String _title;
   final String? _description1, _description2;
-  final DateTime? _dueDate;
+  final String? _dueDate;
   final bool _isLastStep;
   const PaymentStatusWidget({
     required PaymentStepStatus status,
     required String title,
     String? description1,
     String? description2,
-    DateTime? dueDate,
+    String? dueDate,
     bool isLastStep = false,
     super.key,
   })  : _isLastStep = isLastStep,
@@ -43,7 +42,7 @@ class PaymentStatusWidget extends StatelessWidget {
                       color: _status == PaymentStepStatus.waiting ? context.theme.colors.textTertiary : null,
                     ),
                     children: [
-                      if (_status != PaymentStepStatus.waiting) TextSpan(text: _dueDate?.toFormattedString2(), style: context.theme.fonts.textMdMedium),
+                      if (_status != PaymentStepStatus.waiting) TextSpan(text: _dueDate, style: context.theme.fonts.textMdMedium),
                     ]),
               ),
             ),
@@ -74,8 +73,7 @@ class PaymentStatusWidget extends StatelessWidget {
                             text: _description1,
                             style: context.theme.fonts.textMdRegular.copyWith(color: context.theme.colors.textSecondary),
                             children: [
-                              if (_status != PaymentStepStatus.completed)
-                                TextSpan(text: _dueDate?.toFormattedString2(), style: context.theme.fonts.textMdMedium),
+                              if (_status != PaymentStepStatus.completed) TextSpan(text: _dueDate, style: context.theme.fonts.textMdMedium),
                               TextSpan(
                                 text: _description2,
                                 style: context.theme.fonts.textMdRegular.copyWith(color: context.theme.colors.textSecondary),
