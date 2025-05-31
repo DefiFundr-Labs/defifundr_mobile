@@ -315,7 +315,6 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                 children: [
                                                   CheckBoxStatus(
                                                     onChanged: (value) {
-                                                      print(value);
                                                       statusFilter.value =
                                                           value;
                                                     },
@@ -350,7 +349,6 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                 children: [
                                                   TimeFilterRadio(
                                                     onChanged: (selected) {
-                                                      print(selected);
                                                       selectedTimeRange.value =
                                                           selected;
                                                     },
@@ -469,38 +467,45 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                 return ValueListenableBuilder(
                                   valueListenable: statusFilter,
                                   builder: (__, filterSelect, _) {
-                                    final filteredQuickPays = quickPays.where(
-                                      (payment) {
-                                        if (selectedTime != null) {
-                                          final now = DateTime.now();
-                                          switch (selectedTime) {
-                                            case TimeRange.last7Days:
-                                              return payment.date.isAfter(now
-                                                      .subtract(const Duration(
-                                                          days: 7))) &&
-                                                  payment.date.isBefore(now);
-                                            case TimeRange.last30Days:
-                                              return payment.date.isAfter(now
-                                                      .subtract(const Duration(
-                                                          days: 30))) &&
-                                                  payment.date.isBefore(now);
-                                            default:
-                                              return true;
-                                          }
+                                    final filteredQuickPays =
+                                        quickPays.where((payment) {
+                                      final now = DateTime.now();
+
+                                      bool passesTimeFilter = true;
+                                      if (selectedTime != null) {
+                                        switch (selectedTime) {
+                                          case TimeRange.last7Days:
+                                            passesTimeFilter = payment.date
+                                                    .isAfter(now.subtract(
+                                                        const Duration(
+                                                            days: 7))) &&
+                                                payment.date.isBefore(now);
+                                            break;
+                                          case TimeRange.last30Days:
+                                            passesTimeFilter = payment.date
+                                                    .isAfter(now.subtract(
+                                                        const Duration(
+                                                            days: 30))) &&
+                                                payment.date.isBefore(now);
+                                            break;
+                                          default:
+                                            passesTimeFilter = true;
                                         }
-                                        if (filterSelect == null) {
-                                          return true;
-                                        }
-                                        return filterSelect.entries.every(
-                                          (entry) {
-                                            if (entry.value == null) {
-                                              return true;
-                                            }
-                                            return payment.status == entry.key;
-                                          },
-                                        );
-                                      },
-                                    ).toList();
+                                      }
+
+                                      bool passesStatusFilter = true;
+                                      if (filterSelect != null) {
+                                        passesStatusFilter = filterSelect
+                                            .entries
+                                            .where(
+                                                (entry) => entry.value == true)
+                                            .any((entry) =>
+                                                payment.status == entry.key);
+                                      }
+
+                                      return passesTimeFilter &&
+                                          passesStatusFilter;
+                                    }).toList();
                                     return FilledQuickpay(
                                       quickPays: filteredQuickPays,
                                     );
