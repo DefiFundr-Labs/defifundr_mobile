@@ -7,8 +7,8 @@ import 'package:defifundr_mobile/feature/transaction/widgets/payment_status_widg
 import 'package:flutter/material.dart';
 
 class FixedContractPaymentTrackerWidget extends StatelessWidget {
-  final FixedContractPaymentTracker _invoicePaymentTracker;
-  const FixedContractPaymentTrackerWidget(this._invoicePaymentTracker, {super.key});
+  final FixedContractPaymentTracker _paymentTracker;
+  const FixedContractPaymentTrackerWidget(this._paymentTracker, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,92 +22,87 @@ class FixedContractPaymentTrackerWidget extends StatelessWidget {
           PaymentStatusWidget(
             status: PaymentStepStatus.completed,
             title: AppTexts.contractCycleCompleted,
-            description1: _invoicePaymentTracker.createdAt.toFormattedString1(),
+            description1: _paymentTracker.createdAt.toFormattedString1(),
           ),
           PaymentStatusWidget(
-            status: _invoicePaymentTracker.clientApprovalStatus,
-            title: switch (_invoicePaymentTracker.clientApprovalStatus) {
-              PaymentStepStatus.waiting => '',
+            status: _paymentTracker.clientApprovalStatus,
+            title: switch (_paymentTracker.clientApprovalStatus) {
               PaymentStepStatus.processing => AppTexts.awaitingClientApproval,
-              PaymentStepStatus.completed => AppTexts.clientPaymentConfirmed,
-              PaymentStepStatus.failed => '',
+              PaymentStepStatus.completed => AppTexts.clientApprovedContract,
+              _ => '',
             },
-            description1: switch (_invoicePaymentTracker.clientApprovalStatus) {
-              PaymentStepStatus.waiting => null,
+            description1: switch (_paymentTracker.clientApprovalStatus) {
               PaymentStepStatus.processing => AppTexts.paymentIsLinked,
-              PaymentStepStatus.completed => _invoicePaymentTracker.paymentConfirmedAt.toFormattedString1(),
-              PaymentStepStatus.failed => null,
+              PaymentStepStatus.completed => _paymentTracker.paymentConfirmedAt.toFormattedString1(),
+              _ => null,
             },
           ),
           PaymentStatusWidget(
-            status: _invoicePaymentTracker.invoiceCreationStatus,
-            title: switch (_invoicePaymentTracker.invoiceCreationStatus) {
+            status: _paymentTracker.invoiceCreationStatus,
+            title: switch (_paymentTracker.invoiceCreationStatus) {
               PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisCycle,
-              PaymentStepStatus.processing => '',
               PaymentStepStatus.completed => AppTexts.clientPaymentConfirmed,
-              PaymentStepStatus.failed => '',
+              _ => '',
             },
-            description1: switch (_invoicePaymentTracker.invoiceCreationStatus) {
+            description1: switch (_paymentTracker.invoiceCreationStatus) {
               PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisCycleDesc,
-              PaymentStepStatus.processing => null,
-              PaymentStepStatus.completed => _invoicePaymentTracker.invoiceCreatedAt.toFormattedString1(),
-              PaymentStepStatus.failed => null,
+              PaymentStepStatus.completed => _paymentTracker.invoiceCreatedAt.toFormattedString1(),
+              _ => null,
             },
           ),
           PaymentStatusWidget(
-            status: _invoicePaymentTracker.paymentConfirmationStatus,
-            title: switch (_invoicePaymentTracker.paymentConfirmationStatus) {
+            status: _paymentTracker.paymentConfirmationStatus,
+            title: switch (_paymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.waiting => '',
               PaymentStepStatus.processing => AppTexts.awaitingPaymentConfirmation,
               PaymentStepStatus.completed => AppTexts.clientPaymentConfirmed,
               PaymentStepStatus.failed => AppTexts.clientPaymentOverdue,
             },
-            description1: switch (_invoicePaymentTracker.paymentConfirmationStatus) {
+            description1: switch (_paymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.waiting => AppTexts.yourClientInvoiceAccess,
               PaymentStepStatus.processing => AppTexts.yourClientInvoiceAccess,
-              PaymentStepStatus.completed => _invoicePaymentTracker.paymentConfirmedAt.toFormattedString1(),
+              PaymentStepStatus.completed => _paymentTracker.paymentConfirmedAt.toFormattedString1(),
               PaymentStepStatus.failed => AppTexts.paymentWasExpected,
             },
-            description2: switch (_invoicePaymentTracker.paymentConfirmationStatus) {
+            description2: switch (_paymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.waiting => AppTexts.beforeItIsDue,
               PaymentStepStatus.processing => AppTexts.beforeItIsDue,
               PaymentStepStatus.completed => null,
               PaymentStepStatus.failed => AppTexts.paymentWasExpectedEnding,
             },
-            dueDate: switch (_invoicePaymentTracker.paymentConfirmationStatus) {
-              PaymentStepStatus.failed => _invoicePaymentTracker.paymentConfirmationDueDate.toFormattedString2(),
+            dueDate: switch (_paymentTracker.paymentConfirmationStatus) {
+              PaymentStepStatus.failed => _paymentTracker.paymentConfirmationDueDate.toFormattedString2(),
               PaymentStepStatus.processing => AppTexts.tenDays,
               PaymentStepStatus.waiting => AppTexts.tenDays,
               PaymentStepStatus.completed => null,
             },
           ),
           PaymentStatusWidget(
-            status: _invoicePaymentTracker.processPaymentStatus,
-            title: switch (_invoicePaymentTracker.processPaymentStatus) {
+            status: _paymentTracker.processPaymentStatus,
+            title: switch (_paymentTracker.processPaymentStatus) {
               PaymentStepStatus.waiting => AppTexts.processClientPayment,
               PaymentStepStatus.processing => AppTexts.processingClientPayment,
               PaymentStepStatus.completed => AppTexts.clientPaymentProcessed,
               PaymentStepStatus.failed => '',
             },
-            description1: switch (_invoicePaymentTracker.processPaymentStatus) {
+            description1: switch (_paymentTracker.processPaymentStatus) {
               PaymentStepStatus.waiting => null,
               PaymentStepStatus.processing => AppTexts.clientWillGetInvoiceAccess,
-              PaymentStepStatus.completed => _invoicePaymentTracker.paymentProcessedAt.toFormattedString1(),
+              PaymentStepStatus.completed => _paymentTracker.paymentProcessedAt.toFormattedString1(),
               PaymentStepStatus.failed => null,
             },
           ),
           PaymentStatusWidget(
-            status: _invoicePaymentTracker.paymentReceivedStatus,
-            title: switch (_invoicePaymentTracker.paymentReceivedStatus) {
+            status: _paymentTracker.paymentReceivedStatus,
+            title: switch (_paymentTracker.paymentReceivedStatus) {
               PaymentStepStatus.waiting => AppTexts.fundsShouldBeReflected,
               PaymentStepStatus.completed => AppTexts.fundsReceived,
               _ => '',
             },
-            dueDate: _invoicePaymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting
-                ? _invoicePaymentTracker.paymentConfirmationDueDate.toFormattedString2()
-                : null,
-            description1: switch (_invoicePaymentTracker.paymentReceivedStatus) {
-              PaymentStepStatus.completed => _invoicePaymentTracker.paymentReceivedAt.toFormattedString1(),
+            dueDate:
+                _paymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting ? _paymentTracker.paymentConfirmationDueDate.toFormattedString2() : null,
+            description1: switch (_paymentTracker.paymentReceivedStatus) {
+              PaymentStepStatus.completed => _paymentTracker.paymentReceivedAt.toFormattedString1(),
               _ => null,
             },
           ),

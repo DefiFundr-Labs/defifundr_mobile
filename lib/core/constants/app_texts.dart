@@ -289,6 +289,7 @@ class AppTexts {
   static const contractCycleCompleted = 'Contract cycle completed';
   static const awaitingClientApproval = 'Awaiting client approval';
   static const paymentIsLinked = 'Payment is linked to the approval of your current contract cycle';
+  static const paymentIsLinked2 = 'Payment is linked to the approval of your submission';
   static const invoiceCreatedForThisCycle = 'Invoice created for this cycle';
   static const invoiceCreatedForThisCycleDesc = 'An invoice will be created for this contract cycle';
   static const yourClientInvoiceAccess = 'Your client will get invoice access';
@@ -296,5 +297,9 @@ class AppTexts {
   static const tenDays = '10 days';
   static const accordingToYourContract = 'According to your contract, funds should be reflected in your balance on ';
   static const fundsReceived = 'Funds received in your account';
-
+  static const unitWorkedSubmitted = '(Unit) worked submitted';
+  static const clientApprovedContract = 'Client approved contract';
+  static const clientApprovedSubmission = 'Client approved submission';
+  static const invoiceCreatedForThisSubmission = 'Invoice created for this submission';
+  static const invoiceCreatedForThisSubmissionDesc = 'An invoice will be created for this submission';
 }
