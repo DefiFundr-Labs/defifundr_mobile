@@ -166,7 +166,7 @@ class PaymentTile extends StatelessWidget {
                           Icon(
                             Icons.circle,
                             size: 6,
-                            color: payment.status.color,
+                            color: payment.status.textColor,
                           ),
                           const SizedBox(width: 4),
                           Text(
@@ -174,7 +174,7 @@ class PaymentTile extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: payment.status.color,
+                              color: payment.status.textColor,
                               fontFamily: 'Inter',
                             ),
                           ),

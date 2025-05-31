@@ -60,7 +60,29 @@ extension QuickPaymentsStatusExtension on QuickPaymentsStatus {
     return name[0].toUpperCase() + name.substring(1);
   }
 
-  Color get color {
+  Color get fillColor {
+    switch (this) {
+      case QuickPaymentsStatus.processing:
+        return AppColors.orangeFill;
+      case QuickPaymentsStatus.failed:
+        return AppColors.redFill;
+      case QuickPaymentsStatus.successful:
+        return AppColors.greenFill;
+    }
+  }
+
+  Color get borderColor {
+    switch (this) {
+      case QuickPaymentsStatus.processing:
+        return AppColors.orangeStroke;
+      case QuickPaymentsStatus.failed:
+        return AppColors.redStroke;
+      case QuickPaymentsStatus.successful:
+        return AppColors.greenStroke;
+    }
+  }
+
+  Color get textColor {
     switch (this) {
       case QuickPaymentsStatus.processing:
         return AppColors.orangeDefault;
