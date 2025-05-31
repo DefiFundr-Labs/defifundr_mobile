@@ -10,15 +10,15 @@ class PaymentStatusWidget extends StatelessWidget {
   final String? _description1, _description2;
   final DateTime? _dueDate;
   final bool _isLastStep;
-  const PaymentStatusWidget(
-      {required PaymentStepStatus status,
-      required String title,
-      String? description1,
-      String? description2,
-      DateTime? dueDate,
-      bool isLastStep = false,
-      super.key})
-      : _isLastStep = isLastStep,
+  const PaymentStatusWidget({
+    required PaymentStepStatus status,
+    required String title,
+    String? description1,
+    String? description2,
+    DateTime? dueDate,
+    bool isLastStep = false,
+    super.key,
+  })  : _isLastStep = isLastStep,
         _description2 = description2,
         _dueDate = dueDate,
         _description1 = description1,
