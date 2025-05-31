@@ -71,4 +71,5 @@ class AppAssets {
   static const filterIcon = '$defifundrImagePath/filter.svg';
   static const emptyQuickpayIcon =
       '$defifundrImagePath/empty_quickpay_icon.svg';
+  static const depositIconSvg = '$defifundrImagePath/deposit_svg.svg';
 }

@@ -3,6 +3,8 @@ import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/filled_quickPay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -14,6 +16,82 @@ class QuickPayHomeScreen extends StatefulWidget {
 }
 
 class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
+  List<QuickPayment> quickPays = [];
+
+  @override
+  void initState() {
+    super.initState();
+    demoPayment();
+  }
+
+  void demoPayment() {
+    quickPays.addAll([
+      QuickPayment(
+        id: '1',
+        status: QuickPaymentsStatus.processing,
+        date: DateTime.now(),
+        amount: BigInt.from(101),
+        currency: 'DAI',
+        description: 'Neurolytix Initial consultation session',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+      QuickPayment(
+        id: '2',
+        status: QuickPaymentsStatus.successful,
+        date: DateTime.now().subtract(const Duration(days: 2)),
+        amount: BigInt.from(21),
+        currency: 'USDC',
+        description: 'MintForge Bug fixes and performance updates',
+        paymentType: QuickPaymentsType.withdrawal,
+      ),
+      QuickPayment(
+        id: '3',
+        status: QuickPaymentsStatus.failed,
+        date: DateTime.now().subtract(const Duration(days: 2)),
+        amount: BigInt.from(200),
+        currency: 'LUSD',
+        description: 'ShopLink Pro UX Audit feedback & report',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+      QuickPayment(
+        id: '4',
+        status: QuickPaymentsStatus.successful,
+        date: DateTime.now().subtract(const Duration(days: 2)),
+        amount: BigInt.from(101),
+        currency: 'DAI',
+        description: 'Brightfolk Payment for consulting services',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+      QuickPayment(
+        id: '5',
+        status: QuickPaymentsStatus.successful,
+        date: DateTime.now().subtract(const Duration(days: 1)),
+        amount: BigInt.from(581),
+        currency: 'USDT',
+        description: 'LoopLabs Transfer for content creation',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+      QuickPayment(
+        id: '6',
+        status: QuickPaymentsStatus.successful,
+        date: DateTime.now().subtract(const Duration(days: 1)),
+        amount: BigInt.from(50),
+        currency: 'EURt',
+        description: 'Paylite Payment for project management',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+      QuickPayment(
+        id: '7',
+        status: QuickPaymentsStatus.successful,
+        date: DateTime.now().subtract(const Duration(days: 1)),
+        amount: BigInt.from(581),
+        currency: 'STARK',
+        description: 'Quikdash Reimbursement for software tools',
+        paymentType: QuickPaymentsType.deposit,
+      ),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,53 +256,60 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  AppAssets.emptyQuickpayIcon,
-                                  width: 200,
-                                  height: 200,
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  child: Text(
-                                    'No quickpay activity yet.',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.textPrimary,
+                    if (quickPays.isEmpty)
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppAssets.emptyQuickpayIcon,
+                                    width: 200,
+                                    height: 200,
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    child: Text(
+                                      'No quickpay activity yet.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.textPrimary,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4),
-                              child: Text(
-                                'Your quickpay activity will show up here once you receive one.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.textSecondary,
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: Text(
+                                  'Your quickpay activity will show up here once you receive one.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.textSecondary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
+                      )
+                    else ...[
+                      SizedBox(
+                        height: 8 * 2.5,
                       ),
-                    ),
+                      FilledQuickpay(quickPays: quickPays),
+                    ]
                   ],
                 ),
               ),
