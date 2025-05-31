@@ -8,6 +8,8 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authe
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/checkbox_status.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/filled_quickPay.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/filter_buttons.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/time_filter_radio.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/slide_up_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -251,13 +253,12 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                   isPanelVisible.value = true;
                                   await slideUpPanel(
                                     context,
-                                    SizedBox(
-                                      height: 400,
-                                      width: double.infinity,
+                                    SingleChildScrollView(
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                           left: 20,
                                           right: 20,
+                                          bottom: 25,
                                         ),
                                         child: Column(
                                           children: [
@@ -285,7 +286,89 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                 ),
                                               ),
                                             ),
-                                            CheckBoxStatus(),
+                                            Theme(
+                                              data: Theme.of(context).copyWith(
+                                                dividerColor:
+                                                    Colors.transparent,
+                                              ),
+                                              child: ExpansionTile(
+                                                title: Text(
+                                                  'Status',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    color:
+                                                        AppColors.textPrimary,
+                                                  ),
+                                                ),
+                                                tilePadding: EdgeInsets.zero,
+                                                childrenPadding:
+                                                    EdgeInsets.zero,
+                                                children: [
+                                                  CheckBoxStatus(
+                                                    onChanged: (value) {
+                                                      print(value);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Divider(
+                                              color: AppColors.strokeSecondary
+                                                  .withValues(alpha: 0.06),
+                                              height: 1,
+                                            ),
+                                            Theme(
+                                              data: Theme.of(context).copyWith(
+                                                dividerColor:
+                                                    Colors.transparent,
+                                              ),
+                                              child: ExpansionTile(
+                                                title: Text(
+                                                  'Date',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    color:
+                                                        AppColors.textPrimary,
+                                                  ),
+                                                ),
+                                                tilePadding: EdgeInsets.zero,
+                                                childrenPadding:
+                                                    EdgeInsets.zero,
+                                                children: [
+                                                  TimeFilterRadio(
+                                                    onChanged: (selected) {
+                                                      print(selected);
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                FilterButton(
+                                                  backgroundColor: AppColors
+                                                      .strokeSecondary
+                                                      .withValues(
+                                                    alpha: 0.08,
+                                                  ),
+                                                  textColor:
+                                                      AppColors.textPrimary,
+                                                  text: "Clear all",
+                                                  onPressed: () {},
+                                                ),
+                                                FilterButton(
+                                                  text: "Show results",
+                                                  onPressed: () {},
+                                                ),
+                                              ],
+                                            )
                                           ],
                                         ),
                                       ),

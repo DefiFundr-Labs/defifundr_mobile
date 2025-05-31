@@ -61,7 +61,7 @@ class StatusCheckboxRow extends StatelessWidget {
             onChanged: onChanged,
             fillColor: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
-                return textColor;
+                return AppColors.brandDefault;
               }
               return Colors.transparent;
             }),

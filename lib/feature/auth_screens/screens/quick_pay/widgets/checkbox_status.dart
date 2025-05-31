@@ -4,7 +4,13 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/
 import 'package:flutter/material.dart';
 
 class CheckBoxStatus extends StatelessWidget {
-  CheckBoxStatus({super.key});
+  CheckBoxStatus({
+    super.key,
+    this.onChanged,
+  });
+  final void Function(Map<QuickPaymentsStatus, bool?> selectedValues)?
+      onChanged;
+
   final ValueNotifier<Map<QuickPaymentsStatus, bool?>> checkboxValues =
       ValueNotifier({
     QuickPaymentsStatus.processing: false,
@@ -12,6 +18,13 @@ class CheckBoxStatus extends StatelessWidget {
     QuickPaymentsStatus.failed: false,
   });
   final ValueNotifier<bool?> allCheckboxValue = ValueNotifier(null);
+
+  void _notifyChange() {
+    if (onChanged != null) {
+      onChanged!(checkboxValues.value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,6 +48,7 @@ class CheckBoxStatus extends StatelessWidget {
                           QuickPaymentsStatus.successful: newValue,
                           QuickPaymentsStatus.failed: newValue,
                         };
+                        _notifyChange();
                       },
                       fillColor: AppColors.brandFill,
                       borderColor: AppColors.brandStroke,
@@ -61,6 +75,7 @@ class CheckBoxStatus extends StatelessWidget {
                             checkboxValues.value.values.any((v) => v == true);
                         allCheckboxValue.value =
                             allSelected ? true : (anySelected ? null : false);
+                        _notifyChange();
                       },
                       fillColor: status.fillColor,
                       borderColor: status.borderColor,
