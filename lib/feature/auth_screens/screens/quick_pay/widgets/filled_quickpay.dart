@@ -58,33 +58,36 @@ class _FilledQuickpayState extends State<FilledQuickpay> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+            Padding(
+              padding: const EdgeInsets.all(8.0 * 1.5),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      thickness: 1,
+                      color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textTertiary,
+                  const SizedBox(width: 8),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textTertiary,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Divider(
+                      thickness: 1,
+                      color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            ...entry.value.map((payment) => PaymentTile(payment)).toList(),
+            PaymentTile(entry.value),
           ],
         );
       }).toList(),
@@ -93,9 +96,9 @@ class _FilledQuickpayState extends State<FilledQuickpay> {
 }
 
 class PaymentTile extends StatelessWidget {
-  final QuickPayment payment;
+  final List<QuickPayment> payments;
 
-  const PaymentTile(this.payment, {super.key});
+  const PaymentTile(this.payments, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,74 +109,83 @@ class PaymentTile extends StatelessWidget {
       color: AppColors.bgB1Base,
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset(AppAssets.depositIconSvg),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      ellipsify(word: payment.description, maxLength: 24),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
-                        fontFamily: 'Inter',
+        child: Column(
+          children: payments.map((payment) {
+            return Padding(
+              padding: EdgeInsets.only(top: 8, bottom: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(AppAssets.depositIconSvg),
+                      const SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ellipsify(word: payment.description, maxLength: 18),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textPrimary,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            DateFormat('h:mm a').format(payment.date),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.textSecondary,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      DateFormat('h:mm a').format(payment.date),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.textSecondary,
-                        fontFamily: 'Inter',
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  '${payment.paymentType == QuickPaymentsType.deposit ? '+' : '-'}${payment.amount.toString()} ${payment.currency} ',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                    fontFamily: 'Inter',
+                    ],
                   ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      size: 6,
-                      color: payment.status.color,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      payment.status.titleCase,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: payment.status.color,
-                        fontFamily: 'Inter',
+
+                  // Right side: Amount + Status
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${payment.paymentType == QuickPaymentsType.deposit ? '+' : '-'}${payment.amount} ${payment.currency}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                          fontFamily: 'Inter',
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            size: 6,
+                            color: payment.status.color,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            payment.status.titleCase,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: payment.status.color,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
