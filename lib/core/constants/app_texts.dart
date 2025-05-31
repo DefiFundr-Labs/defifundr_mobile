@@ -286,4 +286,15 @@ class AppTexts {
   static const processingClientPayment = 'Processing your client payment';
   static const clientPaymentProcessed = 'Client payment processed';
   static const fundsShouldBeReflected = 'According to your invoice, funds should be reflected in your balance on ';
+  static const contractCycleCompleted = 'Contract cycle completed';
+  static const awaitingClientApproval = 'Awaiting client approval';
+  static const paymentIsLinked = 'Payment is linked to the approval of your current contract cycle';
+  static const invoiceCreatedForThisCycle = 'Invoice created for this cycle';
+  static const invoiceCreatedForThisCycleDesc = 'An invoice will be created for this contract cycle';
+  static const yourClientInvoiceAccess = 'Your client will get invoice access';
+  static const beforeItIsDue = ' before it is due';
+  static const tenDays = '10 days';
+  static const accordingToYourContract = 'According to your contract, funds should be reflected in your balance on ';
+  static const fundsReceived = 'Funds received in your account';
+
 }
