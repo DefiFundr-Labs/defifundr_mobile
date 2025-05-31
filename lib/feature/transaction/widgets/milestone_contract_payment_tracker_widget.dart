@@ -2,13 +2,13 @@ import 'package:defifundr_mobile/core/constants/app_texts.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/date_time_extension.dart';
 import 'package:defifundr_mobile/feature/transaction/models/enums.dart';
-import 'package:defifundr_mobile/feature/transaction/models/pay_as_you_go_contract_payment_tracker.dart';
+import 'package:defifundr_mobile/feature/transaction/models/milestone_contract_payment_tracker.dart';
 import 'package:defifundr_mobile/feature/transaction/widgets/payment_status_widget.dart';
 import 'package:flutter/material.dart';
 
-class PayAsYouGoContractPaymentTrackerWidget extends StatelessWidget {
-  final PayAsYouGoContractPaymentTracker _paymentTracker;
-  const PayAsYouGoContractPaymentTrackerWidget(this._paymentTracker, {super.key});
+class MilestoneContractPaymentTrackerWidget extends StatelessWidget {
+  final MilestoneContractPaymentTracker _paymentTracker;
+  const MilestoneContractPaymentTrackerWidget(this._paymentTracker, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class PayAsYouGoContractPaymentTrackerWidget extends StatelessWidget {
         children: [
           PaymentStatusWidget(
             status: PaymentStepStatus.completed,
-            title: AppTexts.unitWorkedSubmitted,
+            title: AppTexts.milestoneConmpletionSubmitted,
             description1: _paymentTracker.createdAt.toFormattedString1(),
           ),
           PaymentStatusWidget(
@@ -40,12 +40,12 @@ class PayAsYouGoContractPaymentTrackerWidget extends StatelessWidget {
           PaymentStatusWidget(
             status: _paymentTracker.invoiceCreationStatus,
             title: switch (_paymentTracker.invoiceCreationStatus) {
-              PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisSubmission,
+              PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisMilestone,
               PaymentStepStatus.completed => AppTexts.clientPaymentConfirmed,
               _ => '',
             },
             description1: switch (_paymentTracker.invoiceCreationStatus) {
-              PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisSubmissionDesc,
+              PaymentStepStatus.waiting => AppTexts.invoiceCreatedForThisMilestoneDesc,
               PaymentStepStatus.completed => _paymentTracker.invoiceCreatedAt.toFormattedString1(),
               _ => null,
             },
@@ -60,21 +60,17 @@ class PayAsYouGoContractPaymentTrackerWidget extends StatelessWidget {
             },
             description1: switch (_paymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.waiting => AppTexts.yourClientInvoiceAccess1,
-              PaymentStepStatus.processing => AppTexts.yourClientInvoiceAccess1,
+              PaymentStepStatus.processing => AppTexts.yourClientInvoiceAccess2,
               PaymentStepStatus.completed => _paymentTracker.paymentConfirmedAt.toFormattedString1(),
               PaymentStepStatus.failed => AppTexts.paymentWasExpected,
             },
             description2: switch (_paymentTracker.paymentConfirmationStatus) {
-              PaymentStepStatus.waiting => AppTexts.beforeItIsDue,
-              PaymentStepStatus.processing => AppTexts.beforeItIsDue,
-              PaymentStepStatus.completed => null,
               PaymentStepStatus.failed => AppTexts.paymentWasExpectedEnding,
+              _ => null,
             },
             dueDate: switch (_paymentTracker.paymentConfirmationStatus) {
               PaymentStepStatus.failed => _paymentTracker.paymentConfirmationDueDate.toFormattedString2(),
-              PaymentStepStatus.processing => AppTexts.tenDays,
-              PaymentStepStatus.waiting => AppTexts.tenDays,
-              PaymentStepStatus.completed => null,
+              _ => null,
             },
           ),
           PaymentStatusWidget(

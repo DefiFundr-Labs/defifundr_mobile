@@ -59,8 +59,8 @@ class FixedContractPaymentTrackerWidget extends StatelessWidget {
               PaymentStepStatus.failed => AppTexts.clientPaymentOverdue,
             },
             description1: switch (_paymentTracker.paymentConfirmationStatus) {
-              PaymentStepStatus.waiting => AppTexts.yourClientInvoiceAccess,
-              PaymentStepStatus.processing => AppTexts.yourClientInvoiceAccess,
+              PaymentStepStatus.waiting => AppTexts.yourClientInvoiceAccess1,
+              PaymentStepStatus.processing => AppTexts.yourClientInvoiceAccess1,
               PaymentStepStatus.completed => _paymentTracker.paymentConfirmedAt.toFormattedString1(),
               PaymentStepStatus.failed => AppTexts.paymentWasExpected,
             },

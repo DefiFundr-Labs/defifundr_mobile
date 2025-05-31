@@ -292,7 +292,8 @@ class AppTexts {
   static const paymentIsLinked2 = 'Payment is linked to the approval of your submission';
   static const invoiceCreatedForThisCycle = 'Invoice created for this cycle';
   static const invoiceCreatedForThisCycleDesc = 'An invoice will be created for this contract cycle';
-  static const yourClientInvoiceAccess = 'Your client will get invoice access';
+  static const yourClientInvoiceAccess1 = 'Your client will get invoice access';
+  static const yourClientInvoiceAccess2 = 'Your client has access to your invoice';
   static const beforeItIsDue = ' before it is due';
   static const tenDays = '10 days';
   static const accordingToYourContract = 'According to your contract, funds should be reflected in your balance on ';
@@ -302,4 +303,8 @@ class AppTexts {
   static const clientApprovedSubmission = 'Client approved submission';
   static const invoiceCreatedForThisSubmission = 'Invoice created for this submission';
   static const invoiceCreatedForThisSubmissionDesc = 'An invoice will be created for this submission';
+  static const milestoneConmpletionSubmitted = 'Milestone completion submitted';
+  static const invoiceCreatedForThisMilestone = 'Invoice created for this milestone';
+  static const invoiceCreatedForThisMilestoneDesc = 'An invoice will be created for this milestone';
+  static const weAreProcessingYourClientPayment = 'We are processing your client payment';
 }
