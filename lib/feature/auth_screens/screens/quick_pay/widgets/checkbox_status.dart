@@ -48,14 +48,14 @@ class CheckBoxStatus extends StatelessWidget {
                   if (states.contains(WidgetState.selected)) {
                     return AppColors.brandDefault;
                   }
-                  return Colors.grey;
+                  return Colors.transparent;
                 }),
+                side: BorderSide(
+                  color: AppColors.strokeSecondary,
+                  width: 1,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
                 ),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
@@ -97,21 +97,21 @@ class CheckBoxStatus extends StatelessWidget {
               width: 20,
               height: 20,
               child: Checkbox(
-                value: null,
+                value: false,
                 tristate: true,
                 onChanged: (value) {},
+                side: BorderSide(
+                  color: AppColors.strokeSecondary,
+                  width: 1,
+                ),
                 fillColor: WidgetStateProperty.resolveWith((states) {
                   if (states.contains(WidgetState.selected)) {
                     return AppColors.brandDefault;
                   }
-                  return Colors.grey;
+                  return Colors.transparent;
                 }),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
                 ),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
@@ -160,14 +160,14 @@ class CheckBoxStatus extends StatelessWidget {
                   if (states.contains(WidgetState.selected)) {
                     return AppColors.brandDefault;
                   }
-                  return Colors.grey;
+                  return Colors.transparent;
                 }),
+                side: BorderSide(
+                  color: AppColors.strokeSecondary,
+                  width: 1,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
                 ),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
@@ -216,14 +216,14 @@ class CheckBoxStatus extends StatelessWidget {
                   if (states.contains(WidgetState.selected)) {
                     return AppColors.brandDefault;
                   }
-                  return Colors.grey;
+                  return Colors.transparent;
                 }),
+                side: BorderSide(
+                  color: AppColors.strokeSecondary,
+                  width: 1,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
                 ),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
