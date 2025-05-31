@@ -1,31 +1,22 @@
-import 'enums.dart';
+part of 'payment_tracker.dart';
 
-class InvoicePaymentTracker {
-  final DateTime createdAt;
-  final PaymentStepStatus paymentConfirmationStatus;
-  final PaymentStepStatus paymentProcessingStatus;
-  final PaymentStepStatus paymentReceivedStatus;
-
-  final DateTime paymentConfirmationDueDate;
-  final DateTime paymentConfirmedAt;
-  final DateTime paymentProcessedAt;
-  final DateTime paymentReceivedAt;
-
+class InvoicePaymentTracker extends PaymentTracker {
   const InvoicePaymentTracker({
-    required this.createdAt,
-    required this.paymentConfirmationStatus,
-    required this.paymentProcessingStatus,
-    required this.paymentReceivedStatus,
-    required this.paymentConfirmationDueDate,
-    required this.paymentConfirmedAt,
-    required this.paymentProcessedAt,
-    required this.paymentReceivedAt,
+    required super.createdAt,
+    required super.paymentConfirmationStatus,
+    required super.processPaymentStatus,
+    required super.paymentReceivedStatus,
+    required super.paymentConfirmationDueDate,
+    required super.paymentConfirmedAt,
+    required super.paymentProcessedAt,
+    required super.paymentReceivedAt,
   });
 
+  @override
   InvoicePaymentTracker copyWith({
     DateTime? createdAt,
     PaymentStepStatus? paymentConfirmationStatus,
-    PaymentStepStatus? paymentProcessingStatus,
+    PaymentStepStatus? processPaymentStatus,
     PaymentStepStatus? paymentReceivedStatus,
     DateTime? paymentConfirmationDueDate,
     DateTime? paymentConfirmedAt,
@@ -35,7 +26,7 @@ class InvoicePaymentTracker {
     return InvoicePaymentTracker(
       createdAt: createdAt ?? this.createdAt,
       paymentConfirmationStatus: paymentConfirmationStatus ?? this.paymentConfirmationStatus,
-      paymentProcessingStatus: paymentProcessingStatus ?? this.paymentProcessingStatus,
+      processPaymentStatus: processPaymentStatus ?? this.processPaymentStatus,
       paymentReceivedStatus: paymentReceivedStatus ?? this.paymentReceivedStatus,
       paymentConfirmationDueDate: paymentConfirmationDueDate ?? this.paymentConfirmationDueDate,
       paymentConfirmedAt: paymentConfirmedAt ?? this.paymentConfirmedAt,

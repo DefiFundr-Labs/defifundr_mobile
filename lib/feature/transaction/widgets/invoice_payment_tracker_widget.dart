@@ -1,11 +1,4 @@
-import 'package:defifundr_mobile/core/constants/app_texts.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/extensions/date_time_extension.dart';
-import 'package:defifundr_mobile/feature/transaction/models/enums.dart';
-import 'package:defifundr_mobile/feature/transaction/models/invoice_payment_tracker.dart';
-import 'package:flutter/material.dart';
-
-import 'payment_status_widget.dart';
+part of 'payment_tracker_widget.dart';
 
 class InvoicePaymentTrackerWidget extends StatelessWidget {
   final InvoicePaymentTracker _paymentTracker;
@@ -48,14 +41,14 @@ class InvoicePaymentTrackerWidget extends StatelessWidget {
             },
           ),
           PaymentStatusWidget(
-            status: _paymentTracker.paymentProcessingStatus,
-            title: switch (_paymentTracker.paymentProcessingStatus) {
+            status: _paymentTracker.processPaymentStatus,
+            title: switch (_paymentTracker.processPaymentStatus) {
               PaymentStepStatus.waiting => AppTexts.processClientPayment,
               PaymentStepStatus.processing => AppTexts.processingClientPayment,
               PaymentStepStatus.completed => AppTexts.clientPaymentProcessed,
               PaymentStepStatus.failed => '',
             },
-            description1: switch (_paymentTracker.paymentProcessingStatus) {
+            description1: switch (_paymentTracker.processPaymentStatus) {
               PaymentStepStatus.waiting => null,
               PaymentStepStatus.processing => AppTexts.clientWillGetInvoiceAccess,
               PaymentStepStatus.completed => _paymentTracker.paymentProcessedAt.toFormattedString1(),
@@ -75,9 +68,8 @@ class InvoicePaymentTrackerWidget extends StatelessWidget {
               PaymentStepStatus.completed => _paymentTracker.paymentReceivedAt.toFormattedString1(),
               _ => null,
             },
-            dueDate: _paymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting
-                ? _paymentTracker.paymentConfirmationDueDate.toFormattedString2()
-                : null,
+            dueDate:
+                _paymentTracker.paymentReceivedStatus == PaymentStepStatus.waiting ? _paymentTracker.paymentConfirmationDueDate.toFormattedString2() : null,
           ),
         ],
       ),

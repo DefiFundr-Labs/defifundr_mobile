@@ -1,37 +1,28 @@
-import 'enums.dart';
+part of 'payment_tracker.dart';
 
-class FixedContractPaymentTracker {
-  final DateTime createdAt;
-
+class FixedContractPaymentTracker extends PaymentTracker {
   final PaymentStepStatus clientApprovalStatus;
   final PaymentStepStatus invoiceCreationStatus;
-  final PaymentStepStatus paymentConfirmationStatus;
-  final PaymentStepStatus processPaymentStatus;
-  final PaymentStepStatus paymentReceivedStatus;
-
-  final DateTime paymentConfirmationDueDate;
 
   final DateTime clientApprovedAt;
   final DateTime invoiceCreatedAt;
-  final DateTime paymentConfirmedAt;
-  final DateTime paymentProcessedAt;
-  final DateTime paymentReceivedAt;
 
   const FixedContractPaymentTracker({
-    required this.createdAt,
+    required super.createdAt,
     required this.clientApprovalStatus,
     required this.invoiceCreationStatus,
-    required this.paymentConfirmationStatus,
-    required this.processPaymentStatus,
-    required this.paymentReceivedStatus,
-    required this.paymentConfirmationDueDate,
+    required super.paymentConfirmationStatus,
+    required super.processPaymentStatus,
+    required super.paymentReceivedStatus,
+    required super.paymentConfirmationDueDate,
     required this.clientApprovedAt,
     required this.invoiceCreatedAt,
-    required this.paymentConfirmedAt,
-    required this.paymentProcessedAt,
-    required this.paymentReceivedAt,
+    required super.paymentConfirmedAt,
+    required super.paymentProcessedAt,
+    required super.paymentReceivedAt,
   });
 
+  @override
   FixedContractPaymentTracker copyWith({
     DateTime? createdAt,
     PaymentStepStatus? clientApprovalStatus,

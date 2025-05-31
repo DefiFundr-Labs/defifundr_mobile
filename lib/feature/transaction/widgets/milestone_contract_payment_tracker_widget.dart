@@ -1,10 +1,4 @@
-import 'package:defifundr_mobile/core/constants/app_texts.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/extensions/date_time_extension.dart';
-import 'package:defifundr_mobile/feature/transaction/models/enums.dart';
-import 'package:defifundr_mobile/feature/transaction/models/milestone_contract_payment_tracker.dart';
-import 'package:defifundr_mobile/feature/transaction/widgets/payment_status_widget.dart';
-import 'package:flutter/material.dart';
+part of 'payment_tracker_widget.dart';
 
 class MilestoneContractPaymentTrackerWidget extends StatelessWidget {
   final MilestoneContractPaymentTracker _paymentTracker;
