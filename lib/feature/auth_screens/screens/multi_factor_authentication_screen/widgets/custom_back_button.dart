@@ -11,7 +11,7 @@ class CustomBackButton extends StatelessWidget {
       child: Container(
         width: 40,
         height: 40,
-        alignment: Alignment.center,
+        alignment: Alignment.centerLeft,
         child: Icon(
           Icons.arrow_back_ios_new,
           size: 18,
