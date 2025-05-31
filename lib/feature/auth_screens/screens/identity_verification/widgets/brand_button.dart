@@ -50,6 +50,8 @@ class BrandButton extends StatelessWidget {
                 style: fonts.textBaseSemiBold.copyWith(
                   color: Colors.white,
                   fontFamily: 'Inter',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
       ),

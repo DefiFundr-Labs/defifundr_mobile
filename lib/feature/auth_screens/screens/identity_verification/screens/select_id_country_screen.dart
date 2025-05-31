@@ -2,7 +2,6 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/select_country_info.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/user_info_safe.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
