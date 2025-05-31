@@ -178,36 +178,53 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                         ),
                       ],
                     ),
-
-                    Column(
-                      children: [
-                        SvgPicture.asset(
-                          AppAssets.emptyQuickpayIcon,
-                          width: 200,
-                          height: 200,
-                        ), // should overlap the text below small
-                        Text(
-                          'No quickpay activity yet.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.textPrimary,
-                          ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  AppAssets.emptyQuickpayIcon,
+                                  width: 200,
+                                  height: 200,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  child: Text(
+                                    'No quickpay activity yet.',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.textPrimary,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                'Your quickpay activity will show up here once you receive one.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          'Your quickpay activity will show up here once you receive one.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
-                      ],
-                    ) // should be in the center of the screen
+                      ),
+                    ),
                   ],
                 ),
               ),
