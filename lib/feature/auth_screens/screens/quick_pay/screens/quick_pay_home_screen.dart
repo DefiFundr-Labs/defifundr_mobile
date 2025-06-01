@@ -38,71 +38,108 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
   }
 
   void demoPayment() {
-    quickPays.addAll([
-      QuickPayment(
-        id: '1',
-        status: QuickPaymentsStatus.processing,
-        date: DateTime.now(),
-        amount: BigInt.from(101),
-        currency: 'DAI',
-        description: 'Neurolytix Initial consultation session',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-      QuickPayment(
-        id: '2',
-        status: QuickPaymentsStatus.successful,
-        date: DateTime.now().subtract(const Duration(days: 2)),
-        amount: BigInt.from(21),
-        currency: 'USDC',
-        description: 'MintForge Bug fixes and performance updates',
-        paymentType: QuickPaymentsType.withdrawal,
-      ),
-      QuickPayment(
-        id: '3',
-        status: QuickPaymentsStatus.failed,
-        date: DateTime.now().subtract(const Duration(days: 2)),
-        amount: BigInt.from(200),
-        currency: 'LUSD',
-        description: 'ShopLink Pro UX Audit feedback & report',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-      QuickPayment(
-        id: '4',
-        status: QuickPaymentsStatus.successful,
-        date: DateTime.now().subtract(const Duration(days: 2)),
-        amount: BigInt.from(101),
-        currency: 'DAI',
-        description: 'Brightfolk Payment for consulting services',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-      QuickPayment(
-        id: '5',
-        status: QuickPaymentsStatus.successful,
-        date: DateTime.now().subtract(const Duration(days: 1)),
-        amount: BigInt.from(581),
-        currency: 'USDT',
-        description: 'LoopLabs Transfer for content creation',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-      QuickPayment(
-        id: '6',
-        status: QuickPaymentsStatus.successful,
-        date: DateTime.now().subtract(const Duration(days: 1)),
-        amount: BigInt.from(50),
-        currency: 'EURt',
-        description: 'Paylite Payment for project management',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-      QuickPayment(
-        id: '7',
-        status: QuickPaymentsStatus.successful,
-        date: DateTime.now().subtract(const Duration(days: 1)),
-        amount: BigInt.from(581),
-        currency: 'STARK',
-        description: 'Quikdash Reimbursement for software tools',
-        paymentType: QuickPaymentsType.deposit,
-      ),
-    ]);
+    quickPays.addAll(
+      [
+        QuickPayment(
+          id: '1',
+          status: QuickPaymentsStatus.processing,
+          date: DateTime.now(),
+          amount: BigInt.from(101),
+          currency: 'DAI',
+          description: 'Neurolytix Initial consultation session',
+          paymentType: QuickPaymentsType.deposit,
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '2',
+          status: QuickPaymentsStatus.successful,
+          date: DateTime.now().subtract(const Duration(days: 2)),
+          amount: BigInt.from(21),
+          currency: 'USDC',
+          description: 'MintForge Bug fixes and performance updates',
+          paymentType: QuickPaymentsType.withdrawal,
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          to: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '3',
+          status: QuickPaymentsStatus.failed,
+          date: DateTime.now().subtract(const Duration(days: 2)),
+          amount: BigInt.from(200),
+          currency: 'LUSD',
+          description: 'ShopLink Pro UX Audit feedback & report',
+          paymentType: QuickPaymentsType.deposit,
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '4',
+          status: QuickPaymentsStatus.successful,
+          date: DateTime.now().subtract(const Duration(days: 2)),
+          amount: BigInt.from(101),
+          currency: 'DAI',
+          description: 'Brightfolk Payment for consulting services',
+          paymentType: QuickPaymentsType.deposit,
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '5',
+          status: QuickPaymentsStatus.successful,
+          date: DateTime.now().subtract(const Duration(days: 1)),
+          amount: BigInt.from(581),
+          currency: 'USDT',
+          description: 'LoopLabs Transfer for content creation',
+          paymentType: QuickPaymentsType.deposit,
+          network: 'Ethereum',
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          imageUrl: AppAssets.ethereumLogo,
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '6',
+          status: QuickPaymentsStatus.successful,
+          date: DateTime.now().subtract(const Duration(days: 1)),
+          amount: BigInt.from(50),
+          currency: 'EURt',
+          description: 'Paylite Payment for project management',
+          paymentType: QuickPaymentsType.deposit,
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+        QuickPayment(
+          id: '7',
+          status: QuickPaymentsStatus.successful,
+          date: DateTime.now().subtract(const Duration(days: 1)),
+          amount: BigInt.from(581),
+          currency: 'STARK',
+          description: 'Quikdash Reimbursement for software tools',
+          paymentType: QuickPaymentsType.deposit,
+          from: '0x673D2d7Af5ccd60BA0D72ca222FaE71Ee51D981f',
+          network: 'Ethereum',
+          imageUrl: AppAssets.ethereumLogo,
+          transactionHash:
+              '0x969b0164ea9b8d63a71c976607e1e43edf8bc82c59055dc7d9f8e93ab49f239d',
+        ),
+      ],
+    );
   }
 
   ValueNotifier<bool> isPanelVisible = ValueNotifier(false);
@@ -273,7 +310,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                               padding: const EdgeInsets.only(
                                                   top: 8.0),
                                               child: SvgPicture.asset(
-                                                AppAssets.rectangelSvg,
+                                                AppAssets.rectangleSvg,
                                                 width: 48,
                                                 height: 5,
                                               ),

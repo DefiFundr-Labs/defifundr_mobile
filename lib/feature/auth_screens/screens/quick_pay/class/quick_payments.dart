@@ -8,6 +8,11 @@ class QuickPayment {
   final BigInt amount;
   final String currency;
   final String description;
+  final String network;
+  final String imageUrl;
+  final String transactionHash;
+  final String? from;
+  final String? to;
   final QuickPaymentsType paymentType;
 
   QuickPayment({
@@ -18,7 +23,15 @@ class QuickPayment {
     required this.currency,
     required this.description,
     required this.paymentType,
-  });
+    required this.network,
+    required this.imageUrl,
+    required this.transactionHash,
+    this.from,
+    this.to,
+  }) : assert(
+          from != null || to != null,
+          'Either "from" or "to" must be non-null',
+        );
   @override
   String toString() {
     return 'QuickPayment(id: $id, status: $status, date: $date, amount: $amount, currency: $currency, description: $description, paymentType: $paymentType)';

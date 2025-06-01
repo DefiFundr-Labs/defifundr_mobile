@@ -1,10 +1,12 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
 import 'package:defifundr_mobile/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 
 class FilledQuickpay extends StatefulWidget {
   final List<QuickPayment> quickPays;
@@ -113,76 +115,85 @@ class PaymentTile extends StatelessWidget {
           children: payments.map((payment) {
             return Padding(
               padding: EdgeInsets.only(top: 8, bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset(AppAssets.depositIconSvg),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            ellipsify(word: payment.description, maxLength: 18),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.textPrimary,
-                              fontFamily: 'Inter',
+              child: GestureDetector(
+                onTap: () {
+                  context.pushNamed(
+                    RouteConstants.transactionScreen,
+                    extra: payment,
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SvgPicture.asset(AppAssets.depositIconSvg),
+                        const SizedBox(width: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              ellipsify(
+                                  word: payment.description, maxLength: 18),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.textPrimary,
+                                fontFamily: 'Inter',
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            DateFormat('h:mm a').format(payment.date),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textSecondary,
-                              fontFamily: 'Inter',
+                            const SizedBox(height: 4),
+                            Text(
+                              DateFormat('h:mm a').format(payment.date),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.textSecondary,
+                                fontFamily: 'Inter',
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  // Right side: Amount + Status
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '${payment.paymentType == QuickPaymentsType.deposit ? '+' : '-'}${payment.amount} ${payment.currency}',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textPrimary,
-                          fontFamily: 'Inter',
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.circle,
-                            size: 6,
-                            color: payment.status.textColor,
+                      ],
+                    ),
+
+                    // Right side: Amount + Status
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          '${payment.paymentType == QuickPaymentsType.deposit ? '+' : '-'}${payment.amount} ${payment.currency}',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.textPrimary,
+                            fontFamily: 'Inter',
                           ),
-                          const SizedBox(width: 4),
-                          Text(
-                            payment.status.titleCase,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 6,
                               color: payment.status.textColor,
-                              fontFamily: 'Inter',
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                            const SizedBox(width: 4),
+                            Text(
+                              payment.status.titleCase,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: payment.status.textColor,
+                                fontFamily: 'Inter',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             );
           }).toList(),

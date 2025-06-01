@@ -9,9 +9,12 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/receive_params.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/quick_pay_home_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_done.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_payment_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -245,9 +248,29 @@ class AppRouter {
           path: '/receive-done-screen',
           name: RouteConstants.receivePaymentDoneScreen,
           pageBuilder: (context, state) {
+            final args = state.extra as ReceiveParams;
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const ReceivePaymentDoneScreen(),
+              child: ReceivePaymentDoneScreen(args: args),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/transaction-screen',
+          name: RouteConstants.transactionScreen,
+          pageBuilder: (context, state) {
+            final args = state.extra as QuickPayment;
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: TransactionScreen(args: args),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

@@ -8,6 +8,7 @@ import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/coin_assets.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/receive_params.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -122,7 +123,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     AppTextField(
                       label: 'Title',
                       obscureText: false,
-                      controller: amountController,
+                      controller: titleController,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: AppColors.strokeSecondary.withValues(
@@ -179,7 +180,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                       obscureText: false,
-                      controller: titleController,
+                      controller: amountController,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: AppColors.strokeSecondary.withValues(
@@ -225,7 +226,33 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     selectedCoin.value = allCoinAssets.first;
                     return;
                   }
-                  context.pushNamed(RouteConstants.receivePaymentDoneScreen);
+                  if (titleController.text.isEmpty ||
+                      amountController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Please fill in all fields.',
+                          style: context.theme.textTheme.bodyMedium?.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.redActive,
+                            fontFamily: 'Inter',
+                          ),
+                        ),
+                      ),
+                    );
+                    return;
+                  }
+                  context.pushNamed(
+                    RouteConstants.receivePaymentDoneScreen,
+                    extra: ReceiveParams(
+                      amount: amountController.text,
+                      title: titleController.text,
+                      coinName: selectedCoin.value!.coinName,
+                      assetName: selectedAsset.value!.symbol,
+                      imageUrl: selectedCoin.value!.logoUrl,
+                    ),
+                  );
                 },
               ),
             ),

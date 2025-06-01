@@ -13,7 +13,6 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.theme.colors;
     final fonts = context.theme.fonts;
 
     return SizedBox(
