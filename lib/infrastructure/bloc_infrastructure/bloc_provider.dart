@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/feature/auth_screens/auth_bloc/auth_bloc.dart'
     as feature_auth;
-import 'package:defifundr_mobile/feature/transaction_screen/bloc/transaction_bloc.dart';
+import 'package:defifundr_mobile/feature/transaction_screen/transaction_bloc/transaction_bloc.dart';
 import 'package:defifundr_mobile/infrastructure/web3auth/bloc/auth_bloc.dart'
     as web3auth_bloc;
 import 'package:defifundr_mobile/infrastructure/web3auth/bloc/auth_event.dart'

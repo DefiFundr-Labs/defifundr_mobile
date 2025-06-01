@@ -543,18 +543,4 @@ class _InvoiceAmountExpansionState extends State<_InvoiceAmountExpansion> {
       ],
     );
   }
-
-  Widget _detailRow(String label, Widget value, BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 110,
-          child: Text(label, style: context.textTheme.bodySmall),
-        ),
-        SizedBox(child: value),
-      ],
-    );
-  }
 }

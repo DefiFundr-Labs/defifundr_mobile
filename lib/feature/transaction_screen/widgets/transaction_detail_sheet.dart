@@ -69,17 +69,17 @@ class TransactionDetailSheet extends StatelessWidget {
                   VerticalMargin(24.h),
                   _buildHeader(context),
                   VerticalMargin(24.h),
-                  _buildTransactionDetails(),
+                  _buildTransactionDetails(context),
                   VerticalMargin(24.h),
                   transaction.type == TransactionType.contract
-                      ? _buildTransactionContract()
+                      ? _buildTransactionContract(context)
                       : SizedBox.shrink(),
                   VerticalMargin(24.h),
                   transaction.type == TransactionType.invoice ||
                           transaction.type == TransactionType.contract
-                      ? _buildTransactionTimeline()
+                      ? _buildTransactionTimeline(context)
                       : SizedBox.shrink(),
-                  VerticalMargin(24.h),
+                  VerticalMargin(MediaQuery.sizeOf(context).height * .14.h),
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.only(
@@ -92,7 +92,7 @@ class TransactionDetailSheet extends StatelessWidget {
                       color: theme.scaffoldBackgroundColor,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withAlpha(1),
+                          color: theme.colors.bgB0.withAlpha(1),
                           blurRadius: 10,
                           offset: const Offset(0, -5),
                         ),
@@ -144,36 +144,36 @@ class TransactionDetailSheet extends StatelessWidget {
         ])));
   }
 
-  Container _buildTransactionDetails() {
+  Container _buildTransactionDetails(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 16.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(20),
       ),
       child: child,
     );
   }
 
-  Container _buildTransactionContract() {
+  Container _buildTransactionContract(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 16.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(20),
       ),
       child: contractContent,
     );
   }
 
-  Container _buildTransactionTimeline() {
+  Container _buildTransactionTimeline(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 16.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(20),
       ),
       child: timelineContent,
@@ -189,7 +189,7 @@ class TransactionDetailSheet extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.symmetric(vertical: 32.h),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: theme.colors.bgB0,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
