@@ -13,4 +13,5 @@ class RouteConstants {
   static String verificationConfirmed = 'verificationConfirmed';
   static String quickPayScreen = 'quickPayScreen';
   static String receivePaymentScreen = 'receivePaymentScreen';
+  static String receivePaymentDoneScreen = 'receivePaymentDoneScreen';
 }

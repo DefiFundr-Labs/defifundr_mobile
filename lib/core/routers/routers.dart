@@ -10,6 +10,7 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/quick_pay_home_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_done.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -229,6 +230,24 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: const ReceivePaymentScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/receive-done-screen',
+          name: RouteConstants.receivePaymentDoneScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ReceivePaymentDoneScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

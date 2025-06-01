@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 
-class FilterButton extends StatelessWidget {
+class SmallButton extends StatelessWidget {
   final String text;
   final double? width;
   final VoidCallback onPressed;
@@ -11,8 +11,9 @@ class FilterButton extends StatelessWidget {
   final Color? textColor;
   final Color? backgroundColor;
   final Widget? icon;
+  final double fontSize;
 
-  const FilterButton({
+  const SmallButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -21,6 +22,7 @@ class FilterButton extends StatelessWidget {
     this.isLoading = false,
     this.textColor,
     this.backgroundColor,
+    this.fontSize = 16,
     this.icon,
   });
 
@@ -70,7 +72,7 @@ class FilterButton extends StatelessWidget {
                       style: fonts.textBaseSemiBold.copyWith(
                         color: textColor ?? Colors.white,
                         fontFamily: 'Inter',
-                        fontSize: 16,
+                        fontSize: fontSize,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

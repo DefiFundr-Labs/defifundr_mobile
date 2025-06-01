@@ -3,11 +3,15 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/coin_assets.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ReceivePaymentScreen extends StatefulWidget {
   const ReceivePaymentScreen({super.key});
@@ -18,6 +22,27 @@ class ReceivePaymentScreen extends StatefulWidget {
 
 class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
   TextEditingController titleController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  final ethereumAssets = CoinAssets(
+    coinName: 'Ethereum',
+    logoUrl: AppAssets.ethereumLogo,
+    assets: [Asset(decimals: 6, logoUrl: AppAssets.usdtLogo, symbol: 'USDT')],
+  );
+
+  ValueNotifier<CoinAssets?> selectedCoin = ValueNotifier<CoinAssets?>(null);
+  ValueNotifier<Asset?> selectedAsset = ValueNotifier<Asset?>(null);
+
+  List<CoinAssets> allCoinAssets = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (allCoinAssets.isEmpty) {
+      allCoinAssets = [ethereumAssets];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,11 +118,97 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8 * 1.5),
+                    const SizedBox(height: 8 * 3),
                     AppTextField(
                       label: 'Title',
                       obscureText: false,
+                      controller: amountController,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: AppColors.strokeSecondary.withValues(
+                          alpha: 0.06,
+                        ),
+                      ),
+                      fillColor: AppColors.bgB0,
+                    ),
+                    const SizedBox(height: 8 * 3),
+                    ValueListenableBuilder(
+                        valueListenable: selectedAsset,
+                        builder: (ctx, _, __) {
+                          return ValueListenableBuilder(
+                              valueListenable: selectedCoin,
+                              builder: (ctx, _, __) {
+                                return Column(
+                                  children: [
+                                    SelectPayment(
+                                      title: selectedCoin.value != null
+                                          ? selectedCoin.value!.coinName
+                                          : 'Network',
+                                      iconUrl: selectedCoin.value?.logoUrl,
+                                      titleStyle: selectedCoin.value != null
+                                          ? TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColors.textPrimary,
+                                              fontFamily: 'Inter',
+                                            )
+                                          : null,
+                                    ),
+                                    const SizedBox(height: 8 * 3),
+                                    SelectPayment(
+                                      title: selectedAsset.value != null
+                                          ? selectedAsset.value!.symbol
+                                          : 'Asset',
+                                      iconUrl: selectedAsset.value?.logoUrl,
+                                      titleStyle: selectedAsset.value != null
+                                          ? TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColors.textPrimary,
+                                              fontFamily: 'Inter',
+                                            )
+                                          : null,
+                                    ),
+                                  ],
+                                );
+                              });
+                        }),
+                    const SizedBox(height: 8 * 3),
+                    AppTextField(
+                      label: 'Amount',
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      obscureText: false,
                       controller: titleController,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: AppColors.strokeSecondary.withValues(
+                          alpha: 0.06,
+                        ),
+                      ),
+                      fillColor: AppColors.bgB0,
+                      suffix: Padding(
+                        padding: const EdgeInsets.only(right: 0),
+                        child: Text(
+                          'USDT',
+                          style: context.theme.textTheme.bodyMedium?.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.textSecondary,
+                            fontFamily: 'Inter',
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '≈ \$500',
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textPrimary,
+                        fontFamily: 'Inter',
+                      ),
                     ),
                   ],
                 ),
@@ -107,7 +218,15 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: BrandButton(
                 text: "Continue",
-                onPressed: () {},
+                onPressed: () {
+                  if (selectedAsset.value == null ||
+                      selectedCoin.value == null) {
+                    selectedAsset.value = allCoinAssets.first.assets.first;
+                    selectedCoin.value = allCoinAssets.first;
+                    return;
+                  }
+                  context.pushNamed(RouteConstants.receivePaymentDoneScreen);
+                },
               ),
             ),
           ],

@@ -361,7 +361,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                FilterButton(
+                                                SmallButton(
                                                   backgroundColor: AppColors
                                                       .strokeSecondary
                                                       .withValues(
@@ -372,7 +372,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   text: "Clear all",
                                                   onPressed: () {},
                                                 ),
-                                                FilterButton(
+                                                SmallButton(
                                                   text: "Show results",
                                                   onPressed: () {},
                                                 ),
