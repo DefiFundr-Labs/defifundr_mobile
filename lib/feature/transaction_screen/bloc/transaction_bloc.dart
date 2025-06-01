@@ -105,7 +105,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           fromAddress: '0×6885afa...6f23b3',
           transactionId: '0×6885afa...63b3',
           date: DateTime.now().subtract(const Duration(hours: 2)),
-          contractName: 'MintForge Bug fixes and...',
+          contractName: 'MintForge Bug fixes and UI improvements',
           contractType: 'Fixed Rate',
           invoiceNumber: '#INV-2025-001',
           client: 'Adegboyega Oluwagbemiro',
@@ -139,8 +139,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           fromAddress: '0×6885afa...6f23b3',
           transactionId: '0×6885afa...63b3',
           date: DateTime.now().subtract(const Duration(days: 1)),
-          billedTo: 'Adegboyega Oluwagbemiro',
-          invoiceId: '#INV-2025-001',
+          billedTo: 'Ore Hassan',
+          invoiceId: '#INV-2025-002',
           timeline: [
             TimelineStep(
               title: 'Invoice created',
@@ -154,7 +154,13 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
               completed: true,
             ),
             TimelineStep(
-              title: 'Payment completed',
+              title: 'Payment processed',
+              time:
+                  DateTime.now().subtract(const Duration(days: 1, minutes: 15)),
+              completed: true,
+            ),
+            TimelineStep(
+              title: 'Funds received in your account',
               time: DateTime.now().subtract(const Duration(days: 1)),
               completed: true,
             ),
@@ -235,7 +241,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           fromAddress: '0×6885afa...6f23b3',
           transactionId: '0×6885afa...63b3',
           date: DateTime.now().subtract(const Duration(hours: 2)),
-          contractName: 'MintForge Bug fixes and...',
+          contractName: 'MintForge Bug fixes and UI improvements',
           contractType: 'Fixed Rate',
           invoiceNumber: '#INV-2025-001',
           client: 'Adegboyega Oluwagbemiro',
