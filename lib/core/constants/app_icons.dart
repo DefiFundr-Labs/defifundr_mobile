@@ -28,4 +28,16 @@ class AppIcons {
 
   // App icons
   static String appIcon = '${_baseAssetUrl}appIcon.svg';
+
+  // Transaction icons
+  static String invoice = '${_baseAssetUrl}invoice.svg';
+  static String money = '${_baseAssetUrl}money.svg';
+  static String currencyCircleDollar =
+      '${_baseAssetUrl}currency_circle_dollar.svg';
+  static String handCoin = '${_baseAssetUrl}hand_coin.svg';
+  static String arrowIn = '${_baseAssetUrl}arrow_in.svg';
+  static String arrowOut = '${_baseAssetUrl}arrow_out.svg';
+  static String orangeDot = '${_baseAssetUrl}orange_dot.svg';
+  static String redDot = '${_baseAssetUrl}red_dot.svg';
+  static String greenDot = '${_baseAssetUrl}green_dot.svg';
 }
