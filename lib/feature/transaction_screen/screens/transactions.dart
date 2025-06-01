@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
-import 'package:defifundr_mobile/feature/transaction_screen/bloc/transaction_bloc.dart';
+import 'package:defifundr_mobile/feature/transaction_screen/transaction_bloc/transaction_bloc.dart';
 import 'package:defifundr_mobile/feature/transaction_screen/models/transaction_model.dart';
 import 'package:defifundr_mobile/feature/transaction_screen/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +122,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: AppColors.white,
+                                    color: theme.colors.bgB0,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   padding: const EdgeInsets.symmetric(
@@ -169,7 +169,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
           width: 286.w,
           height: 40.h,
           decoration: BoxDecoration(
-            color: AppColors.transparent,
+            color: context.theme.colors.bgB0,
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextFormField(
@@ -219,7 +219,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             width: 40.w,
             height: 40.h,
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: context.theme.colors.bgB0,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(Icons.filter_list, color: theme.colors.graySecondary),
