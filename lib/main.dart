@@ -16,5 +16,5 @@ void main() => _initializeImportantResources().then((_) => runApp(
     ));
 
 Future<void> _initializeImportantResources() async {
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
 }
