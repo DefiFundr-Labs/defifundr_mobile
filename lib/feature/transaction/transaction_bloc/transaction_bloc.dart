@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/feature/transaction_screen/models/transaction_model.dart';
+import 'package:defifundr_mobile/feature/transaction/models/transaction_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

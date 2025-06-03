@@ -1,9 +1,9 @@
 import 'package:defifundr_mobile/core/widgets/fade_transition_page_router.dart';
-import 'package:defifundr_mobile/feature/transaction_screen/screens/transactions.dart';
+import 'package:defifundr_mobile/feature/transaction/screens/transactions.dart';
 import 'package:go_router/go_router.dart';
-import 'package:defifundr_mobile/feature/transaction_screen/widgets/transaction_detail_sheet.dart';
-import 'package:defifundr_mobile/feature/transaction_screen/screens/transaction_detail_screen.dart';
-import 'package:defifundr_mobile/feature/transaction_screen/models/transaction_model.dart';
+import 'package:defifundr_mobile/feature/transaction/widgets/transaction_detail_sheet.dart';
+import 'package:defifundr_mobile/feature/transaction/screens/transaction_detail_screen.dart';
+import 'package:defifundr_mobile/feature/transaction/models/transaction_model.dart';
 
 class _TransactionPaths {
   final transactions = '/transactions';
