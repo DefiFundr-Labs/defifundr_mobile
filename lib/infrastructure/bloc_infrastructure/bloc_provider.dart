@@ -13,8 +13,12 @@ List<SingleChildWidget> get appProviders {
     ),
     BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(
+
         web3AuthService: context.read<Web3AuthService>(),
       )..add(const InitializeAuth()),
+    ),
+    BlocProvider<TransactionBloc>(
+      create: (context) => TransactionBloc(),
     ),
     BlocProvider<TransactionBloc>(
       create: (context) => TransactionBloc(),
