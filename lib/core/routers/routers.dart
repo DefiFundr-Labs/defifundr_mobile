@@ -6,6 +6,9 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
+import 'package:defifundr_mobile/feature/payment_screens/upcoming_payments/upcoming_payments.dart';
+import 'package:defifundr_mobile/feature/payment_screens/upcoming_payments/invoice.dart';
+import 'package:defifundr_mobile/feature/payment_screens/models/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -133,6 +136,58 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: const ProfileCreatedScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/upcoming-payments',
+          name: RouteConstants.upcomingPayments,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const UpcomingPaymentsScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/invoice',
+          name: RouteConstants.invoice,
+          pageBuilder: (context, state) {
+            final payment = state.extra;
+            if (payment is! Payment) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const Scaffold(
+                    body: Center(child: Text('Error: Payment data not found'))),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc)
+                        .animate(animation),
+                    child: child,
+                  );
+                },
+              );
+            }
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: InvoiceScreen(payment: payment),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
