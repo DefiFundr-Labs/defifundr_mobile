@@ -1,10 +1,10 @@
-part of 'auth_bloc.dart';
+part of 'authentication_bloc.dart';
 
-abstract class AuthEvent extends Equatable {
-  const AuthEvent();
+abstract class AuthenticationEvent extends Equatable {
+  const AuthenticationEvent();
 }
 
-class SubmitEmail extends AuthEvent {
+class SubmitEmail extends AuthenticationEvent {
   final String email;
   const SubmitEmail(this.email);
 
@@ -12,7 +12,7 @@ class SubmitEmail extends AuthEvent {
   List<Object> get props => [email];
 }
 
-class EnterForgotPasswordString extends AuthEvent {
+class EnterForgotPasswordString extends AuthenticationEvent {
   final String passwordString;
   const EnterForgotPasswordString(this.passwordString);
 
@@ -20,7 +20,7 @@ class EnterForgotPasswordString extends AuthEvent {
   List<Object> get props => [passwordString];
 }
 
-class EnterForgotConfirmPasswordString extends AuthEvent {
+class EnterForgotConfirmPasswordString extends AuthenticationEvent {
   final String passwordString;
   const EnterForgotConfirmPasswordString(this.passwordString);
 
@@ -28,28 +28,28 @@ class EnterForgotConfirmPasswordString extends AuthEvent {
   List<Object> get props => [passwordString];
 }
 
-class ToggleForgotPasswordVisibility extends AuthEvent {
+class ToggleForgotPasswordVisibility extends AuthenticationEvent {
   const ToggleForgotPasswordVisibility();
 
   @override
   List<Object> get props => [];
 }
 
-class ToggleForgotConfirmPasswordVisibility extends AuthEvent {
+class ToggleForgotConfirmPasswordVisibility extends AuthenticationEvent {
   const ToggleForgotConfirmPasswordVisibility();
 
   @override
   List<Object> get props => [];
 }
 
-class ResendForgotPasswordOtpEvent extends AuthEvent {
+class ResendForgotPasswordOtpEvent extends AuthenticationEvent {
   const ResendForgotPasswordOtpEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class VerifyForgotPasswordOtpEvent extends AuthEvent {
+class VerifyForgotPasswordOtpEvent extends AuthenticationEvent {
   final String otpCode;
   const VerifyForgotPasswordOtpEvent(this.otpCode);
 

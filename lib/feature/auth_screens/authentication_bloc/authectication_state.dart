@@ -1,17 +1,17 @@
-part of 'auth_bloc.dart';
+part of 'authentication_bloc.dart';
 
-abstract class AuthState extends Equatable {
+abstract class AuthenticationState extends Equatable {
   final ForgotPasswordState? forgotPasswordState;
   @override
   List<Object?> get props => [forgotPasswordState];
-  const AuthState({this.forgotPasswordState});
+  const AuthenticationState({this.forgotPasswordState});
 }
 
-class AuthInitialState extends AuthState {
+class AuthInitialState extends AuthenticationState {
   const AuthInitialState({super.forgotPasswordState});
 }
 
-class AuthSuccessState extends AuthState {
+class AuthSuccessState extends AuthenticationState {
   final String message;
 
   const AuthSuccessState(this.message, {super.forgotPasswordState});
@@ -20,7 +20,7 @@ class AuthSuccessState extends AuthState {
   List<Object?> get props => super.props..add(message);
 }
 
-class AuthErrorState extends AuthState {
+class AuthErrorState extends AuthenticationState {
   final String error;
 
   const AuthErrorState(this.error, {super.forgotPasswordState});
