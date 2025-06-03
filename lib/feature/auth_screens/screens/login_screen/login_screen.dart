@@ -76,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.visiblePassword,
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    _obscurePassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     color: Theme.of(context).colors.graySecondary,
                   ),
                   onPressed: () {
@@ -90,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () => context.pushNamed(RouteConstants.authRoute.personalDetails),
+                  onPressed: () => context
+                      .pushNamed(RouteConstants.authRoute.personalDetails),
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: const Size(0, 0),
@@ -109,7 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 16.h),
               PrimaryButton(
                 text: "Log In",
-                onPressed: () {},
+                onPressed: () {
+                  context.go(RouteConstants.transactionRoute.transactions);
+                },
               ),
               SizedBox(height: 24.h),
               ORWidget(),
