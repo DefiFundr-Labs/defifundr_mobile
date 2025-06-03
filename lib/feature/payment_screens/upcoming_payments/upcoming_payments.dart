@@ -37,7 +37,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
         paymentType: PaymentType.contract,
         estimatedDate: DateTime(2025, 4, 20),
         amount: 256,
-        paymentNetwork: PaymentNetwork.stellar,
+        paymentNetwork: PaymentNetwork.ethereum,
         currency: 'USDT',
         status: PaymentStatus.upcoming,
         icon: AppIcons.invoice, // Example icon
@@ -192,7 +192,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
       isScrollControlled: true,
       constraints: BoxConstraints.loose(
         Size(MediaQuery.of(context).size.width,
-            MediaQuery.of(context).size.height * 0.6),
+            MediaQuery.of(context).size.height * 0.9),
       ),
       builder: (context) => PaymentFilterSheet(),
     );

@@ -38,7 +38,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
@@ -52,76 +52,88 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
             ),
           ),
           const SizedBox(height: 20),
-          Text(
-            'Filter by',
-            style: fontTheme.heading2Bold, // Title style
-          ),
-          const SizedBox(height: 20),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Filter by',
+                    style: fontTheme.heading2Bold, // Title style
+                  ),
+                  const SizedBox(height: 20),
 
-          // Transaction Type Filter Section
-          _buildFilterSection(
-            context,
-            'Transaction type',
-            [
-              _buildCheckboxRow(context, 'All',
-                  _selectedTransactionType == FilterTransactionType.all,
-                  (bool? newValue) {
-                if (newValue == true)
-                  setState(() =>
-                      _selectedTransactionType = FilterTransactionType.all);
-              }),
-              _buildCheckboxRow(context, 'Contract payment',
-                  _selectedTransactionType == FilterTransactionType.contract,
-                  (bool? newValue) {
-                if (newValue == true)
-                  setState(() => _selectedTransactionType =
-                      FilterTransactionType.contract);
-              }),
-              _buildCheckboxRow(context, 'Invoice',
-                  _selectedTransactionType == FilterTransactionType.invoice,
-                  (bool? newValue) {
-                if (newValue == true)
-                  setState(() =>
-                      _selectedTransactionType = FilterTransactionType.invoice);
-              }),
-            ],
-            isExpanded: _isTransactionTypeExpanded,
-            onTap: () {
-              setState(() =>
-                  _isTransactionTypeExpanded = !_isTransactionTypeExpanded);
-            },
-          ),
-          const SizedBox(height: 20),
+                  // Transaction Type Filter Section
+                  _buildFilterSection(
+                    context,
+                    'Transaction type',
+                    [
+                      _buildCheckboxRow(context, 'All',
+                          _selectedTransactionType == FilterTransactionType.all,
+                          (bool? newValue) {
+                        if (newValue == true)
+                          setState(() => _selectedTransactionType =
+                              FilterTransactionType.all);
+                      }),
+                      _buildCheckboxRow(
+                          context,
+                          'Contract payment',
+                          _selectedTransactionType ==
+                              FilterTransactionType.contract, (bool? newValue) {
+                        if (newValue == true)
+                          setState(() => _selectedTransactionType =
+                              FilterTransactionType.contract);
+                      }),
+                      _buildCheckboxRow(
+                          context,
+                          'Invoice',
+                          _selectedTransactionType ==
+                              FilterTransactionType.invoice, (bool? newValue) {
+                        if (newValue == true)
+                          setState(() => _selectedTransactionType =
+                              FilterTransactionType.invoice);
+                      }),
+                    ],
+                    isExpanded: _isTransactionTypeExpanded,
+                    onTap: () {
+                      setState(() => _isTransactionTypeExpanded =
+                          !_isTransactionTypeExpanded);
+                    },
+                  ),
+                  const SizedBox(height: 20),
 
-          // Status Filter Section
-          _buildFilterSection(
-            context,
-            'Status',
-            [
-              _buildStatusChip(
-                  context, 'All', FilterStatus.all, _selectedStatus,
-                  (FilterStatus status) {
-                setState(() => _selectedStatus = status);
-              }),
-              _buildStatusChip(
-                  context, 'Coming', FilterStatus.upcoming, _selectedStatus,
-                  (FilterStatus status) {
-                setState(() => _selectedStatus = status);
-              }, chipColor: colors.blueHover), // Use appropriate color
-              _buildStatusChip(
-                  context, 'Overdue', FilterStatus.overdue, _selectedStatus,
-                  (FilterStatus status) {
-                setState(() => _selectedStatus = status);
-              }, chipColor: colors.orangeHover), // Use appropriate color
-            ],
-            showChips: true,
-            isExpanded: _isStatusExpanded,
-            onTap: () {
-              setState(() => _isStatusExpanded = !_isStatusExpanded);
-            },
+                  // Status Filter Section
+                  _buildFilterSection(
+                    context,
+                    'Status',
+                    [
+                      _buildStatusChip(
+                          context, 'All', FilterStatus.all, _selectedStatus,
+                          (FilterStatus status) {
+                        setState(() => _selectedStatus = status);
+                      }),
+                      _buildStatusChip(context, 'Coming', FilterStatus.upcoming,
+                          _selectedStatus, (FilterStatus status) {
+                        setState(() => _selectedStatus = status);
+                      }, chipColor: colors.blueHover), // Use appropriate color
+                      _buildStatusChip(context, 'Overdue', FilterStatus.overdue,
+                          _selectedStatus, (FilterStatus status) {
+                        setState(() => _selectedStatus = status);
+                      },
+                          chipColor:
+                              colors.orangeHover), // Use appropriate color
+                    ],
+                    showChips: false,
+                    isExpanded: _isStatusExpanded,
+                    onTap: () {
+                      setState(() => _isStatusExpanded = !_isStatusExpanded);
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 30),
-
           // Buttons
           Row(
             children: [
@@ -269,7 +281,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
           }
         },
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(32.0),
             side: BorderSide(
                 color: isSelected
                     ? chipColor ?? colors.brandDefault
