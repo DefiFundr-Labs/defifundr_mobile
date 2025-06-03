@@ -83,8 +83,8 @@ class OnboardingChecklistScreen extends StatelessWidget {
                       Expanded(
                         child: LinearProgressIndicator(
                           value: progress,
-                          color: AppColors.brandActive,
-                          backgroundColor: AppColors.grayTertiary,
+                          color: AppColors.brandDefault,
+                          backgroundColor: AppColors.grayQuaternary,
                         ),
                       ),
                     ],
@@ -95,10 +95,10 @@ class OnboardingChecklistScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color(0x18181B0A), // 4% opacity black
+                      color: AppColors.fillTertiary,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: AppColors.textPrimary,
+                        color: AppColors.brandDefault.withOpacity(0.1),
                       ),
                     ),
                     child: Row(
@@ -107,24 +107,26 @@ class OnboardingChecklistScreen extends StatelessWidget {
                           'assets/svgs/person.svg',
                           width: 26,
                           height: 26,
-                          color: Colors.grey[500],
+                          color:
+                              Colors.grey[500], // keep as is, not in AppColors
                         ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: Text(
                             "Create ${userType.toLowerCase()} account",
-                            style: TextStyle(color: Colors.grey[600]),
+                            style: TextStyle(
+                                color: Colors
+                                    .grey[600]), // keep as is, not in AppColors
                           ),
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 2),
                           decoration: BoxDecoration(
-                            color: AppColors.grayPrimary,
+                            color: AppColors.greenFill,
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: AppColors
-                                  .greenDefault, // Border color same as 'Done' text color
+                              color: AppColors.greenDefault,
                             ),
                           ),
                           child: Text(
@@ -149,16 +151,16 @@ class OnboardingChecklistScreen extends StatelessWidget {
                         opacity: isDisabled ? 0.5 : 1,
                         child: Container(
                           decoration: BoxDecoration(
-                              // color: const Color(0x18181B0A), // 4% opacity black
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black.withOpacity(0.04)),
+                            borderRadius: BorderRadius.circular(12),
+                            color: AppColors.fillTertiary,
+                          ),
                           child: ListTile(
-                            tileColor: AppColors.textPrimary,
+                            tileColor: AppColors.surfaceCard,
                             leading: SvgPicture.asset(
                               step.iconAsset,
                               width: 26,
                               height: 26,
-                              color: AppColors.constantDefaultBorder,
+                              color: AppColors.grayPrimary,
                             ),
                             title: Text(
                               step.title
@@ -170,13 +172,13 @@ class OnboardingChecklistScreen extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 4),
                                     decoration: BoxDecoration(
-                                      color: AppColors.textQuaternary,
+                                      color: AppColors.greenFill,
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Text(
                                       'Done',
                                       style: AppTextStyles.caption.copyWith(
-                                          color: AppColors.successColor),
+                                          color: AppColors.greenDefault),
                                     ),
                                   )
                                 : const Icon(Icons.chevron_right),
