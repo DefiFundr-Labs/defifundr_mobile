@@ -143,10 +143,10 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       backgroundColor: colors.bgB2, // Grey button color
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
+                        borderRadius: BorderRadius.circular(32.0),
                       )),
                   child: Text('Clear all',
-                      style: fontTheme.textBaseBold
+                      style: fontTheme.textBaseMedium
                           ?.copyWith(color: colors.textPrimary)), // Text style
                 ),
               ),
@@ -166,10 +166,10 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                           colors.brandDefault, // Purple button color
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
+                        borderRadius: BorderRadius.circular(32.0),
                       )),
                   child: Text('Show results',
-                      style: fontTheme.textBaseBold
+                      style: fontTheme.textBaseMedium
                           ?.copyWith(color: colors.textWhite)), // Text style
                 ),
               ),
