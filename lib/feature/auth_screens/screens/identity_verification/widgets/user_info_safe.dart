@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
 class UserInfoSafeCard extends StatelessWidget {
   final String svgAsset;
@@ -19,11 +20,15 @@ class UserInfoSafeCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: resolveColor(
+          context: context,
+          lightColor: AppColors.textPrimary.withValues(alpha: 0.04),
+          darkColor: AppColorDark.fillTertiary.withValues(alpha: 0.04),
+        ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -44,10 +49,14 @@ class UserInfoSafeCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
+                    color: resolveColor(
+                      context: context,
+                      lightColor: AppColors.textPrimary,
+                      darkColor: AppColorDark.textPrimary,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 4),

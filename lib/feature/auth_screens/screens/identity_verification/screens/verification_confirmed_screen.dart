@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
 class VerificationConfirmedScreen extends StatefulWidget {
   const VerificationConfirmedScreen({super.key});
@@ -30,8 +31,10 @@ class _VerificationConfirmedScreenState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        AppAssets.verificationProgressSvg,
+                      resolveSvg(
+                        context: context,
+                        lightSvg: AppAssets.verificationProgressSvg,
+                        darkSvg: AppAssets.verificationProgressSvgDark,
                       ),
                       const SizedBox(height: 24),
                       Text(
@@ -40,7 +43,11 @@ class _VerificationConfirmedScreenState
                           fontSize: 24,
                           fontFamily: 'HankenGrotesk',
                           fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
+                          color: resolveColor(
+                            context: context,
+                            lightColor: AppColors.textPrimary,
+                            darkColor: AppColorDark.textPrimary,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),

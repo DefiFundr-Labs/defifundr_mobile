@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,7 +24,11 @@ class InfoCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.textPrimary.withOpacity(0.04),
+          color: resolveColor(
+            context: context,
+            lightColor: AppColors.textPrimary.withValues(alpha: .04),
+            darkColor: AppColorDark.textPrimary.withValues(alpha: .04),
+          ),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -32,6 +37,14 @@ class InfoCard extends StatelessWidget {
               svgAsset,
               width: 24,
               height: 24,
+              colorFilter: ColorFilter.mode(
+                resolveColor(
+                  context: context,
+                  lightColor: AppColors.textPrimary,
+                  darkColor: AppColorDark.textPrimary,
+                ),
+                BlendMode.srcIn,
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -40,21 +53,29 @@ class InfoCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
-                      color: AppColors.textPrimary,
+                      color: resolveColor(
+                        context: context,
+                        lightColor: AppColors.textPrimary,
+                        darkColor: AppColorDark.textPrimary,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
-                      color: AppColors.textPrimary,
+                      color: resolveColor(
+                        context: context,
+                        lightColor: AppColors.textPrimary,
+                        darkColor: AppColorDark.textPrimary,
+                      ),
                     ),
                   ),
                 ],

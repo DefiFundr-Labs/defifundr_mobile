@@ -2,6 +2,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/info_card.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
@@ -47,7 +48,11 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
                         fontSize: 24,
                         fontFamily: 'HankenGrotesk',
                         fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.textPrimary,
+                          darkColor: AppColorDark.textPrimary,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -57,7 +62,11 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
                         fontSize: 14,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
-                        color: AppColors.textSecondary,
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.textSecondary,
+                          darkColor: AppColorDark.textSecondary,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
