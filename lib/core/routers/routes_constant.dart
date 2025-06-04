@@ -8,4 +8,6 @@ class RouteConstants {
   static String addressDetails = 'addressDetails';
   static String profileCreated = 'profileCreated';
   static String accountType = 'accountType';
+  static String fundWallet = 'fundWallet';
+  static String fundWalletDetails = 'fundWalletDetails';
 }
