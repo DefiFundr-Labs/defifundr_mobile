@@ -16,6 +16,7 @@ class AppIcons {
 
   ///Image icons
   static String people = '${_baseImageAssetUrl}people.png';
+
   static String gradientBackground =
       '${_baseImageAssetUrl}gradientBackground.png';
   static String driversCard = '${_baseImageAssetUrl}drivers_card.png';
@@ -24,8 +25,11 @@ class AppIcons {
   static String ethereumIcon = '${_baseAssetUrl}ethereumIcon.svg';
   static String starknetIcon = '${_baseAssetUrl}starknetIcon.svg';
   static String solanaIcon = '${_baseAssetUrl}solanaIcon.svg';
-  static String steller = '${_baseAssetUrl}steller.svg';
+  static String stellar = '${_baseAssetUrl}stellar.svg';
 
+//Payment Icons
+  static String money = '${_baseImageAssetUrl}money.png';
+  static String invoice = '${_baseImageAssetUrl}invoice.png';
   // App icons
   static String appIcon = '${_baseAssetUrl}appIcon.svg';
 }
