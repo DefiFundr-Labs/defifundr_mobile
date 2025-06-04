@@ -304,6 +304,15 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                         ),
                                         child: SvgPicture.asset(
                                           AppAssets.magnifyingGlass,
+                                          colorFilter: ColorFilter.mode(
+                                            resolveColor(
+                                              context: context,
+                                              lightColor: AppColors.textPrimary,
+                                              darkColor:
+                                                  AppColorDark.textPrimary,
+                                            ),
+                                            BlendMode.srcIn,
+                                          ),
                                         ),
                                       ),
                                       prefixIconConstraints:
@@ -389,7 +398,13 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                   fontWeight: FontWeight.w700,
                                                   height: 32 / 24,
                                                   letterSpacing: 0,
-                                                  color: AppColors.textPrimary,
+                                                  color: resolveColor(
+                                                    context: context,
+                                                    lightColor:
+                                                        AppColors.textPrimary,
+                                                    darkColor: AppColorDark
+                                                        .textPrimary,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -405,8 +420,13 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                     fontSize: 16,
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    color:
-                                                        AppColors.textPrimary,
+                                                    color: resolveColor(
+                                                      context: context,
+                                                      lightColor:
+                                                          AppColors.textPrimary,
+                                                      darkColor: AppColorDark
+                                                          .textPrimary,
+                                                    ),
                                                   ),
                                                 ),
                                                 tilePadding: EdgeInsets.zero,
@@ -423,8 +443,15 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                               ),
                                             ),
                                             Divider(
-                                              color: AppColors.strokeSecondary
-                                                  .withValues(alpha: 0.06),
+                                              color: resolveColor(
+                                                context: context,
+                                                lightColor: AppColors
+                                                    .strokeSecondary
+                                                    .withValues(alpha: 0.06),
+                                                darkColor: AppColorDark
+                                                    .strokeSecondary
+                                                    .withValues(alpha: 0.32),
+                                              ),
                                               height: 1,
                                             ),
                                             Theme(
@@ -439,8 +466,13 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                     fontSize: 16,
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    color:
-                                                        AppColors.textPrimary,
+                                                    color: resolveColor(
+                                                      context: context,
+                                                      lightColor:
+                                                          AppColors.textPrimary,
+                                                      darkColor: AppColorDark
+                                                          .textPrimary,
+                                                    ),
                                                   ),
                                                 ),
                                                 tilePadding: EdgeInsets.zero,
@@ -462,13 +494,26 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                       .spaceBetween,
                                               children: [
                                                 SmallButton(
-                                                  backgroundColor: AppColors
-                                                      .strokeSecondary
-                                                      .withValues(
-                                                    alpha: 0.08,
+                                                  backgroundColor: resolveColor(
+                                                    context: context,
+                                                    lightColor: AppColors
+                                                        .strokeSecondary
+                                                        .withValues(
+                                                      alpha: 0.08,
+                                                    ),
+                                                    darkColor: AppColorDark
+                                                        .strokeSecondary
+                                                        .withValues(
+                                                      alpha: 0.8,
+                                                    ),
                                                   ),
-                                                  textColor:
-                                                      AppColors.textPrimary,
+                                                  textColor: resolveColor(
+                                                    context: context,
+                                                    lightColor:
+                                                        AppColors.textPrimary,
+                                                    darkColor: AppColorDark
+                                                        .textPrimary,
+                                                  ),
                                                   text: "Clear all",
                                                   onPressed: () {},
                                                 ),
@@ -510,9 +555,16 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                   ),
                                   child: SvgPicture.asset(
                                     AppAssets.filterIcon,
+                                    colorFilter: ColorFilter.mode(
+                                      resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.textPrimary,
+                                        darkColor: AppColorDark.textPrimary,
+                                      ),
+                                      BlendMode.srcIn,
+                                    ),
                                     width: 20,
                                     height: 20,
-                                    color: Colors.redAccent,
                                   ),
                                 ),
                               ),
@@ -528,8 +580,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                     Stack(
                                       alignment: Alignment.center,
                                       children: [
-                                        SvgPicture.asset(
-                                          AppAssets.emptyQuickpayIcon,
+                                        resolveSvg(
+                                          context: context,
+                                          lightSvg: AppAssets.emptyQuickpayIcon,
+                                          darkSvg:
+                                              AppAssets.emptyQuickpayIconDark,
                                           width: 200,
                                           height: 200,
                                         ),
@@ -542,7 +597,13 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                               fontSize: 14,
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
-                                              color: AppColors.textPrimary,
+                                              color: resolveColor(
+                                                context: context,
+                                                lightColor:
+                                                    AppColors.textPrimary,
+                                                darkColor:
+                                                    AppColorDark.textPrimary,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -558,7 +619,12 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                           fontSize: 14,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
-                                          color: AppColors.textSecondary,
+                                          color: resolveColor(
+                                            context: context,
+                                            lightColor: AppColors.textSecondary,
+                                            darkColor:
+                                                AppColorDark.textSecondary,
+                                          ),
                                         ),
                                       ),
                                     ),

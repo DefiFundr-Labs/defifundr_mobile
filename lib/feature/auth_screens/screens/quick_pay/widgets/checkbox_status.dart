@@ -77,9 +77,9 @@ class CheckBoxStatus extends StatelessWidget {
                             allSelected ? true : (anySelected ? null : false);
                         _notifyChange();
                       },
-                      fillColor: status.fillColor,
-                      borderColor: status.borderColor,
-                      textColor: status.textColor,
+                      fillColor: status.fillColor(context),
+                      borderColor: status.borderColor(context),
+                      textColor: status.textColor(context),
                     ),
                   );
                 }).toList()

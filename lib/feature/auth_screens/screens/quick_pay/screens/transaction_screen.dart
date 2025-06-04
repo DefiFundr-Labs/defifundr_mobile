@@ -1,5 +1,6 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/widgets/filter_buttons.dart';
@@ -22,7 +23,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgB0Base,
+      backgroundColor: resolveColor(
+        context: context,
+        lightColor: AppColors.bgB0Base,
+        darkColor: AppColorDark.bgB0Base,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -38,11 +43,15 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   Center(
                     child: Text(
                       'Quickpay',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.textPrimary,
+                          darkColor: AppColorDark.textPrimary,
+                        ),
                       ),
                     ),
                   ),
@@ -61,7 +70,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: Card(
-                        color: AppColors.bgB1Base,
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.bgB1Base,
+                          darkColor: AppColorDark.bgB1Base,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -97,7 +110,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
-                                color: AppColors.textSecondary,
+                                color: resolveColor(
+                                  context: context,
+                                  lightColor: AppColors.textSecondary,
+                                  darkColor: AppColorDark.textSecondary,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -111,7 +128,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       height: 8 * 2,
                     ),
                     Card(
-                      color: AppColors.bgB1Base,
+                      color: resolveColor(
+                        context: context,
+                        lightColor: AppColors.bgB1Base,
+                        darkColor: AppColorDark.bgB1Base,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -131,15 +152,21 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.textSecondary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textSecondary,
+                                      darkColor: AppColorDark.textSecondary,
+                                    ),
                                   ),
                                 ),
                                 Container(
                                   height: 24,
                                   decoration: BoxDecoration(
-                                    color: widget.args.status.fillColor,
+                                    color:
+                                        widget.args.status.fillColor(context),
                                     border: Border.all(
-                                      color: widget.args.status.borderColor,
+                                      color: widget.args.status
+                                          .borderColor(context),
                                       width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(32),
@@ -152,7 +179,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       Text(
                                         widget.args.status.titleCase,
                                         style: TextStyle(
-                                          color: widget.args.status.textColor,
+                                          color: widget.args.status
+                                              .textColor(context),
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                           fontFamily: 'Inter',
@@ -175,7 +203,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.textSecondary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textSecondary,
+                                      darkColor: AppColorDark.textSecondary,
+                                    ),
                                   ),
                                 ),
                                 Text(
@@ -187,7 +219,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.textPrimary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textPrimary,
+                                      darkColor: AppColorDark.textPrimary,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -204,7 +240,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.textSecondary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textSecondary,
+                                      darkColor: AppColorDark.textSecondary,
+                                    ),
                                   ),
                                 ),
                                 Row(
@@ -224,7 +264,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                         fontSize: 14,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        color: AppColors.textPrimary,
+                                        color: resolveColor(
+                                          context: context,
+                                          lightColor: AppColors.textPrimary,
+                                          darkColor: AppColorDark.textPrimary,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -245,7 +289,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       fontSize: 14,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
-                                      color: AppColors.textSecondary,
+                                      color: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.textSecondary,
+                                        darkColor: AppColorDark.textSecondary,
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -257,7 +305,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       fontSize: 14,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.textPrimary,
+                                      color: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.textPrimary,
+                                        darkColor: AppColorDark.textPrimary,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -276,7 +328,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       fontSize: 14,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
-                                      color: AppColors.textSecondary,
+                                      color: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.textSecondary,
+                                        darkColor: AppColorDark.textSecondary,
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -288,7 +344,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       fontSize: 14,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.textPrimary,
+                                      color: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.textPrimary,
+                                        darkColor: AppColorDark.textPrimary,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -305,7 +365,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.textSecondary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textSecondary,
+                                      darkColor: AppColorDark.textSecondary,
+                                    ),
                                   ),
                                 ),
                                 Text(
@@ -317,7 +381,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.textPrimary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textPrimary,
+                                      darkColor: AppColorDark.textPrimary,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -334,7 +402,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.textSecondary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textSecondary,
+                                      darkColor: AppColorDark.textSecondary,
+                                    ),
                                   ),
                                 ),
                                 Text(
@@ -344,7 +416,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     fontSize: 14,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.textPrimary,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.textPrimary,
+                                      darkColor: AppColorDark.textPrimary,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -364,16 +440,34 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmallButton(
-                    backgroundColor: AppColors.strokeSecondary.withValues(
-                      alpha: 0.08,
+                    backgroundColor: resolveColor(
+                      context: context,
+                      lightColor: AppColors.strokeSecondary.withValues(
+                        alpha: 0.08,
+                      ),
+                      darkColor: AppColors.strokeSecondary.withValues(
+                        alpha: 0.8,
+                      ),
                     ),
                     icon: SvgPicture.asset(
                       AppAssets.headsetSvg,
                       width: 20,
                       height: 20,
+                      colorFilter: ColorFilter.mode(
+                        resolveColor(
+                          context: context,
+                          lightColor: AppColors.textPrimary,
+                          darkColor: AppColorDark.textPrimary,
+                        ),
+                        BlendMode.srcIn,
+                      ),
                     ),
                     fontSize: 14,
-                    textColor: AppColors.textPrimary,
+                    textColor: resolveColor(
+                      context: context,
+                      lightColor: AppColors.textPrimary,
+                      darkColor: AppColorDark.textPrimary,
+                    ),
                     text: "Help centre",
                     onPressed: () {},
                   ),

@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 
@@ -66,7 +67,11 @@ class StatusCheckboxRow extends StatelessWidget {
               return Colors.transparent;
             }),
             side: BorderSide(
-              color: AppColors.strokeSecondary,
+              color: resolveColor(
+                context: context,
+                lightColor: AppColors.strokeSecondary,
+                darkColor: AppColorDark.strokeSecondary.withValues(alpha: 0.32),
+              ),
               width: 1,
             ),
             shape: RoundedRectangleBorder(

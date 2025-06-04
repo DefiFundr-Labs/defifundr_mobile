@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/coin_assets.dart';
@@ -47,7 +46,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgB0Base,
+      backgroundColor: resolveColor(
+        context: context,
+        lightColor: AppColors.bgB0Base,
+        darkColor: AppColorDark.bgB0Base,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -62,12 +65,26 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color: AppColors.contrastBlack),
+                      border: Border.all(
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.contrastBlack,
+                          darkColor: AppColorDark.contrastBlack,
+                        ),
+                      ),
                     ),
                     child: Row(
                       children: [
                         SvgPicture.asset(
                           AppAssets.questionSvg,
+                          colorFilter: ColorFilter.mode(
+                            resolveColor(
+                              context: context,
+                              lightColor: AppColors.textPrimary,
+                              darkColor: AppColorDark.textPrimary,
+                            ),
+                            BlendMode.srcIn,
+                          ),
                           width: 20,
                           height: 20,
                         ),
@@ -78,7 +95,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'Inter',
-                            color: AppColors.textPrimary,
+                            color: resolveColor(
+                              context: context,
+                              lightColor: AppColors.textPrimary,
+                              darkColor: AppColorDark.textPrimary,
+                            ),
                           ),
                         ),
                       ],
@@ -102,7 +123,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                           fontSize: 24,
                           fontFamily: 'HankenGrotesk',
                           fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
+                          color: resolveColor(
+                            context: context,
+                            lightColor: AppColors.textPrimary,
+                            darkColor: AppColorDark.textPrimary,
+                          ),
                         ),
                       ),
                     ),
@@ -115,7 +140,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                           fontSize: 14,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
-                          color: AppColors.textSecondary,
+                          color: resolveColor(
+                            context: context,
+                            lightColor: AppColors.textSecondary,
+                            darkColor: AppColorDark.textSecondary,
+                          ),
                         ),
                       ),
                     ),
@@ -130,7 +159,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                           alpha: 0.06,
                         ),
                       ),
-                      fillColor: AppColors.bgB0,
+                      fillColor: resolveColor(
+                        context: context,
+                        lightColor: AppColors.bgB1Base,
+                        darkColor: AppColorDark.bgB1Base,
+                      ),
                     ),
                     const SizedBox(height: 8 * 3),
                     ValueListenableBuilder(
@@ -150,7 +183,13 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                                           ? TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
-                                              color: AppColors.textPrimary,
+                                              color: resolveColor(
+                                                context: context,
+                                                lightColor:
+                                                    AppColors.textPrimary,
+                                                darkColor:
+                                                    AppColorDark.textPrimary,
+                                              ),
                                               fontFamily: 'Inter',
                                             )
                                           : null,
@@ -165,7 +204,13 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                                           ? TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
-                                              color: AppColors.textPrimary,
+                                              color: resolveColor(
+                                                context: context,
+                                                lightColor:
+                                                    AppColors.textPrimary,
+                                                darkColor:
+                                                    AppColorDark.textPrimary,
+                                              ),
                                               fontFamily: 'Inter',
                                             )
                                           : null,
@@ -187,7 +232,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                           alpha: 0.06,
                         ),
                       ),
-                      fillColor: AppColors.bgB0,
+                      fillColor: resolveColor(
+                        context: context,
+                        lightColor: AppColors.bgB1Base,
+                        darkColor: AppColorDark.bgB1Base,
+                      ),
                       suffix: Padding(
                         padding: const EdgeInsets.only(right: 0),
                         child: Text(
@@ -207,7 +256,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       style: context.theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.textPrimary,
+                        color: resolveColor(
+                          context: context,
+                          lightColor: AppColors.textPrimary,
+                          darkColor: AppColorDark.textPrimary,
+                        ),
                         fontFamily: 'Inter',
                       ),
                     ),

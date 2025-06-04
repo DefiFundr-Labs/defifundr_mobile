@@ -121,6 +121,7 @@ class AppColors {
   static const Color contrastBlack = Color(0xFF18181B);
   static const Color contrastWhite = Color(0xFFFFFFFF);
   static const Color strokeSecondary = Color(0x0F18181B);
+  static const Color strokePrimary = Color(0x0F18181B);
   static const Color fillTertiary = Color(0x0A18181B);
 }
 

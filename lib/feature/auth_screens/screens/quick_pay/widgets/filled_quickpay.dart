@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
 import 'package:defifundr_mobile/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,13 @@ class _FilledQuickpayState extends State<FilledQuickpay> {
                   Expanded(
                     child: Divider(
                       thickness: 1,
-                      color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+                      color: resolveColor(
+                        context: context,
+                        lightColor:
+                            AppColors.strokeSecondary.withValues(alpha: 0.12),
+                        darkColor: AppColorDark.strokeSecondary
+                            .withValues(alpha: 0.32),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -83,7 +90,13 @@ class _FilledQuickpayState extends State<FilledQuickpay> {
                   Expanded(
                     child: Divider(
                       thickness: 1,
-                      color: AppColors.strokeSecondary.withValues(alpha: 0.12),
+                      color: resolveColor(
+                        context: context,
+                        lightColor:
+                            AppColors.strokeSecondary.withValues(alpha: 0.12),
+                        darkColor: AppColorDark.strokeSecondary
+                            .withValues(alpha: 0.32),
+                      ),
                     ),
                   ),
                 ],
@@ -108,7 +121,11 @@ class PaymentTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      color: AppColors.bgB1Base,
+      color: resolveColor(
+        context: context,
+        lightColor: AppColors.bgB1Base,
+        darkColor: AppColorDark.bgB1Base,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -135,20 +152,28 @@ class PaymentTile extends StatelessWidget {
                             Text(
                               ellipsify(
                                   word: payment.description, maxLength: 18),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.textPrimary,
+                                color: resolveColor(
+                                  context: context,
+                                  lightColor: AppColors.textPrimary,
+                                  darkColor: AppColorDark.textPrimary,
+                                ),
                                 fontFamily: 'Inter',
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               DateFormat('h:mm a').format(payment.date),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                color: AppColors.textSecondary,
+                                color: resolveColor(
+                                  context: context,
+                                  lightColor: AppColors.textSecondary,
+                                  darkColor: AppColorDark.textSecondary,
+                                ),
                                 fontFamily: 'Inter',
                               ),
                             ),
@@ -163,10 +188,14 @@ class PaymentTile extends StatelessWidget {
                       children: [
                         Text(
                           '${payment.paymentType == QuickPaymentsType.deposit ? '+' : '-'}${payment.amount} ${payment.currency}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.textPrimary,
+                            color: resolveColor(
+                              context: context,
+                              lightColor: AppColors.textPrimary,
+                              darkColor: AppColorDark.textPrimary,
+                            ),
                             fontFamily: 'Inter',
                           ),
                         ),
@@ -176,7 +205,7 @@ class PaymentTile extends StatelessWidget {
                             Icon(
                               Icons.circle,
                               size: 6,
-                              color: payment.status.textColor,
+                              color: payment.status.textColor(context),
                             ),
                             const SizedBox(width: 4),
                             Text(
@@ -184,7 +213,7 @@ class PaymentTile extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
-                                color: payment.status.textColor,
+                                color: payment.status.textColor(context),
                                 fontFamily: 'Inter',
                               ),
                             ),

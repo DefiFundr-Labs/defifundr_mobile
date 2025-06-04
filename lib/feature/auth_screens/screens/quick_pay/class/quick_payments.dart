@@ -73,36 +73,39 @@ extension QuickPaymentsStatusExtension on QuickPaymentsStatus {
     return name[0].toUpperCase() + name.substring(1);
   }
 
-  Color get fillColor {
+  Color fillColor(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return AppColors.orangeFill;
+        return isDark ? AppColorDark.orangeFill : AppColors.orangeFill;
       case QuickPaymentsStatus.failed:
-        return AppColors.redFill;
+        return isDark ? AppColorDark.redFill : AppColors.redFill;
       case QuickPaymentsStatus.successful:
-        return AppColors.greenFill;
+        return isDark ? AppColorDark.greenFill : AppColors.greenFill;
     }
   }
 
-  Color get borderColor {
+  Color borderColor(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return AppColors.orangeStroke;
+        return isDark ? AppColorDark.orangeStroke : AppColors.orangeStroke;
       case QuickPaymentsStatus.failed:
-        return AppColors.redStroke;
+        return isDark ? AppColorDark.redStroke : AppColors.redStroke;
       case QuickPaymentsStatus.successful:
-        return AppColors.greenStroke;
+        return isDark ? AppColorDark.greenStroke : AppColors.greenStroke;
     }
   }
 
-  Color get textColor {
+  Color textColor(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return AppColors.orangeDefault;
+        return isDark ? AppColorDark.orangeDefault : AppColors.orangeDefault;
       case QuickPaymentsStatus.failed:
-        return AppColors.redActive;
+        return isDark ? AppColorDark.redActive : AppColors.redActive;
       case QuickPaymentsStatus.successful:
-        return AppColors.greenActive;
+        return isDark ? AppColorDark.greenActive : AppColors.greenActive;
     }
   }
 }
