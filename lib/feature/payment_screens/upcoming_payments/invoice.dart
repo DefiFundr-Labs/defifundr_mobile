@@ -19,8 +19,8 @@ class DashedLinePainter extends CustomPainter {
   DashedLinePainter({
     this.color = Colors.grey,
     this.strokeWidth = 1.0,
-    this.dashWidth = 5.0,
-    this.dashSpace = 5.0,
+    this.dashWidth = 8.0,
+    this.dashSpace = 4.0,
   });
 
   @override
@@ -153,14 +153,14 @@ class InvoiceScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 28,
-                      backgroundColor:
-                          payment.iconBackgroundColor, // Use dynamic color
-                      child: SvgPicture.asset(
-                        payment.icon, // Use dynamic icon path
-                        height: 30, // Match previous size
-                        width: 30, // Match previous size
-                        colorFilter: ColorFilter.mode(
-                            colors.textWhite, BlendMode.srcIn), // Apply color
+                      backgroundColor: payment.iconBackgroundColor,
+                      child: Center(
+                        child: Image.asset(
+                          payment.icon,
+                          height: 30,
+                          width: 30,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -170,7 +170,7 @@ class InvoiceScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '\$ ${payment.amount * 0.96}', // Assuming a simple conversion rate, replace with actual logic
+                      '≈ \$${payment.amount * 0.96}', // Added approximate sign
                       style: fontTheme.textBaseRegular.copyWith(
                           fontSize: 16,
                           color:
@@ -195,10 +195,10 @@ class InvoiceScreen extends StatelessWidget {
                         statusText, // Use dynamic status text
                         valueColor: statusColor, // Use dynamic status color
                         showBubble: true), // Example status, match image
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 30),
                     _buildDetailRow(context, 'Est. arrival date',
                         formattedDate), // Use dynamic formatted date
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 30),
                     _buildDetailRow(
                         context,
                         'Network',
@@ -224,10 +224,10 @@ class InvoiceScreen extends StatelessWidget {
                         '#INV-2025-001', // Invoice number not in Payment model, keeping placeholder or replace with actual data
                         showLinkIcon:
                             true), // Example invoice number, match image
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 30),
                     _buildDetailRow(
                         context, 'Title', payment.title), // Use dynamic title
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 30),
                     _buildDetailRow(context, 'Client',
                         'Adegboyega Oluwagbemiro'), // Client name not in Payment model, keeping placeholder or replace with actual data
                   ],
@@ -237,7 +237,8 @@ class InvoiceScreen extends StatelessWidget {
 
               // Timeline/Status History Section (Keeping static for now as timeline details are not in Payment model)
               Container(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 24, bottom: 24),
                 decoration: BoxDecoration(
                   color: colors.bgB0, // White card background
                   borderRadius: BorderRadius.circular(16.0),
@@ -245,7 +246,6 @@ class InvoiceScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
                     // Timeline items - these would typically be dynamic
                     _buildTimelineItem(
                       context,
@@ -254,15 +254,6 @@ class InvoiceScreen extends StatelessWidget {
                       '20 April 2025, 04:40 PM',
                       isLast: false,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 12.0), // Adjust padding to align with icon
-                      child: DashedVerticalDivider(
-                          height: 24, // Adjust height as needed for spacing
-                          color:
-                              colors.greenDefault // Green line after completed
-                          ),
-                    ),
                     _buildTimelineItem(
                       context,
                       TimelineStatus.current, // Status: Current
@@ -270,30 +261,12 @@ class InvoiceScreen extends StatelessWidget {
                       'Your client will get invoice access before\nit is due on 31 May 2025.',
                       isLast: false,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 12.0), // Adjust padding to align with icon
-                      child: DashedVerticalDivider(
-                          height: 24, // Adjust height as needed for spacing
-                          color:
-                              colors.strokeSecondary // Grey line after current
-                          ),
-                    ),
                     _buildTimelineItem(
                       context,
                       TimelineStatus.future, // Status: Future
                       'Process your client payment',
                       '',
                       isLast: false,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 12.0), // Adjust padding to align with icon
-                      child: DashedVerticalDivider(
-                          height: 24, // Adjust height as needed for spacing
-                          color:
-                              colors.strokeSecondary // Grey line after future
-                          ),
                     ),
                     _buildTimelineItem(
                       context,
@@ -377,9 +350,10 @@ class InvoiceScreen extends StatelessWidget {
                 ),
                 child: Text(
                   value,
-                  style: fontTheme.textSmRegular.copyWith(
-                      color: valueColor ?? colors.brandDefault,
-                      fontSize: 12), // Colored text for status
+                  style: fontTheme.textBaseSemiBold.copyWith(
+                    color: valueColor ?? colors.brandDefault,
+                    fontSize: 12,
+                  ), // Colored text for status
                 ),
               )
             else
@@ -387,8 +361,7 @@ class InvoiceScreen extends StatelessWidget {
                 label == 'Network'
                     ? networkText
                     : value, // Use dynamic network text or original value
-                style:
-                    fontTheme.textBaseRegular, // Default text style for value
+                style: fontTheme.textBaseMedium, // Default text style for value
               ),
             if (showLinkIcon) ...[
               const SizedBox(width: 4),
@@ -420,41 +393,52 @@ class InvoiceScreen extends StatelessWidget {
       case TimelineStatus.current:
         icon = Icons.schedule;
         iconColor = colors.orangeDefault;
-        // Line after current item is grey (default)
+        lineColor = colors.grayTertiary; // Darker grey line after current item
         break;
       case TimelineStatus.future:
         icon = Icons.circle_outlined;
         iconColor = colors.grayTertiary;
-        // Line after future item is grey (default)
+        lineColor = colors.grayTertiary; // Darker grey line after future item
         break;
     }
 
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Column(
-            children: [
-              Icon(icon, color: iconColor, size: 24),
-            ],
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               children: [
-                Text(title, style: fontTheme.textBaseMedium), // Bold title
-                if (subtitle.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(subtitle,
-                      style: fontTheme.textSmRegular.copyWith(
-                          color: colors.textSecondary)), // Grey subtitle
-                ],
+                Icon(icon, color: iconColor, size: 24),
+                if (!isLast)
+                  Container(
+                    width: 0.5, // Line thickness
+                    height: 32, // Match the gap height
+                    color: lineColor, // Use dynamic line color
+                  ),
               ],
             ),
-          ),
-        ],
-      ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: fontTheme.textBaseMedium), // Bold title
+                  if (subtitle.isNotEmpty) ...[
+                    const SizedBox(
+                        height: 2), // Reduced space between title and subtitle
+                    Text(subtitle,
+                        style: fontTheme.textSmRegular.copyWith(
+                            color: colors.textSecondary)), // Grey subtitle
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
+        // if (!isLast)
+        //   const SizedBox(height: 32), // Added spacing between timeline items
+      ],
     );
   }
 }

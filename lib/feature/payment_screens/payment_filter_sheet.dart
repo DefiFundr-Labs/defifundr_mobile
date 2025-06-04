@@ -32,7 +32,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Container(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
         color: colors.bgB0, // Background color from theme
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),

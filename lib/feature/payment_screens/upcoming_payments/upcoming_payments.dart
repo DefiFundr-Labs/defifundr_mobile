@@ -1,6 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import '../widgets/payment_item_card.dart';
 import '../models/payment.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar_header.dart';
@@ -22,15 +24,28 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
   FilterTransactionType _currentTransactionFilter = FilterTransactionType.all;
   FilterStatus _currentStatusFilter = FilterStatus.all;
 
+  TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    _allPayments = _dummyPayments();
-    _applyFilters();
+    _searchController.addListener(_onSearchChanged);
   }
 
-  // Dummy data based on the image
-  List<Payment> _dummyPayments() {
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    setState(() {
+      _applyFilters();
+    });
+  }
+
+  List<Payment> _createDummyPayments(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColorExtension>()!;
     return [
       Payment(
         title: 'Neurolytix Initial consul...',
@@ -40,8 +55,8 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
         paymentNetwork: PaymentNetwork.ethereum,
         currency: 'USDT',
         status: PaymentStatus.upcoming,
-        icon: AppIcons.invoice, // Example icon
-        iconBackgroundColor: Colors.deepOrange, // Example color
+        icon: AppIcons.invoice,
+        iconBackgroundColor: colors.orangeDefault,
       ),
       Payment(
         title: 'MintForge Bug fixes an...',
@@ -51,8 +66,8 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
         amount: 65,
         currency: 'USDT',
         status: PaymentStatus.upcoming,
-        icon: AppIcons.money, // Example icon
-        iconBackgroundColor: Colors.deepPurple, // Example color
+        icon: AppIcons.money,
+        iconBackgroundColor: colors.brandDefault,
       ),
       Payment(
         title: 'ShopLink Pro UX Audit f...',
@@ -62,8 +77,8 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
         amount: 72,
         currency: 'USDT',
         status: PaymentStatus.overdue,
-        icon: AppIcons.invoice, // Example icon
-        iconBackgroundColor: Colors.deepOrange, // Example color
+        icon: AppIcons.invoice,
+        iconBackgroundColor: colors.orangeDefault,
       ),
       Payment(
         title: 'Brightfolk Payment for c...',
@@ -73,8 +88,8 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
         amount: 50,
         currency: 'EURt',
         status: PaymentStatus.overdue,
-        icon: AppIcons.money, // Example icon
-        iconBackgroundColor: Colors.deepPurple, // Example color
+        icon: AppIcons.money,
+        iconBackgroundColor: colors.brandDefault,
       ),
     ];
   }
@@ -83,6 +98,13 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
     final textTheme = context.theme.textTheme;
+
+    // Initialize payments if empty
+    if (_allPayments.isEmpty) {
+      _allPayments = _createDummyPayments(context);
+      _applyFilters();
+    }
+
     return DefaultTextStyle(
       style: TextStyle(fontFamily: 'Inter'),
       child: Scaffold(
@@ -125,10 +147,18 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: TextField(
+                          controller: _searchController,
                           decoration: InputDecoration(
-                            hintText: 'Search payments...',
+                            hintText: 'Search',
+                            hintStyle: TextStyle(fontSize: 16.0),
                             prefixIcon: const Icon(Icons.search),
                             border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(14)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(14)),
+                            focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(14)),
                             filled: true,
@@ -192,9 +222,22 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
       isScrollControlled: true,
       constraints: BoxConstraints.loose(
         Size(MediaQuery.of(context).size.width,
-            MediaQuery.of(context).size.height * 0.9),
+            MediaQuery.of(context).size.height * 0.60),
       ),
-      builder: (context) => PaymentFilterSheet(),
+      backgroundColor: Colors.transparent,
+      builder: (context) => BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context)
+                .extension<AppColorExtension>()!
+                .bgB0
+                .withOpacity(0.8),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: PaymentFilterSheet(),
+        ),
+      ),
     );
 
     if (selectedFilters != null) {
@@ -207,7 +250,19 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
   }
 
   void _applyFilters() {
+    final searchQuery = _searchController.text.toLowerCase();
     _filteredPayments = _allPayments.where((payment) {
+      // Check if the search query matches any relevant parameter
+      final titleMatch = payment.title.toLowerCase().contains(searchQuery);
+      final typeMatch =
+          payment.paymentType.name.toLowerCase().contains(searchQuery);
+      final networkMatch =
+          payment.paymentNetwork.name.toLowerCase().contains(searchQuery);
+      final currencyMatch =
+          payment.currency.toLowerCase().contains(searchQuery);
+      final statusSearchMatch =
+          payment.status.name.toLowerCase().contains(searchQuery);
+
       final transactionMatch =
           _currentTransactionFilter == FilterTransactionType.all ||
               payment.paymentType.name == _currentTransactionFilter.name;
@@ -215,7 +270,14 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
       final statusMatch = _currentStatusFilter == FilterStatus.all ||
           payment.status.name == _currentStatusFilter.name;
 
-      return transactionMatch && statusMatch;
+      // Combine search match with filter selections
+      final searchMatch = titleMatch ||
+          typeMatch ||
+          networkMatch ||
+          currencyMatch ||
+          statusSearchMatch;
+
+      return searchMatch && transactionMatch && statusMatch;
     }).toList();
   }
 }

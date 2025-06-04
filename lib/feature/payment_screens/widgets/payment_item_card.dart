@@ -1,7 +1,8 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart'; // You might need to add the intl package to your pubspec.yaml
 import '../models/payment.dart';
+import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 
 class PaymentItemCard extends StatelessWidget {
   final Payment payment;
@@ -12,17 +13,18 @@ class PaymentItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final colorScheme = theme.colorScheme;
+    final colors = theme.extension<AppColorExtension>()!;
 
     // Determine status color
     Color statusColor;
     switch (payment.status) {
       case PaymentStatus.upcoming:
         statusColor =
-            colorScheme.primary; // Example: Use primary color for upcoming
+            colors.blueActive; // Example: Use primary color for upcoming
         break;
       case PaymentStatus.overdue:
-        statusColor = colorScheme.error; // Example: Use error color for overdue
+        statusColor =
+            colors.orangeActive; // Example: Use error color for overdue
         break;
     }
 
@@ -43,20 +45,22 @@ class PaymentItemCard extends StatelessWidget {
           children: [
             // Icon
             Container(
-              width: 48,
-              height: 48,
+              width: 36,
+              height: 36,
               decoration: BoxDecoration(
                 color: payment.iconBackgroundColor,
                 shape: BoxShape.circle,
               ),
-              child: SvgPicture.asset(
-                payment.icon, // Use dynamic icon path
-                height: 16, // Match previous size
-                width: 16, // Match previous size
-                // Apply color
+              child: Center(
+                child: Image.asset(
+                  payment.icon,
+                  height: 16,
+                  width: 16,
+                  color: Colors.white,
+                ),
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 14),
             // Payment Details (Title and Date)
             Expanded(
               child: Column(
@@ -65,14 +69,16 @@ class PaymentItemCard extends StatelessWidget {
                 children: [
                   Text(
                     payment.title,
-                    style: textTheme.titleMedium, // Adjust text style as needed
+                    style: context.textTheme.bodyMedium?.copyWith(
+                        fontWeight:
+                            FontWeight.w600), // Adjust text style as needed
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     'Est. date: $formattedDate',
-                    style: textTheme.bodySmall?.copyWith(
+                    style: textTheme.labelMedium?.copyWith(
                         color: textTheme.bodySmall?.color
                             ?.withOpacity(0.7)), // Adjust text style as needed
                   ),
@@ -87,15 +93,15 @@ class PaymentItemCard extends StatelessWidget {
               children: [
                 Text(
                   '${payment.amount} ${payment.currency}',
-                  style: textTheme.titleMedium, // Adjust text style as needed
+                  style: textTheme.titleSmall, // Adjust text style as needed
                 ),
                 const SizedBox(height: 4),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      width: 8,
-                      height: 8,
+                      width: 6,
+                      height: 6,
                       decoration: BoxDecoration(
                         color: statusColor,
                         shape: BoxShape.circle,
@@ -107,6 +113,7 @@ class PaymentItemCard extends StatelessWidget {
                           ? 'In 7 days'
                           : 'Overdue', // You might want to calculate days dynamically
                       style: textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w600,
                           color: statusColor), // Adjust text style as needed
                     ),
                   ],
