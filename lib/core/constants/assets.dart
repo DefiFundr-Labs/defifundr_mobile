@@ -66,4 +66,20 @@ class AppAssets {
       '$defifundrImagePath/verificationProgress.svg';
   static const verificationProgressSvgDark =
       '$defifundrImagePath/verificationProgressDark.svg';
+
+  // Quick Pay
+  static const questionSvg = '$defifundrImagePath/question_svg.svg';
+  static const magnifyingGlass = '$defifundrImagePath/MagnifyingGlass.svg';
+  static const filterIcon = '$defifundrImagePath/filter.svg';
+  static const emptyQuickpayIcon =
+      '$defifundrImagePath/empty_quickpay_icon.svg';
+  static const depositIconSvg = '$defifundrImagePath/deposit_svg.svg';
+  static const rectangleSvg = '$defifundrImagePath/rectangle.svg';
+  static const ethereumLogo = '$defifundrImagePath/eth.svg';
+  static const usdtLogo = '$defifundrImagePath/usdt.svg';
+  static const qrCodeSvg = '$defifundrImagePath/QrCode.svg';
+  static const linkSvg = '$defifundrImagePath/Link.svg';
+  static const copySvg = '$defifundrImagePath/Copy.svg';
+  static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
+  static const headsetSvg = '$defifundrImagePath/Headset.svg';
 }

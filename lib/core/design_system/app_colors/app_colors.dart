@@ -74,6 +74,8 @@ class AppColors {
   static const Color bgB1 = Color(0xFFF7F7F7);
   static const Color bgB2 = Color(0xFFEEEEEE);
   static const Color bgB3 = Color(0xFFE6E6E6);
+  static const Color bgB0Base = Color(0xFFF7F7F8);
+  static const Color bgB1Base = Color(0xFFFFFFFF);
 
   // Surface Colors
   static const Color surface = Color(0xFFF2F2F2);
@@ -196,6 +198,8 @@ class AppColorDark {
   static const Color bgB1 = Color(0xFF18181B);
   static const Color bgB2 = Color(0xFF262626);
   static const Color bgB3 = Color(0xFF333333);
+  static const Color bgB1Base = Color(0xFF18181B);
+  static const Color bgB0Base = Color(0xFF09090B);
 
   // Surface Colors
   static const Color surface = Color(0xFF000003);
