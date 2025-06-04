@@ -33,7 +33,7 @@ class PaymentItemCard extends StatelessWidget {
         DateFormat('dd MMMM yyyy').format(payment.estimatedDate);
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
