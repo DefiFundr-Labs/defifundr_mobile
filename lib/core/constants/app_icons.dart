@@ -25,6 +25,7 @@ class AppIcons {
   static String starknetIcon = '${_baseAssetUrl}starknetIcon.svg';
   static String solanaIcon = '${_baseAssetUrl}solanaIcon.svg';
   static String steller = '${_baseAssetUrl}steller.svg';
+  static String qrcode = '${_baseImageAssetUrl}qr-code.svg';
 
   // App icons
   static String appIcon = '${_baseAssetUrl}appIcon.svg';
