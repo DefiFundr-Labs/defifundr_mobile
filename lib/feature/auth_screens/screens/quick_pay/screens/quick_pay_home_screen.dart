@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/class/quick_payments.dart';
@@ -147,7 +148,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgB0Base,
+      backgroundColor: resolveColor(
+        context: context,
+        lightColor: AppColors.bgB0Base,
+        darkColor: AppColorDark.bgB0Base,
+      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -163,10 +168,18 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                         const CustomBackButton(),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            border: Border.all(color: AppColors.contrastBlack),
+                            border: Border.all(
+                              color: resolveColor(
+                                context: context,
+                                lightColor: AppColors.contrastBlack,
+                                darkColor: AppColorDark.contrastBlack,
+                              ),
+                            ),
                           ),
                           child: Row(
                             children: [
@@ -174,6 +187,14 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                 AppAssets.questionSvg,
                                 width: 20,
                                 height: 20,
+                                colorFilter: ColorFilter.mode(
+                                  resolveColor(
+                                    context: context,
+                                    lightColor: AppColors.textPrimary,
+                                    darkColor: AppColorDark.textPrimary,
+                                  ),
+                                  BlendMode.srcIn,
+                                ),
                               ),
                               const SizedBox(width: 4),
                               Text(
@@ -183,7 +204,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
-                                  color: AppColors.textPrimary,
+                                  color: resolveColor(
+                                    context: context,
+                                    lightColor: AppColors.textPrimary,
+                                    darkColor: AppColorDark.textPrimary,
+                                  ),
                                 ),
                               ),
                             ],
@@ -207,7 +232,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                 fontSize: 24,
                                 fontFamily: 'HankenGrotesk',
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.textPrimary,
+                                color: resolveColor(
+                                  context: context,
+                                  lightColor: AppColors.textPrimary,
+                                  darkColor: AppColorDark.textPrimary,
+                                ),
                               ),
                             ),
                           ),
@@ -220,7 +249,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                 fontSize: 14,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
-                                color: AppColors.textSecondary,
+                                color: resolveColor(
+                                  context: context,
+                                  lightColor: AppColors.textSecondary,
+                                  darkColor: AppColorDark.textSecondary,
+                                ),
                               ),
                             ),
                           ),
@@ -241,22 +274,34 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                     ),
                                     decoration: InputDecoration(
                                       hintText: 'Search',
-                                      hintStyle: const TextStyle(
+                                      hintStyle: TextStyle(
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16,
                                         height: 1.5,
                                         letterSpacing: 0.0,
-                                        color: AppColors.textTertiary,
+                                        color: resolveColor(
+                                          context: context,
+                                          lightColor: AppColors.textTertiary,
+                                          darkColor: AppColorDark.textTertiary,
+                                        ),
                                       ),
                                       filled: true,
-                                      fillColor: AppColors.bgB1Base,
+                                      fillColor: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.bgB1Base,
+                                        darkColor: AppColorDark.bgB1Base,
+                                      ),
                                       contentPadding:
                                           const EdgeInsets.symmetric(
-                                              vertical: 8, horizontal: 16),
+                                        vertical: 8,
+                                        horizontal: 16,
+                                      ),
                                       prefixIcon: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 16, right: 8),
+                                          left: 16,
+                                          right: 8,
+                                        ),
                                         child: SvgPicture.asset(
                                           AppAssets.magnifyingGlass,
                                         ),
@@ -268,22 +313,40 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                       ),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: const BorderSide(
-                                          color: AppColors.strokeSecondary,
+                                        borderSide: BorderSide(
+                                          color: resolveColor(
+                                            context: context,
+                                            lightColor:
+                                                AppColors.strokeSecondary,
+                                            darkColor:
+                                                AppColorDark.strokeSecondary,
+                                          ),
                                           width: 0.5,
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: const BorderSide(
-                                          color: AppColors.strokeSecondary,
+                                        borderSide: BorderSide(
+                                          color: resolveColor(
+                                            context: context,
+                                            lightColor:
+                                                AppColors.strokeSecondary,
+                                            darkColor:
+                                                AppColorDark.strokeSecondary,
+                                          ),
                                           width: 0.5,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: const BorderSide(
-                                          color: AppColors.strokeSecondary,
+                                        borderSide: BorderSide(
+                                          color: resolveColor(
+                                            context: context,
+                                            lightColor:
+                                                AppColors.strokeSecondary,
+                                            darkColor:
+                                                AppColorDark.strokeSecondary,
+                                          ),
                                           width: 0.5,
                                         ),
                                       ),
@@ -430,10 +493,18 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                   height: 40,
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
-                                    color: AppColors.bgB1Base,
+                                    color: resolveColor(
+                                      context: context,
+                                      lightColor: AppColors.bgB1Base,
+                                      darkColor: AppColorDark.bgB1Base,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                      color: AppColors.strokeSecondary,
+                                      color: resolveColor(
+                                        context: context,
+                                        lightColor: AppColors.strokeSecondary,
+                                        darkColor: AppColorDark.strokeSecondary,
+                                      ),
                                       width: 0.5,
                                     ),
                                   ),
@@ -441,6 +512,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                     AppAssets.filterIcon,
                                     width: 20,
                                     height: 20,
+                                    color: Colors.redAccent,
                                   ),
                                 ),
                               ),
