@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
+import 'package:go_router/go_router.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 
 class SentScreen extends StatelessWidget {
   const SentScreen({Key? key}) : super(key: key);
@@ -90,7 +92,7 @@ class SentScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Implement Done functionality (e.g., navigate back to finance home)
+                    context.goNamed(RouteConstants.financeHome);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colors.brandDefault, // Purple button color
