@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
+import 'package:defifundr_mobile/feature/fundwallet_screens/fundwallet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -133,6 +134,24 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: const ProfileCreatedScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/fund-wallet',
+          name: RouteConstants.fundWallet,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const FundWalletScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
