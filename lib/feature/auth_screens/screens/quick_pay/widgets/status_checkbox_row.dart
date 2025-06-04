@@ -60,6 +60,7 @@ class StatusCheckboxRow extends StatelessWidget {
             tristate: tristate,
             value: value,
             onChanged: onChanged,
+            checkColor: AppColors.white,
             fillColor: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
                 return AppColors.brandDefault;

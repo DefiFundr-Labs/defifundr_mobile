@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:flutter/material.dart';
 
 enum TimeRange { last7Days, last14Days, last30Days }
@@ -64,8 +65,11 @@ class _TimeFilterRadioState extends State<TimeFilterRadio> {
                       onChanged: _handleRadioValueChange,
                       fillColor:
                           AppColors.brandDefault, // fill color when selected
-                      borderColor: AppColors
-                          .strokeSecondary, // border color always visible
+                      borderColor: resolveColor(
+                        context: context,
+                        lightColor: AppColors.strokeSecondary,
+                        darkColor: AppColorDark.strokeSecondary,
+                      ), // border color always visible
                       size: 20,
                       borderRadius: 32,
                       borderWidth: 1,
@@ -132,6 +136,18 @@ class CustomRadio<T> extends StatelessWidget {
             width: borderWidth,
           ),
         ),
+        child: _selected
+            ? Center(
+                child: Container(
+                  width: size * 0.4, // 40% of the outer circle
+                  height: size * 0.4,
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(size * 0.2),
+                  ),
+                ),
+              )
+            : null,
       ),
     );
   }
