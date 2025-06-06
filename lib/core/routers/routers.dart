@@ -1,7 +1,4 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/select_id_country_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verification_confirmed_screen.dart';
-import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/address_details_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/personal_details_screen.dart';
@@ -9,12 +6,13 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/login_screen/login_screen.dart';
+import 'package:defifundr_mobile/feature/fundwallet_screens/fundwallet.dart';
+import 'package:defifundr_mobile/feature/fundwallet_screens/fundwallet_details.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  // ignore: unused_field
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter _router = GoRouter(
@@ -149,12 +147,12 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/verify-identity',
-          name: RouteConstants.verifyIdentity,
+          path: '/fund-wallet',
+          name: RouteConstants.fundWallet,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const VerifyIdentityScreen(),
+              child: const FundWalletScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
@@ -167,30 +165,12 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/select-country-id',
-          name: RouteConstants.selectIdCountry,
+          path: '/fund-walletdetails',
+          name: RouteConstants.fundWallet,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const SelectIdCountryScreen(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
-        GoRoute(
-          path: '/verification-confirmed',
-          name: RouteConstants.verificationConfirmed,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: const VerificationConfirmedScreen(),
+              child: const FundWalletDetails(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
