@@ -219,61 +219,85 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    const SizedBox(height: 8),
+                    // Amount Label
+                    Text(
+                      'Amount',
+                      style: fontTheme.textSmRegular?.copyWith(
+                          color: colors.textSecondary), // Small grey text
+                    ),
+                    const SizedBox(height: 8), // Spacing below label
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: AppTextField(
-                            label: 'Amount',
+                          child: TextField(
                             controller: _amountController,
                             keyboardType:
                                 TextInputType.numberWithOptions(decimal: true),
                             onChanged: (value) {
                               // Handle amount change if needed
                             },
+                            style: fontTheme.heading2Bold?.copyWith(
+                              color: colors
+                                  .textSecondary, // Large grey text using a likely available style
+                            ), // Large text for amount
+                            decoration: InputDecoration(
+                              hintText: '0', // Placeholder text
+                              hintStyle: fontTheme.heading2Bold?.copyWith(
+                                color: colors
+                                    .textSecondary, // Large grey hint text
+                              ), // Use a similar large style for the hint
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.zero,
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 32),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  color: colors.bgB1,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Image.asset(
-                                'assets/images/switch.png',
-                                width: 16, // Adjust size as needed
-                                height: 16,
+                        const SizedBox(
+                            width: 32), // Spacing between text field and icon
+                        // Switch Icon
+                        // Wrapped in a Container similar to the image
+                        Container(
+                          padding:
+                              EdgeInsets.all(8), // Adjust padding as needed
+                          decoration: BoxDecoration(
+                              color: colors
+                                  .bgB1, // Background color for icon container
+                              borderRadius:
+                                  BorderRadius.circular(20) // Rounded shape
                               ),
-                            ),
-                          ],
+                          child: Image.asset(
+                            'assets/images/switch.png',
+                            width: 16, // Adjust size as needed
+                            height: 16,
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 4), // Spacing below amount row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Available Balance
                         Text(
-                          'Available: 20 USDC',
-                          style: fontTheme.textSmRegular
-                              ?.copyWith(color: colors.textSecondary),
+                          'Available: 20 USDC', // Use dummy data for now
+                          style: fontTheme.textSmRegular?.copyWith(
+                              color: colors.textSecondary), // Small grey text
                         ),
+                        // Max Button
                         ElevatedButton(
                           onPressed: () {
                             // TODO: Implement Max button functionality
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: colors.brandFill,
-                            foregroundColor: colors.textPrimary,
+                            backgroundColor:
+                                colors.brandFill, // Light background
+                            foregroundColor: colors.brandDefault, // Purple text
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12.0, vertical: 4.0),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0),
                             ),
-                            textStyle: fontTheme.textSmMedium,
+                            textStyle: fontTheme.textSmMedium, // Small text
                           ),
                           child: const Text('Max'),
                         ),
@@ -296,45 +320,74 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
+                    // "Send to" label
+                    Text(
+                      'Send to',
+                      style: fontTheme.textSmRegular?.copyWith(
+                          color: colors.textSecondary), // Small grey text
+                    ),
+                    const SizedBox(height: 8), // Spacing below label
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: AppTextField(
-                            label: 'Send to',
+                          child: TextField(
                             controller: _addressController,
                             onChanged: (value) {
                               // Handle address change if needed
                             },
+                            decoration: InputDecoration(
+                              hintText:
+                                  'Paste or scan address', // Placeholder text
+                              hintStyle: fontTheme.textBaseMedium?.copyWith(
+                                color: colors.textSecondary, // Grey hint text
+                              ),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(12),
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(
+                            width:
+                                12), // Spacing between text field and paste button
                         ElevatedButton(
                           onPressed: () {
                             // TODO: Implement Paste functionality
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: colors.bgB2,
-                            foregroundColor: colors.textPrimary,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 2.0),
+                            backgroundColor: colors.bgB2, // Grey background
+                            foregroundColor: colors.textPrimary, // Grey text
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                                vertical: 8.0), // Adjust padding
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius:
+                                  BorderRadius.circular(20), // Rounded shape
                             ),
-                            textStyle: fontTheme.textSmMedium,
+                            textStyle:
+                                fontTheme.textSmMedium, // Small text style
                           ),
                           child: const Text('Paste'),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(
+                            width:
+                                8), // Spacing between paste button and scan icon
                         Container(
-                            padding: EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                                color: colors.bgB1,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Icon(Icons.qr_code_scanner,
-                                color: colors.textPrimary)),
+                          padding: const EdgeInsets.all(
+                              8), // Adjust padding to make it a small circle
+                          decoration: BoxDecoration(
+                              color: colors.bgB1, // Grey background
+                              shape: BoxShape.circle // Circular shape
+                              ),
+                          child: Icon(Icons.qr_code_scanner,
+                              color: colors.textPrimary, // Grey icon color
+                              size: 20), // Adjust icon size
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 16), // Spacing before the divider
+                    Divider(height: 1, color: colors.bgB1), // Separator line
+                    const SizedBox(height: 16), // Spacing after the divider
                     InkWell(
                       onTap:
                           _selectFromAddressBook, // Use the address book selection method
@@ -358,6 +411,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ],
                 ),
               ),
+
               const Spacer(),
 
               SizedBox(

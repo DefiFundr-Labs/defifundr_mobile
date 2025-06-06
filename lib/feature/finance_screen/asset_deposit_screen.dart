@@ -142,6 +142,7 @@ class AssetDepositScreen extends StatelessWidget {
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text('Address',
                                       style: fontTheme.textSmRegular?.copyWith(
@@ -155,11 +156,13 @@ class AssetDepositScreen extends StatelessWidget {
                                         color: colors
                                             .textPrimary), // Address style
                                     overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
+                                    maxLines: 4,
                                   ),
                                 ],
                               ),
                             ),
+                            const SizedBox(width: 100),
+
                             Icon(Icons.copy,
                                 color: colors.textSecondary,
                                 size: 20), // Copy icon
