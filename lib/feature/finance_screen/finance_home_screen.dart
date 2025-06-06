@@ -79,6 +79,7 @@ class AssetListItem extends StatelessWidget {
                   ),
               ],
             ),
+
             const SizedBox(width: 12), // Spacing between icon and text
             // Asset Details (Name, Price, Change)
             Expanded(

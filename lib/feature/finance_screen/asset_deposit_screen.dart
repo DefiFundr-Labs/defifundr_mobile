@@ -65,118 +65,105 @@ class AssetDepositScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // QR Code
+              // Combined QR Code and Details Container
               Container(
-                padding:
-                    const EdgeInsets.all(16.0), // Add padding around QR code
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 55), // Padding for the combined container
                 decoration: BoxDecoration(
-                  color: colors.bgB0, // White background for QR code area
-                  borderRadius: BorderRadius.circular(8.0), // Rounded corners
-                ),
-                child: QrImageView(
-                  data: address, // Use the provided address for QR code
-                  version: QrVersions.auto,
-                  size: 200.0,
-                  backgroundColor:
-                      colors.bgB0, // White background for QR code itself
-                  foregroundColor:
-                      colors.textPrimary, // Black for QR code pattern
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Network, Asset, and Address Details
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0,
-                  borderRadius: BorderRadius.circular(8.0),
+                  color: colors.bgB0, // White background
+                  borderRadius: BorderRadius.circular(12.0), // Rounded corners
                 ),
                 child: Column(
                   children: [
-                    // Network
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // QR Code
+                    QrImageView(
+                      data: address, // Use the provided address for QR code
+                      version: QrVersions.auto,
+                      size: 200.0,
+                      backgroundColor:
+                          colors.bgB0, // White background for QR code itself
+                      foregroundColor:
+                          colors.textPrimary, // Black for QR code pattern
+                    ),
+                    const SizedBox(
+                        height: 42), // Spacing between QR and details
+                    // Network, Asset, and Address Details
+                    Column(
                       children: [
-                        Text('Network',
-                            style: fontTheme.textSmRegular
-                                ?.copyWith(color: colors.textSecondary)),
+                        // Network
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // Assuming network.iconPath is a valid image asset path
-                            Image.asset(network.iconPath,
-                                width: 20, height: 20), // Network icon
-                            const SizedBox(width: 4),
-                            Text(network.name,
-                                style:
-                                    fontTheme.textBaseMedium), // Network name
+                            Text('Network',
+                                style: fontTheme.textSmRegular
+                                    ?.copyWith(color: colors.textSecondary)),
+                            Row(
+                              children: [
+                                // Assuming network.iconPath is a valid image asset path
+                                Image.asset(network.iconPath,
+                                    width: 20, height: 20), // Network icon
+                                const SizedBox(width: 4),
+                                Text(network.name,
+                                    style: fontTheme
+                                        .textBaseMedium), // Network name
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 12), // Spacing
-                    // Asset
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Asset',
-                            style: fontTheme.textSmRegular
-                                ?.copyWith(color: colors.textSecondary)),
+                        const SizedBox(height: 36), // Spacing
+                        // Asset
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // Assuming asset.iconPath is a valid image asset path
-                            Image.asset(asset.iconPath,
-                                width: 20, height: 20), // Asset icon
-                            const SizedBox(width: 4),
-                            Text(asset.name,
-                                style: fontTheme.textBaseMedium), // Asset name
+                            Text('Asset',
+                                style: fontTheme.textSmRegular
+                                    ?.copyWith(color: colors.textSecondary)),
+                            Row(
+                              children: [
+                                // Assuming asset.iconPath is a valid image asset path
+                                Image.asset(asset.iconPath,
+                                    width: 20, height: 20), // Asset icon
+                                const SizedBox(width: 4),
+                                Text(asset.name,
+                                    style:
+                                        fontTheme.textBaseMedium), // Asset name
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 12), // Spacing
-                    // Address
-                    Row(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start, // Align to the top
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Address',
-                            style: fontTheme.textSmRegular
-                                ?.copyWith(color: colors.textSecondary)),
-                        const SizedBox(
-                            width: 16), // Spacing between label and address
-                        Expanded(
-                          child: Row(
-                            // Use Row for address and copy icon side-by-side
-                            crossAxisAlignment: CrossAxisAlignment
-                                .start, // Align items to the top
-                            mainAxisAlignment:
-                                MainAxisAlignment.end, // Align to the end
-                            children: [
-                              Expanded(
-                                // Allow address text to take available space
-                                child: Text(
-                                  address, // Use the provided address
-                                  style: fontTheme.textBaseMedium?.copyWith(
-                                      color:
-                                          colors.textPrimary), // Address style
-                                  textAlign: TextAlign
-                                      .end, // Align address text to the end
-                                  overflow: TextOverflow
-                                      .ellipsis, // Handle long addresses
-                                  maxLines:
-                                      2, // Allow up to 2 lines for address
-                                ),
+                        const SizedBox(height: 36), // Spacing
+                        // Address
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start, // Align to the top
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Address',
+                                      style: fontTheme.textSmRegular?.copyWith(
+                                          color: colors.textSecondary)),
+                                  const SizedBox(
+                                      height:
+                                          4), // Spacing between label and address
+                                  Text(
+                                    address, // Use the provided address
+                                    style: fontTheme.textBaseMedium?.copyWith(
+                                        color: colors
+                                            .textPrimary), // Address style
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                  width:
-                                      8), // Spacing between address and copy icon
-                              Icon(Icons.copy,
-                                  color: colors.textSecondary,
-                                  size: 20), // Copy icon
-                            ],
-                          ),
+                            ),
+                            Icon(Icons.copy,
+                                color: colors.textSecondary,
+                                size: 20), // Copy icon
+                          ],
                         ),
                       ],
                     ),

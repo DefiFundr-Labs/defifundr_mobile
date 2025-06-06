@@ -137,8 +137,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       if (_selectedAsset != null)
                         Image.asset(
                           _selectedAsset!.iconPath,
-                          width: 36,
-                          height: 36,
+                          width: 24,
+                          height: 24,
                         ),
                       const SizedBox(width: 12.0),
                     ],
@@ -195,8 +195,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       if (_selectedNetwork != null)
                         Image.asset(
                           _selectedNetwork!.iconPath,
-                          width: 36,
-                          height: 36,
+                          width: 24,
+                          height: 24,
                         ),
                       const SizedBox(width: 12.0),
                     ],
@@ -233,11 +233,21 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             },
                           ),
                         ),
+                        const SizedBox(width: 32),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.unfold_more,
-                                color: colors.textSecondary, size: 16),
+                            Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  color: colors.bgB1,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Image.asset(
+                                'assets/images/switch.png',
+                                width: 16, // Adjust size as needed
+                                height: 16,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -305,17 +315,23 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: colors.bgB2,
                             foregroundColor: colors.textPrimary,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0, vertical: 4.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 2.0),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                             textStyle: fontTheme.textSmMedium,
                           ),
                           child: const Text('Paste'),
                         ),
                         const SizedBox(width: 8),
-                        Icon(Icons.qr_code_scanner, color: colors.textPrimary),
+                        Container(
+                            padding: EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                                color: colors.bgB1,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Icon(Icons.qr_code_scanner,
+                                color: colors.textPrimary)),
                       ],
                     ),
                     const SizedBox(height: 16),
