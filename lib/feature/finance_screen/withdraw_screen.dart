@@ -7,6 +7,13 @@ import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/finance_screen/finance_home_screen.dart';
 import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart';
 import 'package:defifundr_mobile/feature/finance_screen/withdraw_details_model.dart';
+import 'package:defifundr_mobile/feature/finance_screen/select_asset_screen.dart';
+import 'package:defifundr_mobile/feature/finance_screen/address_book_screen.dart';
+import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_bloc.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WithdrawScreen extends StatefulWidget {
   const WithdrawScreen({Key? key}) : super(key: key);
@@ -20,6 +27,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   Network? _selectedNetwork;
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _memoController = TextEditingController();
 
   // Get assets from FinanceHomeScreen
   final List<Asset> _assets = FinanceHomeScreen.dummyAssets;
@@ -28,10 +36,39 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   final List<Network> _networks = SelectNetworkScreen.dummyNetworks;
 
   @override
+  void initState() {
+    super.initState();
+    // Check if we received an address from the address book
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final selectedAddress =
+          ModalRoute.of(context)?.settings.arguments as String?;
+      if (selectedAddress != null) {
+        setState(() {
+          _addressController.text = selectedAddress;
+        });
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _amountController.dispose();
     _addressController.dispose();
+    _memoController.dispose();
     super.dispose();
+  }
+
+  // Method to handle address book selection
+  Future<void> _selectFromAddressBook() async {
+    final selectedAddress = await Navigator.push<String>(
+      context,
+      MaterialPageRoute(builder: (context) => const AddressBookScreen()),
+    );
+    if (selectedAddress != null) {
+      setState(() {
+        _addressController.text = selectedAddress;
+      });
+    }
   }
 
   @override
@@ -41,179 +78,176 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
     return Scaffold(
       backgroundColor: colors.bgB1,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: colors.textPrimary),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          'Withdraw',
-          style: fontTheme.heading2Bold,
-        ),
-        backgroundColor: colors.bgB1,
-        elevation: 0,
-      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 32.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Asset Selection Field
-              Text(
-                'Asset',
-                style: fontTheme.textSmRegular
-                    ?.copyWith(color: colors.textSecondary),
+              SizedBox(height: 16),
+              DeFiRaiseAppBar(
+                title: 'Withdraw',
+                isBack: true,
               ),
+              SizedBox(height: 16),
               const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: DropdownButton<Asset>(
-                  value: _selectedAsset,
-                  isExpanded: true,
-                  underline: Container(),
-                  hint: Text(
-                    'Select Asset',
-                    style: fontTheme.textBaseMedium,
-                  ),
-                  items: _assets.map((Asset asset) {
-                    return DropdownMenuItem<Asset>(
-                      value: asset,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            asset.iconPath,
-                            width: 24,
-                            height: 24,
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            asset.name,
-                            style: fontTheme.textBaseMedium,
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (Asset? newValue) {
+              InkWell(
+                onTap: () async {
+                  final selectedAsset = await Navigator.push<Asset>(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SelectAssetScreen()),
+                  );
+                  if (selectedAsset != null) {
                     setState(() {
-                      _selectedAsset = newValue;
+                      _selectedAsset = selectedAsset;
                     });
-                  },
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  decoration: BoxDecoration(
+                    color: colors.bgB0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Asset',
+                              style: fontTheme.textSmRegular
+                                  ?.copyWith(color: colors.textSecondary),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              _selectedAsset?.name ?? 'Select Asset',
+                              style: fontTheme.textBaseMedium?.copyWith(
+                                  color: _selectedAsset == null
+                                      ? colors.textSecondary
+                                      : colors.textPrimary),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (_selectedAsset != null)
+                        Image.asset(
+                          _selectedAsset!.iconPath,
+                          width: 36,
+                          height: 36,
+                        ),
+                      const SizedBox(width: 12.0),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
 
               // Network Selection Field
-              Text(
-                'Network',
-                style: fontTheme.textSmRegular
-                    ?.copyWith(color: colors.textSecondary),
+
+              const SizedBox(height: 8),
+              InkWell(
+                onTap: () async {
+                  final selectedNetwork = await Navigator.push<Network>(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SelectNetworkScreen()),
+                  );
+                  if (selectedNetwork != null) {
+                    setState(() {
+                      _selectedNetwork = selectedNetwork;
+                    });
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  decoration: BoxDecoration(
+                    color: colors.bgB0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Network',
+                              style: fontTheme.textSmRegular
+                                  ?.copyWith(color: colors.textSecondary),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              _selectedNetwork?.name ?? 'Select Network',
+                              style: fontTheme.textBaseMedium?.copyWith(
+                                  color: _selectedNetwork == null
+                                      ? colors.textSecondary
+                                      : colors.textPrimary),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (_selectedNetwork != null)
+                        Image.asset(
+                          _selectedNetwork!.iconPath,
+                          width: 36,
+                          height: 36,
+                        ),
+                      const SizedBox(width: 12.0),
+                    ],
+                  ),
+                ),
               ),
+              const SizedBox(height: 8),
+
+              // Amount Input Field
+
               const SizedBox(height: 8),
               Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
+                    horizontal: 16.0, vertical: 16.0),
                 decoration: BoxDecoration(
                   color: colors.bgB0,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: DropdownButton<Network>(
-                  value: _selectedNetwork,
-                  isExpanded: true,
-                  underline: Container(),
-                  hint: Text(
-                    'Select Network',
-                    style: fontTheme.textBaseMedium,
-                  ),
-                  items: _networks.map((Network network) {
-                    return DropdownMenuItem<Network>(
-                      value: network,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            network.iconPath,
-                            width: 24,
-                            height: 24,
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            network.name,
-                            style: fontTheme.textBaseMedium,
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (Network? newValue) {
-                    setState(() {
-                      _selectedNetwork = newValue;
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Amount Input Field
-              Text(
-                'Amount',
-                style: fontTheme.textSmRegular
-                    ?.copyWith(color: colors.textSecondary),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0, // White background
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
                 child: Column(
-                  // Use Column to stack input and available balance
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         Expanded(
-                          child: TextField(
+                          child: AppTextField(
+                            label: 'Amount',
                             controller: _amountController,
                             keyboardType:
                                 TextInputType.numberWithOptions(decimal: true),
-                            decoration: InputDecoration(
-                              hintText: '0',
-                              hintStyle: fontTheme.heading1Bold?.copyWith(
-                                  color:
-                                      colors.textSecondary), // Large hint text
-                              border: InputBorder.none,
-                              isDense: true, // Reduce vertical space
-                              contentPadding: EdgeInsets.all(12),
-                            ),
-                            style: fontTheme.heading1Bold, // Large input text
+                            onChanged: (value) {
+                              // Handle amount change if needed
+                            },
                           ),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Up/Down icon (if applicable)
                             Icon(Icons.unfold_more,
                                 color: colors.textSecondary, size: 16),
                           ],
                         ),
                       ],
                     ),
-                    const SizedBox(
-                        height:
-                            8), // Spacing between input and available balance
+                    const SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Available: 20 USDC', // Placeholder available balance
+                          'Available: 20 USDC',
                           style: fontTheme.textSmRegular
                               ?.copyWith(color: colors.textSecondary),
                         ),
@@ -222,18 +256,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             // TODO: Implement Max button functionality
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: colors
-                                .brandFill, // Light brand color background
-                            foregroundColor:
-                                colors.brandDefault, // Brand color text
+                            backgroundColor: colors.brandFill,
+                            foregroundColor: colors.textPrimary,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 4.0), // Smaller padding
+                                horizontal: 12.0, vertical: 4.0),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(16.0), // Pill shape
+                              borderRadius: BorderRadius.circular(16.0),
                             ),
-                            textStyle: fontTheme.textSmMedium, // Smaller text
+                            textStyle: fontTheme.textSmMedium,
                           ),
                           child: const Text('Max'),
                         ),
@@ -242,90 +272,69 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
-
+              const SizedBox(height: 8),
               // Send To Section
-              Text(
-                'Send to',
-                style: fontTheme.textSmRegular
-                    ?.copyWith(color: colors.textSecondary),
-              ),
               const SizedBox(height: 8),
               Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0, // White background
+                  color: colors.bgB0,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         Expanded(
-                          child: TextField(
+                          child: AppTextField(
+                            label: 'Send to',
                             controller: _addressController,
-                            decoration: InputDecoration(
-                              hintText: 'Paste or scan address',
-                              hintStyle: fontTheme.textBaseRegular
-                                  ?.copyWith(color: colors.textTertiary),
-                              border: InputBorder.none,
-                              isDense: true, // Reduce vertical space
-                              contentPadding: EdgeInsets.all(12),
-                            ),
-                            style: fontTheme.textBaseRegular,
+                            onChanged: (value) {
+                              // Handle address change if needed
+                            },
                           ),
                         ),
                         const SizedBox(width: 8),
-                        // Paste button
                         ElevatedButton(
                           onPressed: () {
                             // TODO: Implement Paste functionality
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                colors.bgB2, // Light grey background
-                            foregroundColor:
-                                colors.textPrimary, // Primary text color
+                            backgroundColor: colors.bgB2,
+                            foregroundColor: colors.textPrimary,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 4.0), // Smaller padding
+                                horizontal: 12.0, vertical: 4.0),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(8.0), // Rounded corners
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            textStyle: fontTheme.textSmMedium, // Smaller text
+                            textStyle: fontTheme.textSmMedium,
                           ),
                           child: const Text('Paste'),
                         ),
                         const SizedBox(width: 8),
-                        // Scan icon
                         Icon(Icons.qr_code_scanner, color: colors.textPrimary),
                       ],
                     ),
                     const SizedBox(height: 16),
-                    // Address book link
                     InkWell(
-                      onTap: () {
-                        // TODO: Navigate to Address Book screen
-                        context.pushNamed(RouteConstants.addressBook);
-                      },
+                      onTap:
+                          _selectFromAddressBook, // Use the address book selection method
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Row(
                           children: [
                             Icon(Icons.person_outline,
-                                color: colors.brandDefault,
-                                size: 20), // Address book icon
+                                color: colors.brandDefault, size: 20),
                             const SizedBox(width: 8),
                             Text('Address book',
                                 style: fontTheme.textBaseMedium
                                     ?.copyWith(color: colors.brandDefault)),
                             const Spacer(),
                             Icon(Icons.arrow_forward_ios,
-                                color: colors.textSecondary,
-                                size: 16), // Arrow icon
+                                color: colors.textSecondary, size: 16),
                           ],
                         ),
                       ),
@@ -333,11 +342,9 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ],
                 ),
               ),
-              const Spacer(), // Pushes the button to the bottom
+              const Spacer(),
 
-              // Continue Button
               SizedBox(
-                // Wrap in SizedBox to make the button full width
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -345,22 +352,27 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                         _selectedNetwork != null &&
                         _amountController.text.isNotEmpty &&
                         _addressController.text.isNotEmpty) {
-                      final withdrawDetails = WithdrawDetails(
-                        amount: _amountController.text,
+                      final withdrawDetails = WithdrawDetailsModel(
+                        amount: double.parse(_amountController.text),
                         assetName: _selectedAsset!.name,
                         assetIconPath: _selectedAsset!.iconPath,
                         networkName: _selectedNetwork!.name,
                         networkIconPath: _selectedNetwork!.iconPath,
+                        fee: 0.0001, // TODO: Get actual fee from API
+                        feeCurrency: _selectedAsset!.name,
+                        address: _addressController.text,
                         recipientAddress: _addressController.text,
-                        fee: '0.0005', // Placeholder fee
-                        feeCurrency: 'ETH', // Placeholder fee currency
+                        memo: _memoController.text,
                       );
-                      context.pushNamed(
-                        RouteConstants.withdrawPreview,
-                        extra: withdrawDetails,
-                      );
+
+                      // Set withdraw details in bloc
+                      context
+                          .read<WithdrawBloc>()
+                          .add(SetWithdrawDetails(withdrawDetails));
+
+                      // Navigate to preview screen
+                      context.goNamed(RouteConstants.withdrawPreview);
                     } else {
-                      // Optionally show a snackbar or dialog if fields are not filled
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Please fill in all details'),
@@ -369,15 +381,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: colors.brandDefault, // Purple button color
-                    foregroundColor: colors.textWhite, // White text color
+                    backgroundColor: colors.brandDefault,
+                    foregroundColor: colors.textWhite,
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32.0),
                     ),
                   ),
-                  child: Text('Continue',
-                      style: TextStyle(color: colors.bgB0)), // Text style
+                  child: Text('Continue', style: TextStyle(color: colors.bgB0)),
                 ),
               ),
             ],

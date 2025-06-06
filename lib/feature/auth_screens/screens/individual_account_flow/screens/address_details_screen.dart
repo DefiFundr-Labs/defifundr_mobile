@@ -3,6 +3,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -154,34 +155,20 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    TextField(
+                    AppTextField(
+                      label: 'Address',
                       controller: _addressController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: 'Address',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
-                        border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
-                      ),
+                      onChanged: (value) {
+                        // Handle address change if needed
+                      },
                     ),
                     const SizedBox(height: 16),
-                    TextField(
+                    AppTextField(
+                      label: 'City',
                       controller: _cityController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: 'City',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
-                        border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
-                      ),
+                      onChanged: (value) {
+                        // Handle city change if needed
+                      },
                     ),
                     const SizedBox(height: 16),
                     TextField(

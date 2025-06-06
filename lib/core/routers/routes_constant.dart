@@ -36,4 +36,8 @@ class RouteConstants {
   static const String addressBook = 'addressBook';
   static const String addAddress = 'addAddress';
   static const String sent = 'sent';
+  static const String assetDeposit = 'asset-deposit';
+  static const String receive = 'receive';
+  static const String confirmPayment = 'confirm-payment';
+  static const String twoFaAuth = 'two-fa-auth';
 }

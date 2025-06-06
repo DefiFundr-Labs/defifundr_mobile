@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../constants/app_icons.dart';
 
-class DeFiRaiseAppBar extends StatelessWidget {
+class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final List<Widget>? actions;
   final bool? isBack;
@@ -27,8 +27,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
       elevation: 0,
       centerTitle: true,
       automaticallyImplyLeading: false,
-      title: Text(title ?? '',
-          style: context.textTheme.headlineMedium),
+      title: Text(title ?? '', style: context.textTheme.headlineMedium),
       actions: actions,
       leading: isBack!
           ? IconButton(
@@ -40,4 +39,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
           : leading,
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -4,112 +4,163 @@ import 'package:defifundr_mobile/core/design_system/font_extension/font_extensio
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/feature/finance_screen/withdraw_details_model.dart';
+import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_bloc.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_state.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SentScreen extends StatelessWidget {
-  const SentScreen({Key? key}) : super(key: key);
+  final WithdrawDetailsModel? withdrawDetails;
+
+  const SentScreen({
+    Key? key,
+    this.withdrawDetails,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<AppColorExtension>()!;
+    final colors = context.theme.colors;
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
-    return Scaffold(
-      backgroundColor: colors.bgB0,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.close, color: colors.textPrimary), // Close button
-          onPressed: () =>
-              Navigator.pop(context), // Assuming closing the screen
-        ),
-        title: Text(
-          'Sent!',
-          style: fontTheme.heading2Bold,
-        ),
-        backgroundColor: colors.bgB0,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Checkmark Icon
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: colors.brandFill, // Light purple background
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.check, // Checkmark icon
-                  size: 40,
-                  color: colors.brandDefault, // Purple color
-                ),
-              ),
-              const SizedBox(height: 24),
+    return BlocBuilder<WithdrawBloc, WithdrawState>(
+      builder: (context, state) {
+        // Use withdraw details from constructor if available, otherwise from bloc state
+        final details = withdrawDetails ?? state.withdrawDetails;
 
-              // Success Message
-              Text(
-                'Sent!',
-                style: fontTheme.heading2Bold, // Bold heading
-              ),
-              const SizedBox(height: 8),
+        if (details == null) {
+          return Scaffold(
+            body: Center(
+              child: Text('Error: Withdraw details not found'),
+            ),
+          );
+        }
 
-              // Transaction Details
-              Text(
-                '5 USDC was successfully sent to',
-                style: fontTheme.textBaseRegular
-                    ?.copyWith(color: colors.textSecondary),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '0x6885afa...6f23b3', // Placeholder address
-                style: fontTheme.textBaseMedium, // Bold address
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-
-              // View in Explorer Link
-              InkWell(
-                onTap: () {
-                  // TODO: Implement View in Explorer functionality
-                },
-                child: Text(
-                  'View in Explorer',
-                  style: fontTheme.textBaseMedium?.copyWith(
-                      color: colors.brandDefault), // Purple link color
-                ),
-              ),
-
-              const Spacer(), // Pushes the button to the bottom
-
-              // Done Button
-              SizedBox(
-                // Wrap in SizedBox to make the button full width
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.goNamed(RouteConstants.financeHome);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: colors.brandDefault, // Purple button color
-                    foregroundColor: colors.textWhite, // White text color
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32.0),
+        return WillPopScope(
+          onWillPop: () async {
+            // Clear withdraw details and navigate to finance home
+            context.read<WithdrawBloc>().add(const ClearWithdrawDetails());
+            context.goNamed(RouteConstants.financeHome);
+            return false;
+          },
+          child: Scaffold(
+            backgroundColor: colors.bgB0,
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.center, // Center horizontally
+                  children: [
+                    // Checkmark icon in a circle
+                    const Spacer(),
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: colors.brandDefault.withOpacity(
+                              0.1), // Use a light brandDefault color for the circle, assuming it's close to brandPrimary
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.check,
+                          size: 40,
+                          color: colors
+                              .brandDefault, // Use brandDefault color for the icon, assuming it's close to brandPrimary
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Text('Done',
-                      style: TextStyle(color: colors.bgB0)), // Text style
+                    const SizedBox(height: 24),
+                    // "Sent!" text
+                    Text(
+                      'Sent!',
+                      style: fontTheme.heading2Bold,
+                    ),
+                    const SizedBox(height: 8),
+                    // Sent details text
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: fontTheme.textBaseRegular?.copyWith(
+                          color: colors.textPrimary,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '${details.amount}',
+                            style: fontTheme.textBaseRegular?.copyWith(
+                              color: colors.textPrimary,
+                              fontWeight:
+                                  FontWeight.w600, // Semibold for amount
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                ' ${details.assetName} was successfully sent to',
+                            style: fontTheme.textBaseRegular?.copyWith(
+                              color: colors
+                                  .textPrimary, // Regular for asset name and rest
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      details.recipientAddress,
+                      style: fontTheme.textBaseRegular?.copyWith(
+                          color: colors.textPrimary,
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    // "View in Explorer" link
+                    // TODO: Add functionality to open explorer link
+                    TextButton(
+                      onPressed: () {
+                        // Add logic to open explorer link
+                      },
+                      child: Text(
+                        'View in Explorer',
+                        style: fontTheme.textBaseMedium?.copyWith(
+                            color: colors.brandDefault,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    const Spacer(),
+                    // "Done" button
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Clear withdraw details and navigate to finance home
+                          context
+                              .read<WithdrawBloc>()
+                              .add(const ClearWithdrawDetails());
+                          context.goNamed(RouteConstants.financeHome);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: colors.brandDefault,
+                          foregroundColor: colors.textWhite,
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Done',
+                          style: fontTheme.textBaseMedium?.copyWith(
+                            color: colors.textWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

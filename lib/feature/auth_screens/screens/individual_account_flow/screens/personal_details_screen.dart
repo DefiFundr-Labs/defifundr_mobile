@@ -3,6 +3,7 @@
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
   const PersonalDetailsScreen({super.key});
@@ -273,20 +274,13 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                             color: Colors.grey[800],
                           ),
                           Expanded(
-                            child: TextField(
+                            child: AppTextField(
+                              label: 'Phone number',
                               controller: _phoneController,
                               keyboardType: TextInputType.phone,
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                hintText: 'Phone number',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 14,
-                                ),
-                                border: InputBorder.none,
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                              ),
+                              onChanged: (value) {
+                                // Handle phone number change if needed
+                              },
                             ),
                           ),
                         ],
