@@ -46,7 +46,6 @@ app.*.map.json
 *.freezed.dart
 *.g.dart
 
-
 # Mocks
 *.mocks.dart
 
@@ -56,3 +55,5 @@ app.*.map.json
 /android/app/release
 /android_backup/
 
+# FVM Version Cache
+.fvm/

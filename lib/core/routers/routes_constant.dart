@@ -8,6 +8,8 @@ class RouteConstants {
   static String addressDetails = 'addressDetails';
   static String profileCreated = 'profileCreated';
   static String accountType = 'accountType';
+  static String onboardingFreelancerChecklist = 'onboardingFreelancerChecklist';
+  static String onboardingContractorChecklist = 'onboardingContractorChecklist';
   static String verifyIdentity = 'verifyIdentity';
   static String selectIdCountry = 'selectIdCountry';
   static String verificationConfirmed = 'verificationConfirmed';
