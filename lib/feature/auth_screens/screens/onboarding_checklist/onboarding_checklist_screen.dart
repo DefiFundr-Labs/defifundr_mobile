@@ -34,11 +34,17 @@ class OnboardingChecklistScreen extends StatelessWidget {
     required this.userType,
   });
 
+  bool isDark(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark;
+
   @override
   Widget build(BuildContext context) {
     final completedSteps = steps.where((step) => step.isDone).length;
     // final progress = completedSteps / steps.length;
     final progress = 0.2;
+
+    // Pick palette based on theme
+    final palette = isDark(context) ? AppColorDark : AppColors;
 
     return Scaffold(
       body: SafeArea(
@@ -50,6 +56,7 @@ class OnboardingChecklistScreen extends StatelessWidget {
                 Icons.chevron_left,
                 size: 36,
               ),
+              color: palette.textPrimary,
               onPressed: () => Navigator.pop(context),
             ),
             Padding(
@@ -57,18 +64,18 @@ class OnboardingChecklistScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // const SizedBox(height: 16),
-
                   const SizedBox(height: 8),
-                  const Text(
+                  Text(
                     "Onboarding Checklist",
-                    style: AppTextStyles.heading1,
+                    style: AppTextStyles.heading1.copyWith(
+                      color: palette.textPrimary,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     "You must complete all steps to fully activate your account.",
                     style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.textSecondary,
+                      color: palette.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -77,28 +84,30 @@ class OnboardingChecklistScreen extends StatelessWidget {
                     children: [
                       Text(
                         "${(progress * 100).round()}%",
-                        style: AppTextStyles.bodyBold,
+                        style: AppTextStyles.bodyBold.copyWith(
+                          color: palette.textPrimary,
+                        ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: LinearProgressIndicator(
                           value: progress,
-                          color: AppColors.brandDefault,
-                          backgroundColor: AppColors.grayQuaternary,
+                          color: palette.brandDefault,
+                          backgroundColor: palette.grayQuaternary,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 24),
 
-                  // 🆕 New user type section with person SVG
+                  // User type section
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppColors.fillTertiary,
+                      color: palette.fillTertiary,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: AppColors.brandDefault.withOpacity(0.1),
+                        color: palette.brandDefault.withOpacity(0.1),
                       ),
                     ),
                     child: Row(
@@ -107,32 +116,32 @@ class OnboardingChecklistScreen extends StatelessWidget {
                           'assets/svgs/person.svg',
                           width: 26,
                           height: 26,
-                          color:
-                              Colors.grey[500], // keep as is, not in AppColors
+                          color: palette.grayQuaternary,
                         ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: Text(
                             "Create ${userType.toLowerCase()} account",
                             style: TextStyle(
-                                color: Colors
-                                    .grey[600]), // keep as is, not in AppColors
+                              color: palette.grayTertiary,
+                            ),
                           ),
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 2),
                           decoration: BoxDecoration(
-                            color: AppColors.greenFill,
+                            color: palette.greenFill,
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: AppColors.greenDefault,
+                              color: palette.greenDefault,
                             ),
                           ),
                           child: Text(
                             'Done',
-                            style: AppTextStyles.caption
-                                .copyWith(color: AppColors.greenDefault),
+                            style: AppTextStyles.caption.copyWith(
+                              color: palette.greenDefault,
+                            ),
                           ),
                         )
                       ],
@@ -141,7 +150,7 @@ class OnboardingChecklistScreen extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  // ✅ Checklist Steps
+                  // Checklist Steps
                   ...steps.map((step) {
                     final isDisabled = step.isDone;
 
@@ -152,36 +161,42 @@ class OnboardingChecklistScreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: AppColors.fillTertiary,
+                            color: palette.fillTertiary,
                           ),
                           child: ListTile(
-                            tileColor: AppColors.surfaceCard,
+                            tileColor: palette.surfaceCard,
                             leading: SvgPicture.asset(
                               step.iconAsset,
                               width: 26,
                               height: 26,
-                              color: AppColors.grayPrimary,
+                              color: palette.grayPrimary,
                             ),
                             title: Text(
                               step.title
                                   .replaceAll('{type}', userType.toLowerCase()),
-                              style: AppTextStyles.bodySemiBold,
+                              style: AppTextStyles.bodySemiBold.copyWith(
+                                color: palette.textPrimary,
+                              ),
                             ),
                             trailing: step.isDone
                                 ? Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 4),
                                     decoration: BoxDecoration(
-                                      color: AppColors.greenFill,
+                                      color: palette.greenFill,
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Text(
                                       'Done',
                                       style: AppTextStyles.caption.copyWith(
-                                          color: AppColors.greenDefault),
+                                        color: palette.greenDefault,
+                                      ),
                                     ),
                                   )
-                                : const Icon(Icons.chevron_right),
+                                : Icon(
+                                    Icons.chevron_right,
+                                    color: palette.grayPrimary,
+                                  ),
                             onTap: step.isDone ? null : step.onTap,
                           ),
                         ),
