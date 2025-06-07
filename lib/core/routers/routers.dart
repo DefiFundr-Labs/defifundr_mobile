@@ -1,4 +1,7 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/select_id_country_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verification_confirmed_screen.dart';
+import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/address_details_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/individual_account_flow/screens/personal_details_screen.dart';
@@ -12,6 +15,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  // ignore: unused_field
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter _router = GoRouter(
@@ -134,42 +138,6 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: const ProfileCreatedScreen(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
-        GoRoute(
-          path: '/onboarding-freenlancer-checklist',
-          name: RouteConstants.onboardingFreelancerChecklist,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: OnboardingChecklistScreen(userType: "Freelancer"),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
-        GoRoute(
-          path: '/onboarding-contractor-checklist',
-          name: RouteConstants.onboardingContractorChecklist,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: OnboardingChecklistScreen(userType: "Contractor"),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

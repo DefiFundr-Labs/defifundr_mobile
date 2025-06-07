@@ -2,6 +2,7 @@
 
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -109,7 +110,8 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                         title: 'Freelancer Account',
                         description:
                             "You work independently, manage your own contracts and payments directly with clients.",
-                        onTap: () => context.pushNamed("personal-details")),
+                        onTap: () =>
+                            context.pushNamed(RouteConstants.personalDetails)),
                     const SizedBox(height: 16),
                     _buildAccountTypeCard(
                       context: context,
@@ -120,7 +122,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                       description:
                           "You're contracted to work for a company or organization on specific projects or terms.",
                       onTap: () =>
-                          Navigator.pushNamed(context, '/personal-details'),
+                          context.pushNamed(RouteConstants.personalDetails),
                     ),
                     const SizedBox(height: 16),
                     _buildAccountTypeCard(
