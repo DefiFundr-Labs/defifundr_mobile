@@ -177,17 +177,20 @@ class SelectNetworkScreen extends StatelessWidget {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       appBar: const DeFiRaiseAppBar(
         title: 'Select network',
         isBack: true,
       ), // Use shared AppBar
       body: SafeArea(
         child: Container(
+          margin: EdgeInsets.all(16),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: colors.bgB0),
+            borderRadius: BorderRadius.circular(16),
+            color: colors.bgB1,
+          ),
           child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+            padding: const EdgeInsets.all(12),
             itemCount: dummyNetworks.length,
             itemBuilder: (context, index) {
               final network = dummyNetworks[index];

@@ -97,7 +97,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
         }
 
         return Scaffold(
-          backgroundColor: context.theme.colors.bgB0,
+          backgroundColor: colors.bgB1,
           body: SafeArea(
             child: Column(
               children: [

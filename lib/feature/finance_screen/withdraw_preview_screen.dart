@@ -36,6 +36,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
         }
 
         return Scaffold(
+          backgroundColor: colors.bgB0,
           body: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 32.0),
@@ -50,7 +51,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
                 SizedBox(height: 16),
                 Card(
                   margin: EdgeInsets.zero,
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0)),
@@ -83,7 +84,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
                 const SizedBox(height: 16.0),
                 Card(
                   margin: EdgeInsets.zero,
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0)),

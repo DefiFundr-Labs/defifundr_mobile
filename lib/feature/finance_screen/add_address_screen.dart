@@ -100,7 +100,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? colors.bgB1 // Light mode color
+          : Colors.black,
       // Use shared AppBar
       body: SafeArea(
         child: Padding(
@@ -135,7 +137,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       horizontal: 16.0,
                       vertical: 12.0), // Adjust padding as needed
                   decoration: BoxDecoration(
-                    color: colors.bgB0,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Row(
@@ -202,7 +204,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       horizontal: 16.0,
                       vertical: 12.0), // Adjust padding as needed
                   decoration: BoxDecoration(
-                    color: colors.bgB0,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Row(
@@ -254,7 +256,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(
@@ -310,7 +312,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(

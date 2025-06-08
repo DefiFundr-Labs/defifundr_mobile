@@ -26,7 +26,7 @@ class AssetDepositScreen extends StatelessWidget {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       // Use shared AppBar
       body: SafeArea(
         child: Padding(
@@ -44,7 +44,7 @@ class AssetDepositScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 24.0, horizontal: 16.0), // Adjusted padding
                 decoration: BoxDecoration(
-                  color: colors.bgB0, // Use orangeFill
+                  color: colors.bgB1, // Use orangeFill
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Row(
@@ -71,7 +71,7 @@ class AssetDepositScreen extends StatelessWidget {
                     horizontal: 20.0,
                     vertical: 55), // Padding for the combined container
                 decoration: BoxDecoration(
-                  color: colors.bgB0, // White background
+                  color: colors.bgB1, // White background
                   borderRadius: BorderRadius.circular(12.0), // Rounded corners
                 ),
                 child: Column(
@@ -82,7 +82,7 @@ class AssetDepositScreen extends StatelessWidget {
                       version: QrVersions.auto,
                       size: 200.0,
                       backgroundColor:
-                          colors.bgB0, // White background for QR code itself
+                          colors.bgB1, // White background for QR code itself
                       foregroundColor:
                           colors.textPrimary, // Black for QR code pattern
                     ),
@@ -194,11 +194,11 @@ class AssetDepositScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.upload, color: colors.textWhite), // Share icon
+                      Icon(Icons.upload, color: Colors.white), // Share icon
                       const SizedBox(width: 8), // Spacing
                       Text('Share address',
-                          style: fontTheme.textBaseMedium?.copyWith(
-                              color: colors.textWhite)), // Button text
+                          style: fontTheme.textBaseMedium
+                              ?.copyWith(color: Colors.white)), // Button text
                     ],
                   ),
                 ),

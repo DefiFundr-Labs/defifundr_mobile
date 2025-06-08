@@ -236,7 +236,7 @@ class FinanceHomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -254,7 +254,7 @@ class FinanceHomeScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -295,16 +295,25 @@ class FinanceHomeScreen extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.arrow_downward,
-                              color: colors.blueDefault,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.blueDefault // Light mode color
+                                  : Colors.white,
                             ),
                             label: Text(
                               'Receive',
                               style: TextStyle(
-                                  color: colors.blueDefault,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -322,16 +331,25 @@ class FinanceHomeScreen extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.arrow_upward,
-                              color: colors.blueDefault,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.blueDefault // Light mode color
+                                  : Colors.white,
                             ),
                             label: Text(
                               'Withdraw',
                               style: TextStyle(
-                                  color: colors.blueDefault,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -365,14 +383,22 @@ class FinanceHomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'A virtual card built for your crypto life',
-                            style: fontTheme.textBaseBold
-                                ?.copyWith(color: colors.textWhite),
+                            style: fontTheme.textBaseBold?.copyWith(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.textWhite // Light mode color
+                                  : Colors.white,
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             'launching soon on DefiFundr.',
                             style: fontTheme.textSmRegular?.copyWith(
-                                color: colors.textWhite.withOpacity(0.8)),
+                                color: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? colors.textWhite
+                                        .withOpacity(0.8) // Light mode color
+                                    : Colors.white),
                           ),
                           const SizedBox(height: 8),
                           ElevatedButton(
@@ -425,7 +451,7 @@ class FinanceHomeScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                 decoration: BoxDecoration(
-                    color: colors.contrastWhite,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   children: [
@@ -484,7 +510,7 @@ class FinanceHomeScreen extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: colors.bgB0), // Using bgB0 for consistency
+                    color: colors.bgB1), // Using bgB0 for consistency
                 // padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 child: ListView.builder(
                   shrinkWrap: true,

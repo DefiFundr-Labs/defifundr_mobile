@@ -87,7 +87,7 @@ class AssetDetailsScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: colors.bgB1, // Assuming a light background color
+      backgroundColor: colors.bgB0, // Assuming a light background color
       appBar: DeFiRaiseAppBar(
         title: asset.name,
         isBack: true,
@@ -102,7 +102,7 @@ class AssetDetailsScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0, // Light blue background
+                  color: colors.bgB1, // Light blue background
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Column(
@@ -133,25 +133,30 @@ class AssetDetailsScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              // Navigate to SelectNetworkScreen to select network for deposit
-                              context.pushNamed(
-                                RouteConstants.selectNetwork,
-                                extra: {
-                                  'selectedAsset': asset,
-                                  'forDeposit': true
-                                },
-                              );
+                              // Navigate to SelectAssetScreen to start the receive flow
+                              context.pushNamed(RouteConstants.receive);
                             },
                             icon: Icon(
                               Icons.arrow_downward,
-                              color: colors.blueDefault,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.blueDefault // Light mode color
+                                  : Colors.white,
                             ),
                             label: Text(
                               'Receive',
-                              style: TextStyle(color: colors.blueDefault),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -169,14 +174,25 @@ class AssetDetailsScreen extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.arrow_upward,
-                              color: colors.blueDefault,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.blueDefault // Light mode color
+                                  : Colors.white,
                             ),
                             label: Text(
                               'Withdraw',
-                              style: TextStyle(color: colors.blueDefault),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -204,7 +220,7 @@ class AssetDetailsScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                 decoration: BoxDecoration(
-                    color: colors.contrastWhite,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   children: [

@@ -22,7 +22,7 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: context.theme.scaffoldBackgroundColor,
+      backgroundColor: Colors.transparent,
       scrolledUnderElevation: 0,
       elevation: 0,
       centerTitle: true,
@@ -31,7 +31,15 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       leading: isBack!
           ? IconButton(
-              icon: SvgPicture.asset(AppIcons.backIcon),
+              icon: SvgPicture.asset(
+                AppIcons.backIcon,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+                  BlendMode.srcIn,
+                ),
+              ),
               onPressed: () {
                 context.pop();
               },

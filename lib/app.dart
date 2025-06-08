@@ -37,7 +37,7 @@ class _AppState extends State<App> {
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'DeFiFundr',
-          theme: AppTheme.light,
+          theme: AppTheme.dark,
           darkTheme: AppTheme.light,
           themeMode: ThemeMode.system,
           scrollBehavior: const _AppScrollBehavior(),

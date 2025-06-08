@@ -14,7 +14,9 @@ class EnablePushNotificationsScreen extends StatelessWidget {
     final fonts = context.theme.fonts;
 
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB0,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? colors.bgB0 // Light mode color
+          : colors.bgB1,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),

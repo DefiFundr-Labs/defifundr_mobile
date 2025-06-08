@@ -274,7 +274,9 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                 : fontTheme.textSmRegular?.copyWith(color: colors.textPrimary)),
         selected: isSelected,
         selectedColor: chipColor ?? colors.brandDefault,
-        backgroundColor: colors.bgB1,
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? colors.bgB0 // Light mode color
+            : colors.bgB1,
         onSelected: (bool selected) {
           if (selected) {
             onTap(status);

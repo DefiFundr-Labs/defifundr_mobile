@@ -41,7 +41,7 @@ class PaymentItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
             horizontal: 16.0, vertical: 8.0), // Adjust padding
         decoration: BoxDecoration(
-          color: colors.bgB0, // Use bgB1 for the card background
+          color: colors.bgB1, // Use bgB1 for the card background
           borderRadius: BorderRadius.circular(12.0), // Apply border radius
         ),
         child: Row(

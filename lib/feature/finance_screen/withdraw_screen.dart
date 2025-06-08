@@ -77,7 +77,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 32.0),
@@ -109,7 +109,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 8.0),
                   decoration: BoxDecoration(
-                    color: colors.bgB0,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Row(
@@ -167,7 +167,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 8.0),
                   decoration: BoxDecoration(
-                    color: colors.bgB0,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Row(
@@ -212,7 +212,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 16.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(
@@ -313,7 +313,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(
@@ -458,7 +458,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       borderRadius: BorderRadius.circular(32.0),
                     ),
                   ),
-                  child: Text('Continue', style: TextStyle(color: colors.bgB0)),
+                  child: Text('Continue', style: TextStyle(color: colors.bgB1)),
                 ),
               ),
             ],

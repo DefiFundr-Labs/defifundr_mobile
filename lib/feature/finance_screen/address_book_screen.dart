@@ -92,7 +92,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       // Use shared AppBar
       body: SafeArea(
         child: Column(
@@ -133,9 +133,12 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                       ),
                     )
                   : Container(
-                      decoration: BoxDecoration(color: colors.bgB0),
+                      decoration: BoxDecoration(
+                          color: colors.bgB1,
+                          borderRadius: BorderRadius.circular(15)),
+                      margin: EdgeInsets.all(16),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 16.0),
+                          horizontal: 20.0, vertical: 20.0),
                       child: ListView.builder(
                         itemCount: _addresses.length,
                         itemBuilder: (context, index) {
@@ -263,7 +266,11 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                   ),
                   child: Text(
                     'Add new address',
-                    style: TextStyle(color: colors.bgB0), // Button text color
+                    style: TextStyle(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black // Light mode color
+                          : Colors.white,
+                    ), // Button text color
                   ),
                 ),
               ),

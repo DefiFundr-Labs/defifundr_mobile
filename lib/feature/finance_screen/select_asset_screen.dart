@@ -120,16 +120,17 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       appBar: const DeFiRaiseAppBar(
         title: 'Select asset',
         isBack: true,
       ), // Use shared AppBar
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(12),
+          margin: EdgeInsets.all(16),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: colors.bgB0),
+              borderRadius: BorderRadius.circular(16), color: colors.bgB1),
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25),
             itemCount: dummyAssets.length,

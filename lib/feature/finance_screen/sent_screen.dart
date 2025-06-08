@@ -45,7 +45,9 @@ class SentScreen extends StatelessWidget {
             return false;
           },
           child: Scaffold(
-            backgroundColor: colors.bgB0,
+            backgroundColor: Theme.of(context).brightness == Brightness.light
+                ? colors.bgB1 // Light mode color
+                : Colors.black,
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -149,7 +151,7 @@ class SentScreen extends StatelessWidget {
                         child: Text(
                           'Done',
                           style: fontTheme.textBaseMedium?.copyWith(
-                            color: colors.textWhite,
+                            color: Colors.white,
                           ),
                         ),
                       ),
