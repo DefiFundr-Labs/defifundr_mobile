@@ -40,4 +40,10 @@ class RouteConstants {
   static const String receive = 'receive';
   static const String confirmPayment = 'confirm-payment';
   static const String twoFaAuth = 'two-fa-auth';
+  static String selectIdCountry = 'selectIdCountry';
+  static String verificationConfirmed = 'verificationConfirmed';
+  static String quickPayScreen = 'quickPayScreen';
+  static String receivePaymentScreen = 'receivePaymentScreen';
+  static String receivePaymentDoneScreen = 'receivePaymentDoneScreen';
+  static String transactionScreen = 'transactionScreen';
 }

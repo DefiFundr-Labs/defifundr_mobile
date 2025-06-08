@@ -187,6 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
+                      context.pushNamed(RouteConstants.quickPayScreen);
                       context.pushNamed(RouteConstants.upcomingPayments);
                     },
                     style: TextButton.styleFrom(

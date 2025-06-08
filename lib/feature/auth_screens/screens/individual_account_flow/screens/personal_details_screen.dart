@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -114,7 +115,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     const SizedBox(height: 24),
                     GestureDetector(
                       onTap: () {
-                        context.pushNamed('countrySelection');
+                        context.pushNamed(RouteConstants.countrySelection);
                       },
                       child: Container(
                         height: 56,
@@ -218,7 +219,8 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              context.pushNamed('dialCodeSelection');
+                              context
+                                  .pushNamed(RouteConstants.dialCodeSelection);
                             },
                             child: Container(
                               padding:
@@ -297,7 +299,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.pushNamed('addressDetails');
+                    context.pushNamed(RouteConstants.addressDetails);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
