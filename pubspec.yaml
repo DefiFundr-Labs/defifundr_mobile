@@ -58,7 +58,6 @@ dependencies:
   web3dart: ^2.7.3
   hex: ^0.2.0
   logger: ^2.5.0
-  qr_flutter: ^4.0.0
   qr_flutter: ^4.1.0
   # qr_flutter: ^4.0.0
 
