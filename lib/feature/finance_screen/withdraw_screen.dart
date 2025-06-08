@@ -242,14 +242,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                   .textSecondary, // Large grey text using a likely available style
                             ), // Large text for amount
                             decoration: InputDecoration(
-                              hintText: '0', // Placeholder text
-                              hintStyle: fontTheme.heading2Bold?.copyWith(
-                                color: colors
-                                    .textSecondary, // Large grey hint text
-                              ), // Use a similar large style for the hint
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.zero,
-                            ),
+                                hintText: '0', // Placeholder text
+                                hintStyle: fontTheme.heading2Bold?.copyWith(
+                                  color: colors
+                                      .textSecondary, // Large grey hint text
+                                ), // Use a similar large style for the hint
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(12)),
                           ),
                         ),
                         const SizedBox(
@@ -260,8 +259,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           padding:
                               EdgeInsets.all(8), // Adjust padding as needed
                           decoration: BoxDecoration(
-                              color: colors
-                                  .bgB1, // Background color for icon container
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.bgB1 // Light mode color
+                                  : colors
+                                      .bgB0, // Background color for icon container
                               borderRadius:
                                   BorderRadius.circular(20) // Rounded shape
                               ),
@@ -458,7 +460,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       borderRadius: BorderRadius.circular(32.0),
                     ),
                   ),
-                  child: Text('Continue', style: TextStyle(color: colors.bgB1)),
+                  child:
+                      Text('Continue', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],

@@ -171,8 +171,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
               ),
               child: Text(
                 'Confirm',
-                style:
-                    fontTheme.textBaseMedium?.copyWith(color: colors.textWhite),
+                style: fontTheme.textBaseMedium?.copyWith(color: Colors.white),
               ),
             ),
           ),

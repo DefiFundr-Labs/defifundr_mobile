@@ -11,6 +11,7 @@ import 'package:defifundr_mobile/feature/finance_screen/finance_home_screen.dart
 import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart'; // Import for Network model
 import 'package:defifundr_mobile/feature/finance_screen/asset_deposit_screen.dart'; // Import for AssetDepositScreen
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:flutter_svg/svg.dart';
 
 // Assuming you pass the Asset and Network objects to this screen
 class AssetDetailsScreen extends StatelessWidget {
@@ -136,13 +137,16 @@ class AssetDetailsScreen extends StatelessWidget {
                               // Navigate to SelectAssetScreen to start the receive flow
                               context.pushNamed(RouteConstants.receive);
                             },
-                            icon: Icon(
-                              Icons.arrow_downward,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.blueDefault // Light mode color
-                                  : Colors.white,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signIn.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Receive',
                               style: TextStyle(
@@ -172,13 +176,16 @@ class AssetDetailsScreen extends StatelessWidget {
                             onPressed: () {
                               context.pushNamed(RouteConstants.withdraw);
                             },
-                            icon: Icon(
-                              Icons.arrow_upward,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.blueDefault // Light mode color
-                                  : Colors.white,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signOut.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Withdraw',
                               style: TextStyle(

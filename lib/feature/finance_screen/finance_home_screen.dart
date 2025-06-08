@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/design_system/font_extension/font_extensio
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/feature/payment_screens/models/payment.dart';
 import 'package:defifundr_mobile/feature/payment_screens/widgets/payment_item_card.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
@@ -245,10 +246,11 @@ class FinanceHomeScreen extends StatelessWidget {
             children: [
               SizedBox(height: 16),
               DeFiRaiseAppBar(
+                centerTitle: false,
                 title: 'Finance',
                 isBack: false,
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 16),
               // Total Balance Section
               Container(
                 padding:
@@ -293,13 +295,16 @@ class FinanceHomeScreen extends StatelessWidget {
                               // Navigate to SelectAssetScreen to start the receive flow
                               context.pushNamed(RouteConstants.receive);
                             },
-                            icon: Icon(
-                              Icons.arrow_downward,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.blueDefault // Light mode color
-                                  : Colors.white,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signIn.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Receive',
                               style: TextStyle(
@@ -329,13 +334,16 @@ class FinanceHomeScreen extends StatelessWidget {
                             onPressed: () {
                               context.pushNamed(RouteConstants.withdraw);
                             },
-                            icon: Icon(
-                              Icons.arrow_upward,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.blueDefault // Light mode color
-                                  : Colors.white,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signOut.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Withdraw',
                               style: TextStyle(
@@ -417,22 +425,23 @@ class FinanceHomeScreen extends StatelessWidget {
                             child: Text(
                               'Coming soon',
                               style: fontTheme.textSmSemiBold
-                                  .copyWith(color: colors.textWhite),
+                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ],
                       ),
                     ),
                     // Placeholder for the card image/illustration
-                    SizedBox(
-                      width: 80,
-                      height: 80,
-                      // TODO: Add card image/illustration here
-                      // child: Image.asset(
-                      //   'assets/images/finance',
-                      //   height: 40,
-                      //   width: 40,
-                      // ), // Example
+                    // SizedBox(
+                    //   width: 80,
+                    //   height: 80,
+                    //   // TODO: Add card image/illustration here
+                    //   // Example
+                    // ),
+                    Image.asset(
+                      'assets/images/finance.png',
+                      height: 120,
+                      width: 120,
                     ),
                   ],
                 ),
