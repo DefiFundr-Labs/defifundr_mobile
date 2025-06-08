@@ -9,6 +9,7 @@ import 'package:defifundr_mobile/core/shared/appbar/appbar_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/feature/payment_screens/payment_filter_sheet.dart';
+import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
 
 class UpcomingPaymentsScreen extends StatefulWidget {
   const UpcomingPaymentsScreen({Key? key}) : super(key: key);
@@ -108,32 +109,20 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
     return DefaultTextStyle(
       style: TextStyle(fontFamily: 'Inter'),
       child: Scaffold(
-        backgroundColor: context.theme.scaffoldBackgroundColor,
+        backgroundColor: colors.bgB0,
         body: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40), // Increased top spacing
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Icon(Icons.arrow_back_ios, color: colors.textPrimary),
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                  ),
-                  const SizedBox(width: 24),
-                  Text(
-                    'Upcoming Payments',
-                    style: textTheme.headlineLarge?.copyWith(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
+              SizedBox(height: 16),
+              DeFiRaiseAppBar(
+                title: 'Upcoming Payments',
+                isBack: true,
               ),
+              SizedBox(height: 16),
               const SizedBox(height: 12), // Increased spacing after header
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -143,7 +132,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
                       flex: 8,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: colors.bgB0,
+                          color: colors.bgB1,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: TextField(
@@ -162,7 +151,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(14)),
                             filled: true,
-                            fillColor: colors.bgB0,
+                            fillColor: colors.bgB1,
                           ),
                         ),
                       ),
@@ -172,7 +161,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
                       flex: 2,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: colors.bgB0,
+                          color: colors.bgB1,
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
