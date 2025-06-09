@@ -9,10 +9,15 @@ class AppTextField extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Widget? suffix;
+
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
+  final BorderRadius? borderRadius;
+  final Border? border;
+  final Color? fillColor;
 
   const AppTextField({
     Key? key,
@@ -21,10 +26,14 @@ class AppTextField extends StatefulWidget {
     this.controller,
     this.prefixIcon,
     this.suffixIcon,
+    this.suffix,
     this.focusNode,
     this.inputFormatters,
     this.keyboardType,
     this.onChanged,
+    this.borderRadius,
+    this.border,
+    this.fillColor,
   }) : super(key: key);
 
   @override
@@ -77,6 +86,7 @@ class _AppTextFieldState extends State<AppTextField> {
               keyboardType: widget.keyboardType,
               onChanged: widget.onChanged,
               decoration: InputDecoration(
+                alignLabelWithHint: true,
                 labelText: widget.label,
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -89,13 +99,14 @@ class _AppTextFieldState extends State<AppTextField> {
                   color: Colors.grey[400],
                 ),
                 filled: true,
-                fillColor: Colors.transparent,
+                fillColor: widget.fillColor ?? Colors.transparent,
                 isDense: true,
                 border: InputBorder.none,
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
+                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 20.0),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
+                suffix: widget.suffix,
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
@@ -109,14 +120,19 @@ class _AppTextFieldState extends State<AppTextField> {
       builder: (context, child) {
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: _focusNode.hasFocus
-                  ? Colors.purple
-                  : context.theme.colors.grayTertiary!,
-            ),
-            borderRadius: BorderRadius.circular(12),
+            color: widget.fillColor ?? Colors.transparent,
+            border: widget.border ??
+                Border.all(
+                  color: _focusNode.hasFocus
+                      ? Colors.purple
+                      : context.theme.colors.grayTertiary!,
+                ),
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
           ),
-          child: child,
+          child: ClipRRect(
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
+            child: child,
+          ),
         );
       },
     );

@@ -52,4 +52,36 @@ class AppAssets {
   static const profile = '$defifundrImagePath/profile.png';
   static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
   static const transaction = '$defifundrImagePath/transaction.svg';
+
+  // identity verification
+  static const identityVerification =
+      '$defifundrImagePath/IdentificationCard.svg';
+  static const userFocus = '$defifundrImagePath/UserFocus.svg';
+  static const nigeriaSvg = '$defifundrImagePath/nigeria.svg';
+  static const carProfile = '$defifundrImagePath/CarProfile.svg';
+  static const globeSvg = '$defifundrImagePath/Globe.svg';
+  static const ninSvg = '$defifundrImagePath/NIN.svg';
+  static const infoSvg = '$defifundrImagePath/Info.svg';
+  static const verificationProgressSvg =
+      '$defifundrImagePath/verificationProgress.svg';
+  static const verificationProgressSvgDark =
+      '$defifundrImagePath/verificationProgressDark.svg';
+
+  // Quick Pay
+  static const questionSvg = '$defifundrImagePath/question_svg.svg';
+  static const magnifyingGlass = '$defifundrImagePath/MagnifyingGlass.svg';
+  static const filterIcon = '$defifundrImagePath/filter.svg';
+  static const emptyQuickpayIcon =
+      '$defifundrImagePath/empty_quickpay_icon.svg';
+  static const emptyQuickpayIconDark =
+      '$defifundrImagePath/empty_quickpay_icon_dark.svg';
+  static const depositIconSvg = '$defifundrImagePath/deposit_svg.svg';
+  static const rectangleSvg = '$defifundrImagePath/rectangle.svg';
+  static const ethereumLogo = '$defifundrImagePath/eth.svg';
+  static const usdtLogo = '$defifundrImagePath/usdt.svg';
+  static const qrCodeSvg = '$defifundrImagePath/QrCode.svg';
+  static const linkSvg = '$defifundrImagePath/Link.svg';
+  static const copySvg = '$defifundrImagePath/Copy.svg';
+  static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
+  static const headsetSvg = '$defifundrImagePath/Headset.svg';
 }
