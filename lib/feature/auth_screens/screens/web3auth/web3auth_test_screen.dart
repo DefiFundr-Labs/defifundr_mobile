@@ -755,9 +755,9 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
       case BlockchainType.solana:
         return AppIcons.appIcon;
       case BlockchainType.starknet:
-        return AppIcons.steller;
+        return AppIcons.stellar;
       default:
-        return AppIcons.steller;
+        return AppIcons.stellar;
     }
   }
 
