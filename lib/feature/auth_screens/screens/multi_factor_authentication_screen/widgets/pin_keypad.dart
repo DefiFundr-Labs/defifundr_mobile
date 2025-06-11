@@ -16,7 +16,9 @@ class PinKeypad extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 50),
-      color: const Color(0xFFEEEFF2),
+      color: Theme.of(context).brightness == Brightness.light
+          ? Color(0xFFEEEFF2) // Light mode color
+          : context.theme.colors.bgB0,
       child: Column(
         children: [
           Row(
@@ -67,7 +69,9 @@ class PinKeypad extends StatelessWidget {
       height: 48.h,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       child: Material(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.light
+            ? Color(0xFFEEEFF2) // Light mode color
+            : context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: () => onKeyPressed(number),

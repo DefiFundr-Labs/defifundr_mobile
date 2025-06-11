@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // You might need to add the intl package to your pubspec.yaml
 import '../models/payment.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
+import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 
 class PaymentItemCard extends StatelessWidget {
   final Payment payment;
@@ -14,88 +15,113 @@ class PaymentItemCard extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colors = theme.extension<AppColorExtension>()!;
+    final fontTheme = theme.extension<AppFontThemeExtension>()!;
 
     // Determine status color
     Color statusColor;
     switch (payment.status) {
       case PaymentStatus.upcoming:
-        statusColor =
-            colors.blueActive; // Example: Use primary color for upcoming
+        statusColor = colors.greenDefault;
         break;
       case PaymentStatus.overdue:
-        statusColor =
-            colors.orangeActive; // Example: Use error color for overdue
+        statusColor = colors.redDefault;
         break;
+      default:
+        statusColor = colors.textSecondary; // Default color
     }
 
     // Format date
     final formattedDate =
         DateFormat('dd MMMM yyyy').format(payment.estimatedDate);
 
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return SingleChildScrollView(
+      child: Container(
+        margin:
+            const EdgeInsets.symmetric(vertical: 8.0), // Add vertical margin
+        padding: const EdgeInsets.symmetric(
+            horizontal: 16.0, vertical: 8.0), // Adjust padding
+        decoration: BoxDecoration(
+          color: colors.bgB1, // Use bgB1 for the card background
+          borderRadius: BorderRadius.circular(12.0), // Apply border radius
+        ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Align items to the top
           children: [
-            // Icon
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                color: payment.iconBackgroundColor,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Image.asset(
-                  payment.icon,
-                  height: 16,
-                  width: 16,
-                  color: Colors.white,
+            // Icon and Network/Status Badge (using Stack)
+            Stack(
+              clipBehavior:
+                  Clip.none, // Allows badge to be outside Stack bounds
+              children: [
+                // Icon Container
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: payment
+                        .iconBackgroundColor, // Use background color from Payment model
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      payment.icon,
+                      height: 16,
+                      width: 16,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+                // Placeholder Badge (similar to network badge in AssetListItem)
+                Positioned(
+                  bottom: -4, // Adjust position as needed
+                  right: -4, // Adjust position as needed
+                  child: Container(
+                      padding: const EdgeInsets.all(2.0), // Adjust padding
+                      decoration: BoxDecoration(
+                        color: colors.greenDefault, // Use a color for the badge
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset('assets/images/ArrowDownLeft.png',
+                          width: 12, height: 12)),
+                ),
+              ],
             ),
-            const SizedBox(width: 14),
-            // Payment Details (Title and Date)
+            const SizedBox(width: 12), // Spacing between icon and text
+
+            // Transaction Details
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Align text to the left
                 children: [
                   Text(
-                    payment.title,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                        fontWeight:
-                            FontWeight.w600), // Adjust text style as needed
+                    payment.title, // Transaction title
+                    style: fontTheme.textBaseSemiBold, // Style for title
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis, // Handle long titles
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 4), // Spacing
                   Text(
-                    'Est. date: $formattedDate',
-                    style: textTheme.labelMedium?.copyWith(
-                        color: textTheme.bodySmall?.color
-                            ?.withOpacity(0.7)), // Adjust text style as needed
+                    'Est. date: $formattedDate', // Format date
+                    style: fontTheme.textSmRegular?.copyWith(
+                      color: colors.textSecondary, // Style for date
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 12), // Spacing between details and amount
+
             // Amount and Status
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment:
+                  CrossAxisAlignment.end, // Align text to the right
               children: [
                 Text(
-                  '${payment.amount} ${payment.currency}',
-                  style: textTheme.titleSmall, // Adjust text style as needed
+                  '${payment.amount} ${payment.currency}', // Amount and currency
+                  style: fontTheme.textBaseSemiBold, // Style for amount
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 4), // Spacing
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -111,8 +137,11 @@ class PaymentItemCard extends StatelessWidget {
                     Text(
                       payment.status == PaymentStatus.upcoming
                           ? 'In 7 days'
-                          : 'Overdue', // You might want to calculate days dynamically
-                      style: textTheme.bodySmall?.copyWith(
+                          : payment.status
+                              .toString()
+                              .split('.')
+                              .last, // Display status
+                      style: fontTheme.textSmRegular?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: statusColor), // Adjust text style as needed
                     ),

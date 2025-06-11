@@ -68,7 +68,9 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
     final fonts = context.theme.fonts;
 
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB0,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? colors.bgB1 // Light mode color
+          : Colors.black,
       body: SafeArea(
         child: Column(
           children: [

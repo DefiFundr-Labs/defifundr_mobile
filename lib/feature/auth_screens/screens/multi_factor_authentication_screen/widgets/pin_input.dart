@@ -30,7 +30,9 @@ class PinInput extends StatelessWidget {
           height: 52.w,
           margin: EdgeInsets.symmetric(horizontal: 3.w),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Color(0xFFEEEFF2) // Light mode color
+                : context.theme.colors.bgB1,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(
               color: hasError
@@ -46,7 +48,11 @@ class PinInput extends StatelessWidget {
             index < pinValues.length ? pinValues[index] : '',
             style: fonts.heading2Bold.copyWith(
               fontSize: 32,
-              color: hasError ? colors.redDefault : colors.textPrimary,
+              color: hasError
+                  ? colors.redDefault
+                  : Theme.of(context).brightness == Brightness.light
+                      ? colors.textPrimary // Light mode color
+                      : Colors.white,
             ),
           ),
         ),

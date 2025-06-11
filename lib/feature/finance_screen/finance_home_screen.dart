@@ -4,8 +4,11 @@ import 'package:defifundr_mobile/core/design_system/font_extension/font_extensio
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/feature/payment_screens/models/payment.dart';
 import 'package:defifundr_mobile/feature/payment_screens/widgets/payment_item_card.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart';
 
 // Define a simple data model for an Asset
 class Asset {
@@ -15,6 +18,7 @@ class Asset {
   final String change;
   final String balance;
   final String balanceCurrency;
+  final Network? network; // Add network field
 
   Asset({
     required this.iconPath,
@@ -23,6 +27,7 @@ class Asset {
     required this.change,
     required this.balance,
     required this.balanceCurrency,
+    this.network,
   });
 }
 
@@ -45,12 +50,37 @@ class AssetListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Row(
           children: [
-            // Icon
-            Image.asset(
-              asset.iconPath, // Assuming asset icons are images
-              width: 36, // Adjust size as needed
-              height: 36, // Adjust size as needed
+            // Icon and Network Badge
+            Stack(
+              clipBehavior:
+                  Clip.none, // Allows badge to be outside the Stack bounds
+              children: [
+                // Icon
+                Image.asset(
+                  asset.iconPath, // Assuming asset icons are images
+                  width: 36, // Adjust size as needed
+                  height: 36, // Adjust size as needed
+                ),
+                // Network Badge
+                if (asset.network != null)
+                  Positioned(
+                    bottom: -6, // Adjust position as needed
+                    right: -4, // Adjust position as needed
+                    child: Container(
+                      padding:
+                          const EdgeInsets.all(2.0), // Adjust padding as needed
+
+                      child: Image.asset(
+                        asset.network!
+                            .iconPath, // Assuming network icons are images
+                        width: 16, // Adjust size as needed
+                        height: 16, // Adjust size as needed
+                      ),
+                    ),
+                  ),
+              ],
             ),
+
             const SizedBox(width: 12), // Spacing between icon and text
             // Asset Details (Name, Price, Change)
             Expanded(
@@ -59,9 +89,9 @@ class AssetListItem extends StatelessWidget {
                 children: [
                   Text(
                     asset.name,
-                    style: fontTheme.textBaseMedium, // Asset name style
+                    style: fontTheme.textBaseSemiBold, // Asset name style
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2),
                   Row(
                     children: [
                       Text(
@@ -86,7 +116,7 @@ class AssetListItem extends StatelessWidget {
               children: [
                 Text(
                   asset.balance,
-                  style: fontTheme.textBaseMedium, // Balance amount style
+                  style: fontTheme.textBaseSemiBold, // Balance amount style
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -115,15 +145,18 @@ class FinanceHomeScreen extends StatelessWidget {
       change: '-0.0018%',
       balance: '\$476.19',
       balanceCurrency: '581 USDT',
+      // Assign Ethereum network
     ),
     Asset(
       iconPath: 'assets/images/usdc.png', // Placeholder icon path
       name: 'USD Coin',
       price: '\$0.99',
       change: '-0.005%',
-      balance: '\$476.10',
-      balanceCurrency: '581 USDC',
+      balance: '\$381.19',
+      balanceCurrency: '381 USDC',
+      // Assign Optimism network
     ),
+
     // Add more dummy assets as needed
   ];
 
@@ -204,27 +237,26 @@ class FinanceHomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
-      appBar: AppBar(
-        title: Text(
-          'Finance',
-          style: fontTheme.heading2Bold,
-        ),
-        backgroundColor: colors.bgB1,
-        elevation: 0,
-      ),
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 16),
+              DeFiRaiseAppBar(
+                centerTitle: false,
+                title: 'Finance',
+                isBack: false,
+              ),
+              SizedBox(height: 16),
               // Total Balance Section
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                 decoration: BoxDecoration(
-                  color: colors.bgB0,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -239,7 +271,10 @@ class FinanceHomeScreen extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '\$5,050.00',
-                      style: textTheme.displayLarge,
+                      style: textTheme.headlineLarge?.copyWith(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600,
+                          color: colors.textPrimary),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -249,7 +284,7 @@ class FinanceHomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 12),
 
                     // Receive and Withdraw Buttons
                     Row(
@@ -257,18 +292,33 @@ class FinanceHomeScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              context.pushNamed(RouteConstants.selectAsset);
+                              // Navigate to SelectAssetScreen to start the receive flow
+                              context.pushNamed(RouteConstants.receive);
                             },
-                            icon: Icon(
-                              Icons.arrow_downward,
-                              color: colors.blueDefault,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signIn.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Receive',
-                              style: TextStyle(color: colors.blueDefault),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -284,16 +334,30 @@ class FinanceHomeScreen extends StatelessWidget {
                             onPressed: () {
                               context.pushNamed(RouteConstants.withdraw);
                             },
-                            icon: Icon(
-                              Icons.arrow_upward,
-                              color: colors.blueDefault,
-                            ),
+                            icon: SvgPicture.asset('assets/icons/signOut.svg',
+                                height: 20,
+                                width: 20,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                  BlendMode.srcIn,
+                                )),
                             label: Text(
                               'Withdraw',
-                              style: TextStyle(color: colors.blueDefault),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? colors.blueDefault // Light mode color
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w500),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: colors.brandFill,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.brandFill // Light mode color
+                                  : colors.bgB2,
                               foregroundColor: colors.textPrimary,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 12.0),
@@ -313,7 +377,8 @@ class FinanceHomeScreen extends StatelessWidget {
 
               // Promotional Card
               Container(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: 16.0),
                 decoration: BoxDecoration(
                   color: colors.brandDefault,
                   borderRadius: BorderRadius.circular(12.0),
@@ -326,16 +391,24 @@ class FinanceHomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'A virtual card built for your crypto life',
-                            style: fontTheme.textBaseBold
-                                ?.copyWith(color: colors.textWhite),
+                            style: fontTheme.textBaseBold?.copyWith(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? colors.textWhite // Light mode color
+                                  : Colors.white,
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             'launching soon on DefiFundr.',
                             style: fontTheme.textSmRegular?.copyWith(
-                                color: colors.textWhite.withOpacity(0.8)),
+                                color: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? colors.textWhite
+                                        .withOpacity(0.8) // Light mode color
+                                    : Colors.white),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 8),
                           ElevatedButton(
                             onPressed: () {
                               // TODO: Implement Coming soon action
@@ -344,25 +417,31 @@ class FinanceHomeScreen extends StatelessWidget {
                               backgroundColor: colors.greenDefault,
                               foregroundColor: colors.textWhite,
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 18.0, vertical: 5),
+                                  horizontal: 12.0, vertical: 4.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             child: Text(
                               'Coming soon',
-                              style: TextStyle(color: colors.bgB0),
+                              style: fontTheme.textSmSemiBold
+                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ],
                       ),
                     ),
                     // Placeholder for the card image/illustration
-                    SizedBox(
-                      width: 80,
-                      height: 80,
-                      // TODO: Add card image/illustration here
-                      // child: Image.asset('assets/images/card_illustration.png'), // Example
+                    // SizedBox(
+                    //   width: 80,
+                    //   height: 80,
+                    //   // TODO: Add card image/illustration here
+                    //   // Example
+                    // ),
+                    Image.asset(
+                      'assets/images/finance.png',
+                      height: 120,
+                      width: 120,
                     ),
                   ],
                 ),
@@ -381,7 +460,7 @@ class FinanceHomeScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                 decoration: BoxDecoration(
-                    color: colors.contrastWhite,
+                    color: colors.bgB1,
                     borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   children: [
@@ -397,7 +476,16 @@ class FinanceHomeScreen extends StatelessWidget {
                         return AssetListItem(
                           asset: asset,
                           onTap: () {
-                            context.pushNamed(RouteConstants.assetDetails);
+                            // Get the default network for this asset (using the first network for now)
+                            final defaultNetwork =
+                                SelectNetworkScreen.dummyNetworks.first;
+                            context.pushNamed(
+                              RouteConstants.assetDetails,
+                              extra: {
+                                'asset': asset,
+                                'network': defaultNetwork,
+                              },
+                            );
                           },
                         );
                       },
@@ -431,7 +519,7 @@ class FinanceHomeScreen extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: colors.bgB0),
+                    color: colors.bgB1), // Using bgB0 for consistency
                 // padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 child: ListView.builder(
                   shrinkWrap: true,

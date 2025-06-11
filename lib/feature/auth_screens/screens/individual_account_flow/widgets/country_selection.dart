@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
   const CountrySelectionScreen({super.key});
@@ -112,25 +113,13 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Container(
-                        height: 48,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2A2A2A),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: TextField(
-                          controller: _searchController,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            hintText: 'Search',
-                            hintStyle: TextStyle(color: Colors.grey[500]),
-                            prefixIcon:
-                                Icon(Icons.search, color: Colors.grey[500]),
-                            border: InputBorder.none,
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 12),
-                          ),
-                        ),
+                      child: AppTextField(
+                        label: 'Search',
+                        controller: _searchController,
+                        prefixIcon: Icon(Icons.search, color: Colors.grey[500]),
+                        onChanged: (value) {
+                          // Handle search change if needed
+                        },
                       ),
                     ),
                     const SizedBox(height: 8),

@@ -4,6 +4,9 @@ import 'package:defifundr_mobile/core/design_system/font_extension/font_extensio
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/feature/finance_screen/finance_home_screen.dart'; // Import for Asset model
+import 'package:defifundr_mobile/feature/finance_screen/asset_deposit_screen.dart'; // Import for AssetDepositScreen
+import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
 // Define a simple data model for a Network
 class Network {
@@ -51,9 +54,9 @@ class NetworkListItem extends StatelessWidget {
               children: [
                 Text(
                   network.name,
-                  style: fontTheme.textBaseMedium, // Network name style
+                  style: fontTheme.textBaseSemiBold, // Network name style
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   network.subtitle,
                   style: fontTheme.textSmRegular
@@ -68,7 +71,7 @@ class NetworkListItem extends StatelessWidget {
             children: [
               Text(
                 network.balance,
-                style: fontTheme.textBaseMedium, // Balance amount style
+                style: fontTheme.textBaseSemiBold, // Balance amount style
               ),
               const SizedBox(height: 4),
               Text(
@@ -85,7 +88,13 @@ class NetworkListItem extends StatelessWidget {
 }
 
 class SelectNetworkScreen extends StatelessWidget {
-  const SelectNetworkScreen({Key? key}) : super(key: key);
+  // Add parameters for the receive flow
+  final bool forDeposit;
+  final Asset? selectedAsset;
+
+  const SelectNetworkScreen(
+      {Key? key, this.forDeposit = false, this.selectedAsset})
+      : super(key: key);
 
   // Dummy data for networks (replace with actual data)
   static final List<Network> dummyNetworks = [
@@ -168,34 +177,35 @@ class SelectNetworkScreen extends StatelessWidget {
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
     return Scaffold(
-      backgroundColor: colors.bgB1, // Assuming a light background color
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,
-              color: colors.textPrimary), // Back button
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          'Select network', // Screen title
-          style: fontTheme.heading2Bold, // Heading style
-        ),
-        backgroundColor: colors.bgB1,
-        elevation: 0,
-      ),
+      backgroundColor: colors.bgB0,
+      appBar: const DeFiRaiseAppBar(
+        title: 'Select network',
+        isBack: true,
+      ), // Use shared AppBar
       body: SafeArea(
         child: Container(
+          margin: EdgeInsets.all(16),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: colors.bgB0),
-          // padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+            borderRadius: BorderRadius.circular(16),
+            color: colors.bgB1,
+          ),
           child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
+            padding: const EdgeInsets.all(12),
             itemCount: dummyNetworks.length,
             itemBuilder: (context, index) {
               final network = dummyNetworks[index];
               return InkWell(
                 onTap: () {
-                  // TODO: Navigate to Address Book screen or similar after selecting network
-                  context.pushNamed(RouteConstants.addressBook);
+                  if (forDeposit && selectedAsset != null) {
+                    // If for deposit, navigate to AssetDepositScreen
+                    context.pushNamed(
+                      RouteConstants.assetDeposit,
+                      extra: {'asset': selectedAsset!, 'network': network},
+                    );
+                  } else {
+                    // If not for deposit, pop with the selected network
+                    Navigator.pop(context, network);
+                  }
                 },
                 child: Padding(
                   padding:
