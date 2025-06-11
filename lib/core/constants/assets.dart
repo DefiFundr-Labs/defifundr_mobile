@@ -84,4 +84,13 @@ class AppAssets {
   static const copySvg = '$defifundrImagePath/Copy.svg';
   static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
   static const headsetSvg = '$defifundrImagePath/Headset.svg';
+
+  //Fixed Rate Contract Creation
+  static const files = '$defifundrImagePath/Files.png';
+  static const money = '$defifundrImagePath/Money.png';
+  static const invoice = '$defifundrImagePath/Invoice.png';
+  static const expenses = '$defifundrImagePath/Receipt.png';
+  static const timeSheets = '$defifundrImagePath/ClockUser.png';
+  static const timeOff = '$defifundrImagePath/CalendarSlash.png';
+  static const emptyState = '$defifundrImagePath/empty_state.svg';
 }

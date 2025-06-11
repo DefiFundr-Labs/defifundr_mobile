@@ -15,4 +15,6 @@ class RouteConstants {
   static String receivePaymentScreen = 'receivePaymentScreen';
   static String receivePaymentDoneScreen = 'receivePaymentDoneScreen';
   static String transactionScreen = 'transactionScreen';
+  static String workspaceScreen = 'workspaceScreen';
+  static String contractsScreen = 'contractsScreen';
 }

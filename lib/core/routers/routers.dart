@@ -15,6 +15,8 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_done.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_payment_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/transaction_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/contracts_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -271,6 +273,42 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: TransactionScreen(args: args),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/workspace-screen',
+          name: RouteConstants.workspaceScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: WorkspaceScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/contracts-screen',
+          name: RouteConstants.contractsScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ContractsScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

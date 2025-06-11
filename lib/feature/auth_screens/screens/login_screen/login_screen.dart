@@ -111,7 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 16.h),
               PrimaryButton(
                 text: "Log In",
-                onPressed: () {},
+                onPressed: () =>
+                    context.pushNamed(RouteConstants.workspaceScreen),
               ),
               SizedBox(height: 24.h),
               ORWidget(),
