@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/enums/checkbox_enum.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/buttons/filter_component.dart';
+import 'package:defifundr_mobile/core/shared/buttons/reusable_checkbox.dart';
 import 'package:defifundr_mobile/core/shared/buttons/search_filter_button.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
@@ -268,10 +270,33 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                 context,
                                 FilterPanel(
                                   sections: [
+                                    // FilterSection(
+                                    //   title: "Status",
+                                    //   children: [
+                                    //     CheckBoxStatus(
+                                    //       onChanged: (value) {
+                                    //         statusFilter.value = value;
+                                    //       },
+                                    //     ),
+                                    //   ],
+                                    // ),
                                     FilterSection(
                                       title: "Status",
                                       children: [
-                                        CheckBoxStatus(
+                                        EnumCheckboxGroup<QuickPaymentsStatus>(
+                                          options: QuickPaymentsStatus.values
+                                              .map((status) {
+                                            return EnumCheckboxMeta(
+                                              value: status,
+                                              label: status.titleCase,
+                                              fillColor:
+                                                  status.fillColor(context),
+                                              borderColor:
+                                                  status.borderColor(context),
+                                              textColor:
+                                                  status.textColor(context),
+                                            );
+                                          }).toList(),
                                           onChanged: (value) {
                                             statusFilter.value = value;
                                           },
