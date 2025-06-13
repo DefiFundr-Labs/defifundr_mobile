@@ -1,6 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/app_texts.dart';
+import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/feature/fundwallet_screens/fundwallet_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,16 +18,71 @@ class FundWalletScreen extends StatefulWidget {
 
 class _FundWalletScreenState extends State<FundWalletScreen> {
   List<CoinObject> coins = [
-  CoinObject(imageUrl: AppIcons.solanaIcon, coinShortName: 'SOL', coinFullName: 'Solana', amount: 0, networkAmount: 0),
-  CoinObject(imageUrl: AppIcons.ethereumIcon, coinShortName: 'ETH', coinFullName: 'Ethereum', amount: 0, networkAmount: 0),
-];
+    CoinObject(
+        imageUrl: AppAssets.eth,
+        coinShortName: 'ETH',
+        coinFullName: 'Etherum',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "ETH"),
+    CoinObject(
+        imageUrl: AppAssets.polygon,
+        coinShortName: 'POL',
+        coinFullName: 'Polygon',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "POL"),
+    CoinObject(
+        imageUrl: AppAssets.base,
+        coinShortName: 'BASE_ETH',
+        coinFullName: 'Base',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "ETH"),
+    CoinObject(
+        imageUrl: AppAssets.bnb,
+        coinShortName: 'BNB',
+        coinFullName: 'BNB CHAIN',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "BNB"),
+    //CoinObject(imageUrl: AppAssets.op, coinShortName: 'OP_ETH', coinFullName: 'Optimism', amount: 0, networkAmount: 0, amountSign: "ETH"),
+    CoinObject(
+        imageUrl: AppAssets.stark,
+        coinShortName: 'STRK',
+        coinFullName: 'Starknet',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "STRK"),
+    CoinObject(
+        imageUrl: AppAssets.arbitrum,
+        coinShortName: 'ARB_ETH',
+        coinFullName: 'Arbitrum',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "ETH"),
+    CoinObject(
+        imageUrl: AppAssets.xdai,
+        coinShortName: 'xDAI',
+        coinFullName: 'Gnosis Chain',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "xDAI"),
+    CoinObject(
+        imageUrl: AppAssets.era,
+        coinShortName: 'ERA_ETH',
+        coinFullName: 'zkSync Era',
+        amount: 0,
+        networkAmount: 0,
+        amountSign: "ETH"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgB1,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
           child: Column(
             children: [
               SizedBox(height: 16.h),
@@ -34,25 +91,22 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
                 children: [
                   Icon(Icons.arrow_back_ios),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.black)),
                     child: Row(
                       children: [
-                        Icon(Icons.question_mark),
-                        Text(
-                          AppTexts.needHelp,
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              color: Color(0xff18181B),
-                              letterSpacing: 0,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              height: 16 / 12,
-                            ),
-                          ),
+                        SvgPicture.asset(
+                          AppAssets.headSetIcon,
+                          height: 16,
+                          width: 16,
+                          color: context.theme.textTheme.bodySmall?.color,
                         ),
+                        const SizedBox(width: 4),
+                        Text('Need Help?',
+                            style: context.theme.textTheme.bodySmall),
                       ],
                     ),
                   ),
@@ -66,7 +120,7 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
                   style: TextStyle(
                       fontFamily: "Hanken Grotesk",
                       fontWeight: FontWeight.w700,
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       color: AppColors.textPrimary),
                 ),
               ),
@@ -85,12 +139,17 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
                       color: AppColors.bgB0,
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
-                    children: List.generate(coins.length, (index) => CoinTile(
-                      object: coins[index],
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => FundWalletDetails()));
-                      },
-                    )),
+                    children: List.generate(
+                        coins.length,
+                        (index) => CoinTile(
+                              object: coins[index],
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => FundWalletDetails()));
+                              },
+                            )),
                   ))
             ],
           ),
@@ -104,14 +163,16 @@ class CoinTile extends StatelessWidget {
   final CoinObject object;
   final VoidCallback? onTap;
   const CoinTile({
-    super.key, this.onTap, required this.object,
+    super.key,
+    this.onTap,
+    required this.object,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      margin: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      margin: EdgeInsets.symmetric(vertical: 12.h),
       child: InkWell(
         onTap: onTap,
         child: Row(
@@ -119,8 +180,8 @@ class CoinTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset(
-                  AppIcons.ethereumIcon,
+                Image.asset(
+                  object.imageUrl,
                   width: 36.w,
                   height: 36.w,
                 ),
@@ -160,7 +221,7 @@ class CoinTile extends StatelessWidget {
                       color: AppColors.textPrimary),
                 ),
                 Text(
-                  "${object.amount} ${object.coinShortName}",
+                  "${object.amount} ${object.amountSign}",
                   style: TextStyle(
                       fontFamily: "Hanken Grotesk",
                       fontWeight: FontWeight.w400,
@@ -180,6 +241,7 @@ class CoinObject {
   final String imageUrl;
   final String coinShortName;
   final String coinFullName;
+  final String amountSign;
   final double amount;
   final double networkAmount;
 
@@ -188,7 +250,6 @@ class CoinObject {
       required this.coinShortName,
       required this.coinFullName,
       required this.amount,
+      required this.amountSign,
       required this.networkAmount});
 }
-
-
