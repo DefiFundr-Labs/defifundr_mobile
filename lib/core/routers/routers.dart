@@ -166,7 +166,7 @@ class AppRouter {
         ),
         GoRoute(
           path: '/fund-walletdetails',
-          name: RouteConstants.fundWallet,
+          name: RouteConstants.fundWalletDetails,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
