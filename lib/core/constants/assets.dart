@@ -53,6 +53,7 @@ class AppAssets {
   static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
   static const transaction = '$defifundrImagePath/transaction.svg';
 
+
   // identity verification
   static const identityVerification =
       '$defifundrImagePath/IdentificationCard.svg';
@@ -66,4 +67,17 @@ class AppAssets {
       '$defifundrImagePath/verificationProgress.svg';
   static const verificationProgressSvgDark =
       '$defifundrImagePath/verificationProgressDark.svg';
+
+  static const arbitrum = '$defifundrImagePath/arbitrum.png';
+  static const base = '$defifundrImagePath/base.png';
+  static const era = '$defifundrImagePath/era.png';
+  static const eth = '$defifundrImagePath/eth.png';
+  static const bnb = '$defifundrImagePath/Group.png';
+  static const polygon = '$defifundrImagePath/matic.png';
+  static const stark = '$defifundrImagePath/SN.png';
+  static const warning = '$defifundrImagePath/Warning.png';
+  static const xdai = '$defifundrImagePath/xdai.png';
+  static const ethDark = '$defifundrImagePath/eth-dark.png';
+  static const signOut = '$defifundrImagePath/SignOut.png';
+  
 }
