@@ -272,18 +272,6 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Center(
-                child: Container(
-                  width: 134,
-                  height: 5,
-                  margin: const EdgeInsets.only(bottom: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(2.5),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

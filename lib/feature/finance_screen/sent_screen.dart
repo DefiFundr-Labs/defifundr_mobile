@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
-import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:go_router/go_router.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/feature/finance_screen/withdraw_details_model.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_bloc.dart';
-import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_state.dart';
 import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_event.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_state.dart';
+import 'package:defifundr_mobile/feature/finance_screen/withdraw_details_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SentScreen extends StatelessWidget {
   final WithdrawDetailsModel? withdrawDetails;
@@ -84,13 +82,13 @@ class SentScreen extends StatelessWidget {
                     RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        style: fontTheme.textBaseRegular?.copyWith(
+                        style: fontTheme.textBaseRegular.copyWith(
                           color: colors.textPrimary,
                         ),
                         children: <TextSpan>[
                           TextSpan(
                             text: '${details.amount}',
-                            style: fontTheme.textBaseRegular?.copyWith(
+                            style: fontTheme.textBaseRegular.copyWith(
                               color: colors.textPrimary,
                               fontWeight:
                                   FontWeight.w600, // Semibold for amount
@@ -99,7 +97,7 @@ class SentScreen extends StatelessWidget {
                           TextSpan(
                             text:
                                 ' ${details.assetName} was successfully sent to',
-                            style: fontTheme.textBaseRegular?.copyWith(
+                            style: fontTheme.textBaseRegular.copyWith(
                               color: colors
                                   .textPrimary, // Regular for asset name and rest
                             ),
@@ -109,7 +107,7 @@ class SentScreen extends StatelessWidget {
                     ),
                     Text(
                       details.recipientAddress,
-                      style: fontTheme.textBaseRegular?.copyWith(
+                      style: fontTheme.textBaseRegular.copyWith(
                           color: colors.textPrimary,
                           fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
@@ -123,7 +121,7 @@ class SentScreen extends StatelessWidget {
                       },
                       child: Text(
                         'View in Explorer',
-                        style: fontTheme.textBaseMedium?.copyWith(
+                        style: fontTheme.textBaseMedium.copyWith(
                             color: colors.brandDefault,
                             fontWeight: FontWeight.w600),
                       ),
@@ -150,7 +148,7 @@ class SentScreen extends StatelessWidget {
                         ),
                         child: Text(
                           'Done',
-                          style: fontTheme.textBaseMedium?.copyWith(
+                          style: fontTheme.textBaseMedium.copyWith(
                             color: Colors.white,
                           ),
                         ),

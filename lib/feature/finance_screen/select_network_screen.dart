@@ -99,76 +99,75 @@ class SelectNetworkScreen extends StatelessWidget {
   // Dummy data for networks (replace with actual data)
   static final List<Network> dummyNetworks = [
     Network(
-      iconPath: 'assets/images/eth.png', // Placeholder icon path
+      iconPath: 'assets/images/eth.png',
       name: 'Ethereum',
       subtitle: 'Ethereum',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/starknet.png', // Placeholder icon path
+      iconPath: 'assets/images/starknet.png',
       name: 'Starknet',
       subtitle: 'Starknet',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/base.png', // Placeholder icon path
+      iconPath: 'assets/images/base.png', 
       name: 'Base',
       subtitle: 'Base',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/optimism.png', // Placeholder icon path
+      iconPath: 'assets/images/optimism.png', 
       name: 'Optimism',
       subtitle: 'Optimism',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/arbitrum.png', // Placeholder icon path
+      iconPath: 'assets/images/arbitrum.png', 
       name: 'Arbitrum',
       subtitle: 'Arbitrum',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/bnb.png', // Placeholder icon path
+      iconPath: 'assets/images/bnb.png', 
       name: 'BNB Chain',
       subtitle: 'BNB Chain',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/matic.png', // Placeholder icon path
+      iconPath: 'assets/images/matic.png', 
       name: 'Polygon',
       subtitle: 'Polygon',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/gnosis.png', // Placeholder icon path
+      iconPath: 'assets/images/gnosis.png', 
       name: 'Gnosis Chain',
       subtitle: 'Gnosis Chain',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/zksync.png', // Placeholder icon path
+      iconPath: 'assets/images/zksync.png', 
       name: 'zkSync Era',
       subtitle: 'zkSync Era',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
     Network(
-      iconPath: 'assets/images/celo.png', // Placeholder icon path
+      iconPath: 'assets/images/celo.png', 
       name: 'Celo',
       subtitle: 'Celo',
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
-    // Add more dummy networks as needed
   ];
 
   @override

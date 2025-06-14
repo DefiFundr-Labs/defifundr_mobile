@@ -197,8 +197,8 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
   Widget _buildLoadingScreen(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? colors.bgB0 // Light mode color
-          : colors.bgB1,
+          ? Colors.amberAccent // Light mode color
+          : Colors.black12,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -220,8 +220,8 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
   ) {
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? colors.bgB0 // Light mode color
-          : colors.bgB1,
+           ? Colors.amberAccent // Light mode color
+          : Colors.black12,
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(24.w),

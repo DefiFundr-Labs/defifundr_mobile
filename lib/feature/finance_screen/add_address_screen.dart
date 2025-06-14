@@ -1,15 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:defifundr_mobile/feature/finance_screen/finance_home_screen.dart'; // Import for Asset model
-import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart'; // Import for Network model
-import 'package:defifundr_mobile/feature/finance_screen/select_asset_screen.dart'; // Import for SelectAssetScreen
-import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart'; // Import for SelectNetworkScreen
-import 'package:go_router/go_router.dart';
-import 'package:defifundr_mobile/feature/finance_screen/address_book_screen.dart'; // Import for SavedAddress model
+import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/feature/finance_screen/address_book_screen.dart'; // Import for SavedAddress model
+import 'package:defifundr_mobile/feature/finance_screen/finance_home_screen.dart'; // Import for Asset model
+import 'package:defifundr_mobile/feature/finance_screen/select_asset_screen.dart'; // Import for SelectAssetScreen
+import 'package:defifundr_mobile/feature/finance_screen/select_network_screen.dart'; // Import for Network model
+import 'package:flutter/material.dart';
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
@@ -148,7 +145,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           children: [
                             Text(
                               'Asset',
-                              style: fontTheme.textSmRegular?.copyWith(
+                              style: fontTheme.textSmRegular.copyWith(
                                   color: colors.textSecondary), // Label style
                             ),
                             const SizedBox(
@@ -156,7 +153,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                     4), // Spacing between label and selected asset name
                             Text(
                               _selectedAsset?.name ?? 'Select Asset',
-                              style: fontTheme.textBaseMedium?.copyWith(
+                              style: fontTheme.textBaseMedium.copyWith(
                                   color: _selectedAsset == null
                                       ? colors
                                           .textSecondary // Placeholder color
@@ -215,7 +212,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           children: [
                             Text(
                               'Network',
-                              style: fontTheme.textSmRegular?.copyWith(
+                              style: fontTheme.textSmRegular.copyWith(
                                   color: colors.textSecondary), // Label style
                             ),
                             const SizedBox(
@@ -223,7 +220,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                     4), // Spacing between label and selected network name
                             Text(
                               _selectedNetwork?.name ?? 'Select Network',
-                              style: fontTheme.textBaseMedium?.copyWith(
+                              style: fontTheme.textBaseMedium.copyWith(
                                   color: _selectedNetwork == null
                                       ? colors
                                           .textSecondary // Placeholder color
@@ -265,7 +262,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Text(
                       'Address',
                       style: fontTheme.textSmRegular
-                          ?.copyWith(color: colors.textSecondary),
+                          .copyWith(color: colors.textSecondary),
                     ),
                     const SizedBox(height: 4),
                     Row(
@@ -321,7 +318,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Text(
                       'Label',
                       style: fontTheme.textSmRegular
-                          ?.copyWith(color: colors.textSecondary),
+                          .copyWith(color: colors.textSecondary),
                     ),
                     const SizedBox(height: 4),
                     TextField(
@@ -329,7 +326,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       decoration: InputDecoration(
                         hintText: 'E.g. My ETH Wallet',
                         hintStyle: fontTheme.textBaseRegular
-                            ?.copyWith(color: colors.textTertiary),
+                            .copyWith(color: colors.textTertiary),
                         border: InputBorder.none,
                         isDense: true,
                         contentPadding: EdgeInsets.zero,

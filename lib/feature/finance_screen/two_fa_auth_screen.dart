@@ -1,17 +1,16 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/utils/message_service.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/help_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/pin_input.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/pin_keypad.dart';
-import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_bloc.dart';
-import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_state.dart';
 import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_event.dart';
+import 'package:defifundr_mobile/feature/finance_screen/bloc/withdraw_bloc/withdraw_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class TwoFaAuthScreen extends StatefulWidget {
   const TwoFaAuthScreen({super.key});

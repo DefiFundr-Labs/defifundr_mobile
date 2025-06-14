@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:defifundr_mobile/feature/payment_screens/models/payment.dart';
+import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
+import 'package:flutter/material.dart';
 
 // Define enums for filter options if needed, or use existing ones
 enum FilterTransactionType { all, contract, invoice }
@@ -46,7 +44,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
               height: 4,
               width: 40,
               decoration: BoxDecoration(
-                color: colors.strokeSecondary, // Handle color
+                color: colors.strokeSecondary,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -59,7 +57,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                 children: [
                   Text(
                     'Filter by',
-                    style: fontTheme.heading2Bold, // Title style
+                    style: fontTheme.heading2Bold,
                   ),
                   const SizedBox(height: 20),
 
@@ -119,9 +117,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       _buildStatusChip(context, 'Overdue', FilterStatus.overdue,
                           _selectedStatus, (FilterStatus status) {
                         setState(() => _selectedStatus = status);
-                      },
-                          chipColor:
-                              colors.orangeHover), // Use appropriate color
+                      }, chipColor: colors.orangeHover),
                     ],
                     showChips: false,
                     isExpanded: _isStatusExpanded,
@@ -159,7 +155,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       )),
                   child: Text('Clear all',
                       style: fontTheme.textBaseMedium
-                          ?.copyWith(color: colors.textPrimary)), // Text style
+                          .copyWith(color: colors.textPrimary)), // Text style
                 ),
               ),
               const SizedBox(width: 16),
@@ -182,7 +178,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       )),
                   child: Text('Show results',
                       style: fontTheme.textBaseMedium
-                          ?.copyWith(color: colors.textWhite)), // Text style
+                          .copyWith(color: colors.textWhite)), // Text style
                 ),
               ),
             ],
@@ -270,8 +266,8 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
       child: ChoiceChip(
         label: Text(label,
             style: isSelected
-                ? fontTheme.textSmBold?.copyWith(color: colors.textWhite)
-                : fontTheme.textSmRegular?.copyWith(color: colors.textPrimary)),
+                ? fontTheme.textSmBold.copyWith(color: colors.textWhite)
+                : fontTheme.textSmRegular.copyWith(color: colors.textPrimary)),
         selected: isSelected,
         selectedColor: chipColor ?? colors.brandDefault,
         backgroundColor: Theme.of(context).brightness == Brightness.light
