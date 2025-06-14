@@ -128,25 +128,30 @@ class FilterPanelFooter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SmallButton(
-          backgroundColor: resolveColor(
-            context: context,
-            lightColor:
-                AppColors.strokeSecondary.withAlpha((0.08 * 255).toInt()),
-            darkColor:
-                AppColorDark.strokeSecondary.withAlpha((0.8 * 255).toInt()),
+        Expanded(
+          child: SmallButton(
+            backgroundColor: resolveColor(
+              context: context,
+              lightColor:
+                  AppColors.strokeSecondary.withAlpha((0.08 * 255).toInt()),
+              darkColor:
+                  AppColorDark.strokeSecondary.withAlpha((0.8 * 255).toInt()),
+            ),
+            textColor: resolveColor(
+              context: context,
+              lightColor: AppColors.textPrimary,
+              darkColor: AppColorDark.textPrimary,
+            ),
+            text: "Clear all",
+            onPressed: onClear,
           ),
-          textColor: resolveColor(
-            context: context,
-            lightColor: AppColors.textPrimary,
-            darkColor: AppColorDark.textPrimary,
-          ),
-          text: "Clear all",
-          onPressed: onClear,
         ),
-        SmallButton(
-          text: "Show results",
-          onPressed: onShowResults,
+        SizedBox(width: 16),
+        Expanded(
+          child: SmallButton(
+            text: "Show results",
+            onPressed: onShowResults,
+          ),
         ),
       ],
     );

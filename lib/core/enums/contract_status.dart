@@ -15,6 +15,18 @@ enum ContractStatus {
       textColor: AppColors.orangeDefault),
   rejected(
     label: 'Rejected',
+    bgColor: AppColors.pinkFill,
+    borderColor: AppColors.pinkStroke,
+    textColor: AppColors.pinkDefault,
+  ),
+  completed(
+    label: 'Completed',
+    bgColor: AppColors.blueFill,
+    borderColor: AppColors.blueStroke,
+    textColor: AppColors.blueDefault,
+  ),
+  cancelled(
+    label: 'Cancelled',
     bgColor: AppColors.redFill,
     borderColor: AppColors.redStroke,
     textColor: AppColors.redDefault,

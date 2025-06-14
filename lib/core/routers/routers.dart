@@ -16,6 +16,14 @@ import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/receive_payment_screen.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/quick_pay/screens/transaction_screen.dart';
 import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/contracts_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/client_details.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/compliance_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/contract_dates_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/contract_details_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/payment_and_invoice_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/review_and_sign_screen.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_page_view/select_contract_type.dart';
+import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/create_contract_screen.dart';
 import 'package:defifundr_mobile/feature/fixed_rate_contract_creation/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -309,6 +317,150 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: ContractsScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/create-contract-screen',
+          name: RouteConstants.createcontractScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: CreateContractScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/select-contract-type',
+          name: RouteConstants.selectContractTypeScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: SelectContractTypeScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/contract-details',
+          name: RouteConstants.contractDetailsScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ContractDetailsScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/client-details',
+          name: RouteConstants.clientDetailsScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ClientDetails(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/contract-dates',
+          name: RouteConstants.contractDatesScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ContractDatesScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/payment-and-invoice',
+          name: RouteConstants.paymentAndInvoiceScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: PaymentAndInvoiceScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/compliance',
+          name: RouteConstants.complianceScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ComplianceScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/review-and-sign',
+          name: RouteConstants.reviewAndSignScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ReviewAndSignScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
