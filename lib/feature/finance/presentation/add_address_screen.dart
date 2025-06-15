@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
-import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/user_interface/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/feature/finance/presentation/address_book_screen.dart'; // Import for SavedAddress model
 import 'package:defifundr_mobile/feature/finance/presentation/finance_home_screen.dart'; // Import for Asset model
 import 'package:defifundr_mobile/feature/finance/presentation/select_asset_screen.dart'; // Import for SelectAssetScreen

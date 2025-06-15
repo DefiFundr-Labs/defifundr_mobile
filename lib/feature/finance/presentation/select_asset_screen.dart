@@ -6,7 +6,7 @@ import 'package:defifundr_mobile/feature/finance/presentation/finance_home_scree
 import 'package:defifundr_mobile/feature/finance/presentation/select_network_screen.dart'; // Import SelectNetworkScreen and Network model
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
 // Convert to StatefulWidget to handle the selected asset temporarily
 class SelectAssetScreen extends StatefulWidget {

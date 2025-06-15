@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart';
 import 'package:defifundr_mobile/feature/finance/presentation/address_book_screen.dart';
 import 'package:defifundr_mobile/feature/finance/presentation/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/feature/finance/presentation/bloc/withdraw_bloc/withdraw_event.dart';

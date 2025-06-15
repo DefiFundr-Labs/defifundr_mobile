@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
-import '../../../../../core/shared/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/textfield/app_text_field.dart';
+import '../../../../../core/shared/user_interface/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/user_interface/textfield/app_text_field.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'password_requirement_viewer.dart';
 

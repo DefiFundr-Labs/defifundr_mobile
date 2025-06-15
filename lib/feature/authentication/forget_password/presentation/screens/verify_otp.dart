@@ -6,7 +6,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
-import '../../../../../core/shared/buttons/primary_button.dart';
+import '../../../../../core/shared/user_interface/buttons/primary_button.dart';
 import '../../../../../core/utils/message_service.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 

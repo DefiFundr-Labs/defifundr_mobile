@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/blockchain_type.dart';
-import 'package:defifundr_mobile/core/shared/overlay/blockchain_wallet_loader.dart';
-import 'package:defifundr_mobile/core/shared/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/user_interface/overlay/blockchain_wallet_loader.dart';
+import 'package:defifundr_mobile/core/shared/user_interface/buttons/primary_button.dart';
 import 'package:defifundr_mobile/feature/web3auth/presentation/bloc/auth_bloc.dart';
 import 'package:defifundr_mobile/feature/web3auth/presentation/bloc/auth_event.dart';
 import 'package:defifundr_mobile/feature/web3auth/presentation/bloc/auth_state.dart';

@@ -5,7 +5,7 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:defifundr_mobile/feature/finance/presentation/finance_home_screen.dart'; // For Asset model
 import 'package:defifundr_mobile/feature/finance/presentation/select_network_screen.dart'; // For Network model
 import 'package:go_router/go_router.dart';
-import 'package:defifundr_mobile/core/shared/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:qr_flutter/qr_flutter.dart'; // Import qr_flutter library
 
 class AssetDepositScreen extends StatelessWidget {
