@@ -3,7 +3,7 @@ import 'package:defifundr_mobile/core/utils/message_service.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/shared/user_interface/buttons/help_button.dart';
+import '../../../../../core/shared/common_ui/buttons/help_button.dart';
 import '../widgets/pin_input.dart';
 import '../widgets/pin_keypad.dart';
 

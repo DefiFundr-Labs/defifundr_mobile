@@ -3,7 +3,7 @@ import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';

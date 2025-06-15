@@ -1,16 +1,16 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart'
     show AppColors;
-import 'package:defifundr_mobile/core/shared/user_interface/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/constants/app_icons.dart';
 import '../../../../../core/constants/app_texts.dart';
-import '../../../../../core/shared/user_interface/appbar/appbar.dart';
-import '../../../../../core/shared/user_interface/components/auth_header.dart';
+import '../../../../../core/shared/common_ui/appbar/appbar.dart';
+import '../../../../../core/shared/common_ui/components/auth_header.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);

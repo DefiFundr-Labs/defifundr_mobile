@@ -2,8 +2,8 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/shared/user_interface/buttons/primary_button.dart';
-import '../../../../../core/shared/user_interface/buttons/secondary_button.dart';
+import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
+import '../../../../../core/shared/common_ui/buttons/secondary_button.dart';
 
 class EnablePushNotificationsScreen extends StatelessWidget {
   const EnablePushNotificationsScreen({super.key});

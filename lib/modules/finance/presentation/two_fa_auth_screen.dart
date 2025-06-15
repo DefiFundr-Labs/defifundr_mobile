@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/buttons/help_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/help_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_input.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_keypad.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_bloc.dart';

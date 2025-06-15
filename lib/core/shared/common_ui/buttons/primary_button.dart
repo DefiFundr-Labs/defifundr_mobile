@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/service/heptics/heptic_manager.dart';
+import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

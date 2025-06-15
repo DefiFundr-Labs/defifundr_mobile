@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/textfield/custom_input_border.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/textfield/custom_input_border.dart';
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -7,7 +7,7 @@ import 'package:defifundr_mobile/modules/payment/presentation/payments/payment_i
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart';
 
 // Define a simple data model for an Asset

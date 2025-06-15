@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/payments/payment_filter_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

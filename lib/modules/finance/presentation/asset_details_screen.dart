@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart'; // For icons
 import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
 import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart'; // Import for Network model
 import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart'; // Import for AssetDepositScreen
-import 'package:defifundr_mobile/core/shared/user_interface/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:flutter_svg/svg.dart';
 
 // Assuming you pass the Asset and Network objects to this screen

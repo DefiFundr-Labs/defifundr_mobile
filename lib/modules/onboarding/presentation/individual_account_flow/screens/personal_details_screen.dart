@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:defifundr_mobile/core/shared/user_interface/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
   const PersonalDetailsScreen({super.key});
