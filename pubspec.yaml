@@ -59,7 +59,9 @@ dependencies:
   hex: ^0.2.0
   logger: ^2.5.0
   qr_flutter: ^4.1.0
-  # qr_flutter: ^4.0.0
+  currency_text_input_formatter: ^2.3.0
+  iconsax: ^0.0.8
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

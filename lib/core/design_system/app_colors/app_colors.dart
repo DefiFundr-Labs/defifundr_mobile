@@ -6,7 +6,7 @@ class AppColors {
   static const Color textPrimary = Color(0xFF18181B);
   static const Color textSecondary = Color(0xFF71717A);
   static const Color textTertiary = Color(0xFFA1A1AA);
-  static const Color textQuaternary = Color(0xFFCCCCCC);
+  static const Color textQuaternary = Color(0xFFD4D4D8);
   static const Color textWhite = Color(0xFFF6F6F7);
 
   // Constant/Brand Colors
@@ -36,9 +36,9 @@ class AppColors {
 
   // Gray Colors
   static const Color grayPrimary = Color(0xFF333333);
-  static const Color graySecondary = Color(0xFF666666);
+  static const Color graySecondary = Color(0xFF71717A);
   static const Color grayTertiary = Color(0xFF999999);
-  static const Color grayQuaternary = Color(0xFFCCCCCC);
+  static const Color grayQuaternary = Color(0xFFD4D4D8);
 
   // Yellow Colors
   static const Color yellowDefault = Color(0xFFE6C040);
@@ -131,11 +131,11 @@ class AppColorDark {
   static const Color textPrimary = Color(0xFFF6F6F7);
   static const Color textSecondary = Color(0xFFAAAAAA);
   static const Color textTertiary = Color(0xFF888888);
-  static const Color textQuaternary = Color(0xFF555555);
+  static const Color textQuaternary = Color(0xFF52525B);
   static const Color textWhite = Color(0xFF000003);
 
   // Constant/Brand Colors
-  static const Color constantDefault = Color(0xFFFFFFFF);
+  static const Color constantDefault = Color(0xFF5A42DE);
   static const Color constantDefaultBorder = Color(0xFF333333);
   static const Color brandDefault = Color(0xFF4040FF);
   static const Color brandContrast = Color(0xFF5252FF);
@@ -160,9 +160,9 @@ class AppColorDark {
   static const Color greenFill = Color(0xFF052E16);
 
   // Gray Colors
-  static const Color grayPrimary = Color(0xFFCCCCCC);
-  static const Color graySecondary = Color(0xFF999999);
-  static const Color grayTertiary = Color(0xFF666666);
+  static const Color grayPrimary = Color(0xFFA1A1AA);
+  static const Color graySecondary = Color(0xFF71717A);
+  static const Color grayTertiary = Color(0xFF52525B);
   static const Color grayQuaternary = Color(0xFF333333);
 
   // Yellow Colors
