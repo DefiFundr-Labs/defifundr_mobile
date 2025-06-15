@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:defifundr_mobile/feature/web3auth/exceptions/web3auth_exception.dart';
-import 'package:defifundr_mobile/feature/web3auth/interfaces/web3_wallet.dart';
-import 'package:defifundr_mobile/feature/web3auth/web3auth_service.dart';
+import 'package:defifundr_mobile/feature/web3auth/domain/exceptions/web3auth_exception.dart';
+import 'package:defifundr_mobile/feature/web3auth/domain/interfaces/web3_wallet.dart';
+import 'package:defifundr_mobile/feature/web3auth/data/service/web3auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:web3auth_flutter/enums.dart';
 
-import '../../../core/config/web3auth_config.dart';
+import '../../../../core/config/web3auth_config.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 

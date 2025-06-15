@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
+import 'package:defifundr_mobile/feature/web3auth/domain/exceptions/web3auth_exception.dart';
 
+import '../../domain/interfaces/web3_wallet.dart';
 import '../clients/starknet_client.dart';
-import '../exceptions/web3auth_exception.dart';
-import '../interfaces/web3_wallet.dart';
 
 class StarkNetWallet extends Web3Wallet {
   final String privateKey;

@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:defifundr_mobile/feature/web3auth/domain/exceptions/web3auth_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 
-import '../exceptions/web3auth_exception.dart';
-import '../interfaces/web3_wallet.dart';
+import '../../domain/interfaces/web3_wallet.dart';
 
 /// Implementation of Ethereum wallet
 class EthereumWallet extends Web3Wallet {

@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/shared/textfield/custom_input_border.dart';
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -10,28 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
-enum InputFormatterType {
-  none,
-  phone,
-  amount,
-  custom,
-}
-
-enum PrefixType {
-  none,
-  phone,
-  name,
-  customIcon,
-  customWidget,
-}
-
-enum SuffixType {
-  none,
-  defaultt,
-  customIcon,
-  customWidget,
-}
 
 class AppTextField extends StatefulWidget {
   const AppTextField({

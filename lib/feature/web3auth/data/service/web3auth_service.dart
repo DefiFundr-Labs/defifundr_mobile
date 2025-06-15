@@ -2,18 +2,18 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:defifundr_mobile/core/enums/blockchain_type.dart';
-import 'package:defifundr_mobile/feature/web3auth/wallets/etherium_wallet.dart';
+import 'package:defifundr_mobile/feature/web3auth/domain/exceptions/web3auth_exception.dart';
+import 'package:defifundr_mobile/feature/web3auth/data/wallets/etherium_wallet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web3auth_flutter/enums.dart';
 import 'package:web3auth_flutter/input.dart';
 import 'package:web3auth_flutter/output.dart';
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
-import '../../core/config/web3auth_config.dart';
-import 'exceptions/web3auth_exception.dart';
-import 'interfaces/web3_wallet.dart';
-import 'wallets/solana_wallet.dart';
-import 'wallets/starknet_wallet.dart';
+import '../../../../core/config/web3auth_config.dart';
+import '../../domain/interfaces/web3_wallet.dart';
+import '../wallets/solana_wallet.dart';
+import '../wallets/starknet_wallet.dart';
 
 /// Main Web3Auth service class for handling authentication and blockchain interactions
 class Web3AuthService {

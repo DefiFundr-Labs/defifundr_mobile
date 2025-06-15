@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:solana/solana.dart';
 
-import '../exceptions/web3auth_exception.dart';
-import '../interfaces/web3_wallet.dart';
+import 'package:defifundr_mobile/feature/web3auth/domain/exceptions/web3auth_exception.dart';
+import '../../domain/interfaces/web3_wallet.dart';
 
 /// Implementation of Solana wallet
 class SolanaWallet extends Web3Wallet {

@@ -1,5 +1,5 @@
 import 'package:defifundr_mobile/app.dart';
-import 'package:defifundr_mobile/feature/web3auth/web3auth_service.dart';
+import 'package:defifundr_mobile/feature/web3auth/data/service/web3auth_service.dart';
 import 'package:flutter/material.dart' show runApp;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

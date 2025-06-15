@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:web3auth_flutter/output.dart';
 
-import '../../../core/enums/blockchain_type.dart';
+import '../../../../core/enums/blockchain_type.dart';
 
 enum AuthStatus {
   initial,
