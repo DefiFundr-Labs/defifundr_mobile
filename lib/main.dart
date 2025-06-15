@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/app.dart';
+import 'package:defifundr_mobile/app/app.dart';
 import 'package:defifundr_mobile/modules/web3auth/data/service/web3auth_service.dart';
 import 'package:flutter/material.dart' show runApp;
 import 'package:flutter_bloc/flutter_bloc.dart';

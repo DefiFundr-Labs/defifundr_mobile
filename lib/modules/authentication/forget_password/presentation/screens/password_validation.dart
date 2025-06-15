@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/app.dart';
+import 'package:defifundr_mobile/app/app.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
