@@ -40,6 +40,8 @@ dependencies:
   shared_preferences: ^2.5.3
   #? flutter_dotenv is a Dart package that provides a way to load environment variables from a .env file.
   flutter_dotenv: null
+  #?  flutter_gen is a Dart package that helps you to generate code for Flutter projects.
+  flutter_gen_runner: ^5.10.0
 
 
   flutter_native_splash: ^2.2.16
@@ -75,6 +77,18 @@ dev_dependencies:
 #? For information on the generic Dart part of this file, see the
 import_sorter:
   emojis: true
+
+flutter_gen:
+  output: lib/core/gen/ 
+
+  assets:
+    enabled: true
+    outputs:
+      class_name: Assets
+  fonts:
+    enabled: true
+    outputs:
+      class_name: FontFamily
 
 #? The following section is specific to Flutter.
 flutter:
