@@ -3,7 +3,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/payments/payment_item_card.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';

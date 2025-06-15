@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart'; // Assuming Payment model can be reused for transactions
-import 'package:defifundr_mobile/modules/payment/presentation/payments/payment_item_card.dart'; // Reusing PaymentItemCard
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart'; // Reusing PaymentItemCard
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:go_router/go_router.dart'; // For icons
 import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model

@@ -1,5 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/quick_payments.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/status_checkbox_row.dart';
 import 'package:flutter/material.dart';
 

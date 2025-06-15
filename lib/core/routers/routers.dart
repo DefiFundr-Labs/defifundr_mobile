@@ -8,7 +8,7 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/individual_acco
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/profile_created_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
-import 'package:defifundr_mobile/modules/authentication/login/presentation/screens/login_screen.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/login_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
@@ -26,8 +26,8 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw_preview_s
 import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/receive_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/confirm_payment_screen.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/quick_payments.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/receive_params.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay_home_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_done.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_payment_screen.dart';

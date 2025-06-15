@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/quick_payments.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

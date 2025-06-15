@@ -1,9 +1,9 @@
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // You might need to add the intl package to your pubspec.yaml
-import '../../data/models/payment.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; 
+
+import '../../../data/models/payment.dart';
 
 class PaymentItemCard extends StatelessWidget {
   final Payment payment;
@@ -103,7 +103,7 @@ class PaymentItemCard extends StatelessWidget {
                   const SizedBox(height: 4), // Spacing
                   Text(
                     'Est. date: $formattedDate', // Format date
-                    style: fontTheme.textSmRegular?.copyWith(
+                    style: fontTheme.textSmRegular.copyWith(
                       color: colors.textSecondary, // Style for date
                     ),
                   ),
@@ -141,7 +141,7 @@ class PaymentItemCard extends StatelessWidget {
                               .toString()
                               .split('.')
                               .last, // Display status
-                      style: fontTheme.textSmRegular?.copyWith(
+                      style: fontTheme.textSmRegular.copyWith(
                           fontWeight: FontWeight.w600,
                           color: statusColor), // Adjust text style as needed
                     ),

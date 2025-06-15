@@ -7,8 +7,8 @@ import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/coin_assets.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/receive_params.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/coin_assets.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

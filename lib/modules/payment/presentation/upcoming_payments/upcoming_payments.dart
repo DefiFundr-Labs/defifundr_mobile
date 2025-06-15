@@ -5,12 +5,12 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/payments/payment_filter_sheet.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_filter_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/models/payment.dart';
-import '../payments/payment_item_card.dart';
+import '../payments/screens/payment_item_card.dart';
 
 class UpcomingPaymentsScreen extends StatefulWidget {
   const UpcomingPaymentsScreen({Key? key}) : super(key: key);

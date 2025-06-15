@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/class/receive_params.dart';
+import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filter_buttons.dart';
 import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
