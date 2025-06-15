@@ -1,7 +1,9 @@
 import 'dart:async' show Timer;
 
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../core/constants/app_texts.dart';
@@ -191,11 +193,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 textColor: Theme.of(context).colors.contrastWhite,
                 color: Theme.of(context).colors.contrastBlack,
                 onPressed: () {
-                  MessageService.showError(context, AppTexts.invalidOTPCode,
-                      AppTexts.invalidOTPCodeDesc);
-                  context
-                      .read<ForgotPasswordBloc>()
-                      .add(VerifyOtpEvent(_otpController.text));
+                  // MessageService.showError(context, AppTexts.invalidOTPCode,
+                  //     AppTexts.invalidOTPCodeDesc);
+                  context.pushNamed(RouteConstants.newPassword);
+                  // context
+                  //     .read<ForgotPasswordBloc>()
+                  //     .add(VerifyOtpEvent(_otpController.text));
                 },
               ),
             ),
@@ -215,6 +218,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       onPressed: () {
                         MessageService.showSuccess(context,
                             AppTexts.otpCodeResent, AppTexts.otpCodeResentDesc);
+
                         context
                             .read<ForgotPasswordBloc>()
                             .add(ResendOtpEvent());

@@ -7,9 +7,9 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/components/or_widget.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,6 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 'Welcome Back!',
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 32.sp,
+                  color: context.theme.colors.brandDefault,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -110,7 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushNamed(RouteConstants.forgotPassword);
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: const Size(0, 0),
@@ -129,7 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 16.h),
               PrimaryButton(
                 text: "Log In",
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(RouteConstants.quickPayScreen);
+                },
               ),
               SizedBox(height: 24.h),
               ORWidget(),
@@ -138,7 +143,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 height: 48.h,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushNamed(RouteConstants.quickPayScreen);
+                  },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.grayQuaternary,
                     side: BorderSide(color: AppColors.white),
@@ -205,8 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.quickPayScreen);
-                      context.pushNamed(RouteConstants.upcomingPayments);
+                      context.pushNamed(RouteConstants.profileCreated);
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,

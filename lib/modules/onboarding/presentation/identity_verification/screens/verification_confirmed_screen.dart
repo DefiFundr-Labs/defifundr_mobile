@@ -1,10 +1,9 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
 class VerificationConfirmedScreen extends StatefulWidget {
   const VerificationConfirmedScreen({super.key});

@@ -125,7 +125,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                             Text(
                               'Save your go-to crypto addresses so sending funds is faster and safer.',
                               style: fontTheme.textSmRegular
-                                  ?.copyWith(color: colors.textSecondary),
+                                  .copyWith(color: colors.textSecondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -163,7 +163,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                                       backgroundColor: colors
                                           .brandDefault, // Placeholder background color
                                       child: Text('Z',
-                                          style: fontTheme.heading2Bold?.copyWith(
+                                          style: fontTheme.heading2Bold.copyWith(
                                               color: colors
                                                   .textWhite)), // Placeholder text
                                     ),
@@ -183,12 +183,10 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                                             children: [
                                               Text(
                                                 addressEntry.address.length > 24
-                                                    ? addressEntry.address
-                                                            .substring(0, 24) +
-                                                        '...'
+                                                    ? '${addressEntry.address.substring(0, 24)}...'
                                                     : addressEntry.address,
                                                 style: fontTheme.textSmRegular
-                                                    ?.copyWith(
+                                                    .copyWith(
                                                         color: colors
                                                             .textSecondary), // Address style
                                                 overflow: TextOverflow
@@ -210,7 +208,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                                                 child: Text(
                                                   addressEntry.network,
                                                   style: fontTheme.textXsMedium
-                                                      ?.copyWith(
+                                                      .copyWith(
                                                           color: colors
                                                               .textSecondary), // Network text style
                                                 ),

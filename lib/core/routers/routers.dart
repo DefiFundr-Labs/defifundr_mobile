@@ -1,4 +1,22 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/login_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/address_book_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/asset_details_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/confirm_payment_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/receive_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/select_asset_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/sent_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw_preview_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/select_id_country_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/verification_confirmed_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/verify_identity_screen.dart';
@@ -8,24 +26,9 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/individual_acco
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/profile_created_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
-import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/login_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/asset_details_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_asset_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/address_book_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/sent_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw_preview_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/receive_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/confirm_payment_screen.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay_home_screen.dart';
@@ -51,7 +54,22 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const LoginScreen(),
+              child: LoginScreen(),
+              // child: ReceivePaymentScreen(),
+              // child: QuickPayHomeScreen(),
+              // child: UpcomingPaymentsScreen(),
+              // child: InvoiceScreen(
+              //   payment: Payment(
+              //       amount: 300,
+              //       title: '',
+              //       estimatedDate: DateTime(2000),
+              //       currency: '',
+              //       status: PaymentStatus.overdue,
+              //       paymentType: PaymentType.contract,
+              //       paymentNetwork: PaymentNetwork.ethereum,
+              //       icon: '',
+              //       iconBackgroundColor: Colors.green),
+              // ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
@@ -153,6 +171,63 @@ class AppRouter {
             );
           },
         ),
+        GoRoute(
+          path: '/forgotPassword',
+          name: RouteConstants.forgotPassword,
+          routes: [
+            GoRoute(
+              path: 'emailVerification',
+              name: RouteConstants.emailVerification,
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const VerifyOtpScreen(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
+            GoRoute(
+              path: 'newPassword',
+              name: RouteConstants.newPassword,
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const NewPassword(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ResetPassword(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+
         GoRoute(
           path: '/profile-created',
           name: RouteConstants.profileCreated,
