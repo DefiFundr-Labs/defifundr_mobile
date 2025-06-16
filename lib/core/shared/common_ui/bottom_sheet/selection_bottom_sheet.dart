@@ -15,16 +15,13 @@ class SelectionBottomSheet<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:
-          MediaQuery.of(context).size.height * 0.6, // Adjust height as needed
+      height: MediaQuery.of(context).size.height * 0.6,
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge, // Adjust style as needed
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 16.0),
           Expanded(
@@ -34,10 +31,9 @@ class SelectionBottomSheet<T> extends StatelessWidget {
                 final item = items[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.pop(context, item); // Return the selected item
+                    Navigator.pop(context, item);
                   },
-                  child: itemBuilder(
-                      context, item), // Use the provided item builder
+                  child: itemBuilder(context, item),
                 );
               },
             ),
