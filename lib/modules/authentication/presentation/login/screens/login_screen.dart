@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.pushNamed(RouteConstants.profileCreated);
+                        context.pushNamed(RouteConstants.passwordValidation);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,

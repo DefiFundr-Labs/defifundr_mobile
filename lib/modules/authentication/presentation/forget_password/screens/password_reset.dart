@@ -1,0 +1,107 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/components/confetti_wrapper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+
+class PasswordReset extends StatelessWidget {
+  const PasswordReset({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ConfettiWrapper(
+      autoStart: true,
+      duration: const Duration(seconds: 5),
+      particleIntensity: 1000,
+      shouldLoop: false,
+      child: Scaffold(
+        backgroundColor: context.theme.primaryColorDark,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: _buildContent(context),
+                  ),
+                ),
+                _buildActionButton(context),
+                SizedBox(height: 32.h),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildSuccessIcon(context),
+        SizedBox(height: 32.h),
+        _buildTextContent(context),
+      ],
+    );
+  }
+
+  Widget _buildSuccessIcon(BuildContext context) {
+    return Container(
+      width: 80.w,
+      height: 80.h,
+      decoration: BoxDecoration(
+        color: context.theme.colors.brandFill,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          Assets.icons.lockKeyOpen,
+          width: 40.w,
+          height: 40.h,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextContent(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Password Has Been Reset!",
+          textAlign: TextAlign.center,
+          style: context.theme.textTheme.headlineLarge?.copyWith(
+            fontSize: 24.sp,
+            color: context.theme.colors.textPrimary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        SizedBox(height: 16.h),
+        Text(
+          "You can now log in with your new password and continue using your account securely.",
+          textAlign: TextAlign.center,
+          style: context.theme.textTheme.headlineMedium?.copyWith(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+            color: context.theme.colors.textSecondary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButton(BuildContext context) {
+    return PrimaryButton(
+      text: 'Proceed to login',
+      isEnabled: true,
+      onPressed: () {
+        context.pushNamed(RouteConstants.login);
+      },
+    );
+  }
+}

@@ -372,6 +372,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -474,7 +475,7 @@ class _AppTextFieldState extends State<AppTextField> {
                       width: 2.0,
                     ),
                   ),
-                  fillColor: widget.bgColour ?? context.theme.colors.bgB1,
+                  fillColor: _getFillColor(context, isDark),
                   filled: true,
                   labelText: widget.labelText,
                   hintText: widget.hintText,
@@ -560,5 +561,15 @@ class _AppTextFieldState extends State<AppTextField> {
         ),
       ],
     );
+  }
+
+  Color _getFillColor(BuildContext context, bool isDark) {
+    // If custom color is provided, use it
+    if (widget.bgColour != null) {
+      return widget.bgColour!;
+    }
+
+    // Otherwise, use theme-based color
+    return isDark ? context.theme.colors.bgB1 : context.theme.colors.bgB0;
   }
 }

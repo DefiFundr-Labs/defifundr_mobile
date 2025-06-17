@@ -24,9 +24,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Globe.svg
   String get globe => 'assets/icons/Globe.svg';
 
-  /// File path: assets/icons/Headset.svg
-  String get headset => 'assets/icons/Headset.svg';
-
   /// File path: assets/icons/IdentificationCard.svg
   String get identificationCard => 'assets/icons/IdentificationCard.svg';
 
@@ -63,6 +60,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_back.svg
   String get arrowBack => 'assets/icons/arrow_back.svg';
 
+  /// File path: assets/icons/arrow_clockwise.svg
+  String get arrowClockwise => 'assets/icons/arrow_clockwise.svg';
+
   /// File path: assets/icons/arrow_down.svg
   String get arrowDown => 'assets/icons/arrow_down.svg';
 
@@ -90,9 +90,6 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
-
-  /// File path: assets/icons/cloud.png
-  AssetGenImage get cloud => const AssetGenImage('assets/icons/cloud.png');
 
   /// File path: assets/icons/cross_eye.svg
   String get crossEye => 'assets/icons/cross_eye.svg';
@@ -137,6 +134,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/group.svg
   String get group => 'assets/icons/group.svg';
 
+  /// File path: assets/icons/headset.svg
+  String get headset => 'assets/icons/headset.svg';
+
   /// File path: assets/icons/headset_icon.svg
   String get headsetIcon => 'assets/icons/headset_icon.svg';
 
@@ -154,6 +154,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/lock_icon.svg
   String get lockIcon => 'assets/icons/lock_icon.svg';
+
+  /// File path: assets/icons/lock_key_open.svg
+  String get lockKeyOpen => 'assets/icons/lock_key_open.svg';
 
   /// File path: assets/icons/logo-white.svg
   String get logoWhite => 'assets/icons/logo-white.svg';
@@ -261,7 +264,6 @@ class $AssetsIconsGen {
     buildingOffice,
     carProfile,
     globe,
-    headset,
     identificationCard,
     info,
     link,
@@ -274,6 +276,7 @@ class $AssetsIconsGen {
     arrowRightSvg,
     arrowRightSvg_,
     arrowBack,
+    arrowClockwise,
     arrowDown,
     arrowUp,
     back,
@@ -283,7 +286,6 @@ class $AssetsIconsGen {
     caretRight,
     checked,
     close,
-    cloud,
     crossEye,
     defifundrLogo,
     depositSvg,
@@ -298,12 +300,14 @@ class $AssetsIconsGen {
     fingerprint,
     googleIcon,
     group,
+    headset,
     headsetIcon,
     home,
     hundredPercent,
     incompletRegistration,
     invoice,
     lockIcon,
+    lockKeyOpen,
     logoWhite,
     logo,
     money,
@@ -389,6 +393,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/celo.png
   AssetGenImage get celo => const AssetGenImage('assets/images/celo.png');
 
+  /// File path: assets/images/cloud.png
+  AssetGenImage get cloud => const AssetGenImage('assets/images/cloud.png');
+
   /// File path: assets/images/dai.png
   AssetGenImage get dai => const AssetGenImage('assets/images/dai.png');
 
@@ -437,9 +444,6 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/idcard.png
   AssetGenImage get idcard => const AssetGenImage('assets/images/idcard.png');
-
-  /// File path: assets/images/images.dart
-  String get images => 'assets/images/images.dart';
 
   /// File path: assets/images/invoice.png
   AssetGenImage get invoice => const AssetGenImage('assets/images/invoice.png');
@@ -523,6 +527,7 @@ class $AssetsImagesGen {
     base,
     bnb,
     celo,
+    cloud,
     dai,
     defiIcon,
     driversCard,
@@ -538,7 +543,6 @@ class $AssetsImagesGen {
     gradientBackground,
     headphone,
     idcard,
-    images,
     invoice,
     logoBlack,
     lusd,
@@ -562,12 +566,23 @@ class $AssetsImagesGen {
   ];
 }
 
+class $AssetsShadersGen {
+  const $AssetsShadersGen();
+
+  /// File path: assets/shaders/glass.frag
+  String get glass => 'assets/shaders/glass.frag';
+
+  /// List of all assets
+  List<String> get values => [glass];
+}
+
 class Assets {
   const Assets._();
 
   static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsShadersGen shaders = $AssetsShadersGen();
 
   /// List of all assets
   static List<String> get values => [aEnv];

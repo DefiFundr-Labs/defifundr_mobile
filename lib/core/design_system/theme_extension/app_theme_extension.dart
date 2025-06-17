@@ -846,7 +846,7 @@ class AppTheme {
 
     return defaultTheme.copyWith(
       colorScheme: _darkAppColorss.toColorScheme(Brightness.dark),
-      scaffoldBackgroundColor: _darkAppColorss.bgB1,
+      scaffoldBackgroundColor: _darkAppColorss.bgB0,
       appBarTheme: AppBarTheme(
         color: _darkAppColorss.bgB0,
         titleTextStyle: _darkFontTheme.heading2Bold,

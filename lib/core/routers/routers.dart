@@ -1,9 +1,8 @@
-import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
-import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/pin_code_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address_book_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart';
@@ -39,6 +38,8 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transacti
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../modules/authentication/presentation/login/screens/login_screen.dart';
+
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   // ignore: unused_field
@@ -55,10 +56,12 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: PinLoginScreen(
-                userName: "Ademola",
-                biometricType: BiometricType.fingerprint,
-              ),
+              // child: PasswordValidationScreen(),
+              child: LoginScreen(),
+              // child: PinLoginScreen(
+              //   userName: "Ademola",
+              //   biometricType: BiometricType.fingerprint,
+              // ),
               // child: ReceivePaymentScreen(),
               // child: QuickPayHomeScreen(),
               // child: UpcomingPaymentsScreen(),
@@ -175,6 +178,27 @@ class AppRouter {
             );
           },
         ),
+        // PasswordValidationScreen
+
+        GoRoute(
+          path: '/reset-validation',
+          name: RouteConstants.passwordValidation,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ResetPassword(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+
         GoRoute(
           path: '/forgotPassword',
           name: RouteConstants.forgotPassword,
@@ -197,6 +221,25 @@ class AppRouter {
                 );
               },
             ),
+             GoRoute(
+              path: 'passwordReset',
+              name: RouteConstants.passwordReset,
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const PasswordReset(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
+            
             GoRoute(
               path: 'newPassword',
               name: RouteConstants.newPassword,

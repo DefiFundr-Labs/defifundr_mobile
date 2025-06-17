@@ -16,12 +16,14 @@ class RouteConstants {
   static const String enablePushNotification = 'enablePushNotification';
   static const String createAccount = 'createAccount';
   static const String personalDetails = 'personalDetails';
+  static const String passwordReset = "passwordReset";
   static const String companyDetails = 'companyDetails';
   static const String accountType = 'accountType';
   static const String verifyIdentity = 'verifyIdentity';
   static const String profileCreated = 'profileCreated';
   static const String home = 'home';
   static const String invoice = 'invoice';
+  static const String passwordValidation = 'resetValidation';
   static const String upcomingPayments = 'upcomingPayments';
   static const String paymentDetails = 'paymentDetails';
   static const String financeHome = 'financeHome';

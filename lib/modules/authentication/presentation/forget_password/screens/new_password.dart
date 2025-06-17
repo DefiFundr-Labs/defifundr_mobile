@@ -1,12 +1,20 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
-import 'password_requirement_viewer.dart';
+import '../widget/password_requirement_viewer.dart';
 
 class NewPassword extends StatelessWidget {
   const NewPassword({super.key});
@@ -14,24 +22,12 @@ class NewPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colors.bgB0,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colors.bgB0,
-        elevation: 0,
-        actions: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(color: Theme.of(context).colors.textPrimary)),
-            child: Row(
-              spacing: 4,
-              children: [
-                Icon(Icons.headphones_outlined, size: 16, applyTextScaling: true, color: Theme.of(context).colors.textPrimary),
-                Text(AppTexts.needHelp, style: Theme.of(context).fonts.textSmMedium)
-              ],
-            ),
-          ),
-          SizedBox(width: 20),
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          isBack: true,
+          title: '',
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -39,25 +35,60 @@ class NewPassword extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 8),
-            Text(AppTexts.enterNewPassword, style: Theme.of(context).fonts.heading2Bold),
-            Text(AppTexts.enterNewPasswordDesc, style: Theme.of(context).fonts.textMdRegular),
-            SizedBox(height: 24),
+            Text(
+              "Enter New Password",
+              style: context.theme.textTheme.headlineLarge?.copyWith(
+                fontSize: 24.sp,
+                color: context.theme.colors.textPrimary,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(height: 4.h),
+            Text(
+              AppTexts.enterNewPasswordDesc,
+              style: context.theme.textTheme.headlineMedium?.copyWith(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: context.theme.colors.textSecondary,
+              ),
+            ),
+            SizedBox(height: 24.h),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.hidePassword != current.newPasswordState?.hidePassword,
+              buildWhen: (previous, current) =>
+                  previous.newPasswordState?.hidePassword !=
+                  current.newPasswordState?.hidePassword,
               builder: (context, state) {
                 return AppTextField(
                   controller: TextEditingController(),
                   labelText: AppTexts.newPassword,
                   hideText: state.newPasswordState?.hidePassword ?? false,
                   keyboardType: TextInputType.visiblePassword,
-                  suffixIcon: IconButton(
-                    onPressed: () => context.read<ForgotPasswordBloc>().add(TogglePasswordVisibility()),
-                    icon: Icon(
-                      state.newPasswordState?.hidePassword ?? false ? Icons.visibility : Icons.visibility_off,
-                      color: Theme.of(context).colors.graySecondary,
+                  textInputAction: TextInputAction.done,
+                  suffixType: SuffixType.customIcon,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      context
+                          .read<ForgotPasswordBloc>()
+                          .add(TogglePasswordVisibility());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: SvgPicture.asset(
+                        state.newPasswordState?.hidePassword ?? false
+                            ? Assets.icons.eyeIcon
+                            : Assets.icons.crossEye,
+                        height: 15.sp,
+                        width: 15.h,
+                        colorFilter: ColorFilter.mode(
+                          context.theme.colors.textSecondary,
+                          BlendMode.srcIn,
+                        ),
+                      ),
                     ),
                   ),
-                  onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterPasswordString(p0)),
+                  onChanged: (p0) => context
+                      .read<ForgotPasswordBloc>()
+                      .add(EnterPasswordString(p0)),
                 );
               },
             ),
@@ -69,49 +100,92 @@ class NewPassword extends StatelessWidget {
                   runSpacing: 8,
                   spacing: 8,
                   children: [
-                    Text(AppTexts.passwordRequirements, style: Theme.of(context).fonts.textSmBold.copyWith(color: Theme.of(context).colors.textSecondary)),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.has8Characters ?? false, text: AppTexts.eightCharacters),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasNumber ?? false, text: AppTexts.aNumber),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasUppercaseCharacter ?? false, text: AppTexts.anUpperCase),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasLowercaseCharacter ?? false, text: AppTexts.anLowerCase),
-                    PasswordRequirementViewer(isPassed: state.newPasswordState?.hasSpecialCharacter ?? false, text: AppTexts.specialCharacter),
+                    Text(AppTexts.passwordRequirements,
+                        style: Theme.of(context).fonts.textSmBold.copyWith(
+                            color: Theme.of(context).colors.textSecondary)),
+                    PasswordRequirementViewer(
+                        isPassed:
+                            state.newPasswordState?.has8Characters ?? false,
+                        text: AppTexts.eightCharacters),
+                    PasswordRequirementViewer(
+                        isPassed: state.newPasswordState?.hasNumber ?? false,
+                        text: AppTexts.aNumber),
+                    PasswordRequirementViewer(
+                        isPassed:
+                            state.newPasswordState?.hasUppercaseCharacter ??
+                                false,
+                        text: AppTexts.anUpperCase),
+                    PasswordRequirementViewer(
+                        isPassed:
+                            state.newPasswordState?.hasLowercaseCharacter ??
+                                false,
+                        text: AppTexts.anLowerCase),
+                    PasswordRequirementViewer(
+                        isPassed: state.newPasswordState?.hasSpecialCharacter ??
+                            false,
+                        text: AppTexts.specialCharacter),
                   ],
                 );
               },
             ),
             SizedBox(height: 20),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-                buildWhen: (previous, current) => previous.newPasswordState?.hideConfirmPassword != current.newPasswordState?.hideConfirmPassword,
+                buildWhen: (previous, current) =>
+                    previous.newPasswordState?.hideConfirmPassword !=
+                    current.newPasswordState?.hideConfirmPassword,
                 builder: (BuildContext context, ForgotPasswordState state) {
                   return AppTextField(
-                     controller: TextEditingController(),
+                    controller: TextEditingController(),
                     labelText: AppTexts.confirmPassword,
-                     hideText: state.newPasswordState?.hideConfirmPassword ?? false,
+                    hideText:
+                        state.newPasswordState?.hideConfirmPassword ?? false,
                     keyboardType: TextInputType.visiblePassword,
-                    suffixIcon: IconButton(
-                      onPressed: () => context.read<ForgotPasswordBloc>().add(ToggleConfirmPasswordVisibility()),
-                      icon: Icon(
-                        state.newPasswordState?.hideConfirmPassword ?? false ? Icons.visibility : Icons.visibility_off,
-                        color: Theme.of(context).colors.graySecondary,
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        context
+                            .read<ForgotPasswordBloc>()
+                            .add(ToggleConfirmPasswordVisibility());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: SvgPicture.asset(
+                          state.newPasswordState?.hideConfirmPassword ?? false
+                              ? Assets.icons.eyeIcon
+                              : Assets.icons.crossEye,
+                          height: 15.sp,
+                          width: 15.h,
+                          colorFilter: ColorFilter.mode(
+                            context.theme.colors.textSecondary,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ),
-                    onChanged: (p0) => context.read<ForgotPasswordBloc>().add(EnterConfirmPasswordString(p0)),
+                    onChanged: (p0) => context
+                        .read<ForgotPasswordBloc>()
+                        .add(EnterConfirmPasswordString(p0)),
                   );
                 }),
             Expanded(child: SizedBox()),
             BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              buildWhen: (previous, current) => previous.newPasswordState?.isVerificationPassed != current.newPasswordState?.isVerificationPassed,
+              buildWhen: (previous, current) =>
+                  previous.newPasswordState?.isVerificationPassed !=
+                  current.newPasswordState?.isVerificationPassed,
               builder: (context, state) {
                 return PrimaryButton(
                   text: AppTexts.resetPassword,
-                  textColor: Theme.of(context).colors.contrastWhite,
-                  color: Theme.of(context).colors.contrastBlack,
-                  isEnabled: state.newPasswordState?.isVerificationPassed ?? false,
-                  onPressed: () {},
+                  isEnabled:
+                      state.newPasswordState?.isVerificationPassed ?? false,
+                  onPressed: () {
+                    context.pushNamed(RouteConstants.passwordReset);
+                  },
                 );
               },
             ),
-            if (MediaQuery.viewInsetsOf(context).bottom < 10) SizedBox(height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom)
+            if (MediaQuery.viewInsetsOf(context).bottom < 10)
+              SizedBox(
+                  height: 8 + MediaQuery.systemGestureInsetsOf(context).bottom),
+            SizedBox(height: 20.sp),
           ],
         ),
       ),
