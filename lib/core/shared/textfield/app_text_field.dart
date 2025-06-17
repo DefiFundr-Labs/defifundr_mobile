@@ -1,7 +1,9 @@
+import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AppTextField extends StatefulWidget {
   final String label;
@@ -143,7 +145,29 @@ class _AppTextFieldState extends State<AppTextField> {
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(20)),
                             ),
-                            builder: (_) => widget.dropDownSheetChild!);
+                            // builder: (_) => widget.dropDownSheetChild!,
+                            builder: (_) {
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(height: 16),
+                                    SvgPicture.asset(
+                                      AppAssets.rectangleSvg,
+                                      width: 48,
+                                      height: 5,
+                                    ),
+                                    Flexible(
+                                      child: widget.dropDownSheetChild!,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
                       } else {
                         _showDropdownBottomSheet(context);
                       }
