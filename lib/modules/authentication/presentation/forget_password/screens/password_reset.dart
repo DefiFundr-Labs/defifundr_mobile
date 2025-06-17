@@ -19,7 +19,6 @@ class PasswordReset extends StatelessWidget {
       particleIntensity: 1000,
       shouldLoop: false,
       child: Scaffold(
-        backgroundColor: context.theme.primaryColorDark,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
