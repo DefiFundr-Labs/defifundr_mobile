@@ -1,5 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/components/dismiss_keyboard.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,8 +19,9 @@ class _AppState extends State<App> {
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
@@ -34,16 +36,18 @@ class _AppState extends State<App> {
       splitScreenMode: false,
       child: MultiBlocProvider(
         providers: appProviders,
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'DeFiFundr',
-          theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
-          themeMode: ThemeMode.dark,
-          scrollBehavior: const _AppScrollBehavior(),
-          routeInformationProvider: AppRouter.router.routeInformationProvider,
-          routeInformationParser: AppRouter.router.routeInformationParser,
-          routerDelegate: AppRouter.router.routerDelegate,
+        child: DismissKeyboard(
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'DeFiFundr',
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: ThemeMode.dark,
+            scrollBehavior: const _AppScrollBehavior(),
+            routeInformationProvider: AppRouter.router.routeInformationProvider,
+            routeInformationParser: AppRouter.router.routeInformationParser,
+            routerDelegate: AppRouter.router.routerDelegate,
+          ),
         ),
       ),
     );

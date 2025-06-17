@@ -1,13 +1,11 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/secondary_buttons.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/components/or_widget.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -46,173 +44,80 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 16.h),
-              AppBarHeaderWidget(),
-              SizedBox(height: 32.h),
-              Text(
-                'Welcome Back!',
-                style: context.theme.textTheme.headlineLarge?.copyWith(
-                  fontSize: 32.sp,
-                  color: context.theme.colors.brandDefault,
-                  fontWeight: FontWeight.w700,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 16.h),
+                AppBarHeaderWidget(),
+                SizedBox(height: 32.h),
+                Text(
+                  'Welcome Back!',
+                  style: context.theme.textTheme.headlineLarge?.copyWith(
+                    fontSize: 24.sp,
+                    color: context.theme.colors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              SizedBox(height: 4.h),
-              Text(
-                'Enter your details below to login to your account.',
-                style: context.theme.textTheme.titleMedium?.copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  color: context.theme.textTheme.bodyMedium?.color,
+                SizedBox(height: 4.h),
+                Text(
+                  'Enter your details below to login to your account.',
+                  style: context.theme.textTheme.headlineMedium?.copyWith(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: context.theme.colors.textSecondary,
+                  ),
                 ),
-              ),
-              SizedBox(height: 24.h),
-              AppTextField(
-                labelText: 'Email address',
-                controller: _emailController,
-              ),
-              SizedBox(height: 12.h),
-              ValueListenableBuilder<TextInputFormatter?>(
-                  valueListenable: inputFormatter,
-                  builder: (context, inputFormatter, _) {
-                    return AppTextField(
-                      controller: _passwordController,
-                      labelText: 'Enter password',
-                      errorTextOnValidation: 'Password is required',
-                      hideText: _obscurePassword,
-                      suffixType: SuffixType.customIcon,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: SvgPicture.asset(
-                            _obscurePassword
-                                ? AppIcons.eyeIcon
-                                : AppIcons.crossEyeIcon,
-                            height: 15.sp,
-                            width: 15.h,
-                            colorFilter: ColorFilter.mode(
-                              context.theme.colors.textSecondary,
-                              BlendMode.srcIn,
+                SizedBox(height: 24.h),
+                AppTextField(
+                  labelText: 'Email address',
+                  controller: _emailController,
+                ),
+                SizedBox(height: 12.h),
+                ValueListenableBuilder<TextInputFormatter?>(
+                    valueListenable: inputFormatter,
+                    builder: (context, inputFormatter, _) {
+                      return AppTextField(
+                        controller: _passwordController,
+                        labelText: 'Enter password',
+                        errorTextOnValidation: 'Password is required',
+                        hideText: _obscurePassword,
+                        keyboardType: TextInputType.visiblePassword,
+                        inputFormatters: [
+                          inputFormatter ??
+                              FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                        ],
+                        textInputAction: TextInputAction.done,
+                        suffixType: SuffixType.customIcon,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: SvgPicture.asset(
+                              _obscurePassword
+                                  ? AppIcons.eyeIcon
+                                  : AppIcons.crossEyeIcon,
+                              height: 15.sp,
+                              width: 15.h,
+                              colorFilter: ColorFilter.mode(
+                                context.theme.colors.textSecondary,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-              SizedBox(height: 12.h),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    context.pushNamed(RouteConstants.forgotPassword);
-                  },
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: Text(
-                    'Forgot password?',
-                    style: context.theme.textTheme.headlineLarge?.copyWith(
-                      color: AppColors.brandDefaultContrast,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              PrimaryButton(
-                text: "Log In",
-                onPressed: () {
-                  context.pushNamed(RouteConstants.quickPayScreen);
-                },
-              ),
-              SizedBox(height: 24.h),
-              ORWidget(),
-              SizedBox(height: 24.h),
-              SizedBox(
-                width: double.infinity,
-                height: 48.h,
-                child: OutlinedButton(
-                  onPressed: () {
-                    context.pushNamed(RouteConstants.quickPayScreen);
-                  },
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: AppColors.grayQuaternary,
-                    side: BorderSide(color: AppColors.white),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(AppAssets.googleIcon),
-                      const SizedBox(width: 12),
-                      Text(
-                        'Log in using Google',
-                        style: context.theme.textTheme.titleMedium?.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              SizedBox(
-                width: double.infinity,
-                height: 48.h,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: AppColors.grayQuaternary,
-                    side: BorderSide(color: AppColors.white),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(AppAssets.appleIcon),
-                      const SizedBox(width: 12),
-                      Text(
-                        'Log in using Apple',
-                        style: context.theme.textTheme.titleMedium?.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account? ',
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: context.theme.textTheme.bodyMedium?.color,
-                    ),
-                  ),
-                  TextButton(
+                      );
+                    }),
+                SizedBox(height: 12.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.profileCreated);
+                      context.pushNamed(RouteConstants.forgotPassword);
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -220,17 +125,74 @@ class _LoginScreenState extends State<LoginScreen> {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Text(
-                      'Sign up',
-                      style: context.theme.textTheme.titleMedium?.copyWith(
-                        fontSize: 16.sp,
+                      'Forgot password?',
+                      style: context.theme.fonts.textBaseMedium.copyWith(
+                        color: context.theme.colors.brandDefault,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                        color: context.theme.buttonTheme.colorScheme!.primary,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(height: 16.h),
+                PrimaryButton(
+                  text: "Log In",
+                  onPressed: () {
+                    context.pushNamed(RouteConstants.quickPayScreen);
+                  },
+                ),
+                SizedBox(height: 24.h),
+                ORWidget(),
+                SizedBox(height: 24.h),
+                SecondaryButton(
+                  text: 'Log in using Google',
+                  icon: AppAssets.googleIcon,
+                  onPressed: () {
+                    context.pushNamed(RouteConstants.quickPayScreen);
+                  },
+                ),
+                SizedBox(height: 16.h),
+                SecondaryButton(
+                  text: 'Log in using Apple',
+                  icon: AppAssets.appleIcon,
+                  onPressed: () {
+                    // Handle Apple login
+                  },
+                ),
+                SizedBox(height: 20.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account? ',
+                      style: context.theme.fonts.bodyMedium.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: context.theme.colors.textSecondary,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.pushNamed(RouteConstants.profileCreated);
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(0, 0),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        'Sign up',
+                        style: context.theme.fonts.bodyMedium.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: context.theme.colors.brandDefault,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

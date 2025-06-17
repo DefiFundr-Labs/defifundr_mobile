@@ -1,11 +1,11 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 
-class SecondaryButton extends StatelessWidget {
+class SmallButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const SecondaryButton({
+  const SmallButton({
     super.key,
     required this.text,
     required this.onPressed,

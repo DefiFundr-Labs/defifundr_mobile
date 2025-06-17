@@ -12,7 +12,7 @@ class AppColors {
   // Constant/Brand Colors
   static const Color constantDefault = Color(0xFF000000);
   static const Color constantDefaultBorder = Color(0xFFCCCCCC);
-  static const Color brandDefault = Color(0xFF4040FF);
+  static const Color brandDefault = Color(0xFF5A42DE);
   static const Color brandContrast = Color(0xFF3333FF);
   static const Color brandDefaultContrast = Color(0xFF5A42DE);
   static const Color brandHover = Color(0xFF3333FF);

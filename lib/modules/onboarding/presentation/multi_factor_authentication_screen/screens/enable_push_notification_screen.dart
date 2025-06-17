@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../../../../../core/shared/common_ui/buttons/secondary_button.dart';
+import '../../../../../core/shared/common_ui/buttons/small_button.dart';
 
 class EnablePushNotificationsScreen extends StatelessWidget {
   const EnablePushNotificationsScreen({super.key});
@@ -59,7 +59,7 @@ class EnablePushNotificationsScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 12),
-              SecondaryButton(
+              SmallButton(
                 text: 'Skip',
                 onPressed: () {
                   Navigator.of(context).popUntil((route) => route.isFirst);

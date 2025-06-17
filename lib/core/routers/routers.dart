@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
-import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/login_screen.dart';
+// import 'package:defifundr_mobile/modules/authentication/presentation/login/presentation/login_screen/login_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address_book_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart';
@@ -38,6 +38,8 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transacti
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../modules/authentication/presentation/login/screens/login_screen.dart';
+
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   // ignore: unused_field
@@ -55,6 +57,10 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: LoginScreen(),
+              // child: PinLoginScreen(
+              //   userName: "Ademola",
+              //   biometricType: BiometricType.fingerprint,
+              // ),
               // child: ReceivePaymentScreen(),
               // child: QuickPayHomeScreen(),
               // child: UpcomingPaymentsScreen(),

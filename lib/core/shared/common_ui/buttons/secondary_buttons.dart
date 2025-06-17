@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class PrimaryButton extends StatefulWidget {
-  const PrimaryButton({
+class SecondaryButton extends StatefulWidget {
+  const SecondaryButton({
     super.key,
-    this.color,
+    this.backgroundColor,
     required this.text,
-    this.isEnabled = true, // TODO: CHANGE THIS BACK TO FALSE
-    this.gradient,
+    this.isEnabled = true,
     this.icon,
     this.iconRtr,
     this.textColor,
@@ -26,7 +25,7 @@ class PrimaryButton extends StatefulWidget {
     this.enableShine = true,
   });
 
-  final Color? color;
+  final Color? backgroundColor;
   final String text;
   final bool? isEnabled;
   final String? icon;
@@ -34,7 +33,6 @@ class PrimaryButton extends StatefulWidget {
   final Color? textColor;
   final double? textSize;
   final EdgeInsetsGeometry? padding;
-  final bool? gradient;
   final Size? fixedSize;
   final VoidCallback? onPressed;
   final BorderRadiusGeometry? borderRadius;
@@ -44,10 +42,10 @@ class PrimaryButton extends StatefulWidget {
   final bool enableShine;
 
   @override
-  _PrimaryButtonState createState() => _PrimaryButtonState();
+  _SecondaryButtonState createState() => _SecondaryButtonState();
 }
 
-class _PrimaryButtonState extends State<PrimaryButton>
+class _SecondaryButtonState extends State<SecondaryButton>
     with TickerProviderStateMixin {
   late AnimationController _scaleController;
   late AnimationController _shineController;
@@ -144,49 +142,51 @@ class _PrimaryButtonState extends State<PrimaryButton>
                   curve: Curves.easeInOut,
                   decoration: BoxDecoration(
                     color: widget.isEnabled ?? true
-                        ? widget.color ?? context.theme.colors.brandDefault
+                        ? widget.backgroundColor ??
+                            context.theme.colors.grayQuaternary
                         : context.theme.colors.graySecondary.withAlpha(100),
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(200.sp),
+                        widget.borderRadius ?? BorderRadius.circular(28.sp),
                     border: Border.all(
                       color: widget.isEnabled ?? false
-                          ? widget.borderColor ?? Colors.transparent
+                          ? widget.borderColor ??
+                              context.theme.colors.grayQuaternary
                           : Colors.transparent,
                     ),
                   ),
                   padding: widget.padding ??
                       EdgeInsets.symmetric(
-                        vertical: 10.sp,
+                        vertical: 12.sp,
                       ),
-                  height: widget.fixedSize?.height ?? 55.h,
-                  width: widget.fixedSize?.width ?? context.screenWidth() - 20,
+                  height: widget.fixedSize?.height ?? 48.h,
+                  width: widget.fixedSize?.width ?? double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (widget.icon != null)
                         SvgPicture.asset(
                           widget.icon ?? '',
-                          height: 24.sp,
-                          width: 24.sp,
+                          height: 18.sp,
+                          width: 18.sp,
                         )
                       else
                         const SizedBox(),
-                      10.horizontalSpace,
+                      if (widget.icon != null) const SizedBox(width: 12),
                       Text(
                         widget.text,
                         style: context.theme.fonts.bodyMedium.copyWith(
                           fontSize: widget.textSize,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                           color: widget.textColor ??
-                              context.theme.colors.contrastWhite,
+                              context.theme.colors.textPrimary,
                         ),
                       ),
-                      7.horizontalSpace,
+                      if (widget.iconRtr != null) const SizedBox(width: 12),
                       if (widget.iconRtr != null)
                         SvgPicture.asset(
                           widget.iconRtr ?? '',
-                          height: 24.sp,
-                          width: 24.sp,
+                          height: 18.sp,
+                          width: 18.sp,
                         )
                       else
                         const SizedBox(),
@@ -197,7 +197,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
                   Positioned.fill(
                     child: ClipRRect(
                       borderRadius:
-                          widget.borderRadius ?? BorderRadius.circular(200.sp),
+                          widget.borderRadius ?? BorderRadius.circular(28.sp),
                       child: AnimatedBuilder(
                         animation: _shineAnimation,
                         builder: (context, child) {
@@ -218,9 +218,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
                                     end: Alignment.centerRight,
                                     colors: [
                                       Colors.transparent,
-                                      context.theme.colors.bgB0.withAlpha(20),
-                                      context.theme.colors.bgB0.withAlpha(50),
-                                      context.theme.colors.bgB0.withAlpha(20),
+                                      context.theme.colors.bgB0.withAlpha(15),
+                                      context.theme.colors.bgB0.withAlpha(30),
+                                      context.theme.colors.bgB0.withAlpha(15),
                                       Colors.transparent,
                                     ],
                                     stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
@@ -238,7 +238,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
                   Positioned.fill(
                     child: ClipRRect(
                       borderRadius:
-                          widget.borderRadius ?? BorderRadius.circular(200.sp),
+                          widget.borderRadius ?? BorderRadius.circular(28.sp),
                       child: AnimatedBuilder(
                         animation: _shineAnimation,
                         builder: (context, child) {
@@ -261,9 +261,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
                                     end: Alignment.centerRight,
                                     colors: [
                                       Colors.transparent,
-                                      context.theme.colors.bgB0.withAlpha(15),
-                                      context.theme.colors.bgB0.withAlpha(40),
-                                      context.theme.colors.bgB0.withAlpha(15),
+                                      context.theme.colors.bgB0.withAlpha(10),
+                                      context.theme.colors.bgB0.withAlpha(25),
+                                      context.theme.colors.bgB0.withAlpha(10),
                                       Colors.transparent,
                                     ],
                                     stops: const [0.0, 0.25, 0.5, 0.75, 1.0],

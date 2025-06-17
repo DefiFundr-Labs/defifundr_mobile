@@ -2,9 +2,10 @@
 
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/image/image_theme_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AppBarHeaderWidget extends StatelessWidget {
   const AppBarHeaderWidget({super.key, this.widget});
@@ -16,15 +17,19 @@ class AppBarHeaderWidget extends StatelessWidget {
       children: [
         widget ??
             Container(
-              width: 40.h,
-              height: 40.h,
+              width: 40.sp,
+              height: 40.sp,
               decoration: BoxDecoration(
-                color: context.theme.iconTheme.color,
+                color: context.theme.colors.contrastBlack,
                 borderRadius: BorderRadius.circular(8.r),
               ),
               padding: const EdgeInsets.all(8),
-              child: SvgPicture.asset(
-                AppAssets.defiFundrLogo,
+              child: ThemeAdaptiveImage.colorAdaptive(
+                asset: AppAssets.defiFundrLogo,
+                width: 14.sp,
+                height: 24.sp,
+                lightColor: context.theme.colors.contrastWhite,
+                darkColor: context.theme.colors.contrastWhite,
               ),
             ),
         Container(
@@ -40,14 +45,15 @@ class AppBarHeaderWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                AppAssets.headSetIcon,
-                height: 16,
-                width: 16,
-                color: context.theme.textTheme.bodySmall?.color,
+              ThemeAdaptiveImage.colorAdaptive(
+                asset: Assets.icons.questionSvg,
+                width: 14.sp,
+                height: 14.sp,
+                lightColor: context.theme.colors.contrastBlack,
+                darkColor: context.theme.colors.contrastBlack,
               ),
               const SizedBox(width: 4),
-              Text('Need Help?', style: context.theme.textTheme.bodySmall),
+              Text('Need Help?', style: context.theme.fonts.textSmMedium),
             ],
           ),
         ),
