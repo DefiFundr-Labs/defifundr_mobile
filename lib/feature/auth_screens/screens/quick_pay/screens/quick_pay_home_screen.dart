@@ -3,7 +3,11 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/enums/checkbox_enum.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/buttons/filter_component.dart';
+import 'package:defifundr_mobile/core/shared/buttons/reusable_checkbox.dart';
+import 'package:defifundr_mobile/core/shared/buttons/search_filter_button.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/feature/auth_screens/screens/multi_factor_authentication_screen/widgets/custom_back_button.dart';
@@ -258,317 +262,71 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                             ),
                           ),
                           const SizedBox(height: 8 * 1.5),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: SizedBox(
-                                  height: 40,
-                                  width: 283,
-                                  child: TextField(
-                                    style: const TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16,
-                                      height: 1.5,
-                                      letterSpacing: 0.0,
+                          SearchAndFilterBar(
+                            onFilterTap: () async {
+                              isPanelVisible.value = true;
+
+                              await slideUpPanel(
+                                context,
+                                FilterPanel(
+                                  sections: [
+                                    // FilterSection(
+                                    //   title: "Status",
+                                    //   children: [
+                                    //     CheckBoxStatus(
+                                    //       onChanged: (value) {
+                                    //         statusFilter.value = value;
+                                    //       },
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    FilterSection(
+                                      title: "Status",
+                                      children: [
+                                        EnumCheckboxGroup<QuickPaymentsStatus>(
+                                          options: QuickPaymentsStatus.values
+                                              .map((status) {
+                                            return EnumCheckboxMeta(
+                                              value: status,
+                                              label: status.titleCase,
+                                              fillColor:
+                                                  status.fillColor(context),
+                                              borderColor:
+                                                  status.borderColor(context),
+                                              textColor:
+                                                  status.textColor(context),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+                                            statusFilter.value = value;
+                                          },
+                                        ),
+                                      ],
                                     ),
-                                    decoration: InputDecoration(
-                                      hintText: 'Search',
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        height: 1.5,
-                                        letterSpacing: 0.0,
-                                        color: resolveColor(
-                                          context: context,
-                                          lightColor: AppColors.textTertiary,
-                                          darkColor: AppColorDark.textTertiary,
+                                    FilterSection(
+                                      title: "Date",
+                                      children: [
+                                        TimeFilterRadio(
+                                          onChanged: (selected) {
+                                            selectedTimeRange.value = selected;
+                                          },
                                         ),
-                                      ),
-                                      filled: true,
-                                      fillColor: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.bgB1Base,
-                                        darkColor: AppColorDark.bgB1Base,
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        vertical: 8,
-                                        horizontal: 16,
-                                      ),
-                                      prefixIcon: Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 16,
-                                          right: 8,
-                                        ),
-                                        child: SvgPicture.asset(
-                                          AppAssets.magnifyingGlass,
-                                          colorFilter: ColorFilter.mode(
-                                            resolveColor(
-                                              context: context,
-                                              lightColor: AppColors.textPrimary,
-                                              darkColor:
-                                                  AppColorDark.textPrimary,
-                                            ),
-                                            BlendMode.srcIn,
-                                          ),
-                                        ),
-                                      ),
-                                      prefixIconConstraints:
-                                          const BoxConstraints(
-                                        minWidth: 0,
-                                        minHeight: 0,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
-                                          color: resolveColor(
-                                            context: context,
-                                            lightColor:
-                                                AppColors.strokeSecondary,
-                                            darkColor:
-                                                AppColorDark.strokeSecondary,
-                                          ),
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
-                                          color: resolveColor(
-                                            context: context,
-                                            lightColor:
-                                                AppColors.strokeSecondary,
-                                            darkColor:
-                                                AppColorDark.strokeSecondary,
-                                          ),
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
-                                          color: resolveColor(
-                                            context: context,
-                                            lightColor:
-                                                AppColors.strokeSecondary,
-                                            darkColor:
-                                                AppColorDark.strokeSecondary,
-                                          ),
-                                          width: 0.5,
-                                        ),
-                                      ),
+                                      ],
                                     ),
-                                  ),
+                                  ],
+                                  onClear: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onShowResults: () {
+                                    Navigator.pop(context);
+                                  },
                                 ),
-                              ),
-                              const SizedBox(width: 8),
-                              GestureDetector(
-                                onTap: () async {
-                                  isPanelVisible.value = true;
-                                  await slideUpPanel(
-                                    context,
-                                    SingleChildScrollView(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 20,
-                                          right: 20,
-                                          bottom: 25,
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 8.0),
-                                              child: SvgPicture.asset(
-                                                AppAssets.rectangleSvg,
-                                                width: 48,
-                                                height: 5,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 16),
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                'Filter by',
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontFamily: 'HankenGrotesk',
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 32 / 24,
-                                                  letterSpacing: 0,
-                                                  color: resolveColor(
-                                                    context: context,
-                                                    lightColor:
-                                                        AppColors.textPrimary,
-                                                    darkColor: AppColorDark
-                                                        .textPrimary,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Theme(
-                                              data: Theme.of(context).copyWith(
-                                                dividerColor:
-                                                    Colors.transparent,
-                                              ),
-                                              child: ExpansionTile(
-                                                title: Text(
-                                                  'Status',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    color: resolveColor(
-                                                      context: context,
-                                                      lightColor:
-                                                          AppColors.textPrimary,
-                                                      darkColor: AppColorDark
-                                                          .textPrimary,
-                                                    ),
-                                                  ),
-                                                ),
-                                                tilePadding: EdgeInsets.zero,
-                                                childrenPadding:
-                                                    EdgeInsets.zero,
-                                                children: [
-                                                  CheckBoxStatus(
-                                                    onChanged: (value) {
-                                                      statusFilter.value =
-                                                          value;
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Divider(
-                                              color: resolveColor(
-                                                context: context,
-                                                lightColor: AppColors
-                                                    .strokeSecondary
-                                                    .withValues(alpha: 0.06),
-                                                darkColor: AppColorDark
-                                                    .strokeSecondary
-                                                    .withValues(alpha: 0.32),
-                                              ),
-                                              height: 1,
-                                            ),
-                                            Theme(
-                                              data: Theme.of(context).copyWith(
-                                                dividerColor:
-                                                    Colors.transparent,
-                                              ),
-                                              child: ExpansionTile(
-                                                title: Text(
-                                                  'Date',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    color: resolveColor(
-                                                      context: context,
-                                                      lightColor:
-                                                          AppColors.textPrimary,
-                                                      darkColor: AppColorDark
-                                                          .textPrimary,
-                                                    ),
-                                                  ),
-                                                ),
-                                                tilePadding: EdgeInsets.zero,
-                                                childrenPadding:
-                                                    EdgeInsets.zero,
-                                                children: [
-                                                  TimeFilterRadio(
-                                                    onChanged: (selected) {
-                                                      selectedTimeRange.value =
-                                                          selected;
-                                                    },
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                SmallButton(
-                                                  backgroundColor: resolveColor(
-                                                    context: context,
-                                                    lightColor: AppColors
-                                                        .strokeSecondary
-                                                        .withValues(
-                                                      alpha: 0.08,
-                                                    ),
-                                                    darkColor: AppColorDark
-                                                        .strokeSecondary
-                                                        .withValues(
-                                                      alpha: 0.8,
-                                                    ),
-                                                  ),
-                                                  textColor: resolveColor(
-                                                    context: context,
-                                                    lightColor:
-                                                        AppColors.textPrimary,
-                                                    darkColor: AppColorDark
-                                                        .textPrimary,
-                                                  ),
-                                                  text: "Clear all",
-                                                  onPressed: () {},
-                                                ),
-                                                SmallButton(
-                                                  text: "Show results",
-                                                  onPressed: () {},
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    canDismiss: true,
-                                    onDismiss: () {
-                                      isPanelVisible.value = false;
-                                    },
-                                  );
+                                canDismiss: true,
+                                onDismiss: () {
+                                  isPanelVisible.value = false;
                                 },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.bgB1Base,
-                                      darkColor: AppColorDark.bgB1Base,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.strokeSecondary,
-                                        darkColor: AppColorDark.strokeSecondary,
-                                      ),
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: SvgPicture.asset(
-                                    AppAssets.filterIcon,
-                                    colorFilter: ColorFilter.mode(
-                                      resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textPrimary,
-                                        darkColor: AppColorDark.textPrimary,
-                                      ),
-                                      BlendMode.srcIn,
-                                    ),
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              );
+                            },
                           ),
                           if (quickPays.isEmpty)
                             SizedBox(
