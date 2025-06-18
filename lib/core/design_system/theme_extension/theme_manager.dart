@@ -1,38 +1,6 @@
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/theme_enum.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-/// Enum representing different theme modes
-enum ThemeModeEnum {
-  light,
-  dark,
-  system;
-
-  /// Convert ThemeModeEnum to Flutter's ThemeMode
-  ThemeMode toThemeMode() {
-    switch (this) {
-      case ThemeModeEnum.light:
-        return ThemeMode.light;
-      case ThemeModeEnum.dark:
-        return ThemeMode.dark;
-      case ThemeModeEnum.system:
-        return ThemeMode.system;
-    }
-  }
-
-  /// Get the string name of the theme mode
-  String get name {
-    switch (this) {
-      case ThemeModeEnum.light:
-        return 'Light';
-      case ThemeModeEnum.dark:
-        return 'Dark';
-      case ThemeModeEnum.system:
-        return 'System';
-    }
-  }
-}
 
 /// Class to manage the theme state using SharedPreferences
 class ThemeManager {
@@ -90,72 +58,5 @@ class ThemeManager {
       return brightness == Brightness.dark;
     }
     return _currentTheme == ThemeModeEnum.dark;
-  }
-}
-
-/// ThemeManager instance to be used throughout the app
-final themeManager = ThemeManager();
-
-/// Bloc implementation for theme management
-class ThemeState {
-  final ThemeModeEnum themeMode;
-
-  ThemeState(this.themeMode);
-}
-
-class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeState(ThemeModeEnum.system)) {
-    // Initialize from shared preferences
-    themeManager.initialize().then((_) {
-      emit(ThemeState(themeManager.currentTheme));
-    });
-
-    // Add listener for theme changes
-    themeManager.addListener(_onThemeChanged);
-  }
-
-  void setTheme(ThemeModeEnum theme) {
-    themeManager.setTheme(theme);
-  }
-
-  void _onThemeChanged(ThemeModeEnum theme) {
-    emit(ThemeState(theme));
-  }
-
-  @override
-  Future<void> close() {
-    themeManager.removeListener(_onThemeChanged);
-    return super.close();
-  }
-}
-
-/// Application with theme support
-class MyApp extends StatelessWidget {
-  final Widget home;
-  final String title;
-
-  const MyApp({
-    super.key,
-    required this.home,
-    this.title = 'App',
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeCubit(),
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: title,
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
-            themeMode: state.themeMode.toThemeMode(),
-            home: home,
-          );
-        },
-      ),
-    );
   }
 }
