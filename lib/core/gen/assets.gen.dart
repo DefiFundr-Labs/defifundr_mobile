@@ -16,7 +16,10 @@ class $AssetsIconsGen {
   String get briefcase => 'assets/icons/Briefcase.svg';
 
   /// File path: assets/icons/BuildingOffice.svg
-  String get buildingOffice => 'assets/icons/BuildingOffice.svg';
+  String get buildingOfficeSvg => 'assets/icons/BuildingOffice.svg';
+
+  /// File path: assets/icons/building_office.svg
+  String get buildingOfficeSvg_ => 'assets/icons/building_office.svg';
 
   /// File path: assets/icons/CarProfile.svg
   String get carProfile => 'assets/icons/CarProfile.svg';
@@ -82,6 +85,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/background.svg
   String get backgroundSvg => 'assets/icons/background.svg';
 
+  /// File path: assets/icons/brief_case.svg
+  String get briefCase => 'assets/icons/brief_case.svg';
+
   /// File path: assets/icons/caretRight.svg
   String get caretRight => 'assets/icons/caretRight.svg';
 
@@ -90,6 +96,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
+
+  /// Directory path: assets/icons/country_flags
+  $AssetsIconsCountryFlagsGen get countryFlags =>
+      const $AssetsIconsCountryFlagsGen();
 
   /// File path: assets/icons/cross_eye.svg
   String get crossEye => 'assets/icons/cross_eye.svg';
@@ -245,6 +255,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
+  /// File path: assets/icons/user_circle.svg
+  String get userCircle => 'assets/icons/user_circle.svg';
+
   /// File path: assets/icons/user_edit.svg
   String get userEdit => 'assets/icons/user_edit.svg';
 
@@ -261,7 +274,8 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
     briefcase,
-    buildingOffice,
+    buildingOfficeSvg,
+    buildingOfficeSvg_,
     carProfile,
     globe,
     identificationCard,
@@ -283,6 +297,7 @@ class $AssetsIconsGen {
     backIcon,
     backgroundPng,
     backgroundSvg,
+    briefCase,
     caretRight,
     checked,
     close,
@@ -337,6 +352,7 @@ class $AssetsIconsGen {
     usFlag,
     usddIcon,
     user,
+    userCircle,
     userEdit,
     verificationProgress,
     verificationProgressDark,
@@ -574,6 +590,1078 @@ class $AssetsShadersGen {
 
   /// List of all assets
   List<String> get values => [glass];
+}
+
+class $AssetsIconsCountryFlagsGen {
+  const $AssetsIconsCountryFlagsGen();
+
+  /// File path: assets/icons/country_flags/Algeria.svg
+  String get algeria => 'assets/icons/country_flags/Algeria.svg';
+
+  /// File path: assets/icons/country_flags/East Timor.svg
+  String get eastTimor => 'assets/icons/country_flags/East Timor.svg';
+
+  /// File path: assets/icons/country_flags/Rapa Nui.svg
+  String get rapaNui => 'assets/icons/country_flags/Rapa Nui.svg';
+
+  /// File path: assets/icons/country_flags/abkhazia.svg
+  String get abkhazia => 'assets/icons/country_flags/abkhazia.svg';
+
+  /// File path: assets/icons/country_flags/afghanistan.svg
+  String get afghanistan => 'assets/icons/country_flags/afghanistan.svg';
+
+  /// File path: assets/icons/country_flags/aland islands.svg
+  String get alandIslands => 'assets/icons/country_flags/aland islands.svg';
+
+  /// File path: assets/icons/country_flags/albania.svg
+  String get albania => 'assets/icons/country_flags/albania.svg';
+
+  /// File path: assets/icons/country_flags/american samoa.svg
+  String get americanSamoa => 'assets/icons/country_flags/american samoa.svg';
+
+  /// File path: assets/icons/country_flags/andorra.svg
+  String get andorra => 'assets/icons/country_flags/andorra.svg';
+
+  /// File path: assets/icons/country_flags/angola.svg
+  String get angola => 'assets/icons/country_flags/angola.svg';
+
+  /// File path: assets/icons/country_flags/anguilla.svg
+  String get anguilla => 'assets/icons/country_flags/anguilla.svg';
+
+  /// File path: assets/icons/country_flags/antigua and barbuda.svg
+  String get antiguaAndBarbuda =>
+      'assets/icons/country_flags/antigua and barbuda.svg';
+
+  /// File path: assets/icons/country_flags/argentina.svg
+  String get argentina => 'assets/icons/country_flags/argentina.svg';
+
+  /// File path: assets/icons/country_flags/armenia.svg
+  String get armenia => 'assets/icons/country_flags/armenia.svg';
+
+  /// File path: assets/icons/country_flags/aruba.svg
+  String get aruba => 'assets/icons/country_flags/aruba.svg';
+
+  /// File path: assets/icons/country_flags/australia.svg
+  String get australia => 'assets/icons/country_flags/australia.svg';
+
+  /// File path: assets/icons/country_flags/austria.svg
+  String get austria => 'assets/icons/country_flags/austria.svg';
+
+  /// File path: assets/icons/country_flags/azerbaijan.svg
+  String get azerbaijan => 'assets/icons/country_flags/azerbaijan.svg';
+
+  /// File path: assets/icons/country_flags/azores islands.svg
+  String get azoresIslands => 'assets/icons/country_flags/azores islands.svg';
+
+  /// File path: assets/icons/country_flags/bahamas.svg
+  String get bahamas => 'assets/icons/country_flags/bahamas.svg';
+
+  /// File path: assets/icons/country_flags/bahrain.svg
+  String get bahrain => 'assets/icons/country_flags/bahrain.svg';
+
+  /// File path: assets/icons/country_flags/balearic islands.svg
+  String get balearicIslands =>
+      'assets/icons/country_flags/balearic islands.svg';
+
+  /// File path: assets/icons/country_flags/bangladesh.svg
+  String get bangladesh => 'assets/icons/country_flags/bangladesh.svg';
+
+  /// File path: assets/icons/country_flags/barbados.svg
+  String get barbados => 'assets/icons/country_flags/barbados.svg';
+
+  /// File path: assets/icons/country_flags/basque country.svg
+  String get basqueCountry => 'assets/icons/country_flags/basque country.svg';
+
+  /// File path: assets/icons/country_flags/belarus.svg
+  String get belarus => 'assets/icons/country_flags/belarus.svg';
+
+  /// File path: assets/icons/country_flags/belgium.svg
+  String get belgium => 'assets/icons/country_flags/belgium.svg';
+
+  /// File path: assets/icons/country_flags/belize.svg
+  String get belize => 'assets/icons/country_flags/belize.svg';
+
+  /// File path: assets/icons/country_flags/benin.svg
+  String get benin => 'assets/icons/country_flags/benin.svg';
+
+  /// File path: assets/icons/country_flags/bermuda.svg
+  String get bermuda => 'assets/icons/country_flags/bermuda.svg';
+
+  /// File path: assets/icons/country_flags/bhutan.svg
+  String get bhutan => 'assets/icons/country_flags/bhutan.svg';
+
+  /// File path: assets/icons/country_flags/bolivia.svg
+  String get bolivia => 'assets/icons/country_flags/bolivia.svg';
+
+  /// File path: assets/icons/country_flags/bonaire.svg
+  String get bonaire => 'assets/icons/country_flags/bonaire.svg';
+
+  /// File path: assets/icons/country_flags/bosnia and herzegovina.svg
+  String get bosniaAndHerzegovina =>
+      'assets/icons/country_flags/bosnia and herzegovina.svg';
+
+  /// File path: assets/icons/country_flags/botswana.svg
+  String get botswana => 'assets/icons/country_flags/botswana.svg';
+
+  /// File path: assets/icons/country_flags/brazil.svg
+  String get brazil => 'assets/icons/country_flags/brazil.svg';
+
+  /// File path: assets/icons/country_flags/british columbia.svg
+  String get britishColumbia =>
+      'assets/icons/country_flags/british columbia.svg';
+
+  /// File path: assets/icons/country_flags/british indian ocean territory.svg
+  String get britishIndianOceanTerritory =>
+      'assets/icons/country_flags/british indian ocean territory.svg';
+
+  /// File path: assets/icons/country_flags/british virgin islands.svg
+  String get britishVirginIslands =>
+      'assets/icons/country_flags/british virgin islands.svg';
+
+  /// File path: assets/icons/country_flags/brunei.svg
+  String get brunei => 'assets/icons/country_flags/brunei.svg';
+
+  /// File path: assets/icons/country_flags/bulgaria.svg
+  String get bulgaria => 'assets/icons/country_flags/bulgaria.svg';
+
+  /// File path: assets/icons/country_flags/burkina faso.svg
+  String get burkinaFaso => 'assets/icons/country_flags/burkina faso.svg';
+
+  /// File path: assets/icons/country_flags/burundi.svg
+  String get burundi => 'assets/icons/country_flags/burundi.svg';
+
+  /// File path: assets/icons/country_flags/cambodia.svg
+  String get cambodia => 'assets/icons/country_flags/cambodia.svg';
+
+  /// File path: assets/icons/country_flags/cameroon.svg
+  String get cameroon => 'assets/icons/country_flags/cameroon.svg';
+
+  /// File path: assets/icons/country_flags/canada.svg
+  String get canada => 'assets/icons/country_flags/canada.svg';
+
+  /// File path: assets/icons/country_flags/canary islands.svg
+  String get canaryIslands => 'assets/icons/country_flags/canary islands.svg';
+
+  /// File path: assets/icons/country_flags/cape verde.svg
+  String get capeVerde => 'assets/icons/country_flags/cape verde.svg';
+
+  /// File path: assets/icons/country_flags/cayman islands.svg
+  String get caymanIslands => 'assets/icons/country_flags/cayman islands.svg';
+
+  /// File path: assets/icons/country_flags/central african republic.svg
+  String get centralAfricanRepublic =>
+      'assets/icons/country_flags/central african republic.svg';
+
+  /// File path: assets/icons/country_flags/ceuta.svg
+  String get ceuta => 'assets/icons/country_flags/ceuta.svg';
+
+  /// File path: assets/icons/country_flags/chad.svg
+  String get chad => 'assets/icons/country_flags/chad.svg';
+
+  /// File path: assets/icons/country_flags/chile.svg
+  String get chile => 'assets/icons/country_flags/chile.svg';
+
+  /// File path: assets/icons/country_flags/china.svg
+  String get china => 'assets/icons/country_flags/china.svg';
+
+  /// File path: assets/icons/country_flags/cocos island.svg
+  String get cocosIsland => 'assets/icons/country_flags/cocos island.svg';
+
+  /// File path: assets/icons/country_flags/colombia.svg
+  String get colombia => 'assets/icons/country_flags/colombia.svg';
+
+  /// File path: assets/icons/country_flags/comoros.svg
+  String get comoros => 'assets/icons/country_flags/comoros.svg';
+
+  /// File path: assets/icons/country_flags/cook islands.svg
+  String get cookIslands => 'assets/icons/country_flags/cook islands.svg';
+
+  /// File path: assets/icons/country_flags/corsica.svg
+  String get corsica => 'assets/icons/country_flags/corsica.svg';
+
+  /// File path: assets/icons/country_flags/costa rica.svg
+  String get costaRica => 'assets/icons/country_flags/costa rica.svg';
+
+  /// File path: assets/icons/country_flags/croatia.svg
+  String get croatia => 'assets/icons/country_flags/croatia.svg';
+
+  /// File path: assets/icons/country_flags/cuba.svg
+  String get cuba => 'assets/icons/country_flags/cuba.svg';
+
+  /// File path: assets/icons/country_flags/curacao.svg
+  String get curacao => 'assets/icons/country_flags/curacao.svg';
+
+  /// File path: assets/icons/country_flags/cyprus.svg
+  String get cyprus => 'assets/icons/country_flags/cyprus.svg';
+
+  /// File path: assets/icons/country_flags/czech republic.svg
+  String get czechRepublic => 'assets/icons/country_flags/czech republic.svg';
+
+  /// File path: assets/icons/country_flags/democratic republic of congo.svg
+  String get democraticRepublicOfCongo =>
+      'assets/icons/country_flags/democratic republic of congo.svg';
+
+  /// File path: assets/icons/country_flags/denmark.svg
+  String get denmark => 'assets/icons/country_flags/denmark.svg';
+
+  /// File path: assets/icons/country_flags/djibouti.svg
+  String get djibouti => 'assets/icons/country_flags/djibouti.svg';
+
+  /// File path: assets/icons/country_flags/dominica.svg
+  String get dominica => 'assets/icons/country_flags/dominica.svg';
+
+  /// File path: assets/icons/country_flags/dominican republic.svg
+  String get dominicanRepublic =>
+      'assets/icons/country_flags/dominican republic.svg';
+
+  /// File path: assets/icons/country_flags/ecuador.svg
+  String get ecuador => 'assets/icons/country_flags/ecuador.svg';
+
+  /// File path: assets/icons/country_flags/egypt.svg
+  String get egypt => 'assets/icons/country_flags/egypt.svg';
+
+  /// File path: assets/icons/country_flags/el salvador.svg
+  String get elSalvador => 'assets/icons/country_flags/el salvador.svg';
+
+  /// File path: assets/icons/country_flags/england.svg
+  String get england => 'assets/icons/country_flags/england.svg';
+
+  /// File path: assets/icons/country_flags/equatorial guinea.svg
+  String get equatorialGuinea =>
+      'assets/icons/country_flags/equatorial guinea.svg';
+
+  /// File path: assets/icons/country_flags/eritrea.svg
+  String get eritrea => 'assets/icons/country_flags/eritrea.svg';
+
+  /// File path: assets/icons/country_flags/estonia.svg
+  String get estonia => 'assets/icons/country_flags/estonia.svg';
+
+  /// File path: assets/icons/country_flags/ethiopia.svg
+  String get ethiopia => 'assets/icons/country_flags/ethiopia.svg';
+
+  /// File path: assets/icons/country_flags/european union.svg
+  String get europeanUnion => 'assets/icons/country_flags/european union.svg';
+
+  /// File path: assets/icons/country_flags/falkland islands.svg
+  String get falklandIslands =>
+      'assets/icons/country_flags/falkland islands.svg';
+
+  /// File path: assets/icons/country_flags/faroe islands.svg
+  String get faroeIslands => 'assets/icons/country_flags/faroe islands.svg';
+
+  /// File path: assets/icons/country_flags/fiji.svg
+  String get fiji => 'assets/icons/country_flags/fiji.svg';
+
+  /// File path: assets/icons/country_flags/finland.svg
+  String get finland => 'assets/icons/country_flags/finland.svg';
+
+  /// File path: assets/icons/country_flags/france.svg
+  String get france => 'assets/icons/country_flags/france.svg';
+
+  /// File path: assets/icons/country_flags/french polynesia.svg
+  String get frenchPolynesia =>
+      'assets/icons/country_flags/french polynesia.svg';
+
+  /// File path: assets/icons/country_flags/gabon.svg
+  String get gabon => 'assets/icons/country_flags/gabon.svg';
+
+  /// File path: assets/icons/country_flags/galapagos islands.svg
+  String get galapagosIslands =>
+      'assets/icons/country_flags/galapagos islands.svg';
+
+  /// File path: assets/icons/country_flags/gambia.svg
+  String get gambia => 'assets/icons/country_flags/gambia.svg';
+
+  /// File path: assets/icons/country_flags/georgia.svg
+  String get georgia => 'assets/icons/country_flags/georgia.svg';
+
+  /// File path: assets/icons/country_flags/germany.svg
+  String get germany => 'assets/icons/country_flags/germany.svg';
+
+  /// File path: assets/icons/country_flags/ghana.svg
+  String get ghana => 'assets/icons/country_flags/ghana.svg';
+
+  /// File path: assets/icons/country_flags/gibraltar.svg
+  String get gibraltar => 'assets/icons/country_flags/gibraltar.svg';
+
+  /// File path: assets/icons/country_flags/greece.svg
+  String get greece => 'assets/icons/country_flags/greece.svg';
+
+  /// File path: assets/icons/country_flags/greenland.svg
+  String get greenland => 'assets/icons/country_flags/greenland.svg';
+
+  /// File path: assets/icons/country_flags/grenada.svg
+  String get grenada => 'assets/icons/country_flags/grenada.svg';
+
+  /// File path: assets/icons/country_flags/guam.svg
+  String get guam => 'assets/icons/country_flags/guam.svg';
+
+  /// File path: assets/icons/country_flags/guatemala.svg
+  String get guatemala => 'assets/icons/country_flags/guatemala.svg';
+
+  /// File path: assets/icons/country_flags/guernsey.svg
+  String get guernsey => 'assets/icons/country_flags/guernsey.svg';
+
+  /// File path: assets/icons/country_flags/guinea bissau.svg
+  String get guineaBissau => 'assets/icons/country_flags/guinea bissau.svg';
+
+  /// File path: assets/icons/country_flags/guinea.svg
+  String get guinea => 'assets/icons/country_flags/guinea.svg';
+
+  /// File path: assets/icons/country_flags/guyana.svg
+  String get guyana => 'assets/icons/country_flags/guyana.svg';
+
+  /// File path: assets/icons/country_flags/haiti.svg
+  String get haiti => 'assets/icons/country_flags/haiti.svg';
+
+  /// File path: assets/icons/country_flags/hawaii.svg
+  String get hawaii => 'assets/icons/country_flags/hawaii.svg';
+
+  /// File path: assets/icons/country_flags/honduras.svg
+  String get honduras => 'assets/icons/country_flags/honduras.svg';
+
+  /// File path: assets/icons/country_flags/hong kong.svg
+  String get hongKong => 'assets/icons/country_flags/hong kong.svg';
+
+  /// File path: assets/icons/country_flags/hungary.svg
+  String get hungary => 'assets/icons/country_flags/hungary.svg';
+
+  /// File path: assets/icons/country_flags/iceland.svg
+  String get iceland => 'assets/icons/country_flags/iceland.svg';
+
+  /// File path: assets/icons/country_flags/india.svg
+  String get india => 'assets/icons/country_flags/india.svg';
+
+  /// File path: assets/icons/country_flags/indonesia.svg
+  String get indonesia => 'assets/icons/country_flags/indonesia.svg';
+
+  /// File path: assets/icons/country_flags/iran.svg
+  String get iran => 'assets/icons/country_flags/iran.svg';
+
+  /// File path: assets/icons/country_flags/iraq.svg
+  String get iraq => 'assets/icons/country_flags/iraq.svg';
+
+  /// File path: assets/icons/country_flags/ireland.svg
+  String get ireland => 'assets/icons/country_flags/ireland.svg';
+
+  /// File path: assets/icons/country_flags/isle of man.svg
+  String get isleOfMan => 'assets/icons/country_flags/isle of man.svg';
+
+  /// File path: assets/icons/country_flags/israel.svg
+  String get israel => 'assets/icons/country_flags/israel.svg';
+
+  /// File path: assets/icons/country_flags/italy.svg
+  String get italy => 'assets/icons/country_flags/italy.svg';
+
+  /// File path: assets/icons/country_flags/ivory coast.svg
+  String get ivoryCoast => 'assets/icons/country_flags/ivory coast.svg';
+
+  /// File path: assets/icons/country_flags/jamaica.svg
+  String get jamaica => 'assets/icons/country_flags/jamaica.svg';
+
+  /// File path: assets/icons/country_flags/japan.svg
+  String get japan => 'assets/icons/country_flags/japan.svg';
+
+  /// File path: assets/icons/country_flags/jersey.svg
+  String get jersey => 'assets/icons/country_flags/jersey.svg';
+
+  /// File path: assets/icons/country_flags/jordan.svg
+  String get jordan => 'assets/icons/country_flags/jordan.svg';
+
+  /// File path: assets/icons/country_flags/kazakhstan.svg
+  String get kazakhstan => 'assets/icons/country_flags/kazakhstan.svg';
+
+  /// File path: assets/icons/country_flags/kenya.svg
+  String get kenya => 'assets/icons/country_flags/kenya.svg';
+
+  /// File path: assets/icons/country_flags/kiribati.svg
+  String get kiribati => 'assets/icons/country_flags/kiribati.svg';
+
+  /// File path: assets/icons/country_flags/kosovo.svg
+  String get kosovo => 'assets/icons/country_flags/kosovo.svg';
+
+  /// File path: assets/icons/country_flags/kuwait.svg
+  String get kuwait => 'assets/icons/country_flags/kuwait.svg';
+
+  /// File path: assets/icons/country_flags/kyrgyzstan.svg
+  String get kyrgyzstan => 'assets/icons/country_flags/kyrgyzstan.svg';
+
+  /// File path: assets/icons/country_flags/laos.svg
+  String get laos => 'assets/icons/country_flags/laos.svg';
+
+  /// File path: assets/icons/country_flags/latvia.svg
+  String get latvia => 'assets/icons/country_flags/latvia.svg';
+
+  /// File path: assets/icons/country_flags/lebanon.svg
+  String get lebanon => 'assets/icons/country_flags/lebanon.svg';
+
+  /// File path: assets/icons/country_flags/lesotho.svg
+  String get lesotho => 'assets/icons/country_flags/lesotho.svg';
+
+  /// File path: assets/icons/country_flags/liberia.svg
+  String get liberia => 'assets/icons/country_flags/liberia.svg';
+
+  /// File path: assets/icons/country_flags/libya.svg
+  String get libya => 'assets/icons/country_flags/libya.svg';
+
+  /// File path: assets/icons/country_flags/liechtenstein.svg
+  String get liechtenstein => 'assets/icons/country_flags/liechtenstein.svg';
+
+  /// File path: assets/icons/country_flags/lithuania.svg
+  String get lithuania => 'assets/icons/country_flags/lithuania.svg';
+
+  /// File path: assets/icons/country_flags/luxembourg.svg
+  String get luxembourg => 'assets/icons/country_flags/luxembourg.svg';
+
+  /// File path: assets/icons/country_flags/macao.svg
+  String get macao => 'assets/icons/country_flags/macao.svg';
+
+  /// File path: assets/icons/country_flags/madagascar.svg
+  String get madagascar => 'assets/icons/country_flags/madagascar.svg';
+
+  /// File path: assets/icons/country_flags/madeira.svg
+  String get madeira => 'assets/icons/country_flags/madeira.svg';
+
+  /// File path: assets/icons/country_flags/malawi.svg
+  String get malawi => 'assets/icons/country_flags/malawi.svg';
+
+  /// File path: assets/icons/country_flags/malaysia.svg
+  String get malaysia => 'assets/icons/country_flags/malaysia.svg';
+
+  /// File path: assets/icons/country_flags/maldives.svg
+  String get maldives => 'assets/icons/country_flags/maldives.svg';
+
+  /// File path: assets/icons/country_flags/mali.svg
+  String get mali => 'assets/icons/country_flags/mali.svg';
+
+  /// File path: assets/icons/country_flags/malta.svg
+  String get malta => 'assets/icons/country_flags/malta.svg';
+
+  /// File path: assets/icons/country_flags/marshall island.svg
+  String get marshallIsland => 'assets/icons/country_flags/marshall island.svg';
+
+  /// File path: assets/icons/country_flags/martinique.svg
+  String get martinique => 'assets/icons/country_flags/martinique.svg';
+
+  /// File path: assets/icons/country_flags/mauritania.svg
+  String get mauritania => 'assets/icons/country_flags/mauritania.svg';
+
+  /// File path: assets/icons/country_flags/mauritius.svg
+  String get mauritius => 'assets/icons/country_flags/mauritius.svg';
+
+  /// File path: assets/icons/country_flags/melilla.svg
+  String get melilla => 'assets/icons/country_flags/melilla.svg';
+
+  /// File path: assets/icons/country_flags/mexico.svg
+  String get mexico => 'assets/icons/country_flags/mexico.svg';
+
+  /// File path: assets/icons/country_flags/micronesia.svg
+  String get micronesia => 'assets/icons/country_flags/micronesia.svg';
+
+  /// File path: assets/icons/country_flags/moldova.svg
+  String get moldova => 'assets/icons/country_flags/moldova.svg';
+
+  /// File path: assets/icons/country_flags/monaco.svg
+  String get monaco => 'assets/icons/country_flags/monaco.svg';
+
+  /// File path: assets/icons/country_flags/mongolia.svg
+  String get mongolia => 'assets/icons/country_flags/mongolia.svg';
+
+  /// File path: assets/icons/country_flags/montenegro.svg
+  String get montenegro => 'assets/icons/country_flags/montenegro.svg';
+
+  /// File path: assets/icons/country_flags/montserrat.svg
+  String get montserrat => 'assets/icons/country_flags/montserrat.svg';
+
+  /// File path: assets/icons/country_flags/morocco.svg
+  String get morocco => 'assets/icons/country_flags/morocco.svg';
+
+  /// File path: assets/icons/country_flags/mozambique.svg
+  String get mozambique => 'assets/icons/country_flags/mozambique.svg';
+
+  /// File path: assets/icons/country_flags/myanmar.svg
+  String get myanmar => 'assets/icons/country_flags/myanmar.svg';
+
+  /// File path: assets/icons/country_flags/namibia.svg
+  String get namibia => 'assets/icons/country_flags/namibia.svg';
+
+  /// File path: assets/icons/country_flags/nato.svg
+  String get nato => 'assets/icons/country_flags/nato.svg';
+
+  /// File path: assets/icons/country_flags/nauru.svg
+  String get nauru => 'assets/icons/country_flags/nauru.svg';
+
+  /// File path: assets/icons/country_flags/nepal.svg
+  String get nepal => 'assets/icons/country_flags/nepal.svg';
+
+  /// File path: assets/icons/country_flags/netherlands.svg
+  String get netherlands => 'assets/icons/country_flags/netherlands.svg';
+
+  /// File path: assets/icons/country_flags/new zealand.svg
+  String get newZealand => 'assets/icons/country_flags/new zealand.svg';
+
+  /// File path: assets/icons/country_flags/nicaragua.svg
+  String get nicaragua => 'assets/icons/country_flags/nicaragua.svg';
+
+  /// File path: assets/icons/country_flags/niger.svg
+  String get niger => 'assets/icons/country_flags/niger.svg';
+
+  /// File path: assets/icons/country_flags/nigeria.svg
+  String get nigeria => 'assets/icons/country_flags/nigeria.svg';
+
+  /// File path: assets/icons/country_flags/niue.svg
+  String get niue => 'assets/icons/country_flags/niue.svg';
+
+  /// File path: assets/icons/country_flags/norfolk island.svg
+  String get norfolkIsland => 'assets/icons/country_flags/norfolk island.svg';
+
+  /// File path: assets/icons/country_flags/north korea.svg
+  String get northKorea => 'assets/icons/country_flags/north korea.svg';
+
+  /// File path: assets/icons/country_flags/northern cyprus.svg
+  String get northernCyprus => 'assets/icons/country_flags/northern cyprus.svg';
+
+  /// File path: assets/icons/country_flags/northern marianas islands.svg
+  String get northernMarianasIslands =>
+      'assets/icons/country_flags/northern marianas islands.svg';
+
+  /// File path: assets/icons/country_flags/norway.svg
+  String get norway => 'assets/icons/country_flags/norway.svg';
+
+  /// File path: assets/icons/country_flags/oman.svg
+  String get oman => 'assets/icons/country_flags/oman.svg';
+
+  /// File path: assets/icons/country_flags/orkney islands.svg
+  String get orkneyIslands => 'assets/icons/country_flags/orkney islands.svg';
+
+  /// File path: assets/icons/country_flags/ossetia.svg
+  String get ossetia => 'assets/icons/country_flags/ossetia.svg';
+
+  /// File path: assets/icons/country_flags/pakistan.svg
+  String get pakistan => 'assets/icons/country_flags/pakistan.svg';
+
+  /// File path: assets/icons/country_flags/palau.svg
+  String get palau => 'assets/icons/country_flags/palau.svg';
+
+  /// File path: assets/icons/country_flags/palestine.svg
+  String get palestine => 'assets/icons/country_flags/palestine.svg';
+
+  /// File path: assets/icons/country_flags/panama.svg
+  String get panama => 'assets/icons/country_flags/panama.svg';
+
+  /// File path: assets/icons/country_flags/papua new guinea.svg
+  String get papuaNewGuinea =>
+      'assets/icons/country_flags/papua new guinea.svg';
+
+  /// File path: assets/icons/country_flags/paraguay.svg
+  String get paraguay => 'assets/icons/country_flags/paraguay.svg';
+
+  /// File path: assets/icons/country_flags/peru.svg
+  String get peru => 'assets/icons/country_flags/peru.svg';
+
+  /// File path: assets/icons/country_flags/philippines.svg
+  String get philippines => 'assets/icons/country_flags/philippines.svg';
+
+  /// File path: assets/icons/country_flags/pitcairn islands.svg
+  String get pitcairnIslands =>
+      'assets/icons/country_flags/pitcairn islands.svg';
+
+  /// File path: assets/icons/country_flags/poland.svg
+  String get poland => 'assets/icons/country_flags/poland.svg';
+
+  /// File path: assets/icons/country_flags/portugal.svg
+  String get portugal => 'assets/icons/country_flags/portugal.svg';
+
+  /// File path: assets/icons/country_flags/puerto rico.svg
+  String get puertoRico => 'assets/icons/country_flags/puerto rico.svg';
+
+  /// File path: assets/icons/country_flags/qatar.svg
+  String get qatar => 'assets/icons/country_flags/qatar.svg';
+
+  /// File path: assets/icons/country_flags/republic of macedonia.svg
+  String get republicOfMacedonia =>
+      'assets/icons/country_flags/republic of macedonia.svg';
+
+  /// File path: assets/icons/country_flags/republic of the congo.svg
+  String get republicOfTheCongo =>
+      'assets/icons/country_flags/republic of the congo.svg';
+
+  /// File path: assets/icons/country_flags/romania.svg
+  String get romania => 'assets/icons/country_flags/romania.svg';
+
+  /// File path: assets/icons/country_flags/russia.svg
+  String get russia => 'assets/icons/country_flags/russia.svg';
+
+  /// File path: assets/icons/country_flags/rwanda.svg
+  String get rwanda => 'assets/icons/country_flags/rwanda.svg';
+
+  /// File path: assets/icons/country_flags/saba island.svg
+  String get sabaIsland => 'assets/icons/country_flags/saba island.svg';
+
+  /// File path: assets/icons/country_flags/sahrawi arab democratic republic.svg
+  String get sahrawiArabDemocraticRepublic =>
+      'assets/icons/country_flags/sahrawi arab democratic republic.svg';
+
+  /// File path: assets/icons/country_flags/samoa.svg
+  String get samoa => 'assets/icons/country_flags/samoa.svg';
+
+  /// File path: assets/icons/country_flags/san marino.svg
+  String get sanMarino => 'assets/icons/country_flags/san marino.svg';
+
+  /// File path: assets/icons/country_flags/sao tome and prince.svg
+  String get saoTomeAndPrince =>
+      'assets/icons/country_flags/sao tome and prince.svg';
+
+  /// File path: assets/icons/country_flags/sardinia.svg
+  String get sardinia => 'assets/icons/country_flags/sardinia.svg';
+
+  /// File path: assets/icons/country_flags/saudi arabia.svg
+  String get saudiArabia => 'assets/icons/country_flags/saudi arabia.svg';
+
+  /// File path: assets/icons/country_flags/scotland.svg
+  String get scotland => 'assets/icons/country_flags/scotland.svg';
+
+  /// File path: assets/icons/country_flags/senegal.svg
+  String get senegal => 'assets/icons/country_flags/senegal.svg';
+
+  /// File path: assets/icons/country_flags/serbia.svg
+  String get serbia => 'assets/icons/country_flags/serbia.svg';
+
+  /// File path: assets/icons/country_flags/seychelles.svg
+  String get seychelles => 'assets/icons/country_flags/seychelles.svg';
+
+  /// File path: assets/icons/country_flags/sierra leone.svg
+  String get sierraLeone => 'assets/icons/country_flags/sierra leone.svg';
+
+  /// File path: assets/icons/country_flags/singapore.svg
+  String get singapore => 'assets/icons/country_flags/singapore.svg';
+
+  /// File path: assets/icons/country_flags/sint eustatius.svg
+  String get sintEustatius => 'assets/icons/country_flags/sint eustatius.svg';
+
+  /// File path: assets/icons/country_flags/sint maarten.svg
+  String get sintMaarten => 'assets/icons/country_flags/sint maarten.svg';
+
+  /// File path: assets/icons/country_flags/slovakia.svg
+  String get slovakia => 'assets/icons/country_flags/slovakia.svg';
+
+  /// File path: assets/icons/country_flags/slovenia.svg
+  String get slovenia => 'assets/icons/country_flags/slovenia.svg';
+
+  /// File path: assets/icons/country_flags/solomon islands.svg
+  String get solomonIslands => 'assets/icons/country_flags/solomon islands.svg';
+
+  /// File path: assets/icons/country_flags/somalia.svg
+  String get somalia => 'assets/icons/country_flags/somalia.svg';
+
+  /// File path: assets/icons/country_flags/somaliland.svg
+  String get somaliland => 'assets/icons/country_flags/somaliland.svg';
+
+  /// File path: assets/icons/country_flags/south africa.svg
+  String get southAfrica => 'assets/icons/country_flags/south africa.svg';
+
+  /// File path: assets/icons/country_flags/south korea.svg
+  String get southKorea => 'assets/icons/country_flags/south korea.svg';
+
+  /// File path: assets/icons/country_flags/south sudan.svg
+  String get southSudan => 'assets/icons/country_flags/south sudan.svg';
+
+  /// File path: assets/icons/country_flags/spain.svg
+  String get spain => 'assets/icons/country_flags/spain.svg';
+
+  /// File path: assets/icons/country_flags/sri lanka.svg
+  String get sriLanka => 'assets/icons/country_flags/sri lanka.svg';
+
+  /// File path: assets/icons/country_flags/st barts.svg
+  String get stBarts => 'assets/icons/country_flags/st barts.svg';
+
+  /// File path: assets/icons/country_flags/st lucia.svg
+  String get stLucia => 'assets/icons/country_flags/st lucia.svg';
+
+  /// File path: assets/icons/country_flags/st vincent and the grenadines.svg
+  String get stVincentAndTheGrenadines =>
+      'assets/icons/country_flags/st vincent and the grenadines.svg';
+
+  /// File path: assets/icons/country_flags/sudan.svg
+  String get sudan => 'assets/icons/country_flags/sudan.svg';
+
+  /// File path: assets/icons/country_flags/suriname.svg
+  String get suriname => 'assets/icons/country_flags/suriname.svg';
+
+  /// File path: assets/icons/country_flags/swaziland.svg
+  String get swaziland => 'assets/icons/country_flags/swaziland.svg';
+
+  /// File path: assets/icons/country_flags/sweden.svg
+  String get sweden => 'assets/icons/country_flags/sweden.svg';
+
+  /// File path: assets/icons/country_flags/switzerland.svg
+  String get switzerland => 'assets/icons/country_flags/switzerland.svg';
+
+  /// File path: assets/icons/country_flags/syria.svg
+  String get syria => 'assets/icons/country_flags/syria.svg';
+
+  /// File path: assets/icons/country_flags/taiwan.svg
+  String get taiwan => 'assets/icons/country_flags/taiwan.svg';
+
+  /// File path: assets/icons/country_flags/tajikistan.svg
+  String get tajikistan => 'assets/icons/country_flags/tajikistan.svg';
+
+  /// File path: assets/icons/country_flags/tanzania.svg
+  String get tanzania => 'assets/icons/country_flags/tanzania.svg';
+
+  /// File path: assets/icons/country_flags/thailand.svg
+  String get thailand => 'assets/icons/country_flags/thailand.svg';
+
+  /// File path: assets/icons/country_flags/tibet.svg
+  String get tibet => 'assets/icons/country_flags/tibet.svg';
+
+  /// File path: assets/icons/country_flags/togo.svg
+  String get togo => 'assets/icons/country_flags/togo.svg';
+
+  /// File path: assets/icons/country_flags/tokelau.svg
+  String get tokelau => 'assets/icons/country_flags/tokelau.svg';
+
+  /// File path: assets/icons/country_flags/tonga.svg
+  String get tonga => 'assets/icons/country_flags/tonga.svg';
+
+  /// File path: assets/icons/country_flags/transnistria.svg
+  String get transnistria => 'assets/icons/country_flags/transnistria.svg';
+
+  /// File path: assets/icons/country_flags/trinidad and tobago.svg
+  String get trinidadAndTobago =>
+      'assets/icons/country_flags/trinidad and tobago.svg';
+
+  /// File path: assets/icons/country_flags/tunisia.svg
+  String get tunisia => 'assets/icons/country_flags/tunisia.svg';
+
+  /// File path: assets/icons/country_flags/turkey.svg
+  String get turkey => 'assets/icons/country_flags/turkey.svg';
+
+  /// File path: assets/icons/country_flags/turkmenistan.svg
+  String get turkmenistan => 'assets/icons/country_flags/turkmenistan.svg';
+
+  /// File path: assets/icons/country_flags/turks and caicos.svg
+  String get turksAndCaicos =>
+      'assets/icons/country_flags/turks and caicos.svg';
+
+  /// File path: assets/icons/country_flags/tuvalu.svg
+  String get tuvalu => 'assets/icons/country_flags/tuvalu.svg';
+
+  /// File path: assets/icons/country_flags/uganda.svg
+  String get uganda => 'assets/icons/country_flags/uganda.svg';
+
+  /// File path: assets/icons/country_flags/ukraine.svg
+  String get ukraine => 'assets/icons/country_flags/ukraine.svg';
+
+  /// File path: assets/icons/country_flags/united arab emirates.svg
+  String get unitedArabEmirates =>
+      'assets/icons/country_flags/united arab emirates.svg';
+
+  /// File path: assets/icons/country_flags/united kingdom.svg
+  String get unitedKingdom => 'assets/icons/country_flags/united kingdom.svg';
+
+  /// File path: assets/icons/country_flags/united nations.svg
+  String get unitedNations => 'assets/icons/country_flags/united nations.svg';
+
+  /// File path: assets/icons/country_flags/united states.svg
+  String get unitedStates => 'assets/icons/country_flags/united states.svg';
+
+  /// File path: assets/icons/country_flags/uruguay.svg
+  String get uruguay => 'assets/icons/country_flags/uruguay.svg';
+
+  /// File path: assets/icons/country_flags/uzbekistán.svg
+  String get uzbekistN => 'assets/icons/country_flags/uzbekistán.svg';
+
+  /// File path: assets/icons/country_flags/vanuatu.svg
+  String get vanuatu => 'assets/icons/country_flags/vanuatu.svg';
+
+  /// File path: assets/icons/country_flags/vatican city.svg
+  String get vaticanCity => 'assets/icons/country_flags/vatican city.svg';
+
+  /// File path: assets/icons/country_flags/venezuela.svg
+  String get venezuela => 'assets/icons/country_flags/venezuela.svg';
+
+  /// File path: assets/icons/country_flags/vietnam.svg
+  String get vietnam => 'assets/icons/country_flags/vietnam.svg';
+
+  /// File path: assets/icons/country_flags/virgin islands.svg
+  String get virginIslands => 'assets/icons/country_flags/virgin islands.svg';
+
+  /// File path: assets/icons/country_flags/wales.svg
+  String get wales => 'assets/icons/country_flags/wales.svg';
+
+  /// File path: assets/icons/country_flags/yemen.svg
+  String get yemen => 'assets/icons/country_flags/yemen.svg';
+
+  /// File path: assets/icons/country_flags/zambia.svg
+  String get zambia => 'assets/icons/country_flags/zambia.svg';
+
+  /// File path: assets/icons/country_flags/zimbabwe.svg
+  String get zimbabwe => 'assets/icons/country_flags/zimbabwe.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    algeria,
+    eastTimor,
+    rapaNui,
+    abkhazia,
+    afghanistan,
+    alandIslands,
+    albania,
+    americanSamoa,
+    andorra,
+    angola,
+    anguilla,
+    antiguaAndBarbuda,
+    argentina,
+    armenia,
+    aruba,
+    australia,
+    austria,
+    azerbaijan,
+    azoresIslands,
+    bahamas,
+    bahrain,
+    balearicIslands,
+    bangladesh,
+    barbados,
+    basqueCountry,
+    belarus,
+    belgium,
+    belize,
+    benin,
+    bermuda,
+    bhutan,
+    bolivia,
+    bonaire,
+    bosniaAndHerzegovina,
+    botswana,
+    brazil,
+    britishColumbia,
+    britishIndianOceanTerritory,
+    britishVirginIslands,
+    brunei,
+    bulgaria,
+    burkinaFaso,
+    burundi,
+    cambodia,
+    cameroon,
+    canada,
+    canaryIslands,
+    capeVerde,
+    caymanIslands,
+    centralAfricanRepublic,
+    ceuta,
+    chad,
+    chile,
+    china,
+    cocosIsland,
+    colombia,
+    comoros,
+    cookIslands,
+    corsica,
+    costaRica,
+    croatia,
+    cuba,
+    curacao,
+    cyprus,
+    czechRepublic,
+    democraticRepublicOfCongo,
+    denmark,
+    djibouti,
+    dominica,
+    dominicanRepublic,
+    ecuador,
+    egypt,
+    elSalvador,
+    england,
+    equatorialGuinea,
+    eritrea,
+    estonia,
+    ethiopia,
+    europeanUnion,
+    falklandIslands,
+    faroeIslands,
+    fiji,
+    finland,
+    france,
+    frenchPolynesia,
+    gabon,
+    galapagosIslands,
+    gambia,
+    georgia,
+    germany,
+    ghana,
+    gibraltar,
+    greece,
+    greenland,
+    grenada,
+    guam,
+    guatemala,
+    guernsey,
+    guineaBissau,
+    guinea,
+    guyana,
+    haiti,
+    hawaii,
+    honduras,
+    hongKong,
+    hungary,
+    iceland,
+    india,
+    indonesia,
+    iran,
+    iraq,
+    ireland,
+    isleOfMan,
+    israel,
+    italy,
+    ivoryCoast,
+    jamaica,
+    japan,
+    jersey,
+    jordan,
+    kazakhstan,
+    kenya,
+    kiribati,
+    kosovo,
+    kuwait,
+    kyrgyzstan,
+    laos,
+    latvia,
+    lebanon,
+    lesotho,
+    liberia,
+    libya,
+    liechtenstein,
+    lithuania,
+    luxembourg,
+    macao,
+    madagascar,
+    madeira,
+    malawi,
+    malaysia,
+    maldives,
+    mali,
+    malta,
+    marshallIsland,
+    martinique,
+    mauritania,
+    mauritius,
+    melilla,
+    mexico,
+    micronesia,
+    moldova,
+    monaco,
+    mongolia,
+    montenegro,
+    montserrat,
+    morocco,
+    mozambique,
+    myanmar,
+    namibia,
+    nato,
+    nauru,
+    nepal,
+    netherlands,
+    newZealand,
+    nicaragua,
+    niger,
+    nigeria,
+    niue,
+    norfolkIsland,
+    northKorea,
+    northernCyprus,
+    northernMarianasIslands,
+    norway,
+    oman,
+    orkneyIslands,
+    ossetia,
+    pakistan,
+    palau,
+    palestine,
+    panama,
+    papuaNewGuinea,
+    paraguay,
+    peru,
+    philippines,
+    pitcairnIslands,
+    poland,
+    portugal,
+    puertoRico,
+    qatar,
+    republicOfMacedonia,
+    republicOfTheCongo,
+    romania,
+    russia,
+    rwanda,
+    sabaIsland,
+    sahrawiArabDemocraticRepublic,
+    samoa,
+    sanMarino,
+    saoTomeAndPrince,
+    sardinia,
+    saudiArabia,
+    scotland,
+    senegal,
+    serbia,
+    seychelles,
+    sierraLeone,
+    singapore,
+    sintEustatius,
+    sintMaarten,
+    slovakia,
+    slovenia,
+    solomonIslands,
+    somalia,
+    somaliland,
+    southAfrica,
+    southKorea,
+    southSudan,
+    spain,
+    sriLanka,
+    stBarts,
+    stLucia,
+    stVincentAndTheGrenadines,
+    sudan,
+    suriname,
+    swaziland,
+    sweden,
+    switzerland,
+    syria,
+    taiwan,
+    tajikistan,
+    tanzania,
+    thailand,
+    tibet,
+    togo,
+    tokelau,
+    tonga,
+    transnistria,
+    trinidadAndTobago,
+    tunisia,
+    turkey,
+    turkmenistan,
+    turksAndCaicos,
+    tuvalu,
+    uganda,
+    ukraine,
+    unitedArabEmirates,
+    unitedKingdom,
+    unitedNations,
+    unitedStates,
+    uruguay,
+    uzbekistN,
+    vanuatu,
+    vaticanCity,
+    venezuela,
+    vietnam,
+    virginIslands,
+    wales,
+    yemen,
+    zambia,
+    zimbabwe,
+  ];
 }
 
 class Assets {

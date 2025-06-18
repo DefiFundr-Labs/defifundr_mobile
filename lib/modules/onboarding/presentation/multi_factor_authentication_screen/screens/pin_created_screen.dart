@@ -1,66 +1,106 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/components/confetti_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class PinCreatedScreen extends StatelessWidget {
   const PinCreatedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.theme.colors;
-    final fonts = context.theme.fonts;
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? colors.bgB0 // Light mode color
-          : colors.bgB1,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: colors.greenFill,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    'assets/icons/pinCreated.svg',
+    return ConfettiWrapper(
+      autoStart: true,
+      duration: const Duration(seconds: 5),
+      particleIntensity: 1000,
+      shouldLoop: false,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: _buildContent(context),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'PIN Code Created',
-                style: fonts.heading3SemiBold,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'You have successfully created your PIN code.',
-                style: fonts.textMdRegular.copyWith(
-                  color: colors.textSecondary,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              PrimaryButton(
-                text: 'Continue',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/enable-face-id');
-                },
-              ),
-              const SizedBox(height: 24),
-            ],
+                _buildActionButton(context),
+                SizedBox(height: 32.h),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildSuccessIcon(context),
+        SizedBox(height: 32.h),
+        _buildTextContent(context),
+      ],
+    );
+  }
+
+  Widget _buildSuccessIcon(BuildContext context) {
+    return Container(
+      width: 80.w,
+      height: 80.h,
+      decoration: BoxDecoration(
+        color: context.theme.colors.brandFill,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          Assets.icons.pinCreated,
+          width: 40.w,
+          height: 40.h,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextContent(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          'Your PIN Has Been Created!',
+          textAlign: TextAlign.center,
+          style: context.theme.textTheme.headlineLarge?.copyWith(
+            fontSize: 24.sp,
+            color: context.theme.colors.textPrimary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        SizedBox(height: 16.h),
+        Text(
+          'Your PIN has been successfully created. You can now use this PIN to log in to your account.',
+          textAlign: TextAlign.center,
+          style: context.theme.textTheme.headlineMedium?.copyWith(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+            color: context.theme.colors.textSecondary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButton(BuildContext context) {
+    return PrimaryButton(
+      text: 'Continue',
+      isEnabled: true,
+      onPressed: () {
+        context.pushNamed(RouteConstants.login);
+      },
     );
   }
 }

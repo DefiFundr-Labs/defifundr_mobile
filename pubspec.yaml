@@ -64,6 +64,7 @@ dependencies:
   currency_text_input_formatter: ^2.3.0
   iconsax: ^0.0.8
   mask_text_input_formatter: ^2.9.0
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -192,6 +193,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/icons/country_flags/
     - assets/shaders/glass.frag
     - .env
   shaders:

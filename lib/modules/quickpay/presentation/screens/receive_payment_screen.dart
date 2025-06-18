@@ -5,7 +5,7 @@ import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/widgets/brand_button.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/coin_assets.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';

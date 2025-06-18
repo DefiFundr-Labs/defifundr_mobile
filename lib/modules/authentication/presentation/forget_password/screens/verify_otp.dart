@@ -15,7 +15,7 @@ import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
 import '../../../../../core/utils/message_service.dart';
-import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../bloc/forgot_password_bloc.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({super.key});
@@ -78,7 +78,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),

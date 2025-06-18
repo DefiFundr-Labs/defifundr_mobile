@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/bloc/forgot_password_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_bloc.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_event.dart';

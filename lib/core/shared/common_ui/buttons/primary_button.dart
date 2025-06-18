@@ -164,7 +164,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
         _buildMainButton(),
         if (widget.enableShine && widget.isEnabled) ...[
           _buildShineEffect(0.0),
-          _buildShineEffect(0.2), // Delayed shine effect
+          _buildShineEffect(0.2),
         ],
       ],
     );
@@ -216,8 +216,8 @@ class _PrimaryButtonState extends State<PrimaryButton>
   Widget _buildIcon(String iconPath) {
     return SvgPicture.asset(
       iconPath,
-      height: 24.sp,
-      width: 24.sp,
+      height: 18.sp,
+      width: 18.sp,
       colorFilter: ColorFilter.mode(
         widget.iconColor ??
             (widget.isEnabled

@@ -49,13 +49,19 @@ class Keypad extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        ActionButton(
-          icon: biometricType == BiometricType.fingerprint
-              ? Icons.fingerprint
-              : Icons.face,
-          onPressed: onBiometricPressed,
-          size: 32,
-        ),
+        if (biometricType != BiometricType.none)
+          ActionButton(
+            icon: biometricType == BiometricType.fingerprint
+                ? Icons.fingerprint
+                : Icons.face,
+            onPressed: onBiometricPressed,
+            size: 32,
+          ),
+        if (biometricType == BiometricType.none)
+          SizedBox(
+            width: 72.w,
+            height: 72.h,
+          ),
         KeypadButton(
           number: '0',
           onPressed: () => onNumberPressed('0'),

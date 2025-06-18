@@ -1,10 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
   const PersonalDetailsScreen({super.key});
@@ -15,77 +20,47 @@ class PersonalDetailsScreen extends StatefulWidget {
 
 class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
   String? selectedCountry;
-  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _countryOfCitizenshipController =
+      TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
   String? selectedCountryCode = '+234';
 
   @override
   void dispose() {
-    _dateController.dispose();
+    _countryOfCitizenshipController.dispose();
     _phoneController.dispose();
+    _dobController.dispose();
+    _genderController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: const DeFiRaiseAppBar(
+          isBack: true,
+          title: '',
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-              color: const Color(0xFF121212),
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CustomBackButton(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF1E1E1E),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.grey[800]!),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.headset_mic,
-                                  size: 16, color: Colors.grey[300]),
-                              const SizedBox(width: 4),
-                              Text(
-                                'Need Help?',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey[300],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 4,
-                    width: double.infinity,
-                    color: Colors.grey[800],
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.purple[600],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                ],
+              height: 4,
+              width: double.infinity,
+              color: Colors.grey[200],
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppColorDark.activeButtonDark,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
             ),
             Expanded(
@@ -97,57 +72,36 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     const SizedBox(height: 24),
                     Text(
                       'Personal Details',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                      style: context.theme.fonts.headerLarger.copyWith(
+                        fontSize: 24.sp,
+                        color: context.theme.colors.textPrimary,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 4.h),
                     Text(
                       'Please provide your personal details, this will be used to complete your profile.',
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: context.theme.fonts.headerSmall.copyWith(
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: Colors.grey[400],
+                        color: context.theme.colors.textSecondary,
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    GestureDetector(
-                      onTap: () {
-                        context.pushNamed(RouteConstants.countrySelection);
-                      },
-                      child: Container(
-                        height: 56,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E1E1E),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              selectedCountry ?? 'Country of citizenship',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: selectedCountry != null
-                                    ? Colors.white
-                                    : Colors.grey[600],
-                              ),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.grey[400],
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ),
+                    SizedBox(height: 24.h),
+                    AppTextField(
+                      labelText: 'Country of citizenship',
+                      controller: _countryOfCitizenshipController,
                     ),
-                    const SizedBox(height: 16),
-                    GestureDetector(
+                    SizedBox(height: 16.h),
+                    AppTextField(
+                      labelText: 'Gender',
+                      controller: _countryOfCitizenshipController,
+                    ),
+                    SizedBox(height: 16.h),
+                    AppTextField(
+                      labelText: 'Date of birth',
+                      controller: _dobController,
+                      readOnly: true,
                       onTap: () async {
                         final DateTime? picked = await showDatePicker(
                           context: context,
@@ -172,161 +126,26 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         );
                         if (picked != null) {
                           setState(() {
-                            _dateController.text =
+                            _dobController.text =
                                 "${picked.day}/${picked.month}/${picked.year}";
                           });
                         }
                       },
-                      child: Container(
-                        height: 56,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E1E1E),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              _dateController.text.isNotEmpty
-                                  ? _dateController.text
-                                  : 'Date of birth',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: _dateController.text.isNotEmpty
-                                    ? Colors.white
-                                    : Colors.grey[600],
-                              ),
-                            ),
-                            Icon(
-                              Icons.calendar_today_outlined,
-                              color: Colors.grey[400],
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Container(
-                      height: 56,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1E1E1E),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              context
-                                  .pushNamed(RouteConstants.dialCodeSelection);
-                            },
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 24,
-                                    height: 24,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: 12,
-                                            height: 24,
-                                            color: Colors.green,
-                                          ),
-                                          Container(
-                                            width: 12,
-                                            height: 24,
-                                            color: Colors.white,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    '+234',
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 16,
-                                    color: Colors.grey[400],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 24,
-                            width: 1,
-                            color: Colors.grey[800],
-                          ),
-                          Expanded(
-                            child: AppTextField(
-                              labelText: 'Phone number',
-                              controller: _phoneController,
-                              keyboardType: TextInputType.phone,
-                              onChanged: (value) {
-                                // Handle phone number change if needed
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                    SizedBox(height: 16.h),
+                    AppTextField(
+                      labelText: 'Phone number',
+                      controller: _phoneController,
                     ),
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.pushNamed(RouteConstants.addressDetails);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: 134,
-              height: 5,
-              margin: const EdgeInsets.only(bottom: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(2.5),
-              ),
+            PrimaryButton(
+              text: 'Continue',
+              onPressed: () {
+                context.pushNamed(RouteConstants.addressDetails);
+              },
             ),
           ],
         ),

@@ -13,7 +13,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
 import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../bloc/forgot_password_bloc.dart';
 import '../widget/password_requirement_viewer.dart';
 
 class NewPassword extends StatelessWidget {
@@ -140,6 +140,7 @@ class NewPassword extends StatelessWidget {
                     hideText:
                         state.newPasswordState?.hideConfirmPassword ?? false,
                     keyboardType: TextInputType.visiblePassword,
+                    suffixType: SuffixType.customIcon,
                     suffixIcon: GestureDetector(
                       onTap: () {
                         context

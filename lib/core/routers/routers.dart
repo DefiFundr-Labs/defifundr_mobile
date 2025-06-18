@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
-import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
@@ -17,15 +17,18 @@ import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_screen.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/select_id_country_screen.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/verification_confirmed_screen.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/identity_verification/screens/verify_identity_screen.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/select_id_country_screen.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_confirmed_screen.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/address_details_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/personal_details_screen.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/profile_created_screen.dart';
+import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/profile_created_sucess.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
+import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/confirm_pin_screen.dart';
+import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/create_pin_screen.dart';
+import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/pin_created_screen.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
@@ -37,8 +40,6 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_p
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../modules/authentication/presentation/login/screens/login_screen.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -56,8 +57,10 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
+              child: CreatePinScreen(),
+              // child: AccountTypeScreen(),
               // child: PasswordValidationScreen(),
-              child: LoginScreen(),
+              // child: VerifyAccountScreen(),
               // child: PinLoginScreen(
               //   userName: "Ademola",
               //   biometricType: BiometricType.fingerprint,
@@ -221,13 +224,13 @@ class AppRouter {
                 );
               },
             ),
-             GoRoute(
+            GoRoute(
               path: 'passwordReset',
               name: RouteConstants.passwordReset,
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const PasswordReset(),
+                  child: const PasswordResetSucess(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
@@ -239,7 +242,6 @@ class AppRouter {
                 );
               },
             ),
-            
             GoRoute(
               path: 'newPassword',
               name: RouteConstants.newPassword,
@@ -275,6 +277,42 @@ class AppRouter {
           },
         ),
 
+        GoRoute(
+          path: '/confirm-pin',
+          name: RouteConstants.confirmPin,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ConfirmPinScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+         GoRoute(
+          path: '/pin-created_success',
+          name: RouteConstants.pinCreated,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const PinCreatedScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
         GoRoute(
           path: '/profile-created',
           name: RouteConstants.profileCreated,

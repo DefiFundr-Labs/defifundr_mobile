@@ -1,10 +1,14 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class AddressDetailsScreen extends StatefulWidget {
@@ -15,85 +19,46 @@ class AddressDetailsScreen extends StatefulWidget {
 }
 
 class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
-  String? selectedCountry;
+  final TextEditingController _countryController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _postalCodeController = TextEditingController();
+  String? selectedCountryCode = '+234';
 
   @override
   void dispose() {
     _addressController.dispose();
-    _cityController.dispose();
     _postalCodeController.dispose();
+    _cityController.dispose();
+    _countryController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.primaryColorDark,
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: const DeFiRaiseAppBar(
+          isBack: true,
+          title: '',
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-              color: context.theme.primaryColorDark,
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios,
-                              color: Colors.white, size: 20),
-                          onPressed: () => Navigator.pop(context),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF1E1E1E),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.grey[800]!),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.headset_mic,
-                                  size: 16, color: Colors.grey[300]),
-                              const SizedBox(width: 4),
-                              Text(
-                                'Need Help?',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey[300],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 4,
-                    width: double.infinity,
-                    color: Colors.grey[800],
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.purple[600],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                ],
+              height: 4,
+              width: double.infinity,
+              color: Colors.grey[200],
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppColorDark.activeButtonDark,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
             ),
             Expanded(
@@ -105,116 +70,50 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     const SizedBox(height: 24),
                     Text(
                       'Address Details',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                      style: context.theme.fonts.headerLarger.copyWith(
+                        fontSize: 24.sp,
+                        color: context.theme.colors.textPrimary,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 4.h),
                     Text(
                       'Please provide your address details, this will be used to complete your profile.',
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: context.theme.fonts.headerSmall.copyWith(
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: Colors.grey[400],
+                        color: context.theme.colors.textSecondary,
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    GestureDetector(
-                      onTap: () {
-                        context.pushNamed(RouteConstants.countrySelection);
-                      },
-                      child: Container(
-                        height: 56,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E1E1E),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              selectedCountry ?? 'Country of residence',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: selectedCountry != null
-                                    ? Colors.white
-                                    : Colors.grey[600],
-                              ),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.grey[400],
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 24.h),
                     AppTextField(
-                      labelText: 'Address',
-                      controller: _addressController,
-                      onChanged: (value) {
-                        // Handle address change if needed
-                      },
+                      labelText: 'Country',
+                      controller: _countryController,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
+                    AppTextField(
+                      labelText: 'Street',
+                      controller: _addressController,
+                    ),
+                    SizedBox(height: 16.h),
                     AppTextField(
                       labelText: 'City',
                       controller: _cityController,
-                      onChanged: (value) {
-                        // Handle city change if needed
-                      },
                     ),
-                    const SizedBox(height: 16),
-                    TextField(
+                    SizedBox(height: 16.h),
+                    AppTextField(
+                      labelText: 'Postal / zip code',
                       controller: _postalCodeController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: 'Postal / zip code',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
-                        border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 18),
-                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.pushNamed(RouteConstants.profileCreated);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Finish setup',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
+            PrimaryButton(
+              text: 'Finish setup',
+              onPressed: () {
+                context.pushNamed(RouteConstants.profileCreated);
+              },
             ),
           ],
         ),

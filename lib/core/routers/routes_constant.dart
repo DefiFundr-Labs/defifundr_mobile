@@ -12,6 +12,8 @@ class RouteConstants {
   static const String mfa = 'mfa';
   static const String passcode = 'passcode';
   static const String enableFaceId = 'enableFaceId';
+  static const String confirmPin = 'confirmPin';
+  static const String pinCreated = 'pinCreated';
   static const String enableFingerprint = 'enableFingerprint';
   static const String enablePushNotification = 'enablePushNotification';
   static const String createAccount = 'createAccount';
