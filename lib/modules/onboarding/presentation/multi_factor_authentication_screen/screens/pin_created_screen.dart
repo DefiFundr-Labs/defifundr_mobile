@@ -100,7 +100,7 @@ class PinCreatedScreen extends StatelessWidget {
       isEnabled: true,
       onPressed: () {
         // context.pushNamed(RouteConstants.login);
-        context.pushNamed(RouteConstants.verifyIdentity);
+        context.pushNamed(RouteConstants.onboardingChecklistScreen);
       },
     );
   }

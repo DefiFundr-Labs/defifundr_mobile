@@ -70,6 +70,12 @@ class AppAssets {
   static const bvnProcessing = '${defifundrIconPath}bvnProcessing.svg';
   static const bvnProcessingDark = '${defifundrIconPath}bvnProcessingDark.svg';
 
+  //onboaring checklist
+  static const bank = '${defifundrIconPath}Bank.svg';
+  static const userCircleDashed = '${defifundrIconPath}UserCircleDashed.svg';
+  static const scales = '${defifundrIconPath}Scales.svg';
+  static const wallet = '${defifundrIconPath}Wallet.svg';
+
   // Quick Pay
   static const questionSvg = '$defifundrImagePath/question_svg.svg';
   static const magnifyingGlass = '$defifundrImagePath/MagnifyingGlass.svg';

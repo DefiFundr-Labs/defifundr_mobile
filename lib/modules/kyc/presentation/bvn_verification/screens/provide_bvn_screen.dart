@@ -32,7 +32,9 @@ class ProvideBvnScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   Text('Provide Your BVN',
-                      style: context.theme.fonts.heading2Bold.copyWith(color: context.theme.colors.textPrimary)),
+                      style: context.theme.fonts.heading2Bold.copyWith(
+                          color: context.theme.colors.textPrimary,
+                          fontFamily: 'HankenGrotesk')),
                   const SizedBox(height: 8),
                   Text(
                       'We need your BVN to help you get a fiat account ready for use.',
@@ -43,7 +45,7 @@ class ProvideBvnScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   AppTextField(
                     controller: controller,
-                    hintText: 'BVN',
+                    labelText: 'BVN',
                     keyboardType: TextInputType.number,
                   ),
                 ],

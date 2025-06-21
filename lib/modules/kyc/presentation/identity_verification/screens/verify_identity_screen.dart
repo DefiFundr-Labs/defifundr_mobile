@@ -37,8 +37,9 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
                 children: [
                   const SizedBox(height: 16),
                   Text('Verify Your Identity',
-                      style: context.theme.fonts.heading2Bold
-                          .copyWith(color: context.theme.colors.textPrimary)),
+                      style: context.theme.fonts.heading2Bold.copyWith(
+                          color: context.theme.colors.textPrimary,
+                          fontFamily: 'HankenGrotesk')),
                   const SizedBox(height: 8),
                   Text(
                       'We\'ll use this info to confirm your identity and comply with our legal requirements.',
@@ -49,9 +50,7 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
                     svgAsset: AppAssets.identityVerification,
                     title: 'Your ID',
                     description: 'We accept most common forms of ID.',
-                    onTap: () {
-                      context.pushNamed(RouteConstants.selectIdCountry);
-                    },
+                    onTap: () {},
                   ),
                   InfoCard(
                     svgAsset: AppAssets.userFocus,

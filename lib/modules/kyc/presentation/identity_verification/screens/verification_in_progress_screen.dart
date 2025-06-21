@@ -38,19 +38,9 @@ class _VerificationConfirmedScreenState
                     ),
                     const SizedBox(height: 40),
                     Text('Verification In Progress',
-                        style: context.theme.fonts.heading2Bold
-                            .copyWith(color: context.theme.colors.textPrimary)
-                        // style: TextStyle(
-                        //   fontSize: 24,
-                        //   fontFamily: 'HankenGrotesk',
-                        //   fontWeight: FontWeight.w700,
-                        //   color: resolveColor(
-                        //     context: context,
-                        //     lightColor: AppColors.textPrimary,
-                        //     darkColor: AppColorDark.textPrimary,
-                        //   ),
-                        // ),
-                        ),
+                        style: context.theme.fonts.heading2Bold.copyWith(
+                            color: context.theme.colors.textPrimary,
+                            fontFamily: 'HankenGrotesk')),
                     const SizedBox(height: 12),
                     Text(
                       'Your identity is currently being verified. You\'ll receive an update via email within a few minutes.',
@@ -68,7 +58,7 @@ class _VerificationConfirmedScreenState
             child: BrandButton(
               text: "Back to checklist",
               onPressed: () =>
-                  context.pushNamed(RouteConstants.provideBvnScreen),
+                  context.pushNamed(RouteConstants.onboardingChecklistScreen),
             ),
           ),
         ],

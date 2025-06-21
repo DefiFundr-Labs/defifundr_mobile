@@ -53,4 +53,5 @@ class RouteConstants {
   static String provideBvnScreen = 'provideBvnScreen';
   static String processingBvnRequestScreen = 'processingBvnRequestScreen';
   static String taxInformationScreen = 'taxInformationScreen';
+  static String onboardingChecklistScreen = 'onboardingChecklistScreen';
 }

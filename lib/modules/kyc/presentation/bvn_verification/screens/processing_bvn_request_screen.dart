@@ -30,8 +30,9 @@ class ProcessingBvnRequestScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     Text('Processing Request',
-                        style: context.theme.fonts.heading2Bold
-                            .copyWith(color: context.theme.colors.textPrimary)),
+                        style: context.theme.fonts.heading2Bold.copyWith(
+                            color: context.theme.colors.textPrimary,
+                            fontFamily: 'HankenGrotesk')),
                     const SizedBox(height: 12),
                     Text(
                       'You’ll be notified by email once your fiat account setup is complete.',
@@ -49,7 +50,7 @@ class ProcessingBvnRequestScreen extends StatelessWidget {
             child: BrandButton(
                 text: "Back to checklist",
                 onPressed: () =>
-                    context.pushNamed(RouteConstants.taxInformationScreen)),
+                    context.pushNamed(RouteConstants.onboardingChecklistScreen)),
           ),
         ],
       ),

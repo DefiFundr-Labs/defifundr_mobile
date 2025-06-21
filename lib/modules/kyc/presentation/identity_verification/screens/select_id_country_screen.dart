@@ -37,7 +37,9 @@ class _SelectIdCountryScreenState extends State<SelectIdCountryScreen> {
                 children: [
                   const SizedBox(height: 16),
                   Text('Select country where your ID document was issued',
-                      style: context.theme.fonts.heading3Bold),
+                      style: context.theme.fonts.heading3Bold.copyWith(
+                          fontFamily: 'HankenGrotesk',
+                          color: context.theme.colors.textPrimary)),
                   const SizedBox(height: 8),
                   SelectCountryInfo(
                     svgAsset: AppAssets.nigeriaSvg,
@@ -48,11 +50,13 @@ class _SelectIdCountryScreenState extends State<SelectIdCountryScreen> {
                   ),
                   const SizedBox(height: 24 - 16),
                   Text('Select your document type',
-                      style: context.theme.fonts.heading3Bold),
+                      style: context.theme.fonts.heading3Bold.copyWith(
+                          fontFamily: 'HankenGrotesk',
+                          color: context.theme.colors.textPrimary)),
                   const SizedBox(height: 20),
                   SelectCountryInfo(
                     svgAsset: AppAssets.carProfile,
-                    title: 'Driver License',
+                    title: 'Driver license',
                   ),
                   SelectCountryInfo(
                     svgAsset: AppAssets.identityVerification,

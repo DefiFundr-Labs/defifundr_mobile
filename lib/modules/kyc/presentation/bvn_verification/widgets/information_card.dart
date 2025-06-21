@@ -31,11 +31,13 @@ class InformationCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: context.theme.fonts.textMdSemiBold),
+          Text(title,
+              style: context.theme.fonts.textMdSemiBold
+                  .copyWith(color: context.theme.colors.textPrimary)),
           const SizedBox(height: 8),
-          _bulletPoint("Full name", textColor),
-          _bulletPoint("Phone number", textColor),
-          _bulletPoint("Date of Birth", textColor),
+          _bulletPoint(context, "Full name", textColor),
+          _bulletPoint(context, "Phone number", textColor),
+          _bulletPoint(context, "Date of Birth", textColor),
           const SizedBox(height: 8),
           Text(
             "Your BVN does not give us access to your bank account or transactions.",
@@ -67,16 +69,17 @@ class InformationCard extends StatelessWidget {
     );
   }
 
-  Widget _bulletPoint(String text, Color color) {
+  Widget _bulletPoint(BuildContext context, String text, Color color) {
     return Padding(
-      padding: const EdgeInsets.only(left: 4),
+      padding: EdgeInsets.only(left: 4),
       child: Row(
         children: [
-          Text("• ", style: TextStyle(color: color, fontSize: 14)),
+          Text("• ",
+              style: context.theme.fonts.textSmRegular.copyWith(color: color)),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(color: color, fontSize: 14),
+              style: context.theme.fonts.textSmRegular.copyWith(color: color),
             ),
           ),
         ],

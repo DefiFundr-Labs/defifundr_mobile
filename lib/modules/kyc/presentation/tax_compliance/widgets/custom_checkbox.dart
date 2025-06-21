@@ -28,7 +28,7 @@ class CustomCheckboxTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   label,
-                  style: context.theme.fonts.textMdRegular,
+                  style: context.theme.fonts.textMdRegular.copyWith(color: context.theme.colors.textPrimary),
                 ),
               ),
               Checkbox(
