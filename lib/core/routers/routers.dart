@@ -18,8 +18,9 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_m
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/select_id_country_screen.dart';
-import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_confirmed_screen.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_in_progress_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verify_identity_screen.dart';
+import 'package:defifundr_mobile/modules/kyc/presentation/tax_compliance/screens/tax_information_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/account_type_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/address_details_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/screens/personal_details_screen.dart';
@@ -40,6 +41,9 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_p
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../modules/kyc/presentation/bvn_verification/screens/processing_bvn_request_screen.dart';
+import '../../modules/kyc/presentation/bvn_verification/screens/provide_bvn_screen.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -295,7 +299,7 @@ class AppRouter {
             );
           },
         ),
-         GoRoute(
+        GoRoute(
           path: '/pin-created_success',
           name: RouteConstants.pinCreated,
           pageBuilder: (context, state) {
@@ -801,6 +805,60 @@ class AppRouter {
             return CustomTransitionPage(
               key: state.pageKey,
               child: TransactionScreen(args: args),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/provide-bvn-screen',
+          name: RouteConstants.provideBvnScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ProvideBvnScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/processing-bvn-request-screen',
+          name: RouteConstants.processingBvnRequestScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ProcessingBvnRequestScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: '/tax-information-screen',
+          name: RouteConstants.taxInformationScreen,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const TaxInformationScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

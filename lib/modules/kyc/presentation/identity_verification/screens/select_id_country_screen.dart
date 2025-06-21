@@ -21,97 +21,64 @@ class _SelectIdCountryScreenState extends State<SelectIdCountryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: context.theme.scaffoldBackgroundColor,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: CustomBackButton(),
-                ),
+      appBar: AppBar(
+        backgroundColor: context.theme.scaffoldBackgroundColor,
+        leading: CustomBackButton(),
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16),
+                  Text('Select country where your ID document was issued',
+                      style: context.theme.fonts.heading3Bold),
+                  const SizedBox(height: 8),
+                  SelectCountryInfo(
+                    svgAsset: AppAssets.nigeriaSvg,
+                    svgHasColor: false,
+                    title: 'Nigeria',
+                    onTap: () =>
+                        context.pushNamed(RouteConstants.verificationConfirmed),
+                  ),
+                  const SizedBox(height: 24 - 16),
+                  Text('Select your document type',
+                      style: context.theme.fonts.heading3Bold),
+                  const SizedBox(height: 20),
+                  SelectCountryInfo(
+                    svgAsset: AppAssets.carProfile,
+                    title: 'Driver License',
+                  ),
+                  SelectCountryInfo(
+                    svgAsset: AppAssets.identityVerification,
+                    title: 'Voter ID',
+                  ),
+                  SelectCountryInfo(
+                    svgAsset: AppAssets.globeSvg,
+                    title: 'International passport',
+                  ),
+                  SelectCountryInfo(
+                    svgAsset: AppAssets.ninSvg,
+                    title: 'NIN',
+                  ),
+                  const SizedBox(height: 24 - 16),
+                  UserInfoSafeCard(
+                    svgAsset: AppAssets.infoSvg,
+                    title: "Your information is safe",
+                    description:
+                        "We only collect the necessary details to confirm your identity. "
+                        "Your information is encrypted and never shared with third parties.",
+                  )
+                ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 24),
-                    Text(
-                      'Select country where your ID document was issued',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'HankenGrotesk',
-                        fontWeight: FontWeight.w700,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SelectCountryInfo(
-                      svgAsset: AppAssets.nigeriaSvg,
-                      svgHasColor: false,
-                      title: 'Nigeria',
-                      onTap: () {
-                        context.pushNamed(RouteConstants.verificationConfirmed);
-                      },
-                    ),
-                    const SizedBox(height: 12 * 2),
-                    Text(
-                      'Select your document type',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'HankenGrotesk',
-                        fontWeight: FontWeight.w700,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12 * 2),
-                    SelectCountryInfo(
-                      svgAsset: AppAssets.carProfile,
-                      title: 'Driver License',
-                    ),
-                    const SizedBox(height: 16),
-                    SelectCountryInfo(
-                      svgAsset: AppAssets.identityVerification,
-                      title: 'Voter ID',
-                    ),
-                    const SizedBox(height: 16),
-                    SelectCountryInfo(
-                      svgAsset: AppAssets.globeSvg,
-                      title: 'International passport',
-                    ),
-                    const SizedBox(height: 16),
-                    SelectCountryInfo(
-                      svgAsset: AppAssets.ninSvg,
-                      title: 'NIN',
-                    ),
-                    const SizedBox(height: 8 * 4),
-                    UserInfoSafeCard(
-                      svgAsset: AppAssets.infoSvg,
-                      title: "Your information is safe",
-                      description:
-                          "We only collect the necessary details to confirm your identity. "
-                          "Your information is encrypted and never shared with third parties.",
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

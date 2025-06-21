@@ -21,86 +21,59 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: context.theme.scaffoldBackgroundColor,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: CustomBackButton(),
-                ),
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 24),
-                    Text(
-                      'Verify Your Identity',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontFamily: 'HankenGrotesk',
-                        fontWeight: FontWeight.w700,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
+      appBar: AppBar(
+        backgroundColor: context.theme.scaffoldBackgroundColor,
+        leading: CustomBackButton(),
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16),
+                  Text('Verify Your Identity',
+                      style: context.theme.fonts.heading2Bold
+                          .copyWith(color: context.theme.colors.textPrimary)),
+                  const SizedBox(height: 8),
+                  Text(
                       'We\'ll use this info to confirm your identity and comply with our legal requirements.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textSecondary,
-                          darkColor: AppColorDark.textSecondary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    InfoCard(
-                      svgAsset: AppAssets.identityVerification,
-                      title: 'Your ID',
-                      description: 'We accept most common forms of ID.',
-                      onTap: () {
-                        context.pushNamed(RouteConstants.selectIdCountry);
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    InfoCard(
-                      svgAsset: AppAssets.userFocus,
-                      title: 'A quick scan of your face',
-                      description: 'This is to confirm that you match your ID.',
-                      onTap: () {
-                        print('Tapped on Face scan info');
-                      },
-                    ),
-                    const SizedBox(height: 32),
-                  ],
-                ),
+                      style: context.theme.fonts.textMdRegular
+                          .copyWith(color: context.theme.colors.textSecondary)),
+                  const SizedBox(height: 20),
+                  InfoCard(
+                    svgAsset: AppAssets.identityVerification,
+                    title: 'Your ID',
+                    description: 'We accept most common forms of ID.',
+                    onTap: () {
+                      context.pushNamed(RouteConstants.selectIdCountry);
+                    },
+                  ),
+                  InfoCard(
+                    svgAsset: AppAssets.userFocus,
+                    title: 'A quick scan of your face',
+                    description: 'This is to confirm that you match your ID.',
+                    onTap: () {
+                      print('Tapped on Face scan info');
+                    },
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: BrandButton(
-                text: "Get started",
-                onPressed: () {},
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: BrandButton(
+              text: "Get started",
+              onPressed: () =>
+                  context.pushNamed(RouteConstants.selectIdCountry),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
