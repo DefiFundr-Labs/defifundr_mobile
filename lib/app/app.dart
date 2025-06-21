@@ -46,7 +46,7 @@ class _AppState extends State<App> {
             title: 'DeFiFundr',
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: ThemeMode.dark,
+            themeMode: ThemeMode.light,
             scrollBehavior: const _AppScrollBehavior(),
             routeInformationProvider: AppRouter.router.routeInformationProvider,
             routeInformationParser: AppRouter.router.routeInformationParser,

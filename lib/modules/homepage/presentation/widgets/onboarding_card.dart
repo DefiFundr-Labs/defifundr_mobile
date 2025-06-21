@@ -4,18 +4,19 @@ import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
-class SelectCountryInfo extends StatelessWidget {
+class OnboardingCard extends StatelessWidget {
   final String svgAsset;
   final String title;
   final VoidCallback? onTap;
-  final bool svgHasColor;
+  final bool svgHasColor, isDone;
 
-  const SelectCountryInfo({
+  const OnboardingCard({
     super.key,
     required this.svgAsset,
     required this.title,
     this.onTap,
     this.svgHasColor = true,
+    this.isDone = false,
   });
 
   @override
@@ -46,8 +47,12 @@ class SelectCountryInfo extends StatelessWidget {
                       ? ColorFilter.mode(
                           resolveColor(
                             context: context,
-                            lightColor: AppColors.textPrimary,
-                            darkColor: AppColorDark.textPrimary,
+                            lightColor: isDone
+                                ? context.theme.colors.textTertiary
+                                : AppColors.textPrimary,
+                            darkColor: isDone
+                                ? context.theme.colors.textTertiary
+                                : AppColorDark.textPrimary,
                           ),
                           BlendMode.srcIn,
                         )
@@ -55,13 +60,33 @@ class SelectCountryInfo extends StatelessWidget {
                 ),
                 const SizedBox(width: 18),
                 Expanded(
-                  child: Text(title, style: context.theme.fonts.textMdSemiBold),
+                  child: Text(title,
+                      style: context.theme.fonts.textMdSemiBold.copyWith(
+                          color: isDone
+                              ? context.theme.colors.textTertiary
+                              : null)),
                 ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 20,
-                  color: context.theme.colors.contrastBlack,
-                ),
+                isDone
+                    ? Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            border: Border.all(
+                                width: 1,
+                                color: context.theme.colors.greenStroke),
+                            color: context.theme.colors.greenFill),
+                        child: Text(
+                          "Done",
+                          style: context.theme.fonts.textSmBold.copyWith(
+                              color: context.theme.colors.greenDefault),
+                        ),
+                      )
+                    : Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                        color: context.theme.colors.contrastBlack,
+                      ),
               ],
             ),
           ),
