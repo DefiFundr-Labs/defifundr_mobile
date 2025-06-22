@@ -54,6 +54,8 @@ PODS:
   - TorusSessionManager (6.0.2):
     - curvelib.swift (~> 2.0.0)
     - KeychainSwift (~> 20.0.0)
+  - url_launcher_ios (0.0.1):
+    - Flutter
   - Web3Auth (11.1.0):
     - BigInt (~> 5.2.0)
     - curvelib.swift (~> 2.0.0)
@@ -70,6 +72,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - web3auth_flutter (from `.symlinks/plugins/web3auth_flutter/ios`)
 
 SPEC REPOS:
@@ -97,6 +100,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
   web3auth_flutter:
     :path: ".symlinks/plugins/web3auth_flutter/ios"
 
@@ -115,6 +120,7 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   TorusSessionManager: 3c47c2a4c4d6173a10006eb0af4b86317ee45ff8
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
   Web3Auth: fa82260fa6dacdcf647b333d85a923530d045051
   web3auth_flutter: ecf03bfbcb9ebf1ed8edb24642b5dac6d6b6a980
 
