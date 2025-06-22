@@ -1,12 +1,11 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/utils/resolve_color.dart';
-import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/info_card.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class VerifyIdentityScreen extends StatefulWidget {
@@ -38,14 +37,14 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
                   const SizedBox(height: 16),
                   Text('Verify Your Identity',
                       style: context.theme.fonts.heading2Bold.copyWith(
-                          color: context.theme.colors.textPrimary,
-                          fontFamily: 'HankenGrotesk')),
-                  const SizedBox(height: 8),
+                        color: context.theme.colors.textPrimary,
+                      )),
+                  SizedBox(height: 20.h),
                   Text(
                       'We\'ll use this info to confirm your identity and comply with our legal requirements.',
                       style: context.theme.fonts.textMdRegular
                           .copyWith(color: context.theme.colors.textSecondary)),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   InfoCard(
                     svgAsset: AppAssets.identityVerification,
                     title: 'Your ID',
@@ -64,14 +63,13 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            child: BrandButton(
-              text: "Get started",
-              onPressed: () =>
-                  context.pushNamed(RouteConstants.selectIdCountry),
-            ),
+          PrimaryButton(
+            text: "Get started",
+            onPressed: () {
+              context.pushNamed(RouteConstants.processingBvnRequestScreen);
+            },
           ),
+          SizedBox(height: 20.h),
         ],
       ),
     );

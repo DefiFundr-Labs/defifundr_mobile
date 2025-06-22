@@ -3,13 +3,14 @@ import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/bottom_sheet/selection_bottom_sheet.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/tax_compliance/widgets/countries_list.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../identity_verification/widgets/brand_button.dart';
 import '../widgets/custom_checkbox.dart';
 
 class TaxInformationScreen extends StatefulWidget {
@@ -125,13 +126,12 @@ class _TaxInformationScreenState extends State<TaxInformationScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            child: BrandButton(
-                text: "Save details",
-                onPressed: () => context
-                    .pushNamed(RouteConstants.onboardingChecklistScreen)),
-          ),
+          SizedBox(height: 10.h),
+          PrimaryButton(
+              text: "Save details",
+              onPressed: () =>
+                  context.pushNamed(RouteConstants.onboardingChecklistScreen)),
+          SizedBox(height: 20.h),
         ],
       ),
     );

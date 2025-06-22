@@ -1,8 +1,10 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/modules/homepage/presentation/widgets/animated_progress_bar.dart';
 import 'package:defifundr_mobile/modules/homepage/presentation/widgets/onboarding_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
@@ -52,20 +54,16 @@ class _OnboardingChecklistScreenState extends State<OnboardingChecklistScreen> {
                     children: [
                       Text("${_progressValue.round()}%",
                           style: context.theme.fonts.textBaseSemiBold),
+                      SizedBox(width: 10.h),
                       Expanded(
-                        child: Slider(
-                          divisions: 5,
-                          activeColor: context.theme.colors.brandDefault,
-                          inactiveColor: context.theme.colors.fillTertiary,
-                          value: _progressValue,
-                          onChanged: (double value) {
-                            setState(() {
-                              _progressValue = value;
-                            });
-                          },
-                          max: 100,
-                        ),
-                      ),
+                          child: AnimatedProgressBar(
+                        progress: 0.2,
+                        showPercentage: false,
+                        topColor: context.theme.colors.brandDefault,
+                        backgroundColor:
+                            context.theme.colors.graySecondary.withAlpha(60),
+                        height: 6.sp,
+                      )),
                     ],
                   ),
                   SizedBox(height: 20),
@@ -84,7 +82,8 @@ class _OnboardingChecklistScreenState extends State<OnboardingChecklistScreen> {
                       svgAsset: AppAssets.bank,
                       title: "Provide your BVN"),
                   OnboardingCard(
-                    onTap: () => context.pushNamed(RouteConstants.taxInformationScreen),
+                      onTap: () => context
+                          .pushNamed(RouteConstants.taxInformationScreen),
                       svgAsset: AppAssets.scales,
                       title: "Add tax info for compliance"),
                   OnboardingCard(

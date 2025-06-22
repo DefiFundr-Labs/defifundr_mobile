@@ -1,12 +1,13 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/bvn_verification/widgets/information_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routers/routes_constant.dart';
 import '../../../../onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import '../../identity_verification/widgets/brand_button.dart';
 
 class ProvideBvnScreen extends StatelessWidget {
   const ProvideBvnScreen({super.key});
@@ -52,14 +53,13 @@ class ProvideBvnScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            child: BrandButton(
-              text: "Confirm",
-              onPressed: () =>
-                  context.pushNamed(RouteConstants.processingBvnRequestScreen),
-            ),
+          PrimaryButton(
+            text: "Confirm",
+            onPressed: () {
+              context.pushNamed(RouteConstants.processingBvnRequestScreen);
+            },
           ),
+          SizedBox(height: 20.h),
         ],
       ),
     );
