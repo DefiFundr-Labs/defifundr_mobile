@@ -27,7 +27,7 @@ class BrandButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: (isEnabled && !isLoading) ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.brandDefaultContrast,
+          backgroundColor: AppColors.brandDefault,
           foregroundColor: Colors.white,
           disabledBackgroundColor: colors.inactiveButton,
           disabledForegroundColor: colors.textPrimary,
@@ -47,7 +47,7 @@ class BrandButton extends StatelessWidget {
               )
             : Text(
                 text,
-                style: fonts.textBaseSemiBold.copyWith(
+                style: fonts.textBaseMedium.copyWith(
                   color: Colors.white,
                   fontFamily: 'Inter',
                 ),

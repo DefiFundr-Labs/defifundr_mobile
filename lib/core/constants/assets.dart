@@ -55,17 +55,26 @@ class AppAssets {
 
   // identity verification
   static const identityVerification =
-      '$defifundrImagePath/IdentificationCard.svg';
-  static const userFocus = '$defifundrImagePath/UserFocus.svg';
-  static const nigeriaSvg = '$defifundrImagePath/nigeria.svg';
-  static const carProfile = '$defifundrImagePath/CarProfile.svg';
-  static const globeSvg = '$defifundrImagePath/Globe.svg';
+      '${defifundrIconPath}IdentificationCard.svg';
+  static const userFocus = '${defifundrIconPath}UserFocus.svg';
+  static const carProfile = '${defifundrIconPath}CarProfile.svg';
+  static const globeSvg = '${defifundrIconPath}Globe.svg';
   static const ninSvg = '$defifundrImagePath/NIN.svg';
-  static const infoSvg = '$defifundrImagePath/Info.svg';
+  static const infoSvg = '${defifundrIconPath}Info.svg';
   static const verificationProgressSvg =
-      '$defifundrImagePath/verificationProgress.svg';
+      '${defifundrIconPath}verificationProgress.svg';
   static const verificationProgressSvgDark =
-      '$defifundrImagePath/verificationProgressDark.svg';
+      '${defifundrIconPath}verificationProgressDark.svg';
+
+  //bvn verification
+  static const bvnProcessing = '${defifundrIconPath}bvnProcessing.svg';
+  static const bvnProcessingDark = '${defifundrIconPath}bvnProcessingDark.svg';
+
+  //onboaring checklist
+  static const bank = '${defifundrIconPath}Bank.svg';
+  static const userCircleDashed = '${defifundrIconPath}UserCircleDashed.svg';
+  static const scales = '${defifundrIconPath}Scales.svg';
+  static const wallet = '${defifundrIconPath}Wallet.svg';
 
   // Quick Pay
   static const questionSvg = '$defifundrImagePath/question_svg.svg';
@@ -84,4 +93,10 @@ class AppAssets {
   static const copySvg = '$defifundrImagePath/Copy.svg';
   static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
   static const headsetSvg = '$defifundrImagePath/Headset.svg';
+
+  //-------------------------------------------- FLAGS -------------------------------------------- //
+
+  static const defifundrFlagPath = 'assets/icons/country_flags';
+
+  static const nigeriaSvg = '$defifundrFlagPath/nigeria.svg';
 }

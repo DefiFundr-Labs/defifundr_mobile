@@ -1,5 +1,5 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
@@ -18,19 +18,22 @@ class UserInfoSafeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: resolveColor(
           context: context,
-          lightColor: AppColors.textPrimary.withValues(alpha: 0.04),
-          darkColor: AppColorDark.fillTertiary.withValues(alpha: 0.04),
+          lightColor: context.theme.colors.bgB0,
+          darkColor: context.theme.colors.bgB0,
         ),
         borderRadius: BorderRadius.circular(12),
+        border:
+            Border.all(color: context.theme.colors.strokeSecondary, width: 0.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 1,
+            spreadRadius: -5,
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -42,33 +45,14 @@ class UserInfoSafeCard extends StatelessWidget {
             width: 20,
             height: 20,
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: resolveColor(
-                      context: context,
-                      lightColor: AppColors.textPrimary,
-                      darkColor: AppColorDark.textPrimary,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textSecondary,
-                    height: 1.5,
-                  ),
-                ),
+                Text(title, style: context.theme.fonts.textMdSemiBold),
+                SizedBox(height: 1),
+                Text(description, style: context.theme.fonts.textSmRegular),
               ],
             ),
           ),
