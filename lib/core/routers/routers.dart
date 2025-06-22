@@ -27,7 +27,6 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/individual_acco
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/country_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/confirm_pin_screen.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/create_pin_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/pin_created_screen.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
@@ -57,8 +56,9 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: CreatePinScreen(),
-              // child: AccountTypeScreen(),
+              // child: LoginScreen(),
+              // child: CreatePinScreen(),
+              child: AccountTypeScreen(),
               // child: PasswordValidationScreen(),
               // child: VerifyAccountScreen(),
               // child: PinLoginScreen(
@@ -295,7 +295,7 @@ class AppRouter {
             );
           },
         ),
-         GoRoute(
+        GoRoute(
           path: '/pin-created_success',
           name: RouteConstants.pinCreated,
           pageBuilder: (context, state) {

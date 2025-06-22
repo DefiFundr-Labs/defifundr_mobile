@@ -14,8 +14,8 @@ class Web3AuthConfig {
     required this.clientId,
     required this.redirectUrl,
     this.network = Network.sapphire_mainnet,
-    this.buildEnv = BuildEnv.production,
-    this.sessionTime = 86400, // Default 1 day
+    this.buildEnv = BuildEnv.staging,
+    this.sessionTime = 86400,
     this.rpcUrls = const {
       BlockchainType.ethereum: 'https://1rpc.io/sepolia',
       BlockchainType.solana: 'https://api.mainnet-beta.solana.com',
