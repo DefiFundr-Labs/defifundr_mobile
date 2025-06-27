@@ -394,7 +394,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 onTap: widget.onTap,
                 keyboardType: widget.keyboardType,
                 readOnly: widget.readOnly,
-                style: context.theme.fonts.headerSmall.copyWith(
+                style: context.theme.fonts.textMdRegular.copyWith(
                   color: widget.textColor ?? context.theme.colors.textPrimary,
                   fontSize: widget.hideText ? 10.sp : 12.sp,
                   height: 1.3,
