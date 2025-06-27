@@ -1,17 +1,15 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/models/selection_item.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/bottom_sheet/selection_bottom_sheet.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
-import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/coin_assets.dart';
-import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ReceivePaymentScreen extends StatefulWidget {
@@ -23,6 +21,8 @@ class ReceivePaymentScreen extends StatefulWidget {
 
 class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
   TextEditingController titleController = TextEditingController();
+  TextEditingController networkController = TextEditingController();
+  TextEditingController assetController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   final ethereumAssets = CoinAssets(
     coinName: 'Ethereum',
@@ -47,249 +47,266 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: resolveColor(
-        context: context,
-        lightColor: AppColors.bgB0Base,
-        darkColor: AppColorDark.bgB0Base,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      appBar: DeFiRaiseAppBar(
+        leading: CustomBackButton(),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomBackButton(),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.contrastBlack,
-                          darkColor: AppColorDark.contrastBlack,
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          AppAssets.questionSvg,
-                          colorFilter: ColorFilter.mode(
-                            resolveColor(
-                              context: context,
-                              lightColor: AppColors.textPrimary,
-                              darkColor: AppColorDark.textPrimary,
-                            ),
-                            BlendMode.srcIn,
-                          ),
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Need Help?',
-                          style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            color: resolveColor(
-                              context: context,
-                              lightColor: AppColors.textPrimary,
-                              darkColor: AppColorDark.textPrimary,
-                            ),
-                          ),
-                        ),
-                      ],
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Receive Payment',
+                      style: context.theme.fonts.heading2Bold.copyWith(
+                          fontFamily: 'HankenGrotesk',
+                          color: context.theme.colors.textPrimary),
                     ),
                   ),
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                        'Receive crypto payments instantly via address, QR code, or payment link.',
+                        style: context.theme.fonts.textMdRegular.copyWith(
+                            color: context.theme.colors.textSecondary)),
+                  ),
+                  const SizedBox(height: 24),
+                  AppTextField(
+                    labelText: 'Title',
+                    controller: titleController,
+                  ),
+                  const SizedBox(height: 20),
+                  // ValueListenableBuilder(
+                  //     valueListenable: selectedAsset,
+                  //     builder: (ctx, _, __) {
+                  //       return ValueListenableBuilder(
+                  //           valueListenable: selectedCoin,
+                  //           builder: (ctx, _, __) {
+                  //             return Column(
+                  //               children: [
+                  //                 SelectPayment(
+                  //                   title: selectedCoin.value != null
+                  //                       ? selectedCoin.value!.coinName
+                  //                       : 'Network',
+                  //                   iconUrl: selectedCoin.value?.logoUrl,
+                  //                   titleStyle: selectedCoin.value != null
+                  //                       ? context.theme.fonts.textMdRegular
+                  //                           .copyWith(
+                  //                               color: context
+                  //                                   .theme.colors.textTertiary)
+                  //                       : null,
+                  //                 ),
+                  //                 const SizedBox(height: 8 * 3),
+                  //                 SelectPayment(
+                  //                   title: selectedAsset.value != null
+                  //                       ? selectedAsset.value!.symbol
+                  //                       : 'Asset',
+                  //                   iconUrl: selectedAsset.value?.logoUrl,
+                  //                   titleStyle: selectedAsset.value != null
+                  //                       ? TextStyle(
+                  //                           fontSize: 14,
+                  //                           fontWeight: FontWeight.w400,
+                  //                           color: resolveColor(
+                  //                             context: context,
+                  //                             lightColor: AppColors.textPrimary,
+                  //                             darkColor: AppColorDark.textPrimary,
+                  //                           ),
+                  //                           fontFamily: 'Inter',
+                  //                         )
+                  //                       : null,
+                  //                 ),
+                  //               ],
+                  //             );
+                  //           });
+                  //     }),
+
+                  AppTextField(
+                    labelText: 'Network',
+                    suffixType: SuffixType.defaultt,
+                    controller: networkController,
+                    readOnly: true,
+                    onTap: () async {
+                      final selected =
+                          await showModalBottomSheet<SelectionItem>(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(16)),
+                        ),
+                        builder: (_) => SelectionBottomSheet<SelectionItem>(
+                          controller: networkController,
+                          title: 'Network',
+                          items: [
+                            SelectionItem(
+                                title: 'Ethereum', iconPath: AppAssets.ethPng),
+                            SelectionItem(
+                                title: 'Starknet',
+                                iconPath: AppAssets.starknetPng),
+                            SelectionItem(
+                                title: 'Base', iconPath: AppAssets.basePng),
+                            SelectionItem(
+                                title: 'Polygon', iconPath: AppAssets.maticPng),
+                            SelectionItem(
+                                title: 'BNB Chain', iconPath: AppAssets.bnbPng),
+                            SelectionItem(
+                                title: 'Arbitrum One',
+                                iconPath: AppAssets.arbitrumPng),
+                            SelectionItem(
+                                title: 'Optimism',
+                                iconPath: AppAssets.optimismPng),
+                            SelectionItem(
+                                title: 'Gnosis Chain',
+                                iconPath: AppAssets.gnosisPng),
+                            SelectionItem(
+                                title: 'zkSync Era',
+                                iconPath: AppAssets.zksyncPng),
+                          ],
+                          itemBuilder: (context, item) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage(item.iconPath),
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  item.title,
+                                  style: context.theme.fonts.textMdRegular
+                                      .copyWith(
+                                    color: context.theme.colors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+
+                      if (selected != null) {
+                        networkController.text = selected.title;
+                      }
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  AppTextField(
+                    labelText: 'Asset',
+                    suffixType: SuffixType.defaultt,
+                    controller: assetController,
+                    readOnly: true,
+                    onTap: () async {
+                      final selected =
+                          await showModalBottomSheet<SelectionItem>(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(16)),
+                        ),
+                        builder: (_) => SelectionBottomSheet<SelectionItem>(
+                          controller: networkController,
+                          title: 'Asset',
+                          items: [
+                            SelectionItem(
+                                title: 'Tether USD (USDT)',
+                                iconPath: AppAssets.usdtPng),
+                            SelectionItem(
+                                title: 'USD Coin (USDC)',
+                                iconPath: AppAssets.usdcPng),
+                            SelectionItem(
+                                title: 'Dai Stablecoin (DAI)',
+                                iconPath: AppAssets.daiPng),
+                            SelectionItem(
+                                title: 'Decentralized USD (USDD)',
+                                iconPath: AppAssets.usddPng),
+                            SelectionItem(
+                                title: 'Liquity USD (LUSD)',
+                                iconPath: AppAssets.lusdPng),
+                            SelectionItem(
+                                title: 'Euro Tether (EURt)',
+                                iconPath: AppAssets.arbitrumPng),
+                            SelectionItem(
+                                title: 'Starknet (STRK)',
+                                iconPath: AppAssets.starknetPng),
+                          ],
+                          itemBuilder: (context, item) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage(item.iconPath),
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  item.title,
+                                  style: context.theme.fonts.textMdRegular
+                                      .copyWith(
+                                    color: context.theme.colors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+
+                      if (selected != null) {
+                        networkController.text = selected.title;
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  AppTextField(
+                    labelText: 'Amount',
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    controller: amountController,
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: Text('USDT',
+                          style: context.theme.fonts.textMdRegular.copyWith(
+                              color: context.theme.colors.textTertiary)),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text('≈ \$500',
+                      style: context.theme.fonts.textSmRegular
+                          .copyWith(color: context.theme.colors.textPrimary)),
                 ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 24 / 2),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Receive Payment',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontFamily: 'HankenGrotesk',
-                          fontWeight: FontWeight.w700,
-                          color: resolveColor(
-                            context: context,
-                            lightColor: AppColors.textPrimary,
-                            darkColor: AppColorDark.textPrimary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Receive crypto payments instantly via address, QR code, or payment link.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          color: resolveColor(
-                            context: context,
-                            lightColor: AppColors.textSecondary,
-                            darkColor: AppColorDark.textSecondary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8 * 3),
-                    AppTextField(
-                      labelText: 'Title',
-                      controller: titleController, 
-                    ),
-                    const SizedBox(height: 8 * 3),
-                    ValueListenableBuilder(
-                        valueListenable: selectedAsset,
-                        builder: (ctx, _, __) {
-                          return ValueListenableBuilder(
-                              valueListenable: selectedCoin,
-                              builder: (ctx, _, __) {
-                                return Column(
-                                  children: [
-                                    SelectPayment(
-                                      title: selectedCoin.value != null
-                                          ? selectedCoin.value!.coinName
-                                          : 'Network',
-                                      iconUrl: selectedCoin.value?.logoUrl,
-                                      titleStyle: selectedCoin.value != null
-                                          ? TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: resolveColor(
-                                                context: context,
-                                                lightColor:
-                                                    AppColors.textPrimary,
-                                                darkColor:
-                                                    AppColorDark.textPrimary,
-                                              ),
-                                              fontFamily: 'Inter',
-                                            )
-                                          : null,
-                                    ),
-                                    const SizedBox(height: 8 * 3),
-                                    SelectPayment(
-                                      title: selectedAsset.value != null
-                                          ? selectedAsset.value!.symbol
-                                          : 'Asset',
-                                      iconUrl: selectedAsset.value?.logoUrl,
-                                      titleStyle: selectedAsset.value != null
-                                          ? TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: resolveColor(
-                                                context: context,
-                                                lightColor:
-                                                    AppColors.textPrimary,
-                                                darkColor:
-                                                    AppColorDark.textPrimary,
-                                              ),
-                                              fontFamily: 'Inter',
-                                            )
-                                          : null,
-                                    ),
-                                  ],
-                                );
-                              });
-                        }),
-                    const SizedBox(height: 8 * 3),
-                    AppTextField(
-                      labelText: 'Amount',
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                   
-                      controller: amountController,
-                    suffixType: SuffixType.customIcon,
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 0),
-                        child: Text(
-                          'USDT',
-                          style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.textSecondary,
-                            fontFamily: 'Inter',
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '≈ \$500',
-                      style: context.theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                        fontFamily: 'Inter',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: BrandButton(
+              text: "Continue",
+              onPressed: () {
+                context.pushNamed(
+                  RouteConstants.receivePaymentDoneScreen,
+                  // extra: ReceiveParams(
+                  //   amount: amountController.text,
+                  //   title: titleController.text,
+                  //   coinName: selectedCoin.value!.coinName,
+                  //   assetName: selectedAsset.value!.symbol,
+                  //   imageUrl: selectedCoin.value!.logoUrl,
+                  // ),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: BrandButton(
-                text: "Continue",
-                onPressed: () {
-                  if (selectedAsset.value == null ||
-                      selectedCoin.value == null) {
-                    selectedAsset.value = allCoinAssets.first.assets.first;
-                    selectedCoin.value = allCoinAssets.first;
-                    return;
-                  }
-                  if (titleController.text.isEmpty ||
-                      amountController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Please fill in all fields.',
-                          style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.redActive,
-                            fontFamily: 'Inter',
-                          ),
-                        ),
-                      ),
-                    );
-                    return;
-                  }
-                  context.pushNamed(
-                    RouteConstants.receivePaymentDoneScreen,
-                    extra: ReceiveParams(
-                      amount: amountController.text,
-                      title: titleController.text,
-                      coinName: selectedCoin.value!.coinName,
-                      assetName: selectedAsset.value!.symbol,
-                      imageUrl: selectedCoin.value!.logoUrl,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

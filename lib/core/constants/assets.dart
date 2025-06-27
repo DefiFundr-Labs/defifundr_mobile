@@ -69,19 +69,43 @@ class AppAssets {
 
   // Quick Pay
   static const questionSvg = '$defifundrImagePath/question_svg.svg';
-  static const magnifyingGlass = '$defifundrImagePath/MagnifyingGlass.svg';
-  static const filterIcon = '$defifundrImagePath/filter.svg';
+  static const magnifyingGlass = '${defifundrIconPath}MagnifyingGlass.svg';
+  static const filterIcon = '${defifundrIconPath}filter.svg';
   static const emptyQuickpayIcon =
-      '$defifundrImagePath/empty_quickpay_icon.svg';
+      '${defifundrIconPath}empty_quickpay_icon.svg';
   static const emptyQuickpayIconDark =
-      '$defifundrImagePath/empty_quickpay_icon_dark.svg';
-  static const depositIconSvg = '$defifundrImagePath/deposit_svg.svg';
-  static const rectangleSvg = '$defifundrImagePath/rectangle.svg';
+      '${defifundrIconPath}empty_quickpay_icon_dark.svg';
+  static const depositIconSvg = '${defifundrIconPath}deposit_svg.svg';
+  static const rectangleSvg = '${defifundrIconPath}rectangle.svg';
   static const ethereumLogo = '$defifundrImagePath/eth.svg';
+  static const starkNetLogo = '${defifundrIconPath}starknetIcon.svg';
   static const usdtLogo = '$defifundrImagePath/usdt.svg';
-  static const qrCodeSvg = '$defifundrImagePath/QrCode.svg';
-  static const linkSvg = '$defifundrImagePath/Link.svg';
+  static const qrCodeSvg = '${defifundrIconPath}QrCode.svg';
+  static const linkSvg = '${defifundrIconPath}Link.svg';
   static const copySvg = '$defifundrImagePath/Copy.svg';
   static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
-  static const headsetSvg = '$defifundrImagePath/Headset.svg';
+  static const headsetSvg = '${defifundrIconPath}headset.svg';
+
+  //Network pngs
+  static const networkPng = 'assets/images/network_icons/';
+
+  static const arbitrumPng = '${networkPng}arbitrum.png';
+  static const basePng = '${networkPng}base.png';
+  static const bnbPng = '${networkPng}bnb.png';
+  static const celoPng = '${networkPng}celo.png';
+  static const gnosisPng = '${networkPng}gnosis.png';
+  static const maticPng = '${networkPng}matic.png';
+  static const optimismPng = '${networkPng}optimism.png';
+  static const starknetPng = '${networkPng}starknet.png';
+  static const zksyncPng = '${networkPng}zksync.png';
+  static const ethPng = '${networkPng}eth.png';
+
+  //Tokens pngs
+  static const tokenPng = 'assets/images/token_images/';
+
+  static const daiPng = '${tokenPng}dai.png';
+  static const usdcPng = '${tokenPng}usdc.png';
+  static const usddPng = '${tokenPng}usdd.png';
+  static const usdtPng = '${tokenPng}usdt.png';
+  static const lusdPng = '${tokenPng}lusd.png';
 }

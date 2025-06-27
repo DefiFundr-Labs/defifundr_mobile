@@ -295,7 +295,7 @@ class AppRouter {
             );
           },
         ),
-         GoRoute(
+        GoRoute(
           path: '/pin-created_success',
           name: RouteConstants.pinCreated,
           pageBuilder: (context, state) {
@@ -778,10 +778,9 @@ class AppRouter {
           path: '/receive-done-screen',
           name: RouteConstants.receivePaymentDoneScreen,
           pageBuilder: (context, state) {
-            final args = state.extra as ReceiveParams;
             return CustomTransitionPage(
               key: state.pageKey,
-              child: ReceivePaymentDoneScreen(args: args),
+              child: ReceivePaymentDoneScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

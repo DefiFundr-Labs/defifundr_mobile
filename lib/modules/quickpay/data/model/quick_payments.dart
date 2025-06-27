@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 
 class QuickPayment {
@@ -74,38 +74,35 @@ extension QuickPaymentsStatusExtension on QuickPaymentsStatus {
   }
 
   Color fillColor(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return isDark ? AppColorDark.orangeFill : AppColors.orangeFill;
+        return context.theme.colors.orangeFill;
       case QuickPaymentsStatus.failed:
-        return isDark ? AppColorDark.redFill : AppColors.redFill;
+        return context.theme.colors.redFill;
       case QuickPaymentsStatus.successful:
-        return isDark ? AppColorDark.greenFill : AppColors.greenFill;
+        return context.theme.colors.greenFill;
     }
   }
 
   Color borderColor(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return isDark ? AppColorDark.orangeStroke : AppColors.orangeStroke;
+        return context.theme.colors.orangeStroke;
       case QuickPaymentsStatus.failed:
-        return isDark ? AppColorDark.redStroke : AppColors.redStroke;
+        return context.theme.colors.redStroke;
       case QuickPaymentsStatus.successful:
-        return isDark ? AppColorDark.greenStroke : AppColors.greenStroke;
+        return context.theme.colors.greenStroke;
     }
   }
 
   Color textColor(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (this) {
       case QuickPaymentsStatus.processing:
-        return isDark ? AppColorDark.orangeDefault : AppColors.orangeDefault;
+        return context.theme.colors.orangeDefault;
       case QuickPaymentsStatus.failed:
-        return isDark ? AppColorDark.redActive : AppColors.redActive;
+        return context.theme.colors.redActive;
       case QuickPaymentsStatus.successful:
-        return isDark ? AppColorDark.greenActive : AppColors.greenActive;
+        return context.theme.colors.greenActive;
     }
   }
 }

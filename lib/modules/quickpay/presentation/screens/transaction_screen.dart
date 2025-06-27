@@ -1,11 +1,16 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filter_buttons.dart';
+import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/build_details_row.dart';
 import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
@@ -23,469 +28,237 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: resolveColor(
-        context: context,
-        lightColor: AppColors.bgB0Base,
-        darkColor: AppColorDark.bgB0Base,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: context.theme.scaffoldBackgroundColor,
+        centerTitle: true,
+        leading: CustomBackButton(),
+        title: Text(
+          'Quickpay',
+          style: context.theme.fonts.heading3SemiBold
+              .copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Stack(
-                alignment: Alignment.center,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: const CustomBackButton(),
-                  ),
-                  Center(
-                    child: Text(
-                      'Quickpay',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 24,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.bgB1Base,
-                          darkColor: AppColorDark.bgB1Base,
-                        ),
-                        shape: RoundedRectangleBorder(
+                  SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              height: 8 * 2,
-                            ),
-                            SvgPicture.asset(
-                              AppAssets.depositIconSvg,
-                              width: 60,
-                              height: 60,
-                            ),
-                            SizedBox(
-                              height: 8 * 2,
-                            ),
-                            Text(
-                              '${widget.args.paymentType == QuickPaymentsType.deposit ? '+' : '-'} ${widget.args.amount} ${widget.args.currency}',
-                              style: TextStyle(
-                                fontSize: 32,
-                                fontFamily: 'HankenGrotesk',
-                                fontWeight: FontWeight.w700,
-                                color: widget.args.paymentType ==
-                                        QuickPaymentsType.deposit
-                                    ? AppColors.greenDefault
-                                    : AppColors.redDefault,
-                              ),
-                            ),
-                            Text(
-                              '≈ \$476.19',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                color: resolveColor(
-                                  context: context,
-                                  lightColor: AppColors.textSecondary,
-                                  darkColor: AppColorDark.textSecondary,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8 * 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8 * 2,
-                    ),
-                    Card(
-                      color: resolveColor(
-                        context: context,
-                        lightColor: AppColors.bgB1Base,
-                        darkColor: AppColorDark.bgB1Base,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                          color: context.theme.colors.bgB0,
+                          boxShadow: [
+                            BoxShadow(
+                                color: context.theme.colors.contrastBlack,
+                                spreadRadius: -5,
+                                offset: Offset(0, 1),
+                                blurRadius: 1)
+                          ]),
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: 24,
+                          SvgPicture.asset(
+                            AppAssets.depositIconSvg,
+                            width: 60,
+                            height: 60,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Status',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        widget.args.status.fillColor(context),
-                                    border: Border.all(
-                                      color: widget.args.status
-                                          .borderColor(context),
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        widget.args.status.titleCase,
-                                        style: TextStyle(
-                                          color: widget.args.status
-                                              .textColor(context),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Inter',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                          SizedBox(height: 16),
+                          Text(
+                              '${widget.args.paymentType == QuickPaymentsType.deposit ? '+' : '-'} ${widget.args.amount} ${widget.args.currency}',
+                              style: context.theme.fonts.heading1Bold.copyWith(
+                                  fontFamily: 'HankenGrotesk',
+                                  color: context.theme.colors.greenDefault)),
+                          Text('≈ \$476.19',
+                              style: context.theme.fonts.textBaseRegular
+                                  .copyWith(
+                                      color:
+                                          context.theme.colors.textSecondary)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: context.theme.colors.bgB0,
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.theme.colors.contrastBlack,
+                            spreadRadius: -5,
+                            offset: Offset(0, 1),
+                            blurRadius: 1)
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        buildDetailsRow(
+                          context,
+                          'Status',
+                          Container(
+                            decoration: BoxDecoration(
+                              color: widget.args.status.fillColor(context),
+                              border: Border.all(
+                                color: widget.args.status.borderColor(context),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(32),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Title',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  ellipsify(
-                                    word: widget.args.description,
-                                    maxLength: 20,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textPrimary,
-                                      darkColor: AppColorDark.textPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Network',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      widget.args.imageUrl,
-                                      width: 20,
-                                      height: 20,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      ellipsify(
-                                        word: widget.args.network,
-                                        maxLength: 20,
-                                      ),
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        color: resolveColor(
-                                          context: context,
-                                          lightColor: AppColors.textPrimary,
-                                          darkColor: AppColorDark.textPrimary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          if (widget.args.from != null)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0 * 2),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'From',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textSecondary,
-                                        darkColor: AppColorDark.textSecondary,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    ellipsifyAddress(
-                                      word: widget.args.from!,
-                                      maxLength: 20,
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textPrimary,
-                                        darkColor: AppColorDark.textPrimary,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
+                            child: Text(
+                              widget.args.status.titleCase,
+                              style:
+                                  context.theme.fonts.textXsSemiBold.copyWith(
+                                color: widget.args.status.textColor(context),
                               ),
                             ),
-                          if (widget.args.to != null)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0 * 2),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'To',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textSecondary,
-                                        darkColor: AppColorDark.textSecondary,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    ellipsifyAddress(
-                                      word: widget.args.to!,
-                                      maxLength: 20,
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textPrimary,
-                                        darkColor: AppColorDark.textPrimary,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                          ),
+                        ),
+                        buildDetailsRow(
+                          context,
+                          'Title',
+                          Text(
+                            ellipsify(
+                                word: widget.args.description, maxLength: 20),
+                            style: context.theme.fonts.textMdMedium.copyWith(
+                                color: context.theme.colors.textPrimary),
+                          ),
+                        ),
+                        buildDetailsRow(
+                          context,
+                          'Network',
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                widget.args.imageUrl,
+                                width: 20,
+                                height: 20,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                ellipsify(
+                                  word: widget.args.network,
+                                  maxLength: 20,
+                                ),
+                                style: context.theme.fonts.textMdMedium
+                                    .copyWith(
+                                        color:
+                                            context.theme.colors.textPrimary),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (widget.args.from != null)
+                          buildDetailsRow(
+                            context,
+                            'From',
+                            Text(
+                              ellipsifyAddress(
+                                word: widget.args.from!,
+                                maxLength: 14,
                               ),
                             ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
+                          ),
+                        if (widget.args.to != null)
+                          buildDetailsRow(
+                            context,
+                            'To',
+                            Text(
+                              ellipsifyAddress(
+                                word: widget.args.to!,
+                                maxLength: 14,
+                              ),
+                            ),
+                          ),
+                        buildDetailsRow(
+                          context,
+                          'Transaction ID',
+                          Expanded(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Transaction ID',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
                                 Text(
                                   ellipsifyAddress(
                                     word: widget.args.transactionHash,
-                                    maxLength: 20,
+                                    maxLength: 10,
                                   ),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
+                                ),
+                                SizedBox(width: 8),
+                                GestureDetector(
+                                  onTap: () async {
+                                    await Clipboard.setData(
+                                      ClipboardData(
+                                        text: widget.args.transactionHash,
+                                      ),
+                                    );
+                                  },
+                                  child: SvgPicture.asset(
+                                    AppAssets.copySvg,
                                     color: resolveColor(
                                       context: context,
-                                      lightColor: AppColors.textPrimary,
-                                      darkColor: AppColorDark.textPrimary,
+                                      lightColor:
+                                          context.theme.colors.contrastWhite,
+                                      darkColor:
+                                          context.theme.colors.contrastBlack,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Date',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  DateFormat('d MMMM yyyy, hh:mm a')
-                                      .format(widget.args.date),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textPrimary,
-                                      darkColor: AppColorDark.textPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                        ),
+                        buildDetailsRow(
+                          context,
+                          'Date',
+                          Text(
+                            DateFormat('d MMMM yyyy, hh:mm a')
+                                .format(widget.args.date),
                           ),
-                          const SizedBox(height: 24),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SmallButton(
-                    backgroundColor: resolveColor(
-                      context: context,
-                      lightColor: AppColors.strokeSecondary.withValues(
-                        alpha: 0.08,
-                      ),
-                      darkColor: AppColors.strokeSecondary.withValues(
-                        alpha: 0.8,
-                      ),
-                    ),
-                    icon: SvgPicture.asset(
-                      AppAssets.headsetSvg,
-                      width: 20,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    fontSize: 14,
-                    textColor: resolveColor(
-                      context: context,
-                      lightColor: AppColors.textPrimary,
-                      darkColor: AppColorDark.textPrimary,
-                    ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: PrimaryButton(
+                    color: context.theme.colors.fillTertiary.withOpacity(0.08),
+                    icon: Assets.icons.questionSvg,
+                    textColor: context.theme.colors.textPrimary,
                     text: "Help centre",
                     onPressed: () {},
                   ),
-                  SmallButton(
-                    fontSize: 14,
-                    icon: SvgPicture.asset(
-                      AppAssets.shareNetworkSvg,
-                      width: 20,
-                      height: 20,
-                    ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: PrimaryButton(
+                    icon: AppAssets.shareNetworkSvg,
+                    textColor: AppColors.white,
+                    iconColor: AppColors.white,
                     text: "Share receipt",
                     onPressed: () {},
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filter_buttons.dart';
 import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,11 +11,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
-class ReceivePaymentDoneScreen extends StatefulWidget {
-  final ReceiveParams args;
+import '../widgets/build_details_row.dart';
 
-  const ReceivePaymentDoneScreen({Key? key, required this.args})
-      : super(key: key);
+class ReceivePaymentDoneScreen extends StatefulWidget {
+  // final ReceiveParams args;
+
+  const ReceivePaymentDoneScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ReceivePaymentDoneScreen> createState() =>
@@ -26,404 +29,190 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
   final String userAddress = '0xfEBA3E0dEca2Ad4CE3Bc4fb0f56A1970ae3837f3';
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: resolveColor(
-        context: context,
-        lightColor: AppColors.bgB0Base,
-        darkColor: AppColorDark.bgB0Base,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      appBar: DeFiRaiseAppBar(
+        leading: CustomBackButton(),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomBackButton(),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        color: resolveColor(
-                          context: context,
-                          lightColor: AppColors.contrastBlack,
-                          darkColor: AppColorDark.contrastBlack,
-                        ),
-                      ),
-                    ),
-                    child: Row(
+                  SizedBox(height: 16),
+                  Card(
+                    color: context.theme.colors.bgB1,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Column(
                       children: [
-                        SvgPicture.asset(
-                          AppAssets.questionSvg,
-                          width: 20,
-                          height: 20,
-                          colorFilter: ColorFilter.mode(
-                            resolveColor(
-                              context: context,
-                              lightColor: AppColors.textPrimary,
-                              darkColor: AppColorDark.textPrimary,
-                            ),
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Need Help?',
-                          style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            color: resolveColor(
-                              context: context,
-                              lightColor: AppColors.textPrimary,
-                              darkColor: AppColorDark.textPrimary,
+                        SizedBox(height: 24),
+                        SizedBox(
+                          height: height * 0.2,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: QrImageView(
+                              data: '',
+                              version: QrVersions.auto,
+                              dataModuleStyle: QrDataModuleStyle(
+                                dataModuleShape: QrDataModuleShape.square,
+                                color: context.theme.colors.contrastBlack,
+                              ),
+                              eyeStyle: QrEyeStyle(
+                                eyeShape: QrEyeShape.square,
+                                color: context.theme.colors.contrastBlack,
+                              ),
                             ),
                           ),
                         ),
+                        SizedBox(height: 8),
+                        buildDetailsRow(
+                          context,
+                          'Title',
+                          Text(
+                            ellipsify(
+                                word:
+                                    'MintForge Bug fixes and performance updates',
+                                maxLength: 20),
+                            style: context.theme.fonts.textMdMedium.copyWith(
+                                color: context.theme.colors.textPrimary),
+                          ),
+                        ),
+                        buildDetailsRow(
+                            context,
+                            'Network',
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  AppAssets.ethereumLogo,
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  ellipsify(
+                                    word: 'Etherum',
+                                    maxLength: 20,
+                                  ),
+                                  style: context.theme.fonts.textMdMedium
+                                      .copyWith(
+                                          color:
+                                              context.theme.colors.textPrimary),
+                                ),
+                              ],
+                            )),
+                        buildDetailsRow(
+                            context,
+                            'Amount',
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '581 USDT',
+                                  style: context.theme.fonts.textMdMedium
+                                      .copyWith(
+                                          color:
+                                              context.theme.colors.textPrimary),
+                                ),
+                                Text('\$200.00',
+                                    style: context.theme.fonts.textXsMedium
+                                        .copyWith(
+                                            color: context
+                                                .theme.colors.textSecondary)),
+                              ],
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Address',
+                                  style: context.theme.fonts.textMdRegular
+                                      .copyWith(
+                                          color: context
+                                              .theme.colors.textPrimary)),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        userAddress,
+                                        style: context.theme.fonts.textMdMedium
+                                            .copyWith(
+                                                color: context
+                                                    .theme.colors.textPrimary),
+                                        softWrap: true,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        await Clipboard.setData(
+                                          ClipboardData(
+                                            text: userAddress,
+                                          ),
+                                        );
+                                      },
+                                      child: SvgPicture.asset(
+                                        AppAssets.copySvg,
+                                        color: resolveColor(
+                                          context: context,
+                                          lightColor: context
+                                              .theme.colors.contrastBlack,
+                                          darkColor: context
+                                              .theme.colors.contrastBlack,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
                       ],
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Card(
-                      color: resolveColor(
-                        context: context,
-                        lightColor: AppColors.bgB1Base,
-                        darkColor: AppColorDark.bgB1Base,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 24,
-                          ),
-                          SizedBox(
-                            height: 270,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: QrImageView(
-                                padding: const EdgeInsets.all(12),
-                                data: '',
-                                version: QrVersions.auto,
-                                dataModuleStyle: QrDataModuleStyle(
-                                  dataModuleShape: QrDataModuleShape.square,
-                                  color: resolveColor(
-                                    context: context,
-                                    lightColor: AppColors.textPrimary,
-                                    darkColor: AppColorDark.textPrimary,
-                                  ),
-                                ),
-                                eyeStyle: QrEyeStyle(
-                                  eyeShape: QrEyeShape.square,
-                                  color: resolveColor(
-                                    context: context,
-                                    lightColor: AppColors.textPrimary,
-                                    darkColor: AppColorDark.textPrimary,
-                                  ),
-                                ),
-                                size: 250,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Title',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  ellipsify(
-                                    word: widget.args.title,
-                                    maxLength: 20,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textPrimary,
-                                      darkColor: AppColorDark.textPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Network',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      widget.args.imageUrl,
-                                      width: 20,
-                                      height: 20,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      ellipsify(
-                                        word: widget.args.coinName,
-                                        maxLength: 20,
-                                      ),
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        color: resolveColor(
-                                          context: context,
-                                          lightColor: AppColors.textPrimary,
-                                          darkColor: AppColorDark.textPrimary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0 * 2),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Amount',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    color: resolveColor(
-                                      context: context,
-                                      lightColor: AppColors.textSecondary,
-                                      darkColor: AppColorDark.textSecondary,
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      '${widget.args.amount} ${widget.args.assetName}',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        color: resolveColor(
-                                          context: context,
-                                          lightColor: AppColors.textPrimary,
-                                          darkColor: AppColorDark.textPrimary,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '\$200.00',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        color: resolveColor(
-                                          context: context,
-                                          lightColor: AppColors.textSecondary,
-                                          darkColor: AppColorDark.textSecondary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8.0 * 2,
-                              right: 8 * 2,
-                            ),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Address',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  color: resolveColor(
-                                    context: context,
-                                    lightColor: AppColors.textSecondary,
-                                    darkColor: AppColorDark.textSecondary,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8.0 * 2,
-                              right: 8.0 * 2,
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    userAddress,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      color: resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textPrimary,
-                                        darkColor: AppColorDark.textPrimary,
-                                      ),
-                                    ),
-                                    softWrap: true,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                GestureDetector(
-                                  onTap: () async {
-                                    await Clipboard.setData(
-                                      ClipboardData(
-                                        text: userAddress,
-                                      ),
-                                    );
-                                    if (!context.mounted) return;
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Copied to clipboard',
-                                        ),
-                                        duration: const Duration(seconds: 2),
-                                      ),
-                                    );
-                                  },
-                                  child: SvgPicture.asset(
-                                    AppAssets.copySvg,
-                                    colorFilter: ColorFilter.mode(
-                                      resolveColor(
-                                        context: context,
-                                        lightColor: AppColors.textPrimary,
-                                        darkColor: AppColorDark.textPrimary,
-                                      ),
-                                      BlendMode.srcIn,
-                                    ),
-                                    width: 18,
-                                    height: 18,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 24),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SmallButton(
-                    backgroundColor: resolveColor(
-                      context: context,
-                      lightColor: AppColors.strokeSecondary.withValues(
-                        alpha: 0.08,
-                      ),
-                      darkColor: AppColorDark.strokeSecondary.withValues(
-                        alpha: 0.8,
-                      ),
-                    ),
-                    icon: SvgPicture.asset(
-                      AppAssets.qrCodeSvg,
-                      colorFilter: ColorFilter.mode(
-                        resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                        BlendMode.srcIn,
-                      ),
-                      width: 16,
-                      height: 16,
-                    ),
-                    fontSize: 14,
-                    textColor: resolveColor(
-                      context: context,
-                      lightColor: AppColors.textPrimary,
-                      darkColor: AppColorDark.textPrimary,
-                    ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: PrimaryButton(
+                    color: context.theme.colors.fillTertiary.withOpacity(0.08),
+                    icon: AppAssets.qrCodeSvg,
+                    textColor: context.theme.colors.textPrimary,
                     text: "Share QR code",
                     onPressed: () {},
                   ),
-                  SmallButton(
-                    fontSize: 14,
-                    icon: SvgPicture.asset(
-                      AppAssets.linkSvg,
-                      colorFilter: ColorFilter.mode(
-                        resolveColor(
-                          context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
-                        ),
-                        BlendMode.srcIn,
-                      ),
-                      width: 16,
-                      height: 16,
-                    ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: PrimaryButton(
+                    textColor: AppColors.white,
+                    iconColor: AppColors.white,
+                    icon: AppAssets.linkSvg,
                     text: "Share pay link",
                     onPressed: () {},
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

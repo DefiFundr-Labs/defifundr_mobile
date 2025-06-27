@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/core/utils/resolve_color.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 
@@ -43,12 +43,8 @@ class StatusCheckboxRow extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Inter',
-                ),
+                style:
+                    context.theme.fonts.textSmMedium.copyWith(color: textColor),
               ),
             ],
           ),
@@ -63,16 +59,12 @@ class StatusCheckboxRow extends StatelessWidget {
             checkColor: AppColors.white,
             fillColor: WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.selected)) {
-                return AppColors.brandDefault;
+                return context.theme.colors.brandDefault;
               }
               return Colors.transparent;
             }),
             side: BorderSide(
-              color: resolveColor(
-                context: context,
-                lightColor: AppColors.strokeSecondary,
-                darkColor: AppColorDark.strokeSecondary.withValues(alpha: 0.32),
-              ),
+              color: context.theme.colors.strokeSecondary,
               width: 1,
             ),
             shape: RoundedRectangleBorder(

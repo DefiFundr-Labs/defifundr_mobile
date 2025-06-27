@@ -192,6 +192,8 @@ flutter:
           style: italic
   assets:
     - assets/images/
+    - assets/images/network_icons/
+    - assets/images/token_images/
     - assets/icons/
     - assets/icons/country_flags/
     - assets/shaders/glass.frag

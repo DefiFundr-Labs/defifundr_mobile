@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:flutter/material.dart';
 
@@ -50,26 +51,15 @@ class _TimeFilterRadioState extends State<TimeFilterRadio> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      _getLabelForRange(range),
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Inter',
-                      ),
-                    ),
+                    Text(_getLabelForRange(range),
+                        style: context.theme.fonts.textMdMedium),
                     Spacer(),
                     CustomRadio<TimeRange>(
                       value: range,
                       groupValue: _selectedValue!,
                       onChanged: _handleRadioValueChange,
-                      fillColor:
-                          AppColors.brandDefault, // fill color when selected
-                      borderColor: resolveColor(
-                        context: context,
-                        lightColor: AppColors.strokeSecondary,
-                        darkColor: AppColorDark.strokeSecondary,
-                      ), // border color always visible
+                      fillColor: context.theme.colors.brandDefault,
+                      borderColor: context.theme.colors.strokeSecondary,
                       size: 20,
                       borderRadius: 32,
                       borderWidth: 1,

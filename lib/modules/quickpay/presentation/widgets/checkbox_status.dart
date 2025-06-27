@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/status_checkbox_row.dart';
 import 'package:flutter/material.dart';
@@ -50,16 +51,16 @@ class CheckBoxStatus extends StatelessWidget {
                         };
                         _notifyChange();
                       },
-                      fillColor: AppColors.brandFill,
-                      borderColor: AppColors.brandStroke,
-                      textColor: AppColors.brandDefault,
+                      fillColor: context.theme.colors.brandFill,
+                      borderColor: context.theme.colors.brandStroke,
+                      textColor: context.theme.colors.brandDefault,
                     );
                   },
                 ),
-                SizedBox(height: 8 * 3),
+                SizedBox(height: 24),
                 ...QuickPaymentsStatus.values.map((status) {
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 8 * 3),
+                    padding: const EdgeInsets.only(bottom: 24),
                     child: StatusCheckboxRow(
                       tristate: false,
                       label: status.titleCase,
