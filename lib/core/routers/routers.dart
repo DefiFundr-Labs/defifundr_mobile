@@ -63,7 +63,7 @@ class AppRouter {
               key: state.pageKey,
               // child: LoginScreen(),
               // child: CreatePinScreen(),
-              child: AccountTypeScreen(),
+              child: FinanceHomeScreen(),
               // child: PasswordValidationScreen(),
               // child: VerifyAccountScreen(),
               // child: PinLoginScreen(
@@ -870,7 +870,8 @@ class AppRouter {
               },
             );
           },
-        ),GoRoute(
+        ),
+        GoRoute(
           path: '/onboarding-checklist-screen',
           name: RouteConstants.onboardingChecklistScreen,
           pageBuilder: (context, state) {

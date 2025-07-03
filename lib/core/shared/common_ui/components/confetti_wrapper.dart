@@ -17,7 +17,7 @@ class ConfettiWrapper extends StatefulWidget {
     required this.child,
     this.autoStart = true,
     this.duration = const Duration(seconds: 3),
-    this.particleIntensity = 1000, // High intensity by default
+    this.particleIntensity = 1000, 
     this.shouldLoop = false,
     this.customColors,
   });
