@@ -3,19 +3,24 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // To reuse Asset data model and AssetListItem
-import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart'; // For Network model (needed for navigation)
+import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import SelectNetworkScreen and Network model
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
-class ReceiveScreen extends StatefulWidget {
-  const ReceiveScreen({Key? key}) : super(key: key);
+// Convert to StatefulWidget to handle the selected asset temporarily
+class SelectAssetScreen extends StatefulWidget {
+  // Add a parameter to indicate if this is for the receive flow
+  final bool forReceive;
+
+  const SelectAssetScreen({Key? key, this.forReceive = false})
+      : super(key: key);
 
   @override
-  _ReceiveScreenState createState() => _ReceiveScreenState();
+  _SelectAssetScreenState createState() => _SelectAssetScreenState();
 }
 
-class _ReceiveScreenState extends State<ReceiveScreen> {
+class _SelectAssetScreenState extends State<SelectAssetScreen> {
   // Dummy data for assets (replace with actual data)
   final List<Asset> dummyAssets = [
     Asset(
@@ -108,6 +113,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
     ),
     // Add more dummy assets as needed
   ];
+
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColorExtension>()!;
@@ -115,13 +121,13 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
 
     return Scaffold(
       backgroundColor: colors.bgB0,
-
       appBar: const DeFiRaiseAppBar(
-        title: 'Receive',
+        title: 'Select asset',
         isBack: true,
       ), // Use shared AppBar
       body: SafeArea(
         child: Container(
+          padding: EdgeInsets.all(12),
           margin: EdgeInsets.all(16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: colors.bgB1),
@@ -135,28 +141,33 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                 child: AssetListItem(
                   asset: asset,
                   onTap: () async {
-                    // Navigate directly to AssetDepositScreen from here
-                    // Assuming Ethereum network for USDC receive based on the provided design
-                    final ethereumNetwork = Network(
-                      iconPath:
-                          'assets/images/eth.png', // Replace with actual Ethereum icon path
-                      name: 'Ethereum',
-                      subtitle: 'Ethereum', // Or relevant subtitle
-                      balance: '', // Not needed for deposit
-                      balanceCurrency: '', // Not needed for deposit
-                    );
-                    // TODO: Replace with actual generated address for the selected asset and network
-                    const String placeholderAddress =
-                        '0xf1EBA3E0dEca2Ad4CE3Bc4fb0f56A1970ae3837f3';
+                    if (widget.forReceive) {
+                      // If for receive flow, navigate directly to AssetDepositScreen
+                      // Assuming Ethereum network for USDC receive based on the provided design
+                      final ethereumNetwork = Network(
+                        iconPath:
+                            'assets/images/eth.png', // Replace with actual Ethereum icon path
+                        name: 'Ethereum',
+                        subtitle: 'Ethereum', // Or relevant subtitle
+                        balance: '', // Not needed for deposit
+                        balanceCurrency: '', // Not needed for deposit
+                      );
+                      // TODO: Replace with actual generated address for the selected asset and network
+                      const String placeholderAddress =
+                          '0xf1EBA3E0dEca2Ad4CE3Bc4fb0f56A1970ae3837f3';
 
-                    context.pushNamed(
-                      RouteConstants.assetDeposit,
-                      extra: {
-                        'asset': asset,
-                        'network': ethereumNetwork,
-                        'address': placeholderAddress
-                      },
-                    );
+                      context.pushNamed(
+                        RouteConstants.assetDeposit,
+                        extra: {
+                          'asset': asset,
+                          'network': ethereumNetwork,
+                          'address': placeholderAddress
+                        },
+                      );
+                    } else {
+                      // If not for receive flow, pop with the selected asset
+                      Navigator.pop(context, asset);
+                    }
                   },
                 ),
               );

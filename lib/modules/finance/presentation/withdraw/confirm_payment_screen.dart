@@ -8,9 +8,9 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_au
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_keypad.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:go_router/go_router.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_bloc.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_state.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_details_model.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConfirmPaymentScreen extends StatefulWidget {

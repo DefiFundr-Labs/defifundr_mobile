@@ -4,9 +4,9 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_au
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/help_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_input.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_keypad.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_bloc.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_event.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/bloc/withdraw_bloc/withdraw_state.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

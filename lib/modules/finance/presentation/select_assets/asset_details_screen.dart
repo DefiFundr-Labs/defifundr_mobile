@@ -8,8 +8,8 @@ import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/p
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:go_router/go_router.dart'; // For icons
 import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
-import 'package:defifundr_mobile/modules/finance/presentation/select_network_screen.dart'; // Import for Network model
-import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart'; // Import for AssetDepositScreen
+import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import for Network model
+import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart'; // Import for AssetDepositScreen
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:flutter_svg/svg.dart';
 

@@ -5,7 +5,7 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
-import 'package:defifundr_mobile/modules/finance/presentation/asset_deposit_screen.dart'; // Import for AssetDepositScreen
+import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart'; // Import for AssetDepositScreen
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
 // Define a simple data model for a Network

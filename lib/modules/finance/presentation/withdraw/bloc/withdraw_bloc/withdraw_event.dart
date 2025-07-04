@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw_details_model.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_details_model.dart';
 
 abstract class WithdrawEvent extends Equatable {
   const WithdrawEvent();

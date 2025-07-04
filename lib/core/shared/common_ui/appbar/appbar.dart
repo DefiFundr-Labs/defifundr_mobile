@@ -26,6 +26,8 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return AppBar(
       surfaceTintColor: Colors.transparent,
+      actionsPadding: const EdgeInsets.only(right: 16.0),
+      titleSpacing: 24.sp,
       backgroundColor:
           isDark ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
       scrolledUnderElevation: 0,

@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/design_system/font_extension/font_extensio
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/add_address_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/address/add_address_screen.dart';
 import 'dart:math';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
