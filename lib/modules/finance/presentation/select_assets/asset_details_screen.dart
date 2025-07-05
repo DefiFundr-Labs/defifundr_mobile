@@ -1,289 +1,379 @@
-import 'package:defifundr_mobile/core/constants/app_icons.dart';
+import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
-import 'package:defifundr_mobile/modules/payment/data/models/payment.dart'; // Assuming Payment model can be reused for transactions
-import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart'; // Reusing PaymentItemCard
+import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart'; // For icons
+import 'package:go_router/go_router.dart';
 
-// Assuming you pass the Asset and Network objects to this screen
 class AssetDetailsScreen extends StatelessWidget {
   final NetworkAsset asset;
   final Network network;
 
-  const AssetDetailsScreen(
-      {Key? key, required this.asset, required this.network})
-      : super(key: key);
+  const AssetDetailsScreen({
+    super.key,
+    required this.asset,
+    required this.network,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<AppColorExtension>()!;
-    final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
-    final textTheme = context.theme.textTheme;
-    // Dummy data for transactions (replace with actual data)
-    final List<Payment> dummyTransactions = [
-      Payment(
-        title: 'Withdrawal',
-        paymentType: PaymentType.invoice, // Placeholder type
-        estimatedDate: DateTime(2025, 5, 21), // Placeholder date
-        amount: 581,
-        paymentNetwork: PaymentNetwork.ethereum, // Placeholder network
-        currency: 'USDC',
-        status: PaymentStatus.overdue, // Placeholder status (red in image)
-        icon: AppIcons.money, // Using the image path
-        iconBackgroundColor: colors.brandDefault, // Using theme color
-      ),
-      Payment(
-        title: 'MintForge Bug fixes a...',
-        paymentType: PaymentType.contract, // Placeholder type
-        estimatedDate: DateTime(2025, 5, 21), // Placeholder date
-        amount: 581,
-        paymentNetwork: PaymentNetwork.starknet, // Placeholder network
-        currency: 'USDC',
-        status: PaymentStatus.upcoming, // Placeholder status (green in image)
-        icon: AppIcons.invoice, // Using the image path
-        iconBackgroundColor: colors.orangeDefault, // Using theme color
-      ),
-      // Add more dummy transactions as needed
-    ];
-    final List<NetworkAsset> dummyAssets = [
-      NetworkAsset(
-        iconPath: 'assets/images/usdt.png', // Placeholder icon path
-        name: 'Tether USD',
-        price: '\$1.00',
-        change: '-0.0018%',
-        balance: '\$476.19',
-        balanceCurrency: '581 USDT',
-        network: Network.supportedNetworks.firstWhere(
-            (net) => net.name == 'Ethereum'), // Assign Ethereum network
-      ),
-      NetworkAsset(
-        iconPath: 'assets/images/usdc.png', // Placeholder icon path
-        name: 'USD Coin',
-        price: '\$0.99',
-        change: '-0.005%',
-        balance: '\$381.19',
-        balanceCurrency: '381 USDC',
-        network: Network.supportedNetworks.firstWhere(
-            (net) => net.name == 'Optimism'), // Assign Optimism network
-      ),
-      NetworkAsset(
-        iconPath: 'assets/images/usdc.png', // Placeholder icon path
-        name: 'USD Coin',
-        price: '\$0.99',
-        change: '-0.005%',
-        balance: '\$200.19',
-        balanceCurrency: '200 USDC',
-        network: Network.supportedNetworks
-            .firstWhere((net) => net.name == 'Base'), // Assign Base network
-      ),
-      // Add more dummy assets as needed
-    ];
-
     return Scaffold(
-      backgroundColor: colors.bgB0, // Assuming a light background color
-      appBar: DeFiRaiseAppBar(
-        title: asset.name,
-        isBack: true,
-      ), // Use shared AppBar
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          title: asset.name,
+          isBack: true,
+          actions: [],
+          textStyle: context.theme.fonts.heading3SemiBold.copyWith(
+            fontWeight: FontWeight.w600,
+            fontSize: 18.sp,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Top Asset Info Section (replace with actual asset data)
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB1, // Light blue background
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Asset Icon (replace with actual asset icon)
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundColor: colors.brandDefault, // Placeholder color
-                      child:
-                          Image.asset(asset.iconPath), // Use actual asset icon
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      '581 ${asset.name}', // Placeholder balance
-                      style: fontTheme.heading1Bold, // Large bold text
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '≈ \$581.19', // Placeholder approximate value
-                      style: fontTheme.textBaseRegular.copyWith(
-                          color: colors.textSecondary), // Smaller text
-                    ),
-                    const SizedBox(height: 24),
-                    // Receive and Withdraw Buttons
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Navigate to SelectAssetScreen to start the receive flow
-                              context.pushNamed(RouteConstants.receive);
-                            },
-                            icon: SvgPicture.asset('assets/icons/signIn.svg',
-                                height: 20,
-                                width: 20,
-                                colorFilter: ColorFilter.mode(
-                                  Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.black
-                                      : Colors.white,
-                                  BlendMode.srcIn,
-                                )),
-                            label: Text(
-                              'Receive',
-                              style: TextStyle(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? colors.blueDefault // Light mode color
-                                      : Colors.white,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.brandFill // Light mode color
-                                  : colors.bgB2,
-                              foregroundColor: colors.textPrimary,
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              context.pushNamed(RouteConstants.withdraw);
-                            },
-                            icon: SvgPicture.asset('assets/icons/signOut.svg',
-                                height: 20,
-                                width: 20,
-                                colorFilter: ColorFilter.mode(
-                                  Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.black
-                                      : Colors.white,
-                                  BlendMode.srcIn,
-                                )),
-                            label: Text(
-                              'Withdraw',
-                              style: TextStyle(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? colors.blueDefault // Light mode color
-                                      : Colors.white,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? colors.brandFill // Light mode color
-                                  : colors.bgB2,
-                              foregroundColor: colors.textPrimary,
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // My USDC Section
-              Text(
-                'My ${asset.name}', // Dynamic label based on asset name
-                style: textTheme.displayMedium, // Section title style
-              ),
-              const SizedBox(height: 16),
-              // TODO: Add My USDC list here (based on the second image if needed, or a simple list)
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                decoration: BoxDecoration(
-                    color: colors.bgB1,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    // Replaced with ListView.builder
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics:
-                          NeverScrollableScrollPhysics(), // Disable scrolling for this list
-                      itemCount: dummyAssets.length,
-                      itemBuilder: (context, index) {
-                        final asset = dummyAssets[index];
-                        return AssetListItem(
-                          asset: asset,
-                          onTap: () {
-                            // Get the default network for this asset (using the first network for now)
-                            final defaultNetwork =
-                                Network.supportedNetworks.first;
-                            context.pushNamed(
-                              RouteConstants.assetDetails,
-                              extra: {
-                                'asset': asset,
-                                'network': defaultNetwork,
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Transactions Section
-              Text(
-                'Transactions', // Section title
-                style: textTheme.displayMedium,
-              ),
-              const SizedBox(height: 16),
-              // Transactions List (using PaymentItemCard)
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: dummyTransactions.length,
-                itemBuilder: (context, index) {
-                  final transaction = dummyTransactions[index];
-                  return PaymentItemCard(
-                      payment: transaction); // Reuse PaymentItemCard
-                },
-              ),
+              _buildAssetBalanceCard(context),
+              SizedBox(height: 24.h),
+              _buildMyAssetSection(context),
+              SizedBox(height: 24.h),
+              _buildTransactionsSection(context),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildAssetBalanceCard(BuildContext context) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 24.sp),
+      decoration: BoxDecoration(
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Asset Icon
+          CircleAvatar(
+            radius: 24.sp,
+            backgroundColor: Colors.transparent,
+            child: Image.asset(
+              asset.iconPath,
+              width: 52.sp,
+              height: 52.sp,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) => Icon(
+                Icons.currency_bitcoin,
+                color: colors.textPrimary,
+                size: 24,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          // Asset Balance
+          Text(
+            asset.balanceCurrency,
+            style: fonts.heading1Bold.copyWith(
+              fontSize: 32.sp,
+              fontFamily: FontFamily.hankenGrotesk,
+              fontWeight: FontWeight.w600,
+              color: colors.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 4),
+          // USD Value
+          Text(
+            '≈ ${asset.balance}',
+            style: fonts.textMdMedium.copyWith(
+              color: colors.textSecondary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(height: 20.h),
+          // Action Buttons
+          Row(
+            children: [
+              Expanded(
+                child: _buildActionButton(
+                  context: context,
+                  icon: Assets.icons.signIn,
+                  label: 'Receive',
+                  onPressed: () => context.pushNamed(RouteConstants.receive),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: _buildActionButton(
+                  context: context,
+                  icon: Assets.icons.signOut,
+                  label: 'Withdraw',
+                  onPressed: () => context.pushNamed(RouteConstants.withdraw),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required BuildContext context,
+    required String icon,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
+
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: SvgPicture.asset(
+        icon,
+        height: 20,
+        width: 20,
+        colorFilter: ColorFilter.mode(
+          isLight ? colors.brandDefault : colors.textPrimary,
+          BlendMode.srcIn,
+        ),
+      ),
+      label: Text(
+        label,
+        style: fonts.textMdMedium.copyWith(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          color: isLight ? colors.brandDefault : colors.textPrimary,
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: isLight ? colors.brandFill : colors.bgB2,
+        foregroundColor: colors.textPrimary,
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMyAssetSection(BuildContext context) {
+    final colors = context.theme.colors;
+    final textTheme = context.theme.fonts;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'My ${asset.name}',
+          style: textTheme.textMdSemiBold.copyWith(
+            color: colors.textPrimary,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(height: 8.h),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+          decoration: BoxDecoration(
+            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            borderRadius: BorderRadius.circular(16.r),
+          ),
+          child: Column(
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _getRelatedAssets().length,
+                separatorBuilder: (context, index) => SizedBox(height: 24.h),
+                itemBuilder: (context, index) {
+                  final relatedAsset = _getRelatedAssets()[index];
+                  return AssetListItem(
+                    asset: relatedAsset,
+                    onTap: () => _navigateToAssetDetails(context, relatedAsset),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTransactionsSection(BuildContext context) {
+    final colors = context.theme.colors;
+    final textTheme = context.theme.fonts;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Transactions',
+              style: textTheme.textMdSemiBold.copyWith(
+                color: colors.textPrimary,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                // Navigate to full transactions list
+              },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.all(4.sp),
+                splashFactory: NoSplash.splashFactory,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'See all',
+                    style: textTheme.textMdSemiBold.copyWith(
+                      color: colors.brandDefault,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    Assets.icons.caretRightSvg,
+                    height: 13.h,
+                    width: 12.w,
+                    colorFilter: ColorFilter.mode(
+                      colors.brandDefault,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 8.h),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
+            color: isLightMode ? colors.bgB0 : colors.bgB1,
+          ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _getAssetTransactions(context).length,
+            itemBuilder: (context, index) {
+              final payment = _getAssetTransactions(context)[index];
+              return PaymentItemCard(payment: payment);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _navigateToAssetDetails(BuildContext context, NetworkAsset asset) {
+    final defaultNetwork = Network.supportedNetworks.first;
+    context.pushNamed(
+      RouteConstants.assetDetails,
+      extra: {
+        'asset': asset,
+        'network': defaultNetwork,
+      },
+    );
+  }
+
+  List<NetworkAsset> _getRelatedAssets() {
+    // Return assets related to the current asset (same currency on different networks)
+    return [
+      NetworkAsset(
+        iconPath: asset.iconPath,
+        name: asset.name,
+        price: asset.price,
+        change: asset.change,
+        balance: '\$476.19',
+        balanceCurrency: '476 ${asset.name}',
+        network: Network.supportedNetworks.firstWhere(
+          (net) => net.name == 'Ethereum',
+          orElse: () => Network.supportedNetworks.first,
+        ),
+      ),
+      NetworkAsset(
+        iconPath: asset.iconPath,
+        name: asset.name,
+        price: asset.price,
+        change: asset.change,
+        balance: '\$200.19',
+        balanceCurrency: '200 ${asset.name}',
+        network: Network.supportedNetworks.firstWhere(
+          (net) => net.name == 'Optimism',
+          orElse: () => Network.supportedNetworks.first,
+        ),
+      ),
+    ];
+  }
+
+  List<Payment> _getAssetTransactions(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColorExtension>()!;
+
+    return [
+      Payment(
+        title: 'Withdrawal',
+        paymentType: PaymentType.invoice,
+        estimatedDate: DateTime(2025, 5, 21),
+        amount: 581,
+        paymentNetwork: PaymentNetwork.ethereum,
+        currency: asset.name,
+        status: PaymentStatus.overdue,
+        icon: Assets.icons.money,
+        iconBackgroundColor: colors.brandDefault,
+      ),
+      Payment(
+        title: 'Received from wallet',
+        paymentType: PaymentType.contract,
+        estimatedDate: DateTime(2025, 5, 20),
+        amount: 1000,
+        paymentNetwork: PaymentNetwork.ethereum,
+        currency: asset.name,
+        status: PaymentStatus.upcoming,
+        icon: Assets.icons.invoice,
+        iconBackgroundColor: colors.orangeDefault,
+      ),
+      Payment(
+        title: 'DeFi Staking Reward',
+        paymentType: PaymentType.invoice,
+        estimatedDate: DateTime(2025, 5, 19),
+        amount: 25,
+        paymentNetwork: PaymentNetwork.ethereum,
+        currency: asset.name,
+        status: PaymentStatus.upcoming,
+        icon: Assets.icons.money,
+        iconBackgroundColor: colors.greenDefault,
+      ),
+    ];
   }
 }

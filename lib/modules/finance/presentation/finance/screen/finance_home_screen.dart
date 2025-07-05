@@ -340,7 +340,7 @@ class FinanceHomeScreen extends StatelessWidget {
   List<Payment> _getDummyTransactions(AppColorExtension colors) {
     return [
       Payment(
-        title: 'LoopLabs Transfer and djdjdjjdjdjdjdjdj',
+        title: 'LoopLabs Transfer and ......',
         paymentType: PaymentType.contract,
         estimatedDate: DateTime(2025, 5, 21),
         amount: 581,
