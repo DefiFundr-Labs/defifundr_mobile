@@ -139,22 +139,16 @@ class AssetDepositScreen extends StatelessWidget {
       version: QrVersions.auto,
       dataModuleStyle: QrDataModuleStyle(
         dataModuleShape: QrDataModuleShape.circle,
-        color: colors.textPrimary,
+        color: colors.brandDefault,
       ),
       eyeStyle: QrEyeStyle(
         eyeShape: QrEyeShape.circle,
-        color: colors.brandActive,
+        color: colors.textPrimary,
       ),
       padding: const EdgeInsets.all(0),
       gapless: false,
-      embeddedImage: AssetImage(Assets.images.qrIcon.path),
-      embeddedImageStyle: QrEmbeddedImageStyle(
-        size: const Size(40, 40),
-        color: colors.textPrimary,
-      ),
+      embeddedImage: AssetImage(Assets.images.qrCode.path),
       size: _qrCodeSize,
-      backgroundColor: colors.bgB0,
-      foregroundColor: colors.textPrimary,
     );
   }
 
