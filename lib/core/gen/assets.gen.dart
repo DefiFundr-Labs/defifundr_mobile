@@ -60,6 +60,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Scales.svg
   String get scales => 'assets/icons/Scales.svg';
 
+  /// File path: assets/icons/UserCircle.svg
+  String get userCircleSvg => 'assets/icons/UserCircle.svg';
+
+  /// File path: assets/icons/user_circle.svg
+  String get userCircleSvg_ => 'assets/icons/user_circle.svg';
+
   /// File path: assets/icons/UserCircleCheck.svg
   String get userCircleCheck => 'assets/icons/UserCircleCheck.svg';
 
@@ -294,9 +300,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
-  /// File path: assets/icons/user_circle.svg
-  String get userCircle => 'assets/icons/user_circle.svg';
-
   /// File path: assets/icons/user_edit.svg
   String get userEdit => 'assets/icons/user_edit.svg';
 
@@ -328,6 +331,8 @@ class $AssetsIconsGen {
     moneyCopy,
     qrCode,
     scales,
+    userCircleSvg,
+    userCircleSvg_,
     userCircleCheck,
     userCircleDashed,
     userFocus,
@@ -404,7 +409,6 @@ class $AssetsIconsGen {
     usFlag,
     usddIcon,
     user,
-    userCircle,
     userEdit,
     verificationProgress,
     verificationProgressDark,

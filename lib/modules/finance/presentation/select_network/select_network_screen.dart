@@ -1,223 +1,172 @@
-import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
-import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
-import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart'; // Import for Asset model
-import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart'; // Import for AssetDepositScreen
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
-
-// Define a simple data model for a Network
-class Network {
-  final String iconPath;
-  final String name;
-  final String subtitle;
-  final String balance;
-  final String balanceCurrency;
-
-  Network({
-    required this.iconPath,
-    required this.name,
-    required this.subtitle,
-    required this.balance,
-    required this.balanceCurrency,
-  });
-}
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 // Widget for a single Network List Item
 class NetworkListItem extends StatelessWidget {
   final Network network;
+  final VoidCallback? onTap;
 
-  const NetworkListItem({Key? key, required this.network}) : super(key: key);
+  const NetworkListItem({
+    super.key,
+    required this.network,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<AppColorExtension>()!;
-    final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
+    final colors = context.theme.colors;
+    final fontTheme = context.theme.fonts;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
-        children: [
-          // Icon
-          Image.asset(
-            network.iconPath, // Assuming network icons are images
-            width: 36, // Adjust size as needed
-            height: 36, // Adjust size as needed
-          ),
-          const SizedBox(width: 12), // Spacing between icon and text
-          // Network Details (Name and Subtitle)
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        child: Row(
+          children: [
+            // Icon
+            Image.asset(
+              network.iconPath,
+              width: 36.w,
+              height: 36.w,
+              errorBuilder: (context, error, stackTrace) => Container(
+                width: 36.w,
+                height: 36.w,
+                decoration: BoxDecoration(
+                  color: colors.bgB1,
+                  borderRadius: BorderRadius.circular(18.r),
+                ),
+                child: Icon(
+                  Icons.account_balance_wallet,
+                  size: 20.w,
+                  color: colors.textSecondary,
+                ),
+              ),
+            ),
+            SizedBox(width: 12.w),
+            // Network Details (Name and Subtitle)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    network.name,
+                    style: fontTheme.textBaseSemiBold,
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    network.subtitle,
+                    style: fontTheme.textSmRegular.copyWith(
+                      color: colors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Balance Details
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  network.name,
-                  style: fontTheme.textBaseSemiBold, // Network name style
+                  network.balance,
+                  style: fontTheme.textBaseSemiBold,
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 4.h),
                 Text(
-                  network.subtitle,
-                  style: fontTheme.textSmRegular
-                      ?.copyWith(color: colors.textSecondary), // Subtitle style
+                  network.balanceCurrency,
+                  style: fontTheme.textSmRegular.copyWith(
+                    color: colors.textSecondary,
+                  ),
                 ),
               ],
             ),
-          ),
-          // Balance Details
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                network.balance,
-                style: fontTheme.textBaseSemiBold, // Balance amount style
-              ),
-              const SizedBox(height: 4),
-              Text(
-                network.balanceCurrency,
-                style: fontTheme.textSmRegular?.copyWith(
-                    color: colors.textSecondary), // Balance currency style
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class SelectNetworkScreen extends StatelessWidget {
-  // Add parameters for the receive flow
   final bool forDeposit;
   final NetworkAsset? selectedAsset;
 
-  const SelectNetworkScreen(
-      {Key? key, this.forDeposit = false, this.selectedAsset})
-      : super(key: key);
+  const SelectNetworkScreen({
+    super.key,
+    this.forDeposit = false,
+    this.selectedAsset,
+  });
 
-  // Dummy data for networks (replace with actual data)
-  static final List<Network> dummyNetworks = [
-    Network(
-      iconPath: 'assets/images/eth.png',
-      name: 'Ethereum',
-      subtitle: 'Ethereum',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/starknet.png',
-      name: 'Starknet',
-      subtitle: 'Starknet',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/base.png', 
-      name: 'Base',
-      subtitle: 'Base',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/optimism.png', 
-      name: 'Optimism',
-      subtitle: 'Optimism',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/arbitrum.png', 
-      name: 'Arbitrum',
-      subtitle: 'Arbitrum',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/bnb.png', 
-      name: 'BNB Chain',
-      subtitle: 'BNB Chain',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/matic.png', 
-      name: 'Polygon',
-      subtitle: 'Polygon',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/gnosis.png', 
-      name: 'Gnosis Chain',
-      subtitle: 'Gnosis Chain',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/zksync.png', 
-      name: 'zkSync Era',
-      subtitle: 'zkSync Era',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-    Network(
-      iconPath: 'assets/images/celo.png', 
-      name: 'Celo',
-      subtitle: 'Celo',
-      balance: '\$0.00',
-      balanceCurrency: '0 USDC',
-    ),
-  ];
+  // Constants
+  static const String _placeholderAddress =
+      '0xf1EBA3E0dEca2Ad4CE3Bc4fb0f56A1970ae3837f3';
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<AppColorExtension>()!;
-    final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
+    final colors = context.theme.colors;
+    final fontTheme = context.theme.fonts;
 
     return Scaffold(
-      backgroundColor: colors.bgB0,
-      appBar: const DeFiRaiseAppBar(
+      appBar: DeFiRaiseAppBar(
         title: 'Select network',
+        textStyle: fontTheme.heading3SemiBold.copyWith(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.sp,
+        ),
         isBack: true,
-      ), // Use shared AppBar
+        actions: [],
+      ),
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: colors.bgB1,
+            color: colors.bgB0,
           ),
-          child: ListView.builder(
-            padding: const EdgeInsets.all(12),
-            itemCount: dummyNetworks.length,
-            itemBuilder: (context, index) {
-              final network = dummyNetworks[index];
-              return InkWell(
-                onTap: () {
-                  if (forDeposit && selectedAsset != null) {
-                    // If for deposit, navigate to AssetDepositScreen
-                    context.pushNamed(
-                      RouteConstants.assetDeposit,
-                      extra: {'asset': selectedAsset!, 'network': network},
-                    );
-                  } else {
-                    // If not for deposit, pop with the selected network
-                    Navigator.pop(context, network);
-                  }
-                },
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 20.0),
-                  child:
-                      NetworkListItem(network: network), // Use NetworkListItem
-                ),
-              );
-            },
+          child: ListView.separated(
+            separatorBuilder: (context, index) => SizedBox(height: 10.sp),
+            padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 15.sp),
+            itemCount: Network.supportedNetworks.length,
+            itemBuilder: (context, index) => _buildNetworkItem(context, index),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildNetworkItem(BuildContext context, int index) {
+    final network = Network.supportedNetworks[index];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: NetworkListItem(
+        network: network,
+        onTap: () => _handleNetworkSelection(context, network),
+      ),
+    );
+  }
+
+  void _handleNetworkSelection(BuildContext context, Network network) {
+    if (forDeposit && selectedAsset != null) {
+      _navigateToAssetDeposit(context, network);
+    } else {
+      Navigator.pop(context, network);
+    }
+  }
+
+  void _navigateToAssetDeposit(BuildContext context, Network network) {
+    context.pushNamed(
+      RouteConstants.assetDeposit,
+      extra: {
+        'asset': selectedAsset!,
+        'network': network,
+        'address': _placeholderAddress,
+      },
     );
   }
 }

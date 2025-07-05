@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/modules/authentication/presentation/forget_pass
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/add_address_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart';
@@ -15,7 +16,7 @@ import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/confirm_payment_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/receive_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/sent_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_details_model.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_screen.dart';
 import 'package:defifundr_mobile/modules/homepage/presentation/screens/onboarding_checklist_screen.dart';

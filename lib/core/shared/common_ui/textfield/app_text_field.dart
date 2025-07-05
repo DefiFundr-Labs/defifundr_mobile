@@ -52,6 +52,7 @@ class AppTextField extends StatefulWidget {
     this.hideText = false,
     this.textInputAction = TextInputAction.next,
     this.textCapitalization = TextCapitalization.sentences,
+    this.alwaysShowLabelAndHint = false,
   })  : _controller = controller,
         super(key: key);
 
@@ -187,6 +188,15 @@ class AppTextField extends StatefulWidget {
 
   /// Defaults to [TextCapitalization.sentences].
   final TextCapitalization textCapitalization;
+
+  /// Whether to always show both label and hint text.
+  ///
+  /// When set to true, the label will be displayed above the text field
+  /// and the hint will always be visible inside the text field.
+  /// When set to false (default), uses the standard floating label behavior.
+  ///
+  /// Defaults to false.
+  final bool alwaysShowLabelAndHint;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -373,161 +383,36 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    // Build the text field with conditional layout
+    Widget textField = _buildTextField(context, isDark);
+    
+    // If alwaysShowLabelAndHint is true, wrap with a column that includes the label
+    if (widget.alwaysShowLabelAndHint && widget.labelText != null) {
+      textField = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Always visible label
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              widget.labelText!,
+              style: context.textTheme.labelSmall?.copyWith(
+                fontSize: 14.sp,
+                color: context.theme.colors.graySecondary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          textField,
+        ],
+      );
+    }
+    
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        StreamBuilder<bool>(
-          stream: _hasErrorController.stream,
-          initialData: false,
-          builder: (context, errorSnapshot) {
-            final hasError = errorSnapshot.data ?? false;
-
-            return Focus(
-              focusNode: _focusNode,
-              child: TextFormField(
-                initialValue: widget.initialValue,
-                textCapitalization: widget.textCapitalization,
-                controller: widget._controller,
-                obscureText: widget.hideText,
-                obscuringCharacter: '●',
-                focusNode: widget.focusNode,
-                onTap: widget.onTap,
-                keyboardType: widget.keyboardType,
-                readOnly: widget.readOnly,
-                style: context.theme.fonts.textMdRegular.copyWith(
-                  color: widget.textColor ?? context.theme.colors.textPrimary,
-                  fontSize: widget.hideText ? 10.sp : 12.sp,
-                  height: 1.3,
-                ),
-                textInputAction: widget.textInputAction,
-                textAlignVertical: TextAlignVertical.bottom,
-                enabled: widget.enabled,
-                decoration: InputDecoration(
-                  constraints: widget.constraints ?? const BoxConstraints(),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  floatingLabelStyle: context.textTheme.titleLarge?.copyWith(
-                    color: hasError
-                        ? context.theme.colors.redDefault
-                        : context.theme.colors.graySecondary,
-                    fontSize: 14.sp,
-                  ),
-                  errorStyle: const TextStyle(
-                    color: Colors.transparent,
-                    height: 0,
-                    fontSize: 0,
-                  ),
-                  // Normal state border
-                  border: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: context.theme.colors.brandDefault,
-                      width: 1.0,
-                    ),
-                  ),
-                  // Error state border - RED
-                  errorBorder: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: context.theme.colors.redDefault,
-                      width: 2.0,
-                    ),
-                  ),
-                  // Disabled state border
-                  disabledBorder: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: context.theme.colors.brandDefault,
-                      width: 1.0,
-                    ),
-                  ),
-                  // Enabled state border
-                  enabledBorder: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: hasError
-                          ? context.theme.colors.redDefault
-                          : context.theme.colors.textTertiary,
-                      width: hasError ? 1.0 : 1.0,
-                    ),
-                  ),
-                  // Focused state border - BLUE
-                  focusedBorder: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: hasError
-                          ? context.theme.colors.redDefault
-                          : context.theme.colors.brandDefault,
-                      width: 2.0,
-                    ),
-                  ),
-                  // Focused error state border - RED
-                  focusedErrorBorder: CustomOutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius)),
-                    borderSide: BorderSide(
-                      color: context.theme.colors.redDefault,
-                      width: 2.0,
-                    ),
-                  ),
-                  fillColor: _getFillColor(context, isDark),
-                  filled: true,
-                  labelText: widget.labelText,
-                  hintText: widget.hintText,
-                  labelStyle: context.textTheme.labelSmall?.copyWith(
-                    fontSize: 12.sp,
-                    color: hasError
-                        ? context.theme.colors.redDefault
-                        : context.theme.colors.graySecondary,
-                  ),
-                  hintStyle: context.textTheme.labelSmall?.copyWith(
-                    fontSize: 14.sp,
-                    color:
-                        widget.hintColor ?? context.theme.colors.graySecondary,
-                  ),
-                  isDense: true,
-                  prefix: _buildPrefixWidget(),
-                  prefixIconConstraints: widget.prefixIconConstraints ??
-                      const BoxConstraints(minWidth: 20),
-                  prefixIcon: StreamBuilder<bool>(
-                    stream: _alignInputToBottomController.stream,
-                    initialData: false,
-                    builder: (context, snapshot) {
-                      return Padding(
-                        padding: EdgeInsets.only(top: snapshot.data! ? 17 : 0),
-                        child: _buildPrefixIcon(),
-                      );
-                    },
-                  ),
-                  suffix: _buildSuffixWidget(),
-                  suffixIcon: StreamBuilder<bool>(
-                      stream: _alignInputToBottomController.stream,
-                      initialData: false,
-                      builder: (context, snapshot) {
-                        return Padding(
-                          padding:
-                              EdgeInsets.only(top: snapshot.data! ? 18 : 0),
-                          child: _buildSuffixIcon(),
-                        );
-                      }),
-                  suffixIconConstraints:
-                      widget.suffixIconConstraints ?? const BoxConstraints(),
-                ),
-                onChanged: widget.onChanged,
-                onFieldSubmitted: widget.onFieldSubmitted,
-                onEditingComplete: widget.onEditingComplete,
-                validator: widget.validator ?? (widget.validate ? _val : null),
-                autovalidateMode: widget.autovalidateMode,
-                inputFormatters: _buildInputFormatters(),
-              ),
-            );
-          },
-        ),
+        textField,
         StreamBuilder<String?>(
           stream: _errorTextStreamController.stream,
           builder: (context, snapshot) {
@@ -560,6 +445,166 @@ class _AppTextFieldState extends State<AppTextField> {
           },
         ),
       ],
+    );
+  }
+
+  Widget _buildTextField(BuildContext context, bool isDark) {
+    return StreamBuilder<bool>(
+      stream: _hasErrorController.stream,
+      initialData: false,
+      builder: (context, errorSnapshot) {
+        final hasError = errorSnapshot.data ?? false;
+
+        return Focus(
+          focusNode: _focusNode,
+          child: TextFormField(
+            initialValue: widget.initialValue,
+            textCapitalization: widget.textCapitalization,
+            controller: widget._controller,
+            obscureText: widget.hideText,
+            obscuringCharacter: '●',
+            focusNode: widget.focusNode,
+            onTap: widget.onTap,
+            keyboardType: widget.keyboardType,
+            readOnly: widget.readOnly,
+            style: context.theme.fonts.textMdRegular.copyWith(
+              color: widget.textColor ?? context.theme.colors.textPrimary,
+              fontSize: widget.hideText ? 10.sp : 12.sp,
+              height: 1.3,
+            ),
+            textInputAction: widget.textInputAction,
+            textAlignVertical: TextAlignVertical.bottom,
+            enabled: widget.enabled,
+            decoration: InputDecoration(
+              constraints: widget.constraints ?? const BoxConstraints(),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              floatingLabelStyle: context.textTheme.titleLarge?.copyWith(
+                color: hasError
+                    ? context.theme.colors.redDefault
+                    : context.theme.colors.graySecondary,
+                fontSize: 14.sp,
+              ),
+              errorStyle: const TextStyle(
+                color: Colors.transparent,
+                height: 0,
+                fontSize: 0,
+              ),
+              // Normal state border
+              border: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: context.theme.colors.brandDefault,
+                  width: 1.0,
+                ),
+              ),
+              // Error state border - RED
+              errorBorder: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: context.theme.colors.redDefault,
+                  width: 2.0,
+                ),
+              ),
+              // Disabled state border
+              disabledBorder: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: context.theme.colors.brandDefault,
+                  width: 1.0,
+                ),
+              ),
+              // Enabled state border
+              enabledBorder: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: hasError
+                      ? context.theme.colors.redDefault
+                      : context.theme.colors.textTertiary,
+                  width: hasError ? 1.0 : 1.0,
+                ),
+              ),
+              // Focused state border - BLUE
+              focusedBorder: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: hasError
+                      ? context.theme.colors.redDefault
+                      : context.theme.colors.brandDefault,
+                  width: 2.0,
+                ),
+              ),
+              // Focused error state border - RED
+              focusedErrorBorder: CustomOutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: context.theme.colors.redDefault,
+                  width: 2.0,
+                ),
+              ),
+              fillColor: _getFillColor(context, isDark),
+              filled: true,
+              // Conditionally set label based on alwaysShowLabelAndHint
+              labelText: widget.alwaysShowLabelAndHint ? null : widget.labelText,
+              hintText: widget.hintText,
+              labelStyle: context.textTheme.labelSmall?.copyWith(
+                fontSize: 12.sp,
+                color: hasError
+                    ? context.theme.colors.redDefault
+                    : context.theme.colors.graySecondary,
+              ),
+              hintStyle: context.textTheme.labelSmall?.copyWith(
+                fontSize: 14.sp,
+                color:
+                    widget.hintColor ?? context.theme.colors.graySecondary,
+              ),
+              isDense: true,
+              prefix: _buildPrefixWidget(),
+              prefixIconConstraints: widget.prefixIconConstraints ??
+                  const BoxConstraints(minWidth: 20),
+              prefixIcon: widget.alwaysShowLabelAndHint
+                  ? _buildPrefixIcon() // No animation when always showing label
+                  : StreamBuilder<bool>(
+                      stream: _alignInputToBottomController.stream,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: snapshot.data! ? 17 : 0),
+                          child: _buildPrefixIcon(),
+                        );
+                      },
+                    ),
+              suffix: _buildSuffixWidget(),
+              suffixIcon: widget.alwaysShowLabelAndHint
+                  ? _buildSuffixIcon() // No animation when always showing label
+                  : StreamBuilder<bool>(
+                      stream: _alignInputToBottomController.stream,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        return Padding(
+                          padding:
+                              EdgeInsets.only(top: snapshot.data! ? 18 : 0),
+                          child: _buildSuffixIcon(),
+                        );
+                      }),
+              suffixIconConstraints:
+                  widget.suffixIconConstraints ?? const BoxConstraints(),
+            ),
+            onChanged: widget.onChanged,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            onEditingComplete: widget.onEditingComplete,
+            validator: widget.validator ?? (widget.validate ? _val : null),
+            autovalidateMode: widget.autovalidateMode,
+            inputFormatters: _buildInputFormatters(),
+          ),
+        );
+      },
     );
   }
 

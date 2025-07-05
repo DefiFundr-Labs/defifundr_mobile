@@ -5,8 +5,8 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import for Network model
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart'; // Assuming Payment model can be reused for transactions
 import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart'; // Reusing PaymentItemCard
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class AssetDetailsScreen extends StatelessWidget {
         change: '-0.0018%',
         balance: '\$476.19',
         balanceCurrency: '581 USDT',
-        network: SelectNetworkScreen.dummyNetworks.firstWhere(
+        network: Network.supportedNetworks.firstWhere(
             (net) => net.name == 'Ethereum'), // Assign Ethereum network
       ),
       NetworkAsset(
@@ -71,7 +71,7 @@ class AssetDetailsScreen extends StatelessWidget {
         change: '-0.005%',
         balance: '\$381.19',
         balanceCurrency: '381 USDC',
-        network: SelectNetworkScreen.dummyNetworks.firstWhere(
+        network: Network.supportedNetworks.firstWhere(
             (net) => net.name == 'Optimism'), // Assign Optimism network
       ),
       NetworkAsset(
@@ -81,7 +81,7 @@ class AssetDetailsScreen extends StatelessWidget {
         change: '-0.005%',
         balance: '\$200.19',
         balanceCurrency: '200 USDC',
-        network: SelectNetworkScreen.dummyNetworks
+        network: Network.supportedNetworks
             .firstWhere((net) => net.name == 'Base'), // Assign Base network
       ),
       // Add more dummy assets as needed
@@ -245,7 +245,7 @@ class AssetDetailsScreen extends StatelessWidget {
                           onTap: () {
                             // Get the default network for this asset (using the first network for now)
                             final defaultNetwork =
-                                SelectNetworkScreen.dummyNetworks.first;
+                                Network.supportedNetworks.first;
                             context.pushNamed(
                               RouteConstants.assetDetails,
                               extra: {

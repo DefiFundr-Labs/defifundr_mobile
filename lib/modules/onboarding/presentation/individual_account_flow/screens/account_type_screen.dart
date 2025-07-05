@@ -72,7 +72,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     ),
                     SizedBox(height: 10.h),
                     AccountTypeCard(
-                      icon: Assets.icons.userCircle,
+                      icon: Assets.icons.userCircleSvg_,
                       title: 'Freelancer account',
                       description:
                           'You work independently, manage your own contracts and payments directly with clients.',

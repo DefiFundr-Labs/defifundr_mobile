@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/secondary_buttons.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

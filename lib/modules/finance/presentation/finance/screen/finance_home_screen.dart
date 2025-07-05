@@ -7,8 +7,8 @@ import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart';
 import 'package:flutter/material.dart';
@@ -327,7 +327,7 @@ class FinanceHomeScreen extends StatelessWidget {
   }
 
   void _navigateToAssetDetails(BuildContext context, NetworkAsset asset) {
-    final defaultNetwork = SelectNetworkScreen.dummyNetworks.first;
+    final defaultNetwork = Network.supportedNetworks.first;
     context.pushNamed(
       RouteConstants.assetDetails,
       extra: {

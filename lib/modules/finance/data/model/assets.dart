@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
 
 class NetworkAsset {

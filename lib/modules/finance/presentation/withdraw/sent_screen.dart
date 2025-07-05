@@ -4,7 +4,7 @@ import 'package:defifundr_mobile/core/routers/routes_constant.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_state.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_details_model.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
