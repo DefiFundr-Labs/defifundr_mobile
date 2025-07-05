@@ -10,12 +10,12 @@ import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.da
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_asset_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';
-import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,9 +57,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     _memoController.dispose();
     _assetController.dispose();
     _networkController.dispose();
-    _selectedAsset = null;
-    _selectedNetwork = null;
-    _addressController.clear();
+
     super.dispose();
   }
 

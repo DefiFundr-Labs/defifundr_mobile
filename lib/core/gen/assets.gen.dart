@@ -240,6 +240,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/profilee.svg
   String get profilee => 'assets/icons/profilee.svg';
 
+  /// File path: assets/icons/qr_icon.png
+  AssetGenImage get qrIcon => const AssetGenImage('assets/icons/qr_icon.png');
+
   /// File path: assets/icons/question_svg.svg
   String get questionSvg => 'assets/icons/question_svg.svg';
 
@@ -389,6 +392,7 @@ class $AssetsIconsGen {
     person,
     pinCreated,
     profilee,
+    qrIcon,
     questionSvg,
     rectangle,
     sadError,
@@ -554,6 +558,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
+  /// File path: assets/images/qr_icon.png
+  AssetGenImage get qrIcon => const AssetGenImage('assets/images/qr_icon.png');
+
   /// File path: assets/images/rocket.png
   AssetGenImage get rocket => const AssetGenImage('assets/images/rocket.png');
 
@@ -626,6 +633,7 @@ class $AssetsImagesGen {
     optimism,
     people,
     profile,
+    qrIcon,
     rocket,
     starknet,
     switchPng,

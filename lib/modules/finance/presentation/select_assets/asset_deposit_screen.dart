@@ -72,12 +72,6 @@ class AssetDepositScreen extends StatelessWidget {
         children: [
           SvgPicture.asset(Assets.icons.warning, width: 24, height: 24),
           const SizedBox(width: 8),
-          // Expanded(
-          //   child: Text(
-          //     'Send only ${asset.name} via the ${network.name} network. Using any other asset or network will result in permanent loss.',
-          //     style: fontTheme.textMdMedium.copyWith(color: colors.textPrimary),
-          //   ),
-          // ),
           Expanded(
             child: RichText(
               text: TextSpan(
@@ -153,6 +147,7 @@ class AssetDepositScreen extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(0),
       gapless: false,
+      embeddedImage: AssetImage(Assets.images.qrIcon.path),
       embeddedImageStyle: QrEmbeddedImageStyle(
         size: const Size(40, 40),
         color: colors.textPrimary,

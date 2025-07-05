@@ -1,12 +1,12 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/help_button.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad.dart';
+import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
+import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_input_section.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_state.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_input.dart';
-import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/pin_keypad.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/widget/pin_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,40 +24,60 @@ class ConfirmPaymentScreen extends StatefulWidget {
   State<ConfirmPaymentScreen> createState() => _ConfirmPaymentScreenState();
 }
 
-class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
+class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen>
+    with TickerProviderStateMixin {
+  static const int _pinLength = 4;
+  static const String _correctPin = "1234";
+
   final List<String> _pin = [];
-  final int _pinLength = 4;
-  List<String>? _originalPin;
-  String? _errorMessage;
+  bool _showError = false;
+  String _errorMessage = '';
+
+  late AnimationController _shakeController;
+  late Animation<double> _shakeAnimation;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final args = ModalRoute.of(context)?.settings.arguments;
-    if (args != null && args is List<String>) {
-      _originalPin = args;
-    }
+  void initState() {
+    super.initState();
+    _initializeAnimations();
   }
 
-  void _onKeyPressed(String key) {
+  void _initializeAnimations() {
+    _shakeController = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+
+    _shakeAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(
+      parent: _shakeController,
+      curve: Curves.elasticOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _shakeController.dispose();
+    super.dispose();
+  }
+
+  void _onNumberPressed(String number) {
     if (_pin.length < _pinLength) {
       setState(() {
-        _pin.add(key);
-        _errorMessage = null;
+        _pin.add(number);
+        _showError = false;
       });
 
+      HapticManager.lightImpact();
+
       if (_pin.length == _pinLength) {
-        // Get withdraw details from bloc state
         final withdrawDetails =
             context.read<WithdrawBloc>().state.withdrawDetails;
 
-        // TODO: Implement actual PIN confirmation logic here when integrating.
-        // For simplicity, navigating directly to 2FA screen after a delay.
         Future.delayed(const Duration(seconds: 2), () {
           if (mounted) {
-            // Check if the widget is still mounted before navigating
-            // TODO: Add comment: Actual PIN validation would happen here before navigating.
-            // For now, we assume the PIN is confirmed for navigation purposes.
             context.goNamed(
               RouteConstants.twoFaAuth,
               extra: withdrawDetails,
@@ -68,92 +88,87 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
     }
   }
 
-  void _onBackspace() {
+  void _onBackspacePressed() {
     if (_pin.isNotEmpty) {
       setState(() {
         _pin.removeLast();
-        _errorMessage = null;
+        _showError = false;
       });
+      HapticManager.lightImpact();
     }
+  }
+
+  void _verifyPin() {
+    final enteredPin = _pin.join();
+
+    if (enteredPin == _correctPin) {
+      _handleSuccessfulLogin();
+    } else {
+      _handleIncorrectPin();
+    }
+  }
+
+  void _handleSuccessfulLogin() {
+    HapticManager.lightImpact();
+    // Navigate to next screen or handle success
+  }
+
+  void _handleIncorrectPin() {
+    HapticManager.heavyImpact();
+
+    setState(() {
+      _showError = true;
+      _errorMessage = 'Incorrect PIN. Please try again.';
+    });
+
+    _shakeController.forward().then((_) => _shakeController.reset());
+
+    Future.delayed(const Duration(milliseconds: 800), () {
+      if (mounted) {
+        setState(() {
+          _pin.clear();
+          _showError = false;
+        });
+      }
+    });
+  }
+
+  void _onBiometricPressed() {
+    HapticManager.lightImpact();
   }
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.theme.colors;
-    final fonts = context.theme.fonts;
-
-    return BlocBuilder<WithdrawBloc, WithdrawState>(
-      builder: (context, state) {
-        // Use withdraw details from constructor if available, otherwise from bloc state
-        final details = widget.withdrawDetails ?? state.withdrawDetails;
-
-        if (details == null) {
-          return Scaffold(
-            body: Center(
-              child: Text('Error: Withdraw details not found'),
-            ),
-          );
-        }
-
-        return Scaffold(
-          backgroundColor: colors.bgB1,
-          body: SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomBackButton(),
-                      const HelpButton(),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 16.h),
-                        Text(
-                          'Enter Your PIN Code',
-                          style: fonts.heading2SemiBold,
-                        ),
-                        SizedBox(height: 8.h),
-                        Text(
-                          'Enter your 4 digit PIN code to complete this transaction',
-                          style: fonts.textMdRegular.copyWith(
-                            color: colors.textSecondary,
-                          ),
-                        ),
-                        SizedBox(height: 32.h),
-                        Text(
-                          'Enter PIN',
-                          style: fonts.textBaseMedium,
-                        ),
-                        SizedBox(height: 16.h),
-                        PinInput(
-                          pinValues: _pin,
-                          activeIndex: _pin.length,
-                          pinLength: _pinLength,
-                          hasError: _errorMessage != null,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                PinKeypad(
-                  onKeyPressed: _onKeyPressed,
-                  onBackspace: _onBackspace,
-                ),
-              ],
-            ),
+    return Scaffold(
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 16.h),
+              ConfirmPinHeader(),
+              SizedBox(height: 20.h),
+              PinInputSection(
+                pinLength: _pinLength,
+                currentPinLength: _pin.length,
+                showError: _showError,
+                errorMessage: _errorMessage,
+                shakeAnimation: _shakeAnimation,
+              ),
+              const Spacer(),
+              Keypad(
+                onNumberPressed: _onNumberPressed,
+                onBackspacePressed: _onBackspacePressed,
+                onBiometricPressed: _onBiometricPressed,
+                biometricType: BiometricType.fingerprint,
+              ),
+              SizedBox(height: 30.h),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

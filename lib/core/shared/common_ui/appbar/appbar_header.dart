@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarHeaderWidget extends StatelessWidget {
-  const AppBarHeaderWidget({super.key, this.widget});
+  const AppBarHeaderWidget({super.key, this.widget, this.isBack});
   final Widget? widget;
+  final bool? isBack;
   @override
   Widget build(BuildContext context) {
     return Row(
