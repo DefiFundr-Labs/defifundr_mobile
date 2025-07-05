@@ -1,8 +1,10 @@
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // To reuse Asset data model and AssetListItem
+import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart'; // To reuse Asset data model and AssetListItem
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import SelectNetworkScreen and Network model
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
@@ -22,8 +24,8 @@ class SelectAssetScreen extends StatefulWidget {
 
 class _SelectAssetScreenState extends State<SelectAssetScreen> {
   // Dummy data for assets (replace with actual data)
-  final List<Asset> dummyAssets = [
-    Asset(
+  final List<NetworkAsset> dummyAssets = [
+    NetworkAsset(
       iconPath: 'assets/images/usdc.png', // Placeholder icon path
       name: 'ETH',
       price: 'Ethereum',
@@ -31,7 +33,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 ETH',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/usdc.png', // Placeholder icon path
       name: 'USDC',
       price: 'USD Coin',
@@ -39,7 +41,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 USDC',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/usdt.png', // Placeholder icon path
       name: 'USDT',
       price: 'Tether USD',
@@ -47,7 +49,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 USDT',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/dai.png', // Placeholder icon path
       name: 'DAI',
       price: 'Dai Stablecoin',
@@ -55,7 +57,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 DAI',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/usdd.png', // Placeholder icon path
       name: 'USDD',
       price: 'Decentralized USD',
@@ -63,7 +65,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 USDD',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/lusd.png', // Placeholder icon path
       name: 'LUSD',
       price: 'Liquity USD',
@@ -71,7 +73,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 LUSD',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/eurt.png', // Placeholder icon path
       name: 'EURt',
       price: 'Euro Tether',
@@ -79,7 +81,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 EURt',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/starknet.png', // Placeholder icon path
       name: 'STARK',
       price: 'Starknet',
@@ -87,7 +89,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 STARK',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/xdai.png', // Placeholder icon path
       name: 'xDAI',
       price: 'Gnosis Chain',
@@ -95,7 +97,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 xDAI',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/bnb.png', // Placeholder icon path
       name: 'BNB',
       price: 'BNB Chain',
@@ -103,7 +105,7 @@ class _SelectAssetScreenState extends State<SelectAssetScreen> {
       balance: '\$0.00',
       balanceCurrency: '0 BNB',
     ),
-    Asset(
+    NetworkAsset(
       iconPath: 'assets/images/matic.png', // Placeholder icon path
       name: 'POL',
       price: 'Polygon',

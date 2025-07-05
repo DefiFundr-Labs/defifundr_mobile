@@ -1,10 +1,11 @@
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
+import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart'; // Import for Asset model
 import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart'; // Import for AssetDepositScreen
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 
@@ -90,7 +91,7 @@ class NetworkListItem extends StatelessWidget {
 class SelectNetworkScreen extends StatelessWidget {
   // Add parameters for the receive flow
   final bool forDeposit;
-  final Asset? selectedAsset;
+  final NetworkAsset? selectedAsset;
 
   const SelectNetworkScreen(
       {Key? key, this.forDeposit = false, this.selectedAsset})

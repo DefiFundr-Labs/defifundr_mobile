@@ -2,8 +2,9 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart'; // Import for SavedAddress model
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
+import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart'; // Import for Asset model
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_asset_screen.dart'; // Import for SelectAssetScreen
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import for Network model
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
-  Asset? _selectedAsset;
+  NetworkAsset? _selectedAsset;
   Network? _selectedNetwork;
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _labelController = TextEditingController();
@@ -117,7 +118,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               const SizedBox(height: 8),
               InkWell(
                 onTap: () async {
-                  final selectedAsset = await Navigator.push<Asset>(
+                  final selectedAsset = await Navigator.push<NetworkAsset>(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SelectAssetScreen()),

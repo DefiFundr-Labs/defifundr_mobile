@@ -1,21 +1,21 @@
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
+import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
+import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import for Network model
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart'; // Assuming Payment model can be reused for transactions
 import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/payment_item_card.dart'; // Reusing PaymentItemCard
-import 'package:defifundr_mobile/core/constants/app_icons.dart';
-import 'package:go_router/go_router.dart'; // For icons
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart'; // Import for Asset model
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart'; // Import for Network model
-import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart'; // Import for AssetDepositScreen
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart'; // Import DeFiRaiseAppBar
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart'; // For icons
 
 // Assuming you pass the Asset and Network objects to this screen
 class AssetDetailsScreen extends StatelessWidget {
-  final Asset asset;
+  final NetworkAsset asset;
   final Network network;
 
   const AssetDetailsScreen(
@@ -53,8 +53,8 @@ class AssetDetailsScreen extends StatelessWidget {
       ),
       // Add more dummy transactions as needed
     ];
-    final List<Asset> dummyAssets = [
-      Asset(
+    final List<NetworkAsset> dummyAssets = [
+      NetworkAsset(
         iconPath: 'assets/images/usdt.png', // Placeholder icon path
         name: 'Tether USD',
         price: '\$1.00',
@@ -64,7 +64,7 @@ class AssetDetailsScreen extends StatelessWidget {
         network: SelectNetworkScreen.dummyNetworks.firstWhere(
             (net) => net.name == 'Ethereum'), // Assign Ethereum network
       ),
-      Asset(
+      NetworkAsset(
         iconPath: 'assets/images/usdc.png', // Placeholder icon path
         name: 'USD Coin',
         price: '\$0.99',
@@ -74,7 +74,7 @@ class AssetDetailsScreen extends StatelessWidget {
         network: SelectNetworkScreen.dummyNetworks.firstWhere(
             (net) => net.name == 'Optimism'), // Assign Optimism network
       ),
-      Asset(
+      NetworkAsset(
         iconPath: 'assets/images/usdc.png', // Placeholder icon path
         name: 'USD Coin',
         price: '\$0.99',
@@ -124,7 +124,7 @@ class AssetDetailsScreen extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '≈ \$581.19', // Placeholder approximate value
-                      style: fontTheme.textBaseRegular?.copyWith(
+                      style: fontTheme.textBaseRegular.copyWith(
                           color: colors.textSecondary), // Smaller text
                     ),
                     const SizedBox(height: 24),

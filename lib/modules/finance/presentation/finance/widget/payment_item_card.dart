@@ -1,11 +1,11 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
-import '../../../data/models/payment.dart';
 
 class PaymentItemCard extends StatelessWidget {
   final Payment payment;
@@ -16,7 +16,6 @@ class PaymentItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final fontTheme = context.theme.fonts;
     final colors = context.theme.colors;
-    final isLightMode = Theme.of(context).brightness == Brightness.light;
 
     Color statusColor;
     switch (payment.status) {
@@ -37,7 +36,7 @@ class PaymentItemCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(
-          color: isLightMode ? colors.bgB0 : colors.bgB1,
+          color: colors.bgB0,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Row(

@@ -1,21 +1,17 @@
+import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
 import '../app_colors/app_colors.dart';
 import '../color_extension/app_color_extension.dart';
 import '../font_extension/font_extension.dart';
 
-/// AppTheme - Main theme configuration for the application
 class AppTheme {
-  // Light theme color configurations
   static final _lightAppColorss = AppColorExtension(
-    // Text colors
     textPrimary: AppColors.textPrimary,
     textSecondary: AppColors.textSecondary,
     textTertiary: AppColors.textTertiary,
     textQuaternary: AppColors.textQuaternary,
     textWhite: AppColors.textWhite,
-
-    // Constant/Brand colors
     constantDefault: AppColors.constantDefault,
     constantDefaultBorder: AppColors.constantDefaultBorder,
     brandDefault: AppColors.brandDefault,
@@ -25,93 +21,65 @@ class AppTheme {
     brandActive: AppColors.brandActive,
     brandStroke: AppColors.brandStroke,
     brandFill: AppColors.brandFill,
-
-    // Blue colors
     blueDefault: AppColors.blueDefault,
     blueHover: AppColors.blueHover,
     blueActive: AppColors.blueActive,
     blueStroke: AppColors.blueStroke,
     blueFill: AppColors.blueFill,
-
-    // Green colors
     greenDefault: AppColors.greenDefault,
     greenHover: AppColors.greenHover,
     greenActive: AppColors.greenActive,
     greenStroke: AppColors.greenStroke,
     greenFill: AppColors.greenFill,
-
-    // Gray colors
     grayPrimary: AppColors.grayPrimary,
     graySecondary: AppColors.graySecondary,
     grayTertiary: AppColors.grayTertiary,
     grayQuaternary: AppColors.grayQuaternary,
-
-    // Yellow colors
     yellowDefault: AppColors.yellowDefault,
     yellowHover: AppColors.yellowHover,
     yellowActive: AppColors.yellowActive,
     yellowStroke: AppColors.yellowStroke,
     yellowFill: AppColors.yellowFill,
-
-    // Orange colors
     orangeDefault: AppColors.orangeDefault,
     orangeHover: AppColors.orangeHover,
     orangeActive: AppColors.orangeActive,
     orangeStroke: AppColors.orangeStroke,
     orangeFill: AppColors.orangeFill,
-
-    // Red colors
     redDefault: AppColors.redDefault,
     redHover: AppColors.redHover,
     redActive: AppColors.redActive,
     redStroke: AppColors.redStroke,
     redFill: AppColors.redFill,
-
-    // Pink colors
     pinkDefault: AppColors.pinkDefault,
     pinkHover: AppColors.pinkHover,
     pinkActive: AppColors.pinkActive,
     pinkStroke: AppColors.pinkStroke,
     pinkFill: AppColors.pinkFill,
-
-    // Background colors
     bgB0: AppColors.bgB0,
     bgB1: AppColors.bgB1,
     bgB2: AppColors.bgB2,
     bgB3: AppColors.bgB3,
-
-    // Surface colors
     surface: AppColors.surface,
     surfaceCard: AppColors.surfaceCard,
-
-    // Button/Interactive colors
     inactiveButton: AppColors.inactiveButton,
     activeButton: AppColors.activeButton,
     buttonTertiary: AppColors.buttonTertiary,
     buttonSecondary: AppColors.buttonSecondary,
-
-    // Icon colors
     iconRed: AppColors.iconRed,
     iconBlue: AppColors.iconBlue,
     textHighlightBlue: AppColors.textHighlightBlue,
-
-    //Miscellaneous colors
     contrastBlack: AppColors.contrastBlack,
     contrastWhite: AppColors.contrastWhite,
     strokeSecondary: AppColors.strokeSecondary,
     fillTertiary: AppColors.fillTertiary,
   );
 
-  // Dark theme color configurations
   static final _darkAppColorss = AppColorExtension(
-    // Text colors
     textPrimary: AppColorDark.textPrimary,
     textSecondary: AppColorDark.textSecondary,
     textTertiary: AppColorDark.textTertiary,
     textQuaternary: AppColorDark.textQuaternary,
     textWhite: AppColorDark.textWhite,
-
-    // Constant/Brand colors
     constantDefault: AppColorDark.constantDefault,
     constantDefaultBorder: AppColorDark.constantDefaultBorder,
     brandDefault: AppColorDark.brandDefault,
@@ -121,610 +89,561 @@ class AppTheme {
     brandActive: AppColorDark.brandActive,
     brandStroke: AppColorDark.brandStroke,
     brandFill: AppColorDark.brandFill,
-
-    // Blue colors
     blueDefault: AppColorDark.blueDefault,
     blueHover: AppColorDark.blueHover,
     blueActive: AppColorDark.blueActive,
     blueStroke: AppColorDark.blueStroke,
     blueFill: AppColorDark.blueFill,
-
-    // Green colors
     greenDefault: AppColorDark.greenDefault,
     greenHover: AppColorDark.greenHover,
     greenActive: AppColorDark.greenActive,
     greenStroke: AppColorDark.greenStroke,
     greenFill: AppColorDark.greenFill,
-
-    // Gray colors
     grayPrimary: AppColorDark.grayPrimary,
     graySecondary: AppColorDark.graySecondary,
     grayTertiary: AppColorDark.grayTertiary,
     grayQuaternary: AppColorDark.grayQuaternary,
-
-    // Yellow colors
     yellowDefault: AppColorDark.yellowDefault,
     yellowHover: AppColorDark.yellowHover,
     yellowActive: AppColorDark.yellowActive,
     yellowStroke: AppColorDark.yellowStroke,
     yellowFill: AppColorDark.yellowFill,
-
-    // Orange colors
     orangeDefault: AppColorDark.orangeDefault,
     orangeHover: AppColorDark.orangeHover,
     orangeActive: AppColorDark.orangeActive,
     orangeStroke: AppColorDark.orangeStroke,
     orangeFill: AppColorDark.orangeFill,
-
-    // Red colors
     redDefault: AppColorDark.redDefault,
     redHover: AppColorDark.redHover,
     redActive: AppColorDark.redActive,
     redStroke: AppColorDark.redStroke,
     redFill: AppColorDark.redFill,
-
-    // Pink colors
     pinkDefault: AppColorDark.pinkDefault,
     pinkHover: AppColorDark.pinkHover,
     pinkActive: AppColorDark.pinkActive,
     pinkStroke: AppColorDark.pinkStroke,
     pinkFill: AppColorDark.pinkFill,
-
-    // Background colors
     bgB0: AppColorDark.bgB0,
     bgB1: AppColorDark.bgB1,
     bgB2: AppColorDark.bgB2,
     bgB3: AppColorDark.bgB3,
-
-    // Surface colors
     surface: AppColorDark.surface,
     surfaceCard: AppColorDark.surfaceCard,
-
-    // Button/Interactive colors
     inactiveButton: AppColorDark.inactiveButton,
     activeButton: AppColorDark.activeButton,
     buttonTertiary: AppColorDark.buttonTertiary,
     buttonSecondary: AppColorDark.buttonSecondary,
-
-    // Icon colors
     iconRed: AppColorDark.iconRed,
     iconBlue: AppColorDark.iconBlue,
     textHighlightBlue: AppColorDark.textHighlightBlue,
-
-    //Miscellaneous colors
     contrastBlack: AppColorDark.contrastBlack,
     contrastWhite: AppColorDark.contrastWhite,
     strokeSecondary: AppColorDark.strokeSecondary,
     fillTertiary: AppColorDark.fillTertiary,
   );
 
-  // Font styles for light theme
   static final _lightFontTheme = AppFontThemeExtension(
-    // Headings
     heading1Bold: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1SemiBold: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1Medium: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1Regular: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     heading2Bold: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2SemiBold: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2Medium: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2Regular: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     heading3Bold: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3SemiBold: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3Medium: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3Regular: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
-    // Text styles
     textLgBold: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgSemiBold: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgMedium: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgRegular: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textBaseBold: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseSemiBold: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseMedium: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseRegular: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textMdBold: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdSemiBold: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdMedium: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdRegular: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textSmBold: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmSemiBold: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmMedium: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmRegular: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textXsBold: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsSemiBold: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsMedium: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsRegular: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
-    // Legacy styles
     headerLarger: const TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     headerSmall: const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     subHeader: const TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: AppColors.textTertiary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     bodyMedium: const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
   );
 
-  // Font styles for dark theme
   static final _darkFontTheme = AppFontThemeExtension(
-    // Headings
     heading1Bold: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1SemiBold: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1Medium: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading1Regular: const TextStyle(
       fontSize: 32,
-      height: 1.25, // 40px line height
+      height: 1.25,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     heading2Bold: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2SemiBold: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2Medium: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading2Regular: const TextStyle(
       fontSize: 24,
-      height: 1.33, // 32px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     heading3Bold: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3SemiBold: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3Medium: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     heading3Regular: const TextStyle(
       fontSize: 20,
       height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
-    // Text styles
     textLgBold: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgSemiBold: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgMedium: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textLgRegular: const TextStyle(
       fontSize: 18,
-      height: 1.33, // 24px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textBaseBold: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseSemiBold: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseMedium: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textBaseRegular: const TextStyle(
       fontSize: 16,
-      height: 1.5, // 24px line height
+      height: 1.5,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textMdBold: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdSemiBold: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdMedium: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textMdRegular: const TextStyle(
       fontSize: 14,
-      height: 1.43, // 20px line height
+      height: 1.43,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textSmBold: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmSemiBold: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmMedium: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textSmRegular: const TextStyle(
       fontSize: 12,
-      height: 1.33, // 16px line height
+      height: 1.33,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
     textXsBold: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsSemiBold: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w600,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsMedium: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w500,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     textXsRegular: const TextStyle(
       fontSize: 10,
-      height: 1.4, // 14px line height
+      height: 1.4,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
-
-    // Legacy styles
     headerLarger: const TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     headerSmall: const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w700,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     subHeader: const TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textTertiary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
     bodyMedium: const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: AppColorDark.textPrimary,
-      fontFamily: 'Inter',
+      fontFamily: FontFamily.inter,
     ),
   );
 
-  // Define the static light theme configurations
   static final light = () {
     final defaultTheme = ThemeData.light();
 
@@ -744,23 +663,18 @@ class AppTheme {
         ),
       ),
       textTheme: TextTheme(
-        // Map Material's text theme to our custom styles
         displayLarge: _lightFontTheme.heading1Bold,
         displayMedium: _lightFontTheme.heading2Bold,
         displaySmall: _lightFontTheme.heading3Bold,
-
         headlineLarge: _lightFontTheme.heading1SemiBold,
         headlineMedium: _lightFontTheme.heading2SemiBold,
         headlineSmall: _lightFontTheme.heading3SemiBold,
-
         titleLarge: _lightFontTheme.textLgBold,
         titleMedium: _lightFontTheme.textBaseBold,
         titleSmall: _lightFontTheme.textMdBold,
-
         bodyLarge: _lightFontTheme.textLgRegular,
         bodyMedium: _lightFontTheme.textBaseRegular,
         bodySmall: _lightFontTheme.textMdRegular,
-
         labelLarge: _lightFontTheme.textSmBold,
         labelMedium: _lightFontTheme.textSmRegular,
         labelSmall: _lightFontTheme.textXsRegular,
@@ -860,23 +774,18 @@ class AppTheme {
         ),
       ),
       textTheme: TextTheme(
-        // Map Material's text theme to our custom styles
         displayLarge: _darkFontTheme.heading1Bold,
         displayMedium: _darkFontTheme.heading2Bold,
         displaySmall: _darkFontTheme.heading3Bold,
-
         headlineLarge: _darkFontTheme.heading1SemiBold,
         headlineMedium: _darkFontTheme.heading2SemiBold,
         headlineSmall: _darkFontTheme.heading3SemiBold,
-
         titleLarge: _darkFontTheme.textLgBold,
         titleMedium: _darkFontTheme.textBaseBold,
         titleSmall: _darkFontTheme.textMdBold,
-
         bodyLarge: _darkFontTheme.textLgRegular,
         bodyMedium: _darkFontTheme.textBaseRegular,
         bodySmall: _darkFontTheme.textMdRegular,
-
         labelLarge: _darkFontTheme.textSmBold,
         labelMedium: _darkFontTheme.textSmRegular,
         labelSmall: _darkFontTheme.textXsRegular,

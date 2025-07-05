@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Bank.svg
+  String get bank => 'assets/icons/Bank.svg';
+
   /// File path: assets/icons/Briefcase.svg
   String get briefcase => 'assets/icons/Briefcase.svg';
 
@@ -24,8 +27,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/CarProfile.svg
   String get carProfile => 'assets/icons/CarProfile.svg';
 
+  /// File path: assets/icons/Copy.svg
+  String get copy => 'assets/icons/Copy.svg';
+
   /// File path: assets/icons/Globe.svg
   String get globe => 'assets/icons/Globe.svg';
+
+  /// File path: assets/icons/HandCoins.svg
+  String get handCoins => 'assets/icons/HandCoins.svg';
 
   /// File path: assets/icons/IdentificationCard.svg
   String get identificationCard => 'assets/icons/IdentificationCard.svg';
@@ -33,20 +42,38 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Info.svg
   String get info => 'assets/icons/Info.svg';
 
+  /// File path: assets/icons/Invoice copy.svg
+  String get invoiceCopy => 'assets/icons/Invoice copy.svg';
+
   /// File path: assets/icons/Link.svg
   String get link => 'assets/icons/Link.svg';
 
   /// File path: assets/icons/MagnifyingGlass.svg
   String get magnifyingGlass => 'assets/icons/MagnifyingGlass.svg';
 
+  /// File path: assets/icons/Money copy.svg
+  String get moneyCopy => 'assets/icons/Money copy.svg';
+
   /// File path: assets/icons/QrCode.svg
   String get qrCode => 'assets/icons/QrCode.svg';
+
+  /// File path: assets/icons/Scales.svg
+  String get scales => 'assets/icons/Scales.svg';
 
   /// File path: assets/icons/UserCircleCheck.svg
   String get userCircleCheck => 'assets/icons/UserCircleCheck.svg';
 
+  /// File path: assets/icons/UserCircleDashed.svg
+  String get userCircleDashed => 'assets/icons/UserCircleDashed.svg';
+
   /// File path: assets/icons/UserFocus.svg
   String get userFocus => 'assets/icons/UserFocus.svg';
+
+  /// File path: assets/icons/Wallet.svg
+  String get wallet => 'assets/icons/Wallet.svg';
+
+  /// File path: assets/icons/Warning.svg
+  String get warning => 'assets/icons/Warning.svg';
 
   /// File path: assets/icons/appIcon.svg
   String get appIcon => 'assets/icons/appIcon.svg';
@@ -69,6 +96,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_down.svg
   String get arrowDown => 'assets/icons/arrow_down.svg';
 
+  /// File path: assets/icons/arrow_down_left.svg
+  String get arrowDownLeft => 'assets/icons/arrow_down_left.svg';
+
   /// File path: assets/icons/arrow_up.svg
   String get arrowUp => 'assets/icons/arrow_up.svg';
 
@@ -88,8 +118,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/brief_case.svg
   String get briefCase => 'assets/icons/brief_case.svg';
 
+  /// File path: assets/icons/bvnProcessing.svg
+  String get bvnProcessing => 'assets/icons/bvnProcessing.svg';
+
+  /// File path: assets/icons/bvnProcessingDark.svg
+  String get bvnProcessingDark => 'assets/icons/bvnProcessingDark.svg';
+
   /// File path: assets/icons/caretRight.svg
-  String get caretRight => 'assets/icons/caretRight.svg';
+  String get caretRightSvg => 'assets/icons/caretRight.svg';
+
+  /// File path: assets/icons/caret_right.svg
+  String get caretRightSvg_ => 'assets/icons/caret_right.svg';
 
   /// File path: assets/icons/checked.svg
   String get checked => 'assets/icons/checked.svg';
@@ -273,18 +312,27 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    bank,
     briefcase,
     buildingOfficeSvg,
     buildingOfficeSvg_,
     carProfile,
+    copy,
     globe,
+    handCoins,
     identificationCard,
     info,
+    invoiceCopy,
     link,
     magnifyingGlass,
+    moneyCopy,
     qrCode,
+    scales,
     userCircleCheck,
+    userCircleDashed,
     userFocus,
+    wallet,
+    warning,
     appIcon,
     appleIcon,
     arrowRightSvg,
@@ -292,13 +340,17 @@ class $AssetsIconsGen {
     arrowBack,
     arrowClockwise,
     arrowDown,
+    arrowDownLeft,
     arrowUp,
     back,
     backIcon,
     backgroundPng,
     backgroundSvg,
     briefCase,
-    caretRight,
+    bvnProcessing,
+    bvnProcessingDark,
+    caretRightSvg,
+    caretRightSvg_,
     checked,
     close,
     crossEye,

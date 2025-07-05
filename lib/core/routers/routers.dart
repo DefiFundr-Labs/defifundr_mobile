@@ -3,17 +3,18 @@ import 'package:defifundr_mobile/modules/authentication/presentation/forget_pass
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/add_address_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_details_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/confirm_payment_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/finance_home_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/receive_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_asset_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/sent_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/two_fa_auth_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/confirm_payment_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/receive_screen.dart';
+import 'package:defifundr_mobile/modules/finance/presentation/withdraw/sent_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_screen.dart';
@@ -430,7 +431,7 @@ class AppRouter {
                 },
               );
             }
-            final asset = args['asset'] as Asset;
+            final asset = args['asset'] as NetworkAsset;
             final network = args['network'] as Network;
             return CustomTransitionPage(
               key: state.pageKey,
@@ -615,7 +616,7 @@ class AppRouter {
                 },
               );
             }
-            final asset = args['asset'] as Asset;
+            final asset = args['asset'] as NetworkAsset;
             final network = args['network'] as Network;
             final address = args['address'] as String;
 

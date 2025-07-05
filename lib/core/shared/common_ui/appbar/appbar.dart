@@ -11,11 +11,13 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final bool? isBack;
   final Widget? leading;
+  final TextStyle? textStyle;
   final bool centerTitle;
   const DeFiRaiseAppBar({
     this.title,
     this.actions,
     this.centerTitle = true,
+    this.textStyle,
     this.isBack = false,
     this.leading,
     super.key,
@@ -34,7 +36,8 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: centerTitle,
       automaticallyImplyLeading: false,
-      title: Text(title ?? '', style: context.textTheme.headlineMedium),
+      title: Text(title ?? '',
+          style: textStyle ?? context.textTheme.headlineMedium),
       actions: actions ??
           [
             Padding(
