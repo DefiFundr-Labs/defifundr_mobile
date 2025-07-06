@@ -129,15 +129,16 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
   }
 
   Widget _buildAddressList(colors, fontTheme) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     return Container(
       margin: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(_borderRadius),
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
       ),
       child: ListView.separated(
-        separatorBuilder: (context, index) => SizedBox(height: 10.sp),
-        padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 15.sp),
+        separatorBuilder: (context, index) => SizedBox(height: 4.sp),
+        padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 5.sp),
         itemCount: _supportedAddresses.length,
         itemBuilder: (context, index) => _buildAddressItem(context, index),
       ),
@@ -172,22 +173,12 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      address.name,
-                      style: fontTheme.textBaseSemiBold.copyWith(
-                        color: colors.textPrimary,
-                      ),
-                    ),
-                    SizedBox(height: 4.h),
                     Row(
                       children: [
-                        Expanded(
-                          child: Text(
-                            _formatAddress(address.address),
-                            style: fontTheme.textSmRegular.copyWith(
-                              color: colors.textSecondary,
-                            ),
-                            overflow: TextOverflow.ellipsis,
+                        Text(
+                          address.name,
+                          style: fontTheme.textBaseSemiBold.copyWith(
+                            color: colors.textPrimary,
                           ),
                         ),
                         SizedBox(width: 8.w),
@@ -206,6 +197,20 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                               color: colors.textSecondary,
                               fontSize: 10.sp,
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 4.h),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _formatAddress(address.address),
+                            style: fontTheme.textSmRegular.copyWith(
+                              color: colors.textSecondary,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],

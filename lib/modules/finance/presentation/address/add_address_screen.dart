@@ -224,10 +224,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildAddressInput(
       AppColorExtension colors, AppFontThemeExtension fontTheme) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
     return Container(
       padding: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
         border: Border.all(
           color: colors.strokeSecondary.withAlpha(30),
         ),
@@ -258,6 +260,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   },
                   decoration: InputDecoration(
                     hintText: 'Paste or scan address',
+                    fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
                     hintStyle: fontTheme.textBaseMedium.copyWith(
                       color: colors.textTertiary,
                     ),

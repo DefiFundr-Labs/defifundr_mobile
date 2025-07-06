@@ -73,9 +73,9 @@ class WithdrawPreviewScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 16),
-                        _buildAmountCard(details, colors, fontTheme),
+                        _buildAmountCard(details, colors, fontTheme, context),
                         const SizedBox(height: _verticalSpacing),
-                        _buildDetailsCard(details, colors, fontTheme),
+                        _buildDetailsCard(details, colors, fontTheme, context),
                         SizedBox(height: 20.h),
                       ],
                     ),
@@ -99,13 +99,15 @@ class WithdrawPreviewScreen extends StatelessWidget {
     WithdrawDetailsModel details,
     AppColorExtension colors,
     AppFontThemeExtension fontTheme,
+    BuildContext context,
   ) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(
           horizontal: _containerPadding, vertical: 32.0),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
         borderRadius: BorderRadius.circular(_borderRadius),
       ),
       child: Column(
@@ -140,12 +142,14 @@ class WithdrawPreviewScreen extends StatelessWidget {
     WithdrawDetailsModel details,
     AppColorExtension colors,
     AppFontThemeExtension fontTheme,
+    BuildContext context,
   ) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
         borderRadius: BorderRadius.circular(_borderRadius),
       ),
       child: Column(

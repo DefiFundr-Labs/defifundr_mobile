@@ -110,6 +110,7 @@ class SelectNetworkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
     final fontTheme = context.theme.fonts;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
       appBar: DeFiRaiseAppBar(
@@ -126,7 +127,7 @@ class SelectNetworkScreen extends StatelessWidget {
           margin: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: colors.bgB0,
+            color: isLightMode ? colors.bgB0 : colors.bgB1,
           ),
           child: ListView.separated(
             separatorBuilder: (context, index) => SizedBox(height: 10.sp),

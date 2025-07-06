@@ -60,10 +60,12 @@ class AssetDepositScreen extends StatelessWidget {
   Widget _buildWarningBanner(BuildContext context) {
     final colors = context.theme.colors;
     final fontTheme = context.theme.fonts;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(
@@ -113,13 +115,14 @@ class AssetDepositScreen extends StatelessWidget {
     BuildContext context,
   ) {
     final colors = context.theme.colors;
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: _containerPadding,
         vertical: 24.0,
       ),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: isLightMode ? colors.bgB0 : colors.bgB1,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Column(
