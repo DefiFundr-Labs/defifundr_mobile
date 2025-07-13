@@ -37,8 +37,8 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
       builder: (context) => DeleteSubmissionBottomSheet(
         timesheet: timesheet,
         onConfirmDelete: () {
-          Navigator.pop(context); // Close bottom sheet
-          Navigator.pop(context); // Go back to previous screen
+          Navigator.pop(context);
+          Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Submission deleted successfully'),
