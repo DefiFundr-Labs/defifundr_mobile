@@ -32,6 +32,7 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/individual_acco
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/confirm_pin_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/pin_created_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contracts_screen.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
@@ -41,7 +42,6 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_done.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_payment_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transaction_screen.dart';
-import 'package:defifundr_mobile/modules/time_off/presentation/screens/contracts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
