@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/modules/homepage/presentation/widgets/animated_progress_bar.dart';
-import 'package:defifundr_mobile/modules/homepage/presentation/widgets/onboarding_card.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/animated_progress_bar.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/onboarding_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

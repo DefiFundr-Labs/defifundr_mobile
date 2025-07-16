@@ -19,7 +19,7 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw/sent_scre
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/two_fa_auth_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_screen.dart';
-import 'package:defifundr_mobile/modules/homepage/presentation/screens/onboarding_checklist_screen.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/select_id_country_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_in_progress_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verify_identity_screen.dart';
