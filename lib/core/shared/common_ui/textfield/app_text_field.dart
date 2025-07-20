@@ -50,6 +50,7 @@ class AppTextField extends StatefulWidget {
     this.enabled = true,
     this.hintColor,
     this.hideText = false,
+    this.maxLine = 1,
     this.textInputAction = TextInputAction.next,
     this.textCapitalization = TextCapitalization.sentences,
     this.alwaysShowLabelAndHint = false,
@@ -70,6 +71,7 @@ class AppTextField extends StatefulWidget {
   final String? hintText;
   final Color? textColor;
   final String? initialValue;
+  final int? maxLine;
 
   /// This represents the optional widget or icon to be displayed before the text field input.
   ///
@@ -383,10 +385,10 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     // Build the text field with conditional layout
     Widget textField = _buildTextField(context, isDark);
-    
+
     // If alwaysShowLabelAndHint is true, wrap with a column that includes the label
     if (widget.alwaysShowLabelAndHint && widget.labelText != null) {
       textField = Column(
@@ -408,7 +410,7 @@ class _AppTextFieldState extends State<AppTextField> {
         ],
       );
     }
-    
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -465,6 +467,7 @@ class _AppTextFieldState extends State<AppTextField> {
             obscuringCharacter: '●',
             focusNode: widget.focusNode,
             onTap: widget.onTap,
+            maxLines: widget.maxLine,
             keyboardType: widget.keyboardType,
             readOnly: widget.readOnly,
             style: context.theme.fonts.textMdRegular.copyWith(
@@ -551,7 +554,8 @@ class _AppTextFieldState extends State<AppTextField> {
               fillColor: _getFillColor(context, isDark),
               filled: true,
               // Conditionally set label based on alwaysShowLabelAndHint
-              labelText: widget.alwaysShowLabelAndHint ? null : widget.labelText,
+              labelText:
+                  widget.alwaysShowLabelAndHint ? null : widget.labelText,
               hintText: widget.hintText,
               labelStyle: context.textTheme.labelSmall?.copyWith(
                 fontSize: 12.sp,
@@ -561,8 +565,7 @@ class _AppTextFieldState extends State<AppTextField> {
               ),
               hintStyle: context.textTheme.labelSmall?.copyWith(
                 fontSize: 14.sp,
-                color:
-                    widget.hintColor ?? context.theme.colors.graySecondary,
+                color: widget.hintColor ?? context.theme.colors.graySecondary,
               ),
               isDense: true,
               prefix: _buildPrefixWidget(),
@@ -575,7 +578,8 @@ class _AppTextFieldState extends State<AppTextField> {
                       initialData: false,
                       builder: (context, snapshot) {
                         return Padding(
-                          padding: EdgeInsets.only(top: snapshot.data! ? 17 : 0),
+                          padding:
+                              EdgeInsets.only(top: snapshot.data! ? 17 : 0),
                           child: _buildPrefixIcon(),
                         );
                       },

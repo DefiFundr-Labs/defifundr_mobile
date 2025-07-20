@@ -3,6 +3,8 @@ import 'package:defifundr_mobile/modules/authentication/presentation/forget_pass
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/screen/expenses_screen.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
@@ -19,7 +21,6 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw/sent_scre
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/two_fa_auth_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_preview_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/withdraw_screen.dart';
-import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/select_id_country_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_in_progress_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verify_identity_screen.dart';
@@ -32,7 +33,6 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/individual_acco
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/dial_code_selection.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/confirm_pin_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/pin_created_screen.dart';
-import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contracts_screen.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/invoice.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
@@ -66,7 +66,7 @@ class AppRouter {
               key: state.pageKey,
               // child: LoginScreen(),
               // child: CreatePinScreen(),
-              child: ContractsScreen(),
+              child: ExpensesScreen(),
               // child: PasswordValidationScreen(),
               // child: VerifyAccountScreen(),
               // child: PinLoginScreen(

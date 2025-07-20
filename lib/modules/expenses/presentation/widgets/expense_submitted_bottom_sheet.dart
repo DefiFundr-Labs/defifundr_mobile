@@ -1,4 +1,7 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void showExpenseSubmittedBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -10,6 +13,8 @@ void showExpenseSubmittedBottomSheet(BuildContext context) {
 }
 
 class ExpenseSubmittedBottomSheet extends StatelessWidget {
+  const ExpenseSubmittedBottomSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,60 +40,44 @@ class ExpenseSubmittedBottomSheet extends StatelessWidget {
               color: Colors.indigo,
             ),
           ),
-          
+
           SizedBox(height: 24),
-          
+
           // Title
           Text(
             'Expense submitted',
-            style: TextStyle(
-              fontSize: 24,
+            style: context.theme.fonts.heading2Bold.copyWith(
+              color: context.theme.colors.textPrimary,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w600,
-              color: Colors.black,
             ),
           ),
-          
+
           SizedBox(height: 8),
-          
+
           // Description
           Text(
             'An email has been sent for your request to be\nreviewed.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
+            style: context.theme.fonts.textMdRegular.copyWith(
+              color: context.theme.colors.textSecondary,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
             ),
           ),
-          
+
           SizedBox(height: 32),
-          
-          // Done button
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
+
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+            child: PrimaryButton(
+              text: 'Done',
               onPressed: () {
-                Navigator.pop(context); // Close bottom sheet
-                Navigator.pop(context); // Go back to expenses list
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Done',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
             ),
           ),
-          
-          SizedBox(height: 16),
         ],
       ),
     );

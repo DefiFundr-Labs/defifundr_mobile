@@ -220,6 +220,7 @@ class AppColorDark {
   //Miscellaneous colors
   static const Color contrastBlack = Color(0xFFFFFFFF);
   static const Color contrastWhite = Color(0xFF18181B);
+  static const Color strokePrimary = Color(0x0F18181B);
   static const Color strokeSecondary = Color(0x5252525B);
   static const Color fillTertiary = Color(0x0AFFFFFF);
 }

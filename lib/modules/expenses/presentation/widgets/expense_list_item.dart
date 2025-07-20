@@ -1,5 +1,7 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExpenseListItem extends StatelessWidget {
   final Expense expense;
@@ -13,52 +15,66 @@ class ExpenseListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[200]!),
-      ),
-      child: ListTile(
-        onTap: onTap,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        title: Text(
-          expense.name,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color:
+              isLight ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+          borderRadius: BorderRadius.circular(8),
         ),
-        subtitle: Text(
-          'Expense Date: ${_formatDate(expense.expenseDate)}',
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[600],
-          ),
-        ),
-        trailing: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              '${expense.amount.toInt()} USDT',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    expense.name,
+                    style: context.theme.fonts.textMdRegular.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.sp,
+                      color: context.theme.colors.textPrimary,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    'Expense Date: ${_formatDate(expense.expenseDate)}',
+                    style: context.theme.fonts.textMdRegular.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 4),
-            _buildStatusChip(expense.status),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${expense.amount.toStringAsFixed(2)} USDT',
+                  style: context.theme.fonts.textMdRegular.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                    color: context.theme.colors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                _buildStatusChip(context, expense.status),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStatusChip(ExpenseStatus status) {
+  Widget _buildStatusChip(BuildContext context, ExpenseStatus status) {
     Color backgroundColor;
     Color textColor;
     String text;
@@ -72,7 +88,7 @@ class ExpenseListItem extends StatelessWidget {
       case ExpenseStatus.pending:
         backgroundColor = Colors.orange[100]!;
         textColor = Colors.orange[700]!;
-        text = 'Pending ap...';
+        text = 'Pending';
         break;
       case ExpenseStatus.rejected:
         backgroundColor = Colors.red[100]!;
@@ -81,20 +97,26 @@ class ExpenseListItem extends StatelessWidget {
         break;
     }
 
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12,
-          color: textColor,
-          fontWeight: FontWeight.w500,
+    return Row(
+      children: [
+        Container(
+          height: 6.h,
+          width: 6.w,
+          decoration: BoxDecoration(
+            color: textColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
-      ),
+        SizedBox(width: 3.w),
+        Text(
+          text,
+          style: context.theme.fonts.textMdSemiBold.copyWith(
+            fontSize: 12.sp,
+            color: textColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 

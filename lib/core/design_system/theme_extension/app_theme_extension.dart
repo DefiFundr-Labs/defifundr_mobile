@@ -70,6 +70,7 @@ class AppTheme {
     textHighlightBlue: AppColors.textHighlightBlue,
     contrastBlack: AppColors.contrastBlack,
     contrastWhite: AppColors.contrastWhite,
+    strokePrimary: AppColorDark.strokePrimary,
     strokeSecondary: AppColors.strokeSecondary,
     fillTertiary: AppColors.fillTertiary,
   );
@@ -138,6 +139,7 @@ class AppTheme {
     textHighlightBlue: AppColorDark.textHighlightBlue,
     contrastBlack: AppColorDark.contrastBlack,
     contrastWhite: AppColorDark.contrastWhite,
+    strokePrimary: AppColorDark.strokePrimary,
     strokeSecondary: AppColorDark.strokeSecondary,
     fillTertiary: AppColorDark.fillTertiary,
   );
