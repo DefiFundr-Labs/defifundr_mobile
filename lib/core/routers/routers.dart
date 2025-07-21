@@ -4,7 +4,6 @@ import 'package:defifundr_mobile/modules/authentication/presentation/forget_pass
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
-import 'package:defifundr_mobile/modules/expenses/presentation/screen/expenses_screen.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
@@ -42,6 +41,7 @@ import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_done.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_payment_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/transaction_screen.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/contracts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -66,7 +66,7 @@ class AppRouter {
               key: state.pageKey,
               // child: LoginScreen(),
               // child: CreatePinScreen(),
-              child: ExpensesScreen(),
+              child: ContractsScreen(),
               // child: PasswordValidationScreen(),
               // child: VerifyAccountScreen(),
               // child: PinLoginScreen(
