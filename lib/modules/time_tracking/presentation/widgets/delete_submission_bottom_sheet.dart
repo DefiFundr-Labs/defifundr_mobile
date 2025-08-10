@@ -1,5 +1,10 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../time_off/presentation/widgets/status_chip.dart';
 
 class DeleteSubmissionBottomSheet extends StatefulWidget {
   final SubmittedTimesheet timesheet;
@@ -12,10 +17,12 @@ class DeleteSubmissionBottomSheet extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DeleteSubmissionBottomSheetState createState() => _DeleteSubmissionBottomSheetState();
+  _DeleteSubmissionBottomSheetState createState() =>
+      _DeleteSubmissionBottomSheetState();
 }
 
-class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomSheet> {
+class _DeleteSubmissionBottomSheetState
+    extends State<DeleteSubmissionBottomSheet> {
   TextEditingController reasonController = TextEditingController();
 
   @override
@@ -26,10 +33,20 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
 
   String _formatDate(DateTime date) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
-    
+
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
@@ -37,7 +54,7 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -56,7 +73,7 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: context.theme.colors.fillTertiary,
                 borderRadius: BorderRadius.circular(2.0),
               ),
             ),
@@ -67,29 +84,41 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Header
-                  Text(
-                    'Delete submission?',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Delete submission?',
+                        textAlign: TextAlign.center,
+                        style: context.theme.fonts.heading3Bold.copyWith(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w600,
+                          color: context.theme.colors.textPrimary,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8.0),
-                  Text(
-                    'Are you sure you want to delete this submission?',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
-                    ),
-                  ),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Are you sure you want to delete this submission?',
+                          style: context.theme.fonts.textMdRegular.copyWith(
+                            fontSize: 14.sp,
+                            color: context.theme.colors.textSecondary,
+                          ),
+                        ),
+                      ]),
                   SizedBox(height: 24.0),
 
                   // Submission Details
                   Container(
                     padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[50],
+                      color: context.theme.colors.fillTertiary,
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Column(
@@ -98,19 +127,21 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              widget.timesheet.formattedTotalHours + ' hours worked',
-                              style: TextStyle(
-                                fontSize: 16,
+                              '${widget.timesheet.formattedTotalHours} hours worked',
+                              style:
+                                  context.theme.fonts.textMdSemiBold.copyWith(
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black87,
+                                color: context.theme.colors.textPrimary,
                               ),
                             ),
                             Text(
                               '${widget.timesheet.calculatedAmount.toInt()} ${widget.timesheet.currency}',
-                              style: TextStyle(
-                                fontSize: 16,
+                              style:
+                                  context.theme.fonts.textMdSemiBold.copyWith(
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black87,
+                                color: context.theme.colors.textPrimary,
                               ),
                             ),
                           ],
@@ -121,25 +152,13 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
                           children: [
                             Text(
                               'Submitted: ${_formatDate(widget.timesheet.submissionDate)}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
+                              style: context.theme.fonts.textSmRegular.copyWith(
+                                fontSize: 12.sp,
+                                color: context.theme.colors.textSecondary,
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                              decoration: BoxDecoration(
-                                color: widget.timesheet.statusBackgroundColor,
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Text(
-                                widget.timesheet.status == 'Pending approval' ? 'Pending ap...' : widget.timesheet.status,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: widget.timesheet.statusColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                            StatusChip(
+                              status: widget.timesheet.status,
                             ),
                           ],
                         ),
@@ -172,37 +191,30 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
 
                   SizedBox(height: 32.0),
 
-                  // Action Buttons
                   Row(
                     children: [
                       Expanded(
-                        child: TextButton(
+                        child: PrimaryButton(
+                          text: 'Go back',
+                          enableShine: false,
+                          color: context.theme.colors.fillTertiary,
+                          textColor: context.theme.colors.textSecondary,
                           onPressed: () => Navigator.pop(context),
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Go back',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[700],
-                            ),
-                          ),
                         ),
                       ),
-                      SizedBox(width: 16.0),
+                      const SizedBox(width: 16),
                       Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
+                        flex: 1,
+                        child: PrimaryButton(
+                          text: 'Delete',
+                          color: context.theme.colors.redDefault,
+                          enableShine: false,
                           onPressed: () {
                             if (reasonController.text.trim().isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('Please provide a reason for deletion'),
+                                  content: Text(
+                                      'Please provide a reason for deletion'),
                                   backgroundColor: Colors.red,
                                 ),
                               );
@@ -210,21 +222,6 @@ class _DeleteSubmissionBottomSheetState extends State<DeleteSubmissionBottomShee
                             }
                             widget.onConfirmDelete();
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
-                            foregroundColor: Colors.white,
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Delete',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
                         ),
                       ),
                     ],

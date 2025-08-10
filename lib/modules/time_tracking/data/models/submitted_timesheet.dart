@@ -1,8 +1,9 @@
+import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:flutter/material.dart';
 
 class SubmittedTimesheet {
   final String id;
-  final String status; // 'Approved', 'Rejected', 'Pending approval'
+  final TimeOffStatus status; // 'Approved', 'Rejected', 'Pending approval'
   final DateTime date;
   final DateTime submissionDate;
   final Duration totalHours;

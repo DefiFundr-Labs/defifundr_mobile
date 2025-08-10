@@ -1,3 +1,5 @@
+import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
+
 class TimeEntry {
   final String id;
   final String contractId;
@@ -5,7 +7,7 @@ class TimeEntry {
   final DateTime endTime;
   final double amount;
   final String currency;
-  final String status;
+  final TimeOffStatus status;
   final Duration duration;
 
   TimeEntry({

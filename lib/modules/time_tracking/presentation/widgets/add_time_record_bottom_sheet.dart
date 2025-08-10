@@ -1,5 +1,10 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AddTimeRecordBottomSheet extends StatefulWidget {
   final TimeRecord? timeRecord;
@@ -140,7 +145,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -186,18 +191,22 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                   Container(
                     width: double.infinity,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[50],
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(12.0),
-                      border: Border.all(color: Colors.grey[200]!),
+                      border: Border.all(
+                        color: context.theme.colors.strokeSecondary,
+                      ),
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         value: selectedType,
                         hint: Text(
                           'Record type',
-                          style: TextStyle(color: Colors.grey[500]),
+                          style: context.theme.fonts.textMdRegular.copyWith(
+                            color: context.theme.colors.textTertiary,
+                          ),
                         ),
                         items: recordTypes.map((String type) {
                           return DropdownMenuItem<String>(
@@ -212,6 +221,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                             ),
                           );
                         }).toList(),
+                        dropdownColor: context.theme.colors.bgB1,
                         onChanged: (String? newValue) {
                           if (newValue != null) {
                             setState(() {
@@ -227,48 +237,54 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
 
                   SizedBox(height: 20.0),
 
-                  // Time Selection
+                  // Time Selection - FIXED
                   Row(
                     children: [
                       Expanded(
                         child: GestureDetector(
                           onTap: _selectStartTime,
                           child: Container(
-                            padding: EdgeInsets.all(16.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 18.0, vertical: 10.0),
                             decoration: BoxDecoration(
-                              color: Colors.grey[50],
+                              color: context.theme.colors.bgB1,
                               borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(color: Colors.grey[200]!),
+                              border: Border.all(
+                                color: context.theme.colors.strokeSecondary,
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               children: [
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Start time',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.grey[600],
-                                        ),
+                                    Text(
+                                      'Start time',
+                                      style: context.theme.fonts.textSmRegular
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        color:
+                                            context.theme.colors.textSecondary,
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.access_time,
-                                      color: Colors.grey[600],
-                                      size: 20,
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      _formatTime(startTime),
+                                      style: context.theme.fonts.textMdRegular
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            context.theme.colors.textSecondary,
+                                      ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  _formatTime(startTime),
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black87,
-                                  ),
+                                Spacer(),
+                                SvgPicture.asset(
+                                  Assets.icons.clock,
+                                  color: context.theme.colors.graySecondary,
                                 ),
                               ],
                             ),
@@ -280,41 +296,47 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                         child: GestureDetector(
                           onTap: _selectEndTime,
                           child: Container(
-                            padding: EdgeInsets.all(16.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 18.0, vertical: 10.0),
                             decoration: BoxDecoration(
-                              color: Colors.grey[50],
+                              color: context.theme.colors.bgB1,
                               borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(color: Colors.grey[200]!),
+                              border: Border.all(
+                                color: context.theme.colors.strokeSecondary,
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               children: [
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Expanded(
-                                      child: Text(
-                                        'End time',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.grey[600],
-                                        ),
+                                    Text(
+                                      'End time',
+                                      style: context.theme.fonts.textSmRegular
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        color:
+                                            context.theme.colors.textSecondary,
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.access_time,
-                                      color: Colors.grey[600],
-                                      size: 20,
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      _formatTime(endTime),
+                                      style: context.theme.fonts.textMdRegular
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            context.theme.colors.textSecondary,
+                                      ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  _formatTime(endTime),
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black87,
-                                  ),
+                                Spacer(),
+                                SvgPicture.asset(
+                                  Assets.icons.clock,
+                                  color: context.theme.colors.graySecondary,
                                 ),
                               ],
                             ),
@@ -331,7 +353,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                     width: double.infinity,
                     padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[50],
+                      color: context.theme.colors.fillTertiary,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(color: Colors.grey[200]!),
                     ),
@@ -340,17 +362,17 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                       children: [
                         Text(
                           'No of hours',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
+                          style: context.theme.fonts.textMdRegular.copyWith(
+                            fontSize: 14.sp,
+                            color: context.theme.colors.textSecondary,
                           ),
                         ),
                         Text(
                           _formatDuration(_calculateDuration()),
-                          style: TextStyle(
-                            fontSize: 16,
+                          style: context.theme.fonts.textMdMedium.copyWith(
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                            color: context.theme.colors.textPrimary,
                           ),
                         ),
                       ],
@@ -364,68 +386,43 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                     Row(
                       children: [
                         Expanded(
-                          child: OutlinedButton(
+                          child: TextButton(
                             onPressed: _deleteRecord,
-                            style: OutlinedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 16.0),
-                              side: BorderSide(color: Colors.red),
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              side: BorderSide(
+                                  color: context.theme.colors.redDefault,
+                                  width: 2),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(26),
                               ),
                             ),
                             child: Text(
                               'Delete',
-                              style: TextStyle(
-                                fontSize: 16,
+                              style: context.theme.fonts.textMdMedium.copyWith(
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.red,
+                                color: context.theme.colors.redDefault,
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 16.0),
+                        const SizedBox(width: 16),
                         Expanded(
-                          flex: 2,
-                          child: ElevatedButton(
+                          flex: 1,
+                          child: PrimaryButton(
+                            text: 'Save changes',
+                            enableShine: false,
                             onPressed: _saveRecord,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF6366F1),
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(vertical: 16.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                            ),
-                            child: Text(
-                              'Save changes',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
                           ),
                         ),
                       ],
                     )
                   else
-                    ElevatedButton(
+                    PrimaryButton(
                       onPressed: _saveRecord,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF6366F1),
-                        foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        minimumSize: Size(double.infinity, 0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                      child: Text(
-                        'Add record',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                      enableShine: false,
+                      text: 'Add record',
                     ),
 
                   SizedBox(height: 20.0),

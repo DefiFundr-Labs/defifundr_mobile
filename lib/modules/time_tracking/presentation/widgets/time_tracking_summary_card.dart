@@ -1,5 +1,9 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_tracking_summary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class TimeTrackingSummaryCard extends StatelessWidget {
   final TimeTrackingSummary summary;
@@ -11,34 +15,22 @@ class TimeTrackingSummaryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.0),
-      padding: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
       child: Column(
         children: [
           Row(
             children: [
               _buildSummaryItem(
-                icon: Icons.schedule,
-                iconColor: Color(0xFF6366F1),
+                icon: Assets.icons.clock,
                 label: 'Total hours logged',
                 value: '${summary.totalHours} h',
+                context: context,
               ),
               SizedBox(width: 20.0),
               _buildSummaryItem(
-                icon: Icons.check_circle,
-                iconColor: Colors.green,
+                icon: Assets.icons.checkCircle,
                 label: 'Approved hours',
                 value: '${summary.approvedHours} h',
+                context: context,
               ),
             ],
           ),
@@ -46,17 +38,17 @@ class TimeTrackingSummaryCard extends StatelessWidget {
           Row(
             children: [
               _buildSummaryItem(
-                icon: Icons.access_time,
-                iconColor: Colors.orange,
+                icon: Assets.icons.clockCountdown,
                 label: 'Pending hours',
                 value: '${summary.pendingHours} h',
+                context: context,
               ),
               SizedBox(width: 20.0),
               _buildSummaryItem(
-                icon: Icons.cancel,
-                iconColor: Colors.red,
+                icon: Assets.icons.prohibit,
                 label: 'Denied hours',
                 value: '${summary.deniedHours} h',
+                context: context,
               ),
             ],
           ),
@@ -66,39 +58,61 @@ class TimeTrackingSummaryCard extends StatelessWidget {
   }
 
   Widget _buildSummaryItem({
-    required IconData icon,
-    required Color iconColor,
+    required String icon,
     required String label,
     required String value,
+    required BuildContext context,
   }) {
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: iconColor, size: 20),
-              SizedBox(width: 8.0),
-            ],
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey[600],
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        decoration: ShapeDecoration(
+          color: context.theme.colors.bgB0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shadows: [
+            BoxShadow(
+              color: context.theme.colors.textSecondary,
+              blurRadius: 1,
+              offset: Offset(0, 1),
+              spreadRadius: -5,
+            )
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset(
+                  icon,
+                  height: 20.sp,
+                  width: 20.sp,
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 4.0),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
+            SizedBox(height: 8.0),
+            Text(
+              label,
+              style: context.theme.fonts.textMdRegular.copyWith(
+                color: context.theme.colors.textSecondary,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                height: 1.43,
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 4.0),
+            Text(
+              value,
+              style: TextStyle(
+                color: context.theme.colors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                height: 1.33,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -67,6 +67,7 @@ class AppRouter {
               // child: LoginScreen(),
               // child: CreatePinScreen(),
               child: ContractsScreen(),
+              // child: ContractsScreen(),
               // child: PasswordValidationScreen(),
               // child: VerifyAccountScreen(),
               // child: PinLoginScreen(

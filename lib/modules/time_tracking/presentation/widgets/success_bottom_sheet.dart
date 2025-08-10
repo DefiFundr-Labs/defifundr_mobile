@@ -1,4 +1,9 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SuccessBottomSheet extends StatelessWidget {
   const SuccessBottomSheet({super.key});
@@ -18,29 +23,21 @@ class SuccessBottomSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle bar
-            Container(
-              margin: EdgeInsets.only(bottom: 32.0),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(2.0),
-              ),
-            ),
-
             // Success Icon
             Container(
-              width: 80,
-              height: 80,
+              padding: const EdgeInsets.all(12.0),
               decoration: BoxDecoration(
-                color: Color(0xFF6366F1).withOpacity(0.1),
+                color: context.theme.colors.brandFill,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.access_time,
-                size: 40,
-                color: Color(0xFF6366F1),
+              child: Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: SvgPicture.asset(
+                  Assets.icons.clockUser,
+                  height: 48.h,
+                  width: 48.w,
+                  color: Color(0xFF6366F1),
+                ),
               ),
             ),
 
@@ -49,22 +46,21 @@ class SuccessBottomSheet extends StatelessWidget {
             // Success Title
             Text(
               'Hours worked submitted',
-              style: TextStyle(
-                fontSize: 24,
+              style: context.theme.fonts.heading2Bold.copyWith(
+                fontSize: 24.sp,
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                color: context.theme.colors.textPrimary,
               ),
               textAlign: TextAlign.center,
             ),
 
-            SizedBox(height: 16.0),
-
             // Success Message
             Text(
               'Submission now awaiting approval. An email has been sent to your client.',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
+              style: context.theme.fonts.textMdRegular.copyWith(
+                fontSize: 14.sp,
+                color: context.theme.colors.textSecondary,
+                fontWeight: FontWeight.w400,
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
@@ -73,26 +69,11 @@ class SuccessBottomSheet extends StatelessWidget {
             SizedBox(height: 40.0),
 
             // OK Button
-            ElevatedButton(
+            PrimaryButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF6366F1),
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                minimumSize: Size(double.infinity, 0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-              ),
-              child: Text(
-                'Ok',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              text: 'Ok',
             ),
 
             SizedBox(height: 16.0),

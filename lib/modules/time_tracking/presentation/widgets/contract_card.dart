@@ -1,5 +1,7 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContractCard extends StatelessWidget {
   final Contract contract;
@@ -21,7 +23,8 @@ class ContractCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: context.theme.colors.textPrimary.withOpacity(0.1),
+            spreadRadius: 1,
             blurRadius: 10,
             offset: Offset(0, 2),
           ),
@@ -38,24 +41,26 @@ class ContractCard extends StatelessWidget {
                 children: [
                   Text(
                     contract.title,
-                    style: TextStyle(
-                      fontSize: 16,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: context.theme.fonts.textMdSemiBold.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 25.sp),
                   Text(
                     'Type',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                   Text(
                     contract.type,
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: context.theme.fonts.textMdRegular.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                       color: Colors.black87,
                     ),
@@ -67,35 +72,38 @@ class ContractCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
+                  clipBehavior: Clip.antiAlias,
                   padding:
                       EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
                   decoration: BoxDecoration(
-                    color: Colors.green[50],
+                    color: context.theme.colors.greenFill,
                     borderRadius: BorderRadius.circular(20.0),
+                    border: Border.all(
+                      color: context.theme.colors.greenStroke,
+                    ),
                   ),
                   child: Text(
                     contract.status,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.green[600],
+                    style: context.theme.fonts.textXsSemiBold.copyWith(
+                      fontSize: 10.sp,
+                      color: context.theme.colors.greenDefault,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                SizedBox(height: 12.0),
+                SizedBox(height: 25.sp),
                 Text(
                   '${contract.rate.toInt()} ${contract.currency}',
-                  style: TextStyle(
-                    fontSize: 16,
+                  style: context.theme.fonts.textMdSemiBold.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
                   ),
                 ),
                 Text(
                   'Per Hour',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
+                  style: context.theme.fonts.textSmRegular.copyWith(
+                    fontSize: 12.sp,
+                    color: context.theme.colors.textSecondary,
                   ),
                 ),
               ],

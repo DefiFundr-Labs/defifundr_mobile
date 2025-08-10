@@ -24,7 +24,7 @@ class PrimaryButton extends StatefulWidget {
     this.borderRadius,
     this.hapticFeedback,
     this.enableShake = true,
-    this.enableShine = true,
+    this.enableShine = false,
   });
 
   final Color? color;

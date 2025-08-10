@@ -8,7 +8,7 @@ import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.
 import 'package:defifundr_mobile/modules/invoice/data/models/app_%20constants.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/screens/create_invoice_flow_screen.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/screens/invoice_detail_screen.dart';
+import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/common/empty_state.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_card.dart';

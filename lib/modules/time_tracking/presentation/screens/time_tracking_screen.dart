@@ -1,3 +1,8 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_entry.dart';
@@ -6,6 +11,7 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/subm
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submitted_hours_detail_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/calendar_week_view.dart';
 import '../widgets/time_entry_card.dart';
@@ -28,7 +34,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   String selectedMonth = 'January';
   int selectedYear = 2025;
   String selectedDateRange = 'January 08 - January 14';
-  DateTime selectedDate = DateTime(2025, 1, 12); // Track selected date
+  DateTime selectedDate = DateTime(2025, 1, 12);
 
   @override
   void initState() {
@@ -50,11 +56,9 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   }
 
   void _updateTimeEntriesForSelectedDate() {
-    // Clear previous entries
     timeEntries.clear();
     hasWorkSubmitted = false;
 
-    // Define which days have work submitted with different statuses
     Map<int, Map<String, dynamic>> daysWithWork = {
       10: {
         'status': 'Approved',
@@ -66,7 +70,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
             endTime: DateTime(2025, 1, 10, 17, 30),
             amount: 178.5,
             currency: 'USDT',
-            status: 'Approved',
+            status: TimeOffStatus.approved,
             duration: Duration(hours: 8, minutes: 30),
           ),
         ]
@@ -81,7 +85,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
             endTime: DateTime(2025, 1, 11, 18, 0),
             amount: 168,
             currency: 'USDT',
-            status: 'Rejected',
+            status: TimeOffStatus.rejected,
             duration: Duration(hours: 8, minutes: 0),
           ),
         ]
@@ -96,7 +100,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
             endTime: DateTime(2025, 1, 12, 19, 39),
             amount: 147,
             currency: 'USDT',
-            status: 'Pending approval',
+            status: TimeOffStatus.pending,
             duration: Duration(hours: 6, minutes: 59),
           ),
         ]
@@ -140,55 +144,102 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Time tracking'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Time tracking',
+          actions: [],
         ),
       ),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Date Range Selector
           Padding(
             padding: EdgeInsets.all(16.0),
-            child: GestureDetector(
-              onTap: _showFilterBottomSheet,
-              child: Row(
-                children: [
-                  Text(
-                    'Showing for: ',
-                    style: TextStyle(color: Colors.grey[600]),
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 10.sp,
+                left: 16.sp,
+                right: 12.sp,
+                bottom: 10.sp,
+              ),
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: context.theme.colors.bgB0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 0.50,
+                    strokeAlign: BorderSide.strokeAlignOutside,
+                    color: context.theme.colors.strokeSecondary,
                   ),
-                  Expanded(
-                    child: Text(
-                      selectedDateRange,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: GestureDetector(
+                onTap: _showFilterBottomSheet,
+                child: Row(
+                  children: [
+                    Text(
+                      'Showing for: ',
+                      style: context.theme.fonts.textMdRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                  Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
-                ],
+                    Expanded(
+                      child: Text(
+                        selectedDateRange,
+                        style: context.theme.fonts.textMdMedium.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
+                          color: context.theme.colors.textPrimary,
+                        ),
+                      ),
+                    ),
+                    Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
+                  ],
+                ),
               ),
             ),
           ),
-          // Summary Cards
           TimeTrackingSummaryCard(summary: summary),
           SizedBox(height: 16.0),
-          // Calendar Week View
-          CalendarWeekView(
-            startDate: summary.startDate,
-            endDate: summary.endDate,
-            selectedDate: selectedDate,
-            onDateSelected: _onDateSelected,
-          ),
-          SizedBox(height: 24.0),
-          // Time Entries or Empty State
-          Expanded(
-            child:
-                hasWorkSubmitted ? _buildTimeEntriesList() : _buildEmptyState(),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Container(
+              decoration: ShapeDecoration(
+                color: context.theme.colors.bgB0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                shadows: [
+                  BoxShadow(
+                    color: context.theme.colors.textSecondary,
+                    blurRadius: 1,
+                    offset: Offset(0, 1),
+                    spreadRadius: -5,
+                  )
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CalendarWeekView(
+                    startDate: summary.startDate,
+                    endDate: summary.endDate,
+                    selectedDate: selectedDate,
+                    onDateSelected: _onDateSelected,
+                  ),
+                  SizedBox(height: 5.0),
+                  hasWorkSubmitted
+                      ? _buildTimeEntriesList()
+                      : _buildEmptyState(),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -198,6 +249,8 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
 
   Widget _buildTimeEntriesList() {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       itemCount: timeEntries.length,
       itemBuilder: (context, index) {
@@ -213,7 +266,6 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   }
 
   void _navigateToSubmittedHours(TimeEntry timeEntry) {
-    // Create a SubmittedTimesheet from the TimeEntry
     final submittedTimesheet = SubmittedTimesheet(
       id: timeEntry.id,
       status: timeEntry.status,
@@ -241,7 +293,6 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
         ),
       ),
     ).then((_) {
-      // Refresh the data when returning from detail screen
       setState(() {
         _updateTimeEntriesForSelectedDate();
       });
@@ -262,13 +313,55 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   }
 
   Widget _buildEmptyState() {
-    return Center(
-      child: Text(
-        'You have no worked hours submitted',
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.grey[600],
-        ),
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      decoration: ShapeDecoration(
+        color: const Color(0x0A18181B) /* FILL-TERTIARY */,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 16,
+        children: [
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: 16,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    spacing: 4,
+                    children: [
+                      SizedBox(
+                        width: 287,
+                        child: Text(
+                          'You have no worked hours submitted',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: const Color(0xFF18181B) /* TEXT-PRIMARY */,
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            height: 1.43,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -276,16 +369,16 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   Widget _buildBottomButton() {
     return Container(
       padding: EdgeInsets.all(16.0),
-      child: ElevatedButton(
+      child: PrimaryButton(
+        text: hasWorkSubmitted ? 'Clear hours' : 'Submit hours',
+        enableShine: false,
         onPressed: () {
           if (hasWorkSubmitted) {
-            // Clear existing work
             setState(() {
               hasWorkSubmitted = false;
               _initializeData();
             });
           } else {
-            // Navigate to submit hours screen
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -303,21 +396,6 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
             });
           }
         },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xFF6366F1),
-          foregroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 16.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-        ),
-        child: Text(
-          hasWorkSubmitted ? 'Clear hours' : 'Submit hours',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
       ),
     );
   }

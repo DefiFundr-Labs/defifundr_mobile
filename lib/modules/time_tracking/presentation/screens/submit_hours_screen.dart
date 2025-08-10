@@ -1,3 +1,7 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/work_submission.dart';
@@ -7,9 +11,10 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/subm
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/time_record_card.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/work_description_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/success_bottom_sheet.dart';
-import 'add_time_record_screen.dart';
+import '../widgets/add_time_record_bottom_sheet.dart';
 
 class SubmitHoursScreen extends StatefulWidget {
   final Contract contract;
@@ -144,12 +149,14 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Text('Submit hours'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Submit hours',
+          actions: [],
         ),
       ),
       body: SingleChildScrollView(
@@ -170,10 +177,10 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
               children: [
                 Text(
                   'Record items',
-                  style: TextStyle(
-                    fontSize: 18,
+                  style: context.theme.fonts.textMdMedium.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                    color: context.theme.colors.textPrimary,
                   ),
                 ),
                 GestureDetector(
@@ -182,15 +189,15 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: context.theme.colors.fillTertiary,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Text(
                       'Add record',
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: context.theme.fonts.textMdMedium.copyWith(
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey[700],
+                        color: context.theme.colors.textPrimary,
                       ),
                     ),
                   ),
@@ -204,9 +211,11 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
               Container(
                 padding: EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: context.theme.colors.bgB0,
                   borderRadius: BorderRadius.circular(12.0),
-                  border: Border.all(color: Colors.grey[200]!),
+                  border: Border.all(
+                    color: context.theme.colors.strokeSecondary,
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -215,13 +224,13 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
                       color: Colors.grey[600],
                       size: 20,
                     ),
-                    SizedBox(width: 12.0),
+                    SizedBox(width: 8.w),
                     Expanded(
                       child: Text(
                         'You currently have no time record added.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                        style: context.theme.fonts.textMdRegular.copyWith(
+                          fontSize: 14.sp,
+                          color: context.theme.colors.textSecondary,
                         ),
                       ),
                     ),
@@ -270,25 +279,12 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(16.0),
-        child: ElevatedButton(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        child: PrimaryButton(
           onPressed: _submitHours,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF6366F1),
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-          child: Text(
-            'Submit worked hours',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          enableShine: false,
+          text: 'Submit worked hours',
         ),
       ),
     );

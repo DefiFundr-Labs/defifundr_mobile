@@ -1,13 +1,20 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/work_submission.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/attachment_section.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/date_selector.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/submission_summary.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/success_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/time_record_card.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/work_description_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../data/models/submitted_timesheet.dart';
-import '../../data/models/time_record.dart';
+import '../widgets/add_time_record_bottom_sheet.dart';
+import '../widgets/success_bottom_sheet.dart';
 
 class ResubmitHoursScreen extends StatefulWidget {
   final SubmittedTimesheet timesheet;
@@ -83,6 +90,44 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
     super.dispose();
   }
 
+  void _addTimeRecord() async {
+    final result = await showModalBottomSheet<TimeRecord>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => AddTimeRecordBottomSheet(),
+    );
+
+    if (result != null) {
+      setState(() {
+        timeRecords.add(result);
+      });
+    }
+  }
+
+  void _editTimeRecord(int index) async {
+    final result = await showModalBottomSheet<TimeRecord>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => AddTimeRecordBottomSheet(
+        timeRecord: timeRecords[index],
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        timeRecords[index] = result;
+      });
+    }
+  }
+
+  void _deleteTimeRecord(int index) {
+    setState(() {
+      timeRecords.removeAt(index);
+    });
+  }
+
   void _selectDate() async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -98,35 +143,16 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
     }
   }
 
-  void _removeAttachment() {
+  void _uploadAttachment() {
+    // Simulate file upload
     setState(() {
-      attachmentName = null;
+      attachmentName = 'File name';
     });
   }
 
-  void _addTimeRecord() {
-    // Add new time record logic
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Add time record functionality not implemented yet'),
-        backgroundColor: Colors.blue,
-      ),
-    );
-  }
-
-  void _editTimeRecord(int index) {
-    // Edit time record logic
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Edit time record functionality not implemented yet'),
-        backgroundColor: Colors.blue,
-      ),
-    );
-  }
-
-  void _deleteTimeRecord(int index) {
+  void _removeAttachment() {
     setState(() {
-      timeRecords.removeAt(index);
+      attachmentName = null;
     });
   }
 
@@ -151,6 +177,15 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
       return;
     }
 
+    final submission = WorkSubmission(
+      selectedDate: selectedDate,
+      timeRecords: timeRecords,
+      workDescription: workDescriptionController.text,
+      attachmentName: attachmentName,
+      hourlyRate: widget.timesheet.hourlyRate,
+      currency: widget.timesheet.currency,
+    );
+
     // Show success bottom sheet
     await showModalBottomSheet(
       context: context,
@@ -161,19 +196,67 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
       builder: (context) => SuccessBottomSheet(),
     );
 
-    Navigator.pop(context);
-    Navigator.pop(context); // Go back to the previous screen
+    Navigator.pop(context, submission);
+  }
+
+  Widget _buildRejectionReasonBanner() {
+    if (widget.timesheet.rejectionReason == null) return SizedBox.shrink();
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.only(bottom: 24.0),
+      decoration: BoxDecoration(
+        color: context.theme.colors.redDefault,
+        borderRadius: BorderRadius.circular(12.0),
+        border: Border.all(color: context.theme.colors.redStroke),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.error_outline,
+                color: context.theme.colors.redStroke,
+                size: 20,
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                'Reason for rejection',
+                style: context.theme.fonts.textMdMedium.copyWith(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: context.theme.colors.redDefault,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 8.0),
+          Text(
+            widget.timesheet.rejectionReason!,
+            style: context.theme.fonts.textMdRegular.copyWith(
+              fontSize: 14.sp,
+              color: context.theme.colors.redDefault,
+              height: 1.4,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Text('Resubmit hours worked'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Resubmit hours',
+          actions: [],
         ),
       ),
       body: SingleChildScrollView(
@@ -182,39 +265,7 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Rejection Reason Banner
-            if (widget.timesheet.rejectionReason != null)
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(16.0),
-                margin: EdgeInsets.only(bottom: 24.0),
-                decoration: BoxDecoration(
-                  color: Colors.red[50],
-                  borderRadius: BorderRadius.circular(12.0),
-                  border: Border.all(color: Colors.red[200]!),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Reason for rejection',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red[700],
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      widget.timesheet.rejectionReason!,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.red[600],
-                        height: 1.4,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            _buildRejectionReasonBanner(),
 
             // Date Selector
             DateSelector(
@@ -229,10 +280,10 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
               children: [
                 Text(
                   'Record items',
-                  style: TextStyle(
-                    fontSize: 18,
+                  style: context.theme.fonts.textMdMedium.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                    color: context.theme.colors.textPrimary,
                   ),
                 ),
                 GestureDetector(
@@ -241,15 +292,15 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: context.theme.colors.fillTertiary,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Text(
                       'Add record',
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: context.theme.fonts.textMdMedium.copyWith(
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey[700],
+                        color: context.theme.colors.textPrimary,
                       ),
                     ),
                   ),
@@ -258,16 +309,47 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
             ),
             SizedBox(height: 16.0),
 
-            // Time Records
-            ...timeRecords.asMap().entries.map((entry) {
-              int index = entry.key;
-              TimeRecord record = entry.value;
-              return TimeRecordCard(
-                timeRecord: record,
-                onEdit: () => _editTimeRecord(index),
-                onDelete: () => _deleteTimeRecord(index),
-              );
-            }).toList(),
+            // Time Records or Empty State
+            if (timeRecords.isEmpty)
+              Container(
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: context.theme.colors.bgB0,
+                  borderRadius: BorderRadius.circular(12.0),
+                  border: Border.all(
+                    color: context.theme.colors.strokeSecondary,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: context.theme.colors.textSecondary,
+                      size: 20,
+                    ),
+                    SizedBox(width: 8.w),
+                    Expanded(
+                      child: Text(
+                        'You currently have no time record added.',
+                        style: context.theme.fonts.textMdRegular.copyWith(
+                          fontSize: 14.sp,
+                          color: context.theme.colors.textSecondary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              ...timeRecords.asMap().entries.map((entry) {
+                int index = entry.key;
+                TimeRecord record = entry.value;
+                return TimeRecordCard(
+                  timeRecord: record,
+                  onEdit: () => _editTimeRecord(index),
+                  onDelete: () => _deleteTimeRecord(index),
+                );
+              }).toList(),
 
             SizedBox(height: 24.0),
 
@@ -280,21 +362,19 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
             // Attachment Section
             AttachmentSection(
               attachmentName: attachmentName,
-              onUpload: () {
-                setState(() {
-                  attachmentName = 'File name';
-                });
-              },
+              onUpload: _uploadAttachment,
               onRemove: _removeAttachment,
             ),
             SizedBox(height: 24.0),
 
             // Submission Summary
             SubmissionSummary(
-              totalHours: timeRecords.fold(
-                Duration.zero,
-                (total, record) => total + record.duration,
-              ),
+              totalHours: timeRecords.isNotEmpty
+                  ? timeRecords.fold(
+                      Duration.zero,
+                      (total, record) => total + record.duration,
+                    )
+                  : Duration.zero,
               hourlyRate: widget.timesheet.hourlyRate,
               currency: widget.timesheet.currency,
             ),
@@ -302,25 +382,12 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(16.0),
-        child: ElevatedButton(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        child: PrimaryButton(
           onPressed: _submitHours,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF6366F1),
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-          child: Text(
-            'Submit hours worked',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          enableShine: false,
+          text: 'Resubmit worked hours',
         ),
       ),
     );

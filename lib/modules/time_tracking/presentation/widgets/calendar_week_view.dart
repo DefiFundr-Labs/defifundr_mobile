@@ -1,4 +1,6 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CalendarWeekView extends StatelessWidget {
   final DateTime startDate;
@@ -17,24 +19,20 @@ class CalendarWeekView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 12.sp),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: _buildWeekDays(),
+        children: _buildWeekDays(context),
       ),
     );
   }
 
-  List<Widget> _buildWeekDays() {
+  List<Widget> _buildWeekDays(BuildContext context) {
     List<Widget> days = [];
     List<String> dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
-    // Days with work submitted (visual indicators)
-    List<int> daysWithWork = [
-      10,
-      11,
-      12
-    ]; // Jan 10 (Tuesday), Jan 11 (Wednesday), Jan 12 (Friday)
+    List<int> daysWithWork = [10, 11, 12];
 
     for (int i = 0; i < 7; i++) {
       DateTime dayDate = startDate.add(Duration(days: i));
@@ -48,10 +46,13 @@ class CalendarWeekView extends StatelessWidget {
             width: 40,
             height: 60,
             decoration: BoxDecoration(
-              color: isSelected ? Color(0xFF6366F1) : Colors.transparent,
+              color: isSelected
+                  ? context.theme.colors.brandDefault
+                  : context.theme.colors.fillTertiary,
               borderRadius: BorderRadius.circular(8.0),
               border: hasWork && !isSelected
-                  ? Border.all(color: Color(0xFF6366F1), width: 1)
+                  ? Border.all(
+                      color: context.theme.colors.brandDefault, width: 1)
                   : null,
             ),
             child: Column(
@@ -59,9 +60,11 @@ class CalendarWeekView extends StatelessWidget {
               children: [
                 Text(
                   dayNames[i],
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isSelected ? Colors.white : Colors.grey[600],
+                  style: context.theme.fonts.textMdSemiBold.copyWith(
+                    fontSize: 12.sp,
+                    color: isSelected
+                        ? context.theme.colors.contrastWhite
+                        : context.theme.colors.textSecondary,
                   ),
                 ),
                 SizedBox(height: 4.0),
@@ -71,10 +74,10 @@ class CalendarWeekView extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: isSelected
-                        ? Colors.white
+                        ? context.theme.colors.contrastWhite
                         : hasWork
-                            ? Color(0xFF6366F1)
-                            : Colors.black87,
+                            ? context.theme.colors.textSecondary
+                            : context.theme.colors.textSecondary,
                   ),
                 ),
                 if (hasWork && !isSelected)
@@ -83,7 +86,7 @@ class CalendarWeekView extends StatelessWidget {
                     width: 4,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: context.theme.colors.textSecondary,
                       shape: BoxShape.circle,
                     ),
                   ),

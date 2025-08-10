@@ -1,4 +1,9 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AttachmentSection extends StatelessWidget {
   final String? attachmentName;
@@ -19,25 +24,24 @@ class AttachmentSection extends StatelessWidget {
       children: [
         Text(
           'Attachment (Optional)',
-          style: TextStyle(
-            fontSize: 16,
+          style: context.theme.fonts.textMdMedium.copyWith(
+            fontSize: 14.sp,
             fontWeight: FontWeight.w600,
-            color: Colors.black87,
+            color: context.theme.colors.textPrimary,
           ),
         ),
         SizedBox(height: 12.0),
-        
         if (attachmentName == null)
           GestureDetector(
             onTap: onUpload,
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 40.0),
+              padding: EdgeInsets.symmetric(vertical: 20.0),
               decoration: BoxDecoration(
-                color: Color(0xFF6366F1).withOpacity(0.05),
+                color: context.theme.colors.brandFill,
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
-                  color: Color(0xFF6366F1).withOpacity(0.2),
+                  color: context.theme.colors.brandDefaultContrast,
                   style: BorderStyle.solid,
                 ),
               ),
@@ -45,10 +49,10 @@ class AttachmentSection extends StatelessWidget {
                 children: [
                   Text(
                     'Click to upload',
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF6366F1),
+                      color: context.theme.colors.brandDefaultContrast,
                     ),
                   ),
                 ],
@@ -57,49 +61,77 @@ class AttachmentSection extends StatelessWidget {
           )
         else
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: context.theme.colors.bgB0,
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(color: Colors.grey[200]!),
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.insert_drive_file,
-                  color: Color(0xFF6366F1),
-                  size: 24,
-                ),
+                SvgPicture.asset(Assets.icons.file),
                 SizedBox(width: 12.0),
                 Expanded(
                   child: Text(
                     attachmentName!,
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Colors.black87,
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: onRemove,
-                  child: Icon(
-                    Icons.delete_outline,
-                    color: Colors.red,
-                    size: 20,
+                  child: SvgPicture.asset(
+                    Assets.icons.trash,
                   ),
                 ),
               ],
             ),
           ),
-        
         if (attachmentName == null) ...[
           SizedBox(height: 8.0),
-          Text(
-            'Supported formats: JPG, PNG, HEIC or PDF. Use .ZIP to upload multiple files.',
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey[600],
+          SizedBox(
+            width: context.screenWidth(),
+            child: Text.rich(
+              TextSpan(
+                style: context.theme.fonts.textBaseMedium.copyWith(
+                  color: context.theme.colors.textSecondary,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  height: 1.33,
+                ),
+                children: [
+                  TextSpan(
+                    text: 'Supported formats: ',
+                  ),
+                  TextSpan(
+                    text: 'JPG, PNG, HEIC or PDF. ',
+                    style: context.theme.fonts.textBaseSemiBold.copyWith(
+                      color: context.theme.colors.textPrimary,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      height: 1.33,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Use ',
+                  ),
+                  TextSpan(
+                    text: '.ZIP',
+                    style: context.theme.fonts.textBaseSemiBold.copyWith(
+                      color: context.theme.colors.textPrimary,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      height: 1.33,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' to upload multiple files.',
+                  ),
+                ],
+              ),
             ),
           ),
         ],

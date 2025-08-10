@@ -27,8 +27,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/CarProfile.svg
   String get carProfile => 'assets/icons/CarProfile.svg';
 
+  /// File path: assets/icons/CheckCircle.svg
+  String get checkCircle => 'assets/icons/CheckCircle.svg';
+
+  /// File path: assets/icons/Clock.svg
+  String get clock => 'assets/icons/Clock.svg';
+
+  /// File path: assets/icons/ClockCountdown.svg
+  String get clockCountdown => 'assets/icons/ClockCountdown.svg';
+
+  /// File path: assets/icons/ClockUser.svg
+  String get clockUser => 'assets/icons/ClockUser.svg';
+
   /// File path: assets/icons/Copy.svg
   String get copy => 'assets/icons/Copy.svg';
+
+  /// File path: assets/icons/File.svg
+  String get file => 'assets/icons/File.svg';
 
   /// File path: assets/icons/Globe.svg
   String get globe => 'assets/icons/Globe.svg';
@@ -54,6 +69,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Money copy.svg
   String get moneyCopy => 'assets/icons/Money copy.svg';
 
+  /// File path: assets/icons/Prohibit.svg
+  String get prohibit => 'assets/icons/Prohibit.svg';
+
   /// File path: assets/icons/QrCode.svg
   String get qrCodeSvg => 'assets/icons/QrCode.svg';
 
@@ -62,6 +80,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/Scales.svg
   String get scales => 'assets/icons/Scales.svg';
+
+  /// File path: assets/icons/Trash.svg
+  String get trash => 'assets/icons/Trash.svg';
 
   /// File path: assets/icons/UserCircle.svg
   String get userCircleSvg => 'assets/icons/UserCircle.svg';
@@ -356,7 +377,12 @@ class $AssetsIconsGen {
     buildingOfficeSvg,
     buildingOfficeSvg_,
     carProfile,
+    checkCircle,
+    clock,
+    clockCountdown,
+    clockUser,
     copy,
+    file,
     globe,
     handCoins,
     identificationCard,
@@ -365,9 +391,11 @@ class $AssetsIconsGen {
     link,
     magnifyingGlass,
     moneyCopy,
+    prohibit,
     qrCodeSvg,
     qrCodeSvg_,
     scales,
+    trash,
     userCircleSvg,
     userCircleSvg_,
     userCircleCheck,

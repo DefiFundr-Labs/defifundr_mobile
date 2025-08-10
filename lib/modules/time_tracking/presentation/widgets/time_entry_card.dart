@@ -1,6 +1,10 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_entry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../time_off/presentation/widgets/status_chip.dart';
 
 class TimeEntryCard extends StatelessWidget {
   final TimeEntry timeEntry;
@@ -15,18 +19,11 @@ class TimeEntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
-      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.only(bottom: 16.r),
+      padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: Offset(0, 2),
-          ),
-        ],
+        color: context.theme.colors.fillTertiary,
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
         children: [
@@ -38,18 +35,18 @@ class TimeEntryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Time period',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
-                  SizedBox(height: 4.0),
+                  SizedBox(height: 4.h),
                   Text(
                     _formatTimeRange(timeEntry.startTime, timeEntry.endTime),
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: context.theme.fonts.textBaseMedium.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF6366F1),
+                      color: context.theme.colors.brandDefault,
                       decoration: TextDecoration.underline,
                     ),
                   ),
@@ -60,25 +57,25 @@ class TimeEntryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Total hours worked',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
-                  SizedBox(height: 4.0),
+                  SizedBox(height: 4.h),
                   Text(
                     _formatDuration(timeEntry.duration),
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: context.theme.fonts.textBaseMedium.copyWith(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Colors.black87,
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          SizedBox(height: 16.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -87,18 +84,18 @@ class TimeEntryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Calculated amount',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                   SizedBox(height: 4.0),
                   Text(
                     '${timeEntry.amount.toInt()} ${timeEntry.currency}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                    style: context.theme.fonts.textBaseMedium.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                 ],
@@ -108,28 +105,14 @@ class TimeEntryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Status',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      fontSize: 12.sp,
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                   SizedBox(height: 4.0),
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-                    decoration: BoxDecoration(
-                      color: Colors.orange[50],
-                      borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.orange[300]!),
-                    ),
-                    child: Text(
-                      timeEntry.status,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.orange[600],
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                  StatusChip(
+                    status: timeEntry.status,
                   ),
                 ],
               ),

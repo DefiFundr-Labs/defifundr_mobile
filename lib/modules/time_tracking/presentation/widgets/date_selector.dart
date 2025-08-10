@@ -1,4 +1,8 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class DateSelector extends StatelessWidget {
   final DateTime selectedDate;
@@ -34,9 +38,9 @@ class DateSelector extends StatelessWidget {
     return GestureDetector(
       onTap: onDateSelected,
       child: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.theme.colors.bgB0,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(
@@ -54,25 +58,23 @@ class DateSelector extends StatelessWidget {
               children: [
                 Text(
                   'Select date',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
+                  style: context.theme.fonts.textMdRegular.copyWith(
+                    fontSize: 12.sp,
+                    color: context.theme.colors.textSecondary,
                   ),
                 ),
                 SizedBox(height: 4.0),
                 Text(
                   _formatDate(selectedDate),
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                  style: context.theme.fonts.textMdRegular.copyWith(
+                    fontSize: 16.sp,
+                    color: context.theme.colors.textPrimary,
                   ),
                 ),
               ],
             ),
-            Icon(
-              Icons.calendar_today_outlined,
-              color: Colors.grey[600],
+            SvgPicture.asset(
+              Assets.icons.calendar,
             ),
           ],
         ),
