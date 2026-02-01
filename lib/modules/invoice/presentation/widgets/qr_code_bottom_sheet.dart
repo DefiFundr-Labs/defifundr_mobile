@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -80,7 +81,7 @@ class QRCodeBottomSheet extends StatelessWidget {
             iconColor: context.theme.colors.textPrimary,
             fixedSize: Size(double.infinity, 48.h),
             onPressed: () {
-              Navigator.pop(context);
+              context.router.maybePop();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('QR code saved as image')),
               );
@@ -100,7 +101,7 @@ class QRCodeBottomSheet extends StatelessWidget {
             textColor: context.theme.colors.contrastWhite,
             fixedSize: Size(double.infinity, 48.h),
             onPressed: () {
-              Navigator.pop(context);
+              context.router.maybePop();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('QR code shared')),
               );

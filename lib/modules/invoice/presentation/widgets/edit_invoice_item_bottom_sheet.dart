@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
@@ -150,7 +151,7 @@ class _EditInvoiceItemBottomSheetState
           child: TextButton(
             onPressed: () {
               widget.onDelete();
-              Navigator.pop(context);
+              context.router.maybePop();
             },
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -193,7 +194,7 @@ class _EditInvoiceItemBottomSheetState
         price: double.tryParse(_priceController.text) ?? widget.item.price,
       );
       widget.onSave(updatedItem);
-      Navigator.pop(context);
+      context.router.maybePop();
     }
   }
 }

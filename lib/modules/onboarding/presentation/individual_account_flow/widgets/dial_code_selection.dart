@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class DialCodeSelectionScreen extends StatefulWidget {
@@ -67,7 +68,7 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                         IconButton(
                           icon: const Icon(Icons.arrow_back_ios,
                               color: Colors.white, size: 20),
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => context.router.maybePop(),
                         ),
                       ],
                     ),
@@ -144,7 +145,7 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                           final country = _filteredCountries[index];
                           return InkWell(
                             onTap: () {
-                              Navigator.pop(context, country);
+                              context.router.maybePop(country);
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(

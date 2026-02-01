@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
@@ -136,7 +137,7 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
         price: double.tryParse(_priceController.text) ?? 0.0,
       );
       widget.onAdd(item);
-      Navigator.pop(context);
+      context.router.maybePop();
     }
   }
 }

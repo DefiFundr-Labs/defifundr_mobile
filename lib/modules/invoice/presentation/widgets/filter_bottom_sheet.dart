@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -318,10 +319,12 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   }
 
   void _applyFilters() {
-    Navigator.pop(context, {
-      'statuses': selectedStatuses,
-      'fromDate': fromDate,
-      'toDate': toDate,
-    });
+    context.router.maybePop(
+      {
+        'statuses': selectedStatuses,
+        'fromDate': fromDate,
+        'toDate': toDate,
+      },
+    );
   }
 }

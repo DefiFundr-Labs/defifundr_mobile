@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class SelectionBottomSheet<T> extends StatelessWidget {
@@ -31,7 +32,7 @@ class SelectionBottomSheet<T> extends StatelessWidget {
                 final item = items[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.pop(context, item);
+                    context.router.maybePop(item);
                   },
                   child: itemBuilder(context, item),
                 );

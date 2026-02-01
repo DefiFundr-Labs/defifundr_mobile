@@ -17,7 +17,7 @@ class EnablePushNotificationScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? colors.bgB0 // Light mode color
+          ? colors.bgB0 
           : colors.bgB1,
       body: SafeArea(
         child: Padding(
@@ -57,14 +57,14 @@ class EnablePushNotificationScreen extends StatelessWidget {
               PrimaryButton(
                 text: 'Enable',
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                 context.router.popUntilRoot();              
                 },
               ),
               const SizedBox(height: 12),
               SmallButton(
                 text: 'Skip',
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  context.router.popUntilRoot();                      
                 },
               ),
               const SizedBox(height: 24),

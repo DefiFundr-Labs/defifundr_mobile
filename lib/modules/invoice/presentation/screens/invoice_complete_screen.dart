@@ -37,8 +37,7 @@ class InvoiceCompleteScreen extends StatelessWidget {
               ),
               PrimaryButton(
                 text: 'Done',
-                onPressed: () =>
-                    Navigator.of(context).popUntil((route) => route.isFirst),
+                onPressed: () => context.router.popUntilRoot(),
               ),
             ],
           ),

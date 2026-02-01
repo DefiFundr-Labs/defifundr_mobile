@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/routers/guards/auth_guard.dart';
+import 'package:defifundr_mobile/core/routers/route_constants.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
@@ -112,111 +113,397 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        // Authentication routes
-        AutoRoute(page: LoginRoute.page, initial: true),
-        AutoRoute(page: ResetPasswordRoute.page),
-        AutoRoute(page: VerifyOtpRoute.page),
-        AutoRoute(page: NewPasswordRoute.page),
-        AutoRoute(page: PasswordResetSuccessRoute.page),
-        AutoRoute(page: PinCodeRoute.page),
+        // ============================================================
+        // AUTHENTICATION ROUTES
+        // ============================================================
+        AutoRoute(
+          page: LoginRoute.page,
+          path: RouteConstants.login,
+          initial: true,
+        ),
+        AutoRoute(
+          page: PinCodeRoute.page,
+          path: RouteConstants.pinCode,
+        ),
+        AutoRoute(
+          page: ResetPasswordRoute.page,
+          path: RouteConstants.resetPassword,
+        ),
+        AutoRoute(
+          page: VerifyOtpRoute.page,
+          path: RouteConstants.verifyOtp,
+        ),
+        AutoRoute(
+          page: NewPasswordRoute.page,
+          path: RouteConstants.newPassword,
+        ),
+        AutoRoute(
+          page: PasswordResetSuccessRoute.page,
+          path: RouteConstants.passwordResetSuccess,
+        ),
 
-        // Onboarding routes
-        AutoRoute(page: CreateAccountRoute.page),
-        AutoRoute(page: CreatePasswordRoute.page),
-        AutoRoute(page: VerifyAccountRoute.page),
-        AutoRoute(page: AccountTypeRoute.page),
-        AutoRoute(page: PersonalDetailsRoute.page),
-        AutoRoute(page: AddressDetailsRoute.page),
-        AutoRoute(page: ProfileCreatedSucessRoute.page),
-        AutoRoute(page: CreatePinRoute.page),
-        AutoRoute(page: ConfirmPinRoute.page),
-        AutoRoute(page: PinCreatedRoute.page),
-        AutoRoute(page: EnableFaceIdRoute.page),
-        AutoRoute(page: EnableFingerprintRoute.page),
-        AutoRoute(page: EnablePushNotificationRoute.page),
+        // ============================================================
+        // ONBOARDING ROUTES
+        // ============================================================
+        AutoRoute(
+          page: CreateAccountRoute.page,
+          path: RouteConstants.createAccount,
+        ),
+        AutoRoute(
+          page: CreatePasswordRoute.page,
+          path: RouteConstants.createPassword,
+        ),
+        AutoRoute(
+          page: VerifyAccountRoute.page,
+          path: RouteConstants.verifyAccount,
+        ),
+        AutoRoute(
+          page: AccountTypeRoute.page,
+          path: RouteConstants.accountType,
+        ),
+        AutoRoute(
+          page: PersonalDetailsRoute.page,
+          path: RouteConstants.personalDetails,
+        ),
+        AutoRoute(
+          page: AddressDetailsRoute.page,
+          path: RouteConstants.addressDetails,
+        ),
+        AutoRoute(
+          page: ProfileCreatedSucessRoute.page,
+          path: RouteConstants.profileCreatedSuccess,
+        ),
+        AutoRoute(
+          page: CreatePinRoute.page,
+          path: RouteConstants.createPin,
+        ),
+        AutoRoute(
+          page: ConfirmPinRoute.page,
+          path: RouteConstants.confirmPin,
+        ),
+        AutoRoute(
+          page: PinCreatedRoute.page,
+          path: RouteConstants.pinCreated,
+        ),
+        AutoRoute(
+          page: EnableFaceIdRoute.page,
+          path: RouteConstants.enableFaceId,
+        ),
+        AutoRoute(
+          page: EnableFingerprintRoute.page,
+          path: RouteConstants.enableFingerprint,
+        ),
+        AutoRoute(
+          page: EnablePushNotificationRoute.page,
+          path: RouteConstants.enablePushNotification,
+        ),
 
-        // Dashboard
-        AutoRoute(page: OnboardingChecklistRoute.page, guards: [authGuard]),
+        // ============================================================
+        // DASHBOARD ROUTES
+        // ============================================================
+        AutoRoute(
+          page: OnboardingChecklistRoute.page,
+          path: RouteConstants.dashboard,
+          guards: [authGuard],
+        ),
 
-        // KYC routes
-        AutoRoute(page: ProvideBvnRoute.page, guards: [authGuard]),
-        AutoRoute(page: ProcessingBvnRequestRoute.page, guards: [authGuard]),
-        AutoRoute(page: VerifyIdentityRoute.page, guards: [authGuard]),
-        AutoRoute(page: SelectIdCountryRoute.page, guards: [authGuard]),
-        AutoRoute(page: VerificationInProgressRoute.page, guards: [authGuard]),
-        AutoRoute(page: TaxInformationRoute.page, guards: [authGuard]),
+        // ============================================================
+        // KYC ROUTES
+        // ============================================================
+        AutoRoute(
+          page: ProvideBvnRoute.page,
+          path: RouteConstants.kycProvideBvn,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ProcessingBvnRequestRoute.page,
+          path: RouteConstants.kycProcessingBvn,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: VerifyIdentityRoute.page,
+          path: RouteConstants.kycVerifyIdentity,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SelectIdCountryRoute.page,
+          path: RouteConstants.kycSelectCountry,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: VerificationInProgressRoute.page,
+          path: RouteConstants.kycVerificationInProgress,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TaxInformationRoute.page,
+          path: RouteConstants.kycTaxInformation,
+          guards: [authGuard],
+        ),
 
-        // Finance routes
-        AutoRoute(page: FinanceHomeRoute.page, guards: [authGuard]),
-        AutoRoute(page: SelectNetworkRoute.page, guards: [authGuard]),
-        AutoRoute(page: SelectAssetRoute.page, guards: [authGuard]),
-        AutoRoute(page: AssetDetailsRoute.page, guards: [authGuard]),
-        AutoRoute(page: AssetDepositRoute.page, guards: [authGuard]),
-        AutoRoute(page: WithdrawRoute.page, guards: [authGuard]),
-        AutoRoute(page: WithdrawPreviewRoute.page, guards: [authGuard]),
-        AutoRoute(page: TwoFaAuthRoute.page, guards: [authGuard]),
-        AutoRoute(page: ConfirmPaymentRoute.page, guards: [authGuard]),
-        AutoRoute(page: SentRoute.page, guards: [authGuard]),
-        AutoRoute(page: ReceiveRoute.page, guards: [authGuard]),
-        AutoRoute(page: AddAddressRoute.page, guards: [authGuard]),
-        AutoRoute(page: AddressBookRoute.page, guards: [authGuard]),
+        // ============================================================
+        // FINANCE ROUTES
+        // ============================================================
+        AutoRoute(
+          page: FinanceHomeRoute.page,
+          path: RouteConstants.finance,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SelectNetworkRoute.page,
+          path: RouteConstants.financeSelectNetwork,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SelectAssetRoute.page,
+          path: RouteConstants.financeSelectAsset,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AssetDetailsRoute.page,
+          path: RouteConstants.financeAssetDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AssetDepositRoute.page,
+          path: RouteConstants.financeAssetDeposit,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: WithdrawRoute.page,
+          path: RouteConstants.financeWithdraw,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: WithdrawPreviewRoute.page,
+          path: RouteConstants.financeWithdrawPreview,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TwoFaAuthRoute.page,
+          path: RouteConstants.financeTwoFaAuth,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ConfirmPaymentRoute.page,
+          path: RouteConstants.financeConfirmPayment,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SentRoute.page,
+          path: RouteConstants.financeSent,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ReceiveRoute.page,
+          path: RouteConstants.financeReceive,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AddAddressRoute.page,
+          path: RouteConstants.financeAddAddress,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AddressBookRoute.page,
+          path: RouteConstants.financeAddressBook,
+          guards: [authGuard],
+        ),
 
-        // QuickPay routes
-        AutoRoute(page: QuickPayHomeRoute.page, guards: [authGuard]),
-        AutoRoute(page: ReceivePaymentRoute.page, guards: [authGuard]),
-        AutoRoute(page: ReceivePaymentDoneRoute.page, guards: [authGuard]),
-        AutoRoute(page: TransactionRoute.page, guards: [authGuard]),
-        AutoRoute(page: InvoiceDetailRoute.page, guards: [authGuard]),
+        // ============================================================
+        // QUICKPAY ROUTES
+        // ============================================================
+        AutoRoute(
+          page: QuickPayHomeRoute.page,
+          path: RouteConstants.quickpay,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ReceivePaymentRoute.page,
+          path: RouteConstants.quickpayReceivePayment,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ReceivePaymentDoneRoute.page,
+          path: RouteConstants.quickpayReceiveDone,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TransactionRoute.page,
+          path: RouteConstants.quickpayTransaction,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: InvoiceDetailRoute.page,
+          path: RouteConstants.quickpayInvoiceDetail,
+          guards: [authGuard],
+        ),
 
-        // Payment routes
-        AutoRoute(page: UpcomingPaymentsRoute.page, guards: [authGuard]),
+        // ============================================================
+        // PAYMENT ROUTES
+        // ============================================================
+        AutoRoute(
+          page: UpcomingPaymentsRoute.page,
+          path: RouteConstants.paymentsUpcoming,
+          guards: [authGuard],
+        ),
 
-        // Time Tracking routes
+        // ============================================================
+        // TIME TRACKING ROUTES
+        // ============================================================
         AutoRoute(
           page: TimeTrackingRoute.page,
+          path: RouteConstants.timeTracking,
           guards: [authGuard],
         ),
         AutoRoute(
           page: TimeTrackingContractsRoute.page,
+          path: RouteConstants.timeTrackingContracts,
           guards: [authGuard],
         ),
-        AutoRoute(page: SubmitHoursRoute.page, guards: [authGuard]),
-        AutoRoute(page: ResubmitHoursRoute.page, guards: [authGuard]),
-        AutoRoute(page: SubmittedHoursDetailRoute.page, guards: [authGuard]),
+        AutoRoute(
+          page: SubmitHoursRoute.page,
+          path: RouteConstants.timeTrackingSubmitHours,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ResubmitHoursRoute.page,
+          path: RouteConstants.timeTrackingResubmitHours,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SubmittedHoursDetailRoute.page,
+          path: RouteConstants.timeTrackingSubmittedHoursDetail,
+          guards: [authGuard],
+        ),
 
-        // Time Off routes
-        AutoRoute(page: TimeOffRoute.page, guards: [authGuard]),
-        AutoRoute(page: TimeOffDetailsRoute.page, guards: [authGuard]),
-        AutoRoute(page: TimeOffDetailRoute.page, guards: [authGuard]),
-        AutoRoute(page: NewTimeOffRequestRoute.page, guards: [authGuard]),
-        AutoRoute(page: EditTimeOffRequestRoute.page, guards: [authGuard]),
-        AutoRoute(page: CancelTimeOffRequestRoute.page, guards: [authGuard]),
-        AutoRoute(page: RequestChangeRoute.page, guards: [authGuard]),
-        AutoRoute(page: TimeOffHistoryRoute.page, guards: [authGuard]),
-        AutoRoute(page: UnpaidTimeOffBalanceRoute.page, guards: [authGuard]),
+        // ============================================================
+        // TIME OFF ROUTES
+        // ============================================================
+        AutoRoute(
+          page: TimeOffRoute.page,
+          path: RouteConstants.timeOff,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TimeOffDetailsRoute.page,
+          path: RouteConstants.timeOffDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TimeOffDetailRoute.page,
+          path: RouteConstants.timeOffDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: NewTimeOffRequestRoute.page,
+          path: RouteConstants.timeOffNewRequest,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: EditTimeOffRequestRoute.page,
+          path: RouteConstants.timeOffEditRequest,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: CancelTimeOffRequestRoute.page,
+          path: RouteConstants.timeOffCancelRequest,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: RequestChangeRoute.page,
+          path: RouteConstants.timeOffRequestChange,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TimeOffHistoryRoute.page,
+          path: RouteConstants.timeOffHistory,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: UnpaidTimeOffBalanceRoute.page,
+          path: RouteConstants.timeOffUnpaidBalance,
+          guards: [authGuard],
+        ),
         AutoRoute(
           page: TimeOffContractsRoute.page,
+          path: RouteConstants.timeOffContracts,
           guards: [authGuard],
         ),
 
-        // Pay Cycle routes
-        AutoRoute(page: PayCycleContractsRoute.page, guards: [authGuard]),
-        AutoRoute(page: ContractDetailRoute.page, guards: [authGuard]),
-        AutoRoute(page: PayoutDetailRoute.page, guards: [authGuard]),
+        // ============================================================
+        // PAY CYCLE ROUTES
+        // ============================================================
+        AutoRoute(
+          page: PayCycleContractsRoute.page,
+          path: RouteConstants.payCycleContracts,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ContractDetailRoute.page,
+          path: RouteConstants.payCycleContractDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PayoutDetailRoute.page,
+          path: RouteConstants.payCyclePayoutDetail,
+          guards: [authGuard],
+        ),
 
-        // Invoice routes
-        AutoRoute(page: InvoicesRoute.page, guards: [authGuard]),
-        AutoRoute(page: CreateInvoiceFlowRoute.page, guards: [authGuard]),
-        AutoRoute(page: InvoiceCompleteRoute.page, guards: [authGuard]),
+        // ============================================================
+        // INVOICE ROUTES
+        // ============================================================
+        AutoRoute(
+          page: InvoicesRoute.page,
+          path: RouteConstants.invoices,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: CreateInvoiceFlowRoute.page,
+          path: RouteConstants.invoicesCreate,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: InvoiceCompleteRoute.page,
+          path: RouteConstants.invoicesComplete,
+          guards: [authGuard],
+        ),
 
-        // Expenses routes
-        AutoRoute(page: ExpensesRoute.page, guards: [authGuard]),
-        AutoRoute(page: AddExpenseRoute.page, guards: [authGuard]),
-        AutoRoute(page: ExpenseDetailsRoute.page, guards: [authGuard]),
-        AutoRoute(page: ExpenseSubmittedRoute.page, guards: [authGuard]),
-        AutoRoute(page: ExpensesTimeOffDetailsRoute.page, guards: [authGuard]),
+        // ============================================================
+        // EXPENSE ROUTES
+        // ============================================================
+        AutoRoute(
+          page: ExpensesRoute.page,
+          path: RouteConstants.expenses,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AddExpenseRoute.page,
+          path: RouteConstants.expensesAdd,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ExpenseDetailsRoute.page,
+          path: RouteConstants.expensesDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ExpenseSubmittedRoute.page,
+          path: RouteConstants.expensesSubmitted,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ExpensesTimeOffDetailsRoute.page,
+          path: RouteConstants.expensesTimeOffDetails,
+          guards: [authGuard],
+        ),
 
-        // Web3Auth test
-        AutoRoute(page: Web3authTestRoute.page),
+        // ============================================================
+        // WEB3AUTH TEST ROUTE
+        // ============================================================
+        AutoRoute(
+          page: Web3authTestRoute.page,
+          path: RouteConstants.web3authTest,
+        ),
       ];
 }
