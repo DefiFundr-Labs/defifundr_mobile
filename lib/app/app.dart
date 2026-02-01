@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/components/dismiss_keyboard.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
@@ -16,6 +17,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final _appRouter = AppRouter();
+  final _routeObserver = AppRouteObserver();
 
   @override
   void didChangeDependencies() {
@@ -50,7 +52,9 @@ class _AppState extends State<App> {
             darkTheme: AppTheme.dark,
             themeMode: ThemeMode.system,
             scrollBehavior: const _AppScrollBehavior(),
-            routerConfig: _appRouter.config(),
+            routerConfig: _appRouter.config(
+              navigatorObservers: () => [_routeObserver],
+            ),
           ),
         ),
       ),
