@@ -1131,6 +1131,22 @@ class ResubmitHoursRouteArgs {
 }
 
 /// generated route for
+/// [SampleBottomSheetScreen]
+class SampleBottomSheetRoute extends PageRouteInfo<void> {
+  const SampleBottomSheetRoute({List<PageRouteInfo>? children})
+    : super(SampleBottomSheetRoute.name, initialChildren: children);
+
+  static const String name = 'SampleBottomSheetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SampleBottomSheetScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SelectAssetScreen]
 class SelectAssetRoute extends PageRouteInfo<SelectAssetRouteArgs> {
   SelectAssetRoute({

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
+import 'package:defifundr_mobile/core/routers/bottom_sheet_route.dart';
 import 'package:defifundr_mobile/core/routers/guards/auth_guard.dart';
 import 'package:defifundr_mobile/core/routers/route_constants.dart';
+import 'package:defifundr_mobile/shared/widgets/sample_bottom_sheet_screen.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
@@ -24,9 +26,6 @@ import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/add_address_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
-import 'package:defifundr_mobile/modules/pay_cycle/data/models/contract.dart';
-import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
-
 // Finance
 import 'package:defifundr_mobile/modules/finance/presentation/finance/screen/finance_home_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/select_assets/asset_deposit_screen.dart';
@@ -65,6 +64,7 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_au
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/enable_fingerprint_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/enable_push_notification_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/screens/pin_created_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contract_detail_screen.dart';
 // Pay Cycle
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contracts_screen.dart';
@@ -91,6 +91,7 @@ import 'package:defifundr_mobile/modules/time_off/presentation/screens/time_off_
 // Time Off
 import 'package:defifundr_mobile/modules/time_off/presentation/screens/time_off_screen.dart';
 import 'package:defifundr_mobile/modules/time_off/presentation/screens/unpaid_time_off_balance_screen.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/contracts_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/resubmit_hours_screen.dart';
@@ -504,6 +505,15 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: Web3authTestRoute.page,
           path: RouteConstants.web3authTest,
+        ),
+
+        // ============================================================
+        // BOTTOM SHEET ROUTES
+        // ============================================================
+        CustomRoute(
+          page: SampleBottomSheetRoute.page,
+          path: '/sample-bottom-sheet',
+          customRouteBuilder: bottomSheetRouteBuilder,
         ),
       ];
 }

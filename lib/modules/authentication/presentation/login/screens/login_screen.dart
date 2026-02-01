@@ -140,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 PrimaryButton(
                   text: "Log In",
                   onPressed: () {
-                    // Navigate to PIN code screen after successful login
                     final userName = _emailController.text.trim().split('@').first;
                     context.router.push(
                       PinCodeRoute(
@@ -157,13 +156,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Log in using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    // Navigate to PIN code screen after Google authentication
-                    context.router.push(
-                      PinCodeRoute(
-                        userName: 'Google User',
-                        biometricType: BiometricType.fingerprint,
-                      ),
-                    );
+                    // context.router.push(
+                    //   PinCodeRoute(
+                    //     userName: 'Google User',
+                    //     biometricType: BiometricType.fingerprint,
+                    //   ),
+                    // );
+                    context.router.push(const SampleBottomSheetRoute());
+
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -171,13 +171,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Log in using Apple',
                   icon: AppAssets.appleIcon,
                   onPressed: () {
-                    // Navigate to PIN code screen after Apple authentication
-                    context.router.push(
-                      PinCodeRoute(
-                        userName: 'Apple User',
-                        biometricType: BiometricType.faceId,
-                      ),
-                    );
+                    // context.router.push(
+                    //   PinCodeRoute(
+                    //     userName: 'Apple User',
+                    //     biometricType: BiometricType.faceId,
+                    //   ),
+                    // );
+                    context.router.push(const SampleBottomSheetRoute());
+
                   },
                 ),
                 SizedBox(height: 20.h),
