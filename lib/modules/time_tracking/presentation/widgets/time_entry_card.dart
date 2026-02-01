@@ -8,7 +8,7 @@ import '../../../time_off/presentation/widgets/status_chip.dart';
 
 class TimeEntryCard extends StatelessWidget {
   final TimeEntry timeEntry;
-  final Contract contract;
+  final TimeTrackingContract contract;
 
   const TimeEntryCard({
     Key? key,

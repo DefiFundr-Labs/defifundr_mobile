@@ -1,13 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-// Widget for a single Network List Item
+
 class NetworkListItem extends StatelessWidget {
   final Network network;
   final VoidCallback? onTap;
@@ -92,6 +92,7 @@ class NetworkListItem extends StatelessWidget {
   }
 }
 
+@RoutePage()
 class SelectNetworkScreen extends StatelessWidget {
   final bool forDeposit;
   final NetworkAsset? selectedAsset;
@@ -156,18 +157,17 @@ class SelectNetworkScreen extends StatelessWidget {
     if (forDeposit && selectedAsset != null) {
       _navigateToAssetDeposit(context, network);
     } else {
-      Navigator.pop(context, network);
+      context.router.maybePop(network);
     }
   }
 
   void _navigateToAssetDeposit(BuildContext context, Network network) {
-    context.pushNamed(
-      RouteConstants.assetDeposit,
-      extra: {
-        'asset': selectedAsset!,
-        'network': network,
-        'address': _placeholderAddress,
-      },
+    context.router.push(
+      AssetDepositRoute(
+        asset: selectedAsset!,
+        network: network,
+        address: _placeholderAddress,
+      ),
     );
   }
 }

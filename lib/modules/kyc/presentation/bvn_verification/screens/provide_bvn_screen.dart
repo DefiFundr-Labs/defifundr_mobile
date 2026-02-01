@@ -1,14 +1,15 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/bvn_verification/widgets/information_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../core/routers/routes_constant.dart';
 import '../../../../onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class ProvideBvnScreen extends StatelessWidget {
   const ProvideBvnScreen({super.key});
 
@@ -56,7 +57,7 @@ class ProvideBvnScreen extends StatelessWidget {
           PrimaryButton(
             text: "Confirm",
             onPressed: () {
-              context.pushNamed(RouteConstants.processingBvnRequestScreen);
+              context.router.push(const ProcessingBvnRequestRoute());
             },
           ),
           SizedBox(height: 20.h),

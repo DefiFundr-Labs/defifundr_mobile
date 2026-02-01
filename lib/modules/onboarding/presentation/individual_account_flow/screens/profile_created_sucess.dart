@@ -1,15 +1,16 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/components/confetti_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
-class ProfileCreatedScreen extends StatelessWidget {
-  const ProfileCreatedScreen({super.key});
+@RoutePage()
+class ProfileCreatedSucessScreen extends StatelessWidget {
+  const ProfileCreatedSucessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +100,7 @@ class ProfileCreatedScreen extends StatelessWidget {
       text: 'Proceed to login',
       isEnabled: true,
       onPressed: () {
-        context.pushNamed(RouteConstants.login);
+        context.router.push(LoginRoute());
       },
     );
   }

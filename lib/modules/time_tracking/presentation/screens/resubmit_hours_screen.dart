@@ -15,7 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/add_time_record_bottom_sheet.dart';
 import '../widgets/success_bottom_sheet.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class ResubmitHoursScreen extends StatefulWidget {
   final SubmittedTimesheet timesheet;
 
@@ -196,7 +198,7 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
       builder: (context) => SuccessBottomSheet(),
     );
 
-    Navigator.pop(context, submission);
+    context.router.maybePop(submission);
   }
 
   Widget _buildRejectionReasonBanner() {

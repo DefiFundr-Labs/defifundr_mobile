@@ -2,8 +2,8 @@ import '../models/contract.dart';
 import '../models/payment_history.dart';
 
 class MockData {
-  static final List<Contract> contracts = [
-    Contract(
+  static final List<PayCycleContract> contracts = [
+    PayCycleContract(
       id: '1',
       title: 'DefiFundr Mobile & Web App Re...',
       type: ContractType.fixedRate,
@@ -11,7 +11,7 @@ class MockData {
       frequency: 'Every month',
       isActive: true,
     ),
-    Contract(
+    PayCycleContract(
       id: '2',
       title: 'Quikdash Mobile & Web App Re...',
       type: ContractType.milestone,
@@ -19,7 +19,7 @@ class MockData {
       frequency: '5 milestones',
       isActive: true,
     ),
-    Contract(
+    PayCycleContract(
       id: '3',
       title: 'Weave Finance Mobile & Web A...',
       type: ContractType.payAsYouGo,
@@ -27,7 +27,7 @@ class MockData {
       frequency: 'Per Deliverable',
       isActive: true,
     ),
-    Contract(
+    PayCycleContract(
       id: '4',
       title: 'BlockLayer Validator Integration...',
       type: ContractType.payAsYouGo,
@@ -35,7 +35,7 @@ class MockData {
       frequency: 'Per Hour',
       isActive: true,
     ),
-    Contract(
+    PayCycleContract(
       id: '5',
       title: 'Legaltide Compliance Audit for...',
       type: ContractType.payAsYouGo,
@@ -43,7 +43,7 @@ class MockData {
       frequency: 'Per Day',
       isActive: true,
     ),
-    Contract(
+    PayCycleContract(
       id: '6',
       title: 'Snapworks Product Photograph...',
       type: ContractType.payAsYouGo,

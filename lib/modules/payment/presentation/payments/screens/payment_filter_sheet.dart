@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:flutter/material.dart';
@@ -142,7 +143,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       _selectedStatus = FilterStatus.all;
                     });
                     // Dismiss sheet and signal to clear filters
-                    Navigator.pop(context, {
+                    context.router.maybePop({
                       'transactionType': FilterTransactionType.all,
                       'status': FilterStatus.all
                     });
@@ -164,7 +165,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                   onPressed: () {
                     // Apply filters and dismiss sheet
                     // Pass selected filters back
-                    Navigator.pop(context, {
+                    context.router.maybePop({
                       'transactionType': _selectedTransactionType,
                       'status': _selectedStatus
                     });

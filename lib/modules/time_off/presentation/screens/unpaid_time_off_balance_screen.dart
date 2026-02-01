@@ -2,7 +2,9 @@ import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/time_off_item.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class UnpaidTimeOffBalanceScreen extends StatelessWidget {
   final List<TimeOffRequest> upcomingTimeOff = [
     TimeOffRequest(
@@ -57,7 +59,7 @@ class UnpaidTimeOffBalanceScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Unpaid time off balance',

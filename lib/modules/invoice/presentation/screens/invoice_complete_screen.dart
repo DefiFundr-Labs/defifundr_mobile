@@ -6,7 +6,9 @@ import 'package:defifundr_mobile/modules/invoice/presentation/widgets/qr_code_bo
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class InvoiceCompleteScreen extends StatelessWidget {
   final InvoiceData invoiceData;
 

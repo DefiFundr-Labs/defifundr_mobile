@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
@@ -11,8 +13,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../data/models/submitted_timesheet.dart';
 import '../widgets/delete_submission_bottom_sheet.dart';
-import 'resubmit_hours_screen.dart';
 
+@RoutePage()
 class SubmittedHoursDetailScreen extends StatelessWidget {
   final SubmittedTimesheet timesheet;
 
@@ -46,8 +48,8 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
       builder: (context) => DeleteSubmissionBottomSheet(
         timesheet: timesheet,
         onConfirmDelete: () {
-          Navigator.pop(context);
-          Navigator.pop(context);
+          context.router.maybePop();
+          context.router.maybePop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Submission deleted successfully'),
@@ -61,12 +63,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
 
   void _handleEditResubmit(BuildContext context) {
     if (timesheet.status == TimeOffStatus.rejected) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResubmitHoursScreen(timesheet: timesheet),
-        ),
-      );
+      context.router.push(ResubmitHoursRoute(timesheet: timesheet));
     } else {
       // Handle edit for pending submissions
       ScaffoldMessenger.of(context).showSnackBar(

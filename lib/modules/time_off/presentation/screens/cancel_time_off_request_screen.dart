@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../data/models/time_off.dart';
 import '../widgets/status_chip.dart';
 import '../widgets/success_bottom_sheet.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class CancelTimeOffRequestScreen extends StatefulWidget {
   final TimeOffDetail timeOffDetail;
 
@@ -61,7 +63,7 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: Text(
           title,

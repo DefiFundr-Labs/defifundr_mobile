@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class ExpenseSubmittedScreen extends StatelessWidget {
   const ExpenseSubmittedScreen({super.key});
 
@@ -86,7 +88,7 @@ class ExpenseSubmittedScreen extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      context.router.maybePop();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo,

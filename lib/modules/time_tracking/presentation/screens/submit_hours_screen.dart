@@ -15,9 +15,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/success_bottom_sheet.dart';
 import '../widgets/add_time_record_bottom_sheet.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class SubmitHoursScreen extends StatefulWidget {
-  final Contract contract;
+  final TimeTrackingContract contract;
 
   const SubmitHoursScreen({Key? key, required this.contract}) : super(key: key);
 
@@ -143,7 +145,7 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
       builder: (context) => SuccessBottomSheet(),
     );
 
-    Navigator.pop(context, submission);
+    context.router.maybePop(submission);
   }
 
   @override

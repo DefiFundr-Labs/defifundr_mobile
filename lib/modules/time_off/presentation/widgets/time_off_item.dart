@@ -1,8 +1,10 @@
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off_detail.dart';
+import 'package:defifundr_mobile/modules/time_off/presentation/screens/time_off_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 
-import '../screens/time_off_detail_screen.dart';
 import 'status_chip.dart';
 
 class TimeOffItem extends StatelessWidget {
@@ -19,12 +21,7 @@ class TimeOffItem extends StatelessWidget {
       onTap: () {
         // Navigate to detail screen based on status
         final timeOffDetail = _createTimeOffDetail();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => TimeOffDetailScreen(timeOffDetail: timeOffDetail),
-          ),
-        );
+        context.router.push(TimeOffDetailRoute(timeOffDetail: timeOffDetail));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),

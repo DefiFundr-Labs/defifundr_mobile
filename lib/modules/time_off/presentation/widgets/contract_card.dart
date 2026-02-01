@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/contract.dart';
 
 class ContractCard extends StatelessWidget {
-  final Contract contract;
+  final TimeOffContract contract;
   final VoidCallback? onTap;
 
   const ContractCard({

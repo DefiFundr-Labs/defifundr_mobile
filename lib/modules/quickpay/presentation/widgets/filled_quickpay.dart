@@ -1,13 +1,14 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
-import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 class FilledQuickpay extends StatefulWidget {
   final List<QuickPayment> quickPays;
@@ -134,9 +135,8 @@ class PaymentTile extends StatelessWidget {
               padding: EdgeInsets.only(top: 8, bottom: 8),
               child: GestureDetector(
                 onTap: () {
-                  context.pushNamed(
-                    RouteConstants.transactionScreen,
-                    extra: payment,
+                  context.router.push(
+                    TransactionRoute(args: payment),
                   );
                 },
                 child: Row(

@@ -1,22 +1,22 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
-class VerificationConfirmedScreen extends StatefulWidget {
-  const VerificationConfirmedScreen({super.key});
+@RoutePage()
+class VerificationInProgressScreen extends StatefulWidget {
+  const VerificationInProgressScreen({super.key});
 
   @override
-  State<VerificationConfirmedScreen> createState() =>
-      _VerificationConfirmedScreenState();
+  State<VerificationInProgressScreen> createState() =>
+      _VerificationInProgressScreenState();
 }
 
-class _VerificationConfirmedScreenState
-    extends State<VerificationConfirmedScreen> {
+class _VerificationInProgressScreenState
+    extends State<VerificationInProgressScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,7 @@ class _VerificationConfirmedScreenState
             child: BrandButton(
               text: "Back to checklist",
               onPressed: () =>
-                  context.pushNamed(RouteConstants.onboardingChecklistScreen),
+                  context.router.push(const OnboardingChecklistRoute()),
             ),
           ),
         ],

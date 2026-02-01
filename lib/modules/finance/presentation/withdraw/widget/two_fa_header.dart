@@ -1,8 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class TwoFaAuthHeader extends StatelessWidget {
   const TwoFaAuthHeader({
@@ -17,7 +17,7 @@ class TwoFaAuthHeader extends StatelessWidget {
         AppBarHeaderWidget(
           widget: IconButton(
             onPressed: () {
-              context.pop();
+              context.router.maybePop();
             },
             icon: Icon(Icons.arrow_back_ios_new),
           ),

@@ -1803,13 +1803,9 @@ class $AssetsIconsCountryFlagsGen {
 class Assets {
   const Assets._();
 
-  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsShadersGen shaders = $AssetsShadersGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

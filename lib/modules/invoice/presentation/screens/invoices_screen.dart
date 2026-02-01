@@ -1,14 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart' show InvoiceDetailRoute, CreateInvoiceFlowRoute;
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/app_%20constants.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/screens/create_invoice_flow_screen.dart';
-import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/common/empty_state.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_card.dart';
@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+@RoutePage()
 class InvoicesScreen extends StatefulWidget {
   const InvoicesScreen({Key? key}) : super(key: key);
 
@@ -212,20 +213,10 @@ class _InvoicesScreenState extends State<InvoicesScreen>
   }
 
   void _navigateToInvoiceDetail(Invoice invoice) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => InvoiceDetailScreen(invoice: invoice),
-      ),
-    );
+    context.router.push(InvoiceDetailRoute(invoice: invoice));
   }
 
   void _navigateToCreateInvoice() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CreateInvoiceFlowScreen(),
-      ),
-    );
+    context.router.push(const CreateInvoiceFlowRoute());
   }
 }

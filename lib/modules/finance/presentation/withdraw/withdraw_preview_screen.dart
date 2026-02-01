@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
@@ -10,8 +10,9 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/with
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class WithdrawPreviewScreen extends StatelessWidget {
   final WithdrawDetailsModel? withdrawDetails;
 
@@ -276,9 +277,8 @@ class WithdrawPreviewScreen extends StatelessWidget {
   }
 
   void _onConfirm(BuildContext context, WithdrawDetailsModel details) {
-    context.goNamed(
-      RouteConstants.confirmPayment,
-      extra: details,
+    context.router.push(
+      ConfirmPaymentRoute(withdrawDetails: details),
     );
   }
 

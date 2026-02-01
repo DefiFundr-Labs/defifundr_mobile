@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/contract.dart';
@@ -5,10 +6,11 @@ import '../../../data/models/mock_data.dart';
 import '../../../data/models/payment_history.dart';
 import '../widgets/payment_history_item.dart';
 import '../widgets/status_chip.dart';
-import 'payout_detail_screen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 
+@RoutePage()
 class ContractDetailScreen extends StatefulWidget {
-  final Contract contract;
+  final PayCycleContract contract;
 
   const ContractDetailScreen({
     Key? key,
@@ -55,7 +57,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.router.maybePop(),
         ),
       ),
       body: Column(
@@ -253,12 +255,9 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
                         const SizedBox(height: 16),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PayoutDetailScreen(
-                                  payout: currentPayout,
-                                ),
+                            context.router.push(
+                              PayoutDetailRoute(
+                                payout: currentPayout,
                               ),
                             );
                           },

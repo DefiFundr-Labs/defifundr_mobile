@@ -1,12 +1,14 @@
-import 'package:defifundr_mobile/modules/time_off/presentation/screens/time_off_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 
 import '../../data/models/contract.dart';
 import '../widgets/contract_card.dart';
 
-class ContractsScreen extends StatelessWidget {
-  final List<Contract> contracts = [
-    Contract(
+@RoutePage()
+class TimeOffContractsScreen extends StatelessWidget {
+  final List<TimeOffContract> contracts = [
+    TimeOffContract(
       id: '1',
       title: 'DefiFundr Mobile & Web App Re...',
       type: 'Fixed Rate',
@@ -14,7 +16,7 @@ class ContractsScreen extends StatelessWidget {
       paymentFrequency: 'Every month',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '2',
       title: 'Quikdash Mobile & Web App Re...',
       type: 'Milestone',
@@ -22,7 +24,7 @@ class ContractsScreen extends StatelessWidget {
       paymentFrequency: '5 milestones',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '3',
       title: 'Weave Finance Mobile & Web A...',
       type: 'Pay As You Go',
@@ -30,7 +32,7 @@ class ContractsScreen extends StatelessWidget {
       paymentFrequency: 'Per Deliverable',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '4',
       title: 'BlockLayer Validator Integration...',
       type: 'Pay As You Go',
@@ -38,7 +40,7 @@ class ContractsScreen extends StatelessWidget {
       paymentFrequency: 'Per Hour',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '5',
       title: 'Legaltide Compliance Audit for...',
       type: 'Pay As You Go',
@@ -46,7 +48,7 @@ class ContractsScreen extends StatelessWidget {
       paymentFrequency: 'Per Day',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '6',
       title: 'Snapworks Product Photograph...',
       type: 'Pay As You Go',
@@ -56,7 +58,7 @@ class ContractsScreen extends StatelessWidget {
     ),
   ];
 
-  ContractsScreen({Key? key}) : super(key: key);
+  TimeOffContractsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class ContractsScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Contracts',
@@ -116,14 +118,9 @@ class ContractsScreen extends StatelessWidget {
                   contract: contracts[index],
                   onTap: () {
                     if (contracts[index].title.contains('Quikdash')) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TimeOffScreen(
-                            contractTitle: contracts[index].title,
-                          ),
-                        ),
-                      );
+                      context.router.push(TimeOffRoute(
+                        contractTitle: contracts[index].title,
+                      ));
                     }
                   },
                 );

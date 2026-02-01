@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad.dart';
@@ -8,21 +9,22 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/widge
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PinLoginScreen extends StatefulWidget {
+@RoutePage()
+class PinCodeScreen extends StatefulWidget {
   final String userName;
   final BiometricType biometricType;
 
-  const PinLoginScreen({
+  const PinCodeScreen({
     super.key,
     required this.userName,
     required this.biometricType,
   });
 
   @override
-  State<PinLoginScreen> createState() => _PinLoginScreenState();
+  State<PinCodeScreen> createState() => _PinCodeScreenState();
 }
 
-class _PinLoginScreenState extends State<PinLoginScreen>
+class _PinCodeScreenState extends State<PinCodeScreen>
     with TickerProviderStateMixin {
   static const int _pinLength = 4;
   static const String _correctPin = "1234";

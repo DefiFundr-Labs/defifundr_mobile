@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
 class SuccessBottomSheet extends StatelessWidget {
   const SuccessBottomSheet({Key? key}) : super(key: key);
@@ -58,8 +59,8 @@ class SuccessBottomSheet extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the bottom sheet
-                    Navigator.of(context).pop(); // Go back to previous screen
+                    context.router.maybePop(); // Close the bottom sheet
+                    context.router.maybePop(); // Go back to previous screen
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.shade600,
@@ -145,8 +146,8 @@ class CancellationSuccessBottomSheet extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the bottom sheet
-                    Navigator.of(context).pop(); // Go back to previous screen
+                    context.router.maybePop(); // Close the bottom sheet
+                    context.router.maybePop(); // Go back to previous screen
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.shade600,
@@ -232,8 +233,8 @@ class EditSuccessBottomSheet extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the bottom sheet
-                    Navigator.of(context).pop(); // Go back to previous screen
+                    context.router.maybePop(); // Close the bottom sheet
+                    context.router.maybePop(); // Go back to previous screen
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.shade600,
@@ -319,8 +320,8 @@ class ChangeRequestSuccessBottomSheet extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Close the bottom sheet
-                    Navigator.of(context).pop(); // Go back to previous screen
+                    context.router.maybePop(); // Close the bottom sheet
+                    context.router.maybePop(); // Go back to previous screen
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.shade600,

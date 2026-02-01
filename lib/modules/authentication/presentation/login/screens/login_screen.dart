@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/secondary_buttons.dart';
@@ -12,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      context.pushNamed(RouteConstants.forgotPassword);
+                      context.router.push(const ResetPasswordRoute());
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -138,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 PrimaryButton(
                   text: "Log In",
                   onPressed: () {
-                    context.pushNamed(RouteConstants.quickPayScreen);
+                    context.router.push(const QuickPayHomeRoute());
                   },
                 ),
                 SizedBox(height: 24.h),
@@ -148,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Log in using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    context.pushNamed(RouteConstants.quickPayScreen);
+                    context.router.push(const QuickPayHomeRoute());
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.pushNamed(RouteConstants.passwordValidation);
+                        context.router.push(const CreateAccountRoute());
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,

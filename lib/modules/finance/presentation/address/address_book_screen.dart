@@ -2,15 +2,15 @@ import 'dart:math';
 
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/utils/pixeled_image.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/address/add_address_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:auto_route/auto_route.dart';
 
-// Define a data model for a saved address entry
 class SavedAddress {
   final String iconPath;
   final String name;
@@ -28,6 +28,7 @@ class SavedAddress {
   String get avatarSeed => '$address$name'.hashCode.toString();
 }
 
+@RoutePage()
 class AddressBookScreen extends StatefulWidget {
   const AddressBookScreen({super.key});
 
@@ -153,7 +154,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: InkWell(
-        onTap: () => Navigator.pop(context, address.address),
+        onTap: () => context.router.maybePop(address.address),
         borderRadius: BorderRadius.circular(8),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: _itemPadding),
@@ -244,11 +245,8 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
       child: PrimaryButton(
         text: 'Add new address',
         onPressed: () async {
-          final newAddress = await Navigator.push<SavedAddress>(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AddAddressScreen(),
-            ),
+          final newAddress = await context.router.push<SavedAddress>(
+            const AddAddressRoute(),
           );
           if (newAddress != null) {
             _addAddress(newAddress);
@@ -307,7 +305,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               icon: Icons.copy,
               title: 'Copy address',
               onTap: () {
-                Navigator.pop(context);
+                context.router.maybePop();
                 _copyAddress(address.address);
               },
               colors: colors,
@@ -317,7 +315,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               icon: Icons.edit,
               title: 'Edit',
               onTap: () {
-                Navigator.pop(context);
+                context.router.maybePop();
                 // TODO: Implement edit functionality
               },
               colors: colors,
@@ -327,7 +325,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               icon: Icons.delete_outline,
               title: 'Delete',
               onTap: () {
-                Navigator.pop(context);
+                context.router.maybePop();
                 _removeAddress(index);
                 _showSnackBar('Address removed');
               },

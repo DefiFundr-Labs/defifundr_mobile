@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+
 import '../../data/models/contract.dart';
 
 class ContractSelectionBottomSheet extends StatelessWidget {
-  final List<Contract> contracts;
+  final List<TimeOffContract> contracts;
   final String selectedContractId;
-  final Function(Contract) onContractSelected;
+  final Function(TimeOffContract) onContractSelected;
 
   const ContractSelectionBottomSheet({
     Key? key,
@@ -54,14 +56,14 @@ class ContractSelectionBottomSheet extends StatelessWidget {
                       isSelected: contract.id == selectedContractId,
                       onTap: () {
                         onContractSelected(contract);
-                        Navigator.of(context).pop();
+                        context.router.maybePop();
                       },
                     )),
                 const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => context.router.maybePop(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade600,
                       foregroundColor: Colors.white,
@@ -91,7 +93,7 @@ class ContractSelectionBottomSheet extends StatelessWidget {
 }
 
 class ContractSelectionItem extends StatelessWidget {
-  final Contract contract;
+  final TimeOffContract contract;
   final bool isSelected;
   final VoidCallback onTap;
 

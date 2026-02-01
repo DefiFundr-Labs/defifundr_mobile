@@ -15,6 +15,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  final _appRouter = AppRouter();
+
   @override
   void didChangeDependencies() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -48,9 +50,7 @@ class _AppState extends State<App> {
             darkTheme: AppTheme.dark,
             themeMode: ThemeMode.system,
             scrollBehavior: const _AppScrollBehavior(),
-            routeInformationProvider: AppRouter.router.routeInformationProvider,
-            routeInformationParser: AppRouter.router.routeInformationParser,
-            routerDelegate: AppRouter.router.routerDelegate,
+            routerConfig: _appRouter.config(),
           ),
         ),
       ),

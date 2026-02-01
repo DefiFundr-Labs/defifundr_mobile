@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad.dart';
 import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_input_section.dart';
@@ -10,8 +10,9 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw/widget/pi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class ConfirmPaymentScreen extends StatefulWidget {
   final WithdrawDetailsModel? withdrawDetails;
 
@@ -73,15 +74,9 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen>
       HapticManager.lightImpact();
 
       if (_pin.length == _pinLength) {
-        final withdrawDetails =
-            context.read<WithdrawBloc>().state.withdrawDetails;
-
         Future.delayed(const Duration(seconds: 2), () {
           if (mounted) {
-            context.goNamed(
-              RouteConstants.twoFaAuth,
-              extra: withdrawDetails,
-            );
+            context.router.replace(const TwoFaAuthRoute());
           }
         });
       }

@@ -3,6 +3,9 @@ import 'package:defifundr_mobile/modules/time_off/data/models/time_off_detail.da
 import 'package:flutter/material.dart';
 
 import '../widgets/status_chip.dart';
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 
 class TimeOffDetailScreen extends StatelessWidget {
   final TimeOffDetail timeOffDetail;
@@ -21,7 +24,7 @@ class TimeOffDetailScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Time off details',

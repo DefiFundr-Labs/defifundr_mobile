@@ -3,6 +3,7 @@ import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.da
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:auto_route/auto_route.dart';
 
 import '../../../time_off/presentation/widgets/status_chip.dart';
 
@@ -199,7 +200,7 @@ class _DeleteSubmissionBottomSheetState
                           enableShine: false,
                           color: context.theme.colors.fillTertiary,
                           textColor: context.theme.colors.textSecondary,
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => context.router.maybePop(),
                         ),
                       ),
                       const SizedBox(width: 16),

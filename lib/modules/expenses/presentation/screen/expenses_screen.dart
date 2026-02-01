@@ -1,14 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
-import 'package:defifundr_mobile/modules/expenses/presentation/screen/add_expense_screen.dart';
-import 'package:defifundr_mobile/modules/expenses/presentation/screen/expense_details_screen.dart';
-import 'package:defifundr_mobile/modules/expenses/presentation/screen/time_off_details_screen.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/empty_state.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/expense_list_item.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
@@ -16,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+@RoutePage()
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({super.key});
 
@@ -97,29 +97,14 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
 
   void _navigateToExpenseDetails(Expense expense) {
     if (expense.type == ExpenseType.timeOff) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => TimeOffDetailsScreen(expense: expense),
-        ),
-      );
+      context.router.push(ExpensesTimeOffDetailsRoute(expense: expense));
     } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ExpenseDetailsScreen(expense: expense),
-        ),
-      );
+      context.router.push(ExpenseDetailsRoute(expense: expense));
     }
   }
 
   void _addExpense() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AddExpenseScreen(),
-      ),
-    );
+    context.router.push(const AddExpenseRoute());
   }
 
   @override

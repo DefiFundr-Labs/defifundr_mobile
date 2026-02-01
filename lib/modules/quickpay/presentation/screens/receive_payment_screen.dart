@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
@@ -12,8 +12,10 @@ import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class ReceivePaymentScreen extends StatefulWidget {
   const ReceivePaymentScreen({super.key});
 
@@ -152,7 +154,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     const SizedBox(height: 8 * 3),
                     AppTextField(
                       labelText: 'Title',
-                      controller: titleController, 
+                      controller: titleController,
                     ),
                     const SizedBox(height: 8 * 3),
                     ValueListenableBuilder(
@@ -213,9 +215,8 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       labelText: 'Amount',
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
-                   
                       controller: amountController,
-                    suffixType: SuffixType.customIcon,
+                      suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 0),
                         child: Text(
@@ -275,14 +276,15 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     );
                     return;
                   }
-                  context.pushNamed(
-                    RouteConstants.receivePaymentDoneScreen,
-                    extra: ReceiveParams(
-                      amount: amountController.text,
-                      title: titleController.text,
-                      coinName: selectedCoin.value!.coinName,
-                      assetName: selectedAsset.value!.symbol,
-                      imageUrl: selectedCoin.value!.logoUrl,
+                  context.router.push(
+                    ReceivePaymentDoneRoute(
+                      args: ReceiveParams(
+                        amount: amountController.text,
+                        title: titleController.text,
+                        coinName: selectedCoin.value!.coinName,
+                        assetName: selectedAsset.value!.symbol,
+                        imageUrl: selectedCoin.value!.logoUrl,
+                      ),
                     ),
                   );
                 },

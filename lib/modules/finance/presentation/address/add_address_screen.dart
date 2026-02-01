@@ -1,19 +1,20 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_asset_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+@RoutePage()
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({super.key});
 
@@ -55,9 +56,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   Future<void> _selectAsset() async {
-    final selectedAsset = await Navigator.push<NetworkAsset>(
-      context,
-      MaterialPageRoute(builder: (context) => const SelectAssetScreen()),
+    final selectedAsset = await context.router.push<NetworkAsset>(
+       SelectAssetRoute(),
     );
     if (selectedAsset != null) {
       _assetController.text = selectedAsset.name;
@@ -66,9 +66,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   Future<void> _selectNetwork() async {
-    final selectedNetwork = await Navigator.push<Network>(
-      context,
-      MaterialPageRoute(builder: (context) => const SelectNetworkScreen()),
+    final selectedNetwork = await context.router.push<Network>(
+      SelectNetworkRoute(),
     );
     if (selectedNetwork != null) {
       _networkController.text = selectedNetwork.name;
@@ -96,7 +95,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         network: _selectedNetwork!.name,
         address: _addressController.text,
       );
-      Navigator.pop(context, newAddress);
+      context.router.maybePop(newAddress);
     } else {
       _showErrorSnackBar();
     }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContractCard extends StatelessWidget {
-  final Contract contract;
+  final TimeTrackingContract contract;
   final VoidCallback onTap;
 
   const ContractCard({

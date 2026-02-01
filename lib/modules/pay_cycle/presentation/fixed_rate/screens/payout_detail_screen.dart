@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../data/models/contract.dart';
 import '../widgets/status_chip.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class PayoutDetailScreen extends StatelessWidget {
   final Payout payout;
 
@@ -19,7 +22,7 @@ class PayoutDetailScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Payout details',

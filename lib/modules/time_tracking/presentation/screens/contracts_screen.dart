@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
@@ -11,20 +13,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../widgets/contract_card.dart';
-import 'time_tracking_screen.dart';
 
-class ContractsScreen extends StatefulWidget {
-  const ContractsScreen({super.key});
+@RoutePage()
+class TimeTrackingContractsScreen extends StatefulWidget {
+  const TimeTrackingContractsScreen({super.key});
 
   @override
-  _ContractsScreenState createState() => _ContractsScreenState();
+  _TimeTrackingContractsScreenState createState() => _TimeTrackingContractsScreenState();
 }
 
-class _ContractsScreenState extends State<ContractsScreen> {
+class _TimeTrackingContractsScreenState extends State<TimeTrackingContractsScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-  final List<Contract> contracts = [
-    Contract(
+  final List<TimeTrackingContract> contracts = [
+    TimeTrackingContract(
       id: '1',
       title: 'DefiFundr Mobile & Web App Resign',
       type: 'Pay As You Go',
@@ -32,7 +34,7 @@ class _ContractsScreenState extends State<ContractsScreen> {
       currency: 'USDT',
       status: 'Active',
     ),
-    Contract(
+    TimeTrackingContract(
       id: '2',
       title: 'DefiFundr Mobile & Web App Resign',
       type: 'Pay As You Go',
@@ -40,7 +42,7 @@ class _ContractsScreenState extends State<ContractsScreen> {
       currency: 'EURt',
       status: 'Active',
     ),
-    Contract(
+    TimeTrackingContract(
       id: '3',
       title: 'BlockLayer Validator Integfration for DefiFundr',
       type: 'Pay As You Go',
@@ -81,14 +83,7 @@ class _ContractsScreenState extends State<ContractsScreen> {
                 return ContractCard(
                   contract: contracts[index],
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TimeTrackingScreen(
-                          contract: contracts[index],
-                        ),
-                      ),
-                    );
+                    context.router.push(TimeTrackingRoute(contract: contracts[index]));
                   },
                 );
               },

@@ -4,7 +4,7 @@ enum ContractType { fixedRate, milestone, payAsYouGo }
 
 enum PaymentStatus { pending, approved, overdue, paid }
 
-class Contract {
+class PayCycleContract {
   final String id;
   final String title;
   final ContractType type;
@@ -13,7 +13,7 @@ class Contract {
   final bool isActive;
   final String? clientName;
 
-  Contract({
+  PayCycleContract({
     required this.id,
     required this.title,
     required this.type,

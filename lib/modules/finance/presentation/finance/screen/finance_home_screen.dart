@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
@@ -14,8 +15,8 @@ import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/p
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class FinanceHomeScreen extends StatelessWidget {
   const FinanceHomeScreen({super.key});
 
@@ -97,7 +98,7 @@ class FinanceHomeScreen extends StatelessWidget {
                   context: context,
                   icon: Assets.icons.signIn,
                   label: 'Receive',
-                  onPressed: () => context.pushNamed(RouteConstants.receive),
+                  onPressed: () => context.router.push(const ReceiveRoute()),
                 ),
               ),
               const SizedBox(width: 16),
@@ -106,7 +107,7 @@ class FinanceHomeScreen extends StatelessWidget {
                   context: context,
                   icon: Assets.icons.signOut,
                   label: 'Withdraw',
-                  onPressed: () => context.pushNamed(RouteConstants.withdraw),
+                  onPressed: () => context.router.push(const WithdrawRoute()),
                 ),
               ),
             ],
@@ -328,12 +329,11 @@ class FinanceHomeScreen extends StatelessWidget {
 
   void _navigateToAssetDetails(BuildContext context, NetworkAsset asset) {
     final defaultNetwork = Network.supportedNetworks.first;
-    context.pushNamed(
-      RouteConstants.assetDetails,
-      extra: {
-        'asset': asset,
-        'network': defaultNetwork,
-      },
+    context.router.push(
+      AssetDetailsRoute(
+        asset: asset,
+        network: defaultNetwork,
+      ),
     );
   }
 

@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
@@ -7,8 +9,6 @@ import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_entry.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_tracking_summary.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submit_hours_screen.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submitted_hours_detail_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +17,9 @@ import '../widgets/calendar_week_view.dart';
 import '../widgets/time_entry_card.dart';
 import '../widgets/time_tracking_summary_card.dart';
 
+@RoutePage()
 class TimeTrackingScreen extends StatefulWidget {
-  final Contract contract;
+  final TimeTrackingContract contract;
 
   const TimeTrackingScreen({Key? key, required this.contract})
       : super(key: key);
@@ -285,14 +286,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
       clientName: 'Adegboyega Oluwagbemiro',
     );
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SubmittedHoursDetailScreen(
-          timesheet: submittedTimesheet,
-        ),
-      ),
-    ).then((_) {
+    context.router.push(SubmittedHoursDetailRoute(timesheet: submittedTimesheet)).then((_) {
       setState(() {
         _updateTimeEntriesForSelectedDate();
       });
@@ -379,14 +373,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
               _initializeData();
             });
           } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SubmitHoursScreen(
-                  contract: widget.contract,
-                ),
-              ),
-            ).then((result) {
+            context.router.push(SubmitHoursRoute(contract: widget.contract)).then((result) {
               if (result != null) {
                 setState(() {
                   hasWorkSubmitted = true;

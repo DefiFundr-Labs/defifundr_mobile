@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad.dart';
 import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_input_section.dart';
@@ -11,7 +11,9 @@ import 'package:defifundr_mobile/modules/finance/presentation/withdraw/widget/tw
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 
 class TwoFaAuthScreen extends StatefulWidget {
   const TwoFaAuthScreen({super.key});
@@ -73,14 +75,8 @@ class _TwoFaAuthScreenState extends State<TwoFaAuthScreen>
         if (mounted) {
           // Complete the withdraw process
           context.read<WithdrawBloc>().add(const CompleteWithdraw());
-          // Get withdraw details from bloc state
-          final withdrawDetails =
-              context.read<WithdrawBloc>().state.withdrawDetails;
-          // Navigate to sent screen with withdraw details
-          context.goNamed(
-            RouteConstants.sent,
-            extra: withdrawDetails,
-          );
+          // Navigate to sent screen
+          context.router.replace(const SentRoute());
         }
       });
     }

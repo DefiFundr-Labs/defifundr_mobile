@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+@RoutePage()
 class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({Key? key}) : super(key: key);
 
@@ -318,7 +320,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () => context.router.maybePop(),
                     child: Icon(
                       Icons.close,
                       color: context.theme.colors.textSecondary,
@@ -339,7 +341,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                       _selectedCategory = item;
                     });
                     onChanged(item);
-                    Navigator.pop(context);
+                    context.router.maybePop();
                   },
                 )),
           ],

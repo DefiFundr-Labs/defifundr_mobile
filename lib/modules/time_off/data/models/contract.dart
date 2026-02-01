@@ -1,4 +1,4 @@
-class Contract {
+class TimeOffContract {
   final String id;
   final String title;
   final String type;
@@ -6,7 +6,7 @@ class Contract {
   final String paymentFrequency;
   final bool isActive;
 
-  Contract({
+  TimeOffContract({
     required this.id,
     required this.title,
     required this.type,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 
 import '../../data/models/contract.dart';
-import '../screens/new_time_off_request_screen.dart';
-import '../screens/time_off_history_screen.dart';
-import '../screens/unpaid_time_off_balance_screen.dart';
 import '../widgets/balance_card.dart';
 import '../widgets/contract_selection_bottom_sheet.dart';
 
+@RoutePage()
 class TimeOffScreen extends StatefulWidget {
   final String contractTitle;
 
@@ -23,8 +23,8 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
   late String selectedContractTitle;
   late String selectedContractId;
 
-  final List<Contract> availableContracts = [
-    Contract(
+  final List<TimeOffContract> availableContracts = [
+    TimeOffContract(
       id: '1',
       title: 'NovaWorks Marketing Campaign',
       type: 'Fixed Rate Contract',
@@ -32,7 +32,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
       paymentFrequency: '',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '2',
       title: 'Quikdash Mobile & Web App Redesign',
       type: 'Fixed Rate Contract',
@@ -40,7 +40,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
       paymentFrequency: '',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '3',
       title: 'Weave Finance Mobile & Web App Redesign',
       type: 'Fixed Rate Contract',
@@ -48,7 +48,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
       paymentFrequency: '',
       isActive: true,
     ),
-    Contract(
+    TimeOffContract(
       id: '4',
       title: 'DefiFundr Mobile & Web App Redesign',
       type: 'Fixed Rate Contract',
@@ -92,7 +92,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Time off',
@@ -156,12 +156,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
                     days: 12,
                     onViewDetails: () {},
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UnpaidTimeOffBalanceScreen(),
-                        ),
-                      );
+                      context.router.push(UnpaidTimeOffBalanceRoute());
                     },
                   ),
                   const SizedBox(height: 24),
@@ -216,13 +211,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
                       const Spacer(),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const TimeOffHistoryScreen(),
-                            ),
-                          );
+                          context.router.push(const TimeOffHistoryRoute());
                         },
                         child: Row(
                           children: [
@@ -295,12 +284,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewTimeOffRequestScreen(),
-                    ),
-                  );
+                  context.router.push(const NewTimeOffRequestRoute());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade600,

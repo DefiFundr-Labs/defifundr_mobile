@@ -8,7 +8,9 @@ import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_st
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class InvoiceDetailScreen extends StatelessWidget {
   final Invoice invoice;
 

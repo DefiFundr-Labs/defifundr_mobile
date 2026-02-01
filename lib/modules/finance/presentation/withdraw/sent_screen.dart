@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/components/confetti_wrapper.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
@@ -11,8 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class SentScreen extends StatelessWidget {
   const SentScreen({
     Key? key,
@@ -147,8 +148,8 @@ class SentScreen extends StatelessWidget {
       isEnabled: true,
       onPressed: () {
         context.read<WithdrawBloc>().add(const ClearWithdrawDetails());
-        context.goNamed(RouteConstants.financeHome);
+        context.router.replace(const FinanceHomeRoute());
       },
     );
   }
-} 
+}

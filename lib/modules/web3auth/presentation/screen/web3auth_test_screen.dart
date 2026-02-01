@@ -11,15 +11,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
-class Web3AuthTestPage extends StatefulWidget {
-  const Web3AuthTestPage({super.key});
+@RoutePage()
+class Web3authTestScreen extends StatefulWidget {
+  const Web3authTestScreen({super.key});
 
   @override
-  State<Web3AuthTestPage> createState() => _Web3AuthTestPageState();
+  State<Web3authTestScreen> createState() => _Web3authTestScreenState();
 }
 
-class _Web3AuthTestPageState extends State<Web3AuthTestPage>
+class _Web3authTestScreenState extends State<Web3authTestScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();

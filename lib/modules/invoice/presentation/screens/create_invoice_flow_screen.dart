@@ -1,13 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart' show InvoiceCompleteRoute;
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/stepper/stepper.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/screens/create_invoice_steps.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/screens/invoice_complete_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+@RoutePage()
 class CreateInvoiceFlowScreen extends StatefulWidget {
   const CreateInvoiceFlowScreen({Key? key}) : super(key: key);
 
@@ -59,7 +61,7 @@ class _CreateInvoiceFlowScreenState extends State<CreateInvoiceFlowScreen> {
           YourDetailsStep(
             invoiceData: _invoiceData,
             onNext: _nextStep,
-            onBack: () => Navigator.pop(context),
+            onBack: () => context.router.maybePop(),
           ),
           ClientDetailsStep(
             invoiceData: _invoiceData,
@@ -136,11 +138,6 @@ class _CreateInvoiceFlowScreenState extends State<CreateInvoiceFlowScreen> {
   }
 
   void _completeInvoice() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => InvoiceCompleteScreen(invoiceData: _invoiceData),
-      ),
-    );
+    context.router.replace(InvoiceCompleteRoute(invoiceData: _invoiceData));
   }
 }

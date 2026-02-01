@@ -1,27 +1,25 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/address/address_book_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_asset_screen.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/select_network/select_network_screen.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class WithdrawScreen extends StatefulWidget {
   const WithdrawScreen({super.key});
 
@@ -72,20 +70,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   Future<void> _selectFromAddressBook() async {
-    final selectedAddress = await Navigator.push<String>(
-      context,
-      MaterialPageRoute(builder: (context) => const AddressBookScreen()),
-    );
+    final selectedAddress = await context.router.push<String>(AddressBookRoute());
     if (selectedAddress != null) {
       _addressController.text = selectedAddress;
     }
   }
 
   Future<void> _selectAsset() async {
-    final selectedAsset = await Navigator.push<NetworkAsset>(
-      context,
-      MaterialPageRoute(builder: (context) => const SelectAssetScreen()),
-    );
+    final selectedAsset = await context.router.push<NetworkAsset>(SelectAssetRoute());
     if (selectedAsset != null) {
       _assetController.text = selectedAsset.name;
       setState(() => _selectedAsset = selectedAsset);
@@ -93,10 +85,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   Future<void> _selectNetwork() async {
-    final selectedNetwork = await Navigator.push<Network>(
-      context,
-      MaterialPageRoute(builder: (context) => const SelectNetworkScreen()),
-    );
+    final selectedNetwork = await context.router.push<Network>(SelectNetworkRoute());
     if (selectedNetwork != null) {
       _networkController.text = selectedNetwork.name;
       setState(() => _selectedNetwork = selectedNetwork);
@@ -121,7 +110,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       );
 
       context.read<WithdrawBloc>().add(SetWithdrawDetails(withdrawDetails));
-      context.pushNamed(RouteConstants.withdrawPreview);
+      context.router.push(WithdrawPreviewRoute());
     } else {
       _showErrorSnackBar();
     }

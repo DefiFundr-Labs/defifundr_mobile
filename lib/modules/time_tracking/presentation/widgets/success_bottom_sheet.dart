@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
 class SuccessBottomSheet extends StatelessWidget {
   const SuccessBottomSheet({super.key});
@@ -71,7 +72,7 @@ class SuccessBottomSheet extends StatelessWidget {
             // OK Button
             PrimaryButton(
               onPressed: () {
-                Navigator.pop(context);
+                context.router.maybePop();
               },
               text: 'Ok',
             ),

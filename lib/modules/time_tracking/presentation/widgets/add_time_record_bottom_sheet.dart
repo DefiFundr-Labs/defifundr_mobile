@@ -5,6 +5,7 @@ import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
 class AddTimeRecordBottomSheet extends StatefulWidget {
   final TimeRecord? timeRecord;
@@ -132,11 +133,11 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
       duration: duration,
     );
 
-    Navigator.pop(context, timeRecord);
+    context.router.maybePop(timeRecord);
   }
 
   void _deleteRecord() {
-    Navigator.pop(context, 'delete');
+    context.router.maybePop('delete');
   }
 
   @override

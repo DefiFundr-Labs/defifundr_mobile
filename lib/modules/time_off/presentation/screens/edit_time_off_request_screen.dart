@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../data/models/time_off_detail.dart';
 import '../widgets/success_bottom_sheet.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class EditTimeOffRequestScreen extends StatefulWidget {
   final TimeOffDetail timeOffDetail;
 
@@ -117,7 +119,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
                   trailing: selectedValue == item ? Icon(Icons.check, color: Colors.blue.shade600) : null,
                   onTap: () {
                     onChanged(item);
-                    Navigator.pop(context);
+                    context.router.maybePop();
                   },
                 )),
           ],
@@ -137,7 +139,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
   }
 
   void _discardChanges() {
-    Navigator.of(context).pop();
+    context.router.maybePop();
   }
 
   void _removeAttachment() {
@@ -162,7 +164,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Edit time off request',

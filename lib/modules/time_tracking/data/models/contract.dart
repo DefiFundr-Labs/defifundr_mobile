@@ -1,4 +1,4 @@
-class Contract {
+class TimeTrackingContract {
   final String id;
   final String title;
   final String type;
@@ -6,7 +6,7 @@ class Contract {
   final String currency;
   final String status;
 
-  Contract({
+  TimeTrackingContract({
     required this.id,
     required this.title,
     required this.type,

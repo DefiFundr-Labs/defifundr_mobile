@@ -1,21 +1,23 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/contract.dart';
 import '../../../data/models/mock_data.dart';
 import '../widgets/contract_card.dart';
-import 'contract_detail_screen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 
-class ContractsScreen extends StatefulWidget {
-  const ContractsScreen({Key? key}) : super(key: key);
+@RoutePage()
+class PayCycleContractsScreen extends StatefulWidget {
+  const PayCycleContractsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ContractsScreen> createState() => _ContractsScreenState();
+  State<PayCycleContractsScreen> createState() => _PayCycleContractsScreenState();
 }
 
-class _ContractsScreenState extends State<ContractsScreen> {
+class _PayCycleContractsScreenState extends State<PayCycleContractsScreen> {
   final TextEditingController _searchController = TextEditingController();
-  List<Contract> _contracts = [];
-  List<Contract> _filteredContracts = [];
+  List<PayCycleContract> _contracts = [];
+  List<PayCycleContract> _filteredContracts = [];
 
   @override
   void initState() {
@@ -46,7 +48,7 @@ class _ContractsScreenState extends State<ContractsScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.router.maybePop(),
         ),
         title: const Text(
           'Contracts',
@@ -109,12 +111,9 @@ class _ContractsScreenState extends State<ContractsScreen> {
                 return ContractCard(
                   contract: contract,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ContractDetailScreen(
-                          contract: contract,
-                        ),
+                    context.router.push(
+                      ContractDetailRoute(
+                        contract: contract,
                       ),
                     );
                   },

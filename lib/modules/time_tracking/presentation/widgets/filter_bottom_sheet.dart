@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   final String selectedMonth;
@@ -191,7 +192,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.onFilterApplied(selectedMonth, selectedYear, selectedDateRange);
-                      Navigator.pop(context);
+                      context.router.maybePop();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF6366F1),

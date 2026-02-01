@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -73,8 +74,8 @@ class ExpenseSubmittedBottomSheet extends StatelessWidget {
             child: PrimaryButton(
               text: 'Done',
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
+                context.router.maybePop();
+                context.router.maybePop();
               },
             ),
           ),

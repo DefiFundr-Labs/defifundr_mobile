@@ -1,14 +1,15 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/asset_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class ReceiveScreen extends StatelessWidget {
   const ReceiveScreen({super.key});
 
@@ -72,13 +73,12 @@ class ReceiveScreen extends StatelessWidget {
       balanceCurrency: '',
     );
 
-    context.pushNamed(
-      RouteConstants.assetDeposit,
-      extra: {
-        'asset': asset,
-        'network': ethereumNetwork,
-        'address': _placeholderAddress,
-      },
+    context.router.push(
+      AssetDepositRoute(
+        asset: asset,
+        network: ethereumNetwork,
+        address: _placeholderAddress,
+      ),
     );
   }
 
