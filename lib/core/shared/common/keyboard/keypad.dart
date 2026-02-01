@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/keyboard/action_button.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad_button.dart';
+import 'package:defifundr_mobile/core/shared/common/keyboard/action_button.dart';
+import 'package:defifundr_mobile/core/shared/common/keyboard/keypad_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

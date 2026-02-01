@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/components/dismiss_keyboard.dart';
+import 'package:defifundr_mobile/core/shared/common/components/dismiss_keyboard.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

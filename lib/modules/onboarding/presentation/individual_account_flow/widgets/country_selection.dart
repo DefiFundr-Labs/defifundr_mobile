@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
   const CountrySelectionScreen({super.key});

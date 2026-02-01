@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../../../../../core/shared/common_ui/buttons/small_button.dart';
+import '../../../../../core/shared/common/buttons/primary_button.dart';
+import '../../../../../core/shared/common/buttons/small_button.dart';
 
 @RoutePage()
 class EnableFaceIdScreen extends StatelessWidget {

@@ -4,8 +4,8 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:flutter/material.dart';

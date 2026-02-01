@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

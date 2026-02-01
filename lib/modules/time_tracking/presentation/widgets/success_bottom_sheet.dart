@@ -1,6 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

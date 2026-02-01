@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

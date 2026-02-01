@@ -1,4 +1,4 @@
-import 'package:defifundr_mobile/core/shared/common_ui/keyboard/pin_dot.dart';
+import 'package:defifundr_mobile/core/shared/common/keyboard/pin_dot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:flutter/material.dart';

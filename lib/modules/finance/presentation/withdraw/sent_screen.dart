@@ -1,8 +1,8 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/components/confetti_wrapper.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/components/confetti_wrapper.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';

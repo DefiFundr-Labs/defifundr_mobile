@@ -1,7 +1,7 @@
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/work_submission.dart';

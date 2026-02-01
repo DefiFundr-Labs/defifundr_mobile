@@ -3,12 +3,13 @@ import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/secondary_buttons.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/components/or_widget.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar_header.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
+import 'package:defifundr_mobile/core/shared/common/components/or_widget.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -139,7 +140,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 PrimaryButton(
                   text: "Log In",
                   onPressed: () {
-                    context.router.push(const QuickPayHomeRoute());
+                    // Navigate to PIN code screen after successful login
+                    final userName = _emailController.text.trim().split('@').first;
+                    context.router.push(
+                      PinCodeRoute(
+                        userName: userName,
+                        biometricType: BiometricType.fingerprint,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: 24.h),
@@ -149,7 +157,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Log in using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    context.router.push(const QuickPayHomeRoute());
+                    // Navigate to PIN code screen after Google authentication
+                    context.router.push(
+                      PinCodeRoute(
+                        userName: 'Google User',
+                        biometricType: BiometricType.fingerprint,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -157,7 +171,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Log in using Apple',
                   icon: AppAssets.appleIcon,
                   onPressed: () {
-                    // Handle Apple login
+                    // Navigate to PIN code screen after Apple authentication
+                    context.router.push(
+                      PinCodeRoute(
+                        userName: 'Apple User',
+                        biometricType: BiometricType.faceId,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: 20.h),

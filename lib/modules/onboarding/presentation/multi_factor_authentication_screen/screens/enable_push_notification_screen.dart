@@ -3,8 +3,8 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../../../../../core/shared/common_ui/buttons/small_button.dart';
+import '../../../../../core/shared/common/buttons/primary_button.dart';
+import '../../../../../core/shared/common/buttons/small_button.dart';
 
 @RoutePage()
 class EnablePushNotificationScreen extends StatelessWidget {

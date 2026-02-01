@@ -1,5 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
