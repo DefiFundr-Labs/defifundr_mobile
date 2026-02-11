@@ -70,27 +70,30 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
                       _buildCheckboxRow(context, 'All',
                           _selectedTransactionType == FilterTransactionType.all,
                           (bool? newValue) {
-                        if (newValue == true)
+                        if (newValue == true) {
                           setState(() => _selectedTransactionType =
                               FilterTransactionType.all);
+                        }
                       }),
                       _buildCheckboxRow(
                           context,
                           'Contract payment',
                           _selectedTransactionType ==
                               FilterTransactionType.contract, (bool? newValue) {
-                        if (newValue == true)
+                        if (newValue == true) {
                           setState(() => _selectedTransactionType =
                               FilterTransactionType.contract);
+                        }
                       }),
                       _buildCheckboxRow(
                           context,
                           'Invoice',
                           _selectedTransactionType ==
                               FilterTransactionType.invoice, (bool? newValue) {
-                        if (newValue == true)
+                        if (newValue == true) {
                           setState(() => _selectedTransactionType =
                               FilterTransactionType.invoice);
+                        }
                       }),
                     ],
                     isExpanded: _isTransactionTypeExpanded,

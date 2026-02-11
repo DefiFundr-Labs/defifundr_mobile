@@ -5,10 +5,8 @@ import 'package:defifundr_mobile/core/shared/common/keyboard/keypad.dart';
 import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_input_section.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_model.dart';
-import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/widget/pin_header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
 

@@ -36,7 +36,7 @@ class CustomCheckboxTile extends StatelessWidget {
                     ? context.theme.colors.brandDefault
                     : context.theme.colors.bgB0,
                 fillColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.selected)) {
+                  if (states.contains(WidgetState.selected)) {
                     return context.theme.colors.brandDefault;
                   }
                   return context.theme.colors.bgB0;
