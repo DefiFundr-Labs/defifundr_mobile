@@ -33,9 +33,19 @@ class RouteConstants {
   static const String enablePushNotification = '/enable-push-notification';
 
   // ============================================================
+  // MAIN SHELL / TABS
+  // ============================================================
+  static const String mainShell = '/main';
+  static const String homeTab = 'home';
+  static const String financeTab = 'finance';
+  static const String workspaceTab = 'workspace';
+  static const String moreTab = 'more';
+  static const String more = '';
+
+  // ============================================================
   // DASHBOARD ROUTES
   // ============================================================
-  static const String dashboard = '/dashboard';
+  static const String dashboard = '';
 
   // ============================================================
   // KYC ROUTES

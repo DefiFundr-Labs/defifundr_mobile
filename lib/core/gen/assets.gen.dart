@@ -145,6 +145,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/background.svg
   String get backgroundSvg => 'assets/icons/background.svg';
 
+  /// Directory path: assets/icons/bottom_nav
+  $AssetsIconsBottomNavGen get bottomNav => const $AssetsIconsBottomNavGen();
+
   /// File path: assets/icons/brief_case.svg
   String get briefCase => 'assets/icons/brief_case.svg';
 
@@ -726,6 +729,47 @@ class $AssetsShadersGen {
 
   /// List of all assets
   List<String> get values => [glass];
+}
+
+class $AssetsIconsBottomNavGen {
+  const $AssetsIconsBottomNavGen();
+
+  /// File path: assets/icons/bottom_nav/finance_active.svg
+  String get financeActive => 'assets/icons/bottom_nav/finance_active.svg';
+
+  /// File path: assets/icons/bottom_nav/finance_inactive.svg
+  String get financeInactive => 'assets/icons/bottom_nav/finance_inactive.svg';
+
+  /// File path: assets/icons/bottom_nav/home_active.svg
+  String get homeActive => 'assets/icons/bottom_nav/home_active.svg';
+
+  /// File path: assets/icons/bottom_nav/home_inactive.svg
+  String get homeInactive => 'assets/icons/bottom_nav/home_inactive.svg';
+
+  /// File path: assets/icons/bottom_nav/more_active.svg
+  String get moreActive => 'assets/icons/bottom_nav/more_active.svg';
+
+  /// File path: assets/icons/bottom_nav/more_inactive.svg
+  String get moreInactive => 'assets/icons/bottom_nav/more_inactive.svg';
+
+  /// File path: assets/icons/bottom_nav/workspace_active.svg
+  String get workspaceActive => 'assets/icons/bottom_nav/workspace_active.svg';
+
+  /// File path: assets/icons/bottom_nav/workspace_inactive.svg
+  String get workspaceInactive =>
+      'assets/icons/bottom_nav/workspace_inactive.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    financeActive,
+    financeInactive,
+    homeActive,
+    homeInactive,
+    moreActive,
+    moreInactive,
+    workspaceActive,
+    workspaceInactive,
+  ];
 }
 
 class $AssetsIconsCountryFlagsGen {

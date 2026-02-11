@@ -42,26 +42,26 @@ class SubmittedTimesheet {
 
   Color get statusColor {
     switch (status) {
-      case 'Approved':
+      case TimeOffStatus.approved:
         return Color(0xFF10B981);
-      case 'Rejected':
+      case TimeOffStatus.rejected:
         return Color(0xFFEF4444);
-      case 'Pending approval':
+      case TimeOffStatus.pending:
         return Color(0xFFF59E0B);
-      default:
+      case TimeOffStatus.used:
         return Color(0xFF6B7280);
     }
   }
 
   Color get statusBackgroundColor {
     switch (status) {
-      case 'Approved':
+      case TimeOffStatus.approved:
         return Color(0xFF10B981).withOpacity(0.1);
-      case 'Rejected':
+      case TimeOffStatus.rejected:
         return Color(0xFFEF4444).withOpacity(0.1);
-      case 'Pending approval':
+      case TimeOffStatus.pending:
         return Color(0xFFF59E0B).withOpacity(0.1);
-      default:
+      case TimeOffStatus.used:
         return Color(0xFF6B7280).withOpacity(0.1);
     }
   }

@@ -101,8 +101,8 @@ class _PinCodeScreenState extends State<PinCodeScreen>
 
   void _handleSuccessfulLogin() {
     HapticManager.lightImpact();
-    // Navigate to QuickPay home (main app screen)
-    context.router.push(const QuickPayHomeRoute());
+    // Navigate to main app shell with bottom navigation
+    context.router.push(const MainShellRoute());
   }
 
   void _handleIncorrectPin() {
@@ -128,7 +128,7 @@ class _PinCodeScreenState extends State<PinCodeScreen>
   void _onBiometricPressed() {
     HapticManager.lightImpact();
     // Handle biometric authentication
-    context.router.push(const OnboardingChecklistRoute());
+    context.router.push(const MainShellRoute());
   }
 
   void _onLogout() {

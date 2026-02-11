@@ -26,7 +26,6 @@ class ConfirmPaymentScreen extends StatefulWidget {
 class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen>
     with TickerProviderStateMixin {
   static const int _pinLength = 4;
-  static const String _correctPin = "1234";
 
   final List<String> _pin = [];
   bool _showError = false;
@@ -89,41 +88,6 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen>
       });
       HapticManager.lightImpact();
     }
-  }
-
-  void _verifyPin() {
-    final enteredPin = _pin.join();
-
-    if (enteredPin == _correctPin) {
-      _handleSuccessfulLogin();
-    } else {
-      _handleIncorrectPin();
-    }
-  }
-
-  void _handleSuccessfulLogin() {
-    HapticManager.lightImpact();
-    // Navigate to next screen or handle success
-  }
-
-  void _handleIncorrectPin() {
-    HapticManager.heavyImpact();
-
-    setState(() {
-      _showError = true;
-      _errorMessage = 'Incorrect PIN. Please try again.';
-    });
-
-    _shakeController.forward().then((_) => _shakeController.reset());
-
-    Future.delayed(const Duration(milliseconds: 800), () {
-      if (mounted) {
-        setState(() {
-          _pin.clear();
-          _showError = false;
-        });
-      }
-    });
   }
 
   void _onBiometricPressed() {

@@ -618,6 +618,38 @@ class FinanceHomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FinanceTabPage]
+class FinanceTabRoute extends PageRouteInfo<void> {
+  const FinanceTabRoute({List<PageRouteInfo>? children})
+    : super(FinanceTabRoute.name, initialChildren: children);
+
+  static const String name = 'FinanceTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FinanceTabPage();
+    },
+  );
+}
+
+/// generated route for
+/// [HomeTabPage]
+class HomeTabRoute extends PageRouteInfo<void> {
+  const HomeTabRoute({List<PageRouteInfo>? children})
+    : super(HomeTabRoute.name, initialChildren: children);
+
+  static const String name = 'HomeTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeTabPage();
+    },
+  );
+}
+
+/// generated route for
 /// [InvoiceCompleteScreen]
 class InvoiceCompleteRoute extends PageRouteInfo<InvoiceCompleteRouteArgs> {
   InvoiceCompleteRoute({
@@ -722,6 +754,54 @@ class LoginRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const LoginScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MainShellScreen]
+class MainShellRoute extends PageRouteInfo<void> {
+  const MainShellRoute({List<PageRouteInfo>? children})
+    : super(MainShellRoute.name, initialChildren: children);
+
+  static const String name = 'MainShellRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainShellScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MoreScreen]
+class MoreRoute extends PageRouteInfo<void> {
+  const MoreRoute({List<PageRouteInfo>? children})
+    : super(MoreRoute.name, initialChildren: children);
+
+  static const String name = 'MoreRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MoreScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MoreTabPage]
+class MoreTabRoute extends PageRouteInfo<void> {
+  const MoreTabRoute({List<PageRouteInfo>? children})
+    : super(MoreTabRoute.name, initialChildren: children);
+
+  static const String name = 'MoreTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MoreTabPage();
     },
   );
 }
@@ -1826,6 +1906,22 @@ class WithdrawRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const WithdrawScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [WorkspaceTabPage]
+class WorkspaceTabRoute extends PageRouteInfo<void> {
+  const WorkspaceTabRoute({List<PageRouteInfo>? children})
+    : super(WorkspaceTabRoute.name, initialChildren: children);
+
+  static const String name = 'WorkspaceTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WorkspaceTabPage();
     },
   );
 }

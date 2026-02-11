@@ -29,7 +29,6 @@ class AssetDepositScreen extends StatelessWidget {
   static const double _qrCodeSize = 200.0;
   static const double _iconSize = 20.0;
   static const double _containerPadding = 20.0;
-  static const double _buttonBorderRadius = 32.0;
 
   @override
   Widget build(BuildContext context) {

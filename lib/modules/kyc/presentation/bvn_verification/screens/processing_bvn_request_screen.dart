@@ -50,7 +50,7 @@ class ProcessingBvnRequestScreen extends StatelessWidget {
           PrimaryButton(
             text: "Back to checklist",
             onPressed: () {
-              context.router.push(const OnboardingChecklistRoute());
+              context.router.push(const MainShellRoute());
             },
           ),
           SizedBox(height: 20.h),

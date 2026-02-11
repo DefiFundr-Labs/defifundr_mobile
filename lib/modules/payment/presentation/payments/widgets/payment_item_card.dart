@@ -12,7 +12,6 @@ class PaymentItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
     final colors = theme.extension<AppColorExtension>()!;
     final fontTheme = theme.extension<AppFontThemeExtension>()!;
 
@@ -25,8 +24,6 @@ class PaymentItemCard extends StatelessWidget {
       case PaymentStatus.overdue:
         statusColor = colors.redDefault;
         break;
-      default:
-        statusColor = colors.textSecondary; // Default color
     }
 
     // Format date

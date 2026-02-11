@@ -112,19 +112,6 @@ class SolanaWallet extends Web3Wallet {
     }
   }
 
-  /// Get latest blockhash using the available method
-  Future<String> _getLatestBlockhash() async {
-    try {
-      // Use getLatestBlockhash if available
-      final response = await _client.rpcClient.getLatestBlockhash();
-      return response.value.blockhash;
-    } catch (e) {
-      // Fallback to a different method or use a mock value for testing
-      print("Error getting latest blockhash: $e");
-      throw Web3AuthException('Failed to get latest blockhash: $e');
-    }
-  }
-
   /// Convert hex string to bytes
   Uint8List _hexToBytes(String hex) {
     final String cleanHex = hex.startsWith('0x') ? hex.substring(2) : hex;

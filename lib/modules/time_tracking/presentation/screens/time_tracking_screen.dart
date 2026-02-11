@@ -278,7 +278,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
       calculatedAmount: timeEntry.amount,
       description: _getDescriptionForEntry(timeEntry),
       attachmentName: 'File name.pdf',
-      rejectionReason: timeEntry.status == 'Rejected'
+      rejectionReason: timeEntry.status == TimeOffStatus.rejected
           ? 'Post-optimization logs showed a spike in timeout errors, and the performance gains weren\'t consistent under load.'
           : null,
       contractName: widget.contract.title,
@@ -295,13 +295,13 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
 
   String _getDescriptionForEntry(TimeEntry timeEntry) {
     switch (timeEntry.status) {
-      case 'Approved':
+      case TimeOffStatus.approved:
         return 'Completed user authentication system with OAuth integration and security improvements.';
-      case 'Rejected':
+      case TimeOffStatus.rejected:
         return 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
-      case 'Pending approval':
+      case TimeOffStatus.pending:
         return 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
-      default:
+      case TimeOffStatus.used:
         return 'Work completed as per requirements.';
     }
   }
