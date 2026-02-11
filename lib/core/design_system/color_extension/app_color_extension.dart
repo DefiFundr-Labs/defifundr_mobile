@@ -98,6 +98,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     //Miscellaneous colors
     required this.contrastBlack,
     required this.contrastWhite,
+    required this.strokePrimary,
     required this.strokeSecondary,
     required this.fillTertiary,
   });
@@ -193,6 +194,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color contrastBlack;
   final Color contrastWhite;
   final Color strokeSecondary;
+  final Color strokePrimary;
   final Color fillTertiary;
 
   @override
@@ -287,6 +289,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     //Miscellaneous colors
     Color? contrastBlack,
     Color? contrastWhite,
+    Color? strokePrimary,
     Color? strokeSecondary,
     Color? fillTertiary,
   }) {
@@ -300,7 +303,8 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       // Constant/Brand colors
       constantDefault: constantDefault ?? this.constantDefault,
-      constantDefaultBorder: constantDefaultBorder ?? this.constantDefaultBorder,
+      constantDefaultBorder:
+          constantDefaultBorder ?? this.constantDefaultBorder,
       brandDefault: brandDefault ?? this.brandDefault,
       brandContrast: brandContrast ?? this.brandContrast,
       brandDefaultContrast: brandDefaultContrast ?? this.brandDefaultContrast,
@@ -381,6 +385,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       //Miscellaneous colors
       contrastBlack: contrastBlack ?? this.contrastBlack,
       contrastWhite: contrastWhite ?? this.contrastWhite,
+      strokePrimary: strokePrimary ?? this.strokePrimary,
       strokeSecondary: strokeSecondary ?? this.strokeSecondary,
       fillTertiary: fillTertiary ?? this.fillTertiary,
     );
@@ -405,10 +410,12 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
       // Constant/Brand colors
       constantDefault: Color.lerp(constantDefault, other.constantDefault, t)!,
-      constantDefaultBorder: Color.lerp(constantDefaultBorder, other.constantDefaultBorder, t)!,
+      constantDefaultBorder:
+          Color.lerp(constantDefaultBorder, other.constantDefaultBorder, t)!,
       brandDefault: Color.lerp(brandDefault, other.brandDefault, t)!,
       brandContrast: Color.lerp(brandContrast, other.brandContrast, t)!,
-      brandDefaultContrast: Color.lerp(brandDefaultContrast, other.brandDefaultContrast, t)!,
+      brandDefaultContrast:
+          Color.lerp(brandDefaultContrast, other.brandDefaultContrast, t)!,
       brandHover: Color.lerp(brandHover, other.brandHover, t)!,
       brandActive: Color.lerp(brandActive, other.brandActive, t)!,
       brandStroke: Color.lerp(brandStroke, other.brandStroke, t)!,
@@ -481,11 +488,13 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       // Icon colors
       iconRed: Color.lerp(iconRed, other.iconRed, t)!,
       iconBlue: Color.lerp(iconBlue, other.iconBlue, t)!,
-      textHighlightBlue: Color.lerp(textHighlightBlue, other.textHighlightBlue, t)!,
+      textHighlightBlue:
+          Color.lerp(textHighlightBlue, other.textHighlightBlue, t)!,
 
       //Miscellaneous colors
       contrastBlack: Color.lerp(contrastBlack, other.contrastBlack, t)!,
       contrastWhite: Color.lerp(contrastWhite, other.contrastWhite, t)!,
+      strokePrimary: Color.lerp(strokePrimary, other.strokePrimary, t)!,
       strokeSecondary: Color.lerp(strokeSecondary, other.strokeSecondary, t)!,
       fillTertiary: Color.lerp(fillTertiary, other.fillTertiary, t)!,
     );

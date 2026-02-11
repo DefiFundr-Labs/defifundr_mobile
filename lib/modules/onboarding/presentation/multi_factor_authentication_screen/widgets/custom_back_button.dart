@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
@@ -9,7 +10,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () => context.router.maybePop(),
       child: Container(
         width: 40,
         height: 40,

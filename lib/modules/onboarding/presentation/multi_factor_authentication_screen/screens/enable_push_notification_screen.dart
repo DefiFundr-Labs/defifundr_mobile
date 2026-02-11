@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../../../../../core/shared/common_ui/buttons/small_button.dart';
+import '../../../../../core/shared/common/buttons/primary_button.dart';
+import '../../../../../core/shared/common/buttons/small_button.dart';
 
-class EnablePushNotificationsScreen extends StatelessWidget {
-  const EnablePushNotificationsScreen({super.key});
+@RoutePage()
+class EnablePushNotificationScreen extends StatelessWidget {
+  const EnablePushNotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class EnablePushNotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? colors.bgB0 // Light mode color
+          ? colors.bgB0 
           : colors.bgB1,
       body: SafeArea(
         child: Padding(
@@ -55,14 +57,14 @@ class EnablePushNotificationsScreen extends StatelessWidget {
               PrimaryButton(
                 text: 'Enable',
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                 context.router.popUntilRoot();              
                 },
               ),
               const SizedBox(height: 12),
               SmallButton(
                 text: 'Skip',
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  context.router.popUntilRoot();                      
                 },
               ),
               const SizedBox(height: 24),

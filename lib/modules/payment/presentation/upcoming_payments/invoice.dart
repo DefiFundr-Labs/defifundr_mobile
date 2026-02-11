@@ -1,5 +1,6 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
@@ -118,7 +119,7 @@ class InvoiceScreen extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => context.router.maybePop(),
                     icon: Icon(Icons.arrow_back_ios, color: colors.textPrimary),
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),

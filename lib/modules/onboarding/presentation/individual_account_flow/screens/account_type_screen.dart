@@ -1,16 +1,17 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/account_badge_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class AccountTypeScreen extends StatefulWidget {
   const AccountTypeScreen({super.key});
 
@@ -72,12 +73,12 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     ),
                     SizedBox(height: 10.h),
                     AccountTypeCard(
-                      icon: Assets.icons.userCircle,
+                      icon: Assets.icons.userCircleSvg_,
                       title: 'Freelancer account',
                       description:
                           'You work independently, manage your own contracts and payments directly with clients.',
                       onTap: () {
-                        context.pushNamed(RouteConstants.personalDetails);
+                        context.router.push(const PersonalDetailsRoute());
                       },
                     ),
                     SizedBox(height: 10.h),
@@ -87,7 +88,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                       description:
                           'You\'re contracted to work for a company or organization on specific projects or terms.',
                       onTap: () {
-                        context.pushNamed(RouteConstants.personalDetails);
+                        context.router.push(const PersonalDetailsRoute());
                       },
                     ),
                     SizedBox(height: 10.h),

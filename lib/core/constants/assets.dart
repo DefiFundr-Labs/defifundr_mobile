@@ -47,11 +47,11 @@ class AppAssets {
   static const tether = '$defifundrImagePath/tether.svg';
   static const cloud = '$defifundrImagePath/cloud.png';
 
-  static const home = '$defifundrImagePath/home.svg';
-  static const noTransaction = '$defifundrImagePath/noTransaction.svg';
+  static const home = '${defifundrIconPath}home.svg';
+  static const noTransaction = '${defifundrIconPath}noTransaction.svg';
   static const profile = '$defifundrImagePath/profile.png';
-  static const dollarCircle = '$defifundrImagePath/dollarCircle.svg';
-  static const transaction = '$defifundrImagePath/transaction.svg';
+  static const dollarCircle = '${defifundrIconPath}dollarCircle.svg';
+  static const transaction = '${defifundrIconPath}transaction.svg';
 
   // identity verification
   static const identityVerification =
@@ -77,22 +77,22 @@ class AppAssets {
   static const wallet = '${defifundrIconPath}Wallet.svg';
 
   // Quick Pay
-  static const questionSvg = '$defifundrImagePath/question_svg.svg';
-  static const magnifyingGlass = '$defifundrImagePath/MagnifyingGlass.svg';
-  static const filterIcon = '$defifundrImagePath/filter.svg';
+  static const questionSvg = '${defifundrIconPath}question_svg.svg';
+  static const magnifyingGlass = '${defifundrIconPath}MagnifyingGlass.svg';
+  static const filterIcon = '${defifundrIconPath}filter.svg';
   static const emptyQuickpayIcon =
-      '$defifundrImagePath/empty_quickpay_icon.svg';
+      '${defifundrIconPath}empty_quickpay_icon.svg';
   static const emptyQuickpayIconDark =
-      '$defifundrImagePath/empty_quickpay_icon_dark.svg';
-  static const depositIconSvg = '$defifundrImagePath/deposit_svg.svg';
-  static const rectangleSvg = '$defifundrImagePath/rectangle.svg';
-  static const ethereumLogo = '$defifundrImagePath/eth.svg';
-  static const usdtLogo = '$defifundrImagePath/usdt.svg';
-  static const qrCodeSvg = '$defifundrImagePath/QrCode.svg';
-  static const linkSvg = '$defifundrImagePath/Link.svg';
-  static const copySvg = '$defifundrImagePath/Copy.svg';
-  static const shareNetworkSvg = '$defifundrImagePath/ShareNetwork.svg';
-  static const headsetSvg = '$defifundrImagePath/Headset.svg';
+      '${defifundrIconPath}empty_quickpay_icon_dark.svg';
+  static const depositIconSvg = '${defifundrIconPath}deposit_svg.svg';
+  static const rectangleSvg = '${defifundrIconPath}rectangle.svg';
+  static const ethereumLogo = '${defifundrIconPath}eth.svg';
+  static const usdtLogo = '${defifundrIconPath}usdt.svg';
+  static const qrCodeSvg = '${defifundrIconPath}QrCode.svg';
+  static const linkSvg = '${defifundrIconPath}Link.svg';
+  static const copySvg = '${defifundrIconPath}Copy.svg';
+  static const shareNetworkSvg = '${defifundrIconPath}ShareNetwork.svg';
+  static const headsetSvg = '${defifundrIconPath}Headset.svg';
 
   //-------------------------------------------- FLAGS -------------------------------------------- //
 

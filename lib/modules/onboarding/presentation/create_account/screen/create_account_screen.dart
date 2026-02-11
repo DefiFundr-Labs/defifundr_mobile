@@ -1,17 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar_header.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/secondary_buttons.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/components/or_widget.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar_header.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
+import 'package:defifundr_mobile/core/shared/common/components/or_widget.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/widget/terms_and_condition_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
 
@@ -84,7 +85,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 PrimaryButton(
                   text: "Create account",
                   onPressed: () {
-                    context.pushNamed(RouteConstants.quickPayScreen);
+                    context.router.push(const QuickPayHomeRoute());
                   },
                 ),
                 SizedBox(height: 24.h),
@@ -94,7 +95,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   text: 'Sign up using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    context.pushNamed(RouteConstants.quickPayScreen);
+                    context.router.push(const QuickPayHomeRoute());
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -119,7 +120,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.pushNamed(RouteConstants.passwordValidation);
+                        context.router.push(const ResetPasswordRoute());
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,

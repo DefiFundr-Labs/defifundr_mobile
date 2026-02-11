@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
@@ -11,12 +11,14 @@ import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/checkbox_status.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filled_quickpay.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filter_buttons.dart';
-import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/time_filter_radio.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/slide_up_panel.dart';
+import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/time_filter_radio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class QuickPayHomeScreen extends StatefulWidget {
   const QuickPayHomeScreen({super.key});
 
@@ -699,7 +701,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                     child: BrandButton(
                       text: "Receive payment",
                       onPressed: () {
-                        context.pushNamed(RouteConstants.receivePaymentScreen);
+                        context.router.push(ReceivePaymentRoute());
                       },
                     ),
                   ),

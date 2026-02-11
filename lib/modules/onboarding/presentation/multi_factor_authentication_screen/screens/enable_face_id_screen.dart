@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
-import '../../../../../core/shared/common_ui/buttons/small_button.dart';
+import '../../../../../core/shared/common/buttons/primary_button.dart';
+import '../../../../../core/shared/common/buttons/small_button.dart';
 
+@RoutePage()
 class EnableFaceIdScreen extends StatelessWidget {
   const EnableFaceIdScreen({super.key});
 
@@ -54,14 +56,14 @@ class EnableFaceIdScreen extends StatelessWidget {
               PrimaryButton(
                 text: 'Enable',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/enable-fingerprint');
+                  context.router.pushNamed('/enable-fingerprint');
                 },
               ),
               const SizedBox(height: 12),
               SmallButton(
                 text: 'Skip',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/enable-fingerprint');
+                  context.router.pushNamed('/enable-fingerprint');
                 },
               ),
               const SizedBox(height: 24),

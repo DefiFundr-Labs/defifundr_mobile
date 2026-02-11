@@ -33,10 +33,10 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
 
   void _submitEmailHandler(SubmitEmail event, Emitter<ForgotPasswordState> emit) {
     if (!EmailValidator.validate(event.email)) {
-      emit(ForgotPasswordError("Invalid email format"));
+      emit(ForgotPasswordError("Invalid email format", emailAddress: state.emailAddress));
       return;
     }
-    emit(ForgotPasswordSuccess("A reset link has been sent to ${event.email}"));
+    emit(ForgotPasswordSuccess("A reset link has been sent to ${event.email}", emailAddress: event.email));
   }
 
   Future<void> _enterPasswordStringHandler(EnterPasswordString event, Emitter<ForgotPasswordState> emit) async {
@@ -45,6 +45,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     await Future.delayed(Duration(milliseconds: 300));
     emit(
       ForgotPasswordInitial(
+        emailAddress: state.emailAddress,
         newPasswordState:
             (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(password: event.passwordString),
       ),
@@ -57,6 +58,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
     await Future.delayed(Duration(milliseconds: 300));
     emit(
       ForgotPasswordInitial(
+        emailAddress: state.emailAddress,
         newPasswordState:
             (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(confirmPassword: event.passwordString),
       ),
@@ -66,6 +68,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
   void _togglePasswordVisibilityHandler(TogglePasswordVisibility event, Emitter<ForgotPasswordState> emit) {
     emit(
       ForgotPasswordInitial(
+        emailAddress: state.emailAddress,
         newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(
           showPassword: !(state.newPasswordState?.hidePassword ?? false),
         ),
@@ -76,6 +79,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
   void _toggleConfirmPasswordVisibilityHandler(ToggleConfirmPasswordVisibility event, Emitter<ForgotPasswordState> emit) {
     emit(
       ForgotPasswordInitial(
+        emailAddress: state.emailAddress,
         newPasswordState: (state.newPasswordState ?? NewPasswordState(password: state.newPasswordState?.password ?? '')).copyWith(
           showConfirmPassword: !(state.newPasswordState?.hideConfirmPassword ?? false),
         ),
@@ -86,7 +90,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
   void _resendOtpHandler(ResendOtpEvent event, Emitter<ForgotPasswordState> emit) {}
 
   void _verifyOtpHandler(VerifyOtpEvent event, Emitter<ForgotPasswordState> emit) {
-    emit(ForgotPasswordError(AppTexts.invalidOTPCode));
-    emit(ForgotPasswordInitial());
+    emit(ForgotPasswordError(AppTexts.invalidOTPCode, emailAddress: state.emailAddress));
+    emit(ForgotPasswordInitial(emailAddress: state.emailAddress));
   }
 }

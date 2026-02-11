@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/keyboard/keypad.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common/keyboard/keypad.dart';
 import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_manager.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/bottom_action.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_header.dart';
@@ -8,21 +10,22 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/widge
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PinLoginScreen extends StatefulWidget {
+@RoutePage()
+class PinCodeScreen extends StatefulWidget {
   final String userName;
   final BiometricType biometricType;
 
-  const PinLoginScreen({
+  const PinCodeScreen({
     super.key,
     required this.userName,
     required this.biometricType,
   });
 
   @override
-  State<PinLoginScreen> createState() => _PinLoginScreenState();
+  State<PinCodeScreen> createState() => _PinCodeScreenState();
 }
 
-class _PinLoginScreenState extends State<PinLoginScreen>
+class _PinCodeScreenState extends State<PinCodeScreen>
     with TickerProviderStateMixin {
   static const int _pinLength = 4;
   static const String _correctPin = "1234";
@@ -98,7 +101,8 @@ class _PinLoginScreenState extends State<PinLoginScreen>
 
   void _handleSuccessfulLogin() {
     HapticManager.lightImpact();
-    // Navigate to next screen or handle success
+    // Navigate to QuickPay home (main app screen)
+    context.router.push(const QuickPayHomeRoute());
   }
 
   void _handleIncorrectPin() {
@@ -123,17 +127,20 @@ class _PinLoginScreenState extends State<PinLoginScreen>
 
   void _onBiometricPressed() {
     HapticManager.lightImpact();
-    // Implement biometric authentication
+    // Handle biometric authentication
+    context.router.push(const OnboardingChecklistRoute());
   }
 
   void _onLogout() {
     HapticManager.lightImpact();
-    // Handle logout
+    // Navigate back to login screen
+    context.router.push(const LoginRoute());
   }
 
   void _onForgotPin() {
     HapticManager.lightImpact();
-    // Handle forgot PIN
+    // Navigate to reset password flow
+    context.router.push(const ResetPasswordRoute());
   }
 
   @override

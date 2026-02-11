@@ -1,24 +1,27 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/blockchain_type.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/overlay/blockchain_wallet_loader.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/overlay/blockchain_wallet_loader.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_bloc.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_event.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_route/auto_route.dart';
 
-class Web3AuthTestPage extends StatefulWidget {
-  const Web3AuthTestPage({super.key});
+@RoutePage()
+class Web3authTestScreen extends StatefulWidget {
+  const Web3authTestScreen({super.key});
 
   @override
-  State<Web3AuthTestPage> createState() => _Web3AuthTestPageState();
+  State<Web3authTestScreen> createState() => _Web3authTestScreenState();
 }
 
-class _Web3AuthTestPageState extends State<Web3AuthTestPage>
+class _Web3authTestScreenState extends State<Web3authTestScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
@@ -220,7 +223,7 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
   ) {
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
-           ? Colors.amberAccent // Light mode color
+          ? Colors.amberAccent // Light mode color
           : Colors.black12,
       body: Center(
         child: Padding(
@@ -617,9 +620,17 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
         SizedBox(height: 16.h),
         PrimaryButton(
           text: 'Sign Message',
-          onPressed: () => context
-              .read<AuthBloc>()
-              .add(SignMessage(_messageController.text)),
+          onPressed: () {
+            // COPY MESSAGE TO CLIPBOARD
+            setState(() {
+              _messageController.text = state.userInfo?.toString() ?? '';
+            });
+
+            Clipboard.setData(
+              ClipboardData(text: state.userInfo.toString()),
+            );
+            // context.read<AuthBloc>().add(SignMessage(_messageController.text));
+          },
           isEnabled: _messageController.text.isNotEmpty &&
               state.status != AuthStatus.loadingWallet,
         ),
@@ -778,3 +789,4 @@ class _Web3AuthTestPageState extends State<Web3AuthTestPage>
     }
   }
 }
+

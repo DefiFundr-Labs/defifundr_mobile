@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Bank.svg
+  String get bank => 'assets/icons/Bank.svg';
+
   /// File path: assets/icons/Briefcase.svg
   String get briefcase => 'assets/icons/Briefcase.svg';
 
@@ -24,8 +27,29 @@ class $AssetsIconsGen {
   /// File path: assets/icons/CarProfile.svg
   String get carProfile => 'assets/icons/CarProfile.svg';
 
+  /// File path: assets/icons/CheckCircle.svg
+  String get checkCircle => 'assets/icons/CheckCircle.svg';
+
+  /// File path: assets/icons/Clock.svg
+  String get clock => 'assets/icons/Clock.svg';
+
+  /// File path: assets/icons/ClockCountdown.svg
+  String get clockCountdown => 'assets/icons/ClockCountdown.svg';
+
+  /// File path: assets/icons/ClockUser.svg
+  String get clockUser => 'assets/icons/ClockUser.svg';
+
+  /// File path: assets/icons/Copy.svg
+  String get copy => 'assets/icons/Copy.svg';
+
+  /// File path: assets/icons/File.svg
+  String get file => 'assets/icons/File.svg';
+
   /// File path: assets/icons/Globe.svg
   String get globe => 'assets/icons/Globe.svg';
+
+  /// File path: assets/icons/HandCoins.svg
+  String get handCoins => 'assets/icons/HandCoins.svg';
 
   /// File path: assets/icons/IdentificationCard.svg
   String get identificationCard => 'assets/icons/IdentificationCard.svg';
@@ -33,20 +57,53 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Info.svg
   String get info => 'assets/icons/Info.svg';
 
+  /// File path: assets/icons/Invoice copy.svg
+  String get invoiceCopy => 'assets/icons/Invoice copy.svg';
+
   /// File path: assets/icons/Link.svg
   String get link => 'assets/icons/Link.svg';
 
   /// File path: assets/icons/MagnifyingGlass.svg
   String get magnifyingGlass => 'assets/icons/MagnifyingGlass.svg';
 
+  /// File path: assets/icons/Money copy.svg
+  String get moneyCopy => 'assets/icons/Money copy.svg';
+
+  /// File path: assets/icons/Prohibit.svg
+  String get prohibit => 'assets/icons/Prohibit.svg';
+
   /// File path: assets/icons/QrCode.svg
-  String get qrCode => 'assets/icons/QrCode.svg';
+  String get qrCodeSvg => 'assets/icons/QrCode.svg';
+
+  /// File path: assets/icons/qr_code.svg
+  String get qrCodeSvg_ => 'assets/icons/qr_code.svg';
+
+  /// File path: assets/icons/Scales.svg
+  String get scales => 'assets/icons/Scales.svg';
+
+  /// File path: assets/icons/Trash.svg
+  String get trash => 'assets/icons/Trash.svg';
+
+  /// File path: assets/icons/UserCircle.svg
+  String get userCircleSvg => 'assets/icons/UserCircle.svg';
+
+  /// File path: assets/icons/user_circle.svg
+  String get userCircleSvg_ => 'assets/icons/user_circle.svg';
 
   /// File path: assets/icons/UserCircleCheck.svg
   String get userCircleCheck => 'assets/icons/UserCircleCheck.svg';
 
+  /// File path: assets/icons/UserCircleDashed.svg
+  String get userCircleDashed => 'assets/icons/UserCircleDashed.svg';
+
   /// File path: assets/icons/UserFocus.svg
   String get userFocus => 'assets/icons/UserFocus.svg';
+
+  /// File path: assets/icons/Wallet.svg
+  String get wallet => 'assets/icons/Wallet.svg';
+
+  /// File path: assets/icons/Warning.svg
+  String get warning => 'assets/icons/Warning.svg';
 
   /// File path: assets/icons/appIcon.svg
   String get appIcon => 'assets/icons/appIcon.svg';
@@ -69,6 +126,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_down.svg
   String get arrowDown => 'assets/icons/arrow_down.svg';
 
+  /// File path: assets/icons/arrow_down_left.svg
+  String get arrowDownLeft => 'assets/icons/arrow_down_left.svg';
+
   /// File path: assets/icons/arrow_up.svg
   String get arrowUp => 'assets/icons/arrow_up.svg';
 
@@ -88,8 +148,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/brief_case.svg
   String get briefCase => 'assets/icons/brief_case.svg';
 
+  /// File path: assets/icons/bvnProcessing.svg
+  String get bvnProcessing => 'assets/icons/bvnProcessing.svg';
+
+  /// File path: assets/icons/bvnProcessingDark.svg
+  String get bvnProcessingDark => 'assets/icons/bvnProcessingDark.svg';
+
+  /// File path: assets/icons/calendar.svg
+  String get calendar => 'assets/icons/calendar.svg';
+
   /// File path: assets/icons/caretRight.svg
-  String get caretRight => 'assets/icons/caretRight.svg';
+  String get caretRightSvg => 'assets/icons/caretRight.svg';
+
+  /// File path: assets/icons/caret_right.svg
+  String get caretRightSvg_ => 'assets/icons/caret_right.svg';
+
+  /// File path: assets/icons/caret_down.svg
+  String get caretDown => 'assets/icons/caret_down.svg';
 
   /// File path: assets/icons/checked.svg
   String get checked => 'assets/icons/checked.svg';
@@ -113,6 +188,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/dollarCircle.svg
   String get dollarCircle => 'assets/icons/dollarCircle.svg';
 
+  /// File path: assets/icons/download.svg
+  String get download => 'assets/icons/download.svg';
+
   /// File path: assets/icons/eclipse.svg
   String get eclipse => 'assets/icons/eclipse.svg';
 
@@ -126,11 +204,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ethereumIcon.svg
   String get ethereumIcon => 'assets/icons/ethereumIcon.svg';
 
+  /// File path: assets/icons/eye.svg
+  String get eye => 'assets/icons/eye.svg';
+
   /// File path: assets/icons/eye_icon.svg
   String get eyeIcon => 'assets/icons/eye_icon.svg';
 
   /// File path: assets/icons/faceScan.svg
   String get faceScan => 'assets/icons/faceScan.svg';
+
+  /// File path: assets/icons/file_arrow_down.svg
+  String get fileArrowDown => 'assets/icons/file_arrow_down.svg';
+
+  /// File path: assets/icons/file_text.svg
+  String get fileText => 'assets/icons/file_text.svg';
 
   /// File path: assets/icons/filter.svg
   String get filter => 'assets/icons/filter.svg';
@@ -162,6 +249,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/invoice.svg
   String get invoice => 'assets/icons/invoice.svg';
 
+  /// File path: assets/icons/invoice_bg.svg
+  String get invoiceBg => 'assets/icons/invoice_bg.svg';
+
+  /// File path: assets/icons/link copy.svg
+  String get linkCopy => 'assets/icons/link copy.svg';
+
   /// File path: assets/icons/lock_icon.svg
   String get lockIcon => 'assets/icons/lock_icon.svg';
 
@@ -183,6 +276,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/noTransaction.svg
   String get noTransaction => 'assets/icons/noTransaction.svg';
 
+  /// File path: assets/icons/note_pencil.svg
+  String get notePencil => 'assets/icons/note_pencil.svg';
+
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
@@ -195,6 +291,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/profilee.svg
   String get profilee => 'assets/icons/profilee.svg';
 
+  /// File path: assets/icons/qr_icon.png
+  AssetGenImage get qrIcon => const AssetGenImage('assets/icons/qr_icon.png');
+
   /// File path: assets/icons/question_svg.svg
   String get questionSvg => 'assets/icons/question_svg.svg';
 
@@ -203,6 +302,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/sad_error.svg
   String get sadError => 'assets/icons/sad_error.svg';
+
+  /// File path: assets/icons/share.svg
+  String get share => 'assets/icons/share.svg';
 
   /// File path: assets/icons/signIn.svg
   String get signIn => 'assets/icons/signIn.svg';
@@ -255,9 +357,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
-  /// File path: assets/icons/user_circle.svg
-  String get userCircle => 'assets/icons/user_circle.svg';
-
   /// File path: assets/icons/user_edit.svg
   String get userEdit => 'assets/icons/user_edit.svg';
 
@@ -273,18 +372,37 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    bank,
     briefcase,
     buildingOfficeSvg,
     buildingOfficeSvg_,
     carProfile,
+    checkCircle,
+    clock,
+    clockCountdown,
+    clockUser,
+    copy,
+    file,
     globe,
+    handCoins,
     identificationCard,
     info,
+    invoiceCopy,
     link,
     magnifyingGlass,
-    qrCode,
+    moneyCopy,
+    prohibit,
+    qrCodeSvg,
+    qrCodeSvg_,
+    scales,
+    trash,
+    userCircleSvg,
+    userCircleSvg_,
     userCircleCheck,
+    userCircleDashed,
     userFocus,
+    wallet,
+    warning,
     appIcon,
     appleIcon,
     arrowRightSvg,
@@ -292,25 +410,35 @@ class $AssetsIconsGen {
     arrowBack,
     arrowClockwise,
     arrowDown,
+    arrowDownLeft,
     arrowUp,
     back,
     backIcon,
     backgroundPng,
     backgroundSvg,
     briefCase,
-    caretRight,
+    bvnProcessing,
+    bvnProcessingDark,
+    calendar,
+    caretRightSvg,
+    caretRightSvg_,
+    caretDown,
     checked,
     close,
     crossEye,
     defifundrLogo,
     depositSvg,
     dollarCircle,
+    download,
     eclipse,
     emptyQuickpayIcon,
     emptyQuickpayIconDark,
     ethereumIcon,
+    eye,
     eyeIcon,
     faceScan,
+    fileArrowDown,
+    fileText,
     filter,
     fingerprint,
     googleIcon,
@@ -321,6 +449,8 @@ class $AssetsIconsGen {
     hundredPercent,
     incompletRegistration,
     invoice,
+    invoiceBg,
+    linkCopy,
     lockIcon,
     lockKeyOpen,
     logoWhite,
@@ -328,13 +458,16 @@ class $AssetsIconsGen {
     money,
     ninSlip,
     noTransaction,
+    notePencil,
     notification,
     person,
     pinCreated,
     profilee,
+    qrIcon,
     questionSvg,
     rectangle,
     sadError,
+    share,
     signIn,
     signOut,
     smileSuccess,
@@ -352,7 +485,6 @@ class $AssetsIconsGen {
     usFlag,
     usddIcon,
     user,
-    userCircle,
     userEdit,
     verificationProgress,
     verificationProgressDark,
@@ -498,6 +630,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
+  /// File path: assets/images/qr_code.png
+  AssetGenImage get qrCode => const AssetGenImage('assets/images/qr_code.png');
+
   /// File path: assets/images/rocket.png
   AssetGenImage get rocket => const AssetGenImage('assets/images/rocket.png');
 
@@ -570,6 +705,7 @@ class $AssetsImagesGen {
     optimism,
     people,
     profile,
+    qrCode,
     rocket,
     starknet,
     switchPng,
@@ -1667,13 +1803,9 @@ class $AssetsIconsCountryFlagsGen {
 class Assets {
   const Assets._();
 
-  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsShadersGen shaders = $AssetsShadersGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

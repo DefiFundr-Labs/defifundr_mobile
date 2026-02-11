@@ -1,13 +1,14 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/info_card.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class VerifyIdentityScreen extends StatefulWidget {
   const VerifyIdentityScreen({super.key});
 
@@ -66,7 +67,7 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
           PrimaryButton(
             text: "Get started",
             onPressed: () {
-              context.pushNamed(RouteConstants.processingBvnRequestScreen);
+              context.router.push(const ProcessingBvnRequestRoute());
             },
           ),
           SizedBox(height: 20.h),

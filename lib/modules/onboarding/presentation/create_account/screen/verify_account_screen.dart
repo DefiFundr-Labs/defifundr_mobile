@@ -1,22 +1,23 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routes_constant.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
-import '../../../../../core/shared/common_ui/buttons/primary_button.dart';
+import '../../../../../core/shared/common/buttons/primary_button.dart';
 import '../../../../../core/utils/message_service.dart';
 import '../../../../authentication/presentation/forget_password/bloc/forgot_password_bloc.dart';
 
+@RoutePage()
 class VerifyAccountScreen extends StatefulWidget {
   const VerifyAccountScreen({super.key});
 
@@ -62,7 +63,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
       return;
     }
 
-    context.pushNamed(RouteConstants.newPassword);
+    context.router.push(const NewPasswordRoute());
   }
 
   void _handleResendOtp() {

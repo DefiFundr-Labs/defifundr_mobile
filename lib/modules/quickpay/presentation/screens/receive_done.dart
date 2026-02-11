@@ -11,6 +11,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class ReceivePaymentDoneScreen extends StatefulWidget {
   final ReceiveParams args;
 

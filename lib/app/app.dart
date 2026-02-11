@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/core/shared/common_ui/components/dismiss_keyboard.dart';
+import 'package:defifundr_mobile/core/shared/common/components/dismiss_keyboard.dart';
 import 'package:defifundr_mobile/infrastructure/bloc_infrastructure/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,9 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  final _appRouter = AppRouter();
+  final _routeObserver = AppRouteObserver();
+
   @override
   void didChangeDependencies() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -46,11 +50,12 @@ class _AppState extends State<App> {
             title: 'DeFiFundr',
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: ThemeMode.dark,
+            themeMode: ThemeMode.system,
             scrollBehavior: const _AppScrollBehavior(),
-            routeInformationProvider: AppRouter.router.routeInformationProvider,
-            routeInformationParser: AppRouter.router.routeInformationParser,
-            routerDelegate: AppRouter.router.routerDelegate,
+            routerConfig: _appRouter.config(
+              includePrefixMatches: true,
+              navigatorObservers: () => [_routeObserver],
+            ),
           ),
         ),
       ),
