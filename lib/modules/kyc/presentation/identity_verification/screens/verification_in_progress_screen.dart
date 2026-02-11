@@ -58,7 +58,7 @@ class _VerificationInProgressScreenState
             child: BrandButton(
               text: "Back to checklist",
               onPressed: () =>
-                  context.router.push(const OnboardingChecklistRoute()),
+                  context.router.push(const MainShellRoute()),
             ),
           ),
         ],

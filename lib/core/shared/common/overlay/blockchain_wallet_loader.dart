@@ -26,7 +26,6 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
   late AnimationController _animationController;
   late Animation<double> _pulseAnimation;
   late Animation<double> _opacityAnimation;
-  late Animation<double> _progressAnimation;
 
   @override
   void initState() {
@@ -50,12 +49,6 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
       ),
     );
 
-    _progressAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0.0, 1.0, curve: Curves.easeInOut),
-      ),
-    );
   }
 
   @override
@@ -209,8 +202,6 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
         return colors.activeButton;
       case BlockchainType.starknet:
         return colors.activeButton;
-      default:
-        return colors.activeButton;
     }
   }
 
@@ -221,8 +212,6 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
       case BlockchainType.solana:
         return AppIcons.appIcon;
       case BlockchainType.starknet:
-        return AppIcons.stellar;
-      default:
         return AppIcons.stellar;
     }
   }

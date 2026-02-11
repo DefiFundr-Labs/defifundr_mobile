@@ -131,7 +131,7 @@ class _TaxInformationScreenState extends State<TaxInformationScreen> {
           PrimaryButton(
               text: "Save details",
               onPressed: () =>
-                  context.router.push(const OnboardingChecklistRoute())),
+                  context.router.push(const MainShellRoute())),
           SizedBox(height: 20.h),
         ],
       ),

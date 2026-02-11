@@ -85,7 +85,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 PrimaryButton(
                   text: "Create account",
                   onPressed: () {
-                    context.router.push(const QuickPayHomeRoute());
+                    context.router.push(const MainShellRoute());
                   },
                 ),
                 SizedBox(height: 24.h),
@@ -95,7 +95,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   text: 'Sign up using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    context.router.push(const QuickPayHomeRoute());
+                    context.router.push(const MainShellRoute());
                   },
                 ),
                 SizedBox(height: 16.h),

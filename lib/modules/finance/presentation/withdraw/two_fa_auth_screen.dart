@@ -82,19 +82,9 @@ class _TwoFaAuthScreenState extends State<TwoFaAuthScreen>
     }
   }
 
-  void _onBackspace() {
-    if (_pin.isNotEmpty) {
-      setState(() {
-        _pin.removeLast();
-        _errorMessage = null;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
-    final fonts = context.theme.fonts;
 
     return BlocBuilder<WithdrawBloc, WithdrawState>(
       builder: (context, state) {

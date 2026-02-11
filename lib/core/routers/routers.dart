@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/routers/bottom_sheet_route.dart';
 import 'package:defifundr_mobile/core/routers/guards/auth_guard.dart';
+import 'package:defifundr_mobile/core/routers/main_shell_screen.dart';
 import 'package:defifundr_mobile/core/routers/route_constants.dart';
+import 'package:defifundr_mobile/core/routers/tab_routes.dart';
 import 'package:defifundr_mobile/shared/widgets/sample_bottom_sheet_screen.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
@@ -50,6 +52,8 @@ import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verification_in_progress_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/screens/verify_identity_screen.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/tax_compliance/screens/tax_information_screen.dart';
+// More
+import 'package:defifundr_mobile/modules/more/presentation/screens/more_screen.dart';
 // Onboarding
 import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/screen/create_account_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/screen/create_password_screen.dart';
@@ -200,16 +204,193 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // DASHBOARD ROUTES
+        // MAIN SHELL (Bottom Navigation)
         // ============================================================
         AutoRoute(
-          page: OnboardingChecklistRoute.page,
-          path: RouteConstants.dashboard,
+          page: MainShellRoute.page,
+          path: RouteConstants.mainShell,
           guards: [authGuard],
+          children: [
+            // Home Tab
+            AutoRoute(
+              page: HomeTabRoute.page,
+              path: RouteConstants.homeTab,
+              children: [
+                AutoRoute(
+                  page: OnboardingChecklistRoute.page,
+                  path: RouteConstants.dashboard,
+                  initial: true,
+                ),
+              ],
+            ),
+
+            // Finance Tab
+            AutoRoute(
+              page: FinanceTabRoute.page,
+              path: RouteConstants.financeTab,
+              children: [
+                AutoRoute(
+                  page: FinanceHomeRoute.page,
+                  path: '',
+                  initial: true,
+                ),
+                AutoRoute(
+                  page: SelectNetworkRoute.page,
+                  path: 'select-network',
+                ),
+                AutoRoute(
+                  page: SelectAssetRoute.page,
+                  path: 'select-asset',
+                ),
+                AutoRoute(
+                  page: AssetDetailsRoute.page,
+                  path: 'asset-details',
+                ),
+                AutoRoute(
+                  page: AssetDepositRoute.page,
+                  path: 'asset-deposit',
+                ),
+                AutoRoute(
+                  page: WithdrawRoute.page,
+                  path: 'withdraw',
+                ),
+                AutoRoute(
+                  page: WithdrawPreviewRoute.page,
+                  path: 'withdraw-preview',
+                ),
+                AutoRoute(
+                  page: TwoFaAuthRoute.page,
+                  path: 'two-fa-auth',
+                ),
+                AutoRoute(
+                  page: ConfirmPaymentRoute.page,
+                  path: 'confirm-payment',
+                ),
+                AutoRoute(
+                  page: SentRoute.page,
+                  path: 'sent',
+                ),
+                AutoRoute(
+                  page: ReceiveRoute.page,
+                  path: 'receive',
+                ),
+                AutoRoute(
+                  page: AddAddressRoute.page,
+                  path: 'add-address',
+                ),
+                AutoRoute(
+                  page: AddressBookRoute.page,
+                  path: 'address-book',
+                ),
+              ],
+            ),
+
+            // Workspace Tab
+            AutoRoute(
+              page: WorkspaceTabRoute.page,
+              path: RouteConstants.workspaceTab,
+              children: [
+                AutoRoute(
+                  page: TimeTrackingContractsRoute.page,
+                  path: '',
+                  initial: true,
+                ),
+                AutoRoute(
+                  page: TimeTrackingRoute.page,
+                  path: 'time-tracking',
+                ),
+                AutoRoute(
+                  page: SubmitHoursRoute.page,
+                  path: 'submit-hours',
+                ),
+                AutoRoute(
+                  page: ResubmitHoursRoute.page,
+                  path: 'resubmit-hours',
+                ),
+                AutoRoute(
+                  page: SubmittedHoursDetailRoute.page,
+                  path: 'submitted-hours-detail',
+                ),
+                AutoRoute(
+                  page: TimeOffRoute.page,
+                  path: 'time-off',
+                ),
+                AutoRoute(
+                  page: TimeOffDetailsRoute.page,
+                  path: 'time-off-details',
+                ),
+                AutoRoute(
+                  page: TimeOffDetailRoute.page,
+                  path: 'time-off-detail',
+                ),
+                AutoRoute(
+                  page: NewTimeOffRequestRoute.page,
+                  path: 'time-off-new-request',
+                ),
+                AutoRoute(
+                  page: EditTimeOffRequestRoute.page,
+                  path: 'time-off-edit-request',
+                ),
+                AutoRoute(
+                  page: CancelTimeOffRequestRoute.page,
+                  path: 'time-off-cancel-request',
+                ),
+                AutoRoute(
+                  page: RequestChangeRoute.page,
+                  path: 'time-off-request-change',
+                ),
+                AutoRoute(
+                  page: TimeOffHistoryRoute.page,
+                  path: 'time-off-history',
+                ),
+                AutoRoute(
+                  page: UnpaidTimeOffBalanceRoute.page,
+                  path: 'time-off-unpaid-balance',
+                ),
+                AutoRoute(
+                  page: TimeOffContractsRoute.page,
+                  path: 'time-off-contracts',
+                ),
+                AutoRoute(
+                  page: ExpensesRoute.page,
+                  path: 'expenses',
+                ),
+                AutoRoute(
+                  page: AddExpenseRoute.page,
+                  path: 'expenses-add',
+                ),
+                AutoRoute(
+                  page: ExpenseDetailsRoute.page,
+                  path: 'expenses-details',
+                ),
+                AutoRoute(
+                  page: ExpenseSubmittedRoute.page,
+                  path: 'expenses-submitted',
+                ),
+                AutoRoute(
+                  page: ExpensesTimeOffDetailsRoute.page,
+                  path: 'expenses-time-off-details',
+                ),
+              ],
+            ),
+
+            // More Tab
+            AutoRoute(
+              page: MoreTabRoute.page,
+              path: RouteConstants.moreTab,
+              children: [
+                AutoRoute(
+                  page: MoreRoute.page,
+                  path: RouteConstants.more,
+                  initial: true,
+                ),
+              ],
+            ),
+          ],
         ),
 
         // ============================================================
-        // KYC ROUTES
+        // KYC ROUTES (pushed over shell — no bottom nav)
         // ============================================================
         AutoRoute(
           page: ProvideBvnRoute.page,
@@ -243,76 +424,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // FINANCE ROUTES
-        // ============================================================
-        AutoRoute(
-          page: FinanceHomeRoute.page,
-          path: RouteConstants.finance,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: SelectNetworkRoute.page,
-          path: RouteConstants.financeSelectNetwork,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: SelectAssetRoute.page,
-          path: RouteConstants.financeSelectAsset,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: AssetDetailsRoute.page,
-          path: RouteConstants.financeAssetDetails,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: AssetDepositRoute.page,
-          path: RouteConstants.financeAssetDeposit,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: WithdrawRoute.page,
-          path: RouteConstants.financeWithdraw,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: WithdrawPreviewRoute.page,
-          path: RouteConstants.financeWithdrawPreview,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TwoFaAuthRoute.page,
-          path: RouteConstants.financeTwoFaAuth,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ConfirmPaymentRoute.page,
-          path: RouteConstants.financeConfirmPayment,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: SentRoute.page,
-          path: RouteConstants.financeSent,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ReceiveRoute.page,
-          path: RouteConstants.financeReceive,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: AddAddressRoute.page,
-          path: RouteConstants.financeAddAddress,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: AddressBookRoute.page,
-          path: RouteConstants.financeAddressBook,
-          guards: [authGuard],
-        ),
-
-        // ============================================================
-        // QUICKPAY ROUTES
+        // QUICKPAY ROUTES (pushed over shell)
         // ============================================================
         AutoRoute(
           page: QuickPayHomeRoute.page,
@@ -341,7 +453,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // PAYMENT ROUTES
+        // PAYMENT ROUTES (pushed over shell)
         // ============================================================
         AutoRoute(
           page: UpcomingPaymentsRoute.page,
@@ -350,90 +462,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // TIME TRACKING ROUTES
-        // ============================================================
-        AutoRoute(
-          page: TimeTrackingRoute.page,
-          path: RouteConstants.timeTracking,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TimeTrackingContractsRoute.page,
-          path: RouteConstants.timeTrackingContracts,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: SubmitHoursRoute.page,
-          path: RouteConstants.timeTrackingSubmitHours,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ResubmitHoursRoute.page,
-          path: RouteConstants.timeTrackingResubmitHours,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: SubmittedHoursDetailRoute.page,
-          path: RouteConstants.timeTrackingSubmittedHoursDetail,
-          guards: [authGuard],
-        ),
-
-        // ============================================================
-        // TIME OFF ROUTES
-        // ============================================================
-        AutoRoute(
-          page: TimeOffRoute.page,
-          path: RouteConstants.timeOff,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TimeOffDetailsRoute.page,
-          path: RouteConstants.timeOffDetails,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TimeOffDetailRoute.page,
-          path: RouteConstants.timeOffDetail,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: NewTimeOffRequestRoute.page,
-          path: RouteConstants.timeOffNewRequest,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: EditTimeOffRequestRoute.page,
-          path: RouteConstants.timeOffEditRequest,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: CancelTimeOffRequestRoute.page,
-          path: RouteConstants.timeOffCancelRequest,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: RequestChangeRoute.page,
-          path: RouteConstants.timeOffRequestChange,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TimeOffHistoryRoute.page,
-          path: RouteConstants.timeOffHistory,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: UnpaidTimeOffBalanceRoute.page,
-          path: RouteConstants.timeOffUnpaidBalance,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: TimeOffContractsRoute.page,
-          path: RouteConstants.timeOffContracts,
-          guards: [authGuard],
-        ),
-
-        // ============================================================
-        // PAY CYCLE ROUTES
+        // PAY CYCLE ROUTES (pushed over shell)
         // ============================================================
         AutoRoute(
           page: PayCycleContractsRoute.page,
@@ -452,7 +481,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // INVOICE ROUTES
+        // INVOICE ROUTES (pushed over shell)
         // ============================================================
         AutoRoute(
           page: InvoicesRoute.page,
@@ -467,35 +496,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: InvoiceCompleteRoute.page,
           path: RouteConstants.invoicesComplete,
-          guards: [authGuard],
-        ),
-
-        // ============================================================
-        // EXPENSE ROUTES
-        // ============================================================
-        AutoRoute(
-          page: ExpensesRoute.page,
-          path: RouteConstants.expenses,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: AddExpenseRoute.page,
-          path: RouteConstants.expensesAdd,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ExpenseDetailsRoute.page,
-          path: RouteConstants.expensesDetails,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ExpenseSubmittedRoute.page,
-          path: RouteConstants.expensesSubmitted,
-          guards: [authGuard],
-        ),
-        AutoRoute(
-          page: ExpensesTimeOffDetailsRoute.page,
-          path: RouteConstants.expensesTimeOffDetails,
           guards: [authGuard],
         ),
 

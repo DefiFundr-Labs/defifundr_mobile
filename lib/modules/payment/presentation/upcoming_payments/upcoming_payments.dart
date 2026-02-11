@@ -99,7 +99,6 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
   @override
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
-    final textTheme = context.theme.textTheme;
 
     // Initialize payments if empty
     if (_allPayments.isEmpty) {

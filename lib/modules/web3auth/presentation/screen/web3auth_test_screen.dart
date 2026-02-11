@@ -26,9 +26,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
 
-  // Add this to track email state
-  bool _isEmailValid = false;
-
   // Animation controller for blockchain switching
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -51,7 +48,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
       ),
     );
 
-    _emailController.addListener(_validateEmail);
+
   }
 
   @override
@@ -60,14 +57,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
     _messageController.dispose();
     _animationController.dispose();
     super.dispose();
-  }
-
-  void _validateEmail() {
-    setState(() {
-      _isEmailValid = _emailController.text.trim().isNotEmpty &&
-          _emailController.text.contains('@') &&
-          _emailController.text.contains('.');
-    });
   }
 
   @override
@@ -756,8 +745,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
         return 'SOL';
       case BlockchainType.starknet:
         return 'STRK';
-      default:
-        return '';
     }
   }
 
@@ -768,8 +755,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
       case BlockchainType.solana:
         return AppIcons.appIcon;
       case BlockchainType.starknet:
-        return AppIcons.stellar;
-      default:
         return AppIcons.stellar;
     }
   }
@@ -783,8 +768,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
       case BlockchainType.solana:
         return colors.activeButton;
       case BlockchainType.starknet:
-        return colors.activeButton;
-      default:
         return colors.activeButton;
     }
   }

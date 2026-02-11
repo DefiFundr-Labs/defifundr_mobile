@@ -40,7 +40,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   static const double _containerPadding = 16.0;
   static const double _verticalSpacing = 24.0;
   static const double _borderRadius = 12.0;
-  static const double _buttonBorderRadius = 32.0;
 
   @override
   void initState() {

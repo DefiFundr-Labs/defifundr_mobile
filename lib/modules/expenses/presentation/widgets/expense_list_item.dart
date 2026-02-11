@@ -75,23 +75,19 @@ class ExpenseListItem extends StatelessWidget {
   }
 
   Widget _buildStatusChip(BuildContext context, ExpenseStatus status) {
-    Color backgroundColor;
     Color textColor;
     String text;
 
     switch (status) {
       case ExpenseStatus.approved:
-        backgroundColor = Colors.green[100]!;
         textColor = Colors.green[700]!;
         text = 'Approved';
         break;
       case ExpenseStatus.pending:
-        backgroundColor = Colors.orange[100]!;
         textColor = Colors.orange[700]!;
         text = 'Pending';
         break;
       case ExpenseStatus.rejected:
-        backgroundColor = Colors.red[100]!;
         textColor = Colors.red[700]!;
         text = 'Rejected';
         break;

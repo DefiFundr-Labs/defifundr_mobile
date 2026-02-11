@@ -46,9 +46,6 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     final approvedPayouts =
         _payouts.where((p) => p.status == PaymentStatus.approved).length;
     final currentPayout = _payouts.isNotEmpty ? _payouts.first : null;
-    final totalPending = _payouts
-        .where((p) => p.status == PaymentStatus.pending)
-        .fold(0.0, (sum, p) => sum + p.amount);
 
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
