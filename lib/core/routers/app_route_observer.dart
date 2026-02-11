@@ -26,8 +26,7 @@ class AppRouteObserver extends AutoRouteObserver {
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     assert(() {
-      log(
-          'Route replaced: ${oldRoute?.settings.name} with ${newRoute?.settings.name}');
+      log('Route replaced: ${oldRoute?.settings.name} with ${newRoute?.settings.name}');
       return true;
     }());
   }

@@ -57,7 +57,7 @@ class DashedVerticalDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height,
       width: 2, // Match the width of the timeline line
       child: CustomPaint(

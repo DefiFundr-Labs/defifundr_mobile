@@ -109,7 +109,7 @@ class _YourDetailsStepState extends State<YourDetailsStep> {
                 isRegisteredBusiness = value;
               });
             },
-            activeColor: context.theme.colors.bgB0,
+            activeThumbColor: context.theme.colors.bgB0,
             trackOutlineColor: WidgetStateProperty.all(
               context.theme.colors.strokeSecondary.withAlpha(20),
             ),
@@ -404,7 +404,7 @@ class _ClientDetailsStepState extends State<ClientDetailsStep> {
                     isRegisteredBusiness = value;
                   });
                 },
-                activeColor: Colors.white,
+                activeThumbColor: Colors.white,
                 activeTrackColor: AppConstants.primaryBlue,
               ),
             ],
@@ -760,7 +760,7 @@ class _InvoiceDetailsStepState extends State<InvoiceDetailsStep> {
                 addInclusiveTax = value;
               });
             },
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             activeTrackColor: AppConstants.primaryBlue,
           ),
         ],

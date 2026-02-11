@@ -653,7 +653,7 @@ class AppTheme {
       colorScheme: _lightAppColorss.toColorScheme(Brightness.light),
       scaffoldBackgroundColor: _lightAppColorss.bgB1,
       appBarTheme: AppBarTheme(
-        color: _lightAppColorss.bgB0,
+        backgroundColor: _lightAppColorss.bgB0,
         titleTextStyle: _lightFontTheme.heading2Bold,
         elevation: 0,
       ),
@@ -764,7 +764,7 @@ class AppTheme {
       colorScheme: _darkAppColorss.toColorScheme(Brightness.dark),
       scaffoldBackgroundColor: _darkAppColorss.bgB0,
       appBarTheme: AppBarTheme(
-        color: _darkAppColorss.bgB0,
+        backgroundColor: _darkAppColorss.bgB0,
         titleTextStyle: _darkFontTheme.heading2Bold,
         elevation: 0,
       ),
