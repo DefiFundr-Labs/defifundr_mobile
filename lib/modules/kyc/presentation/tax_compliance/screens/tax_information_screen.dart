@@ -1,17 +1,19 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:country_picker/country_picker.dart';
+import 'package:country_picker/src/country_list_view.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/shared/common/bottom_sheet/selection_bottom_sheet.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
-import 'package:defifundr_mobile/modules/kyc/presentation/tax_compliance/widgets/countries_list.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/custom_checkbox.dart';
-import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class TaxInformationScreen extends StatefulWidget {
@@ -67,33 +69,27 @@ class _TaxInformationScreenState extends State<TaxInformationScreen> {
                       }),
                   AppTextField(
                     labelText: 'Country of tax residence',
-                    suffixType: SuffixType.defaultt,
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: SvgPicture.asset(
+                        Assets.icons.arrowDown,
+                        colorFilter: ColorFilter.mode(
+                          context.theme.colors.textSecondary,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
                     controller: countryController,
                     readOnly: true,
-                    onTap: () async {
-                      final selected = await showModalBottomSheet<String>(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20)),
-                        ),
-                        builder: (_) => SelectionBottomSheet<String>(
-                          title: 'Country of tax residence',
-                          items: countries,
-                          itemBuilder: (context, item) => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: Text(
-                              item,
-                              style: fonts.textMdRegular,
-                            ),
-                          ),
-                        ),
+                    onTap: () {
+                      _showCountryBottomSheet(
+                        title: 'Country of tax residence',
+                        onSelect: (Country country) {
+                          countryController.text =
+                              '${country.flagEmoji}  ${country.name}';
+                        },
                       );
-
-                      if (selected != null) {
-                        countryController.text = selected;
-                      }
                     },
                   ),
                   SizedBox(height: 20),
@@ -130,11 +126,96 @@ class _TaxInformationScreenState extends State<TaxInformationScreen> {
           SizedBox(height: 10.h),
           PrimaryButton(
               text: "Save details",
-              onPressed: () =>
-                  context.router.push(const MainShellRoute())),
+              onPressed: () => context.router.push(const MainShellRoute())),
           SizedBox(height: 20.h),
         ],
       ),
+    );
+  }
+
+  void _showCountryBottomSheet({
+    required String title,
+    required ValueChanged<Country> onSelect,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.6,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 8),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: CountryListView(
+                  onSelect: (Country country) {
+                    onSelect(country);
+                  },
+                  showPhoneCode: false,
+                  countryListTheme: CountryListThemeData(
+                    backgroundColor: Colors.white,
+                    textStyle: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                    ),
+                    searchTextStyle: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    inputDecoration: InputDecoration(
+                      hintText: 'Search',
+                      hintStyle: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 16,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.grey[400],
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[100],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    flagSize: 28,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

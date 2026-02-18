@@ -65,7 +65,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
       return;
     }
 
-    context.router.replaceAll([const MainShellRoute()]);
+    context.router.replace(const AccountTypeRoute());
   }
 
   void _handleResendOtp() {

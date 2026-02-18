@@ -67,7 +67,7 @@ class _VerifyIdentityScreenState extends State<VerifyIdentityScreen> {
           PrimaryButton(
             text: "Get started",
             onPressed: () {
-              context.router.push(const ProcessingBvnRequestRoute());
+              context.router.push(const SelectIdCountryRoute());
             },
           ),
           SizedBox(height: 20.h),
