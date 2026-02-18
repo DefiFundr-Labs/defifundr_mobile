@@ -85,7 +85,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 PrimaryButton(
                   text: "Create account",
                   onPressed: () {
-                    context.router.push(const MainShellRoute());
+                    context.router.push(const CreatePasswordRoute());
                   },
                 ),
                 SizedBox(height: 24.h),
@@ -95,7 +95,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   text: 'Sign up using Google',
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    context.router.push(const MainShellRoute());
+                    // Handle Google login
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -120,7 +120,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.router.push(const ResetPasswordRoute());
+                        context.router.push(const LoginRoute());
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,

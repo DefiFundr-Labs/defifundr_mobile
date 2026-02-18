@@ -74,6 +74,7 @@ class AppTexts {
       "Ooops! don't worry,\nthe process is simpler than you thought";
   static String forgotPasswordButton = "Continue";
   static String resetPassword = "Reset Password";
+  static String setPassword = "Set Password";
   static String resetPasswordDesc =
       "Enter your email or username to reset password";
   static String resetPasswordButton = "Reset Password";

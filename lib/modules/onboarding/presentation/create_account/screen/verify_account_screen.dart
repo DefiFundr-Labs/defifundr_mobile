@@ -43,6 +43,8 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
   void dispose() {
     _countdownNotifier.dispose();
     _otpController.dispose();
+    _otpFocusNode.dispose();
+    _errorController.close();
     super.dispose();
   }
 
@@ -63,7 +65,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
       return;
     }
 
-    context.router.push(const NewPasswordRoute());
+    context.router.replaceAll([const MainShellRoute()]);
   }
 
   void _handleResendOtp() {
@@ -270,7 +272,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
         if (state is ForgotPasswordSuccess) {}
       },
       child: PrimaryButton(
-        text: "Verify code",
+        text: "Verify account",
         onPressed: _handleOtpVerification,
       ),
     );

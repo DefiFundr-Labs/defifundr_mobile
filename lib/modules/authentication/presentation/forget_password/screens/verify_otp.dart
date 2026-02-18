@@ -43,6 +43,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   void dispose() {
     _countdownNotifier.dispose();
     _otpController.dispose();
+    _otpFocusNode.dispose();
+    _errorController.close();
     super.dispose();
   }
 
@@ -187,7 +189,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 if (value.length == 6 && value == "123456") {
                   _handleOtpVerification();
                 } else {
-                  _errorController.onListen!();
+                  _errorController.add(ErrorAnimationType.shake);
                   MessageService.showError(
                     context,
                     AppTexts.invalidOTPCode,

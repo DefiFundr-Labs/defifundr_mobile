@@ -17,8 +17,23 @@ import '../../../../authentication/presentation/forget_password/bloc/forgot_pass
 import '../../../../authentication/presentation/forget_password/widget/password_requirement_viewer.dart';
 
 @RoutePage()
-class CreatePasswordScreen extends StatelessWidget {
+class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
+
+  @override
+  State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
+}
+
+class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +78,8 @@ class CreatePasswordScreen extends StatelessWidget {
                           current.newPasswordState?.hidePassword,
                       builder: (context, state) {
                         return AppTextField(
-                          controller: TextEditingController(),
-                          labelText: AppTexts.newPassword,
+                          controller: _passwordController,
+                          labelText: AppTexts.password,
                           hideText:
                               state.newPasswordState?.hidePassword ?? false,
                           keyboardType: TextInputType.visiblePassword,
@@ -149,7 +164,7 @@ class CreatePasswordScreen extends StatelessWidget {
                         builder:
                             (BuildContext context, ForgotPasswordState state) {
                           return AppTextField(
-                            controller: TextEditingController(),
+                            controller: _confirmPasswordController,
                             labelText: AppTexts.confirmPassword,
                             hideText:
                                 state.newPasswordState?.hideConfirmPassword ??
@@ -200,11 +215,11 @@ class CreatePasswordScreen extends StatelessWidget {
                       current.newPasswordState?.isVerificationPassed,
                   builder: (context, state) {
                     return PrimaryButton(
-                      text: AppTexts.resetPassword,
+                      text: AppTexts.setPassword,
                       isEnabled:
                           state.newPasswordState?.isVerificationPassed ?? false,
                       onPressed: () {
-                        context.router.push(const PasswordResetSuccessRoute());
+                        context.router.push(const VerifyAccountRoute());
                       },
                     );
                   },
