@@ -102,7 +102,7 @@ class _PinCodeScreenState extends State<PinCodeScreen>
   void _handleSuccessfulLogin() {
     HapticManager.lightImpact();
     // Navigate to main app shell with bottom navigation
-    context.router.push(const MainShellRoute());
+    context.router.replaceAll([const MainShellRoute()]);
   }
 
   void _handleIncorrectPin() {
@@ -128,7 +128,7 @@ class _PinCodeScreenState extends State<PinCodeScreen>
   void _onBiometricPressed() {
     HapticManager.lightImpact();
     // Handle biometric authentication
-    context.router.push(const MainShellRoute());
+    context.router.replaceAll([const MainShellRoute()]);
   }
 
   void _onLogout() {

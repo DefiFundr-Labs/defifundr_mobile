@@ -17,8 +17,24 @@ import '../bloc/forgot_password_bloc.dart';
 import '../widget/password_requirement_viewer.dart';
 
 @RoutePage()
-class NewPasswordScreen extends StatelessWidget {
+class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
+
+  @override
+  State<NewPasswordScreen> createState() => _NewPasswordScreenState();
+}
+
+class _NewPasswordScreenState extends State<NewPasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +76,7 @@ class NewPasswordScreen extends StatelessWidget {
                   current.newPasswordState?.hidePassword,
               builder: (context, state) {
                 return AppTextField(
-                  controller: TextEditingController(),
+                  controller: _passwordController,
                   labelText: AppTexts.newPassword,
                   hideText: state.newPasswordState?.hidePassword ?? false,
                   keyboardType: TextInputType.visiblePassword,
@@ -136,7 +152,7 @@ class NewPasswordScreen extends StatelessWidget {
                     current.newPasswordState?.hideConfirmPassword,
                 builder: (BuildContext context, ForgotPasswordState state) {
                   return AppTextField(
-                    controller: TextEditingController(),
+                    controller: _confirmPasswordController,
                     labelText: AppTexts.confirmPassword,
                     hideText:
                         state.newPasswordState?.hideConfirmPassword ?? false,
