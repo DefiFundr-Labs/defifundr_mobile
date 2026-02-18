@@ -107,6 +107,8 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/time
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../modules/kyc/presentation/fund_wallet/screens/fund_wallet_screen.dart';
+
 part 'routers.gr.dart';
 
 @AutoRouterConfig()
@@ -420,6 +422,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: TaxInformationRoute.page,
           path: RouteConstants.kycTaxInformation,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: FundWalletRoute.page,
+          path: RouteConstants.kycFundWallet,
           guards: [authGuard],
         ),
 

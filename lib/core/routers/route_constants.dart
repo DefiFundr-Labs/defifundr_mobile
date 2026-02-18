@@ -54,8 +54,10 @@ class RouteConstants {
   static const String kycProcessingBvn = '/kyc/processing-bvn';
   static const String kycVerifyIdentity = '/kyc/verify-identity';
   static const String kycSelectCountry = '/kyc/select-country';
-  static const String kycVerificationInProgress = '/kyc/verification-in-progress';
+  static const String kycVerificationInProgress =
+      '/kyc/verification-in-progress';
   static const String kycTaxInformation = '/kyc/tax-information';
+  static const String kycFundWallet = '/kyc/fund-wallet';
 
   // ============================================================
   // FINANCE ROUTES
@@ -94,8 +96,10 @@ class RouteConstants {
   static const String timeTracking = '/time-tracking';
   static const String timeTrackingContracts = '/time-tracking/contracts';
   static const String timeTrackingSubmitHours = '/time-tracking/submit-hours';
-  static const String timeTrackingResubmitHours = '/time-tracking/resubmit-hours';
-  static const String timeTrackingSubmittedHoursDetail = '/time-tracking/submitted-hours-detail';
+  static const String timeTrackingResubmitHours =
+      '/time-tracking/resubmit-hours';
+  static const String timeTrackingSubmittedHoursDetail =
+      '/time-tracking/submitted-hours-detail';
 
   // ============================================================
   // TIME OFF ROUTES

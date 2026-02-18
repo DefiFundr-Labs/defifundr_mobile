@@ -78,16 +78,16 @@ class _OnboardingChecklistScreenState extends State<OnboardingChecklistScreen> {
                       svgAsset: AppAssets.identityVerification,
                       title: "Verify your identity"),
                   OnboardingCard(
-                      onTap: () =>
-                          context.router.push(const ProvideBvnRoute()),
+                      onTap: () => context.router.push(const ProvideBvnRoute()),
                       svgAsset: AppAssets.bank,
                       title: "Provide your BVN"),
                   OnboardingCard(
-                      onTap: () => context.router
-                          .push(const TaxInformationRoute()),
+                      onTap: () =>
+                          context.router.push(const TaxInformationRoute()),
                       svgAsset: AppAssets.scales,
                       title: "Add tax info for compliance"),
                   OnboardingCard(
+                      onTap: () => context.router.push(const FundWalletRoute()),
                       svgAsset: AppAssets.wallet,
                       title: "Fund wallet with tokens"),
                 ],

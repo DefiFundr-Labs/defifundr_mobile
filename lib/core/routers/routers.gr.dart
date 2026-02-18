@@ -634,6 +634,22 @@ class FinanceTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FundWalletScreen]
+class FundWalletRoute extends PageRouteInfo<void> {
+  const FundWalletRoute({List<PageRouteInfo>? children})
+    : super(FundWalletRoute.name, initialChildren: children);
+
+  static const String name = 'FundWalletRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FundWalletScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeTabPage]
 class HomeTabRoute extends PageRouteInfo<void> {
   const HomeTabRoute({List<PageRouteInfo>? children})
