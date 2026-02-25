@@ -15,6 +15,7 @@ import 'package:defifundr_mobile/modules/finance/data/model/withdraw_details_mod
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -69,14 +70,16 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   Future<void> _selectFromAddressBook() async {
-    final selectedAddress = await context.router.push<String>(AddressBookRoute());
+    final selectedAddress =
+        await context.router.push<String>(AddressBookRoute());
     if (selectedAddress != null) {
       _addressController.text = selectedAddress;
     }
   }
 
   Future<void> _selectAsset() async {
-    final selectedAsset = await context.router.push<NetworkAsset>(SelectAssetRoute());
+    final selectedAsset =
+        await context.router.push<NetworkAsset>(SelectAssetRoute());
     if (selectedAsset != null) {
       _assetController.text = selectedAsset.name;
       setState(() => _selectedAsset = selectedAsset);
@@ -84,7 +87,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   Future<void> _selectNetwork() async {
-    final selectedNetwork = await context.router.push<Network>(SelectNetworkRoute());
+    final selectedNetwork =
+        await context.router.push<Network>(SelectNetworkRoute());
     if (selectedNetwork != null) {
       _networkController.text = selectedNetwork.name;
       setState(() => _selectedNetwork = selectedNetwork);
@@ -123,8 +127,27 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   void _showErrorSnackBar() {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please fill in all details')),
+      SnackBar(
+        content: Text(
+          'Please fill in all details',
+          style: context.theme.fonts.textMdRegular.copyWith(
+            color: isLightMode
+                ? context.theme.colors.contrastWhite
+                : context.theme.colors.contrastBlack,
+          ),
+        ),
+        backgroundColor: context.theme.colors.constantDefault,
+        behavior: SnackBarBehavior.floating,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        duration: const Duration(seconds: 2),
+      ),
     );
   }
 
@@ -409,8 +432,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               const SizedBox(width: 8),
               if (_addressController.text.isEmpty)
                 PrimaryButton(
-                  onPressed: () {
-                    // Implement paste functionality here
+                  onPressed: () async {
+                    final clipboardData =
+                        await Clipboard.getData(Clipboard.kTextPlain);
+                    if (clipboardData?.text != null &&
+                        clipboardData!.text!.isNotEmpty) {
+                      _addressController.text = clipboardData.text!;
+                      setState(() {});
+                    }
                   },
                   text: 'Paste',
                   color: colors.fillTertiary,
