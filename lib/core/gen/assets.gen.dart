@@ -42,8 +42,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Copy.svg
   String get copy => 'assets/icons/Copy.svg';
 
+  /// File path: assets/icons/Empty State.svg
+  String get emptyState => 'assets/icons/Empty State.svg';
+
   /// File path: assets/icons/File.svg
   String get file => 'assets/icons/File.svg';
+
+  /// File path: assets/icons/Files.svg
+  String get files => 'assets/icons/Files.svg';
 
   /// File path: assets/icons/Globe.svg
   String get globe => 'assets/icons/Globe.svg';
@@ -104,6 +110,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/Warning.svg
   String get warning => 'assets/icons/Warning.svg';
+
+  /// File path: assets/icons/alarmNotification.svg
+  String get alarmNotification => 'assets/icons/alarmNotification.svg';
 
   /// File path: assets/icons/appIcon.svg
   String get appIcon => 'assets/icons/appIcon.svg';
@@ -385,7 +394,9 @@ class $AssetsIconsGen {
     clockCountdown,
     clockUser,
     copy,
+    emptyState,
     file,
+    files,
     globe,
     handCoins,
     identificationCard,
@@ -406,6 +417,7 @@ class $AssetsIconsGen {
     userFocus,
     wallet,
     warning,
+    alarmNotification,
     appIcon,
     appleIcon,
     arrowRightSvg,
