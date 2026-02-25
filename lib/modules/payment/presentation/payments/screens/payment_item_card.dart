@@ -19,12 +19,45 @@ class PaymentItemCard extends StatelessWidget {
     final isLightMode = Theme.of(context).brightness == Brightness.light;
 
     Color statusColor;
+    String statusLabel;
+    Color badgeColor;
+    String badgeIcon;
     switch (payment.status) {
       case PaymentStatus.upcoming:
         statusColor = colors.greenDefault;
+        statusLabel = 'Upcoming';
+        badgeColor = colors.greenDefault;
+        badgeIcon = Assets.icons.arrowDownLeft;
         break;
       case PaymentStatus.overdue:
         statusColor = colors.redDefault;
+        statusLabel = 'Overdue';
+        badgeColor = colors.redDefault;
+        badgeIcon = Assets.icons.arrowUp;
+        break;
+      case PaymentStatus.pending:
+        statusColor = colors.orangeDefault;
+        statusLabel = 'Pending';
+        badgeColor = colors.orangeDefault;
+        badgeIcon = Assets.icons.arrowClockwise;
+        break;
+      case PaymentStatus.processing:
+        statusColor = colors.orangeDefault;
+        statusLabel = 'Processing';
+        badgeColor = colors.orangeDefault;
+        badgeIcon = Assets.icons.arrowClockwise;
+        break;
+      case PaymentStatus.successful:
+        statusColor = colors.greenDefault;
+        statusLabel = 'Successful';
+        badgeColor = colors.greenDefault;
+        badgeIcon = Assets.icons.arrowDownLeft;
+        break;
+      case PaymentStatus.failed:
+        statusColor = colors.redDefault;
+        statusLabel = 'Failed';
+        badgeColor = colors.redDefault;
+        badgeIcon = Assets.icons.arrowUp;
         break;
     }
 
@@ -70,7 +103,7 @@ class PaymentItemCard extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(2.0),
                     decoration: BoxDecoration(
-                      color: colors.greenDefault,
+                      color: badgeColor,
                       border: Border.all(
                         color: colors.bgB0,
                         width: 1.0,
@@ -78,9 +111,13 @@ class PaymentItemCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset(
-                      Assets.icons.arrowDownLeft,
+                      badgeIcon,
                       width: 8.sp,
                       height: 8.sp,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),
@@ -134,9 +171,7 @@ class PaymentItemCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      payment.status == PaymentStatus.upcoming
-                          ? 'Successful'
-                          : 'Failed',
+                      statusLabel,
                       style: fontTheme.textSmRegular.copyWith(
                         fontWeight: FontWeight.w600,
                         color: statusColor,

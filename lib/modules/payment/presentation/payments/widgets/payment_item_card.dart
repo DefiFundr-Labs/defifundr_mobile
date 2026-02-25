@@ -19,10 +19,16 @@ class PaymentItemCard extends StatelessWidget {
     Color statusColor;
     switch (payment.status) {
       case PaymentStatus.upcoming:
+      case PaymentStatus.successful:
         statusColor = colors.greenDefault;
         break;
       case PaymentStatus.overdue:
+      case PaymentStatus.failed:
         statusColor = colors.redDefault;
+        break;
+      case PaymentStatus.pending:
+      case PaymentStatus.processing:
+        statusColor = colors.orangeDefault;
         break;
     }
 

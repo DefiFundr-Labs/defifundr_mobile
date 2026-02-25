@@ -90,14 +90,28 @@ class InvoiceScreen extends StatelessWidget {
     Color statusColor;
     switch (payment.status) {
       case PaymentStatus.upcoming:
-        // You might want to calculate days dynamically here based on payment.estimatedDate and current date
-        statusText =
-            'Coming in 7 days'; // Placeholder, replace with dynamic calculation
-        statusColor = colors.blueHover; // Example color for upcoming
+        statusText = 'Coming in 7 days';
+        statusColor = colors.blueHover;
         break;
       case PaymentStatus.overdue:
         statusText = 'Overdue';
-        statusColor = colors.orangeHover; // Example color for overdue
+        statusColor = colors.orangeHover;
+        break;
+      case PaymentStatus.pending:
+        statusText = 'Pending';
+        statusColor = colors.orangeHover;
+        break;
+      case PaymentStatus.processing:
+        statusText = 'Processing';
+        statusColor = colors.orangeHover;
+        break;
+      case PaymentStatus.successful:
+        statusText = 'Successful';
+        statusColor = colors.greenDefault;
+        break;
+      case PaymentStatus.failed:
+        statusText = 'Failed';
+        statusColor = colors.redDefault;
         break;
     }
 

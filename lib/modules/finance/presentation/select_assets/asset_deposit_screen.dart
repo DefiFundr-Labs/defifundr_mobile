@@ -247,7 +247,7 @@ class AssetDepositScreen extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             GestureDetector(
-              onTap: () => _copyToClipboard(),
+              onTap: () => _copyToClipboard(context),
               child: SvgPicture.asset(
                 Assets.icons.copy,
                 color: colors.contrastBlack,
@@ -278,9 +278,30 @@ class AssetDepositScreen extends StatelessWidget {
     );
   }
 
-  void _copyToClipboard() {
+  void _copyToClipboard(BuildContext context) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     Clipboard.setData(ClipboardData(text: address));
-    // TODO: Show snackbar or toast confirmation
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Wallet address copied to clipboard.',
+          style: context.theme.fonts.textMdRegular.copyWith(
+            color: isLightMode
+                ? context.theme.colors.contrastWhite
+                : context.theme.colors.contrastBlack,
+          ),
+        ),
+        backgroundColor: context.theme.colors.constantDefault,
+        behavior: SnackBarBehavior.floating,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   void _shareAddress() {

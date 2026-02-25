@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 enum PaymentStatus {
   upcoming,
   overdue,
+  pending,
+  processing,
+  successful,
+  failed,
 }
 
 enum PaymentType {
