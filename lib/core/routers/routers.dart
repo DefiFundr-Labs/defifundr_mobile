@@ -15,6 +15,8 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/scree
 import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/pin_code_screen.dart';
 // Dashboard
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/screens/notifications_screen.dart';
+import 'package:defifundr_mobile/modules/dasboard/data/models/notification_item.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/add_expense_screen.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/expense_details_screen.dart';
@@ -107,6 +109,7 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/time
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../modules/dasboard/presentation/screens/home_screen.dart';
 import '../../modules/kyc/presentation/fund_wallet/screens/fund_wallet_screen.dart';
 
 part 'routers.gr.dart';
@@ -150,7 +153,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         // ============================================================
-        // ONBOARDING ROUTES
+        // DASHBOARD ROUTES
         // ============================================================
         AutoRoute(
           page: CreateAccountRoute.page,
@@ -219,70 +222,17 @@ class AppRouter extends RootStackRouter {
               path: RouteConstants.homeTab,
               children: [
                 AutoRoute(
+                  page: HomeRoute.page,
+                  path: RouteConstants.home,
+                  initial: true,
+                ),
+                AutoRoute(
                   page: OnboardingChecklistRoute.page,
                   path: RouteConstants.dashboard,
-                  initial: true,
-                ),
-              ],
-            ),
-
-            // Finance Tab
-            AutoRoute(
-              page: FinanceTabRoute.page,
-              path: RouteConstants.financeTab,
-              children: [
-                AutoRoute(
-                  page: FinanceHomeRoute.page,
-                  path: '',
-                  initial: true,
                 ),
                 AutoRoute(
-                  page: SelectNetworkRoute.page,
-                  path: 'select-network',
-                ),
-                AutoRoute(
-                  page: SelectAssetRoute.page,
-                  path: 'select-asset',
-                ),
-                AutoRoute(
-                  page: AssetDetailsRoute.page,
-                  path: 'asset-details',
-                ),
-                AutoRoute(
-                  page: AssetDepositRoute.page,
-                  path: 'asset-deposit',
-                ),
-                AutoRoute(
-                  page: WithdrawRoute.page,
-                  path: 'withdraw',
-                ),
-                AutoRoute(
-                  page: WithdrawPreviewRoute.page,
-                  path: 'withdraw-preview',
-                ),
-                AutoRoute(
-                  page: TwoFaAuthRoute.page,
-                  path: 'two-fa-auth',
-                ),
-                AutoRoute(
-                  page: ConfirmPaymentRoute.page,
-                  path: 'confirm-payment',
-                ),
-                AutoRoute(
-                  page: SentRoute.page,
-                  path: 'sent',
-                ),
-                AutoRoute(
-                  page: ReceiveRoute.page,
-                  path: 'receive',
-                ),
-                AutoRoute(
-                  page: AddAddressRoute.page,
-                  path: 'add-address',
-                ),
-                AutoRoute(
-                  page: AddressBookRoute.page,
-                  path: 'address-book',
+                  page: NotificationsRoute.page,
+                  path: RouteConstants.notifications,
                 ),
               ],
             ),
@@ -372,6 +322,67 @@ class AppRouter extends RootStackRouter {
                 AutoRoute(
                   page: ExpensesTimeOffDetailsRoute.page,
                   path: 'expenses-time-off-details',
+                ),
+              ],
+            ),
+
+            // Finance Tab
+            AutoRoute(
+              page: FinanceTabRoute.page,
+              path: RouteConstants.financeTab,
+              children: [
+                AutoRoute(
+                  page: FinanceHomeRoute.page,
+                  path: '',
+                  initial: true,
+                ),
+                AutoRoute(
+                  page: SelectNetworkRoute.page,
+                  path: 'select-network',
+                ),
+                AutoRoute(
+                  page: SelectAssetRoute.page,
+                  path: 'select-asset',
+                ),
+                AutoRoute(
+                  page: AssetDetailsRoute.page,
+                  path: 'asset-details',
+                ),
+                AutoRoute(
+                  page: AssetDepositRoute.page,
+                  path: 'asset-deposit',
+                ),
+                AutoRoute(
+                  page: WithdrawRoute.page,
+                  path: 'withdraw',
+                ),
+                AutoRoute(
+                  page: WithdrawPreviewRoute.page,
+                  path: 'withdraw-preview',
+                ),
+                AutoRoute(
+                  page: TwoFaAuthRoute.page,
+                  path: 'two-fa-auth',
+                ),
+                AutoRoute(
+                  page: ConfirmPaymentRoute.page,
+                  path: 'confirm-payment',
+                ),
+                AutoRoute(
+                  page: SentRoute.page,
+                  path: 'sent',
+                ),
+                AutoRoute(
+                  page: ReceiveRoute.page,
+                  path: 'receive',
+                ),
+                AutoRoute(
+                  page: AddAddressRoute.page,
+                  path: 'add-address',
+                ),
+                AutoRoute(
+                  page: AddressBookRoute.page,
+                  path: 'address-book',
                 ),
               ],
             ),
