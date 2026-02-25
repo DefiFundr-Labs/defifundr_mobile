@@ -6,18 +6,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PinDot extends StatelessWidget {
   final bool isFilled;
   final bool hasError;
+  final double size;
 
   const PinDot({
     super.key,
     required this.isFilled,
     required this.hasError,
+    this.size = 64,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 56.w,
-      height: 56.h,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(8.r),

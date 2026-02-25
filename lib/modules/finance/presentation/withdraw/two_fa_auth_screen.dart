@@ -14,7 +14,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
-
 class TwoFaAuthScreen extends StatefulWidget {
   const TwoFaAuthScreen({super.key});
 
@@ -117,6 +116,8 @@ class _TwoFaAuthScreenState extends State<TwoFaAuthScreen>
                           showError: _showError,
                           errorMessage: _errorMessage ?? "",
                           shakeAnimation: _shakeAnimation,
+                          dotSize: 52,
+                          spacing: 4,
                         ),
                         const Spacer(),
                         Keypad(

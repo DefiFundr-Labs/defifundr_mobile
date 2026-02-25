@@ -1,12 +1,13 @@
 import 'package:defifundr_mobile/core/shared/common/keyboard/pin_dot.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PinDotsRow extends StatelessWidget {
   final int pinLength;
   final int currentPinLength;
   final bool hasError;
   final Animation<double> shakeAnimation;
+  final double dotSize;
+  final double spacing;
 
   const PinDotsRow({
     super.key,
@@ -14,6 +15,8 @@ class PinDotsRow extends StatelessWidget {
     required this.currentPinLength,
     required this.hasError,
     required this.shakeAnimation,
+    this.dotSize = 64,
+    this.spacing = 22,
   });
 
   @override
@@ -29,16 +32,17 @@ class PinDotsRow extends StatelessWidget {
             0,
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               pinLength,
               (index) => Padding(
                 padding: EdgeInsets.only(
-                  right: index < pinLength - 1 ? 16.w : 0,
+                  right: index < pinLength - 1 ? spacing : 0,
                 ),
                 child: PinDot(
                   isFilled: index < currentPinLength,
                   hasError: hasError,
+                  size: dotSize,
                 ),
               ),
             ),
