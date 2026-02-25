@@ -9,6 +9,8 @@ class PinInputSection extends StatelessWidget {
   final bool showError;
   final String errorMessage;
   final Animation<double> shakeAnimation;
+  final double dotSize;
+  final double spacing;
 
   const PinInputSection({
     super.key,
@@ -17,6 +19,8 @@ class PinInputSection extends StatelessWidget {
     required this.showError,
     required this.errorMessage,
     required this.shakeAnimation,
+    this.dotSize = 64,
+    this.spacing = 26,
   });
 
   @override
@@ -38,6 +42,8 @@ class PinInputSection extends StatelessWidget {
           currentPinLength: currentPinLength,
           hasError: showError,
           shakeAnimation: shakeAnimation,
+          dotSize: dotSize,
+          spacing: spacing,
         ),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),
