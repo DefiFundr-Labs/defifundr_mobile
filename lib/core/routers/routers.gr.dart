@@ -2155,6 +2155,22 @@ class TransactionRouteArgs {
 }
 
 /// generated route for
+/// [TransactionsScreen]
+class TransactionsRoute extends PageRouteInfo<void> {
+  const TransactionsRoute({List<PageRouteInfo>? children})
+    : super(TransactionsRoute.name, initialChildren: children);
+
+  static const String name = 'TransactionsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TransactionsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [TwoFaAuthScreen]
 class TwoFaAuthRoute extends PageRouteInfo<void> {
   const TwoFaAuthRoute({List<PageRouteInfo>? children})
