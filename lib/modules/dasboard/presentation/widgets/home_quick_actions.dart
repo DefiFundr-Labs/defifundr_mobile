@@ -40,7 +40,9 @@ class HomeQuickActions extends StatelessWidget {
                   context: context,
                   icon: Assets.icons.files,
                   label: 'Contract',
-                  onTap: () => context.pushRoute(const PayCycleContractsRoute()),
+                  onTap: () {
+                    context.router.push(const TimeTrackingContractsRoute());
+                  },
                 ),
                 VerticalDivider(
                   width: 1,
@@ -52,7 +54,9 @@ class HomeQuickActions extends StatelessWidget {
                   icon: Assets.icons.invoice,
                   label: 'Invoice',
                   iconColor: colors.orangeDefault,
-                  onTap: () => context.pushRoute(const InvoicesRoute()),
+                  onTap: () {
+                    context.router.push(const InvoicesRoute());
+                  },
                 ),
                 VerticalDivider(
                   width: 1,
@@ -64,7 +68,9 @@ class HomeQuickActions extends StatelessWidget {
                   icon: Assets.icons.handCoins,
                   label: 'Quickpay',
                   iconColor: colors.pinkDefault,
-                  onTap: () => context.pushRoute(const QuickPayHomeRoute()),
+                  onTap: () {
+                    context.router.push(const QuickPayHomeRoute());
+                  },
                 ),
               ],
             ),

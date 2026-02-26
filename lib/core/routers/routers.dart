@@ -5,6 +5,7 @@ import 'package:defifundr_mobile/core/routers/guards/auth_guard.dart';
 import 'package:defifundr_mobile/core/routers/main_shell_screen.dart';
 import 'package:defifundr_mobile/core/routers/route_constants.dart';
 import 'package:defifundr_mobile/core/routers/tab_routes.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/shared/widgets/sample_bottom_sheet_screen.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
