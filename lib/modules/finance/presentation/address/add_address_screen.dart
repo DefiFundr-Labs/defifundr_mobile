@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -58,7 +59,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Future<void> _selectAsset() async {
     final selectedAsset = await context.router.push<NetworkAsset>(
-       SelectAssetRoute(),
+      SelectAssetRoute(),
     );
     if (selectedAsset != null) {
       _assetController.text = selectedAsset.name;
@@ -122,9 +123,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       errorMessage = 'Please enter a label';
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(errorMessage)),
-    );
+    AppSnackbar.show(context, errorMessage);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off_detail.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/time_off.dart';
@@ -15,17 +16,20 @@ class CancelTimeOffRequestScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CancelTimeOffRequestScreen> createState() => _CancelTimeOffRequestScreenState();
+  State<CancelTimeOffRequestScreen> createState() =>
+      _CancelTimeOffRequestScreenState();
 }
 
-class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen> {
+class _CancelTimeOffRequestScreenState
+    extends State<CancelTimeOffRequestScreen> {
   final TextEditingController _reasonController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     if (widget.timeOffDetail.status == TimeOffStatus.pending) {
-      _reasonController.text = 'Decided to cancel the holiday plans due to a change in family circumstances.';
+      _reasonController.text =
+          'Decided to cancel the holiday plans due to a change in family circumstances.';
     }
   }
 
@@ -39,17 +43,13 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
         builder: (context) => const CancellationSuccessBottomSheet(),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please provide a reason for cancellation'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      AppSnackbar.showError(
+          context, 'Please provide a reason for cancellation');
     }
   }
 
   String get title {
-    return widget.timeOffDetail.status == TimeOffStatus.approved 
+    return widget.timeOffDetail.status == TimeOffStatus.approved
         ? 'Cancel time off request'
         : 'Cancel time off request';
   }
@@ -84,7 +84,8 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Approval needed warning (only for approved requests)
-                  if (widget.timeOffDetail.status == TimeOffStatus.approved) ...[
+                  if (widget.timeOffDetail.status ==
+                      TimeOffStatus.approved) ...[
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -168,10 +169,12 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
                             height: 1.4,
                           ),
                         ),
-                        if (widget.timeOffDetail.attachmentFileName != null) ...[
+                        if (widget.timeOffDetail.attachmentFileName !=
+                            null) ...[
                           const SizedBox(height: 16),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8),
                             decoration: BoxDecoration(
                               color: Colors.grey.shade100,
                               borderRadius: BorderRadius.circular(8),
@@ -179,7 +182,8 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.description_outlined, size: 16, color: Colors.grey.shade600),
+                                Icon(Icons.description_outlined,
+                                    size: 16, color: Colors.grey.shade600),
                                 const SizedBox(width: 6),
                                 Text(
                                   widget.timeOffDetail.attachmentFileName!,
@@ -195,9 +199,9 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
                       ],
                     ),
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Reason for cancellation
                   const Text(
                     'Reason for cancellation',
@@ -233,7 +237,7 @@ class _CancelTimeOffRequestScreenState extends State<CancelTimeOffRequestScreen>
               ),
             ),
           ),
-          
+
           // Submit button
           Container(
             padding: const EdgeInsets.all(16),

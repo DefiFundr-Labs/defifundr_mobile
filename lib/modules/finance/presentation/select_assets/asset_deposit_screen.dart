@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
@@ -280,29 +281,8 @@ class AssetDepositScreen extends StatelessWidget {
   }
 
   void _copyToClipboard(BuildContext context) {
-    final isLightMode = Theme.of(context).brightness == Brightness.light;
     Clipboard.setData(ClipboardData(text: address));
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          context.l10n.walletAddressCopiedToClipboard,
-          style: context.theme.fonts.textMdRegular.copyWith(
-            color: isLightMode
-                ? context.theme.colors.contrastWhite
-                : context.theme.colors.contrastBlack,
-          ),
-        ),
-        backgroundColor: context.theme.colors.constantDefault,
-        behavior: SnackBarBehavior.floating,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+    AppSnackbar.show(context, 'Wallet address copied to clipboard.');
   }
 
   void _shareAddress() {

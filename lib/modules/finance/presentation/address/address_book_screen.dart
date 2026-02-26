@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
@@ -328,7 +329,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               onTap: () {
                 context.router.maybePop();
                 _removeAddress(index);
-                _showSnackBar(context.l10n.addressRemoved);
+                AppSnackbar.show(context, 'Address removed');
               },
               colors: colors,
               fontTheme: fontTheme,
@@ -389,16 +390,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
 
   void _copyAddress(String address) {
     Clipboard.setData(ClipboardData(text: address));
-    _showSnackBar(context.l10n.addressCopiedToClipboard);
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+    AppSnackbar.show(context, 'Address copied to clipboard');
   }
 
   String _formatAddress(String address) {
