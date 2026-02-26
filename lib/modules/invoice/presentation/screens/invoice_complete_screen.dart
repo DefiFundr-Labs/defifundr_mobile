@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
@@ -171,9 +172,7 @@ class InvoiceCompleteScreen extends StatelessWidget {
             icon: Assets.icons.link,
             label: 'Copy link',
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Link copied to clipboard')),
-              );
+              AppSnackbar.show(context, 'Link copied to clipboard');
             },
             context: context,
           ),
@@ -195,9 +194,7 @@ class InvoiceCompleteScreen extends StatelessWidget {
             icon: Assets.icons.fileText,
             label: 'Download',
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Invoice downloaded')),
-              );
+              AppSnackbar.show(context, 'Invoice downloaded');
             },
             context: context,
           ),
