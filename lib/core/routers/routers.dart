@@ -56,6 +56,28 @@ import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/
 import 'package:defifundr_mobile/modules/kyc/presentation/tax_compliance/screens/tax_information_screen.dart';
 // More
 import 'package:defifundr_mobile/modules/more/presentation/screens/more_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/personal_details_view_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/edit_profile_details_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/edit_address_details_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/edit_account_details_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/edit_tax_information_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/delete_account_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/manage_wallet_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/wallet_detail_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/export_private_key_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/private_key_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/change_password_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/current_pin_code_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/new_pin_code_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/confirm_new_pin_code_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/setup_two_fa_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/setup_instructions_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/more_two_fa_auth_code_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/two_fa_setup_complete_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/device_management_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/app_appearance_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/help_feedback_screen.dart';
+import 'package:defifundr_mobile/modules/more/presentation/screens/social_media_screen.dart';
 // Onboarding
 import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/screen/create_account_screen.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/screen/create_password_screen.dart';
@@ -514,6 +536,120 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: InvoiceCompleteRoute.page,
           path: RouteConstants.invoicesComplete,
+          guards: [authGuard],
+        ),
+
+        // ============================================================
+        // MORE ROUTES (pushed over shell)
+        // ============================================================
+        AutoRoute(
+          page: PersonalDetailsViewRoute.page,
+          path: RouteConstants.morePersonalDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: EditProfileDetailsRoute.page,
+          path: RouteConstants.moreEditProfileDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: EditAddressDetailsRoute.page,
+          path: RouteConstants.moreEditAddressDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: EditAccountDetailsRoute.page,
+          path: RouteConstants.moreEditAccountDetails,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: EditTaxInformationRoute.page,
+          path: RouteConstants.moreEditTaxInformation,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: DeleteAccountRoute.page,
+          path: RouteConstants.moreDeleteAccount,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ManageWalletRoute.page,
+          path: RouteConstants.moreManageWallet,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: WalletDetailRoute.page,
+          path: RouteConstants.moreWalletDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ExportPrivateKeyRoute.page,
+          path: RouteConstants.moreExportPrivateKey,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PrivateKeyRoute.page,
+          path: RouteConstants.morePrivateKey,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ChangePasswordRoute.page,
+          path: RouteConstants.moreChangePassword,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: CurrentPinCodeRoute.page,
+          path: RouteConstants.moreCurrentPin,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: NewPinCodeRoute.page,
+          path: RouteConstants.moreNewPin,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ConfirmNewPinCodeRoute.page,
+          path: RouteConstants.moreConfirmNewPin,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SetupTwoFaRoute.page,
+          path: RouteConstants.moreSetupTwoFa,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SetupInstructionsRoute.page,
+          path: RouteConstants.moreSetupInstructions,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: MoreTwoFaAuthCodeRoute.page,
+          path: RouteConstants.moreTwoFaAuthCode,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: TwoFaSetupCompleteRoute.page,
+          path: RouteConstants.moreTwoFaSetupComplete,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: DeviceManagementRoute.page,
+          path: RouteConstants.moreDeviceManagement,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AppAppearanceRoute.page,
+          path: RouteConstants.moreAppAppearance,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: HelpFeedbackRoute.page,
+          path: RouteConstants.moreHelpFeedback,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: SocialMediaRoute.page,
+          path: RouteConstants.moreSocialMedia,
           guards: [authGuard],
         ),
 

@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
 import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/components/dismiss_keyboard.dart';
@@ -44,19 +45,23 @@ class _AppState extends State<App> {
       splitScreenMode: false,
       child: MultiBlocProvider(
         providers: appProviders,
-        child: DismissKeyboard(
-          child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'DeFiFundr',
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
-            themeMode: ThemeMode.system,
-            scrollBehavior: const _AppScrollBehavior(),
-            routerConfig: _appRouter.config(
-              includePrefixMatches: true,
-              navigatorObservers: () => [_routeObserver],
-            ),
-          ),
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, themeState) {
+            return DismissKeyboard(
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: 'DeFiFundr',
+                theme: AppTheme.light,
+                darkTheme: AppTheme.dark,
+                themeMode: themeState.themeMode.toThemeMode(),
+                scrollBehavior: const _AppScrollBehavior(),
+                routerConfig: _appRouter.config(
+                  includePrefixMatches: true,
+                  navigatorObservers: () => [_routeObserver],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

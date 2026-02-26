@@ -105,7 +105,7 @@ class FinanceHomeScreen extends StatelessWidget {
               Expanded(
                 child: _buildActionButton(
                   context: context,
-                  icon: Assets.icons.signOut,
+                  icon: Assets.icons.signOutSvg,
                   label: 'Withdraw',
                   onPressed: () => context.router.push(const WithdrawRoute()),
                 ),

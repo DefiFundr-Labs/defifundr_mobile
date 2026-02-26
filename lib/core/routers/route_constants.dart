@@ -142,6 +142,32 @@ class RouteConstants {
   static const String expensesTimeOffDetails = '/expenses/time-off-details';
 
   // ============================================================
+  // MORE ROUTES
+  // ============================================================
+  static const String morePersonalDetails = '/more/personal-details';
+  static const String moreEditProfileDetails = '/more/edit-profile-details';
+  static const String moreEditAddressDetails = '/more/edit-address-details';
+  static const String moreEditAccountDetails = '/more/edit-account-details';
+  static const String moreEditTaxInformation = '/more/edit-tax-information';
+  static const String moreDeleteAccount = '/more/delete-account';
+  static const String moreManageWallet = '/more/manage-wallet';
+  static const String moreWalletDetail = '/more/wallet-detail';
+  static const String moreExportPrivateKey = '/more/export-private-key';
+  static const String morePrivateKey = '/more/private-key';
+  static const String moreChangePassword = '/more/change-password';
+  static const String moreCurrentPin = '/more/current-pin';
+  static const String moreNewPin = '/more/new-pin';
+  static const String moreConfirmNewPin = '/more/confirm-new-pin';
+  static const String moreSetupTwoFa = '/more/setup-two-fa';
+  static const String moreSetupInstructions = '/more/setup-instructions';
+  static const String moreTwoFaAuthCode = '/more/two-fa-auth-code';
+  static const String moreTwoFaSetupComplete = '/more/two-fa-setup-complete';
+  static const String moreDeviceManagement = '/more/device-management';
+  static const String moreAppAppearance = '/more/app-appearance';
+  static const String moreHelpFeedback = '/more/help-feedback';
+  static const String moreSocialMedia = '/more/social-media';
+
+  // ============================================================
   // WEB3AUTH TEST ROUTE
   // ============================================================
   static const String web3authTest = '/web3auth-test';
