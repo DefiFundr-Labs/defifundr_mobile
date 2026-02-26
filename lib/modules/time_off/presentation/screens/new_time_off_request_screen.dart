@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/success_bottom_sheet.dart';
@@ -147,12 +148,7 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
         builder: (context) => const SuccessBottomSheet(),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please fill in all required fields'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      AppSnackbar.showError(context, 'Please fill in all required fields');
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:defifundr_mobile/core/constants/app_icons.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/enums/blockchain_type.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/overlay/blockchain_wallet_loader.dart';
@@ -47,8 +48,6 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
         curve: Curves.easeInOut,
       ),
     );
-
-
   }
 
   @override
@@ -68,12 +67,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
       listener: (context, state) {
         // Handle error messages
         if (state.errorMessage != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage!),
-              backgroundColor: colors.redDefault,
-            ),
-          );
+          AppSnackbar.showError(context, state.errorMessage!);
         }
 
         // Handle wallet loading state changes
@@ -305,12 +299,8 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
               text: 'Login with Email',
               onPressed: () {
                 if (_emailController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text('Please enter an email address'),
-                      backgroundColor: colors.redDefault,
-                    ),
-                  );
+                  AppSnackbar.showError(
+                      context, 'Please enter an email address');
                   return;
                 }
                 context
@@ -772,4 +762,3 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
     }
   }
 }
-
