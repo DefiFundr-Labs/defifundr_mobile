@@ -103,13 +103,19 @@ class $AssetsIconsGen {
   String get userCircleDashed => 'assets/icons/UserCircleDashed.svg';
 
   /// File path: assets/icons/UserFocus.svg
-  String get userFocus => 'assets/icons/UserFocus.svg';
+  String get userFocusSvg => 'assets/icons/UserFocus.svg';
+
+  /// File path: assets/icons/user_focus.svg
+  String get userFocusSvg_ => 'assets/icons/user_focus.svg';
 
   /// File path: assets/icons/Wallet.svg
   String get wallet => 'assets/icons/Wallet.svg';
 
   /// File path: assets/icons/Warning.svg
   String get warning => 'assets/icons/Warning.svg';
+
+  /// File path: assets/icons/address_book.svg
+  String get addressBook => 'assets/icons/address_book.svg';
 
   /// File path: assets/icons/alarmNotification.svg
   String get alarmNotification => 'assets/icons/alarmNotification.svg';
@@ -154,6 +160,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/background.svg
   String get backgroundSvg => 'assets/icons/background.svg';
 
+  /// File path: assets/icons/bell_simple_ringing.svg
+  String get bellSimpleRinging => 'assets/icons/bell_simple_ringing.svg';
+
   /// Directory path: assets/icons/bottom_nav
   $AssetsIconsBottomNavGen get bottomNav => const $AssetsIconsBottomNavGen();
 
@@ -197,6 +206,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/deposit_svg.svg
   String get depositSvg => 'assets/icons/deposit_svg.svg';
 
+  /// File path: assets/icons/device_mobile.svg
+  String get deviceMobile => 'assets/icons/device_mobile.svg';
+
+  /// File path: assets/icons/devices.svg
+  String get devices => 'assets/icons/devices.svg';
+
   /// File path: assets/icons/dollarCircle.svg
   String get dollarCircle => 'assets/icons/dollarCircle.svg';
 
@@ -228,6 +243,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/file_arrow_down.svg
   String get fileArrowDown => 'assets/icons/file_arrow_down.svg';
 
+  /// File path: assets/icons/file_text copy.svg
+  String get fileTextCopy => 'assets/icons/file_text copy.svg';
+
   /// File path: assets/icons/file_text.svg
   String get fileText => 'assets/icons/file_text.svg';
 
@@ -236,6 +254,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/fingerprint.svg
   String get fingerprint => 'assets/icons/fingerprint.svg';
+
+  /// File path: assets/icons/globe_hemisphere_west.svg
+  String get globeHemisphereWest => 'assets/icons/globe_hemisphere_west.svg';
+
+  /// File path: assets/icons/globe_simple.svg
+  String get globeSimple => 'assets/icons/globe_simple.svg';
 
   /// File path: assets/icons/googleIcon.svg
   String get googleIcon => 'assets/icons/googleIcon.svg';
@@ -258,11 +282,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/incompletRegistration.svg
   String get incompletRegistration => 'assets/icons/incompletRegistration.svg';
 
+  /// File path: assets/icons/instagram_logo.svg
+  String get instagramLogo => 'assets/icons/instagram_logo.svg';
+
   /// File path: assets/icons/invoice.svg
   String get invoice => 'assets/icons/invoice.svg';
 
   /// File path: assets/icons/invoice_bg.svg
   String get invoiceBg => 'assets/icons/invoice_bg.svg';
+
+  /// File path: assets/icons/key.svg
+  String get key => 'assets/icons/key.svg';
 
   /// File path: assets/icons/link copy.svg
   String get linkCopy => 'assets/icons/link copy.svg';
@@ -294,6 +324,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
+  /// File path: assets/icons/password.svg
+  String get password => 'assets/icons/password.svg';
+
   /// File path: assets/icons/person.svg
   String get person => 'assets/icons/person.svg';
 
@@ -305,6 +338,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/qr_icon.png
   AssetGenImage get qrIcon => const AssetGenImage('assets/icons/qr_icon.png');
+
+  /// File path: assets/icons/question.svg
+  String get question => 'assets/icons/question.svg';
 
   /// File path: assets/icons/question_svg.svg
   String get questionSvg => 'assets/icons/question_svg.svg';
@@ -318,11 +354,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share.svg
   String get share => 'assets/icons/share.svg';
 
+  /// File path: assets/icons/shield_checkered.svg
+  String get shieldCheckered => 'assets/icons/shield_checkered.svg';
+
+  /// File path: assets/icons/shield_star.svg
+  String get shieldStar => 'assets/icons/shield_star.svg';
+
   /// File path: assets/icons/signIn.svg
   String get signIn => 'assets/icons/signIn.svg';
 
   /// File path: assets/icons/signOut.svg
-  String get signOut => 'assets/icons/signOut.svg';
+  String get signOutSvg => 'assets/icons/signOut.svg';
+
+  /// File path: assets/icons/sign_out.svg
+  String get signOutSvg_ => 'assets/icons/sign_out.svg';
 
   /// File path: assets/icons/smile_success.svg
   String get smileSuccess => 'assets/icons/smile_success.svg';
@@ -338,6 +383,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/steller.svg
   String get steller => 'assets/icons/steller.svg';
+
+  /// File path: assets/icons/telegram_logo.svg
+  String get telegramLogo => 'assets/icons/telegram_logo.svg';
 
   /// File path: assets/icons/tether.svg
   String get tether => 'assets/icons/tether.svg';
@@ -369,6 +417,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
+  /// File path: assets/icons/user_circle copy.svg
+  String get userCircleCopy => 'assets/icons/user_circle copy.svg';
+
   /// File path: assets/icons/user_edit.svg
   String get userEdit => 'assets/icons/user_edit.svg';
 
@@ -378,6 +429,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/verificationProgressDark.svg
   String get verificationProgressDark =>
       'assets/icons/verificationProgressDark.svg';
+
+  /// File path: assets/icons/wallet copy.svg
+  String get walletCopy => 'assets/icons/wallet copy.svg';
+
+  /// File path: assets/icons/x_logo.svg
+  String get xLogo => 'assets/icons/x_logo.svg';
 
   /// File path: assets/icons/zero_percent.svg
   String get zeroPercent => 'assets/icons/zero_percent.svg';
@@ -414,9 +471,11 @@ class $AssetsIconsGen {
     userCircleSvg_,
     userCircleCheck,
     userCircleDashed,
-    userFocus,
+    userFocusSvg,
+    userFocusSvg_,
     wallet,
     warning,
+    addressBook,
     alarmNotification,
     appIcon,
     appleIcon,
@@ -431,6 +490,7 @@ class $AssetsIconsGen {
     backIcon,
     backgroundPng,
     backgroundSvg,
+    bellSimpleRinging,
     briefCase,
     bvnProcessing,
     bvnProcessingDark,
@@ -443,6 +503,8 @@ class $AssetsIconsGen {
     crossEye,
     defifundrLogo,
     depositSvg,
+    deviceMobile,
+    devices,
     dollarCircle,
     download,
     eclipse,
@@ -453,9 +515,12 @@ class $AssetsIconsGen {
     eyeIcon,
     faceScan,
     fileArrowDown,
+    fileTextCopy,
     fileText,
     filter,
     fingerprint,
+    globeHemisphereWest,
+    globeSimple,
     googleIcon,
     group,
     headset,
@@ -463,8 +528,10 @@ class $AssetsIconsGen {
     home,
     hundredPercent,
     incompletRegistration,
+    instagramLogo,
     invoice,
     invoiceBg,
+    key,
     linkCopy,
     lockIcon,
     lockKeyOpen,
@@ -475,21 +542,27 @@ class $AssetsIconsGen {
     noTransaction,
     notePencil,
     notification,
+    password,
     person,
     pinCreated,
     profilee,
     qrIcon,
+    question,
     questionSvg,
     rectangle,
     sadError,
     share,
+    shieldCheckered,
+    shieldStar,
     signIn,
-    signOut,
+    signOutSvg,
+    signOutSvg_,
     smileSuccess,
     solanaIcon,
     sss,
     starknetIcon,
     steller,
+    telegramLogo,
     tether,
     transaction,
     transactionHeadset,
@@ -500,9 +573,12 @@ class $AssetsIconsGen {
     usFlag,
     usddIcon,
     user,
+    userCircleCopy,
     userEdit,
     verificationProgress,
     verificationProgressDark,
+    walletCopy,
+    xLogo,
     zeroPercent,
   ];
 }

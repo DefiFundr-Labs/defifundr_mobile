@@ -91,6 +91,22 @@ class AddressDetailsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AppAppearanceScreen]
+class AppAppearanceRoute extends PageRouteInfo<void> {
+  const AppAppearanceRoute({List<PageRouteInfo>? children})
+    : super(AppAppearanceRoute.name, initialChildren: children);
+
+  static const String name = 'AppAppearanceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AppAppearanceScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [AssetDepositScreen]
 class AssetDepositRoute extends PageRouteInfo<AssetDepositRouteArgs> {
   AssetDepositRoute({
@@ -237,6 +253,59 @@ class CancelTimeOffRequestRouteArgs {
   @override
   String toString() {
     return 'CancelTimeOffRequestRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
+  }
+}
+
+/// generated route for
+/// [ChangePasswordScreen]
+class ChangePasswordRoute extends PageRouteInfo<void> {
+  const ChangePasswordRoute({List<PageRouteInfo>? children})
+    : super(ChangePasswordRoute.name, initialChildren: children);
+
+  static const String name = 'ChangePasswordRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ChangePasswordScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [ConfirmNewPinCodeScreen]
+class ConfirmNewPinCodeRoute extends PageRouteInfo<ConfirmNewPinCodeRouteArgs> {
+  ConfirmNewPinCodeRoute({
+    Key? key,
+    required String newPin,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ConfirmNewPinCodeRoute.name,
+         args: ConfirmNewPinCodeRouteArgs(key: key, newPin: newPin),
+         initialChildren: children,
+       );
+
+  static const String name = 'ConfirmNewPinCodeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ConfirmNewPinCodeRouteArgs>();
+      return ConfirmNewPinCodeScreen(key: args.key, newPin: args.newPin);
+    },
+  );
+}
+
+class ConfirmNewPinCodeRouteArgs {
+  const ConfirmNewPinCodeRouteArgs({this.key, required this.newPin});
+
+  final Key? key;
+
+  final String newPin;
+
+  @override
+  String toString() {
+    return 'ConfirmNewPinCodeRouteArgs{key: $key, newPin: $newPin}';
   }
 }
 
@@ -398,6 +467,118 @@ class CreatePinRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const CreatePinScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [CurrentPinCodeScreen]
+class CurrentPinCodeRoute extends PageRouteInfo<void> {
+  const CurrentPinCodeRoute({List<PageRouteInfo>? children})
+    : super(CurrentPinCodeRoute.name, initialChildren: children);
+
+  static const String name = 'CurrentPinCodeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CurrentPinCodeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [DeleteAccountScreen]
+class DeleteAccountRoute extends PageRouteInfo<void> {
+  const DeleteAccountRoute({List<PageRouteInfo>? children})
+    : super(DeleteAccountRoute.name, initialChildren: children);
+
+  static const String name = 'DeleteAccountRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DeleteAccountScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [DeviceManagementScreen]
+class DeviceManagementRoute extends PageRouteInfo<void> {
+  const DeviceManagementRoute({List<PageRouteInfo>? children})
+    : super(DeviceManagementRoute.name, initialChildren: children);
+
+  static const String name = 'DeviceManagementRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DeviceManagementScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [EditAccountDetailsScreen]
+class EditAccountDetailsRoute extends PageRouteInfo<void> {
+  const EditAccountDetailsRoute({List<PageRouteInfo>? children})
+    : super(EditAccountDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'EditAccountDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EditAccountDetailsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [EditAddressDetailsScreen]
+class EditAddressDetailsRoute extends PageRouteInfo<void> {
+  const EditAddressDetailsRoute({List<PageRouteInfo>? children})
+    : super(EditAddressDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'EditAddressDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EditAddressDetailsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [EditProfileDetailsScreen]
+class EditProfileDetailsRoute extends PageRouteInfo<void> {
+  const EditProfileDetailsRoute({List<PageRouteInfo>? children})
+    : super(EditProfileDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'EditProfileDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EditProfileDetailsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [EditTaxInformationScreen]
+class EditTaxInformationRoute extends PageRouteInfo<void> {
+  const EditTaxInformationRoute({List<PageRouteInfo>? children})
+    : super(EditTaxInformationRoute.name, initialChildren: children);
+
+  static const String name = 'EditTaxInformationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EditTaxInformationScreen();
     },
   );
 }
@@ -602,6 +783,49 @@ class ExpensesTimeOffDetailsRouteArgs {
 }
 
 /// generated route for
+/// [ExportPrivateKeyScreen]
+class ExportPrivateKeyRoute extends PageRouteInfo<ExportPrivateKeyRouteArgs> {
+  ExportPrivateKeyRoute({
+    Key? key,
+    required String walletAddress,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ExportPrivateKeyRoute.name,
+         args: ExportPrivateKeyRouteArgs(
+           key: key,
+           walletAddress: walletAddress,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'ExportPrivateKeyRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ExportPrivateKeyRouteArgs>();
+      return ExportPrivateKeyScreen(
+        key: args.key,
+        walletAddress: args.walletAddress,
+      );
+    },
+  );
+}
+
+class ExportPrivateKeyRouteArgs {
+  const ExportPrivateKeyRouteArgs({this.key, required this.walletAddress});
+
+  final Key? key;
+
+  final String walletAddress;
+
+  @override
+  String toString() {
+    return 'ExportPrivateKeyRouteArgs{key: $key, walletAddress: $walletAddress}';
+  }
+}
+
+/// generated route for
 /// [FinanceHomeScreen]
 class FinanceHomeRoute extends PageRouteInfo<void> {
   const FinanceHomeRoute({List<PageRouteInfo>? children})
@@ -645,6 +869,38 @@ class FundWalletRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const FundWalletScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [HelpFeedbackScreen]
+class HelpFeedbackRoute extends PageRouteInfo<void> {
+  const HelpFeedbackRoute({List<PageRouteInfo>? children})
+    : super(HelpFeedbackRoute.name, initialChildren: children);
+
+  static const String name = 'HelpFeedbackRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HelpFeedbackScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+    : super(HomeRoute.name, initialChildren: children);
+
+  static const String name = 'HomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
     },
   );
 }
@@ -791,6 +1047,22 @@ class MainShellRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ManageWalletScreen]
+class ManageWalletRoute extends PageRouteInfo<void> {
+  const ManageWalletRoute({List<PageRouteInfo>? children})
+    : super(ManageWalletRoute.name, initialChildren: children);
+
+  static const String name = 'ManageWalletRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ManageWalletScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [MoreScreen]
 class MoreRoute extends PageRouteInfo<void> {
   const MoreRoute({List<PageRouteInfo>? children})
@@ -823,6 +1095,22 @@ class MoreTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MoreTwoFaAuthCodeScreen]
+class MoreTwoFaAuthCodeRoute extends PageRouteInfo<void> {
+  const MoreTwoFaAuthCodeRoute({List<PageRouteInfo>? children})
+    : super(MoreTwoFaAuthCodeRoute.name, initialChildren: children);
+
+  static const String name = 'MoreTwoFaAuthCodeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MoreTwoFaAuthCodeScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [NewPasswordScreen]
 class NewPasswordRoute extends PageRouteInfo<void> {
   const NewPasswordRoute({List<PageRouteInfo>? children})
@@ -839,6 +1127,22 @@ class NewPasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NewPinCodeScreen]
+class NewPinCodeRoute extends PageRouteInfo<void> {
+  const NewPinCodeRoute({List<PageRouteInfo>? children})
+    : super(NewPinCodeRoute.name, initialChildren: children);
+
+  static const String name = 'NewPinCodeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NewPinCodeScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [NewTimeOffRequestScreen]
 class NewTimeOffRequestRoute extends PageRouteInfo<void> {
   const NewTimeOffRequestRoute({List<PageRouteInfo>? children})
@@ -850,6 +1154,22 @@ class NewTimeOffRequestRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const NewTimeOffRequestScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [NotificationsScreen]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
+    : super(NotificationsRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotificationsScreen();
     },
   );
 }
@@ -956,6 +1276,22 @@ class PersonalDetailsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PersonalDetailsViewScreen]
+class PersonalDetailsViewRoute extends PageRouteInfo<void> {
+  const PersonalDetailsViewRoute({List<PageRouteInfo>? children})
+    : super(PersonalDetailsViewRoute.name, initialChildren: children);
+
+  static const String name = 'PersonalDetailsViewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PersonalDetailsViewScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [PinCodeScreen]
 class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
   PinCodeRoute({
@@ -1021,6 +1357,58 @@ class PinCreatedRoute extends PageRouteInfo<void> {
       return const PinCreatedScreen();
     },
   );
+}
+
+/// generated route for
+/// [PrivateKeyScreen]
+class PrivateKeyRoute extends PageRouteInfo<PrivateKeyRouteArgs> {
+  PrivateKeyRoute({
+    Key? key,
+    required String walletAddress,
+    required String privateKey,
+    List<PageRouteInfo>? children,
+  }) : super(
+         PrivateKeyRoute.name,
+         args: PrivateKeyRouteArgs(
+           key: key,
+           walletAddress: walletAddress,
+           privateKey: privateKey,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'PrivateKeyRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PrivateKeyRouteArgs>();
+      return PrivateKeyScreen(
+        key: args.key,
+        walletAddress: args.walletAddress,
+        privateKey: args.privateKey,
+      );
+    },
+  );
+}
+
+class PrivateKeyRouteArgs {
+  const PrivateKeyRouteArgs({
+    this.key,
+    required this.walletAddress,
+    required this.privateKey,
+  });
+
+  final Key? key;
+
+  final String walletAddress;
+
+  final String privateKey;
+
+  @override
+  String toString() {
+    return 'PrivateKeyRouteArgs{key: $key, walletAddress: $walletAddress, privateKey: $privateKey}';
+  }
 }
 
 /// generated route for
@@ -1363,6 +1751,54 @@ class SentRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SentScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SetupInstructionsScreen]
+class SetupInstructionsRoute extends PageRouteInfo<void> {
+  const SetupInstructionsRoute({List<PageRouteInfo>? children})
+    : super(SetupInstructionsRoute.name, initialChildren: children);
+
+  static const String name = 'SetupInstructionsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SetupInstructionsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SetupTwoFaScreen]
+class SetupTwoFaRoute extends PageRouteInfo<void> {
+  const SetupTwoFaRoute({List<PageRouteInfo>? children})
+    : super(SetupTwoFaRoute.name, initialChildren: children);
+
+  static const String name = 'SetupTwoFaRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SetupTwoFaScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SocialMediaScreen]
+class SocialMediaRoute extends PageRouteInfo<void> {
+  const SocialMediaRoute({List<PageRouteInfo>? children})
+    : super(SocialMediaRoute.name, initialChildren: children);
+
+  static const String name = 'SocialMediaRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SocialMediaScreen();
     },
   );
 }
@@ -1735,6 +2171,22 @@ class TwoFaAuthRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TwoFaSetupCompleteScreen]
+class TwoFaSetupCompleteRoute extends PageRouteInfo<void> {
+  const TwoFaSetupCompleteRoute({List<PageRouteInfo>? children})
+    : super(TwoFaSetupCompleteRoute.name, initialChildren: children);
+
+  static const String name = 'TwoFaSetupCompleteRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TwoFaSetupCompleteScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [UnpaidTimeOffBalanceScreen]
 class UnpaidTimeOffBalanceRoute
     extends PageRouteInfo<UnpaidTimeOffBalanceRouteArgs> {
@@ -1847,6 +2299,70 @@ class VerifyOtpRoute extends PageRouteInfo<void> {
       return const VerifyOtpScreen();
     },
   );
+}
+
+/// generated route for
+/// [WalletDetailScreen]
+class WalletDetailRoute extends PageRouteInfo<WalletDetailRouteArgs> {
+  WalletDetailRoute({
+    Key? key,
+    required String walletAddress,
+    required String shortAddress,
+    required String walletType,
+    required String balance,
+    List<PageRouteInfo>? children,
+  }) : super(
+         WalletDetailRoute.name,
+         args: WalletDetailRouteArgs(
+           key: key,
+           walletAddress: walletAddress,
+           shortAddress: shortAddress,
+           walletType: walletType,
+           balance: balance,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'WalletDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<WalletDetailRouteArgs>();
+      return WalletDetailScreen(
+        key: args.key,
+        walletAddress: args.walletAddress,
+        shortAddress: args.shortAddress,
+        walletType: args.walletType,
+        balance: args.balance,
+      );
+    },
+  );
+}
+
+class WalletDetailRouteArgs {
+  const WalletDetailRouteArgs({
+    this.key,
+    required this.walletAddress,
+    required this.shortAddress,
+    required this.walletType,
+    required this.balance,
+  });
+
+  final Key? key;
+
+  final String walletAddress;
+
+  final String shortAddress;
+
+  final String walletType;
+
+  final String balance;
+
+  @override
+  String toString() {
+    return 'WalletDetailRouteArgs{key: $key, walletAddress: $walletAddress, shortAddress: $shortAddress, walletType: $walletType, balance: $balance}';
+  }
 }
 
 /// generated route for

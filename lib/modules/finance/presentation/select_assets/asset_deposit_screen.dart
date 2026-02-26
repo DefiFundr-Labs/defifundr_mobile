@@ -267,7 +267,7 @@ class AssetDepositScreen extends StatelessWidget {
 
     return SecondaryButton(
       text: 'Share address',
-      icon: Assets.icons.signOut,
+      icon: Assets.icons.signOutSvg,
       enableShake: true,
       textColor: colors.textWhite,
       backgroundColor: colors.brandDefault,

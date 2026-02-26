@@ -207,6 +207,7 @@ flutter:
     - assets/icons/
     - assets/icons/country_flags/
     - assets/icons/bottom_nav/
+    - assets/images/app_icons/
     - assets/shaders/glass.frag
   shaders:
     - assets/shaders/glass.frag
