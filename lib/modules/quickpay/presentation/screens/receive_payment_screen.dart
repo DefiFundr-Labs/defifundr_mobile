@@ -1,13 +1,15 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
+import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:defifundr_mobile/modules/kyc/presentation/identity_verification/widgets/brand_button.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
-import 'package:defifundr_mobile/modules/quickpay/data/model/coin_assets.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/select_payment.dart';
 import 'package:flutter/material.dart';
@@ -26,23 +28,23 @@ class ReceivePaymentScreen extends StatefulWidget {
 class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  final ethereumAssets = CoinAssets(
-    coinName: 'Ethereum',
-    logoUrl: AppAssets.ethereumLogo,
-    assets: [Asset(decimals: 6, logoUrl: AppAssets.usdtLogo, symbol: 'USDT')],
-  );
 
-  ValueNotifier<CoinAssets?> selectedCoin = ValueNotifier<CoinAssets?>(null);
-  ValueNotifier<Asset?> selectedAsset = ValueNotifier<Asset?>(null);
+  ValueNotifier<Network?> selectedNetwork = ValueNotifier<Network?>(null);
+  ValueNotifier<NetworkAsset?> selectedAsset =
+      ValueNotifier<NetworkAsset?>(null);
 
-  List<CoinAssets> allCoinAssets = [];
+  void _selectNetwork(BuildContext context) async {
+    final result = await context.router.push<Network>(SelectNetworkRoute());
+    if (result != null) {
+      selectedNetwork.value = result;
+      selectedAsset.value = null;
+    }
+  }
 
-  @override
-  void initState() {
-    super.initState();
-
-    if (allCoinAssets.isEmpty) {
-      allCoinAssets = [ethereumAssets];
+  void _selectAsset(BuildContext context) async {
+    final result = await context.router.push<NetworkAsset>(SelectAssetRoute());
+    if (result != null) {
+      selectedAsset.value = result;
     }
   }
 
@@ -161,16 +163,20 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                         valueListenable: selectedAsset,
                         builder: (ctx, _, __) {
                           return ValueListenableBuilder(
-                              valueListenable: selectedCoin,
+                              valueListenable: selectedNetwork,
                               builder: (ctx, _, __) {
                                 return Column(
                                   children: [
                                     SelectPayment(
-                                      title: selectedCoin.value != null
-                                          ? selectedCoin.value!.coinName
+                                      label: selectedNetwork.value != null
+                                          ? 'Network'
+                                          : null,
+                                      title: selectedNetwork.value != null
+                                          ? selectedNetwork.value!.name
                                           : 'Network',
-                                      iconUrl: selectedCoin.value?.logoUrl,
-                                      titleStyle: selectedCoin.value != null
+                                      trailingImagePath:
+                                          selectedNetwork.value?.iconPath,
+                                      titleStyle: selectedNetwork.value != null
                                           ? TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -184,13 +190,20 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                                               fontFamily: 'Inter',
                                             )
                                           : null,
+                                      onTap: () {
+                                        _selectNetwork(context);
+                                      },
                                     ),
                                     const SizedBox(height: 8 * 3),
                                     SelectPayment(
+                                      label: selectedAsset.value != null
+                                          ? 'Asset'
+                                          : null,
                                       title: selectedAsset.value != null
-                                          ? selectedAsset.value!.symbol
+                                          ? selectedAsset.value!.name
                                           : 'Asset',
-                                      iconUrl: selectedAsset.value?.logoUrl,
+                                      trailingImagePath:
+                                          selectedAsset.value?.iconPath,
                                       titleStyle: selectedAsset.value != null
                                           ? TextStyle(
                                               fontSize: 14,
@@ -205,6 +218,9 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                                               fontFamily: 'Inter',
                                             )
                                           : null,
+                                      onTap: () {
+                                        _selectAsset(context);
+                                      },
                                     ),
                                   ],
                                 );
@@ -218,7 +234,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       controller: amountController,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 0),
+                        padding: const EdgeInsets.only(right: 12),
                         child: Text(
                           'USDT',
                           style: context.theme.textTheme.bodyMedium?.copyWith(
@@ -253,27 +269,11 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
               child: BrandButton(
                 text: "Continue",
                 onPressed: () {
-                  if (selectedAsset.value == null ||
-                      selectedCoin.value == null) {
-                    selectedAsset.value = allCoinAssets.first.assets.first;
-                    selectedCoin.value = allCoinAssets.first;
-                    return;
-                  }
-                  if (titleController.text.isEmpty ||
+                  if (selectedNetwork.value == null ||
+                      selectedAsset.value == null ||
+                      titleController.text.isEmpty ||
                       amountController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Please fill in all fields.',
-                          style: context.theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.redActive,
-                            fontFamily: 'Inter',
-                          ),
-                        ),
-                      ),
-                    );
+                    AppSnackbar.show(context, 'Please fill in all fields.');
                     return;
                   }
                   context.router.push(
@@ -281,9 +281,9 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                       args: ReceiveParams(
                         amount: amountController.text,
                         title: titleController.text,
-                        coinName: selectedCoin.value!.coinName,
-                        assetName: selectedAsset.value!.symbol,
-                        imageUrl: selectedCoin.value!.logoUrl,
+                        coinName: selectedNetwork.value!.name,
+                        assetName: selectedAsset.value!.name,
+                        imageUrl: selectedNetwork.value!.iconPath,
                       ),
                     ),
                   );

@@ -8,8 +8,10 @@ import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_cont
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_header.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_payment_section.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_quick_actions.dart';
-import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/upcoming_payment_item_card.dart';
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
+import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/upcoming_payment_item_card.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +26,6 @@ class HomeScreen extends StatelessWidget {
   static const double _changePercent = -0.0051;
   static const double _changeAmount = 0.99;
   List<ContractItem> get _contracts => const [
-
         ContractItem(
           initials: 'QM',
           title: 'Quikdash Mobile & Web App Redesign',
@@ -40,30 +41,16 @@ class HomeScreen extends StatelessWidget {
           status: 'Active',
         ),
       ];
-  List<Payment> _getTransactions(AppColorExtension colors) => [
-        Payment(
-          title: 'Withdrawal',
-          paymentType: PaymentType.contract,
-          estimatedDate: DateTime(2025, 5, 21, 18, 30),
-          amount: 581,
-          paymentNetwork: PaymentNetwork.ethereum,
-          currency: 'USDT',
-          status: PaymentStatus.successful,
-          icon: Assets.icons.invoice,
-          iconBackgroundColor: colors.orangeDefault,
-        ),
-        Payment(
-          title: 'MintForge Bug fixes and performance updates',
-          paymentType: PaymentType.invoice,
-          estimatedDate: DateTime(2025, 5, 21, 13, 22),
-          amount: 21,
-          paymentNetwork: PaymentNetwork.starknet,
-          currency: 'USDC',
-          status: PaymentStatus.failed,
-          icon: Assets.icons.money,
-          iconBackgroundColor: colors.brandDefault,
-        ),
-      ];
+  List<Payment> _getTransactions(AppColorExtension colors) {
+    // Ideally this comes from a central provider or API later.
+    // For now, returning the top 2 elements from the TransactionsScreen mock list.
+    final allTransactions = TransactionsScreen.mockTransactions;
+    if (allTransactions.length > 2) {
+      return allTransactions.sublist(0, 2);
+    }
+    return allTransactions;
+  }
+
   List<Payment> _getUpcomingPayments(AppColorExtension colors) => [
         Payment(
           title: 'Brightfolk Payment for consulting',
@@ -78,7 +65,7 @@ class HomeScreen extends StatelessWidget {
         ),
         Payment(
           title: 'MintForge Bug fixes and updates',
-          paymentType: PaymentType.invoice,
+          paymentType: PaymentType.contract,
           estimatedDate: DateTime(2025, 4, 20),
           amount: 581,
           paymentNetwork: PaymentNetwork.solana,
@@ -128,6 +115,9 @@ class HomeScreen extends StatelessWidget {
                 emptyMessage: 'Transactions will appear here',
                 payments: transactions,
                 hasData: transactions.isNotEmpty,
+                onSeeAll: () {
+                  context.router.push(const TransactionsRoute());
+                },
               ),
               SizedBox(height: 24.h),
               HomePaymentSection(
@@ -135,6 +125,9 @@ class HomeScreen extends StatelessWidget {
                 emptyMessage: 'Upcoming payments will appear here',
                 payments: upcomingPayments,
                 hasData: upcomingPayments.isNotEmpty,
+                onSeeAll: () {
+                  context.router.push(const UpcomingPaymentsRoute());
+                },
                 itemBuilder: (context, payment) =>
                     UpcomingPaymentItemCard(payment: payment),
               ),

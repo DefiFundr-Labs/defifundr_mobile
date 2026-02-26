@@ -7,68 +7,7 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:defifundr_mobile/modules/payment/data/models/payment.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
-enum TimelineStatus { completed, current, future }
-
-// Custom painter for dashed line
-class DashedLinePainter extends CustomPainter {
-  final Color color;
-  final double strokeWidth;
-  final double dashWidth;
-  final double dashSpace;
-
-  DashedLinePainter({
-    this.color = Colors.grey,
-    this.strokeWidth = 1.0,
-    this.dashWidth = 8.0,
-    this.dashSpace = 4.0,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
-
-    double startY = 0;
-    while (startY < size.height) {
-      canvas.drawLine(
-        Offset(size.width / 2, startY),
-        Offset(size.width / 2, startY + dashWidth),
-        paint,
-      );
-      startY += dashWidth + dashSpace;
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-// Widget to display the dashed vertical divider
-class DashedVerticalDivider extends StatelessWidget {
-  final double height;
-  final Color color;
-
-  const DashedVerticalDivider(
-      {Key? key, required this.height, required this.color})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      width: 2, // Match the width of the timeline line
-      child: CustomPaint(
-        painter: DashedLinePainter(
-            color: color,
-            dashWidth: 4.0,
-            dashSpace: 4.0), // Adjust dash properties here
-      ),
-    );
-  }
-}
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 
 class InvoiceScreen extends StatelessWidget {
   final Payment payment;
@@ -80,257 +19,450 @@ class InvoiceScreen extends StatelessWidget {
     final colors = Theme.of(context).extension<AppColorExtension>()!;
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
-    // Determine app bar title based on payment type
     final appBarTitle = payment.paymentType == PaymentType.contract
-        ? 'Contract Payment'
+        ? 'Contract payment'
         : 'Invoice';
 
-    // Determine status text and color
-    String statusText;
-    Color statusColor;
-    switch (payment.status) {
-      case PaymentStatus.upcoming:
-        statusText = 'Coming in 7 days';
-        statusColor = colors.blueHover;
-        break;
-      case PaymentStatus.overdue:
-        statusText = 'Overdue';
-        statusColor = colors.orangeHover;
-        break;
-      case PaymentStatus.pending:
-        statusText = 'Pending';
-        statusColor = colors.orangeHover;
-        break;
-      case PaymentStatus.processing:
-        statusText = 'Processing';
-        statusColor = colors.orangeHover;
-        break;
-      case PaymentStatus.successful:
-        statusText = 'Successful';
-        statusColor = colors.greenDefault;
-        break;
-      case PaymentStatus.failed:
-        statusText = 'Failed';
-        statusColor = colors.redDefault;
-        break;
-    }
+    final bool isOverdue = payment.status == PaymentStatus.overdue ||
+        payment.estimatedDate.difference(DateTime.now()).inDays < 0;
 
-    // Format date
+    final daysUntil = payment.estimatedDate.difference(DateTime.now()).inDays;
+    String statusText = isOverdue
+        ? 'Overdue'
+        : 'Coming in ${daysUntil > 0 ? daysUntil : 2} days';
+    Color statusColor = isOverdue ? colors.orangeDefault : colors.blueDefault;
+
     final formattedDate =
         DateFormat('dd MMMM yyyy').format(payment.estimatedDate);
 
     return Scaffold(
-      backgroundColor: context
-          .theme.scaffoldBackgroundColor, // Assuming a light grey background
-
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: SafeArea(
+          child: Row(
             children: [
-              SizedBox(height: 40), // Increased top spacing
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => context.router.maybePop(),
-                    icon: Icon(Icons.arrow_back_ios, color: colors.textPrimary),
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                  ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    child: Text(
-                      appBarTitle, // Use dynamic app bar title
-                      style: context.theme.textTheme.headlineLarge?.copyWith(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(
-                      width:
-                          72), // Add SizedBox to balance the left side (approx icon width + padding)
-                ],
+              IconButton(
+                onPressed: () => context.router.maybePop(),
+                icon: Icon(Icons.arrow_back_ios, color: colors.textPrimary),
               ),
-              const SizedBox(height: 12),
-              // Top Amount Card
-              Container(
-                padding: const EdgeInsets.all(24.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0, // Assuming a white card background
-                  borderRadius: BorderRadius.circular(16.0),
+              Expanded(
+                child: Text(
+                  appBarTitle,
+                  style: context.theme.textTheme.headlineLarge?.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 28,
-                      backgroundColor: payment.iconBackgroundColor,
-                      child: Center(
-                        child: Image.asset(
-                          payment.icon,
-                          height: 30,
-                          width: 30,
-                          color: Colors.white,
+              ),
+              const SizedBox(width: 48),
+            ],
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(24.0),
+              decoration: BoxDecoration(
+                color: colors.bgB0,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: payment.iconBackgroundColor,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        payment.icon,
+                        height: 24,
+                        width: 24,
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      '${payment.amount} ${payment.currency}', // Use dynamic amount and currency
-                      style: fontTheme.heading1Bold, // Large bold text
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '≈ \$${payment.amount * 0.96}', // Added approximate sign
-                      style: fontTheme.textBaseRegular.copyWith(
-                          fontSize: 16,
-                          color:
-                              colors.textSecondary), // Smaller secondary text
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    '${payment.amount.toStringAsFixed(0)} ${payment.currency}',
+                    style: fontTheme.heading1Bold.copyWith(fontSize: 32),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '≈ \$${(payment.amount * 0.96).toStringAsFixed(2)}',
+                    style: fontTheme.textBaseRegular
+                        .copyWith(fontSize: 16, color: colors.textSecondary),
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 24),
-
-              // Status and Details Section
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0, // White card background
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  children: [
-                    _buildDetailRow(context, 'Status',
-                        statusText, // Use dynamic status text
-                        valueColor: statusColor, // Use dynamic status color
-                        showBubble: true), // Example status, match image
-                    const SizedBox(height: 30),
-                    _buildDetailRow(context, 'Est. arrival date',
-                        formattedDate), // Use dynamic formatted date
-                    const SizedBox(height: 30),
-                    _buildDetailRow(
-                        context,
-                        'Network',
-                        payment.paymentNetwork.name
-                            .toLowerCase(), // Pass network enum name as string
-                        showNetworkIcon: true), // Example network, match image
-                  ],
-                ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: colors.bgB0,
+                borderRadius: BorderRadius.circular(16.0),
               ),
-              const SizedBox(height: 24),
-
-              // Invoice Details Section
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: colors.bgB0, // White card background
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildDetailRow(context, 'Invoice',
-                        '#INV-2025-001', // Invoice number not in Payment model, keeping placeholder or replace with actual data
-                        showLinkIcon:
-                            true), // Example invoice number, match image
-                    const SizedBox(height: 30),
-                    _buildDetailRow(
-                        context, 'Title', payment.title), // Use dynamic title
-                    const SizedBox(height: 30),
-                    _buildDetailRow(context, 'Client',
-                        'Adegboyega Oluwagbemiro'), // Client name not in Payment model, keeping placeholder or replace with actual data
-                  ],
-                ),
+              child: Column(
+                children: [
+                  _buildDetailRow(
+                    context,
+                    'Status',
+                    statusText,
+                    valueColor: statusColor,
+                    showBubble: true,
+                    isOutlinedBubble: isOverdue,
+                  ),
+                  const SizedBox(height: 30),
+                  _buildDetailRow(context, 'Est. arrival date', formattedDate),
+                  const SizedBox(height: 30),
+                  _buildDetailRow(
+                    context,
+                    'Network',
+                    payment.paymentNetwork.name.substring(0, 1).toUpperCase() +
+                        payment.paymentNetwork.name.substring(1).toLowerCase(),
+                    showNetworkIcon: true,
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-
-              // Timeline/Status History Section (Keeping static for now as timeline details are not in Payment model)
-              Container(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 24, bottom: 24),
-                decoration: BoxDecoration(
-                  color: colors.bgB0, // White card background
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Timeline items - these would typically be dynamic
-                    _buildTimelineItem(
-                      context,
-                      TimelineStatus.completed, // Status: Completed
-                      'Invoice created and sent to client',
-                      '20 April 2025, 04:40 PM',
-                      isLast: false,
-                    ),
-                    _buildTimelineItem(
-                      context,
-                      TimelineStatus.current, // Status: Current
-                      'Awaiting payment confirmation',
-                      'Your client will get invoice access before\nit is due on 31 May 2025.',
-                      isLast: false,
-                    ),
-                    _buildTimelineItem(
-                      context,
-                      TimelineStatus.future, // Status: Future
-                      'Process your client payment',
-                      '',
-                      isLast: false,
-                    ),
-                    _buildTimelineItem(
-                      context,
-                      TimelineStatus.future, // Status: Future
-                      'According to your invoice, funds should\nbe reflected in your balance on 31 May\n2025.',
-                      '',
-                      isLast: true,
-                    ),
-                  ],
-                ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: colors.bgB0,
+                borderRadius: BorderRadius.circular(16.0),
               ),
-            ],
-          ),
+              child: payment.paymentType == PaymentType.contract
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildDetailRow(context, 'Contract',
+                            ellipsify(word: payment.title, maxLength: 25),
+                            showLinkIcon: true),
+                        const SizedBox(height: 30),
+                        _buildDetailRow(context, 'Contract type', 'Fixed Rate'),
+                        const SizedBox(height: 30),
+                        _buildDetailRow(context, 'Invoice', '#INV-2025-001',
+                            showLinkIcon: true),
+                        const SizedBox(height: 30),
+                        _buildDetailRow(
+                            context, 'Client', 'Adegboyega Oluwagbemiro'),
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildDetailRow(context, 'Invoice', '#INV-2025-001',
+                            showLinkIcon: true),
+                        const SizedBox(height: 30),
+                        _buildDetailRow(context, 'Title',
+                            ellipsify(word: payment.title, maxLength: 25)),
+                        const SizedBox(height: 30),
+                        _buildDetailRow(
+                            context, 'Client', 'Adegboyega Oluwagbemiro'),
+                      ],
+                    ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 24, bottom: 24),
+              decoration: BoxDecoration(
+                color: colors.bgB0,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _buildPaymentTrackerItems(context),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
+  List<Widget> _buildPaymentTrackerItems(BuildContext context) {
+    bool isOverdue = payment.status == PaymentStatus.overdue ||
+        payment.estimatedDate.difference(DateTime.now()).inDays < 0;
+
+    if (payment.paymentType == PaymentType.contract) {
+      return [
+        _buildTrackerItem(
+          context,
+          icon: Icons.check_circle,
+          iconColor: context.theme.colors.greenDefault,
+          title: 'Contract cycle completed',
+          subtitle: '20 April 2025, 04:40 PM',
+          isCompleted: true,
+          lineColor: context.theme.colors.greenDefault,
+        ),
+        _buildTrackerItem(
+          context,
+          icon: Icons.check_circle,
+          iconColor: context.theme.colors.greenDefault,
+          title: 'Client approved contract cycle',
+          subtitle: '20 April 2025, 04:40 PM',
+          isCompleted: true,
+          lineColor: context.theme.colors.greenDefault,
+        ),
+        _buildTrackerItem(
+          context,
+          icon: Icons.check_circle,
+          iconColor: context.theme.colors.greenDefault,
+          title: 'Invoice created for this cycle',
+          subtitle: '20 April 2025, 04:40 PM',
+          isCompleted: true,
+          lineColor: context.theme.colors.greenDefault,
+        ),
+        if (isOverdue)
+          _buildTrackerItem(
+            context,
+            icon: Icons.warning_amber_rounded,
+            iconColor: context.theme.colors.orangeHover,
+            title: 'Client payment overdue',
+            subtitle:
+                'The payment was expected by **31 May 2025** but has not yet been received.',
+            isCompleted: false,
+          )
+        else
+          _buildTrackerItem(
+            context,
+            icon: Icons.watch_later_outlined,
+            iconColor: context.theme.colors.orangeDefault,
+            title: 'Awaiting payment confirmation',
+            subtitle:
+                'Your client will get invoice access **10 days** before it is due.',
+            isCompleted: false,
+          ),
+        _buildTrackerItem(
+          context,
+          customIcon: DashedCircleIcon(
+              color: context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+          title: 'Process your client payment',
+          isCompleted: false,
+          isGreyedOut: true,
+        ),
+        _buildTrackerItem(
+          context,
+          customIcon: DashedCircleIcon(
+              color: context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+          subtitle:
+              'According to your invoice, funds should be reflected in your balance on **31 May 2025**.',
+          isCompleted: false,
+          isGreyedOut: true,
+          isLast: true,
+        ),
+      ];
+    } else {
+      return [
+        _buildTrackerItem(
+          context,
+          icon: Icons.check_circle,
+          iconColor: context.theme.colors.greenDefault,
+          title: 'Invoice created and sent to client',
+          subtitle: '20 April 2025, 04:40 PM',
+          isCompleted: true,
+          lineColor: context.theme.colors.greenDefault,
+        ),
+        if (isOverdue)
+          _buildTrackerItem(
+            context,
+            icon: Icons.warning_amber_rounded,
+            iconColor: context.theme.colors.orangeHover,
+            title: 'Client payment overdue',
+            subtitle:
+                'The payment was expected by **31 May 2025** but has not yet been received.',
+            isCompleted: false,
+          )
+        else
+          _buildTrackerItem(
+            context,
+            icon: Icons.watch_later_outlined,
+            iconColor: context.theme.colors.orangeDefault,
+            title: 'Awaiting payment confirmation',
+            subtitle:
+                'Your client will get invoice access before it is due on **31 May 2025**.',
+            isCompleted: false,
+          ),
+        _buildTrackerItem(
+          context,
+          customIcon: DashedCircleIcon(
+              color: context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+          title: 'Process your client payment',
+          isCompleted: false,
+          isGreyedOut: true,
+        ),
+        _buildTrackerItem(
+          context,
+          customIcon: DashedCircleIcon(
+              color: context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+          subtitle:
+              'According to your invoice, funds should be reflected in your balance on **31 May 2025**.',
+          isCompleted: false,
+          isGreyedOut: true,
+          isLast: true,
+        ),
+      ];
+    }
+  }
+
+  Widget _buildTrackerItem(
+    BuildContext context, {
+    Widget? customIcon,
+    IconData? icon,
+    Color? iconColor,
+    String? title,
+    String? subtitle,
+    required bool isCompleted,
+    bool isLast = false,
+    Color? lineColor,
+    bool isGreyedOut = false,
+  }) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Column(
+            children: [
+              customIcon ??
+                  SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: Center(
+                      child: Icon(
+                        icon,
+                        color: iconColor,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+              if (!isLast)
+                Expanded(
+                  child: Container(
+                    width: 1.5,
+                    color: lineColor ??
+                        context.theme.colors.strokeSecondary
+                            .withValues(alpha: 0.3),
+                    margin: const EdgeInsets.only(top: 4, bottom: 4),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if (title != null && title.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Text(
+                      title,
+                      style: context.theme.fonts.textMdMedium.copyWith(
+                        fontSize: 13,
+                        color: isGreyedOut
+                            ? context.theme.colors.textSecondary
+                                .withValues(alpha: 0.5)
+                            : context.theme.colors.textPrimary,
+                      ),
+                    ),
+                  ),
+                if (subtitle != null && subtitle.isNotEmpty) ...[
+                  if (title != null && title.isNotEmpty)
+                    const SizedBox(height: 4),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: (title == null || title.isEmpty) ? 2.0 : 0.0),
+                    child: _buildRichSubtitle(context, subtitle, isGreyedOut),
+                  ),
+                ],
+                if (!isLast) const SizedBox(height: 24),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRichSubtitle(
+      BuildContext context, String text, bool isGreyedOut) {
+    if (!text.contains('**')) {
+      return Text(
+        text,
+        style: context.theme.fonts.textMdRegular.copyWith(
+          fontSize: 12,
+          color: isGreyedOut
+              ? context.theme.colors.textSecondary.withValues(alpha: 0.5)
+              : context.theme.colors.textSecondary,
+        ),
+      );
+    }
+
+    final defaultStyle = context.theme.fonts.textMdRegular.copyWith(
+      fontSize: 12,
+      color: isGreyedOut
+          ? context.theme.colors.textSecondary.withValues(alpha: 0.5)
+          : context.theme.colors.textSecondary,
+    );
+
+    final boldStyle = context.theme.fonts.textMdSemiBold.copyWith(
+      fontSize: 12,
+      color: isGreyedOut
+          ? context.theme.colors.textPrimary.withValues(alpha: 0.5)
+          : context
+              .theme.colors.textPrimary, // Bolds stand out with textPrimary
+    );
+
+    final parts = text.split('**');
+    List<TextSpan> spans = [];
+    for (int i = 0; i < parts.length; i++) {
+      // even indexes are normal, odd indexes are bold
+      spans.add(TextSpan(
+        text: parts[i],
+        style: i % 2 == 1 ? boldStyle : defaultStyle,
+      ));
+    }
+
+    return RichText(text: TextSpan(children: spans));
+  }
+
   Widget _buildDetailRow(BuildContext context, String label, String value,
       {Color? valueColor,
       bool showBubble = false,
+      bool isOutlinedBubble = false,
       bool showLinkIcon = false,
       bool showNetworkIcon = false}) {
     final colors = Theme.of(context).extension<AppColorExtension>()!;
     final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
 
-    // Determine network text and icon
     String? networkIconAsset;
-    String networkText = '';
     if (label == 'Network') {
-      switch (value) {
+      switch (value.toLowerCase()) {
         case 'ethereum':
-          networkText = 'Ethereum';
-          networkIconAsset = AppIcons.ethereumIcon; // Use SVG asset path
+          networkIconAsset = AppIcons.ethereumIcon;
           break;
         case 'starknet':
-          networkText = 'Starknet';
-          networkIconAsset = AppIcons.starknetIcon; // Use SVG asset path
+          networkIconAsset = AppIcons.starknetIcon;
           break;
         case 'solana':
-          networkText = 'Solana';
-          networkIconAsset = AppIcons.solanaIcon; // Use SVG asset path
+          networkIconAsset = AppIcons.solanaIcon;
           break;
         case 'stellar':
-          networkText = 'Stellar';
-          networkIconAsset = AppIcons.stellar; // Use SVG asset path
+          networkIconAsset = AppIcons.stellar;
           break;
-        default:
-          networkText = 'Unknown';
       }
     }
 
@@ -339,121 +471,102 @@ class InvoiceScreen extends StatelessWidget {
       children: [
         Text(
           label,
-          style: fontTheme.textSmRegular
-              .copyWith(color: colors.textSecondary), // Grey text for label
+          style: fontTheme.textSmRegular.copyWith(color: colors.textSecondary),
         ),
         Row(
           children: [
             if (showNetworkIcon && networkIconAsset != null) ...[
               SvgPicture.asset(
-                // Use SvgPicture.asset for SVG icons
                 networkIconAsset,
-                height: 16, // Adjust size as needed
+                height: 16,
                 width: 16,
-                // color: colors.blueDefault, // Example color, adjust as needed
               ),
               const SizedBox(width: 4),
             ],
             if (showBubble)
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
                 decoration: BoxDecoration(
-                  color: valueColor?.withOpacity(0.1) ??
-                      colors.brandFill, // Light background for bubble
-                  borderRadius: BorderRadius.circular(12.0),
+                  color: isOutlinedBubble ? colors.orangeFill : colors.blueFill,
+                  borderRadius: BorderRadius.circular(32.0),
+                  border: Border.all(
+                    color: isOutlinedBubble
+                        ? colors.orangeStroke
+                        : colors.blueStroke,
+                    width: 1,
+                  ),
                 ),
                 child: Text(
                   value,
-                  style: fontTheme.textBaseSemiBold.copyWith(
+                  style: fontTheme.textXsSemiBold.copyWith(
                     color: valueColor ?? colors.brandDefault,
                     fontSize: 12,
-                  ), // Colored text for status
+                  ),
                 ),
               )
             else
               Text(
-                label == 'Network'
-                    ? networkText
-                    : value, // Use dynamic network text or original value
-                style: fontTheme.textBaseMedium, // Default text style for value
+                value,
+                style: fontTheme.textBaseMedium,
               ),
             if (showLinkIcon) ...[
               const SizedBox(width: 4),
-              Icon(Icons.open_in_new,
-                  color: colors.blueDefault, size: 16), // Example Link Icon
+              Icon(Icons.open_in_new, color: colors.textPrimary, size: 16),
             ],
           ],
         ),
       ],
     );
   }
+}
 
-  Widget _buildTimelineItem(BuildContext context, TimelineStatus status,
-      String title, String subtitle,
-      {required bool isLast}) {
-    final colors = Theme.of(context).extension<AppColorExtension>()!;
-    final fontTheme = Theme.of(context).extension<AppFontThemeExtension>()!;
+class DashedCircleIcon extends StatelessWidget {
+  final Color color;
+  const DashedCircleIcon({Key? key, required this.color}) : super(key: key);
 
-    IconData icon;
-    Color iconColor;
-    Color lineColor = colors.strokeSecondary; // Default line color
-
-    switch (status) {
-      case TimelineStatus.completed:
-        icon = Icons.check_circle;
-        iconColor = colors.greenDefault;
-        lineColor = colors.greenDefault; // Line after completed item is green
-        break;
-      case TimelineStatus.current:
-        icon = Icons.schedule;
-        iconColor = colors.orangeDefault;
-        lineColor = colors.grayTertiary; // Darker grey line after current item
-        break;
-      case TimelineStatus.future:
-        icon = Icons.circle_outlined;
-        iconColor = colors.grayTertiary;
-        lineColor = colors.grayTertiary; // Darker grey line after future item
-        break;
-    }
-
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              children: [
-                Icon(icon, color: iconColor, size: 24),
-                if (!isLast)
-                  Container(
-                    width: 0.5, // Line thickness
-                    height: 32, // Match the gap height
-                    color: lineColor, // Use dynamic line color
-                  ),
-              ],
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: fontTheme.textBaseMedium), // Bold title
-                  if (subtitle.isNotEmpty) ...[
-                    const SizedBox(
-                        height: 2), // Reduced space between title and subtitle
-                    Text(subtitle,
-                        style: fontTheme.textSmRegular.copyWith(
-                            color: colors.textSecondary)), // Grey subtitle
-                  ],
-                ],
-              ),
-            ),
-          ],
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 24,
+      height: 24,
+      child: Center(
+        child: SizedBox(
+          width: 18,
+          height: 18,
+          child: CustomPaint(
+            painter: DashedCirclePainter(color: color),
+          ),
         ),
-        // if (!isLast)
-        //   const SizedBox(height: 32), // Added spacing between timeline items
-      ],
+      ),
     );
   }
+}
+
+class DashedCirclePainter extends CustomPainter {
+  final Color color;
+
+  DashedCirclePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.5
+      ..style = PaintingStyle.stroke;
+
+    final rect = Rect.fromCircle(
+        center: Offset(size.width / 2, size.height / 2),
+        radius: (size.width / 2) - 1);
+
+    const int dashCount = 8;
+    const double dashLength = (2 * 3.141592653589793) / (dashCount * 2);
+
+    for (int i = 0; i < dashCount; i++) {
+      canvas.drawArc(rect, i * 2 * dashLength, dashLength, false, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

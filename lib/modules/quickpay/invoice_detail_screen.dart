@@ -111,7 +111,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: colors.textSecondary.withOpacity(0.05),
+            color: colors.textSecondary.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -237,70 +237,77 @@ class InvoiceDetailScreen extends StatelessWidget {
   List<Widget> _buildPaymentTrackerItems(BuildContext context) {
     switch (invoice.status) {
       case InvoiceStatus.overdue:
-        return [
-          _buildTrackerItem(
-            context,
-            icon: Icons.check_circle,
-            iconColor: Colors.green,
-            title: 'Invoice created and sent to client',
-            subtitle: '20th April 2025, 04:40 PM',
-            isCompleted: true,
-          ),
-          _buildTrackerItem(
-            context,
-            icon: Icons.warning,
-            iconColor: Colors.orange,
-            title: 'Client payment overdue',
-            subtitle:
-                'The payment was due on 31st May 2025 but has not yet been received.',
-            isCompleted: false,
-          ),
-        ];
-      case InvoiceStatus.paid:
-        return [
-          _buildTrackerItem(
-            context,
-            icon: Icons.check_circle,
-            iconColor: Colors.green,
-            title: 'Invoice created and sent to client',
-            subtitle: '20th April 2025, 04:40 PM',
-            isCompleted: true,
-          ),
-          _buildTrackerItem(
-            context,
-            icon: Icons.check_circle,
-            iconColor: Colors.green,
-            title: 'Client payment confirmed',
-            subtitle: '20th April 2025, 08:40 PM',
-            isCompleted: true,
-          ),
-          _buildTrackerItem(
-            context,
-            icon: Icons.check_circle,
-            iconColor: Colors.green,
-            title: 'Funds received in your account',
-            subtitle: '20th April 2025, 08:45 PM',
-            isCompleted: true,
-          ),
-        ];
       case InvoiceStatus.pending:
         return [
           _buildTrackerItem(
             context,
             icon: Icons.check_circle,
-            iconColor: Colors.green,
+            iconColor: context.theme.colors.greenDefault,
             title: 'Invoice created and sent to client',
             subtitle: '20th April 2025, 04:40 PM',
             isCompleted: true,
+            lineColor: context.theme.colors.greenDefault,
           ),
           _buildTrackerItem(
             context,
-            icon: Icons.access_time,
-            iconColor: Colors.orange,
+            icon: Icons.watch_later_outlined,
+            iconColor: context.theme.colors.orangeDefault,
             title: 'Awaiting payment confirmation',
             subtitle:
                 'Your client will get invoice access before it is due on 31st May 2025.',
             isCompleted: false,
+          ),
+          _buildTrackerItem(
+            context,
+            customIcon: DashedCircleIcon(
+                color:
+                    context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+            title: 'Process your client payment',
+            isCompleted: false,
+            isGreyedOut: true,
+          ),
+          _buildTrackerItem(
+            context,
+            customIcon: DashedCircleIcon(
+                color:
+                    context.theme.colors.textSecondary.withValues(alpha: 0.5)),
+            subtitle:
+                'According to your invoice, funds should be reflected in your balance on 31st May 2025.',
+            isCompleted: false,
+            isGreyedOut: true,
+            isLast: true,
+          ),
+        ];
+
+      case InvoiceStatus.paid:
+        return [
+          _buildTrackerItem(
+            context,
+            icon: Icons.check_circle,
+            iconColor: context.theme.colors.greenDefault,
+            title: 'Invoice created and sent to client',
+            subtitle: '20th April 2025, 04:40 PM',
+            isCompleted: true,
+            lineColor: context.theme.colors.greenDefault,
+          ),
+          _buildTrackerItem(
+            context,
+            icon: Icons.check_circle,
+            iconColor: context.theme.colors.greenDefault,
+            title: 'Client payment confirmed',
+            subtitle: '20th April 2025, 08:40 PM',
+            isCompleted: true,
+            lineColor: context.theme.colors.greenDefault,
+          ),
+          _buildTrackerItem(
+            context,
+            icon: Icons.check_circle,
+            iconColor: context.theme.colors.greenDefault,
+            title: 'Funds received in your account',
+            subtitle:
+                'According to your invoice, funds have been reflected in your balance on 31st May 2025.',
+            isCompleted: true,
+            isLast: true,
           ),
         ];
     }
@@ -368,7 +375,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: context.theme.colors.textSecondary.withOpacity(0.05),
+            color: context.theme.colors.textSecondary.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -563,50 +570,85 @@ class InvoiceDetailScreen extends StatelessWidget {
 
   Widget _buildTrackerItem(
     BuildContext context, {
-    required IconData icon,
-    required Color iconColor,
-    required String title,
-    required String subtitle,
+    Widget? customIcon,
+    IconData? icon,
+    Color? iconColor,
+    String? title,
+    String? subtitle,
     required bool isCompleted,
+    bool isLast = false,
+    Color? lineColor,
+    bool isGreyedOut = false,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(16),
+    return IntrinsicHeight(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            width: 24,
-            height: 24,
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 20,
-            ),
+          Column(
+            children: [
+              customIcon ??
+                  SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: Center(
+                      child: Icon(
+                        icon,
+                        color: iconColor,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+              if (!isLast)
+                Expanded(
+                  child: Container(
+                    width: 1.5,
+                    color: lineColor ??
+                        context.theme.colors.strokeSecondary
+                            .withValues(alpha: 0.3),
+                    margin: const EdgeInsets.only(top: 4, bottom: 4),
+                  ),
+                ),
+            ],
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: context.theme.fonts.textMdMedium.copyWith(
-                    fontSize: 13.sp,
-                    color: isCompleted
-                        ? context.theme.colors.textPrimary
-                        : context.theme.colors.textSecondary,
+                if (title != null && title.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Text(
+                      title,
+                      style: context.theme.fonts.textMdMedium.copyWith(
+                        fontSize: 13.sp,
+                        color: isGreyedOut
+                            ? context.theme.colors.textSecondary
+                                .withValues(alpha: 0.5)
+                            : context.theme.colors.textPrimary,
+                      ),
+                    ),
                   ),
-                ),
-                if (subtitle.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: context.theme.fonts.textMdRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
+                if (subtitle != null && subtitle.isNotEmpty) ...[
+                  if (title != null && title.isNotEmpty)
+                    const SizedBox(height: 4),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: (title == null || title.isEmpty) ? 2.0 : 0.0),
+                    child: Text(
+                      subtitle,
+                      style: context.theme.fonts.textMdRegular.copyWith(
+                        fontSize: 12.sp,
+                        color: isGreyedOut
+                            ? context.theme.colors.textSecondary
+                                .withValues(alpha: 0.5)
+                            : context.theme.colors.textSecondary,
+                      ),
                     ),
                   ),
                 ],
+                if (!isLast) const SizedBox(height: 24),
               ],
             ),
           ),
@@ -614,4 +656,54 @@ class InvoiceDetailScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class DashedCircleIcon extends StatelessWidget {
+  final Color color;
+  const DashedCircleIcon({Key? key, required this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 24,
+      height: 24,
+      child: Center(
+        child: SizedBox(
+          width: 18,
+          height: 18,
+          child: CustomPaint(
+            painter: DashedCirclePainter(color: color),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DashedCirclePainter extends CustomPainter {
+  final Color color;
+
+  DashedCirclePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.5
+      ..style = PaintingStyle.stroke;
+
+    final rect = Rect.fromCircle(
+        center: Offset(size.width / 2, size.height / 2),
+        radius: (size.width / 2) - 1);
+
+    const int dashCount = 8;
+    const double dashLength = (2 * 3.141592653589793) / (dashCount * 2);
+
+    for (int i = 0; i < dashCount; i++) {
+      canvas.drawArc(rect, i * 2 * dashLength, dashLength, false, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
