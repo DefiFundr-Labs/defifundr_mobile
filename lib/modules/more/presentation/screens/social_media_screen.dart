@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,7 @@ class SocialMediaScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Follow us on social media',
+                      context.l10n.followUsOnSocialMedia,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -46,7 +47,7 @@ class SocialMediaScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Get updates, tips, and news by following us on your favorite platforms.',
+                      context.l10n.followUsSubtitle,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,

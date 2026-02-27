@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -73,7 +74,7 @@ class PasswordResetSuccessScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Password Has Been Reset!",
+          context.l10n.passwordHasBeenReset,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineLarge?.copyWith(
             fontSize: 24.sp,
@@ -83,7 +84,7 @@ class PasswordResetSuccessScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Text(
-          "You can now log in with your new password and continue using your account securely.",
+          context.l10n.youCanNowLogInWithYourNewPasswordAndContinueUsingY,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineMedium?.copyWith(
             fontSize: 14.sp,
@@ -97,7 +98,7 @@ class PasswordResetSuccessScreen extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context) {
     return PrimaryButton(
-      text: 'Proceed to login',
+      text: context.l10n.proceedToLogin,
       isEnabled: true,
       onPressed: () {
         context.router.push(const LoginRoute());

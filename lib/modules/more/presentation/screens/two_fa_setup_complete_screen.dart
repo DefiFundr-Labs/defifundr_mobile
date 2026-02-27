@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
     final isLight = Theme.of(context).brightness == Brightness.light;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
@@ -26,7 +28,7 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
               _buildIcon(context),
               SizedBox(height: 32.h),
               Text(
-                '2FA setup complete',
+                l10n.twoFaCompleteTitle,
                 textAlign: TextAlign.center,
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 24.sp,
@@ -36,7 +38,7 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               Text(
-                "Two factor authentication is enabled, we'll use your authenticator app codes for transactions",
+                l10n.twoFaCompleteSubtitle,
                 textAlign: TextAlign.center,
                 style: context.theme.textTheme.headlineMedium?.copyWith(
                   fontSize: 14.sp,
@@ -46,7 +48,7 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                text: 'Back to settings',
+                text: l10n.backToSettings,
                 isEnabled: true,
                 onPressed: () => context.router.popUntilRoot(),
               ),

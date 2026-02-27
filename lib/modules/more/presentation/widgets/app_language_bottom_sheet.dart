@@ -1,62 +1,88 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/localization/localization.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppLanguage {
   final String name;
   final String flagPath;
+  final String languageCode;
 
-  const AppLanguage({required this.name, required this.flagPath});
+  const AppLanguage({
+    required this.name,
+    required this.flagPath,
+    required this.languageCode,
+  });
 }
 
 final _languages = [
   AppLanguage(
     name: 'Arabic',
     flagPath: Assets.icons.countryFlags.unitedArabEmirates,
+    languageCode: 'ar',
   ),
   AppLanguage(
     name: 'Chinese (Mandarin)',
     flagPath: Assets.icons.countryFlags.china,
+    languageCode: 'zh',
   ),
   AppLanguage(
     name: 'English (UK)',
     flagPath: Assets.icons.countryFlags.unitedKingdom,
+    languageCode: 'en',
   ),
   AppLanguage(
     name: 'English (United States)',
     flagPath: Assets.icons.countryFlags.unitedStates,
+    languageCode: 'en',
   ),
   AppLanguage(
     name: 'French',
     flagPath: Assets.icons.countryFlags.france,
+    languageCode: 'fr',
   ),
   AppLanguage(
     name: 'German',
     flagPath: Assets.icons.countryFlags.germany,
+    languageCode: 'de',
   ),
   AppLanguage(
     name: 'Italian',
     flagPath: Assets.icons.countryFlags.italy,
+    languageCode: 'it',
   ),
   AppLanguage(
     name: 'Japanese',
     flagPath: Assets.icons.countryFlags.japan,
+    languageCode: 'ja',
   ),
   AppLanguage(
     name: 'Portuguese',
     flagPath: Assets.icons.countryFlags.portugal,
+    languageCode: 'pt',
+  ),
+  AppLanguage(
+    name: 'Spanish',
+    flagPath: Assets.icons.countryFlags.spain,
+    languageCode: 'es',
   ),
 ];
 
 void showAppLanguageBottomSheet(BuildContext context) {
+  final localeBloc = context.read<LocaleBloc>();
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
-    builder: (_) => const _AppLanguageSheet(),
+    builder: (_) => BlocProvider.value(
+      value: localeBloc,
+      child: const _AppLanguageSheet(),
+    ),
   );
 }
 
@@ -68,8 +94,15 @@ class _AppLanguageSheet extends StatefulWidget {
 }
 
 class _AppLanguageSheetState extends State<_AppLanguageSheet> {
-  // English (UK) selected by default (index 2)
-  int _selectedIndex = 2;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    final currentCode = context.read<LocaleBloc>().state.locale.languageCode;
+    final idx = _languages.indexWhere((l) => l.languageCode == currentCode);
+    _selectedIndex = idx >= 0 ? idx : 2; // default to English (UK)
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +140,7 @@ class _AppLanguageSheetState extends State<_AppLanguageSheet> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'App language',
+                context.l10n.appLanguage,
                 style: fonts.heading2Bold.copyWith(
                   color: colors.textPrimary,
                 ),
@@ -125,7 +158,7 @@ class _AppLanguageSheetState extends State<_AppLanguageSheet> {
               separatorBuilder: (_, __) => Divider(
                 height: 1,
                 thickness: 0.5,
-                color: isLight ? colors.bgB2 : colors.bgB2,
+                color: colors.bgB2,
               ),
               itemBuilder: (context, index) {
                 final lang = _languages[index];
@@ -172,9 +205,13 @@ class _AppLanguageSheetState extends State<_AppLanguageSheet> {
           Padding(
             padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, bottomInset + 24.h),
             child: PrimaryButton(
-              text: 'Continue',
+              text: context.l10n.continueText,
               isEnabled: true,
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                final selectedCode = _languages[_selectedIndex].languageCode;
+                context.read<LocaleBloc>().add(ChangeLocaleEvent(selectedCode));
+                Navigator.of(context).pop();
+              },
             ),
           ),
         ],

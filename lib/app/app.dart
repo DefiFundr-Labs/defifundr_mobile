@@ -1,5 +1,6 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
+import 'package:defifundr_mobile/core/localization/localization.dart';
 import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/components/dismiss_keyboard.dart';
@@ -47,19 +48,26 @@ class _AppState extends State<App> {
         providers: appProviders,
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, themeState) {
-            return DismissKeyboard(
-              child: MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                title: 'DeFiFundr',
-                theme: AppTheme.light,
-                darkTheme: AppTheme.dark,
-                themeMode: themeState.themeMode.toThemeMode(),
-                scrollBehavior: const _AppScrollBehavior(),
-                routerConfig: _appRouter.config(
-                  includePrefixMatches: true,
-                  navigatorObservers: () => [_routeObserver],
-                ),
-              ),
+            return BlocBuilder<LocaleBloc, LocaleState>(
+              builder: (context, localeState) {
+                return DismissKeyboard(
+                  child: MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
+                    title: 'DeFiFundr',
+                    theme: AppTheme.light,
+                    darkTheme: AppTheme.dark,
+                    themeMode: themeState.themeMode.toThemeMode(),
+                    locale: localeState.locale,
+                    scrollBehavior: const _AppScrollBehavior(),
+                    localizationsDelegates: Localization.localizationDelegates,
+                    supportedLocales: Localization.supportedLocales,
+                    routerConfig: _appRouter.config(
+                      includePrefixMatches: true,
+                      navigatorObservers: () => [_routeObserver],
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/more_list_item.dart';
@@ -29,6 +30,7 @@ class _MoreScreenState extends State<MoreScreen> {
     final colors = context.theme.colors;
     final fonts = context.theme.fonts;
     final isLightMode = Theme.of(context).brightness == Brightness.light;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -37,7 +39,7 @@ class _MoreScreenState extends State<MoreScreen> {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'More',
+          l10n.more,
           style: fonts.heading2Bold.copyWith(
             color: colors.textPrimary,
             fontFamily: 'HankenGrotesk',
@@ -59,21 +61,21 @@ class _MoreScreenState extends State<MoreScreen> {
 
               // Profile section
               MoreSection(
-                title: 'Profile',
+                title: l10n.profile,
                 items: [
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.profilee, colors),
-                    title: 'Personal details',
+                    title: l10n.personalDetails,
                     onTap: () => context.router.push(const PersonalDetailsViewRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.wallet, colors),
-                    title: 'Manage wallet',
+                    title: l10n.manageWallet,
                     onTap: () => context.router.push(const ManageWalletRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.userCircleDashed, colors),
-                    title: 'Address book',
+                    title: l10n.addressBook,
                     onTap: () {},
                   ),
                 ],
@@ -82,21 +84,21 @@ class _MoreScreenState extends State<MoreScreen> {
 
               // Security section
               MoreSection(
-                title: 'Security',
+                title: l10n.security,
                 items: [
                   MoreListItem(
                     icon: _buildIcon('assets/icons/password.svg', colors),
-                    title: 'Change password',
+                    title: l10n.changePassword,
                     onTap: () => context.router.push(const ChangePasswordRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.lockKeyOpen, colors),
-                    title: 'Change PIN',
+                    title: l10n.changePIN,
                     onTap: () => context.router.push(const CurrentPinCodeRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.faceScan, colors),
-                    title: 'Use Face ID / Fingerprint',
+                    title: l10n.useFaceIdFingerprint,
                     trailingType: MoreItemTrailingType.toggle,
                     toggleValue: _useFaceId,
                     onToggleChanged: (value) =>
@@ -104,7 +106,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.lockIcon, colors),
-                    title: 'Two-factor authentication',
+                    title: l10n.twoFactorAuthentication,
                     trailingType: MoreItemTrailingType.toggle,
                     toggleValue: _twoFactorAuth,
                     onToggleChanged: (value) {
@@ -116,7 +118,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                   MoreListItem(
                     icon: _buildIcon('assets/icons/devices.svg', colors),
-                    title: 'Device management',
+                    title: l10n.deviceManagement,
                     onTap: () => context.router.push(const DeviceManagementRoute()),
                   ),
                 ],
@@ -125,16 +127,16 @@ class _MoreScreenState extends State<MoreScreen> {
 
               // General section
               MoreSection(
-                title: 'General',
+                title: l10n.general,
                 items: [
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.eye, colors),
-                    title: 'App appearance',
+                    title: l10n.appAppearance,
                     onTap: () => context.router.push(const AppAppearanceRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.notification, colors),
-                    title: 'Push notifications',
+                    title: l10n.pushNotifications,
                     trailingType: MoreItemTrailingType.toggle,
                     toggleValue: _pushNotifications,
                     onToggleChanged: (value) =>
@@ -142,12 +144,12 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.globe, colors),
-                    title: 'App language',
+                    title: l10n.appLanguage,
                     onTap: () => showAppLanguageBottomSheet(context),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.headset, colors),
-                    title: 'Help & feedback',
+                    title: l10n.helpFeedback,
                     onTap: () => context.router.push(const HelpFeedbackRoute()),
                   ),
                 ],
@@ -156,22 +158,22 @@ class _MoreScreenState extends State<MoreScreen> {
 
               // About section
               MoreSection(
-                title: 'About',
+                title: l10n.about,
                 items: [
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.globe, colors),
-                    title: 'Visit website',
+                    title: l10n.visitWebsite,
                     trailingType: MoreItemTrailingType.externalLink,
                     onTap: () {},
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.fileText, colors),
-                    title: 'Term of service',
+                    title: l10n.termsOfService,
                     onTap: () {},
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.scales, colors),
-                    title: 'Privacy policy',
+                    title: l10n.privacyPolicy,
                     onTap: () {},
                   ),
                 ],
@@ -205,7 +207,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         ),
                         SizedBox(width: 12.w),
                         Text(
-                          'Log out',
+                          l10n.logOut,
                           style: fonts.textBaseMedium.copyWith(
                             color: colors.redDefault,
                           ),
@@ -220,7 +222,7 @@ class _MoreScreenState extends State<MoreScreen> {
               // Version info
               Center(
                 child: Text(
-                  'Version 1.17.0 (Build 110)',
+                  l10n.versionInfo('1.17.0', '110'),
                   style: fonts.textSmRegular.copyWith(
                     color: colors.textTertiary,
                   ),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class HelpFeedbackScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Help & Feedback',
+                      context.l10n.helpFeedback,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -47,7 +48,7 @@ class HelpFeedbackScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Find answers in our Help Center or contact support for account, wallet, or other issues.',
+                      context.l10n.helpFeedbackSubtitle,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -66,9 +67,9 @@ class HelpFeedbackScreen extends StatelessWidget {
                         children: [
                           _HelpItem(
                             iconPath: Assets.icons.question,
-                            title: 'Help center',
+                            title: context.l10n.helpCenter,
                             subtitle:
-                                'Find answers fast with articles and FAQs covering common questions and issues.',
+                                context.l10n.helpCenterSubtitle,
                             trailingType: _HelpItemTrailing.externalLink,
                             onTap: () =>
                                 _launchUrl('https://defifundr.com/help'),
@@ -76,27 +77,27 @@ class HelpFeedbackScreen extends StatelessWidget {
                           _buildDivider(colors),
                           _HelpItem(
                             iconPath: Assets.icons.headset,
-                            title: 'Chat with us',
+                            title: context.l10n.chatWithUs,
                             subtitle:
-                                'Need quick help? Start a live chat for quick help from our support team.',
+                                context.l10n.chatWithUsSubtitle,
                             trailingType: _HelpItemTrailing.chevron,
                             onTap: () {},
                           ),
                           _buildDivider(colors),
                           _HelpItem(
                             iconPath: Assets.icons.questionSvg,
-                            title: 'Leave feedback',
+                            title: context.l10n.leaveFeedback,
                             subtitle:
-                                'Tell us what you think. Your feedback helps us improve your experience.',
+                                context.l10n.leaveFeedbackSubtitle,
                             trailingType: _HelpItemTrailing.chevron,
                             onTap: () {},
                           ),
                           _buildDivider(colors),
                           _HelpItem(
                             iconPath: Assets.icons.deviceMobile,
-                            title: 'Follow us on social media',
+                            title: context.l10n.followUsOnSocialMedia,
                             subtitle:
-                                'Get updates, tips, and news by following us on your favorite platforms.',
+                                context.l10n.followUsSubtitle,
                             trailingType: _HelpItemTrailing.chevron,
                             onTap: () =>
                                 context.router.push(const SocialMediaRoute()),

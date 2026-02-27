@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:country_picker/src/country_list_view.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -85,14 +86,14 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Edit profile details',
+                      context.l10n.editProfileDetails,
                       style: fonts.heading2Bold.copyWith(
                         color: colors.textPrimary,
                       ),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      'Update your personal information to keep your profile accurate and up to date.',
+                      context.l10n.editProfileDetailsSubtitle,
                       style: fonts.textBaseRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -100,19 +101,19 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                     SizedBox(height: 24.h),
                     AppTextField(
                       controller: _firstNameController,
-                      labelText: 'Legal first name',
+                      labelText: context.l10n.legalFirstName,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _lastNameController,
-                      labelText: 'Legal last name',
+                      labelText: context.l10n.legalLastName,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _citizenshipController,
-                      labelText: 'Country of citizenship',
+                      labelText: context.l10n.countryOfCitizenship,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
@@ -126,7 +127,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                         ),
                       ),
                       onTap: () => _showCountryBottomSheet(
-                        title: 'Country of citizenship',
+                        title: context.l10n.countryOfCitizenship,
                         showPhoneCode: false,
                         onSelect: (Country country) {
                           setState(() {
@@ -139,7 +140,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _dobController,
-                      labelText: 'Date of birth',
+                      labelText: context.l10n.dateOfBirth,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
@@ -182,7 +183,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _genderController,
-                      labelText: 'Gender',
+                      labelText: context.l10n.gender,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
@@ -207,7 +208,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Save changes',
+                text: context.l10n.saveChanges,
                 onPressed: () {},
               ),
             ),
@@ -223,12 +224,12 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
 
     return AppTextField(
       controller: _phoneController,
-      labelText: 'Phone number',
+      labelText: context.l10n.phoneNumber,
       keyboardType: TextInputType.phone,
       prefixType: PrefixType.customWidget,
       prefixWidget: GestureDetector(
         onTap: () => _showCountryBottomSheet(
-          title: 'Dial code',
+          title: context.l10n.dialCode,
           showPhoneCode: true,
           onSelect: (Country country) {
             setState(() {
@@ -385,7 +386,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                       color: colors.textPrimary,
                     ),
                     inputDecoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: context.l10n.search,
                       hintStyle: fonts.textBaseRegular.copyWith(
                         color: colors.textTertiary,
                       ),

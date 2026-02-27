@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:country_picker/src/country_list_view.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -72,7 +73,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Edit address details',
+                      context.l10n.editAddressDetails,
                       style: fonts.heading2Bold.copyWith(
                         color: colors.textPrimary,
                       ),
@@ -87,7 +88,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                     SizedBox(height: 24.h),
                     AppTextField(
                       controller: _countryController,
-                      labelText: 'Country',
+                      labelText: context.l10n.country,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
@@ -101,7 +102,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                         ),
                       ),
                       onTap: () => _showCountryBottomSheet(
-                        title: 'Country',
+                        title: context.l10n.country,
                         onSelect: (Country country) {
                           setState(() {
                             _countryController.text =
@@ -113,19 +114,19 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _streetController,
-                      labelText: 'Street',
+                      labelText: context.l10n.street,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _cityController,
-                      labelText: 'City',
+                      labelText: context.l10n.city,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _postalCodeController,
-                      labelText: 'Postal / zip code',
+                      labelText: context.l10n.postalZipCode,
                       keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 24.h),
@@ -136,7 +137,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Save changes',
+                text: context.l10n.saveChanges,
                 onPressed: () {},
               ),
             ),
@@ -206,7 +207,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                       color: colors.textPrimary,
                     ),
                     inputDecoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: context.l10n.search,
                       hintStyle: fonts.textBaseRegular.copyWith(
                         color: colors.textTertiary,
                       ),

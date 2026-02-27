@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -50,14 +51,14 @@ class ExportPrivateKeyScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Export private key',
+                      context.l10n.exportPrivateKey,
                       style: fonts.heading2Bold.copyWith(
                         color: colors.textPrimary,
                       ),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      'Your Private Key is the key used to back up your wallet. Keep it secret and secure at all times.',
+                      context.l10n.exportPrivateKeySubtitle,
                       style: fonts.textBaseRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -69,9 +70,9 @@ class ExportPrivateKeyScreen extends StatelessWidget {
                       fonts: fonts,
                       isLightMode: isLightMode,
                       iconPath: Assets.icons.deviceMobile,
-                      title: 'Keep Your Screen Private',
+                      title: context.l10n.keepScreenPrivateTitle,
                       description:
-                          'Screenshots or recordings of your private keys can lead to wallet loss.',
+                          context.l10n.keepScreenPrivateDesc,
                     ),
                     SizedBox(height: 16.h),
                     _buildWarningCard(
@@ -80,9 +81,9 @@ class ExportPrivateKeyScreen extends StatelessWidget {
                       fonts: fonts,
                       isLightMode: isLightMode,
                       iconPath: Assets.icons.shieldCheckered,
-                      title: 'Store Keys Offline',
+                      title: context.l10n.storeKeysOfflineTitle,
                       description:
-                          'Avoid sharing or saving your keys in the cloud, as they are easily compromised.',
+                          context.l10n.storeKeysOfflineDesc,
                     ),
                     SizedBox(height: 16.h),
                     _buildWarningCard(
@@ -91,9 +92,9 @@ class ExportPrivateKeyScreen extends StatelessWidget {
                       fonts: fonts,
                       isLightMode: isLightMode,
                       iconPath: Assets.icons.key,
-                      title: 'Your Key, Your Wallet',
+                      title: context.l10n.yourKeyYourWalletTitle,
                       description:
-                          'Anyone with your private keys can access and steal your assets.',
+                          context.l10n.yourKeyYourWalletDesc,
                     ),
                     SizedBox(height: 24.h),
                   ],
@@ -103,7 +104,7 @@ class ExportPrivateKeyScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Reveal private key',
+                text: context.l10n.revealPrivateKey,
                 onPressed: () {
                   context.router.push(
                     PrivateKeyRoute(

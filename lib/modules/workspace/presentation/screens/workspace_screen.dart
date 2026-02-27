@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
@@ -18,43 +19,43 @@ class WorkspaceScreen extends StatelessWidget {
 
     final cards = [
       _WorkspaceCardData(
-        title: 'Contracts',
-        description: 'Create, manage, and track your contracts.',
+        title: context.l10n.contracts,
+        description: context.l10n.contractsDesc,
         iconPath: Assets.icons.files,
         iconBgColor: const Color(0xFFEDE9FE),
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
       _WorkspaceCardData(
-        title: 'Pay cycle',
-        description: 'Manage payments and log work submissions.',
+        title: context.l10n.payCycle,
+        description: context.l10n.payCycleDesc,
         iconPath: Assets.icons.handCoins,
         iconBgColor: const Color(0xFF0D9488),
         onTap: () => context.pushRoute(const PayCycleContractsRoute()),
       ),
       _WorkspaceCardData(
-        title: 'Invoice',
-        description: 'Create and send invoices with ease.',
+        title: context.l10n.invoices,
+        description: context.l10n.invoiceDesc,
         iconPath: Assets.icons.invoiceCopy,
         iconBgColor: const Color(0xFFEA580C),
         onTap: () => context.pushRoute(const InvoicesRoute()),
       ),
       _WorkspaceCardData(
-        title: 'Expenses',
-        description: 'Log and manage project expenses.',
+        title: context.l10n.expenses,
+        description: context.l10n.expensesDesc,
         iconPath: Assets.icons.moneyCopy,
         iconBgColor: const Color(0xFFDB2777),
         onTap: () => context.pushRoute(const ExpensesRoute()),
       ),
       _WorkspaceCardData(
-        title: 'Timesheets',
-        description: 'Track hours and log work time.',
+        title: context.l10n.timesheets,
+        description: context.l10n.timesheetsDesc,
         iconPath: Assets.icons.clockUser,
         iconBgColor: const Color(0xFFFEF3C7),
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
       _WorkspaceCardData(
-        title: 'Time off',
-        description: 'Request, schedule, and manage time off.',
+        title: context.l10n.timeOff,
+        description: context.l10n.timeOffDesc,
         iconPath: Assets.icons.prohibit,
         iconBgColor: const Color(0xFFDCFCE7),
         onTap: () => context.pushRoute(TimeOffContractsRoute()),
@@ -70,7 +71,7 @@ class WorkspaceScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 8.h),
               child: Text(
-                'Workspace',
+                context.l10n.workspace,
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 24.sp,
                   color: colors.textPrimary,

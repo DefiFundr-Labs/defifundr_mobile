@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,7 +40,7 @@ class HomeQuickActions extends StatelessWidget {
                   context: context,
                   icon: Assets.icons.files,
                   label: 'Contract',
-                  onTap: () {},
+                  onTap: () => context.pushRoute(const PayCycleContractsRoute()),
                 ),
                 VerticalDivider(
                   width: 1,
@@ -50,7 +52,7 @@ class HomeQuickActions extends StatelessWidget {
                   icon: Assets.icons.invoice,
                   label: 'Invoice',
                   iconColor: colors.orangeDefault,
-                  onTap: () {},
+                  onTap: () => context.pushRoute(const InvoicesRoute()),
                 ),
                 VerticalDivider(
                   width: 1,
@@ -62,7 +64,7 @@ class HomeQuickActions extends StatelessWidget {
                   icon: Assets.icons.handCoins,
                   label: 'Quickpay',
                   iconColor: colors.pinkDefault,
-                  onTap: () {},
+                  onTap: () => context.pushRoute(const QuickPayHomeRoute()),
                 ),
               ],
             ),

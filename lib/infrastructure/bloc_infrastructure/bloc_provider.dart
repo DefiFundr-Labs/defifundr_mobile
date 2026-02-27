@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
+import 'package:defifundr_mobile/core/localization/localization.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/bloc/forgot_password_bloc.dart';
 import 'package:defifundr_mobile/modules/finance/presentation/withdraw/bloc/withdraw_bloc/withdraw_bloc.dart';
 import 'package:defifundr_mobile/modules/web3auth/presentation/bloc/auth_bloc.dart';
@@ -11,6 +12,9 @@ List<SingleChildWidget> get appProviders {
   return [
     BlocProvider<ThemeCubit>(
       create: (context) => ThemeCubit(),
+    ),
+    BlocProvider<LocaleBloc>(
+      create: (context) => LocaleBloc()..add(LoadLocaleEvent()),
     ),
     BlocProvider<ForgotPasswordBloc>(
       create: (context) => ForgotPasswordBloc(),

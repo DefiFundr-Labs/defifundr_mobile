@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -84,7 +85,7 @@ class _CurrentPinCodeScreenState extends State<CurrentPinCodeScreen>
     HapticManager.heavyImpact();
     setState(() {
       _showError = true;
-      _errorMessage = 'Incorrect PIN. Please try again.';
+      _errorMessage = context.l10n.incorrectPIN;
     });
     _shakeController.forward().then((_) => _shakeController.reset());
     Future.delayed(const Duration(milliseconds: 800), () {
@@ -116,7 +117,7 @@ class _CurrentPinCodeScreenState extends State<CurrentPinCodeScreen>
                   children: [
                     SizedBox(height: 16.h),
                     Text(
-                      'Current PIN Code',
+                      context.l10n.currentPINCode,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -125,7 +126,7 @@ class _CurrentPinCodeScreenState extends State<CurrentPinCodeScreen>
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Please provide your current 4 digit PIN',
+                      context.l10n.currentPINCodeSubtitle,
                       style:
                           context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,

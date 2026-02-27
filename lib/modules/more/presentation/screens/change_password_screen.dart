@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
@@ -64,6 +65,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     final colors = context.theme.colors;
     final fonts = context.theme.fonts;
     final isLight = Theme.of(context).brightness == Brightness.light;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
@@ -80,7 +82,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Change password',
+                      l10n.changePassword,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -89,7 +91,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Please provide your personal details, this will be used to complete your profile.',
+                      l10n.changePasswordSubtitle,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -101,7 +103,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     SizedBox(height: 20.h),
                     AppTextField(
                       controller: _currentPasswordController,
-                      labelText: 'Current password',
+                      labelText: l10n.currentPassword,
                       hideText: _hideCurrentPassword,
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,
@@ -129,7 +131,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _newPasswordController,
-                      labelText: 'New password',
+                      labelText: l10n.newPassword,
                       hideText: _hideNewPassword,
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,
@@ -160,26 +162,26 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       spacing: 8,
                       children: [
                         Text(
-                          'Must Contain At Least:',
+                          l10n.passwordRequirementsTitle,
                           style: fonts.textSmBold
                               .copyWith(color: colors.textSecondary),
                         ),
                         _buildRequirementChip(
-                            context, '8 characters', _has8Chars),
+                            context, l10n.passwordReq8Chars, _has8Chars),
                         _buildRequirementChip(
-                            context, 'A number', _hasNumber),
+                            context, l10n.passwordReqNumber, _hasNumber),
                         _buildRequirementChip(
-                            context, 'An uppercase letter', _hasUppercase),
+                            context, l10n.passwordReqUppercase, _hasUppercase),
                         _buildRequirementChip(
-                            context, 'A lowercase letter', _hasLowercase),
+                            context, l10n.passwordReqLowercase, _hasLowercase),
                         _buildRequirementChip(
-                            context, 'A special character', _hasSpecial),
+                            context, l10n.passwordReqSpecial, _hasSpecial),
                       ],
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _confirmPasswordController,
-                      labelText: 'Confirm new password',
+                      labelText: l10n.confirmNewPassword,
                       hideText: _hideConfirmPassword,
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.done,
@@ -212,7 +214,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 16.h),
               child: PrimaryButton(
-                text: 'Save changes',
+                text: l10n.saveChanges,
                 isEnabled: _isFormValid,
                 onPressed: _isFormValid
                     ? () => context.router.maybePop()
@@ -261,7 +263,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           SizedBox(width: 12.w),
           Expanded(
             child: Text(
-              "Your new password is what you'll use to access your account.",
+              context.l10n.confirmNewPasswordHint,
               style: fonts.textSmRegular.copyWith(color: colors.textPrimary),
             ),
           ),

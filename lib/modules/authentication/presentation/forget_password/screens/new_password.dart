@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
@@ -53,7 +54,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           children: [
             SizedBox(height: 8),
             Text(
-              "Enter New Password",
+              context.l10n.enterNewPassword,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 24.sp,
                 color: context.theme.colors.textPrimary,

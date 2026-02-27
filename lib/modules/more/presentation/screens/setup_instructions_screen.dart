@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -65,7 +66,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
             ),
             SizedBox(height: 24.h),
             Text(
-              'Scan the QR code',
+              context.l10n.scanQrCodeTitle,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 20.sp,
                 color: colors.textPrimary,
@@ -76,7 +77,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: Text(
-                'Scan the QR code above with your authenticator app to get generated codes from your authenticator app',
+                context.l10n.scanQrCodeDesc,
                 textAlign: TextAlign.center,
                 style: context.theme.textTheme.headlineMedium?.copyWith(
                   fontSize: 14.sp,
@@ -89,7 +90,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: PrimaryButton(
-                text: 'Close',
+                text: context.l10n.close,
                 isEnabled: true,
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -126,7 +127,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                       children: [
                         SizedBox(height: 8.h),
                         Text(
-                          'Setup Instructions',
+                          context.l10n.setupInstructions,
                           style:
                               context.theme.textTheme.headlineLarge?.copyWith(
                             fontSize: 24.sp,
@@ -144,7 +145,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 16.h),
                   child: PrimaryButton(
-                    text: 'Continue',
+                    text: context.l10n.continueText,
                     isEnabled: true,
                     onPressed: () =>
                         context.router.push(const MoreTwoFaAuthCodeRoute()),
@@ -172,7 +173,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
-                    'Setup key copied to clipboard.',
+                    context.l10n.setupKeyCopied,
                     style: fonts.textBaseMedium.copyWith(
                       color: colors.contrastWhite,
                     ),
@@ -223,17 +224,17 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
           _buildStep(
             context,
             number: 1,
-            title: 'Download an authenticator app',
+            title: context.l10n.step1Title,
             description:
-                "We recommend downloading Google Authenticator if you don't have one installed.",
+                context.l10n.step1Desc,
             isLast: false,
           ),
           _buildStep(
             context,
             number: 2,
-            title: 'Scan or copy the setup key below',
+            title: context.l10n.step2Title,
             description:
-                'Scan this QR code from the app or copy the key and paste it in the authenticator app',
+                context.l10n.step2Desc,
             isLast: false,
           ),
           // Setup key display
@@ -255,7 +256,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                     GestureDetector(
                       onTap: _copySetupKey,
                       child: Text(
-                        'Copy setup key',
+                        context.l10n.copySetupKey,
                         style: fonts.textBaseMedium.copyWith(
                           color: colors.brandDefault,
                         ),
@@ -270,7 +271,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                     GestureDetector(
                       onTap: _showQrCode,
                       child: Text(
-                        'View barcode / QR code',
+                        context.l10n.viewBarcodeQrCode,
                         style: fonts.textBaseMedium.copyWith(
                           color: colors.brandDefault,
                         ),
@@ -284,9 +285,9 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
           _buildStep(
             context,
             number: 3,
-            title: 'Enter the 6-digit code',
+            title: context.l10n.step3Title,
             description:
-                "If you scanned the QR code from step 2, your 2FA will auto complete setup and generate a 6-digit auth code for you. If you copied the code from step 2, then you have to select key type as 'Time based' to complete setup.",
+                context.l10n.step3Desc,
             isLast: true,
           ),
         ],

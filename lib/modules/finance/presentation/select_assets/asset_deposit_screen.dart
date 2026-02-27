@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
@@ -162,14 +163,14 @@ class AssetDepositScreen extends StatelessWidget {
     return Column(
       children: [
         _buildDetailRow(
-          label: 'Network',
+          label: context.l10n.network,
           icon: network.iconPath,
           value: network.name,
           context: context,
         ),
         SizedBox(height: 32.h),
         _buildDetailRow(
-          label: 'Asset',
+          label: context.l10n.asset,
           icon: asset.iconPath,
           value: asset.name,
           context: context,
@@ -221,7 +222,7 @@ class AssetDepositScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Address',
+          context.l10n.address,
           style: fontTheme.textMdRegular.copyWith(
             color: colors.textSecondary,
             fontSize: 14.sp,
@@ -285,7 +286,7 @@ class AssetDepositScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'Wallet address copied to clipboard.',
+          context.l10n.walletAddressCopiedToClipboard,
           style: context.theme.fonts.textMdRegular.copyWith(
             color: isLightMode
                 ? context.theme.colors.contrastWhite

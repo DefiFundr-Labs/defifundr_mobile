@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
@@ -116,7 +117,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Verify OTP",
+          context.l10n.verifyOtp,
           style: context.theme.fonts.heading2Bold,
         ),
         const SizedBox(height: 4),
@@ -126,7 +127,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           builder: (context, state) {
             return RichText(
               text: TextSpan(
-                text: "Please enter the 6 digit OTP code sent to ",
+                text: context.l10n.tryCheckingYourJunkspamFolderOrResendTheCode,
                 style: context.theme.fonts.textMdRegular.copyWith(
                   color: context.theme.colors.textSecondary,
                 ),
@@ -256,7 +257,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   style: context.theme.fonts.textMdSemiBold,
                 ),
                 Text(
-                  "Try checking your junk/spam folder, or resend the code.",
+                  context.l10n.tryCheckingYourJunkspamFolderOrResendTheCode,
                   style: context.theme.fonts.textSmRegular,
                 ),
               ],
@@ -273,7 +274,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         if (state is ForgotPasswordSuccess) {}
       },
       child: PrimaryButton(
-        text: "Verify code",
+        text: context.l10n.verifyCode,
         onPressed: _handleOtpVerification,
       ),
     );

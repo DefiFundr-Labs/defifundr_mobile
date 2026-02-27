@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 
 class NetworkListItem extends StatelessWidget {
@@ -115,7 +116,7 @@ class SelectNetworkScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: DeFiRaiseAppBar(
-        title: 'Select network',
+        title: context.l10n.selectNetwork,
         textStyle: fontTheme.heading3SemiBold.copyWith(
           fontWeight: FontWeight.w600,
           fontSize: 18.sp,
