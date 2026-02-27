@@ -127,6 +127,8 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/subm
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submitted_hours_detail_screen.dart';
 // Time Tracking
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/time_tracking_screen.dart';
+// Workspace
+import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 import 'package:flutter/material.dart';
@@ -265,9 +267,13 @@ class AppRouter extends RootStackRouter {
               path: RouteConstants.workspaceTab,
               children: [
                 AutoRoute(
-                  page: TimeTrackingContractsRoute.page,
+                  page: WorkspaceRoute.page,
                   path: '',
                   initial: true,
+                ),
+                AutoRoute(
+                  page: TimeTrackingContractsRoute.page,
+                  path: 'contracts',
                 ),
                 AutoRoute(
                   page: TimeTrackingRoute.page,

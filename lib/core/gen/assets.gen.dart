@@ -605,6 +605,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/ShareNetwork.svg
   String get shareNetwork => 'assets/images/ShareNetwork.svg';
 
+  /// Directory path: assets/images/app_icons
+  $AssetsImagesAppIconsGen get appIcons => const $AssetsImagesAppIconsGen();
+
   /// File path: assets/images/apple.png
   AssetGenImage get apple => const AssetGenImage('assets/images/apple.png');
 
@@ -1929,6 +1932,44 @@ class $AssetsIconsCountryFlagsGen {
     yemen,
     zambia,
     zimbabwe,
+  ];
+}
+
+class $AssetsImagesAppIconsGen {
+  const $AssetsImagesAppIconsGen();
+
+  /// File path: assets/images/app_icons/Image-1.png
+  AssetGenImage get image1 =>
+      const AssetGenImage('assets/images/app_icons/Image-1.png');
+
+  /// File path: assets/images/app_icons/Image-2.png
+  AssetGenImage get image2 =>
+      const AssetGenImage('assets/images/app_icons/Image-2.png');
+
+  /// File path: assets/images/app_icons/Image-3.png
+  AssetGenImage get image3 =>
+      const AssetGenImage('assets/images/app_icons/Image-3.png');
+
+  /// File path: assets/images/app_icons/Image-4.png
+  AssetGenImage get image4 =>
+      const AssetGenImage('assets/images/app_icons/Image-4.png');
+
+  /// File path: assets/images/app_icons/Image-5.png
+  AssetGenImage get image5 =>
+      const AssetGenImage('assets/images/app_icons/Image-5.png');
+
+  /// File path: assets/images/app_icons/Image.png
+  AssetGenImage get image =>
+      const AssetGenImage('assets/images/app_icons/Image.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image,
   ];
 }
 
