@@ -21,7 +21,7 @@ class WorkspaceScreen extends StatelessWidget {
         title: 'Contracts',
         description: 'Create, manage, and track your contracts.',
         iconPath: Assets.icons.files,
-        iconBgColor: const Color(0xFF7C3AED),
+        iconBgColor: const Color(0xFFEDE9FE),
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
       _WorkspaceCardData(
@@ -49,14 +49,14 @@ class WorkspaceScreen extends StatelessWidget {
         title: 'Timesheets',
         description: 'Track hours and log work time.',
         iconPath: Assets.icons.clockUser,
-        iconBgColor: const Color(0xFFD97706),
+        iconBgColor: const Color(0xFFFEF3C7),
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
       _WorkspaceCardData(
         title: 'Time off',
         description: 'Request, schedule, and manage time off.',
         iconPath: Assets.icons.prohibit,
-        iconBgColor: const Color(0xFF16A34A),
+        iconBgColor: const Color(0xFFDCFCE7),
         onTap: () => context.pushRoute(TimeOffContractsRoute()),
       ),
     ];
@@ -151,24 +151,10 @@ class _WorkspaceCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 44.w,
-              height: 44.w,
-              decoration: BoxDecoration(
-                color: data.iconBgColor,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  data.iconPath,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
-                  width: 24.w,
-                  height: 24.w,
-                ),
-              ),
+            SvgPicture.asset(
+              data.iconPath,
+              width: 24.w,
+              height: 24.w,
             ),
             SizedBox(height: 12.h),
             Text(
