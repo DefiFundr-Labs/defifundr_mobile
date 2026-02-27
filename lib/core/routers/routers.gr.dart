@@ -2443,6 +2443,22 @@ class WithdrawRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WorkspaceScreen]
+class WorkspaceRoute extends PageRouteInfo<void> {
+  const WorkspaceRoute({List<PageRouteInfo>? children})
+    : super(WorkspaceRoute.name, initialChildren: children);
+
+  static const String name = 'WorkspaceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WorkspaceScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [WorkspaceTabPage]
 class WorkspaceTabRoute extends PageRouteInfo<void> {
   const WorkspaceTabRoute({List<PageRouteInfo>? children})
