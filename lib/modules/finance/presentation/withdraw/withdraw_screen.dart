@@ -19,6 +19,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class WithdrawScreen extends StatefulWidget {
@@ -159,9 +160,9 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
-        child: const DeFiRaiseAppBar(
+        child: DeFiRaiseAppBar(
           isBack: true,
-          title: 'Withdraw',
+          title: context.l10n.withdraw,
           actions: [],
         ),
       ),
@@ -202,7 +203,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   Widget _buildAssetSelector() {
     return AppTextField(
-      labelText: 'Asset',
+      labelText: context.l10n.asset,
       suffixType: _selectedAsset?.iconPath != null
           ? SuffixType.customIcon
           : SuffixType.none,
@@ -217,7 +218,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             )
           : null,
       controller: _assetController,
-      hintText: 'Select Asset',
+      hintText: context.l10n.selectAsset,
       onTap: _selectAsset,
       readOnly: true,
     );
@@ -226,7 +227,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   Widget _buildNetworkSelector(
       AppColorExtension colors, AppFontThemeExtension fontTheme) {
     return AppTextField(
-      labelText: 'Network',
+      labelText: context.l10n.network,
       suffixType: _selectedNetwork?.iconPath != null
           ? SuffixType.customIcon
           : SuffixType.none,
@@ -241,7 +242,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             )
           : null,
       controller: _networkController,
-      hintText: 'Select Network',
+      hintText: context.l10n.selectNetwork,
       onTap: _selectNetwork,
       readOnly: true,
     );
@@ -264,7 +265,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Amount',
+            context.l10n.amount,
             style: fonts.textSmMedium.copyWith(
               color: colors.textTertiary,
               fontSize: 12.sp,
@@ -361,7 +362,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               ),
               PrimaryButton(
                 onPressed: () {},
-                text: 'Max',
+                text: context.l10n.max,
                 color: colors.bgB2,
                 fixedSize: Size(50.w, 24.h),
                 enableShine: false,
@@ -417,7 +418,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     setState(() {}); // Trigger rebuild to update button
                   },
                   decoration: InputDecoration(
-                    hintText: 'Paste or scan address',
+                    hintText: context.l10n.pasteOrScanAddress,
                     fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
                     hintStyle: fontTheme.textBaseMedium.copyWith(
                       color: colors.textTertiary,
@@ -441,7 +442,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       setState(() {});
                     }
                   },
-                  text: 'Paste',
+                  text: context.l10n.paste,
                   color: colors.fillTertiary,
                   fixedSize: Size(55.w, 24.h),
                   enableShine: false,
@@ -533,7 +534,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   Widget _buildContinueButton(
       AppColorExtension colors, AppFontThemeExtension fontTheme) {
     return PrimaryButton(
-      text: 'Continue',
+      text: context.l10n.continueText,
       onPressed: _onContinue,
     );
   }

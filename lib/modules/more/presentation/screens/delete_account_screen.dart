@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
           ),
         ),
         title: Text(
-          'Delete account',
+          context.l10n.deleteAccount,
           style: fonts.textLgSemiBold.copyWith(
             color: colors.textPrimary,
           ),
@@ -72,7 +73,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                     _buildWarningBanner(context, colors, fonts),
                     SizedBox(height: 24.h),
                     Text(
-                      'Please tell us why have you decided to delete your account?',
+                      context.l10n.deleteAccountReason,
                       style: fonts.textBaseSemiBold.copyWith(
                         color: colors.textPrimary,
                       ),
@@ -83,7 +84,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                     AppTextField(
                       controller: _commentsController,
                       hintText:
-                          'Would you like to leave any suggestions or comments?',
+                          context.l10n.deleteAccountCommentHint,
                       maxLine: 6,
                       validate: false,
                       textCapitalization: TextCapitalization.sentences,
@@ -96,7 +97,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Delete account',
+                text: context.l10n.deleteAccount,
                 color: colors.redDefault,
                 onPressed: () {},
               ),
@@ -134,14 +135,14 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               children: [
                 _buildBullet(
                   context,
-                  'Deleting your account is irreversible.',
+                  context.l10n.deleteAccountWarning1,
                   colors,
                   fonts,
                 ),
                 SizedBox(height: 4.h),
                 _buildBullet(
                   context,
-                  'You will lose all accumulated data but retain account access.',
+                  context.l10n.deleteAccountWarning2,
                   colors,
                   fonts,
                 ),

@@ -7,12 +7,14 @@ class HomeBalanceCard extends StatelessWidget {
   final double totalBalance;
   final double changePercent;
   final double changeAmount;
+  final VoidCallback? onTap;
 
   const HomeBalanceCard({
     super.key,
     required this.totalBalance,
     required this.changePercent,
     required this.changeAmount,
+    this.onTap,
   });
 
   @override
@@ -25,7 +27,7 @@ class HomeBalanceCard extends StatelessWidget {
     final hasActivity = totalBalance > 0 || changeAmount != 0;
 
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16.sp),
         decoration: BoxDecoration(

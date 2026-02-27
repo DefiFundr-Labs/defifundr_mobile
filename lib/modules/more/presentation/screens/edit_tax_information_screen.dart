@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:country_picker/src/country_list_view.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -78,14 +79,14 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Edit tax Information',
+                      context.l10n.editTaxInformation,
                       style: fonts.heading2Bold.copyWith(
                         color: colors.textPrimary,
                       ),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      'Update your tax details to ensure compliance with regulations and accurate reporting.',
+                      context.l10n.editTaxInformationSubtitle,
                       style: fonts.textBaseRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -96,7 +97,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _countryController,
-                      labelText: 'Country of tax residence',
+                      labelText: context.l10n.countryOfTaxResidence,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
                       suffixIcon: Padding(
@@ -110,7 +111,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                         ),
                       ),
                       onTap: () => _showCountryBottomSheet(
-                        title: 'Country of tax residence',
+                        title: context.l10n.countryOfTaxResidence,
                         onSelect: (Country country) {
                           setState(() {
                             _countryController.text =
@@ -122,19 +123,19 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _addressController,
-                      labelText: 'Address',
+                      labelText: context.l10n.address,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _cityController,
-                      labelText: 'City',
+                      labelText: context.l10n.city,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _postalCodeController,
-                      labelText: 'Postal / zip code',
+                      labelText: context.l10n.postalZipCode,
                       keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 24.h),
@@ -147,7 +148,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _taxIdController,
-                      labelText: 'Tax ID',
+                      labelText: context.l10n.taxId,
                       keyboardType: TextInputType.text,
                       textCapitalization: TextCapitalization.characters,
                     ),
@@ -159,7 +160,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Save changes',
+                text: context.l10n.saveChanges,
                 onPressed: () {},
               ),
             ),
@@ -279,7 +280,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                       color: colors.textPrimary,
                     ),
                     inputDecoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: context.l10n.search,
                       hintStyle: fonts.textBaseRegular.copyWith(
                         color: colors.textTertiary,
                       ),

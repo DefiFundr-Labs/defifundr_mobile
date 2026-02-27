@@ -47,7 +47,7 @@ class Localization {
   }
 }
 
-// 1. Define Locale State
+// Define Locale State
 class LocaleState extends Equatable {
   final Locale locale;
 
@@ -57,7 +57,7 @@ class LocaleState extends Equatable {
   List<Object> get props => [locale];
 }
 
-// 2. Define Locale Events
+// Define Locale Events
 @immutable
 abstract class LocaleEvent extends Equatable {
   @override
@@ -75,7 +75,7 @@ class ChangeLocaleEvent extends LocaleEvent {
 
 class LoadLocaleEvent extends LocaleEvent {}
 
-// 3. Implement the LocaleBloc
+// Implement the LocaleBloc
 class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
   static const String LOCALE_KEY = 'app_locale';
 
@@ -106,7 +106,7 @@ class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
   }
 }
 
-// 4. Extend your existing Localization class with BLoC helpers
+// Extend your existing Localization class with BLoC helpers
 extension LocaleBlocExtension on Localization {
   static void changeLocale(BuildContext context, String languageCode) {
     context.read<LocaleBloc>().add(ChangeLocaleEvent(languageCode));
@@ -122,9 +122,9 @@ extension LocaleBlocExtension on Localization {
   }
 }
 
-// 5. Update your BuildContext extension
+// Update your BuildContext extension
 extension LocalizationExtension on BuildContext {
-  Strings get strings => Strings.of(this)!;
+  Strings get strings => Strings.of(this);
 
   Locale get currentLocale => read<LocaleBloc>().state.locale;
 

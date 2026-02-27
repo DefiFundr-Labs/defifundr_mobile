@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -15,6 +16,7 @@ class SetupTwoFaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
     final isLight = Theme.of(context).brightness == Brightness.light;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
@@ -31,7 +33,7 @@ class SetupTwoFaScreen extends StatelessWidget {
                     _buildIcon(context),
                     SizedBox(height: 32.h),
                     Text(
-                      'Set up 2FA for your transactions',
+                      l10n.setupTwoFaTitle,
                       textAlign: TextAlign.center,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
@@ -41,7 +43,7 @@ class SetupTwoFaScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      'Activate two factor authentication to have an extra layer of security on your account, transactions will need a code from an authenticator app when enabled',
+                      l10n.setupTwoFaSubtitle,
                       textAlign: TextAlign.center,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
@@ -57,7 +59,7 @@ class SetupTwoFaScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 16.h),
               child: PrimaryButton(
-                text: 'Activate now',
+                text: l10n.activateNow,
                 isEnabled: true,
                 onPressed: () =>
                     context.router.push(const SetupInstructionsRoute()),

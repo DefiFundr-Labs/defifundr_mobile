@@ -13,6 +13,7 @@ import 'package:defifundr_mobile/modules/finance/presentation/address/address_bo
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class AddAddressScreen extends StatefulWidget {
@@ -134,9 +135,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
-        child: const DeFiRaiseAppBar(
+        child: DeFiRaiseAppBar(
           isBack: true,
-          title: 'Add address',
+          title: context.l10n.addAddress,
           actions: [],
         ),
       ),
@@ -177,7 +178,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildAssetSelector() {
     return AppTextField(
-      labelText: 'Asset',
+      labelText: context.l10n.asset,
       suffixType: _selectedAsset?.iconPath != null
           ? SuffixType.customIcon
           : SuffixType.none,
@@ -192,7 +193,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             )
           : null,
       controller: _assetController,
-      hintText: 'Select Asset',
+      hintText: context.l10n.selectAsset,
       onTap: _selectAsset,
       readOnly: true,
     );
@@ -200,7 +201,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildNetworkSelector() {
     return AppTextField(
-      labelText: 'Network',
+      labelText: context.l10n.network,
       suffixType: _selectedNetwork?.iconPath != null
           ? SuffixType.customIcon
           : SuffixType.none,
@@ -215,7 +216,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             )
           : null,
       controller: _networkController,
-      hintText: 'Select Network',
+      hintText: context.l10n.selectNetwork,
       onTap: _selectNetwork,
       readOnly: true,
     );
@@ -238,7 +239,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Address',
+            context.l10n.address,
             style: fontTheme.textSmRegular.copyWith(
               color: colors.textSecondary,
             ),
@@ -258,7 +259,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     setState(() {});
                   },
                   decoration: InputDecoration(
-                    hintText: 'Paste or scan address',
+                    hintText: context.l10n.pasteOrScanAddress,
                     fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
                     hintStyle: fontTheme.textBaseMedium.copyWith(
                       color: colors.textTertiary,
@@ -274,7 +275,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               if (_addressController.text.isEmpty)
                 PrimaryButton(
                   onPressed: _pasteFromClipboard,
-                  text: 'Paste',
+                  text: context.l10n.paste,
                   color: colors.fillTertiary,
                   fixedSize: Size(55.w, 24.h),
                   enableShine: false,
@@ -314,9 +315,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   Widget _buildLabelInput(
       AppColorExtension colors, AppFontThemeExtension fontTheme) {
     return AppTextField(
-      labelText: 'Wallet label',
+      labelText: context.l10n.walletLabel,
       controller: _labelController,
-      hintText: 'Enter Wallet label',
+      hintText: context.l10n.enterWalletLabel,
     );
   }
 
@@ -341,7 +342,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   Widget _buildSaveButton() {
     return PrimaryButton(
-      text: 'Save',
+      text: context.l10n.save,
       onPressed: _isFormValid() ? _saveAddress : null,
     );
   }

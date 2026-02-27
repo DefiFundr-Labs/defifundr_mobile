@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/wallet_identicon.dart';
 import 'package:flutter/material.dart';
@@ -68,21 +69,21 @@ class ManageWalletScreen extends StatelessWidget {
             children: [
               SizedBox(height: 8.h),
               Text(
-                'Manage wallet',
+                context.l10n.manageWallet,
                 style: fonts.heading2Bold.copyWith(
                   color: colors.textPrimary,
                 ),
               ),
               SizedBox(height: 8.h),
               Text(
-                'View your wallet details and securely access your private key.',
+                context.l10n.manageWalletSubtitle,
                 style: fonts.textBaseRegular.copyWith(
                   color: colors.textSecondary,
                 ),
               ),
               SizedBox(height: 24.h),
               Text(
-                'Wallets',
+                context.l10n.wallets,
                 style: fonts.textSmMedium.copyWith(
                   color: colors.textSecondary,
                 ),

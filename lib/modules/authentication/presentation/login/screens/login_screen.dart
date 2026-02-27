@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar_header.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppBarHeaderWidget(),
                 SizedBox(height: 32.h),
                 Text(
-                  'Welcome Back!',
+                  context.l10n.welcomeBack,
                   style: context.theme.textTheme.headlineLarge?.copyWith(
                     fontSize: 24.sp,
                     color: context.theme.colors.textPrimary,
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'Enter your details below to login to your account.',
+                  context.l10n.enterYourDetailsBelowToLoginToYourAccount,
                   style: context.theme.textTheme.headlineMedium?.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 24.h),
                 AppTextField(
-                  labelText: 'Email address',
+                  labelText: context.l10n.emailAddress,
                   controller: _emailController,
                 ),
                 SizedBox(height: 12.h),
@@ -81,8 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context, inputFormatter, _) {
                       return AppTextField(
                         controller: _passwordController,
-                        labelText: 'Enter password',
-                        errorTextOnValidation: 'Password is required',
+                        labelText: context.l10n.enterPassword,
+                        errorTextOnValidation:
+                            context.l10n.passwordRequirementsTitle,
                         hideText: _obscurePassword,
                         keyboardType: TextInputType.visiblePassword,
                         inputFormatters: [
@@ -127,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Text(
-                      'Forgot password?',
+                      context.l10n.forgotPassword,
                       style: context.theme.fonts.textBaseMedium.copyWith(
                         color: context.theme.colors.brandDefault,
                         fontSize: 14.sp,
@@ -138,9 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 16.h),
                 PrimaryButton(
-                  text: "Log In",
+                  text: context.l10n.logIn,
                   onPressed: () {
-                    final userName = _emailController.text.trim().split('@').first;
+                    final userName =
+                        _emailController.text.trim().split('@').first;
                     context.router.push(
                       PinCodeRoute(
                         userName: userName,
@@ -153,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ORWidget(),
                 SizedBox(height: 24.h),
                 SecondaryButton(
-                  text: 'Log in using Google',
+                  text: context.l10n.logInUsingGoogle,
                   icon: AppAssets.googleIcon,
                   onPressed: () {
                     // context.router.push(
@@ -163,12 +166,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     //   ),
                     // );
                     context.router.push(const SampleBottomSheetRoute());
-
                   },
                 ),
                 SizedBox(height: 16.h),
                 SecondaryButton(
-                  text: 'Log in using Apple',
+                  text: context.l10n.logInUsingApple,
                   icon: AppAssets.appleIcon,
                   onPressed: () {
                     // context.router.push(
@@ -178,7 +180,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     //   ),
                     // );
                     context.router.push(const SampleBottomSheetRoute());
-
                   },
                 ),
                 SizedBox(height: 20.h),
@@ -186,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Don\'t have an account? ',
+                      context.l10n.forgotYourPin,
                       style: context.theme.fonts.bodyMedium.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -203,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'Sign up',
+                        context.l10n.signUp,
                         style: context.theme.fonts.bodyMedium.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,

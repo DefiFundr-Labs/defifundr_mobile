@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class PinLoginHeader extends StatelessWidget {
         AppBarHeaderWidget(),
         SizedBox(height: 32.h),
         Text(
-          'Welcome Back, $userName',
+          '${context.l10n.welcomeBack}, $userName',
           style: context.theme.fonts.bodyMedium.copyWith(
             fontSize: 24.sp,
             color: context.theme.colors.textPrimary,
@@ -28,7 +29,7 @@ class PinLoginHeader extends StatelessWidget {
         ),
         SizedBox(height: 4.h),
         Text(
-          'Please enter your PIN to access your account.',
+          context.l10n.pleaseEnterYourPinToAccessYourAccount,
           style: context.theme.fonts.bodyMedium.copyWith(
             fontSize: 14.sp,
             fontWeight: FontWeight.w400,

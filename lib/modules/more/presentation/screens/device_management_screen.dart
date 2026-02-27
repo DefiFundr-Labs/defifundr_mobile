@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -98,14 +99,14 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
             ),
             SizedBox(height: 24.h),
             Text(
-              'Delete device',
+              context.l10n.deleteDevice,
               style: fonts.heading2Bold.copyWith(color: colors.textPrimary),
             ),
             SizedBox(height: 8.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                'Are you sure you want to delete this device? Password will be required to sign in again.',
+                context.l10n.deleteDeviceConfirm,
                 textAlign: TextAlign.center,
                 style: fonts.textSmRegular.copyWith(color: colors.textSecondary),
               ),
@@ -131,7 +132,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'Go back',
+                          context.l10n.goBack,
                           style: fonts.textBaseMedium.copyWith(
                             color: colors.textPrimary,
                             fontWeight: FontWeight.w600,
@@ -155,7 +156,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'Delete',
+                          context.l10n.delete,
                           style: fonts.textBaseMedium.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
@@ -203,14 +204,14 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
             ),
             SizedBox(height: 24.h),
             Text(
-              'Log out all known devices',
+              context.l10n.logOutAllDevices,
               style: fonts.heading2Bold.copyWith(color: colors.textPrimary),
             ),
             SizedBox(height: 8.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                "Are you sure you want to log out all known devices? You'll need to sign in again on each one.",
+                context.l10n.logOutAllDevicesConfirm,
                 textAlign: TextAlign.center,
                 style: fonts.textSmRegular.copyWith(color: colors.textSecondary),
               ),
@@ -231,7 +232,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'Go back',
+                          context.l10n.goBack,
                           style: fonts.textBaseMedium.copyWith(
                             color: colors.textPrimary,
                             fontWeight: FontWeight.w600,
@@ -243,7 +244,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                   SizedBox(width: 12.w),
                   Expanded(
                     child: PrimaryButton(
-                      text: 'Log out',
+                      text: context.l10n.logOut,
                       isEnabled: true,
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -283,7 +284,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Device Management',
+                      context.l10n.deviceManagement,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -292,7 +293,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'See all devices that have logged into your account. Remove any for added security.',
+                      context.l10n.deviceManagementSubtitle,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -301,7 +302,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                     ),
                     SizedBox(height: 24.h),
                     Text(
-                      'Current device',
+                      context.l10n.currentDevice,
                       style: fonts.textSmMedium.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -311,7 +312,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                     SizedBox(height: 20.h),
                     if (_otherDevices.isNotEmpty) ...[
                       Text(
-                        'Other devices',
+                        context.l10n.otherDevices,
                         style: fonts.textSmMedium.copyWith(
                           color: colors.textSecondary,
                         ),
@@ -337,7 +338,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Log Out All Known Devices',
+                            context.l10n.logOutAllDevicesTitle,
                             style: fonts.textBaseMedium.copyWith(
                               color: colors.redDefault,
                               fontWeight: FontWeight.w600,
@@ -345,7 +346,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                           ),
                           SizedBox(height: 4.h),
                           Text(
-                            "You'll have to log back in on all logged out devices.",
+                            context.l10n.logOutAllDevicesSubtitle,
                             style: fonts.textSmRegular.copyWith(
                               color: colors.redDefault,
                             ),
@@ -417,13 +418,13 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  'Location: ${device.location} • ${device.ip}',
+                  '${context.l10n.location} ${device.location} • ${device.ip}',
                   style: fonts.textXsRegular.copyWith(
                     color: colors.textSecondary,
                   ),
                 ),
                 Text(
-                  'Last login: ${device.lastLogin}',
+                  '${context.l10n.lastLogin} ${device.lastLogin}',
                   style: fonts.textXsRegular.copyWith(
                     color: colors.textSecondary,
                   ),

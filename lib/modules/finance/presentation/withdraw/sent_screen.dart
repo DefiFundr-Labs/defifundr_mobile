@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class SentScreen extends StatelessWidget {
@@ -100,7 +101,7 @@ class SentScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Sent!',
+          context.l10n.sent,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineLarge?.copyWith(
             fontSize: 24.sp,
@@ -124,7 +125,7 @@ class SentScreen extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: ' ${details.assetName} was successfully sent to',
+                text: ' ${context.l10n.assetSentTo(details.assetName)}',
                 style: fonts.textMdSemiBold.copyWith(
                   color: colors.textPrimary,
                 ),
@@ -144,7 +145,7 @@ class SentScreen extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context) {
     return PrimaryButton(
-      text: 'Continue',
+      text: context.l10n.continueText,
       isEnabled: true,
       onPressed: () {
         context.read<WithdrawBloc>().add(const ClearWithdrawDetails());

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/personal_details_section_card.dart';
@@ -33,7 +34,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Personal details',
+          context.l10n.personalDetails,
           style: fonts.textLgSemiBold.copyWith(
             color: colors.textPrimary,
           ),
@@ -51,31 +52,31 @@ class PersonalDetailsViewScreen extends StatelessWidget {
 
               // Profile details
               PersonalDetailsSectionCard(
-                title: 'Profile details',
+                title: context.l10n.profileDetails,
                 onEdit: () => context.router.push(const EditProfileDetailsRoute()),
                 children: [
                   _InfoRow(
-                    label: 'Legal first name',
+                    label: context.l10n.legalFirstName,
                     value: const Text('Oluwagbemiro'),
                   ),
                   _InfoRow(
-                    label: 'Legal last name',
+                    label: context.l10n.legalLastName,
                     value: const Text('Adegboyega'),
                   ),
                   _InfoRow(
-                    label: 'Country of citizenship',
+                    label: context.l10n.countryOfCitizenship,
                     value: _countryValue(context, 'Nigeria'),
                   ),
                   _InfoRow(
-                    label: 'Date of birth',
+                    label: context.l10n.dateOfBirth,
                     value: const Text('18 May 2003'),
                   ),
                   _InfoRow(
-                    label: 'Gender',
+                    label: context.l10n.gender,
                     value: const Text('Male'),
                   ),
                   _InfoRow(
-                    label: 'Phone no',
+                    label: context.l10n.phoneNo,
                     value: const Text('+234 (801) 234 5678'),
                     isLast: true,
                   ),
@@ -85,15 +86,15 @@ class PersonalDetailsViewScreen extends StatelessWidget {
 
               // Address
               PersonalDetailsSectionCard(
-                title: 'Address',
+                title: context.l10n.address,
                 onEdit: () => context.router.push(const EditAddressDetailsRoute()),
                 children: [
                   _InfoRow(
-                    label: 'Country',
+                    label: context.l10n.country,
                     value: _countryValue(context, 'Nigeria'),
                   ),
                   _InfoRow(
-                    label: 'Address',
+                    label: context.l10n.address,
                     value: const Text(
                       'No 8 James Robertson Shittu/\nOgunlana Drive, Surulere | 142261',
                       textAlign: TextAlign.right,
@@ -106,11 +107,11 @@ class PersonalDetailsViewScreen extends StatelessWidget {
 
               // Account details
               PersonalDetailsSectionCard(
-                title: 'Account details',
+                title: context.l10n.accountDetails,
                 onEdit: () => context.router.push(const EditAccountDetailsRoute()),
                 children: [
                   _InfoRow(
-                    label: 'Email',
+                    label: context.l10n.email,
                     value: const Text(
                       'adeshinaadegboyega@icloud.com',
                       textAlign: TextAlign.right,
@@ -123,22 +124,22 @@ class PersonalDetailsViewScreen extends StatelessWidget {
 
               // Tax information
               PersonalDetailsSectionCard(
-                title: 'Tax information',
+                title: context.l10n.taxInformation,
                 onEdit: () => context.router.push(const EditTaxInformationRoute()),
                 children: [
                   _InfoRow(
-                    label: 'Country of tax residence',
+                    label: context.l10n.countryOfTaxResidence,
                     value: _countryValue(context, 'Nigeria'),
                   ),
                   _InfoRow(
-                    label: 'Address',
+                    label: context.l10n.address,
                     value: const Text(
                       'No 8 James Robertson Shittu/\nOgunlana Drive, Surulere | 142261',
                       textAlign: TextAlign.right,
                     ),
                   ),
                   _InfoRow(
-                    label: 'Tax ID',
+                    label: context.l10n.taxId,
                     value: const Text('8012345678'),
                     isLast: true,
                   ),
@@ -173,7 +174,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 12.w),
                         Text(
-                          'Delete account',
+                          context.l10n.deleteAccount,
                           style: fonts.textBaseMedium.copyWith(
                             color: colors.redDefault,
                           ),
@@ -208,7 +209,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Profile photo',
+            context.l10n.profilePhoto,
             style: fonts.textBaseSemiBold.copyWith(
               color: colors.textPrimary,
             ),
@@ -247,7 +248,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
                   border: Border.all(color: colors.bgB2),
                 ),
                 child: Text(
-                  'Edit photo',
+                  context.l10n.editPhoto,
                   style: fonts.textSmMedium.copyWith(
                     color: colors.textPrimary,
                   ),

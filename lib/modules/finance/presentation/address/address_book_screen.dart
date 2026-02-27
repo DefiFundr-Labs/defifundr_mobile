@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class SavedAddress {
   final String iconPath;
@@ -65,7 +66,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
 
     return Scaffold(
       appBar: DeFiRaiseAppBar(
-        title: 'Address book',
+        title: context.l10n.addressBook,
         textStyle: fontTheme.heading3SemiBold.copyWith(
           fontWeight: FontWeight.w600,
           fontSize: 18.sp,
@@ -109,7 +110,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
             ),
             SizedBox(height: 24.h),
             Text(
-              'No saved addresses yet',
+              context.l10n.noSavedAddresses,
               style: fontTheme.heading3SemiBold.copyWith(
                 color: colors.textPrimary,
               ),
@@ -117,7 +118,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
             ),
             SizedBox(height: 12.h),
             Text(
-              'Save your go-to crypto addresses so sending funds is faster and safer.',
+              context.l10n.noSavedAddressesDesc,
               style: fontTheme.textBaseMedium.copyWith(
                 color: colors.textSecondary,
               ),
@@ -243,7 +244,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
     return Container(
       padding: const EdgeInsets.all(_containerPadding),
       child: PrimaryButton(
-        text: 'Add new address',
+        text: context.l10n.addNewAddress,
         onPressed: () async {
           final newAddress = await context.router.push<SavedAddress>(
             const AddAddressRoute(),
@@ -303,7 +304,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
             SizedBox(height: 24.h),
             _buildBottomSheetOption(
               icon: Icons.copy,
-              title: 'Copy address',
+              title: context.l10n.copyAddress,
               onTap: () {
                 context.router.maybePop();
                 _copyAddress(address.address);
@@ -313,7 +314,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
             ),
             _buildBottomSheetOption(
               icon: Icons.edit,
-              title: 'Edit',
+              title: context.l10n.edit,
               onTap: () {
                 context.router.maybePop();
                 // TODO: Implement edit functionality
@@ -323,11 +324,11 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
             ),
             _buildBottomSheetOption(
               icon: Icons.delete_outline,
-              title: 'Delete',
+              title: context.l10n.delete,
               onTap: () {
                 context.router.maybePop();
                 _removeAddress(index);
-                _showSnackBar('Address removed');
+                _showSnackBar(context.l10n.addressRemoved);
               },
               colors: colors,
               fontTheme: fontTheme,
@@ -388,7 +389,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
 
   void _copyAddress(String address) {
     Clipboard.setData(ClipboardData(text: address));
-    _showSnackBar('Address copied to clipboard');
+    _showSnackBar(context.l10n.addressCopiedToClipboard);
   }
 
   void _showSnackBar(String message) {

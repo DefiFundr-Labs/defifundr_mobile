@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -118,7 +119,7 @@ class AssetDetailsScreen extends StatelessWidget {
                 child: _buildActionButton(
                   context: context,
                   icon: Assets.icons.signIn,
-                  label: 'Receive',
+                  label: context.l10n.receive,
                   onPressed: () => context.router.push(const ReceiveRoute()),
                 ),
               ),
@@ -127,7 +128,7 @@ class AssetDetailsScreen extends StatelessWidget {
                 child: _buildActionButton(
                   context: context,
                   icon: Assets.icons.signOutSvg,
-                  label: 'Withdraw',
+                  label: context.l10n.withdraw,
                   onPressed: () => context.router.push(const WithdrawRoute()),
                 ),
               ),
@@ -187,7 +188,7 @@ class AssetDetailsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'My ${asset.name}',
+          context.l10n.myAsset(asset.name),
           style: textTheme.textMdSemiBold.copyWith(
             color: colors.textPrimary,
             fontSize: 16.sp,
@@ -235,7 +236,7 @@ class AssetDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Transactions',
+              context.l10n.transactions,
               style: textTheme.textMdSemiBold.copyWith(
                 color: colors.textPrimary,
                 fontSize: 16.sp,
@@ -256,7 +257,7 @@ class AssetDetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'See all',
+                    context.l10n.seeAll,
                     style: textTheme.textMdSemiBold.copyWith(
                       color: colors.brandDefault,
                       fontSize: 12.sp,
@@ -342,7 +343,7 @@ class AssetDetailsScreen extends StatelessWidget {
 
     return [
       Payment(
-        title: 'Withdrawal',
+        title: context.l10n.withdrawal,
         paymentType: PaymentType.invoice,
         estimatedDate: DateTime(2025, 5, 21),
         amount: 581,
@@ -353,7 +354,7 @@ class AssetDetailsScreen extends StatelessWidget {
         iconBackgroundColor: colors.brandDefault,
       ),
       Payment(
-        title: 'Received from wallet',
+        title: context.l10n.receivedFromWallet,
         paymentType: PaymentType.contract,
         estimatedDate: DateTime(2025, 5, 20),
         amount: 1000,
@@ -364,7 +365,7 @@ class AssetDetailsScreen extends StatelessWidget {
         iconBackgroundColor: colors.orangeDefault,
       ),
       Payment(
-        title: 'DeFi Staking Reward',
+        title: context.l10n.defiStakingReward,
         paymentType: PaymentType.invoice,
         estimatedDate: DateTime(2025, 5, 19),
         amount: 25,

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/keyboard/keypad.dart';
@@ -82,7 +83,7 @@ class _ConfirmNewPinCodeScreenState extends State<ConfirmNewPinCodeScreen>
       HapticManager.heavyImpact();
       setState(() {
         _showError = true;
-        _errorMessage = 'PINs do not match. Please try again.';
+        _errorMessage = context.l10n.pinsDoNotMatch;
       });
       _shakeController.forward().then((_) => _shakeController.reset());
       Future.delayed(const Duration(milliseconds: 800), () {
@@ -115,7 +116,7 @@ class _ConfirmNewPinCodeScreenState extends State<ConfirmNewPinCodeScreen>
                   children: [
                     SizedBox(height: 16.h),
                     Text(
-                      'Confirm New PIN Code',
+                      context.l10n.confirmNewPINCode,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -124,7 +125,7 @@ class _ConfirmNewPinCodeScreenState extends State<ConfirmNewPinCodeScreen>
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Enter the 4 digit code you entered again for confirmation.',
+                      context.l10n.confirmNewPINCodeSubtitle,
                       style:
                           context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,

@@ -15,6 +15,7 @@ import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/p
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class FinanceHomeScreen extends StatelessWidget {
@@ -25,9 +26,9 @@ class FinanceHomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
-        child: const DeFiRaiseAppBar(
+        child: DeFiRaiseAppBar(
           centerTitle: false,
-          title: 'Finance',
+          title: context.l10n.finance,
           actions: [],
         ),
       ),
@@ -65,7 +66,7 @@ class FinanceHomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Total balance',
+            context.l10n.totalBalance,
             style: fonts.textSmSemiBold.copyWith(
               color: colors.textSecondary,
               fontFamily: FontFamily.hankenGrotesk,
@@ -97,7 +98,7 @@ class FinanceHomeScreen extends StatelessWidget {
                 child: _buildActionButton(
                   context: context,
                   icon: Assets.icons.signIn,
-                  label: 'Receive',
+                  label: context.l10n.receive,
                   onPressed: () => context.router.push(const ReceiveRoute()),
                 ),
               ),
@@ -106,7 +107,7 @@ class FinanceHomeScreen extends StatelessWidget {
                 child: _buildActionButton(
                   context: context,
                   icon: Assets.icons.signOutSvg,
-                  label: 'Withdraw',
+                  label: context.l10n.withdraw,
                   onPressed: () => context.router.push(const WithdrawRoute()),
                 ),
               ),
@@ -189,7 +190,7 @@ class FinanceHomeScreen extends StatelessWidget {
                 SizedBox(height: 8.h),
                 PrimaryButton(
                   onPressed: () {},
-                  text: 'Coming soon',
+                  text: context.l10n.comingSoon,
                   color: colors.greenDefault,
                   fixedSize: Size(90.w, 20.h),
                   enableShine: false,
@@ -224,7 +225,7 @@ class FinanceHomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Assets',
+        Text(context.l10n.assets,
             style: textTheme.textMdSemiBold.copyWith(
               color: colors.textPrimary,
               fontSize: 16.sp,
@@ -269,7 +270,7 @@ class FinanceHomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Transactions',
+            Text(context.l10n.transactions,
                 style: textTheme.textMdSemiBold.copyWith(
                   color: colors.textPrimary,
                   fontSize: 16.sp,
@@ -286,7 +287,7 @@ class FinanceHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('See all',
+                  Text(context.l10n.seeAll,
                       style: textTheme.textMdSemiBold.copyWith(
                         color: colors.brandDefault,
                         fontSize: 12.sp,

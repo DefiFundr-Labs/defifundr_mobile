@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_enum.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/services/app_icon_service.dart';
@@ -97,6 +98,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
     final colors = context.theme.colors;
     final fonts = context.theme.fonts;
     final isLight = Theme.of(context).brightness == Brightness.light;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
@@ -113,7 +115,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'App appearance',
+                      l10n.appAppearance,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -122,7 +124,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Customize the look and feel of the app by choosing your preferred theme and app icon.',
+                      l10n.appAppearanceSubtitle,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -133,7 +135,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
 
                     // Theme section
                     Text(
-                      'Theme',
+                      l10n.theme,
                       style: fonts.textSmRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -184,7 +186,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
 
                     // App icon section
                     Text(
-                      'App icon',
+                      l10n.appIcon,
                       style: fonts.textSmRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -227,7 +229,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: _isSaving ? 'Saving...' : 'Save changes',
+                text: _isSaving ? l10n.saving : l10n.saveChanges,
                 isEnabled: !_isSaving,
                 onPressed: _saveChanges,
               ),
@@ -395,7 +397,7 @@ class _AppIconCard extends StatelessWidget {
           ),
           SizedBox(height: 4.h),
           Text(
-            isActive ? 'Active' : '',
+            isActive ? context.l10n.active : '',
             style: fonts.textXsRegular.copyWith(
               color: colors.textSecondary,
             ),

@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +22,7 @@ class BottomActions extends StatelessWidget {
         TextButton(
           onPressed: onLogout,
           child: Text(
-            'Log out',
+            context.l10n.logOut,
             style: context.theme.fonts.bodyMedium.copyWith(
               color: context.theme.colors.brandDefault,
               fontSize: 14.sp,
@@ -32,7 +33,7 @@ class BottomActions extends StatelessWidget {
         TextButton(
           onPressed: onForgotPin,
           child: Text(
-            'Forgot your PIN?',
+            context.l10n.forgotYourPin,
             style: context.theme.fonts.bodyMedium.copyWith(
               color: context.theme.colors.brandDefault,
               fontSize: 14.sp,

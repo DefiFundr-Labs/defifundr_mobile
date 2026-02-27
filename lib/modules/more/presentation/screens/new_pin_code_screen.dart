@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/enums/biometics_enum.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -94,7 +95,7 @@ class _NewPinCodeScreenState extends State<NewPinCodeScreen>
                   children: [
                     SizedBox(height: 16.h),
                     Text(
-                      'New PIN Code',
+                      context.l10n.newPINCode,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: colors.textPrimary,
@@ -103,7 +104,7 @@ class _NewPinCodeScreenState extends State<NewPinCodeScreen>
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Enter a 4 digit code you will use to log in, without entering your login credentials.',
+                      context.l10n.newPINCodeSubtitle,
                       style:
                           context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,

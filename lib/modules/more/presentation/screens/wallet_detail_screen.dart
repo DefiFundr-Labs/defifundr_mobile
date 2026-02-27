@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/wallet_identicon.dart';
 import 'package:flutter/material.dart';
@@ -134,7 +135,7 @@ class WalletDetailScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          'Address copied to clipboard',
+                          context.l10n.addressCopiedToClipboard,
                           style: fonts.textSmRegular.copyWith(
                             color: colors.contrastWhite,
                           ),
@@ -206,7 +207,7 @@ class WalletDetailScreen extends StatelessWidget {
               SizedBox(width: 12.w),
               Expanded(
                 child: Text(
-                  'Export private key',
+                  context.l10n.exportPrivateKey,
                   style: fonts.textBaseMedium.copyWith(
                     color: colors.textPrimary,
                   ),

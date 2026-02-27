@@ -105,10 +105,11 @@ class HomeScreen extends StatelessWidget {
             children: [
               const HomeHeader(userName: _userName),
               SizedBox(height: 16.h),
-              const HomeBalanceCard(
+              HomeBalanceCard(
                 totalBalance: _totalBalance,
                 changePercent: _changePercent,
                 changeAmount: _changeAmount,
+                onTap: () => context.tabsRouter.setActiveIndex(2),
               ),
               if (!_isOnboardingComplete) ...[
                 SizedBox(height: 24.h),

@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -62,14 +63,14 @@ class _EditAccountDetailsScreenState extends State<EditAccountDetailsScreen> {
                   children: [
                     SizedBox(height: 8.h),
                     Text(
-                      'Edit account details',
+                      context.l10n.editAccountDetails,
                       style: fonts.heading2Bold.copyWith(
                         color: colors.textPrimary,
                       ),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      'Update your email to maintain account access and receive important notifications.',
+                      context.l10n.editAccountDetailsSubtitle,
                       style: fonts.textBaseRegular.copyWith(
                         color: colors.textSecondary,
                       ),
@@ -79,7 +80,7 @@ class _EditAccountDetailsScreenState extends State<EditAccountDetailsScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _currentEmailController,
-                      labelText: 'Current email',
+                      labelText: context.l10n.currentEmail,
                       keyboardType: TextInputType.emailAddress,
                       readOnly: true,
                       textCapitalization: TextCapitalization.none,
@@ -87,7 +88,7 @@ class _EditAccountDetailsScreenState extends State<EditAccountDetailsScreen> {
                     SizedBox(height: 16.h),
                     AppTextField(
                       controller: _newEmailController,
-                      labelText: 'New email',
+                      labelText: context.l10n.newEmail,
                       keyboardType: TextInputType.emailAddress,
                       textCapitalization: TextCapitalization.none,
                       customValidator: (value) {
@@ -110,7 +111,7 @@ class _EditAccountDetailsScreenState extends State<EditAccountDetailsScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Save changes',
+                text: context.l10n.saveChanges,
                 onPressed: () {},
               ),
             ),

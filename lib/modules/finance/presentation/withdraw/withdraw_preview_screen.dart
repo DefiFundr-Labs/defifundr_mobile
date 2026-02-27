@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class WithdrawPreviewScreen extends StatelessWidget {
@@ -38,9 +39,9 @@ class WithdrawPreviewScreen extends StatelessWidget {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: Size(context.screenWidth(), 60),
-              child: const DeFiRaiseAppBar(
+              child: DeFiRaiseAppBar(
                 isBack: true,
-                title: 'Preview',
+                title: context.l10n.preview,
                 actions: [],
               ),
             ),
@@ -58,9 +59,9 @@ class WithdrawPreviewScreen extends StatelessWidget {
         return Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(context.screenWidth(), 60),
-            child: const DeFiRaiseAppBar(
+            child: DeFiRaiseAppBar(
               isBack: true,
-              title: 'Preview',
+              title: context.l10n.preview,
               actions: [],
             ),
           ),
@@ -156,14 +157,14 @@ class WithdrawPreviewScreen extends StatelessWidget {
       child: Column(
         children: [
           _buildDetailRow(
-            'To',
+            context.l10n.to,
             _formatAddress(details.recipientAddress),
             colors,
             fontTheme,
           ),
           SizedBox(height: 24.h),
           _buildDetailRowWithIcon(
-            'Network',
+            context.l10n.network,
             details.networkName,
             details.networkIconPath,
             colors,
@@ -171,7 +172,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           _buildDetailRow(
-            'Fee',
+            context.l10n.fee,
             '${details.fee} ${details.feeCurrency} (≈ \$${_calculateFeeUSD(details.fee)})',
             colors,
             fontTheme,
@@ -179,7 +180,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
           if (details.memo.isNotEmpty == true) ...[
             SizedBox(height: 24.h),
             _buildDetailRow(
-              'Memo',
+              context.l10n.memo,
               details.memo,
               colors,
               fontTheme,
@@ -269,7 +270,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
     AppFontThemeExtension fontTheme,
   ) {
     return PrimaryButton(
-      text: 'Confirm',
+      text: context.l10n.confirm,
       onPressed: () {
         _onConfirm(context, details);
       },

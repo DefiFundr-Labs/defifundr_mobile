@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,7 @@ class PrivateKeyScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Your private key',
+          context.l10n.yourPrivateKey,
           style: fonts.textLgSemiBold.copyWith(
             color: colors.textPrimary,
           ),
@@ -67,7 +68,7 @@ class PrivateKeyScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
               child: PrimaryButton(
-                text: 'Done',
+                text: context.l10n.done,
                 onPressed: () => context.router.maybePop(),
               ),
             ),
@@ -98,7 +99,7 @@ class PrivateKeyScreen extends StatelessWidget {
               Text('🔒', style: TextStyle(fontSize: 18.sp)),
               SizedBox(width: 8.w),
               Text(
-                'Do Not Share Your Private Key',
+                context.l10n.doNotSharePrivateKey,
                 style: fonts.textBaseSemiBold.copyWith(
                   color: colors.redDefault,
                 ),
@@ -107,7 +108,7 @@ class PrivateKeyScreen extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'Your private key gives full access to your wallet. Never share it with anyone. If someone else gets it, they can steal your assets.',
+            context.l10n.privateKeyWarning,
             textAlign: TextAlign.center,
             style: fonts.textSmRegular.copyWith(
               color: colors.textSecondary,
@@ -152,7 +153,7 @@ class PrivateKeyScreen extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Private key copied to clipboard',
+              context.l10n.privateKeyCopiedToClipboard,
               style: fonts.textSmRegular.copyWith(
                 color: colors.contrastWhite,
               ),
@@ -176,7 +177,7 @@ class PrivateKeyScreen extends StatelessWidget {
           ),
           SizedBox(width: 6.w),
           Text(
-            'Copy to clipboard',
+            context.l10n.copyToClipboard,
             style: fonts.textSmMedium.copyWith(
               color: colors.textTertiary,
             ),

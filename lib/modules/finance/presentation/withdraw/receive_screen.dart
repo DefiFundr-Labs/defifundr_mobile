@@ -8,6 +8,7 @@ import 'package:defifundr_mobile/modules/finance/presentation/finance/widget/ass
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ReceiveScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class ReceiveScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: DeFiRaiseAppBar(
-        title: 'Select asset',
+        title: context.l10n.selectAsset,
         textStyle: fontTheme.heading3SemiBold.copyWith(
           fontWeight: FontWeight.w600,
           fontSize: 18.sp,
