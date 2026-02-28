@@ -71,7 +71,7 @@ class WorkspaceScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 8.h),
               child: Text(
-                context.l10n.workspace,
+                'Workspace',
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 24.sp,
                   color: colors.textPrimary,

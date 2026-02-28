@@ -720,17 +720,17 @@ class StringsEs extends Strings {
   String get addAddress => 'Agregar dirección';
 
   @override
-  String get receivedFromWallet => 'Received from wallet';
+  String get receivedFromWallet => 'Recibido desde billetera';
 
   @override
-  String get defiStakingReward => 'DeFi Staking Reward';
+  String get defiStakingReward => 'Recompensa de staking DeFi';
 
   @override
-  String get withdrawal => 'Withdrawal';
+  String get withdrawal => 'Retiro';
 
   @override
   String get networkUsingAnyOtherAssetOrNetworkWillResultInPerm =>
-      'network. Using any other asset or network will result in permanent loss.';
+      'red. Usar cualquier otro activo o red resultará en pérdida permanente.';
 
   @override
   String myAsset(String assetName) {
@@ -739,74 +739,74 @@ class StringsEs extends Strings {
 
   @override
   String get walletAddressCopiedToClipboard =>
-      'Wallet address copied to clipboard.';
+      'Dirección de billetera copiada al portapapeles.';
 
   @override
-  String get enterNewPassword => 'Enter New Password';
+  String get enterNewPassword => 'Ingresa nueva contraseña';
 
   @override
-  String get passwordHasBeenReset => 'Password Has Been Reset!';
+  String get passwordHasBeenReset => '¡Contraseña restablecida!';
 
   @override
   String get youCanNowLogInWithYourNewPasswordAndContinueUsingY =>
-      'You can now log in with your new password and continue using your account securely.';
+      'Ahora puedes iniciar sesión con tu nueva contraseña y continuar usando tu cuenta de forma segura.';
 
   @override
-  String get proceedToLogin => 'Proceed to login';
+  String get proceedToLogin => 'Ir al inicio de sesión';
 
   @override
-  String get resetPassword => 'Reset Password';
+  String get resetPassword => 'Restablecer contraseña';
 
   @override
   String get enterYourEmailAddressToGetACodeToResetYourPassword =>
-      'Enter your email address to get a code to reset your password.';
+      'Ingresa tu correo electrónico para obtener un código y restablecer tu contraseña.';
 
   @override
-  String get verifyOtp => 'Verify OTP';
+  String get verifyOtp => 'Verificar OTP';
 
   @override
   String get tryCheckingYourJunkspamFolderOrResendTheCode =>
-      'Try checking your junk/spam folder, or resend the code.';
+      'Intenta revisar tu carpeta de spam o reenvía el código.';
 
   @override
   String get pleaseEnterThe6DigitOtpCodeSentTo =>
-      'Please enter the 6 digit OTP code sent to';
+      'Por favor ingresa el código OTP de 6 dígitos enviado a';
 
   @override
-  String get verifyCode => 'Verify code';
+  String get verifyCode => 'Verificar código';
 
   @override
-  String get welcomeBack => 'Welcome Back!';
+  String get welcomeBack => '¡Bienvenido de vuelta!';
 
   @override
   String get enterYourDetailsBelowToLoginToYourAccount =>
-      'Enter your details below to login to your account.';
+      'Ingresa tus datos para iniciar sesión en tu cuenta.';
 
   @override
-  String get emailAddress => 'Email address';
+  String get emailAddress => 'Correo electrónico';
 
   @override
-  String get enterPassword => 'Enter password';
+  String get enterPassword => 'Ingresa tu contraseña';
 
   @override
-  String get logIn => 'Log In';
+  String get logIn => 'Iniciar sesión';
 
   @override
-  String get logInUsingGoogle => 'Log in using Google';
+  String get logInUsingGoogle => 'Iniciar sesión con Google';
 
   @override
-  String get logInUsingApple => 'Log in using Apple';
+  String get logInUsingApple => 'Iniciar sesión con Apple';
 
   @override
-  String get forgotYourPin => 'Forgot your PIN?';
+  String get forgotYourPin => '¿Olvidaste tu PIN?';
 
   @override
-  String get welcomeBackUsername => 'Welcome Back, \$userName';
+  String get welcomeBackUsername => 'Bienvenido de vuelta, \$userName';
 
   @override
   String get pleaseEnterYourPinToAccessYourAccount =>
-      'Please enter your PIN to access your account.';
+      'Por favor ingresa tu PIN para acceder a tu cuenta.';
 
   @override
-  String get enterPin => 'Enter PIN';
+  String get enterPin => 'Ingresa tu PIN';
 }

@@ -16,39 +16,47 @@ class MainShellScreen extends StatelessWidget {
         final colors = context.theme.colors;
         final fonts = context.theme.fonts;
 
+        // Hide the bottom nav bar when the user has navigated deeper than the
+        // root screen of any tab (e.g. Withdraw, Asset Details, More sub-screens).
+        final activeTabRouter =
+            tabsRouter.stackRouterOfIndex(tabsRouter.activeIndex);
+        final isAtTabRoot = (activeTabRouter?.pageCount ?? 1) <= 1;
+
         return Scaffold(
           body: child,
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              color: colors.bgB0,
-              border: Border(
-                top: BorderSide(
-                  color: colors.grayQuaternary,
-                  width: 0.5,
-                ),
-              ),
-            ),
-            child: SafeArea(
-              bottom: false,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(
-                    _tabs.length,
-                    (index) => _BottomNavItem(
-                      tab: _tabs[index],
-                      isActive: tabsRouter.activeIndex == index,
-                      onTap: () => tabsRouter.setActiveIndex(index),
-                      colors: colors,
-                      fonts: fonts,
+          bottomNavigationBar: isAtTabRoot
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: colors.bgB0,
+                    border: Border(
+                      top: BorderSide(
+                        color: colors.grayQuaternary,
+                        width: 0.5,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                  child: SafeArea(
+                    bottom: false,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: List.generate(
+                          _tabs.length,
+                          (index) => _BottomNavItem(
+                            tab: _tabs[index],
+                            isActive: tabsRouter.activeIndex == index,
+                            onTap: () => tabsRouter.setActiveIndex(index),
+                            colors: colors,
+                            fonts: fonts,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : null,
         );
       },
     );
