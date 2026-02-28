@@ -20,7 +20,7 @@ class SetupInstructionsScreen extends StatefulWidget {
 }
 
 class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
-  static const String _setupKey = 'IMMI UP7L 6OB5 VQHX IR5E ATEI 7CIS HGGG';
+  static const String _setupKey = 'XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX';
   static const String _qrData =
       'otpauth://totp/DeFiFundr?secret=IMMIUP7L6OB5VQHXIR5EATEI7CISHGGG&issuer=DeFiFundr';
 
