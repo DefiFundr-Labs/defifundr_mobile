@@ -92,6 +92,7 @@ class RouteConstants {
   // PAYMENT ROUTES
   // ============================================================
   static const String paymentsUpcoming = '/payments/upcoming';
+  static const String paymentsTransactions = '/payments/transactions';
 
   // ============================================================
   // TIME TRACKING ROUTES

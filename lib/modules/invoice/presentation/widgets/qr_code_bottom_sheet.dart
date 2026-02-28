@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -82,9 +83,7 @@ class QRCodeBottomSheet extends StatelessWidget {
             fixedSize: Size(double.infinity, 48.h),
             onPressed: () {
               context.router.maybePop();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('QR code saved as image')),
-              );
+              AppSnackbar.show(context, 'QR code saved as image');
             },
             enableShine: false,
             color: context.theme.colors.textSecondary.withAlpha(20),
@@ -102,9 +101,7 @@ class QRCodeBottomSheet extends StatelessWidget {
             fixedSize: Size(double.infinity, 48.h),
             onPressed: () {
               context.router.maybePop();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('QR code shared')),
-              );
+              AppSnackbar.show(context, 'QR code shared');
             },
           ),
         ),

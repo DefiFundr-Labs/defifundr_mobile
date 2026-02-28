@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/constants/assets.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/widgets/filter_buttons.dart';
@@ -333,14 +334,8 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                                       ),
                                     );
                                     if (!context.mounted) return;
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Copied to clipboard',
-                                        ),
-                                        duration: const Duration(seconds: 2),
-                                      ),
-                                    );
+                                    AppSnackbar.show(
+                                        context, 'Copied to clipboard');
                                   },
                                   child: SvgPicture.asset(
                                     AppAssets.copySvg,
@@ -411,8 +406,8 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                       colorFilter: ColorFilter.mode(
                         resolveColor(
                           context: context,
-                          lightColor: AppColors.textPrimary,
-                          darkColor: AppColorDark.textPrimary,
+                          lightColor: AppColors.contrastWhite,
+                          darkColor: AppColorDark.contrastBlack,
                         ),
                         BlendMode.srcIn,
                       ),

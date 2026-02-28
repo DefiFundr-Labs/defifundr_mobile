@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
@@ -102,12 +103,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
     final duration = _calculateDuration();
 
     if (duration.isNegative) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('End time must be after start time'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      AppSnackbar.showError(context, 'End time must be after start time');
       return;
     }
 

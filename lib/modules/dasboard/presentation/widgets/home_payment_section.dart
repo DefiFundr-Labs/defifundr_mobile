@@ -12,6 +12,7 @@ class HomePaymentSection extends StatelessWidget {
   final List<Payment> payments;
   final bool hasData;
   final Widget Function(BuildContext context, Payment payment)? itemBuilder;
+  final VoidCallback? onSeeAll;
 
   const HomePaymentSection({
     super.key,
@@ -20,6 +21,7 @@ class HomePaymentSection extends StatelessWidget {
     required this.payments,
     required this.hasData,
     this.itemBuilder,
+    this.onSeeAll,
   });
 
   @override
@@ -29,7 +31,7 @@ class HomePaymentSection extends StatelessWidget {
 
     return Column(
       children: [
-        HomeSectionHeader(title: title),
+        HomeSectionHeader(title: title, onSeeAll: onSeeAll),
         SizedBox(height: 8.h),
         hasData
             ? Container(

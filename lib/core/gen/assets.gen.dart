@@ -24,6 +24,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/building_office.svg
   String get buildingOfficeSvg_ => 'assets/icons/building_office.svg';
 
+  /// File path: assets/icons/CalendarSlash.svg
+  String get calendarSlash => 'assets/icons/CalendarSlash.svg';
+
   /// File path: assets/icons/CarProfile.svg
   String get carProfile => 'assets/icons/CarProfile.svg';
 
@@ -83,6 +86,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/qr_code.svg
   String get qrCodeSvg_ => 'assets/icons/qr_code.svg';
+
+  /// File path: assets/icons/Receipt.svg
+  String get receipt => 'assets/icons/Receipt.svg';
 
   /// File path: assets/icons/Scales.svg
   String get scales => 'assets/icons/Scales.svg';
@@ -445,6 +451,7 @@ class $AssetsIconsGen {
     briefcase,
     buildingOfficeSvg,
     buildingOfficeSvg_,
+    calendarSlash,
     carProfile,
     checkCircle,
     clock,
@@ -465,6 +472,7 @@ class $AssetsIconsGen {
     prohibit,
     qrCodeSvg,
     qrCodeSvg_,
+    receipt,
     scales,
     trash,
     userCircleSvg,

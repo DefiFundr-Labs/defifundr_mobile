@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
@@ -50,12 +51,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
         onConfirmDelete: () {
           context.router.maybePop();
           context.router.maybePop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Submission deleted successfully'),
-              backgroundColor: Colors.green,
-            ),
-          );
+          AppSnackbar.show(context, 'Submission deleted successfully');
         },
       ),
     );
@@ -66,12 +62,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
       context.router.push(ResubmitHoursRoute(timesheet: timesheet));
     } else {
       // Handle edit for pending submissions
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Edit functionality not implemented yet'),
-          backgroundColor: Colors.blue,
-        ),
-      );
+      AppSnackbar.show(context, 'Edit functionality not implemented yet');
     }
   }
 

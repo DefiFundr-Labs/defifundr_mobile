@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
@@ -345,21 +346,7 @@ class ExpenseDetailsScreen extends StatelessWidget {
               onPressed: () {
                 context.router.maybePop(); // Close dialog
                 context.router.maybePop(); // Go back to expenses list
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Expense deleted successfully',
-                      style: context.theme.fonts.textMdRegular.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                    backgroundColor: Colors.green,
-                    behavior: SnackBarBehavior.floating,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                );
+                AppSnackbar.show(context, 'Expense deleted successfully');
               },
               child: Text(
                 'Delete',

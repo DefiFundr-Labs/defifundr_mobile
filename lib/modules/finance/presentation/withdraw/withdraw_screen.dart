@@ -3,6 +3,7 @@ import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -128,28 +129,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
   }
 
   void _showErrorSnackBar() {
-    final isLightMode = Theme.of(context).brightness == Brightness.light;
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Please fill in all details',
-          style: context.theme.fonts.textMdRegular.copyWith(
-            color: isLightMode
-                ? context.theme.colors.contrastWhite
-                : context.theme.colors.contrastBlack,
-          ),
-        ),
-        backgroundColor: context.theme.colors.constantDefault,
-        behavior: SnackBarBehavior.floating,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+    AppSnackbar.show(context, 'Please fill in all details');
   }
 
   @override
