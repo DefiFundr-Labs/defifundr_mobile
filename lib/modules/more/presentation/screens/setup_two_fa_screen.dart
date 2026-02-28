@@ -62,7 +62,7 @@ class SetupTwoFaScreen extends StatelessWidget {
                 text: l10n.activateNow,
                 isEnabled: true,
                 onPressed: () =>
-                    context.router.push(const SetupInstructionsRoute()),
+                    context.router.push(SetupInstructionsRoute()),
               ),
             ),
             SizedBox(

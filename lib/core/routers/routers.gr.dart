@@ -1757,18 +1757,56 @@ class SentRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SetupInstructionsScreen]
-class SetupInstructionsRoute extends PageRouteInfo<void> {
-  const SetupInstructionsRoute({List<PageRouteInfo>? children})
-    : super(SetupInstructionsRoute.name, initialChildren: children);
+class SetupInstructionsRoute extends PageRouteInfo<SetupInstructionsRouteArgs> {
+  SetupInstructionsRoute({
+    Key? key,
+    String setupKey = '',
+    String qrData = '',
+    List<PageRouteInfo>? children,
+  }) : super(
+         SetupInstructionsRoute.name,
+         args: SetupInstructionsRouteArgs(
+           key: key,
+           setupKey: setupKey,
+           qrData: qrData,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SetupInstructionsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SetupInstructionsScreen();
+      final args = data.argsAs<SetupInstructionsRouteArgs>(
+        orElse: () => const SetupInstructionsRouteArgs(),
+      );
+      return SetupInstructionsScreen(
+        key: args.key,
+        setupKey: args.setupKey,
+        qrData: args.qrData,
+      );
     },
   );
+}
+
+class SetupInstructionsRouteArgs {
+  const SetupInstructionsRouteArgs({
+    this.key,
+    this.setupKey = '',
+    this.qrData = '',
+  });
+
+  final Key? key;
+
+  final String setupKey;
+
+  final String qrData;
+
+  @override
+  String toString() {
+    return 'SetupInstructionsRouteArgs{key: $key, setupKey: $setupKey, qrData: $qrData}';
+  }
 }
 
 /// generated route for

@@ -12,7 +12,14 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 @RoutePage()
 class SetupInstructionsScreen extends StatefulWidget {
-  const SetupInstructionsScreen({super.key});
+  final String setupKey;
+  final String qrData;
+
+  const SetupInstructionsScreen({
+    super.key,
+    this.setupKey = '',
+    this.qrData = '',
+  });
 
   @override
   State<SetupInstructionsScreen> createState() =>
@@ -20,14 +27,11 @@ class SetupInstructionsScreen extends StatefulWidget {
 }
 
 class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
-  static const String _setupKey = 'XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX';
-  static const String _qrData =
-      'otpauth://totp/DeFiFundr?secret=XXXXXXXXXXX&issuer=DeFiFundr';
 
   bool _showToast = false;
 
   void _copySetupKey() {
-    Clipboard.setData(const ClipboardData(text: _setupKey));
+    Clipboard.setData(ClipboardData(text: widget.setupKey));
     setState(() => _showToast = true);
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) setState(() => _showToast = false);
@@ -59,7 +63,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
             ),
             SizedBox(height: 24.h),
             QrImageView(
-              data: _qrData,
+              data: widget.qrData,
               version: QrVersions.auto,
               size: 200.w,
               backgroundColor: Colors.white,
@@ -244,7 +248,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _setupKey,
+                  widget.setupKey,
                   style: fonts.heading2Bold.copyWith(
                     color: colors.textPrimary,
                     fontSize: 18.sp,
