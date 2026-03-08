@@ -4,7 +4,11 @@ import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
+
 class ContractDatesStep extends StatelessWidget {
+  final ContractType? contractType;
   final TextEditingController startDateController;
   final TextEditingController endDateController;
   final TextEditingController noticePeriodController;
@@ -12,6 +16,7 @@ class ContractDatesStep extends StatelessWidget {
 
   const ContractDatesStep({
     Key? key,
+    this.contractType,
     required this.startDateController,
     required this.endDateController,
     required this.noticePeriodController,
@@ -47,9 +52,29 @@ class ContractDatesStep extends StatelessWidget {
                   SizedBox(height: 20.h),
                   AppTextField(
                     controller: noticePeriodController,
-                    hintText: 'Notice period (days)',
+                    hintText: 'Termination notice period',
+                    suffixType: SuffixType.customWidget,
+                    suffixWidget: Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Text(
+                        'days',
+                        style: context.theme.fonts.textMdRegular.copyWith(
+                          color: context.theme.colors.textSecondary,
+                        ),
+                      ),
+                    ),
                     keyboardType: TextInputType.number,
                   ),
+                  if (contractType == ContractType.payAsYouGo) ...[
+                    SizedBox(height: 12.h),
+                    Text(
+                      'Either party may terminate this contract by the specified notice, after which the contract will end.',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

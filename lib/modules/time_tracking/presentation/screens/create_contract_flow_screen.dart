@@ -75,6 +75,7 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
   // Step 5 State
   Network? _selectedNetwork;
   NetworkAsset? _selectedAsset;
+  String? _rateUnit;
   final TextEditingController _paymentAmountController =
       TextEditingController();
   String? _invoiceFrequency;
@@ -220,14 +221,17 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
             onNext: _nextStep,
           ),
           ContractDatesStep(
+            contractType: _selectedContractType,
             startDateController: _startDateController,
             endDateController: _endDateController,
             noticePeriodController: _noticePeriodController,
             onNext: _nextStep,
           ),
           PaymentInvoiceStep(
+            contractType: _selectedContractType,
             selectedNetwork: _selectedNetwork,
             selectedAsset: _selectedAsset,
+            rateUnit: _rateUnit,
             paymentAmountController: _paymentAmountController,
             invoiceFrequency: _invoiceFrequency,
             issueInvoiceOn: _issueInvoiceOn,
@@ -246,6 +250,7 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
                 setState(() => _selectedNetwork = val),
             onAssetChanged: (NetworkAsset? val) =>
                 setState(() => _selectedAsset = val),
+            onRateUnitChanged: (val) => setState(() => _rateUnit = val),
             onFrequencyChanged: (val) =>
                 setState(() => _invoiceFrequency = val),
             onIssueOnChanged: (val) => setState(() => _issueInvoiceOn = val),
@@ -312,6 +317,7 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
       'due': _paymentDue,
       'firstInvoiceDate': _firstInvoiceDateController.text,
       'firstInvoiceType': _firstInvoiceAmountType,
+      'rateUnit': _rateUnit,
       'includeTax': _addInclusiveTax,
       'agreementType': _agreementType,
       'additionalTerms': _additionalTermsController.text,

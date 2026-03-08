@@ -62,6 +62,8 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
 
   @override
   Widget build(BuildContext context) {
+    final isPayAsYouGo = _data['type'] == 'Pay as You Go';
+
     return Column(
       children: [
         Expanded(
@@ -151,6 +153,10 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
                         value: '${_data["amount"]} ${_data["assetName"]}',
                         subtitle: _data['amountUsd'] ?? '\$0.00',
                       ),
+                      if (isPayAsYouGo)
+                        ReviewRow(
+                            label: 'Rate Unit',
+                            value: _data['rateUnit'] ?? '-'),
                       ReviewRow(
                           label: 'Invoice Frequency',
                           value: _data['frequency'] ?? '-'),
@@ -162,10 +168,11 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
                       ReviewRow(
                           label: 'First Invoice Date',
                           value: _data['firstInvoiceDate'] ?? '-'),
-                      ReviewRow(
-                          label: 'Amount',
-                          value:
-                              '${_data["firstInvoiceType"]} • ${_data["amount"]} ${_data["assetName"]}'),
+                      if (!isPayAsYouGo)
+                        ReviewRow(
+                            label: 'Amount',
+                            value:
+                                '${_data["firstInvoiceType"]} • ${_data["amount"]} ${_data["assetName"]}'),
                       ReviewRow(
                           label: 'Inclusive Tax',
                           value: _data['includeTax'] == true ? 'Yes' : 'No'),
