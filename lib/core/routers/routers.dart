@@ -17,7 +17,6 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/scree
 // Dashboard
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/notifications_screen.dart';
-import 'package:defifundr_mobile/modules/dasboard/data/models/notification_item.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/add_expense_screen.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/expense_details_screen.dart';
@@ -100,7 +99,6 @@ import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/scree
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/payout_detail_screen.dart';
 // Payment
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
@@ -124,6 +122,7 @@ import 'package:defifundr_mobile/modules/time_off/presentation/screens/unpaid_ti
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/contracts_screen.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/resubmit_hours_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submit_hours_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submitted_hours_detail_screen.dart';
@@ -134,7 +133,6 @@ import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspac
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 // Workspace
-import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../modules/dasboard/presentation/screens/home_screen.dart';
@@ -515,6 +513,11 @@ class AppRouter extends RootStackRouter {
         // ============================================================
         // PAYMENT ROUTES (pushed over shell)
         // ============================================================
+        AutoRoute(
+          page: CreateContractFlowRoute.page,
+          path: RouteConstants.createContract,
+          guards: [authGuard],
+        ),
         AutoRoute(
           page: UpcomingPaymentsRoute.page,
           path: RouteConstants.paymentsUpcoming,

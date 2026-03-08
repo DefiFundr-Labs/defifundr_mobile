@@ -155,94 +155,96 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
           actions: [],
         ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Container(
-              padding: EdgeInsets.only(
-                top: 10.sp,
-                left: 16.sp,
-                right: 12.sp,
-                bottom: 10.sp,
-              ),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: context.theme.colors.bgB0,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 0.50,
-                    strokeAlign: BorderSide.strokeAlignOutside,
-                    color: context.theme.colors.strokeSecondary,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: 10.sp,
+                  left: 16.sp,
+                  right: 12.sp,
+                  bottom: 10.sp,
                 ),
-              ),
-              child: GestureDetector(
-                onTap: _showFilterBottomSheet,
-                child: Row(
-                  children: [
-                    Text(
-                      'Showing for: ',
-                      style: context.theme.fonts.textMdRegular.copyWith(
-                        color: context.theme.colors.textSecondary,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
+                clipBehavior: Clip.antiAlias,
+                decoration: ShapeDecoration(
+                  color: context.theme.colors.bgB0,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 0.50,
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                      color: context.theme.colors.strokeSecondary,
                     ),
-                    Expanded(
-                      child: Text(
-                        selectedDateRange,
-                        style: context.theme.fonts.textMdMedium.copyWith(
-                          fontWeight: FontWeight.w500,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: GestureDetector(
+                  onTap: _showFilterBottomSheet,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Showing for: ',
+                        style: context.theme.fonts.textMdRegular.copyWith(
+                          color: context.theme.colors.textSecondary,
                           fontSize: 14.sp,
-                          color: context.theme.colors.textPrimary,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
+                      Expanded(
+                        child: Text(
+                          selectedDateRange,
+                          style: context.theme.fonts.textMdMedium.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                            color: context.theme.colors.textPrimary,
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            TimeTrackingSummaryCard(summary: summary),
+            SizedBox(height: 16.0),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Container(
+                decoration: ShapeDecoration(
+                  color: context.theme.colors.bgB0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  shadows: [
+                    BoxShadow(
+                      color: context.theme.colors.textSecondary,
+                      blurRadius: 1,
+                      offset: Offset(0, 1),
+                      spreadRadius: -5,
+                    )
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CalendarWeekView(
+                      startDate: summary.startDate,
+                      endDate: summary.endDate,
+                      selectedDate: selectedDate,
+                      onDateSelected: _onDateSelected,
                     ),
-                    Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
+                    SizedBox(height: 5.0),
+                    hasWorkSubmitted
+                        ? _buildTimeEntriesList()
+                        : _buildEmptyState(),
                   ],
                 ),
               ),
             ),
-          ),
-          TimeTrackingSummaryCard(summary: summary),
-          SizedBox(height: 16.0),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Container(
-              decoration: ShapeDecoration(
-                color: context.theme.colors.bgB0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                shadows: [
-                  BoxShadow(
-                    color: context.theme.colors.textSecondary,
-                    blurRadius: 1,
-                    offset: Offset(0, 1),
-                    spreadRadius: -5,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CalendarWeekView(
-                    startDate: summary.startDate,
-                    endDate: summary.endDate,
-                    selectedDate: selectedDate,
-                    onDateSelected: _onDateSelected,
-                  ),
-                  SizedBox(height: 5.0),
-                  hasWorkSubmitted
-                      ? _buildTimeEntriesList()
-                      : _buildEmptyState(),
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: _buildBottomButton(),
     );
@@ -282,11 +284,13 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
           ? 'Post-optimization logs showed a spike in timeout errors, and the performance gains weren\'t consistent under load.'
           : null,
       contractName: widget.contract.title,
-      contractType: widget.contract.type,
+      contractType: widget.contract.type.titleCase,
       clientName: 'Adegboyega Oluwagbemiro',
     );
 
-    context.router.push(SubmittedHoursDetailRoute(timesheet: submittedTimesheet)).then((_) {
+    context.router
+        .push(SubmittedHoursDetailRoute(timesheet: submittedTimesheet))
+        .then((_) {
       setState(() {
         _updateTimeEntriesForSelectedDate();
       });
@@ -335,18 +339,15 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: 4,
                     children: [
-                      SizedBox(
-                        width: 287,
-                        child: Text(
-                          'You have no worked hours submitted',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: const Color(0xFF18181B) /* TEXT-PRIMARY */,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 1.43,
-                          ),
+                      Text(
+                        'You have no worked hours submitted',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: const Color(0xFF18181B) /* TEXT-PRIMARY */,
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          height: 1.43,
                         ),
                       ),
                     ],
@@ -373,7 +374,9 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
               _initializeData();
             });
           } else {
-            context.router.push(SubmitHoursRoute(contract: widget.contract)).then((result) {
+            context.router
+                .push(SubmitHoursRoute(contract: widget.contract))
+                .then((result) {
               if (result != null) {
                 setState(() {
                   hasWorkSubmitted = true;

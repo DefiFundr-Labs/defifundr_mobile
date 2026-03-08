@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -6,7 +7,16 @@ import '../../data/models/contract.dart';
 import '../widgets/contract_card.dart';
 
 @RoutePage()
-class TimeOffContractsScreen extends StatelessWidget {
+class TimeOffContractsScreen extends StatefulWidget {
+  TimeOffContractsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TimeOffContractsScreen> createState() => _TimeOffContractsScreenState();
+}
+
+class _TimeOffContractsScreenState extends State<TimeOffContractsScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   final List<TimeOffContract> contracts = [
     TimeOffContract(
       id: '1',
@@ -58,7 +68,11 @@ class TimeOffContractsScreen extends StatelessWidget {
     ),
   ];
 
-  TimeOffContractsScreen({Key? key}) : super(key: key);
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,30 +97,10 @@ class TimeOffContractsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade200),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.search, color: Colors.grey.shade400, size: 20),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                  ),
-                ),
-                Icon(Icons.tune, color: Colors.grey.shade400, size: 20),
-              ],
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: SearchAndFilterBar(
+              searchController: _searchController,
             ),
           ),
           Expanded(

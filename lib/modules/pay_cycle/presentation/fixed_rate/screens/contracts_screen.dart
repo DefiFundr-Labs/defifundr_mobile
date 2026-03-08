@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,8 @@ class PayCycleContractsScreen extends StatefulWidget {
   const PayCycleContractsScreen({Key? key}) : super(key: key);
 
   @override
-  State<PayCycleContractsScreen> createState() => _PayCycleContractsScreenState();
+  State<PayCycleContractsScreen> createState() =>
+      _PayCycleContractsScreenState();
 }
 
 class _PayCycleContractsScreenState extends State<PayCycleContractsScreen> {
@@ -23,6 +25,9 @@ class _PayCycleContractsScreenState extends State<PayCycleContractsScreen> {
   void initState() {
     super.initState();
     _loadContracts();
+    _searchController.addListener(() {
+      _filterContracts(_searchController.text);
+    });
   }
 
   void _loadContracts() {
@@ -65,41 +70,8 @@ class _PayCycleContractsScreenState extends State<PayCycleContractsScreen> {
           // Search Bar
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade300),
-                    ),
-                    child: TextField(
-                      controller: _searchController,
-                      onChanged: _filterContracts,
-                      decoration: const InputDecoration(
-                        hintText: 'Search',
-                        prefixIcon: Icon(Icons.search, color: Colors.grey),
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
-                  child: const Icon(Icons.tune, color: Colors.grey),
-                ),
-              ],
+            child: SearchAndFilterBar(
+              searchController: _searchController,
             ),
           ),
           // Contracts List

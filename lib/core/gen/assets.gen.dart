@@ -169,6 +169,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bell_simple_ringing.svg
   String get bellSimpleRinging => 'assets/icons/bell_simple_ringing.svg';
 
+  /// File path: assets/icons/bill_invoice.svg
+  String get billInvoice => 'assets/icons/bill_invoice.svg';
+
   /// Directory path: assets/icons/bottom_nav
   $AssetsIconsBottomNavGen get bottomNav => const $AssetsIconsBottomNavGen();
 
@@ -269,6 +272,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/googleIcon.svg
   String get googleIcon => 'assets/icons/googleIcon.svg';
+
+  /// File path: assets/icons/green_money.svg
+  String get greenMoney => 'assets/icons/green_money.svg';
 
   /// File path: assets/icons/group.svg
   String get group => 'assets/icons/group.svg';
@@ -442,6 +448,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/x_logo.svg
   String get xLogo => 'assets/icons/x_logo.svg';
 
+  /// File path: assets/icons/yellow_clockuser.svg
+  String get yellowClockuser => 'assets/icons/yellow_clockuser.svg';
+
   /// File path: assets/icons/zero_percent.svg
   String get zeroPercent => 'assets/icons/zero_percent.svg';
 
@@ -499,6 +508,7 @@ class $AssetsIconsGen {
     backgroundPng,
     backgroundSvg,
     bellSimpleRinging,
+    billInvoice,
     briefCase,
     bvnProcessing,
     bvnProcessingDark,
@@ -530,6 +540,7 @@ class $AssetsIconsGen {
     globeHemisphereWest,
     globeSimple,
     googleIcon,
+    greenMoney,
     group,
     headset,
     headsetIcon,
@@ -587,6 +598,7 @@ class $AssetsIconsGen {
     verificationProgressDark,
     walletCopy,
     xLogo,
+    yellowClockuser,
     zeroPercent,
   ];
 }

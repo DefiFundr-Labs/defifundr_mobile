@@ -3,9 +3,10 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/modules/workspace/data/models/workspace_card_data_model.dart';
+import 'package:defifundr_mobile/modules/workspace/presentation/widgets/workspace_card_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class WorkspaceScreen extends StatelessWidget {
@@ -18,46 +19,40 @@ class WorkspaceScreen extends StatelessWidget {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     final cards = [
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.contracts,
         description: context.l10n.contractsDesc,
         iconPath: Assets.icons.files,
-        iconBgColor: const Color(0xFFEDE9FE),
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.payCycle,
         description: context.l10n.payCycleDesc,
-        iconPath: Assets.icons.handCoins,
-        iconBgColor: const Color(0xFF0D9488),
+        iconPath: Assets.icons.greenMoney,
         onTap: () => context.pushRoute(const PayCycleContractsRoute()),
       ),
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.invoices,
         description: context.l10n.invoiceDesc,
-        iconPath: Assets.icons.invoiceCopy,
-        iconBgColor: const Color(0xFFEA580C),
+        iconPath: Assets.icons.billInvoice,
         onTap: () => context.pushRoute(const InvoicesRoute()),
       ),
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.expenses,
         description: context.l10n.expensesDesc,
-        iconPath: Assets.icons.moneyCopy,
-        iconBgColor: const Color(0xFFDB2777),
+        iconPath: Assets.icons.receipt,
         onTap: () => context.pushRoute(const ExpensesRoute()),
       ),
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.timesheets,
         description: context.l10n.timesheetsDesc,
-        iconPath: Assets.icons.clockUser,
-        iconBgColor: const Color(0xFFFEF3C7),
+        iconPath: Assets.icons.yellowClockuser,
         onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
-      _WorkspaceCardData(
+      WorkspaceCardModel(
         title: context.l10n.timeOff,
         description: context.l10n.timeOffDesc,
-        iconPath: Assets.icons.prohibit,
-        iconBgColor: const Color(0xFFDCFCE7),
+        iconPath: Assets.icons.calendarSlash,
         onTap: () => context.pushRoute(TimeOffContractsRoute()),
       ),
     ];
@@ -93,7 +88,7 @@ class WorkspaceScreen extends StatelessWidget {
                   itemCount: cards.length,
                   itemBuilder: (context, index) {
                     final card = cards[index];
-                    return _WorkspaceCard(
+                    return WorkspaceCard(
                       data: card,
                       isLight: isLight,
                       colors: colors,
@@ -102,73 +97,6 @@ class WorkspaceScreen extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _WorkspaceCardData {
-  final String title;
-  final String description;
-  final String iconPath;
-  final Color iconBgColor;
-  final VoidCallback onTap;
-
-  const _WorkspaceCardData({
-    required this.title,
-    required this.description,
-    required this.iconPath,
-    required this.iconBgColor,
-    required this.onTap,
-  });
-}
-
-class _WorkspaceCard extends StatelessWidget {
-  final _WorkspaceCardData data;
-  final bool isLight;
-  final dynamic colors;
-  final dynamic fonts;
-
-  const _WorkspaceCard({
-    required this.data,
-    required this.isLight,
-    required this.colors,
-    required this.fonts,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: data.onTap,
-      child: Container(
-        padding: EdgeInsets.all(16.w),
-        decoration: BoxDecoration(
-          color: isLight ? colors.bgB0 : colors.bgB1,
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SvgPicture.asset(
-              data.iconPath,
-              width: 24.w,
-              height: 24.w,
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              data.title,
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              data.description,
-              style: fonts.textSmRegular.copyWith(
-                color: colors.textSecondary,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

@@ -424,6 +424,22 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CreateContractFlowScreen]
+class CreateContractFlowRoute extends PageRouteInfo<void> {
+  const CreateContractFlowRoute({List<PageRouteInfo>? children})
+    : super(CreateContractFlowRoute.name, initialChildren: children);
+
+  static const String name = 'CreateContractFlowRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CreateContractFlowScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [CreateInvoiceFlowScreen]
 class CreateInvoiceFlowRoute extends PageRouteInfo<void> {
   const CreateInvoiceFlowRoute({List<PageRouteInfo>? children})

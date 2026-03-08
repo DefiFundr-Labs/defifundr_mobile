@@ -97,6 +97,7 @@ class RouteConstants {
   // ============================================================
   // TIME TRACKING ROUTES
   // ============================================================
+  static const String createContract = '/create-contract';
   static const String timeTracking = '/time-tracking';
   static const String timeTrackingContracts = '/time-tracking/contracts';
   static const String timeTrackingSubmitHours = '/time-tracking/submit-hours';
