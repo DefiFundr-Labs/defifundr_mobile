@@ -10,7 +10,10 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/crea
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/contract_dates_step.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/payment_invoice_step.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/compliance_step.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/milestone.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/payment_milestone_step.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/review_sign_step.dart';
+
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/agreement_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/review_sign_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/completion_bottom_sheet.dart';
@@ -93,6 +96,12 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
   final TextEditingController _taxIdController = TextEditingController();
   final TextEditingController _taxRateController = TextEditingController();
 
+  // Step 5 Milestone state
+  List<Milestone> _milestones = [];
+  bool _requireDeposit = false;
+  final TextEditingController _depositAmountController =
+      TextEditingController();
+
   // Step 6 State
   String? _agreementType;
   final TextEditingController _additionalTermsController =
@@ -122,6 +131,7 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
     _firstInvoiceCustomAmountController.dispose();
     _taxIdController.dispose();
     _taxRateController.dispose();
+    _depositAmountController.dispose();
     _additionalTermsController.dispose();
     super.dispose();
   }
@@ -143,7 +153,9 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
         appBarTitle = 'Contract Dates';
         break;
       case 4:
-        appBarTitle = 'Payment & Invoice';
+        appBarTitle = _selectedContractType == ContractType.milestone
+            ? 'Payment & Milestone'
+            : 'Payment & Invoice';
         break;
       case 5:
         appBarTitle = 'Compliance';
@@ -227,44 +239,67 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
             noticePeriodController: _noticePeriodController,
             onNext: _nextStep,
           ),
-          PaymentInvoiceStep(
-            contractType: _selectedContractType,
-            selectedNetwork: _selectedNetwork,
-            selectedAsset: _selectedAsset,
-            rateUnit: _rateUnit,
-            paymentAmountController: _paymentAmountController,
-            invoiceFrequency: _invoiceFrequency,
-            issueInvoiceOn: _issueInvoiceOn,
-            issueSecondInvoiceOn: _issueSecondInvoiceOn,
-            monthlyInvoiceMode: _monthlyInvoiceMode,
-            paymentDue: _paymentDue,
-            firstInvoiceDateController: _firstInvoiceDateController,
-            firstInvoiceCustomAmountController:
-                _firstInvoiceCustomAmountController,
-            firstInvoiceAmountType: _firstInvoiceAmountType,
-            addInclusiveTax: _addInclusiveTax,
-            taxType: _taxType,
-            taxIdController: _taxIdController,
-            taxRateController: _taxRateController,
-            onNetworkChanged: (Network? val) =>
-                setState(() => _selectedNetwork = val),
-            onAssetChanged: (NetworkAsset? val) =>
-                setState(() => _selectedAsset = val),
-            onRateUnitChanged: (val) => setState(() => _rateUnit = val),
-            onFrequencyChanged: (val) =>
-                setState(() => _invoiceFrequency = val),
-            onIssueOnChanged: (val) => setState(() => _issueInvoiceOn = val),
-            onIssueSecondOnChanged: (val) =>
-                setState(() => _issueSecondInvoiceOn = val),
-            onMonthlyModeChanged: (val) =>
-                setState(() => _monthlyInvoiceMode = val),
-            onPaymentDueChanged: (val) => setState(() => _paymentDue = val),
-            onFirstInvoiceTypeChanged: (val) =>
-                setState(() => _firstInvoiceAmountType = val),
-            onTaxChanged: (val) => setState(() => _addInclusiveTax = val),
-            onTaxTypeChanged: (val) => setState(() => _taxType = val),
-            onNext: _nextStep,
-          ),
+          if (_selectedContractType == ContractType.milestone)
+            PaymentMilestoneStep(
+              selectedNetwork: _selectedNetwork,
+              selectedAsset: _selectedAsset,
+              milestones: _milestones,
+              requireDeposit: _requireDeposit,
+              depositAmountController: _depositAmountController,
+              onNetworkChanged: (val) => setState(() => _selectedNetwork = val),
+              onAssetChanged: (val) => setState(() => _selectedAsset = val),
+              onDepositToggled: (val) => setState(() => _requireDeposit = val),
+              onMilestoneAdded: (m) =>
+                  setState(() => _milestones = [..._milestones, m]),
+              onMilestoneEdited: (edited) => setState(() {
+                _milestones = _milestones
+                    .map((m) => m.id == edited.id ? edited : m)
+                    .toList();
+              }),
+              onMilestoneDeleted: (id) => setState(
+                  () => _milestones =
+                      _milestones.where((m) => m.id != id).toList()),
+              onNext: _nextStep,
+            )
+          else
+            PaymentInvoiceStep(
+              contractType: _selectedContractType,
+              selectedNetwork: _selectedNetwork,
+              selectedAsset: _selectedAsset,
+              rateUnit: _rateUnit,
+              paymentAmountController: _paymentAmountController,
+              invoiceFrequency: _invoiceFrequency,
+              issueInvoiceOn: _issueInvoiceOn,
+              issueSecondInvoiceOn: _issueSecondInvoiceOn,
+              monthlyInvoiceMode: _monthlyInvoiceMode,
+              paymentDue: _paymentDue,
+              firstInvoiceDateController: _firstInvoiceDateController,
+              firstInvoiceCustomAmountController:
+                  _firstInvoiceCustomAmountController,
+              firstInvoiceAmountType: _firstInvoiceAmountType,
+              addInclusiveTax: _addInclusiveTax,
+              taxType: _taxType,
+              taxIdController: _taxIdController,
+              taxRateController: _taxRateController,
+              onNetworkChanged: (Network? val) =>
+                  setState(() => _selectedNetwork = val),
+              onAssetChanged: (NetworkAsset? val) =>
+                  setState(() => _selectedAsset = val),
+              onRateUnitChanged: (val) => setState(() => _rateUnit = val),
+              onFrequencyChanged: (val) =>
+                  setState(() => _invoiceFrequency = val),
+              onIssueOnChanged: (val) => setState(() => _issueInvoiceOn = val),
+              onIssueSecondOnChanged: (val) =>
+                  setState(() => _issueSecondInvoiceOn = val),
+              onMonthlyModeChanged: (val) =>
+                  setState(() => _monthlyInvoiceMode = val),
+              onPaymentDueChanged: (val) => setState(() => _paymentDue = val),
+              onFirstInvoiceTypeChanged: (val) =>
+                  setState(() => _firstInvoiceAmountType = val),
+              onTaxChanged: (val) => setState(() => _addInclusiveTax = val),
+              onTaxTypeChanged: (val) => setState(() => _taxType = val),
+              onNext: _nextStep,
+            ),
           ComplianceStep(
             agreementType: _agreementType,
             additionalTermsController: _additionalTermsController,
@@ -318,6 +353,8 @@ class _CreateContractFlowScreenState extends State<CreateContractFlowScreen> {
       'firstInvoiceDate': _firstInvoiceDateController.text,
       'firstInvoiceType': _firstInvoiceAmountType,
       'rateUnit': _rateUnit,
+      'milestones': _milestones,
+      'requireDeposit': _requireDeposit,
       'includeTax': _addInclusiveTax,
       'agreementType': _agreementType,
       'additionalTerms': _additionalTermsController.text,

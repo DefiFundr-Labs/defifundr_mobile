@@ -1,12 +1,13 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/milestone.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/agreement_file_card.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/review_card.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/review_row.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/work_scope_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/agreement_file_card.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/work_scope_row.dart';
 
 class ReviewSignStep extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -27,42 +28,13 @@ class ReviewSignStep extends StatefulWidget {
 class _ReviewSignStepState extends State<ReviewSignStep> {
   bool _workScopeExpanded = false;
 
-  static const _dummy = {
-    'title': 'DefiFundr Mobile & Web App Redesign',
-    'type': 'Fixed Rate',
-    'jobRole': 'Senior DevOps Engineer',
-    'workScope':
-        'Infrastructure Management: Manage and optimize cloud-based infrastructure, ensuring scalability and reliability across all environments.',
-    'clientName': 'Adegboyega Oluwagbemiro',
-    'clientEmail': 'adeshinaadegboyega@icloud.com',
-    'clientPhone': '+234 (801) 234 5678',
-    'clientCountry': 'Nigeria',
-    'clientAddress':
-        'No 8 James Robertson Shittu/ Ogunlana Drive, Surulere | 142261',
-    'creationDate': '15 April 2025',
-    'startDate': '18 April 2025',
-    'endDate': '30 September 2025',
-    'noticePeriod': '30',
-    'networkName': 'Ethereum',
-    'assetName': 'USDT',
-    'amount': '581',
-    'amountUsd': '\$560.89',
-    'frequency': 'Weekly',
-    'issueOn': 'Monday',
-    'due': 'Same day',
-    'firstInvoiceDate': '15 September 2024',
-    'firstInvoiceType': 'Full amount',
-    'includeTax': false,
-    'agreementType': 'Standard',
-    'additionalTerms':
-        'In the event that any payment due under this Agreement is not received by the Contractor within fifteen (15) days after the due date, the Client agrees to pay a late fee of 1.5% per month on any overdue amount, or the maximum amount permitted by law, whichever is lower.',
-  };
-
-  Map<String, dynamic> get _data => _dummy;
+  Map<String, dynamic> get _data => widget.data;
 
   @override
   Widget build(BuildContext context) {
-    final isPayAsYouGo = _data['type'] == 'Pay as You Go';
+    final String contractType = _data['type'] ?? '';
+    final bool isMilestone = contractType == 'Milestone';
+    final bool isPayAsYouGo = contractType == 'Pay As You Go';
 
     return Column(
       children: [
@@ -128,57 +100,17 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
                           label: 'End Date', value: _data['endDate'] ?? '-'),
                       ReviewRow(
                           label: 'Termination notice period',
-                          value: '${_data['noticePeriod']} days'),
+                          value: '${_data['noticePeriod'] ?? '-'} days'),
                     ],
                   ),
                 ),
                 SizedBox(height: 16.h),
-                ReviewCard(
-                  title: 'Payment & invoice',
-                  onEdit: () => widget.onEdit(4),
-                  child: Column(
-                    children: [
-                      ReviewRow(
-                        label: 'Network',
-                        value: _data['networkName'] ?? '-',
-                        icon: _data['networkIcon'],
-                      ),
-                      ReviewRow(
-                        label: 'Asset',
-                        value: _data['assetName'] ?? '-',
-                        icon: _data['assetIcon'],
-                      ),
-                      ReviewRow(
-                        label: 'Payment Rate',
-                        value: '${_data["amount"]} ${_data["assetName"]}',
-                        subtitle: _data['amountUsd'] ?? '\$0.00',
-                      ),
-                      if (isPayAsYouGo)
-                        ReviewRow(
-                            label: 'Rate Unit',
-                            value: _data['rateUnit'] ?? '-'),
-                      ReviewRow(
-                          label: 'Invoice Frequency',
-                          value: _data['frequency'] ?? '-'),
-                      ReviewRow(
-                          label: 'Issue Invoice On',
-                          value: _data['issueOn'] ?? '-'),
-                      ReviewRow(
-                          label: 'Payment Due', value: _data['due'] ?? '-'),
-                      ReviewRow(
-                          label: 'First Invoice Date',
-                          value: _data['firstInvoiceDate'] ?? '-'),
-                      if (!isPayAsYouGo)
-                        ReviewRow(
-                            label: 'Amount',
-                            value:
-                                '${_data["firstInvoiceType"]} • ${_data["amount"]} ${_data["assetName"]}'),
-                      ReviewRow(
-                          label: 'Inclusive Tax',
-                          value: _data['includeTax'] == true ? 'Yes' : 'No'),
-                    ],
-                  ),
-                ),
+                if (isMilestone)
+                  _MilestonePaymentCard(data: _data, onEdit: widget.onEdit)
+                else if (isPayAsYouGo)
+                  _PayAsYouGoPaymentCard(data: _data, onEdit: widget.onEdit)
+                else
+                  _FixedRatePaymentCard(data: _data, onEdit: widget.onEdit),
                 SizedBox(height: 16.h),
                 ReviewCard(
                   title: 'Compliance',
@@ -220,6 +152,178 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _FixedRatePaymentCard extends StatelessWidget {
+  final Map<String, dynamic> data;
+  final Function(int) onEdit;
+
+  const _FixedRatePaymentCard({required this.data, required this.onEdit});
+
+  @override
+  Widget build(BuildContext context) {
+    return ReviewCard(
+      title: 'Payment & invoice',
+      onEdit: () => onEdit(4),
+      child: Column(
+        children: [
+          ReviewRow(
+            label: 'Network',
+            value: data['networkName'] ?? '-',
+            icon: data['networkIcon'],
+          ),
+          ReviewRow(
+            label: 'Asset',
+            value: data['assetName'] ?? '-',
+            icon: data['assetIcon'],
+          ),
+          ReviewRow(
+            label: 'Payment Rate',
+            value: '${data["amount"]} ${data["assetName"]}',
+            subtitle: data['amountUsd'] ?? '\$0.00',
+          ),
+          ReviewRow(
+              label: 'Invoice Frequency', value: data['frequency'] ?? '-'),
+          ReviewRow(label: 'Issue Invoice On', value: data['issueOn'] ?? '-'),
+          ReviewRow(label: 'Payment Due', value: data['due'] ?? '-'),
+          ReviewRow(
+              label: 'First Invoice Date',
+              value: data['firstInvoiceDate'] ?? '-'),
+          ReviewRow(
+            label: 'Amount',
+            value:
+                '${data["firstInvoiceType"]} • ${data["amount"]} ${data["assetName"]}',
+          ),
+          ReviewRow(
+              label: 'Inclusive Tax',
+              value: data['includeTax'] == true ? 'Yes' : 'No'),
+        ],
+      ),
+    );
+  }
+}
+
+class _PayAsYouGoPaymentCard extends StatelessWidget {
+  final Map<String, dynamic> data;
+  final Function(int) onEdit;
+
+  const _PayAsYouGoPaymentCard({required this.data, required this.onEdit});
+
+  @override
+  Widget build(BuildContext context) {
+    return ReviewCard(
+      title: 'Payment & invoice',
+      onEdit: () => onEdit(4),
+      child: Column(
+        children: [
+          ReviewRow(
+            label: 'Network',
+            value: data['networkName'] ?? '-',
+            icon: data['networkIcon'],
+          ),
+          ReviewRow(
+            label: 'Asset',
+            value: data['assetName'] ?? '-',
+            icon: data['assetIcon'],
+          ),
+          ReviewRow(label: 'Unit Type', value: data['rateUnit'] ?? '-'),
+          ReviewRow(
+            label: 'Payment Rate',
+            value: '${data["amount"]} ${data["assetName"]}',
+            subtitle: data['amountUsd'] ?? '\$0.00',
+          ),
+          ReviewRow(
+              label: 'Invoice Frequency', value: data['frequency'] ?? '-'),
+          ReviewRow(label: 'Issue Invoice On', value: data['issueOn'] ?? '-'),
+          ReviewRow(label: 'Payment Due', value: data['due'] ?? '-'),
+          ReviewRow(
+              label: 'First Invoice Date',
+              value: data['firstInvoiceDate'] ?? '-'),
+          ReviewRow(
+              label: 'Inclusive Tax',
+              value: data['includeTax'] == true ? 'Yes' : 'No'),
+        ],
+      ),
+    );
+  }
+}
+
+class _MilestonePaymentCard extends StatelessWidget {
+  final Map<String, dynamic> data;
+  final Function(int) onEdit;
+
+  const _MilestonePaymentCard({required this.data, required this.onEdit});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Milestone> milestones =
+        (data['milestones'] as List<Milestone>?) ?? [];
+    final bool requireDeposit = data['requireDeposit'] == true;
+
+    return ReviewCard(
+      title: 'Payment & milestone',
+      onEdit: () => onEdit(4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ReviewRow(
+            label: 'Network',
+            value: data['networkName'] ?? '-',
+            icon: data['networkIcon'],
+          ),
+          ReviewRow(
+            label: 'Asset',
+            value: data['assetName'] ?? '-',
+            icon: data['assetIcon'],
+          ),
+          ReviewRow(
+            label: 'Require a Deposit',
+            value: requireDeposit ? 'Yes' : 'No',
+          ),
+          if (milestones.isNotEmpty) ...[
+            Divider(
+              height: 24,
+              thickness: 1,
+              color: context.theme.colors.strokeSecondary,
+            ),
+            ...milestones.map(
+              (m) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ellipsify(word: m.name),
+                            style: context.theme.fonts.textMdSemiBold,
+                            maxLines: 1,
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            'Due by: ${m.dueDate}',
+                            style: context.theme.fonts.textSmRegular.copyWith(
+                              color: context.theme.colors.textSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      '${m.amount} ${data['assetName'] ?? 'USDT'}',
+                      style: context.theme.fonts.textMdSemiBold,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

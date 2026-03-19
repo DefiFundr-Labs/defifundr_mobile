@@ -37,7 +37,9 @@ class ContractDatesStep extends StatelessWidget {
                   AppTextField(
                     controller: startDateController,
                     hintText: 'Start date',
-                    suffixType: SuffixType.defaultt,
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Icon(Icons.calendar_today_outlined,
+                        color: context.theme.colors.grayTertiary),
                     readOnly: true,
                     onTap: () => _selectDate(context, startDateController),
                   ),
@@ -45,7 +47,9 @@ class ContractDatesStep extends StatelessWidget {
                   AppTextField(
                     controller: endDateController,
                     hintText: 'End date (optional)',
-                    suffixType: SuffixType.defaultt,
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Icon(Icons.calendar_today_outlined,
+                        color: context.theme.colors.grayTertiary),
                     readOnly: true,
                     onTap: () => _selectDate(context, endDateController),
                   ),
@@ -65,7 +69,8 @@ class ContractDatesStep extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.number,
                   ),
-                  if (contractType == ContractType.payAsYouGo) ...[
+                  if (contractType == ContractType.payAsYouGo ||
+                      contractType == ContractType.milestone) ...[
                     SizedBox(height: 12.h),
                     Text(
                       'Either party may terminate this contract by the specified notice, after which the contract will end.',
