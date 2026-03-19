@@ -82,7 +82,7 @@ class WorkspaceScreen extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12.w,
-                    mainAxisSpacing: 12.h,
+                    mainAxisSpacing: 16.h,
                     childAspectRatio: 1.05,
                   ),
                   itemCount: cards.length,

@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/modules/workspace/data/models/workspace_card_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ class WorkspaceCard extends StatelessWidget {
   final dynamic fonts;
 
   const WorkspaceCard({
+    super.key,
     required this.data,
     required this.isLight,
     required this.colors,
@@ -21,10 +23,10 @@ class WorkspaceCard extends StatelessWidget {
     return GestureDetector(
       onTap: data.onTap,
       child: Container(
-        padding: EdgeInsets.all(16.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         decoration: BoxDecoration(
           color: isLight ? colors.bgB0 : colors.bgB1,
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(8.r),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,9 +36,10 @@ class WorkspaceCard extends StatelessWidget {
               width: 24.w,
               height: 24.w,
             ),
-            SizedBox(height: 12.h),
+            SizedBox(height: 16.h),
             Text(
               data.title,
+              style: context.theme.fonts.textMdSemiBold,
             ),
             SizedBox(height: 4.h),
             Text(

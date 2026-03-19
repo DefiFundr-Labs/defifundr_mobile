@@ -22,13 +22,10 @@ class ReviewRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            flex: 2,
-            child: Text(
-              label,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                color: context.theme.colors.textSecondary,
-              ),
+          Text(
+            label,
+            style: context.theme.fonts.textMdRegular.copyWith(
+              color: context.theme.colors.textSecondary,
             ),
           ),
           const SizedBox(width: 20),

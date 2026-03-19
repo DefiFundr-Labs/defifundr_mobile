@@ -60,7 +60,7 @@ class PaymentDetailsSection extends StatelessWidget {
           hintText: 'Amount',
           keyboardType: TextInputType.number,
           textAlign: TextAlign.right,
-          contentPadding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
+          contentPadding: const EdgeInsets.only(top: 16, bottom: 16, right: 16),
           prefixType: PrefixType.customWidget,
           prefixWidget: GestureDetector(
             onTap: onSelectAsset,
