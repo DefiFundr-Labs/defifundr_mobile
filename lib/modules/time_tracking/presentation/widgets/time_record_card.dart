@@ -36,8 +36,8 @@ class TimeRecordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 12.0),
-      padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.only(bottom: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       decoration: BoxDecoration(
         color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(12.0),
@@ -50,32 +50,20 @@ class TimeRecordCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${_formatTime(timeRecord.startTime)} - ${_formatTime(timeRecord.endTime)}',
-                  style: context.theme.fonts.textMdSemiBold.copyWith(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: context.theme.colors.textPrimary,
-                  ),
-                ),
+                    '${_formatTime(timeRecord.startTime)} - ${_formatTime(timeRecord.endTime)}',
+                    style: context.theme.fonts.textMdSemiBold),
                 SizedBox(height: 4.0),
                 Text(
                   timeRecord.type,
                   style: context.theme.fonts.textSmRegular.copyWith(
-                    fontSize: 12.sp,
                     color: context.theme.colors.textSecondary,
                   ),
                 ),
               ],
             ),
           ),
-          Text(
-            _formatDuration(timeRecord.duration),
-            style: context.theme.fonts.textSmRegular.copyWith(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
-              color: context.theme.colors.textPrimary,
-            ),
-          ),
+          Text(_formatDuration(timeRecord.duration),
+              style: context.theme.fonts.textMdSemiBold),
           SizedBox(width: 8.0),
           GestureDetector(
             onTap: onEdit,

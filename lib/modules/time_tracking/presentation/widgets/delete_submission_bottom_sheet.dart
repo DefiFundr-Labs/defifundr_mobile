@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,23 +70,20 @@ class _DeleteSubmissionBottomSheetState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle bar
             Container(
               margin: EdgeInsets.only(top: 12.0),
-              width: 40,
-              height: 4,
+              width: 48,
+              height: 5,
               decoration: BoxDecoration(
-                color: context.theme.colors.fillTertiary,
+                color: context.theme.colors.grayTertiary.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(2.0),
               ),
             ),
-
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,15 +91,11 @@ class _DeleteSubmissionBottomSheetState
                       Text(
                         'Delete submission?',
                         textAlign: TextAlign.center,
-                        style: context.theme.fonts.heading3Bold.copyWith(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
-                          color: context.theme.colors.textPrimary,
-                        ),
+                        style: context.theme.fonts.heading3Bold,
                       ),
                     ],
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 4.0),
                   Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -109,14 +103,11 @@ class _DeleteSubmissionBottomSheetState
                         Text(
                           'Are you sure you want to delete this submission?',
                           style: context.theme.fonts.textMdRegular.copyWith(
-                            fontSize: 14.sp,
                             color: context.theme.colors.textSecondary,
                           ),
                         ),
                       ]),
-                  SizedBox(height: 24.0),
-
-                  // Submission Details
+                  SizedBox(height: 16.0),
                   Container(
                     padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
@@ -129,33 +120,20 @@ class _DeleteSubmissionBottomSheetState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '${widget.timesheet.formattedTotalHours} hours worked',
-                              style:
-                                  context.theme.fonts.textMdSemiBold.copyWith(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: context.theme.colors.textPrimary,
-                              ),
-                            ),
+                                '${widget.timesheet.formattedTotalHours} hours worked',
+                                style: context.theme.fonts.textMdSemiBold),
                             Text(
-                              '${widget.timesheet.calculatedAmount.toInt()} ${widget.timesheet.currency}',
-                              style:
-                                  context.theme.fonts.textMdSemiBold.copyWith(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: context.theme.colors.textPrimary,
-                              ),
-                            ),
+                                '${widget.timesheet.calculatedAmount.toInt()} ${widget.timesheet.currency}',
+                                style: context.theme.fonts.textMdSemiBold),
                           ],
                         ),
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Submitted: ${_formatDate(widget.timesheet.submissionDate)}',
                               style: context.theme.fonts.textSmRegular.copyWith(
-                                fontSize: 12.sp,
                                 color: context.theme.colors.textSecondary,
                               ),
                             ),
@@ -167,40 +145,22 @@ class _DeleteSubmissionBottomSheetState
                       ],
                     ),
                   ),
-
-                  SizedBox(height: 24.0),
-
-                  // Reason Text Field
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      border: Border.all(color: Colors.grey[200]!),
-                    ),
-                    child: TextField(
-                      controller: reasonController,
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        hintText: 'Provide a reason *',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.all(16.0),
-                      ),
-                    ),
+                  SizedBox(height: 20),
+                  AppTextField(
+                    controller: reasonController,
+                    maxLine: 4,
+                    hintText: 'Provide a reason',
                   ),
-
-                  SizedBox(height: 32.0),
-
+                  SizedBox(height: 24),
                   Row(
                     children: [
                       Expanded(
                         child: PrimaryButton(
                           text: 'Go back',
                           enableShine: false,
-                          color: context.theme.colors.fillTertiary,
-                          textColor: context.theme.colors.textSecondary,
+                          color: context.theme.colors.grayTertiary
+                              .withOpacity(0.4),
+                          textColor: context.theme.colors.textPrimary,
                           onPressed: () => context.router.maybePop(),
                         ),
                       ),
@@ -223,7 +183,6 @@ class _DeleteSubmissionBottomSheetState
                       ),
                     ],
                   ),
-
                   SizedBox(height: 16.0),
                 ],
               ),

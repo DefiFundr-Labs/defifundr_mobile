@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 
 class AddTimeRecordBottomSheet extends StatefulWidget {
   final TimeRecord? timeRecord;
@@ -19,9 +21,10 @@ class AddTimeRecordBottomSheet extends StatefulWidget {
 }
 
 class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
-  TimeOfDay startTime = TimeOfDay(hour: 12, minute: 40);
-  TimeOfDay endTime = TimeOfDay(hour: 15, minute: 40);
+  TimeOfDay? startTime;
+  TimeOfDay? endTime;
   String selectedType = 'Regular hours';
+  late TextEditingController typeController;
 
   final List<String> recordTypes = [
     'Regular hours',
@@ -38,12 +41,19 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
       endTime = TimeOfDay.fromDateTime(record.endTime);
       selectedType = record.type;
     }
+    typeController = TextEditingController(text: selectedType);
+  }
+
+  @override
+  void dispose() {
+    typeController.dispose();
+    super.dispose();
   }
 
   void _selectStartTime() async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: startTime,
+      initialTime: startTime ?? TimeOfDay.now(),
     );
 
     if (picked != null) {
@@ -56,7 +66,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
   void _selectEndTime() async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: endTime,
+      initialTime: endTime ?? TimeOfDay.now(),
     );
 
     if (picked != null) {
@@ -67,39 +77,46 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
   }
 
   Duration _calculateDuration() {
+    if (startTime == null || endTime == null) return Duration.zero;
     final DateTime now = DateTime.now();
     final DateTime start = DateTime(
       now.year,
       now.month,
       now.day,
-      startTime.hour,
-      startTime.minute,
+      startTime!.hour,
+      startTime!.minute,
     );
     final DateTime end = DateTime(
       now.year,
       now.month,
       now.day,
-      endTime.hour,
-      endTime.minute,
+      endTime!.hour,
+      endTime!.minute,
     );
 
     return end.difference(start);
   }
 
   String _formatDuration(Duration duration) {
-    if (duration.isNegative) return '--';
+    if (duration.inSeconds <= 0) return '--';
     int hours = duration.inHours;
     int minutes = duration.inMinutes.remainder(60);
     return '${hours}h ${minutes}m';
   }
 
-  String _formatTime(TimeOfDay time) {
+  String _formatTime(TimeOfDay? time) {
+    if (time == null) return '--:--';
     String hour = time.hour.toString().padLeft(2, '0');
     String minute = time.minute.toString().padLeft(2, '0');
     return '$hour:$minute';
   }
 
   void _saveRecord() {
+    if (startTime == null || endTime == null) {
+      AppSnackbar.showError(context, 'Please select both start and end times');
+      return;
+    }
+
     final duration = _calculateDuration();
 
     if (duration.isNegative) {
@@ -115,15 +132,15 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
         now.year,
         now.month,
         now.day,
-        startTime.hour,
-        startTime.minute,
+        startTime!.hour,
+        startTime!.minute,
       ),
       endTime: DateTime(
         now.year,
         now.month,
         now.day,
-        endTime.hour,
-        endTime.minute,
+        endTime!.hour,
+        endTime!.minute,
       ),
       type: selectedType,
       duration: duration,
@@ -133,7 +150,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
   }
 
   void _deleteRecord() {
-    context.router.maybePop('delete');
+    context.router.maybePop();
   }
 
   @override
@@ -155,81 +172,71 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle bar
             Container(
               margin: EdgeInsets.only(top: 12.0),
-              width: 40,
-              height: 4,
+              width: 48,
+              height: 5,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: context.theme.colors.grayTertiary.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(2.0),
               ),
             ),
-
-            // Header
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text(
-                isEdit ? 'Edit hours worked' : 'Record hours worked',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-
+            SizedBox(height: 12),
+            Text(isEdit ? 'Edit hours worked' : 'Record hours worked',
+                style: context.theme.fonts.heading3Bold),
+            SizedBox(height: 8.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Record Type Dropdown
-                  Container(
-                    width: double.infinity,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-                    decoration: BoxDecoration(
-                      color: context.theme.colors.bgB1,
-                      borderRadius: BorderRadius.circular(12.0),
-                      border: Border.all(
-                        color: context.theme.colors.strokeSecondary,
-                      ),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: selectedType,
-                        hint: Text(
-                          'Record type',
-                          style: context.theme.fonts.textMdRegular.copyWith(
-                            color: context.theme.colors.textTertiary,
-                          ),
-                        ),
-                        items: recordTypes.map((String type) {
-                          return DropdownMenuItem<String>(
-                            value: type,
-                            child: Text(
-                              type,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        dropdownColor: context.theme.colors.bgB1,
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            setState(() {
-                              selectedType = newValue;
-                            });
-                          }
-                        },
-                        icon: Icon(Icons.keyboard_arrow_down,
+                  Stack(
+                    children: [
+                      AppTextField(
+                        labelText: 'Record type',
+                        controller: typeController,
+                        readOnly: true,
+                        hintText: 'Record type',
+                        suffixType: SuffixType.customIcon,
+                        suffixIcon: Icon(Icons.keyboard_arrow_down,
                             color: Colors.grey[600]),
                       ),
-                    ),
+                      Positioned.fill(
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: selectedType,
+                            isExpanded: true,
+                            iconSize: 0,
+                            dropdownColor: context.theme.colors.bgB1,
+                            items: recordTypes.map((String type) {
+                              return DropdownMenuItem<String>(
+                                value: type,
+                                child: Text(
+                                  type,
+                                  style:
+                                      context.theme.fonts.textMdMedium.copyWith(
+                                    color: context.theme.colors.textPrimary,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            selectedItemBuilder: (BuildContext context) {
+                              return recordTypes.map((String type) {
+                                return const SizedBox.shrink();
+                              }).toList();
+                            },
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  selectedType = newValue;
+                                  typeController.text = newValue;
+                                });
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
                   SizedBox(height: 20.0),
@@ -260,22 +267,12 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                                       'Start time',
                                       style: context.theme.fonts.textSmRegular
                                           .copyWith(
-                                        fontSize: 14.sp,
-                                        color:
-                                            context.theme.colors.textSecondary,
-                                      ),
+                                              color: context
+                                                  .theme.colors.textSecondary),
                                     ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      _formatTime(startTime),
-                                      style: context.theme.fonts.textMdRegular
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color:
-                                            context.theme.colors.textSecondary,
-                                      ),
-                                    ),
+                                    Text(_formatTime(startTime),
+                                        style:
+                                            context.theme.fonts.textMdRegular),
                                   ],
                                 ),
                                 Spacer(),
@@ -312,22 +309,12 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                                       'End time',
                                       style: context.theme.fonts.textSmRegular
                                           .copyWith(
-                                        fontSize: 14.sp,
-                                        color:
-                                            context.theme.colors.textSecondary,
-                                      ),
+                                              color: context
+                                                  .theme.colors.textSecondary),
                                     ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      _formatTime(endTime),
-                                      style: context.theme.fonts.textMdRegular
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color:
-                                            context.theme.colors.textSecondary,
-                                      ),
-                                    ),
+                                    Text(_formatTime(endTime),
+                                        style:
+                                            context.theme.fonts.textMdRegular),
                                   ],
                                 ),
                                 Spacer(),
@@ -342,10 +329,7 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 20.0),
-
-                  // Duration Display
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(16.0),
@@ -360,48 +344,27 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                         Text(
                           'No of hours',
                           style: context.theme.fonts.textMdRegular.copyWith(
-                            fontSize: 14.sp,
                             color: context.theme.colors.textSecondary,
                           ),
                         ),
-                        Text(
-                          _formatDuration(_calculateDuration()),
-                          style: context.theme.fonts.textMdMedium.copyWith(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                            color: context.theme.colors.textPrimary,
-                          ),
-                        ),
+                        Text(_formatDuration(_calculateDuration()),
+                            style: context.theme.fonts.textMdMedium),
                       ],
                     ),
                   ),
-
-                  SizedBox(height: 32.0),
-
-                  // Action Buttons
+                  SizedBox(height: 24.0),
                   if (isEdit)
                     Row(
                       children: [
                         Expanded(
-                          child: TextButton(
+                          flex: 1,
+                          child: PrimaryButton(
+                            color: Colors.transparent,
+                            borderColor: context.theme.colors.redDefault,
+                            textColor: context.theme.colors.redDefault,
+                            text: 'Delete',
+                            enableShine: false,
                             onPressed: _deleteRecord,
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              side: BorderSide(
-                                  color: context.theme.colors.redDefault,
-                                  width: 2),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(26),
-                              ),
-                            ),
-                            child: Text(
-                              'Delete',
-                              style: context.theme.fonts.textMdMedium.copyWith(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: context.theme.colors.redDefault,
-                              ),
-                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -421,7 +384,6 @@ class _AddTimeRecordBottomSheetState extends State<AddTimeRecordBottomSheet> {
                       enableShine: false,
                       text: 'Add record',
                     ),
-
                   SizedBox(height: 20.0),
                 ],
               ),

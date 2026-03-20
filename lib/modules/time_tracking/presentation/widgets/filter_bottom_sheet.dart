@@ -1,5 +1,8 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   final String selectedMonth;
@@ -23,19 +26,24 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   late String selectedMonth;
   late int selectedYear;
   late String selectedDateRange;
+  List<String> dynamicDateRanges = [];
 
   final List<String> months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
 
-  final List<String> dateRanges = [
-    'January 01 - January 07',
-    'January 08 - January 14',
-    'January 15 - January 21',
-    'January 22 - January 28',
-    'January 29 - January 31',
-  ];
+  final List<int> years = [2024, 2025, 2026, 2027];
 
   @override
   void initState() {
@@ -43,126 +51,183 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     selectedMonth = widget.selectedMonth;
     selectedYear = widget.selectedYear;
     selectedDateRange = widget.selectedDateRange;
+    _updateDateRanges();
+  }
+
+  void _updateDateRanges() {
+    int monthIndex = months.indexOf(selectedMonth) + 1;
+    int lastDay = DateTime(selectedYear, monthIndex + 1, 0).day;
+    
+    dynamicDateRanges.clear();
+    
+    for (int i = 1; i <= lastDay; i += 7) {
+      int endDay = i + 6;
+      if (endDay > lastDay) endDay = lastDay;
+      
+      String startStr = '$selectedMonth ${i.toString().padLeft(2, '0')}';
+      String endStr = '$selectedMonth ${endDay.toString().padLeft(2, '0')}';
+      dynamicDateRanges.add('$startStr - $endStr');
+    }
+    
+    if (!dynamicDateRanges.contains(selectedDateRange) && dynamicDateRanges.isNotEmpty) {
+      selectedDateRange = dynamicDateRanges.first;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+        color: context.theme.colors.bgB0,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
         ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Handle bar
-          Container(
-            margin: EdgeInsets.only(top: 12.0),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(2.0),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 12.0),
+              width: 48.w,
+              height: 5.h,
+              decoration: BoxDecoration(
+                color: context.theme.colors.strokePrimary,
+                borderRadius: BorderRadius.circular(2.0),
+              ),
             ),
           ),
-          
-          // Header
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Row(
-              children: [
-                Text(
-                  'Filter by',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
-            ),
+          Text(
+            'Filter by',
+            style: context.theme.fonts.heading2Bold,
           ),
-
-          // Month & Year Section
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Month & Year',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: Colors.grey[200]!),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        selectedMonth,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+          SizedBox(height: 12.h),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Month & Year',
+                style: context.theme.fonts.textBaseSemiBold,
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 4.0),
+                      decoration: BoxDecoration(
+                        color: context.theme.colors.bgB0,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                            color: context.theme.colors.strokePrimary),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: selectedMonth,
+                          isDense: false,
+                          isExpanded: true,
+                          elevation: 1,
+                          dropdownColor: context.theme.colors.bgB0,
+                          borderRadius: BorderRadius.circular(12.0),
+                          icon: Icon(Icons.keyboard_arrow_down, color: context.theme.colors.textSecondary),
+                          style: context.theme.fonts.textMdRegular.copyWith(color: context.theme.colors.textPrimary),
+                          onChanged: (String? newValue) {
+                            if (newValue != null) {
+                              setState(() {
+                                selectedMonth = newValue;
+                                _updateDateRanges();
+                              });
+                            }
+                          },
+                          items: months.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
                       ),
-                      Text(
-                        selectedYear.toString(),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 4.0),
+                      decoration: BoxDecoration(
+                        color: context.theme.colors.bgB0,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                            color: context.theme.colors.strokePrimary),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: selectedYear,
+                          isDense: false,
+                          isExpanded: true,
+                          elevation: 1,
+                          dropdownColor: context.theme.colors.bgB0,
+                          borderRadius: BorderRadius.circular(12.0),
+                          icon: Icon(Icons.keyboard_arrow_down, color: context.theme.colors.textSecondary),
+                          style: context.theme.fonts.textMdRegular.copyWith(color: context.theme.colors.textPrimary),
+                          onChanged: (int? newValue) {
+                            if (newValue != null) {
+                              setState(() {
+                                selectedYear = newValue;
+                                _updateDateRanges();
+                              });
+                            }
+                          },
+                          items: years.map<DropdownMenuItem<int>>((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text(value.toString()),
+                            );
+                          }).toList(),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 24.0),
-              ],
-            ),
+                ],
+              ),
+              const SizedBox(height: 24.0),
+            ],
           ),
-
-          // Date Range Section
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Date Range',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                ...dateRanges.map((range) => _buildDateRangeOption(range)).toList(),
-                SizedBox(height: 32.0),
-              ],
-            ),
+          Divider(
+            color: context.theme.colors.strokeSecondary,
+            thickness: 1,
+            height: 1,
           ),
-
-          // Bottom Buttons
+          const SizedBox(height: 24.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Date Range',
+                style: context.theme.fonts.textBaseSemiBold,
+              ),
+              const SizedBox(height: 16.0),
+              ...dynamicDateRanges
+                  .map((range) => _buildDateRangeOption(range, context))
+                  .toList(),
+              const SizedBox(height: 32.0),
+            ],
+          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 40.0),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 40.0),
             child: Row(
               children: [
                 Expanded(
-                  child: TextButton(
+                  child: SecondaryButton(
+                    text: 'Clear all',
+                    backgroundColor: context.theme.colors.fillTertiary,
+                    borderColor: Colors.transparent,
+                    enableShine: false,
+                    textColor: context.theme.colors.textPrimary,
                     onPressed: () {
                       setState(() {
                         selectedMonth = 'January';
@@ -170,46 +235,21 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         selectedDateRange = 'January 08 - January 14';
                       });
                     },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                    ),
-                    child: Text(
-                      'Clear all',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[700],
-                      ),
-                    ),
                   ),
                 ),
-                SizedBox(width: 16.0),
+                const SizedBox(width: 16.0),
                 Expanded(
-                  flex: 2,
-                  child: ElevatedButton(
+                  child: SecondaryButton(
+                    text: 'Show results',
+                    backgroundColor: context.theme.colors.brandDefault,
+                    borderColor: Colors.transparent,
+                    enableShine: false,
+                    textColor: context.theme.colors.contrastWhite,
                     onPressed: () {
-                      widget.onFilterApplied(selectedMonth, selectedYear, selectedDateRange);
+                      widget.onFilterApplied(
+                          selectedMonth, selectedYear, selectedDateRange);
                       context.router.maybePop();
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6366F1),
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      'Show results',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
                   ),
                 ),
               ],
@@ -220,64 +260,41 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     );
   }
 
-  Widget _buildDateRangeOption(String range) {
+  Widget _buildDateRangeOption(String range, BuildContext context) {
     bool isSelected = range == selectedDateRange;
-    
-    return Container(
-      margin: EdgeInsets.only(bottom: 12.0),
-      child: InkWell(
-        onTap: () {
-          setState(() {
-            selectedDateRange = range;
-          });
-        },
-        borderRadius: BorderRadius.circular(12.0),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12.0),
-            border: Border.all(
-              color: isSelected ? Color(0xFF6366F1) : Colors.grey[200]!,
-              width: isSelected ? 2 : 1,
+
+    return InkWell(
+      onTap: () {
+        setState(() {
+          selectedDateRange = range;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              range,
+              style: context.theme.fonts.textMdMedium.copyWith(
+                color: context.theme.colors.textPrimary,
+              ),
             ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                range,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: isSelected ? Color(0xFF6366F1) : Colors.black87,
+            Container(
+              width: 20,
+              height: 20,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.theme.colors.bgB0,
+                border: Border.all(
+                  color: isSelected
+                      ? context.theme.colors.brandDefault
+                      : context.theme.colors.strokePrimary,
+                  width: isSelected ? 5.5 : 1.5,
                 ),
               ),
-              if (isSelected)
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF6366F1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.check,
-                    size: 14,
-                    color: Colors.white,
-                  ),
-                )
-              else
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey[300]!),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -58,19 +58,13 @@ class DateSelector extends StatelessWidget {
               children: [
                 Text(
                   'Select date',
-                  style: context.theme.fonts.textMdRegular.copyWith(
-                    fontSize: 12.sp,
+                  style: context.theme.fonts.textSmRegular.copyWith(
                     color: context.theme.colors.textSecondary,
                   ),
                 ),
-                SizedBox(height: 4.0),
-                Text(
-                  _formatDate(selectedDate),
-                  style: context.theme.fonts.textMdRegular.copyWith(
-                    fontSize: 16.sp,
-                    color: context.theme.colors.textPrimary,
-                  ),
-                ),
+                SizedBox(height: 2.h),
+                Text(_formatDate(selectedDate),
+                    style: context.theme.fonts.textMdRegular),
               ],
             ),
             SvgPicture.asset(

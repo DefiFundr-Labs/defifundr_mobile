@@ -7,13 +7,16 @@ import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_tim
 import 'package:defifundr_mobile/modules/time_tracking/data/models/time_record.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/work_submission.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/attachment_section.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/date_selector.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/submission_summary.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/time_record_card.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/widgets/work_description_field.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/add_time_record_bottom_sheet.dart';
 import '../widgets/success_bottom_sheet.dart';
 import 'package:auto_route/auto_route.dart';
@@ -33,6 +36,7 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
   late DateTime selectedDate;
   List<TimeRecord> timeRecords = [];
   late TextEditingController workDescriptionController;
+  late TextEditingController dateController;
   String? attachmentName;
 
   @override
@@ -41,12 +45,13 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
     selectedDate = widget.timesheet.date;
     workDescriptionController =
         TextEditingController(text: widget.timesheet.description);
+    dateController = TextEditingController(
+        text: DateFormat('MMM d, yyyy').format(selectedDate));
     attachmentName = widget.timesheet.attachmentName;
     _initializeTimeRecords();
   }
 
   void _initializeTimeRecords() {
-    // Create sample time records based on the original submission
     timeRecords = [
       TimeRecord(
         id: '1',
@@ -90,6 +95,7 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
   @override
   void dispose() {
     workDescriptionController.dispose();
+    dateController.dispose();
     super.dispose();
   }
 
@@ -142,12 +148,12 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        dateController.text = DateFormat('MMM d, yyyy').format(selectedDate);
       });
     }
   }
 
   void _uploadAttachment() {
-    // Simulate file upload
     setState(() {
       attachmentName = 'File name';
     });
@@ -179,7 +185,6 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
       currency: widget.timesheet.currency,
     );
 
-    // Show success bottom sheet
     await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -193,45 +198,33 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
   }
 
   Widget _buildRejectionReasonBanner() {
-    if (widget.timesheet.rejectionReason == null) return SizedBox.shrink();
+    if (widget.timesheet.status != TimeOffStatus.rejected) {
+      return SizedBox.shrink();
+    }
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(12.0),
       margin: EdgeInsets.only(bottom: 24.0),
       decoration: BoxDecoration(
-        color: context.theme.colors.redDefault,
-        borderRadius: BorderRadius.circular(12.0),
+        color: context.theme.colors.redFill,
+        borderRadius: BorderRadius.circular(8.0),
         border: Border.all(color: context.theme.colors.redStroke),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(
-                Icons.error_outline,
-                color: context.theme.colors.redStroke,
-                size: 20,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                'Reason for rejection',
-                style: context.theme.fonts.textMdMedium.copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: context.theme.colors.redDefault,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 8.0),
           Text(
-            widget.timesheet.rejectionReason!,
-            style: context.theme.fonts.textMdRegular.copyWith(
-              fontSize: 14.sp,
+            'Reason for rejection',
+            style: context.theme.fonts.textMdSemiBold.copyWith(
               color: context.theme.colors.redDefault,
-              height: 1.4,
+            ),
+          ),
+          SizedBox(height: 2.h),
+          Text(
+            "Post-optimization logs showed a spike in timeout errors, and the performance gains weren’t consistent under load.",
+            style: context.theme.fonts.textMdRegular.copyWith(
+              color: context.theme.colors.textSecondary,
             ),
           ),
         ],
@@ -248,140 +241,139 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3SemiBold,
           isBack: true,
-          title: 'Resubmit hours',
+          title: 'Resubmit hours worked',
           actions: [],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Rejection Reason Banner
-            _buildRejectionReasonBanner(),
-
-            // Date Selector
-            DateSelector(
-              selectedDate: selectedDate,
-              onDateSelected: _selectDate,
-            ),
-            SizedBox(height: 24.0),
-
-            // Record Items Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Record items',
-                  style: context.theme.fonts.textMdMedium.copyWith(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: context.theme.colors.textPrimary,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildRejectionReasonBanner(),
+                  AppTextField(
+                    controller: dateController,
+                    readOnly: true,
+                    labelText: 'Select Date',
+                    hintText: 'Select Date',
+                    onTap: _selectDate,
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: SvgPicture.asset(Assets.icons.calendar,
+                        color: context.theme.colors.graySecondary),
                   ),
-                ),
-                GestureDetector(
-                  onTap: _addTimeRecord,
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    decoration: BoxDecoration(
-                      color: context.theme.colors.fillTertiary,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Text(
-                      'Add record',
-                      style: context.theme.fonts.textMdMedium.copyWith(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                        color: context.theme.colors.textPrimary,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16.0),
-
-            // Time Records or Empty State
-            if (timeRecords.isEmpty)
-              Container(
-                padding: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: context.theme.colors.bgB0,
-                  borderRadius: BorderRadius.circular(12.0),
-                  border: Border.all(
-                    color: context.theme.colors.strokeSecondary,
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      color: context.theme.colors.textSecondary,
-                      size: 20,
-                    ),
-                    SizedBox(width: 8.w),
-                    Expanded(
-                      child: Text(
-                        'You currently have no time record added.',
-                        style: context.theme.fonts.textMdRegular.copyWith(
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Record items',
+                        style: context.theme.fonts.textMdMedium.copyWith(
                           fontSize: 14.sp,
-                          color: context.theme.colors.textSecondary,
+                          fontWeight: FontWeight.w600,
+                          color: context.theme.colors.textPrimary,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            else
-              ...timeRecords.asMap().entries.map((entry) {
-                int index = entry.key;
-                TimeRecord record = entry.value;
-                return TimeRecordCard(
-                  timeRecord: record,
-                  onEdit: () => _editTimeRecord(index),
-                  onDelete: () => _deleteTimeRecord(index),
-                );
-              }).toList(),
-
-            SizedBox(height: 24.0),
-
-            // Work Description
-            WorkDescriptionField(
-              controller: workDescriptionController,
-            ),
-            SizedBox(height: 24.0),
-
-            // Attachment Section
-            AttachmentSection(
-              attachmentName: attachmentName,
-              onUpload: _uploadAttachment,
-              onRemove: _removeAttachment,
-            ),
-            SizedBox(height: 24.0),
-
-            // Submission Summary
-            SubmissionSummary(
-              totalHours: timeRecords.isNotEmpty
-                  ? timeRecords.fold(
-                      Duration.zero,
-                      (total, record) => total + record.duration,
+                      GestureDetector(
+                        onTap: _addTimeRecord,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                          decoration: BoxDecoration(
+                            color: context.theme.colors.fillTertiary,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Text(
+                            'Add record',
+                            style: context.theme.fonts.textMdMedium.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              color: context.theme.colors.textPrimary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  if (timeRecords.isEmpty)
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                        color: context.theme.colors.bgB0,
+                        borderRadius: BorderRadius.circular(12.0),
+                        border: Border.all(
+                          color: context.theme.colors.strokeSecondary,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.info_outline,
+                            color: context.theme.colors.textSecondary,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8.w),
+                          Expanded(
+                            child: Text(
+                              'You currently have no time record added.',
+                              style: context.theme.fonts.textMdRegular.copyWith(
+                                fontSize: 14.sp,
+                                color: context.theme.colors.textSecondary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     )
-                  : Duration.zero,
-              hourlyRate: widget.timesheet.hourlyRate,
-              currency: widget.timesheet.currency,
+                  else
+                    ...timeRecords.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      TimeRecord record = entry.value;
+                      return TimeRecordCard(
+                        timeRecord: record,
+                        onEdit: () => _editTimeRecord(index),
+                        onDelete: () => _deleteTimeRecord(index),
+                      );
+                    }).toList(),
+                  SizedBox(height: 20),
+                  AppTextField(
+                    controller: workDescriptionController,
+                    hintText: 'Work description',
+                    maxLine: 6,
+                  ),
+                  SizedBox(height: 20.0),
+                  AttachmentSection(
+                    attachmentName: attachmentName,
+                    onUpload: _uploadAttachment,
+                    onRemove: _removeAttachment,
+                  ),
+                  SizedBox(height: 20),
+                  SubmissionSummary(
+                    totalHours: timeRecords.isNotEmpty
+                        ? timeRecords.fold(
+                            Duration.zero,
+                            (total, record) => total + record.duration,
+                          )
+                        : Duration.zero,
+                    hourlyRate: widget.timesheet.hourlyRate,
+                    currency: widget.timesheet.currency,
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: 32.0),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-        child: PrimaryButton(
-          onPressed: _submitHours,
-          enableShine: false,
-          text: 'Resubmit worked hours',
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: PrimaryButton(
+              onPressed: _submitHours,
+              enableShine: false,
+              text: 'Resubmit hours worked',
+            ),
+          ),
+        ],
       ),
     );
   }

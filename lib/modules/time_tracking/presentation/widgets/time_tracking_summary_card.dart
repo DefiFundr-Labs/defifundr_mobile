@@ -13,44 +13,39 @@ class TimeTrackingSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16.0,
+        mainAxisSpacing: 16.0,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        childAspectRatio: 1.3,
         children: [
-          Row(
-            children: [
-              _buildSummaryItem(
-                icon: Assets.icons.clock,
-                label: 'Total hours logged',
-                value: '${summary.totalHours} h',
-                context: context,
-              ),
-              SizedBox(width: 20.0),
-              _buildSummaryItem(
-                icon: Assets.icons.checkCircle,
-                label: 'Approved hours',
-                value: '${summary.approvedHours} h',
-                context: context,
-              ),
-            ],
+          _buildSummaryItem(
+            icon: Assets.icons.clock,
+            label: 'Total hours logged',
+            value: '${summary.totalHours} h',
+            context: context,
           ),
-          SizedBox(height: 24.0),
-          Row(
-            children: [
-              _buildSummaryItem(
-                icon: Assets.icons.clockCountdown,
-                label: 'Pending hours',
-                value: '${summary.pendingHours} h',
-                context: context,
-              ),
-              SizedBox(width: 20.0),
-              _buildSummaryItem(
-                icon: Assets.icons.prohibit,
-                label: 'Denied hours',
-                value: '${summary.deniedHours} h',
-                context: context,
-              ),
-            ],
+          _buildSummaryItem(
+            icon: Assets.icons.checkCircle,
+            label: 'Approved hours',
+            value: '${summary.approvedHours} h',
+            context: context,
+          ),
+          _buildSummaryItem(
+            icon: Assets.icons.clockCountdown,
+            label: 'Pending hours',
+            value: '${summary.pendingHours} h',
+            context: context,
+          ),
+          _buildSummaryItem(
+            icon: Assets.icons.prohibit,
+            label: 'Denied hours',
+            value: '${summary.deniedHours} h',
+            context: context,
           ),
         ],
       ),
@@ -63,56 +58,38 @@ class TimeTrackingSummaryCard extends StatelessWidget {
     required String value,
     required BuildContext context,
   }) {
-    return Expanded(
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        decoration: ShapeDecoration(
-          color: context.theme.colors.bgB0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          shadows: [
-            BoxShadow(
-              color: context.theme.colors.textSecondary,
-              blurRadius: 1,
-              offset: Offset(0, 1),
-              spreadRadius: -5,
-            )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset(
-                  icon,
-                  height: 20.sp,
-                  width: 20.sp,
-                ),
-              ],
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              label,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                color: context.theme.colors.textSecondary,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                height: 1.43,
-              ),
-            ),
-            SizedBox(height: 4.0),
-            Text(
-              value,
-              style: TextStyle(
-                color: context.theme.colors.textPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                height: 1.33,
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.all(16.sp),
+      decoration: ShapeDecoration(
+        color: context.theme.colors.bgB0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shadows: [
+          BoxShadow(
+            color: context.theme.colors.textSecondary,
+            blurRadius: 1,
+            offset: Offset(0, 1),
+            spreadRadius: -5,
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            icon,
+            height: 20.sp,
+            width: 20.sp,
+          ),
+          SizedBox(height: 8.0),
+          Text(
+            label,
+            style: context.theme.fonts.textMdRegular
+                .copyWith(color: context.theme.colors.textSecondary),
+          ),
+          SizedBox(height: 4.0),
+          Text(value, style: context.theme.fonts.heading3SemiBold),
+        ],
       ),
     );
   }

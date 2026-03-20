@@ -22,14 +22,7 @@ class AttachmentSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Attachment (Optional)',
-          style: context.theme.fonts.textMdMedium.copyWith(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-            color: context.theme.colors.textPrimary,
-          ),
-        ),
+        Text('Attachment (Optional)', style: context.theme.fonts.textMdMedium),
         SizedBox(height: 12.0),
         if (attachmentName == null)
           GestureDetector(
@@ -41,7 +34,7 @@ class AttachmentSection extends StatelessWidget {
                 color: context.theme.colors.brandFill,
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
-                  color: context.theme.colors.brandDefaultContrast,
+                  color: context.theme.colors.brandStroke,
                   style: BorderStyle.solid,
                 ),
               ),
@@ -50,8 +43,6 @@ class AttachmentSection extends StatelessWidget {
                   Text(
                     'Click to upload',
                     style: context.theme.fonts.textMdMedium.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
                       color: context.theme.colors.brandDefaultContrast,
                     ),
                   ),
@@ -96,37 +87,23 @@ class AttachmentSection extends StatelessWidget {
             width: context.screenWidth(),
             child: Text.rich(
               TextSpan(
-                style: context.theme.fonts.textBaseMedium.copyWith(
-                  color: context.theme.colors.textSecondary,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  height: 1.33,
-                ),
+                style: context.theme.fonts.textSmRegular
+                    .copyWith(color: context.theme.colors.textSecondary),
                 children: [
                   TextSpan(
                     text: 'Supported formats: ',
                   ),
                   TextSpan(
-                    text: 'JPG, PNG, HEIC or PDF. ',
-                    style: context.theme.fonts.textBaseSemiBold.copyWith(
-                      color: context.theme.colors.textPrimary,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      height: 1.33,
-                    ),
-                  ),
+                      text: 'JPG, PNG, HEIC or PDF. ',
+                      style: context.theme.fonts.textSmMedium
+                          .copyWith(color: context.theme.colors.textPrimary)),
                   TextSpan(
                     text: 'Use ',
                   ),
                   TextSpan(
-                    text: '.ZIP',
-                    style: context.theme.fonts.textBaseSemiBold.copyWith(
-                      color: context.theme.colors.textPrimary,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      height: 1.33,
-                    ),
-                  ),
+                      text: '.ZIP',
+                      style: context.theme.fonts.textSmMedium
+                          .copyWith(color: context.theme.colors.textPrimary)),
                   TextSpan(
                     text: ' to upload multiple files.',
                   ),
