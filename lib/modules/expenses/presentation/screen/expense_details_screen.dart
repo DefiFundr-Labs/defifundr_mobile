@@ -1,12 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/attachment_chip.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/contract_link.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/delete_expense_sheet.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/detail_row.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/details_card.dart';
+import 'package:defifundr_mobile/modules/expenses/presentation/widgets/status_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class ExpenseDetailsScreen extends StatelessWidget {
@@ -22,361 +28,118 @@ class ExpenseDetailsScreen extends StatelessWidget {
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
           centerTitle: true,
-          textStyle: context.theme.fonts.heading3SemiBold,
+          textStyle: context.theme.fonts.heading3Bold,
           isBack: true,
           title: 'Expense details',
-          actions: [],
+          actions: const [],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              _buildExpenseDetailsSection(context),
-              const SizedBox(height: 24),
-              _buildDescriptionSection(context),
-              const SizedBox(height: 24),
-              _buildContractDetailsSection(context),
-              const SizedBox(height: 32),
-              if (expense.status == ExpenseStatus.pending)
-                _buildDeleteButton(context),
-              const SizedBox(height: 32),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildExpenseDetailsSection(BuildContext context) {
-    return _buildSection(
-      context,
-      'Expense Details',
-      [
-        _buildDetailRow(
-          context,
-          'Status',
-          '',
-          statusWidget: _buildStatusChip(context, expense.status),
-        ),
-        _buildDetailRow(context, 'Name', expense.name),
-        _buildDetailRow(context, 'Category', expense.category),
-        _buildDetailRow(
-            context, 'Expense date', _formatDate(expense.expenseDate)),
-        _buildDetailRow(
-            context, 'Submission date', _formatDate(expense.submissionDate)),
-        _buildDetailRow(context, 'Amount', '${expense.amount.toInt()} USDT'),
-        _buildDetailRow(
-          context,
-          'Attachment',
-          '',
-          attachmentWidget: _buildAttachmentButton(context, expense.attachment),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDescriptionSection(BuildContext context) {
-    return _buildSection(
-      context,
-      'Description',
-      [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            expense.description,
-            style: context.theme.fonts.textMdRegular.copyWith(
-              fontSize: 13.sp,
-              color: context.theme.colors.textSecondary,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildContractDetailsSection(BuildContext context) {
-    return _buildSection(
-      context,
-      'Contract Details',
-      [
-        _buildDetailRow(
-          context,
-          'Contract',
-          '',
-          contractWidget: _buildContractButton(context, expense.contract),
-        ),
-        _buildDetailRow(context, 'Contract Type', expense.contractType ?? ''),
-        _buildDetailRow(context, 'Client', expense.client ?? ''),
-      ],
-    );
-  }
-
-  Widget _buildDeleteButton(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: PrimaryButton(
-        text: 'Delete expense',
-        color: Colors.red[50],
-        textColor: Colors.red[700]!,
-        enableShine: false,
-        onPressed: () => _deleteExpense(context),
-      ),
-    );
-  }
-
-  Widget _buildSection(
-      BuildContext context, String title, List<Widget> children) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: context.theme.colors.contrastWhite,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: context.theme.colors.textSecondary.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              title,
-              style: context.theme.fonts.heading3SemiBold.copyWith(
-                fontSize: 18.sp,
-                color: context.theme.colors.textPrimary,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Divider(color: context.theme.colors.fillTertiary),
-          ),
-          ...children,
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDetailRow(
-    BuildContext context,
-    String label,
-    String value, {
-    Widget? statusWidget,
-    Widget? attachmentWidget,
-    Widget? contractWidget,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: 120,
-            child: Text(
-              label,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                fontSize: 13.sp,
-                color: context.theme.colors.textSecondary,
-              ),
-            ),
-          ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (statusWidget != null)
-                  statusWidget
-                else if (attachmentWidget != null)
-                  attachmentWidget
-                else if (contractWidget != null)
-                  contractWidget
-                else
-                  Text(
-                    value,
-                    style: context.theme.fonts.textMdMedium.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textPrimary,
-                    ),
-                    textAlign: TextAlign.end,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                children: [
+                  DetailsCard(
+                    children: [
+                      DetailRow(
+                        label: 'Status',
+                        trailing: StatusChip(status: expense.status),
+                      ),
+                      DetailRow(label: 'Name', value: expense.name),
+                      DetailRow(label: 'Category', value: expense.category),
+                      DetailRow(
+                        label: 'Expense date',
+                        value: DateFormat('dd MMM yyyy')
+                            .format(expense.expenseDate),
+                      ),
+                      DetailRow(
+                        label: 'Submission date',
+                        value: DateFormat('dd MMM yyyy')
+                            .format(expense.submissionDate),
+                      ),
+                      DetailRow(
+                        label: 'Amount',
+                        value: '${expense.amount.toInt()} USDT',
+                      ),
+                      DetailRow(label: 'Description', isDescription: true),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            expense.description,
+                            style: context.theme.fonts.textMdRegular.copyWith(
+                              color: context.theme.colors.textPrimary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      if (expense.attachment != null)
+                        DetailRow(
+                          label: 'Attachment',
+                          trailing: AttachmentChip(name: expense.attachment!),
+                        ),
+                      if (expense.status == ExpenseStatus.rejected &&
+                          expense.rejectionReason != null) ...[
+                        DetailRow(
+                            label: 'Reason for rejection', isDescription: true),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              expense.rejectionReason!,
+                              style: context.theme.fonts.textMdRegular.copyWith(
+                                color: context.theme.colors.redDefault,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
-              ],
+                  const SizedBox(height: 16),
+                  DetailsCard(
+                    children: [
+                      DetailRow(
+                        label: 'Contract',
+                        trailing: ContractLink(name: expense.contract),
+                      ),
+                      DetailRow(
+                          label: 'Contract Type',
+                          value: expense.contractType ?? '-'),
+                      DetailRow(label: 'Client', value: expense.client ?? '-'),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
+          if (expense.status == ExpenseStatus.pending)
+            Padding(
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 32.h),
+              child: SecondaryButton(
+                text: 'Delete expense',
+                textColor: context.theme.colors.redDefault,
+                borderColor: context.theme.colors.redDefault,
+                backgroundColor: Colors.transparent,
+                enableShine: false,
+                onPressed: () => _showDeleteBottomSheet(context),
+              ),
+            ),
         ],
       ),
     );
   }
 
-  Widget _buildStatusChip(BuildContext context, ExpenseStatus status) {
-    Color backgroundColor;
-    Color textColor;
-    String text;
-
-    switch (status) {
-      case ExpenseStatus.approved:
-        backgroundColor = Colors.green[100]!;
-        textColor = Colors.green[700]!;
-        text = 'Approved';
-        break;
-      case ExpenseStatus.pending:
-        backgroundColor = Colors.orange[100]!;
-        textColor = Colors.orange[700]!;
-        text = 'Pending approval';
-        break;
-      case ExpenseStatus.rejected:
-        backgroundColor = Colors.red[100]!;
-        textColor = Colors.red[700]!;
-        text = 'Rejected';
-        break;
-    }
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Text(
-        text,
-        style: context.theme.fonts.textMdMedium.copyWith(
-          fontSize: 12.sp,
-          color: textColor,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAttachmentButton(BuildContext context, String? attachment) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: context.theme.colors.fillTertiary,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: context.theme.colors.fillTertiary),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.description,
-            size: 16,
-            color: context.theme.colors.textSecondary,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            attachment ?? 'File name.pdf',
-            style: context.theme.fonts.textMdRegular.copyWith(
-              fontSize: 12.sp,
-              color: context.theme.colors.textSecondary,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContractButton(BuildContext context, String? contract) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(
-          child: Text(
-            contract ?? 'BlockLayer Validator Inte...',
-            style: context.theme.fonts.textMdMedium.copyWith(
-              fontSize: 12.sp,
-              color: context.theme.colors.textPrimary,
-            ),
-            textAlign: TextAlign.end,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Icon(
-          Icons.open_in_new,
-          size: 16,
-          color: context.theme.colors.textSecondary,
-        ),
-      ],
-    );
-  }
-
-  void _deleteExpense(BuildContext context) {
-    showDialog(
+  void _showDeleteBottomSheet(BuildContext context) {
+    showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          title: Text(
-            'Delete Expense',
-            style: context.theme.fonts.heading3SemiBold.copyWith(
-              fontSize: 18.sp,
-              color: context.theme.colors.textPrimary,
-            ),
-          ),
-          content: Text(
-            'Are you sure you want to delete this expense?',
-            style: context.theme.fonts.textMdRegular.copyWith(
-              fontSize: 14.sp,
-              color: context.theme.colors.textSecondary,
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => context.router.maybePop(),
-              child: Text(
-                'Cancel',
-                style: context.theme.fonts.textMdMedium.copyWith(
-                  fontSize: 14.sp,
-                  color: context.theme.colors.textSecondary,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                context.router.maybePop(); // Close dialog
-                context.router.maybePop(); // Go back to expenses list
-                AppSnackbar.show(context, 'Expense deleted successfully');
-              },
-              child: Text(
-                'Delete',
-                style: context.theme.fonts.textMdMedium.copyWith(
-                  fontSize: 14.sp,
-                  color: Colors.red[700],
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => DeleteExpenseSheet(expense: expense),
     );
-  }
-
-  String _formatDate(DateTime date) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 }

@@ -1,15 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void showExpenseSubmittedBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => ExpenseSubmittedBottomSheet(),
+    builder: (_) => const ExpenseSubmittedBottomSheet(),
   );
 }
 
@@ -20,64 +23,42 @@ class ExpenseSubmittedBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        color: context.theme.colors.bgB1,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      padding: EdgeInsets.all(32),
+      padding: EdgeInsets.fromLTRB(16, 32, 16, 32.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Icon
           Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.indigo[100],
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Icon(
-              Icons.receipt_long,
-              size: 40,
-              color: Colors.indigo,
-            ),
-          ),
-
-          SizedBox(height: 24),
-
-          // Title
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: context.theme.colors.brandFill,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: SvgPicture.asset(Assets.icons.receipt,
+                  color: context.theme.colors.brandDefault)),
+          SizedBox(height: 20.h),
           Text(
             'Expense submitted',
-            style: context.theme.fonts.heading2Bold.copyWith(
-              color: context.theme.colors.textPrimary,
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w600,
+            style: context.theme.fonts.heading2Bold,
+          ),
+          SizedBox(height: 4.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 2.0),
+            child: Text(
+              'An email has been sent for your request to be reviewed.',
+              textAlign: TextAlign.center,
+              style: context.theme.fonts.textMdRegular.copyWith(
+                color: context.theme.colors.textSecondary,
+              ),
             ),
           ),
-
-          SizedBox(height: 8),
-
-          // Description
-          Text(
-            'An email has been sent for your request to be\nreviewed.',
-            textAlign: TextAlign.center,
-            style: context.theme.fonts.textMdRegular.copyWith(
-              color: context.theme.colors.textSecondary,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-
-          SizedBox(height: 32),
-
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-            child: PrimaryButton(
-              text: 'Done',
-              onPressed: () {
-                context.router.maybePop();
-                context.router.maybePop();
-              },
-            ),
+          SizedBox(height: 24.h),
+          PrimaryButton(
+            text: 'Done',
+            onPressed: () =>
+                context.router.popUntilRouteWithName(ExpensesRoute.name),
           ),
         ],
       ),

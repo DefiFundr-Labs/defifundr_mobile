@@ -230,6 +230,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eclipse.svg
   String get eclipse => 'assets/icons/eclipse.svg';
 
+  /// File path: assets/icons/empty_expense.svg
+  String get emptyExpense => 'assets/icons/empty_expense.svg';
+
   /// File path: assets/icons/empty_quickpay_icon.svg
   String get emptyQuickpayIcon => 'assets/icons/empty_quickpay_icon.svg';
 
@@ -526,6 +529,7 @@ class $AssetsIconsGen {
     dollarCircle,
     download,
     eclipse,
+    emptyExpense,
     emptyQuickpayIcon,
     emptyQuickpayIconDark,
     ethereumIcon,
