@@ -1,4 +1,6 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BalanceCard extends StatelessWidget {
   final String title;
@@ -21,43 +23,33 @@ class BalanceCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade200),
-        ),
+            color: context.theme.colors.bgB0,
+            borderRadius: BorderRadius.circular(8.r),
+            boxShadow: [
+              BoxShadow(
+                color: context.theme.colors.constantDefault,
+                spreadRadius: -5,
+                blurRadius: 1,
+                offset: Offset(0, -1),
+              )
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey.shade600,
-              ),
-            ),
-            const SizedBox(height: 8),
+            Text(title,
+                style: context.theme.fonts.textMdRegular
+                    .copyWith(color: context.theme.colors.textSecondary)),
+            const SizedBox(height: 4),
             Row(
               children: [
-                Text(
-                  '$days days',
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
+                Text('$days days', style: context.theme.fonts.heading3SemiBold),
                 const Spacer(),
                 if (onViewDetails != null)
                   GestureDetector(
                     onTap: onViewDetails,
-                    child: Text(
-                      'View details',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue.shade600,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    child: Text('View details',
+                        style: context.theme.fonts.textSmSemiBold.copyWith(
+                            color: context.theme.colors.brandDefaultContrast)),
                   ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 
 import '../../data/models/contract.dart';
 import '../../data/models/time_off.dart';
@@ -29,7 +30,7 @@ class _TimeOffDetailsScreenState extends State<TimeOffDetailsScreen> {
     TimeOffContract(
       id: '1',
       title: 'NovaWorks Marketing Campaign',
-      type: 'Fixed Rate Contract',
+      type: ContractType.fixedRate,
       paymentAmount: '',
       paymentFrequency: '',
       isActive: true,
@@ -37,7 +38,7 @@ class _TimeOffDetailsScreenState extends State<TimeOffDetailsScreen> {
     TimeOffContract(
       id: '2',
       title: 'Quikdash Mobile & Web App Redesign',
-      type: 'Fixed Rate Contract',
+      type: ContractType.fixedRate,
       paymentAmount: '',
       paymentFrequency: '',
       isActive: true,
@@ -45,7 +46,7 @@ class _TimeOffDetailsScreenState extends State<TimeOffDetailsScreen> {
     TimeOffContract(
       id: '3',
       title: 'Weave Finance Mobile & Web App Redesign',
-      type: 'Fixed Rate Contract',
+      type: ContractType.fixedRate,
       paymentAmount: '',
       paymentFrequency: '',
       isActive: true,
@@ -53,7 +54,7 @@ class _TimeOffDetailsScreenState extends State<TimeOffDetailsScreen> {
     TimeOffContract(
       id: '4',
       title: 'DefiFundr Mobile & Web App Redesign',
-      type: 'Fixed Rate Contract',
+      type: ContractType.fixedRate,
       paymentAmount: '',
       paymentFrequency: '',
       isActive: true,

@@ -1563,18 +1563,42 @@ class ReceiveRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RequestChangeScreen]
-class RequestChangeRoute extends PageRouteInfo<void> {
-  const RequestChangeRoute({List<PageRouteInfo>? children})
-    : super(RequestChangeRoute.name, initialChildren: children);
+class RequestChangeRoute extends PageRouteInfo<RequestChangeRouteArgs> {
+  RequestChangeRoute({
+    Key? key,
+    required TimeOffDetail timeOffDetail,
+    List<PageRouteInfo>? children,
+  }) : super(
+         RequestChangeRoute.name,
+         args: RequestChangeRouteArgs(key: key, timeOffDetail: timeOffDetail),
+         initialChildren: children,
+       );
 
   static const String name = 'RequestChangeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const RequestChangeScreen();
+      final args = data.argsAs<RequestChangeRouteArgs>();
+      return RequestChangeScreen(
+        key: args.key,
+        timeOffDetail: args.timeOffDetail,
+      );
     },
   );
+}
+
+class RequestChangeRouteArgs {
+  const RequestChangeRouteArgs({this.key, required this.timeOffDetail});
+
+  final Key? key;
+
+  final TimeOffDetail timeOffDetail;
+
+  @override
+  String toString() {
+    return 'RequestChangeRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
+  }
 }
 
 /// generated route for

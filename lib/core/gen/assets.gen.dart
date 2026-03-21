@@ -240,6 +240,9 @@ class $AssetsIconsGen {
   String get emptyQuickpayIconDark =>
       'assets/icons/empty_quickpay_icon_dark.svg';
 
+  /// File path: assets/icons/emptyrecords.svg
+  String get emptyrecords => 'assets/icons/emptyrecords.svg';
+
   /// File path: assets/icons/ethereumIcon.svg
   String get ethereumIcon => 'assets/icons/ethereumIcon.svg';
 
@@ -532,6 +535,7 @@ class $AssetsIconsGen {
     emptyExpense,
     emptyQuickpayIcon,
     emptyQuickpayIconDark,
+    emptyrecords,
     ethereumIcon,
     eye,
     eyeIcon,
