@@ -16,15 +16,13 @@ class InvoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLight = Theme.of(context).brightness == Brightness.light;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
+        margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color:
-              isLight ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+          color: context.theme.colors.bgB0,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -35,29 +33,18 @@ class InvoiceCard extends StatelessWidget {
               children: [
                 Text(
                   "#${invoice.id}",
-                  style: context.theme.fonts.textMdRegular.copyWith(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.sp,
+                  style: context.theme.fonts.textSmRegular.copyWith(
                     color: context.theme.colors.textSecondary,
                   ),
                 ),
               ],
             ),
             SizedBox(height: 4.h),
-            Text(
-              invoice.title,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                fontWeight: FontWeight.w600,
-                fontSize: 14.sp,
-                color: context.theme.colors.textPrimary,
-              ),
-            ),
+            Text(invoice.title, style: context.theme.fonts.textMdSemiBold),
             SizedBox(height: 4.h),
             Text(
               invoice.client,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
+              style: context.theme.fonts.textSmRegular.copyWith(
                 color: context.theme.colors.textSecondary,
               ),
             ),
@@ -68,20 +55,12 @@ class InvoiceCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      invoice.amount,
-                      style: context.theme.fonts.textMdRegular.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
-                        color: context.theme.colors.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
+                    Text(invoice.amount,
+                        style: context.theme.fonts.textMdSemiBold),
+                    const SizedBox(height: 4),
                     Text(
                       'Issue Date: ${invoice.issueDate}',
-                      style: context.theme.fonts.textMdRegular.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.sp,
+                      style: context.theme.fonts.textSmRegular.copyWith(
                         color: context.theme.colors.textSecondary,
                       ),
                     ),

@@ -13,19 +13,16 @@ class InvoiceStatusChip extends StatelessWidget {
     final config = _getStatusConfig(status, context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: config.backgroundColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(32),
         border: Border.all(color: config.borderColor),
       ),
       child: Text(
         config.text,
-        style: context.theme.fonts.textMdRegular.copyWith(
-          fontWeight: FontWeight.w500,
-          fontSize: 10.sp,
-          color: config.textColor,
-        ),
+        style:
+            context.theme.fonts.textSmMedium.copyWith(color: config.textColor),
       ),
     );
   }

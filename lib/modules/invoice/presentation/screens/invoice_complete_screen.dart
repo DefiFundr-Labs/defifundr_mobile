@@ -1,13 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/qr_code_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class InvoiceCompleteScreen extends StatelessWidget {
@@ -19,21 +20,44 @@ class InvoiceCompleteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: DeFiRaiseAppBar(
+        title: '',
+        isBack: true,
+        actions: const [],
+        onBack: () => context.router.maybePop(),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             children: [
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildHeader(context),
-                    const SizedBox(height: 40),
-                    _buildInvoiceCard(context),
-                    const SizedBox(height: 40),
-                    _buildActionButtons(context),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Invoice created & shared',
+                              style: context.theme.fonts.heading2Bold),
+                          const SizedBox(height: 4),
+                          Text(
+                            textAlign: TextAlign.justify,
+                            'The invoice has been shared with your client. Copy the link, generate a QR code, or download the file to share.',
+                            style: context.theme.fonts.textMdRegular.copyWith(
+                              color: context.theme.colors.textSecondary,
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 24.h),
+                      _buildInvoiceCard(context),
+                      SizedBox(height: 24.h),
+                      _buildActionButtons(context),
+                    ],
+                  ),
                 ),
               ),
               PrimaryButton(
@@ -47,109 +71,74 @@ class InvoiceCompleteScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Invoice created & shared',
-          style: context.theme.fonts.heading2Bold.copyWith(
-            fontSize: 25.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'The invoice has been shared with your client.\nCopy the link, generate a QR code, or download\nthe file to share.',
-          style: context.theme.fonts.textMdRegular.copyWith(
-            fontSize: 14.sp,
-            color: context.theme.colors.textSecondary,
-            height: 1.4,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildInvoiceCard(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            context.theme.colors.brandDefault,
-            context.theme.colors.brandHover,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: context.theme.colors.brandDefault,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Stack(
         children: [
           Positioned(
-            top: 10,
-            left: 1,
+            top: 0,
+            left: 0,
+            bottom: 0,
             child: SvgPicture.asset(
               Assets.icons.invoiceBg,
-              width: 100.w,
               fit: BoxFit.cover,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(24),
+          Padding(
+            padding: EdgeInsets.all(20.sp),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  'Invoice for',
-                  style: context.theme.fonts.textMdMedium.copyWith(
-                    color: context.theme.colors.contrastWhite,
-                    fontSize: 12.sp,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Invoice for',
+                      style: context.theme.fonts.textSmMedium.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      '500 USDT',
+                      style: context.theme.fonts.heading2SemiBold.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      '≈ \$500',
+                      style: context.theme.fonts.textXsMedium.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  '500 USDT',
-                  style: context.theme.fonts.heading2SemiBold.copyWith(
-                    color: context.theme.colors.contrastWhite,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '≈ \$500',
-                  style: context.theme.fonts.heading2SemiBold.copyWith(
-                    color: context.theme.colors.contrastWhite,
-                    fontSize: 10.sp,
-                  ),
-                ),
-                const SizedBox(height: 32),
+                SizedBox(height: 50.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '#INV-2025-001',
-                      style: context.theme.fonts.textMdSemiBold.copyWith(
-                        color: context.theme.colors.contrastWhite,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: context.theme.fonts.textSmSemiBold
+                          .copyWith(color: Colors.white),
                     ),
                     Row(
                       children: [
                         SvgPicture.asset(
                           Assets.icons.calendar,
-                          width: 15.w,
-                          height: 15.h,
-                          color: context.theme.colors.contrastWhite,
+                          width: 14.w,
+                          height: 14.h,
+                          color: Colors.white,
                         ),
-                        SizedBox(width: 2.h),
+                        SizedBox(width: 4.w),
                         Text(
                           '15 September 2025',
-                          style: context.theme.fonts.textMdSemiBold.copyWith(
-                            color: context.theme.colors.contrastWhite,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
+                          style: context.theme.fonts.textSmSemiBold.copyWith(
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -177,7 +166,7 @@ class InvoiceCompleteScreen extends StatelessWidget {
             context: context,
           ),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 8.w),
         Expanded(
           child: _buildActionButton(
             icon: Assets.icons.qrCodeSvg_,
@@ -188,7 +177,7 @@ class InvoiceCompleteScreen extends StatelessWidget {
             context: context,
           ),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 8.w),
         Expanded(
           child: _buildActionButton(
             icon: Assets.icons.fileText,
@@ -212,28 +201,29 @@ class InvoiceCompleteScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(12.sp),
         decoration: BoxDecoration(
           color: context.theme.colors.fillTertiary,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8.r),
+          border: Border.all(
+            color: context.theme.colors.strokeSecondary,
+            width: 1,
+          ),
         ),
         child: Column(
           children: [
             SvgPicture.asset(
               icon,
-              width: 16.w,
-              height: 16.h,
-              fit: BoxFit.contain,
-              color: context.theme.colors.textSecondary,
+              width: 20.w,
+              height: 20.h,
+              color: context.theme.colors.graySecondary,
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 6.h),
             Text(
               label,
-              style: context.theme.fonts.textMdRegular.copyWith(
-                fontSize: 12.sp,
-                color: context.theme.colors.textSecondary,
-                fontWeight: FontWeight.w500,
-              ),
+              style: context.theme.fonts.textMdMedium.copyWith(
+                  color: context.theme.colors.textSecondary, fontSize: 13.sp),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

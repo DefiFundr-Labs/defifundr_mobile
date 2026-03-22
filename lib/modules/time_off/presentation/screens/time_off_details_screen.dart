@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import '../../data/models/contract.dart';
 import '../../data/models/time_off.dart';
 import '../widgets/balance_card.dart';
@@ -291,26 +292,11 @@ class _TimeOffDetailsScreenState extends State<TimeOffDetailsScreen> {
             padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: PrimaryButton(
+                text: 'Request time off',
                 onPressed: () {
                   context.router.push(const NewTimeOffRequestRoute());
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade600,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Request time off',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
               ),
             ),
           ),
