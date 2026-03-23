@@ -32,6 +32,10 @@ class _PayCycleSubmittedHoursDetailScreenState
 
   @override
   Widget build(BuildContext context) {
+    final isDeliverable = widget.contract.frequency == PayCycleFrequency.perDeliverable;
+    final isDay = widget.contract.frequency == PayCycleFrequency.perDay;
+    final isWeek = widget.contract.frequency == PayCycleFrequency.perWeek;
+
     return Scaffold(
       backgroundColor: context.theme.colors.bgB1,
       appBar: PreferredSize(
@@ -40,7 +44,9 @@ class _PayCycleSubmittedHoursDetailScreenState
           centerTitle: true,
           textStyle: context.theme.fonts.heading3SemiBold,
           isBack: true,
-          title: 'Submitted hours',
+          title: isDeliverable
+              ? 'Deliverable details'
+              : (isDay || isWeek ? 'Submission details' : 'Hours worked details'),
           actions: const [],
         ),
       ),
@@ -72,12 +78,26 @@ class _PayCycleSubmittedHoursDetailScreenState
                             ),
                           ),
                           const SizedBox(height: 24),
-                          _buildDetailRow(
-                            context,
-                            'Date',
-                            _buildValueText(context,
-                                widget.submission.workDate.dayMonthYear),
-                          ),
+                          if (isDeliverable) ...[
+                            _buildDetailRow(
+                              context,
+                              'Name',
+                              Text(
+                                  ellipsify(
+                                      word:
+                                          widget.submission.description ?? '--',
+                                      maxLength: 20),
+                                  textAlign: TextAlign.right,
+                                  style: context.theme.fonts.textMdMedium),
+                            ),
+                          ] else ...[
+                            _buildDetailRow(
+                              context,
+                              'Date',
+                              _buildValueText(context,
+                                  widget.submission.workDate.dayMonthYear),
+                            ),
+                          ],
                           const SizedBox(height: 24),
                           _buildDetailRow(
                             context,
@@ -86,95 +106,110 @@ class _PayCycleSubmittedHoursDetailScreenState
                                 widget.submission.submissionDate.dayMonthYear),
                           ),
                           const SizedBox(height: 24),
-                          InkWell(
-                            onTap: () =>
-                                setState(() => _isExpanded = !_isExpanded),
-                            child: _buildDetailRow(
-                              context,
-                              'Total hours worked',
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  _buildValueText(context,
-                                      _formatHours(widget.submission.quantity)),
-                                  const SizedBox(width: 4),
-                                  Icon(
-                                      _isExpanded
-                                          ? Icons.keyboard_arrow_up
-                                          : Icons.keyboard_arrow_down,
-                                      size: 20,
-                                      color:
-                                          context.theme.colors.textSecondary),
-                                ],
-                              ),
-                            ),
-                          ),
-                          if (_isExpanded &&
-                              widget.submission.breakdown != null) ...[
-                            const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                color: context.theme.colors.bgB1,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Column(
-                                children: [
-                                  for (int i = 0;
-                                      i < widget.submission.breakdown!.length;
-                                      i++) ...[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          widget.submission.breakdown![i].label,
-                                          style: context
-                                              .theme.fonts.textMdRegular
-                                              .copyWith(
-                                            color: context
-                                                .theme.colors.textSecondary,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${widget.submission.breakdown![i].timeRange} (${widget.submission.breakdown![i].duration})',
-                                          style: context
-                                              .theme.fonts.textMdMedium
-                                              .copyWith(
-                                            color: context
-                                                .theme.colors.textPrimary,
-                                          ),
-                                        ),
-                                      ],
+                          if (!isDeliverable) ...[
+                            isWeek
+                                ? _buildDetailRow(
+                                    context,
+                                    'No of weeks worked',
+                                    _buildValueText(context,
+                                        '${widget.submission.quantity.toInt()} weeks'),
+                                  )
+                                : GestureDetector(
+                                    onTap: () => setState(
+                                        () => _isExpanded = !_isExpanded),
+                                    child: _buildDetailRow(
+                                      context,
+                                      isDay
+                                          ? 'No of workdays'
+                                          : 'Total hours worked',
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          _buildValueText(
+                                              context,
+                                              isDay
+                                                  ? '${widget.submission.quantity.toInt()} days'
+                                                  : _formatHours(widget
+                                                      .submission.quantity)),
+                                          const SizedBox(width: 4),
+                                          Icon(
+                                              _isExpanded
+                                                  ? Icons.keyboard_arrow_up
+                                                  : Icons.keyboard_arrow_down,
+                                              size: 20,
+                                              color: context.theme.colors
+                                                  .textSecondary),
+                                        ],
+                                      ),
                                     ),
-                                    if (i !=
-                                        widget.submission.breakdown!.length - 1)
-                                      const SizedBox(height: 16),
+                                  ),
+                            if (_isExpanded &&
+                                widget.submission.breakdown != null) ...[
+                              const SizedBox(height: 12),
+                              Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  color: context.theme.colors.bgB1,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Column(
+                                  children: [
+                                    for (int i = 0;
+                                        i < widget.submission.breakdown!.length;
+                                        i++) ...[
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            widget.submission.breakdown![i].label,
+                                            style: context
+                                                .theme.fonts.textMdRegular
+                                                .copyWith(
+                                              color: context
+                                                  .theme.colors.textSecondary,
+                                            ),
+                                          ),
+                                          Text(
+                                            (isDay || isWeek)
+                                                ? widget.submission.breakdown![i].duration
+                                                : '${widget.submission.breakdown![i].timeRange} (${widget.submission.breakdown![i].duration})',
+                                            style: context
+                                                .theme.fonts.textMdMedium
+                                                .copyWith(
+                                              color: context
+                                                  .theme.colors.textPrimary,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      if (i !=
+                                          widget.submission.breakdown!.length -
+                                              1)
+                                        const SizedBox(height: 16),
+                                    ],
                                   ],
-                                ],
+                                ),
                               ),
+                              const SizedBox(height: 12),
+                            ],
+                            _buildDetailRow(
+                              context,
+                              isDay
+                                  ? 'Daily rate'
+                                  : (isWeek ? 'Weekly rate' : 'Hourly rate'),
+                              _buildValueText(context, widget.contract.rate),
                             ),
-                            // Fix last item padding
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 24),
                           ],
-                          const SizedBox(height: 24),
                           _buildDetailRow(
                             context,
-                            'Hourly rate',
-                            _buildValueText(context, widget.contract.rate),
-                          ),
-                          const SizedBox(height: 24),
-                          _buildDetailRow(
-                            context,
-                            'Calculated amount',
+                            isDeliverable ? 'Amount' : 'Calculated amount',
                             Text(
-                              '${widget.submission.amount.toInt()} ${widget.submission.currency}',
-                              textAlign: TextAlign.right,
-                              style:
-                                  context.theme.fonts.textMdSemiBold.copyWith(
-                                color: context.theme.colors.textPrimary,
-                              ),
-                            ),
+                                '${widget.submission.amount.toInt()} ${widget.submission.currency}',
+                                textAlign: TextAlign.right,
+                                style: context.theme.fonts.textMdMedium),
                           ),
                           const SizedBox(height: 24),
                           Text(
@@ -185,8 +220,10 @@ class _PayCycleSubmittedHoursDetailScreenState
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            widget.submission.description ??
-                                'No description provided.',
+                            isDeliverable
+                                ? 'Created a Python script to automate content uploads via the CMS API, reducing manual errors and saving time.'
+                                : widget.submission.description ??
+                                    'No description provided.',
                             style: context.theme.fonts.textMdMedium.copyWith(
                               color: context.theme.colors.textPrimary,
                             ),
@@ -266,7 +303,7 @@ class _PayCycleSubmittedHoursDetailScreenState
                                   child: Text(
                                     ellipsify(
                                         word: widget.contract.title,
-                                        maxLength: 19),
+                                        maxLength: 12),
                                     textAlign: TextAlign.right,
                                     style: context.theme.fonts.textMdMedium
                                         .copyWith(
@@ -308,53 +345,54 @@ class _PayCycleSubmittedHoursDetailScreenState
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: PrimaryButton(
-                    color: Colors.transparent,
-                    text: 'Delete',
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => WorkSubmissionActionBottomSheet(
-                          submission: widget.submission,
-                          actionType: WorkSubmissionActionType.delete,
-                        ),
-                      );
-                    },
-                    borderColor: context.theme.colors.redDefault,
-                    textColor: context.theme.colors.redDefault,
-                    fixedSize: const Size(double.infinity, 50),
+          if (widget.submission.status != PaymentStatus.approved)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: PrimaryButton(
+                      color: Colors.transparent,
+                      text: 'Delete',
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => WorkSubmissionActionBottomSheet(
+                            submission: widget.submission,
+                            actionType: WorkSubmissionActionType.delete,
+                          ),
+                        );
+                      },
+                      borderColor: context.theme.colors.redDefault,
+                      textColor: context.theme.colors.redDefault,
+                      fixedSize: const Size(double.infinity, 50),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: PrimaryButton(
-                    text: widget.submission.status == PaymentStatus.rejected
-                        ? 'Edit & resubmit'
-                        : 'Edit',
-                    onPressed: () {
-                      context.router.push(
-                        PayCycleSubmitHoursRoute(
-                          contract: widget.contract,
-                          initialSubmission: widget.submission,
-                        ),
-                      );
-                    },
-                    color: context.theme.colors.grayTertiary.withAlpha(50),
-                    borderColor: Colors.transparent,
-                    textColor: context.theme.colors.textPrimary,
-                    fixedSize: const Size(double.infinity, 50),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: PrimaryButton(
+                      text: widget.submission.status == PaymentStatus.rejected
+                          ? 'Edit & resubmit'
+                          : 'Edit',
+                      onPressed: () {
+                        context.router.push(
+                          PayCycleSubmitHoursRoute(
+                            contract: widget.contract,
+                            initialSubmission: widget.submission,
+                          ),
+                        );
+                      },
+                      color: context.theme.colors.grayTertiary.withAlpha(50),
+                      borderColor: Colors.transparent,
+                      textColor: context.theme.colors.textPrimary,
+                      fixedSize: const Size(double.infinity, 50),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );

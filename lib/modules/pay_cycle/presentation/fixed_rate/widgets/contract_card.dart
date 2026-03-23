@@ -95,7 +95,7 @@ class ContractCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    contract.frequency,
+                    contract.frequency.displayName,
                     style: context.theme.fonts.textSmRegular.copyWith(
                       color: context.theme.colors.textSecondary,
                     ),

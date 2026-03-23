@@ -72,6 +72,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Link.svg
   String get link => 'assets/icons/Link.svg';
 
+  /// File path: assets/icons/ListChecks.svg
+  String get listChecks => 'assets/icons/ListChecks.svg';
+
   /// File path: assets/icons/MagnifyingGlass.svg
   String get magnifyingGlass => 'assets/icons/MagnifyingGlass.svg';
 
@@ -186,6 +189,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/calendar.svg
   String get calendar => 'assets/icons/calendar.svg';
+
+  /// File path: assets/icons/calendarDot.svg
+  String get calendarDot => 'assets/icons/calendarDot.svg';
 
   /// File path: assets/icons/caretRight.svg
   String get caretRightSvg => 'assets/icons/caretRight.svg';
@@ -525,6 +531,7 @@ class $AssetsIconsGen {
     bvnProcessing,
     bvnProcessingDark,
     calendar,
+    calendarDot,
     caretRightSvg,
     caretRightSvg_,
     caretDown,
@@ -601,6 +608,7 @@ class $AssetsIconsGen {
     tether,
     transaction,
     transactionHeadset,
+    listChecks,
     twentyFivePercent,
     unchecked,
     uploadCompliance,

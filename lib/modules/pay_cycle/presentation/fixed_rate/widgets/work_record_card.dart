@@ -3,6 +3,7 @@ import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import '../../../data/models/work_record.dart';
 
 class WorkRecordCard extends StatelessWidget {
@@ -10,11 +11,14 @@ class WorkRecordCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
+  final bool isDay;
+
   const WorkRecordCard({
     Key? key,
     required this.record,
     required this.onEdit,
     required this.onDelete,
+    this.isDay = false,
   }) : super(key: key);
 
   String _formatTime(DateTime time) {
@@ -43,7 +47,9 @@ class WorkRecordCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${_formatTime(record.startTime)} – ${_formatTime(record.endTime)}',
+                isDay
+                    ? DateFormat('d MMM yyyy').format(record.startTime)
+                    : '${_formatTime(record.startTime)} – ${_formatTime(record.endTime)}',
                 style: context.theme.fonts.textMdSemiBold,
               ),
               SizedBox(height: 4.h),
@@ -57,17 +63,21 @@ class WorkRecordCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                _formatDuration(record.duration),
-                style: context.theme.fonts.textMdSemiBold,
-              ),
+              if (!isDay)
+                Text(
+                  _formatDuration(record.duration),
+                  style: context.theme.fonts.textMdSemiBold,
+                ),
               SizedBox(width: 8.w),
               GestureDetector(
                 onTap: onEdit,
-                child: SvgPicture.asset(
-                  Assets.icons.notePencil,
-                  height: 20.h,
-                  width: 20.w,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: SvgPicture.asset(
+                    Assets.icons.notePencil,
+                    height: 20.h,
+                    width: 20.w,
+                  ),
                 ),
               ),
             ],
