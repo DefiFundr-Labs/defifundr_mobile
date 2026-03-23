@@ -8,7 +8,7 @@ class MockData {
       title: 'DefiFundr Mobile & Web App Re...',
       type: ContractType.fixedRate,
       rate: '581 USDT',
-      frequency: 'Every month',
+      frequency: PayCycleFrequency.perMonth,
       isActive: true,
       clientName: 'DefiFundr Corp.',
       workSubmissions: [],
@@ -18,7 +18,7 @@ class MockData {
       title: 'Quikdash Mobile & Web App Redesign',
       type: ContractType.milestone,
       rate: '581 STRK',
-      frequency: '5 milestones',
+      frequency: PayCycleFrequency.perDeliverable,
       isActive: true,
       clientName: 'Quikdash Inc.',
       milestones: [
@@ -106,7 +106,7 @@ class MockData {
       title: 'Weave Finance Mobile & Web A...',
       type: ContractType.payAsYouGo,
       rate: '50 EURt',
-      frequency: 'Per Deliverable',
+      frequency: PayCycleFrequency.perDeliverable,
       isActive: true,
       workSubmissions: [],
     ),
@@ -115,7 +115,7 @@ class MockData {
       title: 'BlockLayer Validator Integration...',
       type: ContractType.payAsYouGo,
       rate: '21 USDC',
-      frequency: 'Per Hour',
+      frequency: PayCycleFrequency.perHour,
       isActive: true,
       clientName: 'Adegboyega Oluwagbemiro',
       workSubmissions: [],
@@ -125,7 +125,7 @@ class MockData {
       title: 'Legaltide Compliance Audit for...',
       type: ContractType.payAsYouGo,
       rate: '51 LUSD',
-      frequency: 'Per Day',
+      frequency: PayCycleFrequency.perDay,
       isActive: true,
       workSubmissions: [],
     ),
@@ -134,13 +134,149 @@ class MockData {
       title: 'Snapworks Product Photograph...',
       type: ContractType.payAsYouGo,
       rate: '101 DAI',
-      frequency: 'Per Week',
+      frequency: PayCycleFrequency.perWeek,
       isActive: true,
       workSubmissions: [],
     ),
   ];
 
   static List<WorkSubmission> getWorkSubmissions(String contractId) {
+    if (contractId == '3') {
+      // Per Deliverable
+      return [
+        WorkSubmission(
+          id: 'ws_del_1',
+          quantity: 1,
+          unit: 'deliverable',
+          amount: 33,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.pendingApproval,
+          description: 'Onboarding Flow Optimization for Mobile',
+          attachmentPath: 'onboarding_fix.pdf',
+        ),
+        WorkSubmission(
+          id: 'ws_del_2',
+          quantity: 1,
+          unit: 'deliverable',
+          amount: 33,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.pendingApproval,
+          description: 'Payment Gateway Integration for Web',
+          attachmentPath: 'payment_gw.pdf',
+        ),
+        WorkSubmission(
+          id: 'ws_del_3',
+          quantity: 1,
+          unit: 'deliverable',
+          amount: 33,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.approved,
+          description: 'Content Upload Automation Script',
+          attachmentPath: 'script.zip',
+        ),
+        WorkSubmission(
+          id: 'ws_del_4',
+          quantity: 1,
+          unit: 'deliverable',
+          amount: 33,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.approved,
+          description: 'Mobile App Push Notification System',
+          attachmentPath: 'push_notes.pdf',
+        ),
+        WorkSubmission(
+          id: 'ws_del_rejected',
+          quantity: 1,
+          unit: 'deliverable',
+          amount: 33,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.rejected,
+          rejectionReason: 'The design assets were missing the required dimensions for social media previews.',
+          description: 'Social Media Asset Pack Design',
+          attachmentPath: 'social_assets.zip',
+        ),
+      ];
+    } else if (contractId == '5') {
+      // Per Day
+      return [
+        WorkSubmission(
+          id: 'ws_day_1',
+          quantity: 4,
+          unit: 'days',
+          amount: 400,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 31),
+          workDate: DateTime(2025, 5, 31),
+          status: PaymentStatus.pendingApproval,
+          description:
+              'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+          attachmentPath: 'File name.pdf',
+          breakdown: [
+            WorkBreakdownItem(
+                label: 'Mon 12 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Wed 14 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Fri 16 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Sat 17 May 2025', timeRange: '', duration: '1 day'),
+          ],
+        ),
+        WorkSubmission(
+          id: 'ws_day_2',
+          quantity: 4,
+          unit: 'days',
+          amount: 400,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 31),
+          workDate: DateTime(2025, 5, 31),
+          status: PaymentStatus.approved,
+          description:
+              'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+          attachmentPath: 'File name.pdf',
+          invoiceNumber: '#INV-2025-001',
+          breakdown: [
+            WorkBreakdownItem(
+                label: 'Mon 12 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Wed 14 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Fri 16 May 2025', timeRange: '', duration: '1 day'),
+            WorkBreakdownItem(
+                label: 'Sat 17 May 2025', timeRange: '', duration: '1 day'),
+          ],
+        ),
+        WorkSubmission(
+          id: 'ws_day_rejected',
+          quantity: 1,
+          unit: 'days',
+          amount: 100,
+          currency: 'USDT',
+          submissionDate: DateTime(2025, 5, 14),
+          workDate: DateTime(2025, 5, 14),
+          status: PaymentStatus.rejected,
+          rejectionReason:
+              'The report for this workday was incomplete and lacked sufficient details on the tasks completed.',
+          description: 'Full day of compliance auditing.',
+          attachmentPath: 'audit_report.pdf',
+          breakdown: [
+            WorkBreakdownItem(
+                label: 'Tue 13 May 2025', timeRange: '', duration: '1 day'),
+          ],
+        ),
+      ];
+    }
+    // Default/Per Hour (Contract 4)
     return [
       WorkSubmission(
         id: 'ws1',

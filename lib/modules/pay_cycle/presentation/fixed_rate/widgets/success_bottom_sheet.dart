@@ -11,7 +11,13 @@ enum SuccessActionType {
   milestoneDeleted,
   milestoneAdded,
   workSubmissionSubmitted,
-  workSubmissionDeleted
+  workSubmissionDeleted,
+  deliverableSubmitted,
+  deliverableDeleted,
+  workdaySubmitted,
+  workdayDeleted,
+  weeksSubmitted,
+  weeksDeleted,
 }
 
 class SuccessBottomSheet extends StatelessWidget {
@@ -50,15 +56,22 @@ class SuccessBottomSheet extends StatelessWidget {
           children: [
             Container(
               width: 64.w,
-              height: 64.h,
+              height: 64.w,
               decoration: BoxDecoration(
-                color: iconBackgroundColor ?? context.theme.colors.brandFill,
-                shape: BoxShape.circle,
-              ),
+                  color: iconBackgroundColor ?? context.theme.colors.brandFill,
+                  shape: BoxShape.circle),
               child: Center(
                 child: icon ??
                     SvgPicture.asset(
-                      Assets.icons.clockUser,
+                      (actionType == SuccessActionType.deliverableSubmitted ||
+                              actionType == SuccessActionType.deliverableDeleted)
+                          ? Assets.icons.listChecks
+                          : (actionType == SuccessActionType.workdaySubmitted ||
+                                  actionType == SuccessActionType.workdayDeleted ||
+                                  actionType == SuccessActionType.weeksSubmitted ||
+                                  actionType == SuccessActionType.weeksDeleted)
+                              ? Assets.icons.calendarDot
+                              : Assets.icons.clockUser,
                       width: 32.w,
                       height: 32.h,
                       colorFilter: ColorFilter.mode(
@@ -90,7 +103,13 @@ class SuccessBottomSheet extends StatelessWidget {
                 if (actionType == SuccessActionType.milestoneDeleted ||
                     actionType == SuccessActionType.milestoneSubmitted ||
                     actionType == SuccessActionType.workSubmissionDeleted ||
-                    actionType == SuccessActionType.workSubmissionSubmitted) {
+                    actionType == SuccessActionType.workSubmissionSubmitted ||
+                    actionType == SuccessActionType.deliverableDeleted ||
+                    actionType == SuccessActionType.deliverableSubmitted ||
+                    actionType == SuccessActionType.workdayDeleted ||
+                    actionType == SuccessActionType.workdaySubmitted ||
+                    actionType == SuccessActionType.weeksDeleted ||
+                    actionType == SuccessActionType.weeksSubmitted) {
                   context.router.maybePop();
                 }
               },
@@ -114,6 +133,18 @@ class SuccessBottomSheet extends StatelessWidget {
         return 'Hours worked submitted';
       case SuccessActionType.workSubmissionDeleted:
         return 'Submission deleted';
+      case SuccessActionType.deliverableSubmitted:
+        return 'Deliverable submitted';
+      case SuccessActionType.deliverableDeleted:
+        return 'Deliverable deleted';
+      case SuccessActionType.workdaySubmitted:
+        return 'Workdays submitted';
+      case SuccessActionType.workdayDeleted:
+        return 'Workdays deleted';
+      case SuccessActionType.weeksSubmitted:
+        return 'Weeks worked submitted';
+      case SuccessActionType.weeksDeleted:
+        return 'Weeks worked deleted';
     }
   }
 
@@ -129,6 +160,18 @@ class SuccessBottomSheet extends StatelessWidget {
         return 'Submission now awaiting approval. An email has been sent to your client.';
       case SuccessActionType.workSubmissionDeleted:
         return 'The submission has been deleted successfully.';
+      case SuccessActionType.deliverableSubmitted:
+        return 'Submission now awaiting approval. An email has been sent to your client.';
+      case SuccessActionType.deliverableDeleted:
+        return 'The deliverable has been deleted successfully.';
+      case SuccessActionType.workdaySubmitted:
+        return 'Submission now awaiting approval. An email has been sent to your client.';
+      case SuccessActionType.workdayDeleted:
+        return 'The workdays have been deleted successfully.';
+      case SuccessActionType.weeksSubmitted:
+        return 'Submission now awaiting approval. An email has been sent to your client.';
+      case SuccessActionType.weeksDeleted:
+        return 'The weeks worked have been deleted successfully.';
     }
   }
 }
