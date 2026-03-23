@@ -1,6 +1,8 @@
 import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 
 import '../../../data/models/contract.dart';
 import '../../../data/models/mock_data.dart';
@@ -47,34 +49,25 @@ class _PayCycleContractsScreenState extends State<PayCycleContractsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB1,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Contracts',
+          actions: const [],
         ),
-        title: const Text(
-          'Contracts',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
-          // Search Bar
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: SearchAndFilterBar(
               searchController: _searchController,
             ),
           ),
-          // Contracts List
           Expanded(
             child: ListView.builder(
               itemCount: _filteredContracts.length,

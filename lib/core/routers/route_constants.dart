@@ -126,6 +126,10 @@ class RouteConstants {
   static const String payCycleContracts = '/pay-cycle/contracts';
   static const String payCycleContractDetail = '/pay-cycle/contract-detail';
   static const String payCyclePayoutDetail = '/pay-cycle/payout-detail';
+  static const String payCycleMilestoneDetail = '/pay-cycle/milestone-detail';
+  static const String payCycleSubmittedHoursDetail = '/pay-cycle/submitted-hours-detail';
+  static const String payCycleAddMilestone = '/pay-cycle/add-milestone';
+  static const String payCycleSubmitHours = '/pay-cycle/submit-hours';
 
   // ============================================================
   // INVOICE ROUTES

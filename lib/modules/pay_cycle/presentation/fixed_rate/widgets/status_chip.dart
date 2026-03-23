@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 
 import '../../../data/models/contract.dart';
 
@@ -14,47 +15,91 @@ class StatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor;
-    Color textColor;
-    String text;
-
-    switch (status) {
-      case PaymentStatus.approved:
-        backgroundColor = Colors.green.shade50;
-        textColor = Colors.green.shade700;
-        text = 'Approved';
-        break;
-      case PaymentStatus.pending:
-        backgroundColor = Colors.orange.shade50;
-        textColor = Colors.orange.shade700;
-        text = 'Pending approval';
-        break;
-      case PaymentStatus.overdue:
-        backgroundColor = Colors.red.shade50;
-        textColor = Colors.red.shade700;
-        text = 'Overdue';
-        break;
-      case PaymentStatus.paid:
-        backgroundColor = Colors.green.shade50;
-        textColor = Colors.green.shade700;
-        text = 'Paid';
-        break;
-    }
+    final config = _getStatusConfig(status, context);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
+        color: config.backgroundColor,
+        borderRadius: BorderRadius.circular(32),
+        border: Border.all(color: config.borderColor),
       ),
       child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontSize ?? 12,
-          color: textColor,
-          fontWeight: FontWeight.w500,
+        config.text,
+        style: context.theme.fonts.textSmMedium.copyWith(
+          color: config.textColor,
+          fontSize: fontSize,
         ),
       ),
     );
   }
+
+  _StatusConfig _getStatusConfig(PaymentStatus status, BuildContext context) {
+    switch (status) {
+      case PaymentStatus.approved:
+      case PaymentStatus.paid:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.greenFill,
+          textColor: context.theme.colors.greenDefault,
+          borderColor: context.theme.colors.greenStroke,
+          text: status == PaymentStatus.approved ? 'Approved' : 'Paid',
+        );
+      case PaymentStatus.pending:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.orangeFill,
+          textColor: context.theme.colors.orangeDefault,
+          borderColor: context.theme.colors.orangeStroke,
+          text: 'Pending approval',
+        );
+      case PaymentStatus.overdue:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.redFill,
+          textColor: context.theme.colors.redDefault,
+          borderColor: context.theme.colors.redStroke,
+          text: 'Overdue',
+        );
+      case PaymentStatus.pendingApproval:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.orangeFill,
+          textColor: context.theme.colors.orangeDefault,
+          borderColor: context.theme.colors.orangeStroke,
+          text: 'Pending approval',
+        );
+      case PaymentStatus.pendingSubmission:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.orangeFill,
+          textColor: context.theme.colors.orangeDefault,
+          borderColor: context.theme.colors.orangeStroke,
+          text: 'Pending submission',
+        );
+      case PaymentStatus.awaitingPayment:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.brandFill,
+          textColor: context.theme.colors.brandDefault,
+          borderColor: context.theme.colors.brandStroke,
+          text: 'Awaiting payment',
+        );
+      case PaymentStatus.rejected:
+        return _StatusConfig(
+          backgroundColor: context.theme.colors.redFill,
+          textColor: context.theme.colors.redDefault,
+          borderColor: context.theme.colors.redStroke,
+          text: 'Rejected',
+        );
+    }
+  }
+}
+
+class _StatusConfig {
+  final Color backgroundColor;
+  final Color textColor;
+  final Color borderColor;
+  final String text;
+
+  const _StatusConfig({
+    required this.backgroundColor,
+    required this.textColor,
+    required this.borderColor,
+    required this.text,
+  });
 }

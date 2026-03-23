@@ -8,6 +8,7 @@ class PaymentHistoryItem {
   final double amount;
   final String currency;
   final PaymentStatus status;
+  final String invoiceNumber;
 
   PaymentHistoryItem({
     required this.id,
@@ -17,5 +18,6 @@ class PaymentHistoryItem {
     required this.amount,
     required this.currency,
     required this.status,
+    this.invoiceNumber = '',
   });
 }

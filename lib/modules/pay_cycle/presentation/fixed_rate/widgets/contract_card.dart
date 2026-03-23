@@ -1,4 +1,6 @@
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 
 import '../../../data/models/contract.dart';
 
@@ -14,13 +16,18 @@ class ContractCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB0,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: context.theme.colors.strokeSecondary),
+      ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,11 +36,9 @@ class ContractCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      contract.title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
+                      ellipsify(word: contract.title, maxLength: 20),
+                      style: context.theme.fonts.textMdSemiBold.copyWith(
+                        color: context.theme.colors.textPrimary,
                       ),
                     ),
                   ),
@@ -45,40 +50,36 @@ class ContractCard extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: contract.isActive
-                          ? Colors.green.shade50
-                          : Colors.grey.shade100,
+                          ? context.theme.colors.greenDefault
+                              .withValues(alpha: 0.1)
+                          : context.theme.colors.fillTertiary,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       contract.isActive ? 'Active' : 'Inactive',
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: context.theme.fonts.textSmMedium.copyWith(
                         color: contract.isActive
-                            ? Colors.green.shade700
-                            : Colors.grey.shade600,
-                        fontWeight: FontWeight.w500,
+                            ? context.theme.colors.greenDefault
+                            : context.theme.colors.textSecondary,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               Row(
                 children: [
-                  const Text(
+                  Text(
                     'Type',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                   const Spacer(),
                   Text(
                     contract.rate,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                    style: context.theme.fonts.textMdSemiBold.copyWith(
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                 ],
@@ -87,19 +88,16 @@ class ContractCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    contract.type.name,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
+                    contract.type.displayName,
+                    style: context.theme.fonts.textSmMedium.copyWith(
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                   const Spacer(),
                   Text(
                     contract.frequency,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                 ],

@@ -97,11 +97,15 @@ import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/scree
 // Pay Cycle
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contracts_screen.dart';
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/payout_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/milestone_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/add_milestone_screen.dart';
 // Payment
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submitted_hours_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submit_hours_screen.dart';
 // QuickPay
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay_home_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_done.dart';
@@ -545,6 +549,26 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: PayoutDetailRoute.page,
           path: RouteConstants.payCyclePayoutDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PayCycleSubmittedHoursDetailRoute.page,
+          path: RouteConstants.payCycleSubmittedHoursDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: MilestoneDetailRoute.page,
+          path: RouteConstants.payCycleMilestoneDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AddMilestoneRoute.page,
+          path: RouteConstants.payCycleAddMilestone,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PayCycleSubmitHoursRoute.page,
+          path: RouteConstants.payCycleSubmitHours,
           guards: [authGuard],
         ),
 
