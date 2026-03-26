@@ -165,7 +165,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               // Randomized PixelatedAvatar based on address
               PixelatedAvatar(
                 size: 40.w,
-                gridSize: 8, // Slightly smaller grid for more detailed look
+                gridSize: 8, 
                 colorPalette: _getPaletteForAddress(address),
                 seed: address.avatarSeed,
                 borderRadius: 8.r,

@@ -73,11 +73,10 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
       ),
       child: Center(
         child: SvgPicture.asset(
-          Assets.icons.shieldCheckered,
+          Assets.icons.shieldCheck,
           width: 52.w,
           height: 52.w,
-          colorFilter:
-              ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
         ),
       ),
     );

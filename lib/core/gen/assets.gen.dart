@@ -12,6 +12,12 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/AddressBook.svg
+  String get addressBookSvg => 'assets/icons/AddressBook.svg';
+
+  /// File path: assets/icons/address_book.svg
+  String get addressBookSvg_ => 'assets/icons/address_book.svg';
+
   /// File path: assets/icons/Bank.svg
   String get bank => 'assets/icons/Bank.svg';
 
@@ -42,8 +48,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ClockUser.svg
   String get clockUser => 'assets/icons/ClockUser.svg';
 
+  /// File path: assets/icons/CloudSlash.svg
+  String get cloudSlash => 'assets/icons/CloudSlash.svg';
+
   /// File path: assets/icons/Copy.svg
   String get copy => 'assets/icons/Copy.svg';
+
+  /// File path: assets/icons/DeviceMobileSlash.svg
+  String get deviceMobileSlash => 'assets/icons/DeviceMobileSlash.svg';
 
   /// File path: assets/icons/Empty State.svg
   String get emptyState => 'assets/icons/Empty State.svg';
@@ -93,6 +105,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Scales.svg
   String get scales => 'assets/icons/Scales.svg';
 
+  /// File path: assets/icons/ShieldCheck.svg
+  String get shieldCheck => 'assets/icons/ShieldCheck.svg';
+
   /// File path: assets/icons/Trash.svg
   String get trash => 'assets/icons/Trash.svg';
 
@@ -119,9 +134,6 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/Warning.svg
   String get warning => 'assets/icons/Warning.svg';
-
-  /// File path: assets/icons/address_book.svg
-  String get addressBook => 'assets/icons/address_book.svg';
 
   /// File path: assets/icons/alarmNotification.svg
   String get alarmNotification => 'assets/icons/alarmNotification.svg';
@@ -447,6 +459,8 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    addressBookSvg,
+    addressBookSvg_,
     bank,
     briefcase,
     buildingOfficeSvg,
@@ -457,7 +471,9 @@ class $AssetsIconsGen {
     clock,
     clockCountdown,
     clockUser,
+    cloudSlash,
     copy,
+    deviceMobileSlash,
     emptyState,
     file,
     files,
@@ -474,6 +490,7 @@ class $AssetsIconsGen {
     qrCodeSvg_,
     receipt,
     scales,
+    shieldCheck,
     trash,
     userCircleSvg,
     userCircleSvg_,
@@ -483,7 +500,6 @@ class $AssetsIconsGen {
     userFocusSvg_,
     wallet,
     warning,
-    addressBook,
     alarmNotification,
     appIcon,
     appleIcon,
@@ -711,6 +727,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/money.png
   AssetGenImage get money => const AssetGenImage('assets/images/money.png');
 
+  /// File path: assets/images/more_bg.png
+  AssetGenImage get moreBg => const AssetGenImage('assets/images/more_bg.png');
+
   /// File path: assets/images/nigeria.svg
   String get nigeria => 'assets/images/nigeria.svg';
 
@@ -801,6 +820,7 @@ class $AssetsImagesGen {
     lusd,
     matic,
     money,
+    moreBg,
     nigeria,
     onboardingBg1,
     onboardingBg2,

@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/modules/more/presentation/widgets/wallet_identicon.dart';
+import 'package:defifundr_mobile/core/utils/pixeled_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -110,6 +112,20 @@ class _WalletCard extends StatelessWidget {
 
   const _WalletCard({required this.wallet});
 
+  static const _palettes = [
+    AvatarPalettes.purplePink,
+    AvatarPalettes.yellowPurple,
+    AvatarPalettes.ocean,
+    AvatarPalettes.sunset,
+    AvatarPalettes.forest,
+    AvatarPalettes.monochrome,
+  ];
+
+  List<Color> _getPaletteForAddress(String address) {
+    final random = Random(address.hashCode);
+    return _palettes[random.nextInt(_palettes.length)];
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.theme.colors;
@@ -136,9 +152,12 @@ class _WalletCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            WalletIdenticon(
-              address: wallet.address,
-              size: 48.w,
+            PixelatedAvatar(
+              size: 40.w,
+              gridSize: 8,
+              colorPalette: _getPaletteForAddress(wallet.address),
+              seed: wallet.address,
+              borderRadius: 8.r,
             ),
             SizedBox(width: 12.w),
             Expanded(
@@ -149,7 +168,7 @@ class _WalletCard extends StatelessWidget {
                     children: [
                       Text(
                         wallet.shortAddress,
-                        style: fonts.textBaseSemiBold.copyWith(
+                        style: fonts.textMdMedium.copyWith(
                           color: colors.textPrimary,
                         ),
                       ),
@@ -178,13 +197,13 @@ class _WalletCard extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: r'$0',
-                          style: fonts.textBaseSemiBold.copyWith(
+                          style: fonts.heading3SemiBold.copyWith(
                             color: colors.textPrimary,
                           ),
                         ),
                         TextSpan(
                           text: '.00',
-                          style: fonts.textBaseSemiBold.copyWith(
+                          style: fonts.heading3SemiBold.copyWith(
                             color: colors.textTertiary,
                           ),
                         ),

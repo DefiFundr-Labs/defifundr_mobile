@@ -25,7 +25,7 @@ class MoreSection extends StatelessWidget {
           padding: EdgeInsets.only(left: 4.w, bottom: 8.h),
           child: Text(
             title,
-            style: fonts.textSmRegular.copyWith(
+            style: fonts.textMdMedium.copyWith(
               color: colors.textSecondary,
             ),
           ),
