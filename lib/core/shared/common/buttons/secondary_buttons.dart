@@ -186,7 +186,10 @@ class _SecondaryButtonState extends State<SecondaryButton>
                           fontSize: widget.textSize,
                           fontWeight: FontWeight.w500,
                           color: widget.textColor ??
-                              context.theme.colors.textPrimary,
+                              (widget.backgroundColor ==
+                                      context.theme.colors.brandDefault
+                                  ? context.theme.colors.contrastWhite
+                                  : context.theme.colors.textPrimary),
                         ),
                       ),
                       if (widget.iconRtr != null) const SizedBox(width: 12),
