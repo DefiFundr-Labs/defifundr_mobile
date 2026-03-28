@@ -70,7 +70,7 @@ class AppTheme {
     textHighlightBlue: AppColors.textHighlightBlue,
     contrastBlack: AppColors.contrastBlack,
     contrastWhite: AppColors.contrastWhite,
-    strokePrimary: AppColorDark.strokePrimary,
+    strokePrimary: AppColors.strokePrimary,
     strokeSecondary: AppColors.strokeSecondary,
     fillTertiary: AppColors.fillTertiary,
   );
@@ -875,6 +875,13 @@ extension ThemeGetter on BuildContext {
   TextTheme get textTheme => theme.textTheme;
 
   ColorScheme get colorScheme => theme.colorScheme;
+
+  /// Whether the current theme is dark mode.
+  ///
+  /// Prefer using semantic color tokens from `context.theme.colors.<token>`
+  /// over raw brightness checks. Only use `isDarkMode` when a decision
+  /// cannot be expressed with existing semantic tokens (e.g. switching SVG assets).
+  bool get isDarkMode => theme.brightness == Brightness.dark;
 }
 
 extension AppThemeExtension on ThemeData {

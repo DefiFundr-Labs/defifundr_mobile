@@ -1,7 +1,6 @@
 // 🎯 Dart imports:
 import 'dart:async';
 
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/custom_input_border.dart';
@@ -327,11 +326,11 @@ class _AppTextFieldState extends State<AppTextField> {
       case SuffixType.defaultt:
         return Container(
           margin: const EdgeInsets.only(right: 8),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Icon(
               Iconsax.arrow_down_1,
-              color: AppColors.grayTertiary,
+              color: context.theme.colors.grayTertiary,
               size: 14,
             ),
           ),

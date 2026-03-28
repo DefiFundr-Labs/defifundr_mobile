@@ -9,7 +9,7 @@ import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart'
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/app_%20constants.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/widgets/common/empty_state.dart';
+import 'package:defifundr_mobile/core/shared/common/components/empty_state/app_empty_state.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_card.dart';
 import 'package:flutter/material.dart';
@@ -173,11 +173,10 @@ class _InvoicesScreenState extends State<InvoicesScreen>
 
   Widget _buildInvoicesList(List<Invoice> invoices) {
     if (invoices.isEmpty) {
-      return const EmptyState(
+      return const AppEmptyState(
         icon: Icons.description_outlined,
         title: 'No invoices yet.',
-        subtitle:
-            'Once you create or receive one, you\'ll see it listed\nhere.',
+        subtitle: 'Once you create or receive one, you\'ll see it listed here.',
       );
     }
 

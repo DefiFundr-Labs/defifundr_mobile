@@ -16,7 +16,6 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/scree
 // Dashboard
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/notifications_screen.dart';
-import 'package:defifundr_mobile/modules/dasboard/data/models/notification_item.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/add_expense_screen.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/expense_details_screen.dart';
@@ -133,7 +132,6 @@ import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspac
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 // Workspace
-import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../modules/dasboard/presentation/screens/home_screen.dart';

@@ -8,7 +8,7 @@ import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
-import 'package:defifundr_mobile/modules/expenses/presentation/widgets/empty_state.dart';
+import 'package:defifundr_mobile/core/shared/common/components/empty_state/app_empty_state.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/expense_list_item.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +140,12 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                         );
                       },
                     )
-                  : EmptyState(),
+                  : const AppEmptyState(
+                      icon: Icons.description_outlined,
+                      title: 'No expenses yet',
+                      subtitle:
+                          'Keep track of your contract-related spending here.',
+                    ),
             ),
           ],
         ),
