@@ -223,7 +223,7 @@ class YourDetailsStep extends StatelessWidget {
 
   CountryListThemeData _countryListTheme(BuildContext context) {
     return CountryListThemeData(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       textStyle: context.theme.fonts.textBaseRegular.copyWith(
         color: context.theme.colors.textPrimary,
       ),

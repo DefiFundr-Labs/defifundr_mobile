@@ -31,7 +31,7 @@ class HomeBalanceCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.sp),
         decoration: BoxDecoration(
-          color: isLightMode ? colors.bgB0 : colors.bgB1,
+          color: colors.bgB1,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

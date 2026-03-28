@@ -40,7 +40,7 @@ class DateSelector extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         decoration: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(

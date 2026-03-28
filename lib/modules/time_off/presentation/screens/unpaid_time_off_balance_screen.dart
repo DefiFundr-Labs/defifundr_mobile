@@ -57,7 +57,7 @@ class UnpaidTimeOffBalanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(

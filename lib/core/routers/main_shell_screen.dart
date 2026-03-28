@@ -27,7 +27,7 @@ class MainShellScreen extends StatelessWidget {
           bottomNavigationBar: isAtTabRoot
               ? Container(
                   decoration: BoxDecoration(
-                    color: colors.bgB0,
+                    color: colors.bgB1,
                     border: Border(
                       top: BorderSide(
                         color: colors.grayQuaternary,

@@ -277,7 +277,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: isLightMode ? colors.bgB0 : colors.bgB1,
+      backgroundColor: colors.bgB0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
       ),
@@ -342,7 +342,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
         return Container(
           height: MediaQuery.of(context).size.height * 0.6,
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius:
                 BorderRadius.vertical(top: Radius.circular(16.r)),
           ),
@@ -378,7 +378,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                   showPhoneCode: showPhoneCode,
                   countryListTheme: CountryListThemeData(
                     backgroundColor:
-                        isLightMode ? colors.bgB0 : colors.bgB1,
+                        colors.bgB1,
                     textStyle: fonts.textBaseMedium.copyWith(
                       color: colors.textPrimary,
                     ),

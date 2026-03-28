@@ -30,7 +30,7 @@ class HomeQuickActions extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(12),
           ),
           child: IntrinsicHeight(

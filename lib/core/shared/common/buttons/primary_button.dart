@@ -221,7 +221,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
       colorFilter: ColorFilter.mode(
         widget.iconColor ??
             (widget.isEnabled
-                ? context.theme.colors.textPrimary
+                ? (widget.color == null 
+                    ? context.theme.colors.textPrimary 
+                    : context.theme.colors.contrastWhite)
                 : context.theme.colors.graySecondary),
         BlendMode.srcIn,
       ),
@@ -236,7 +238,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
         fontWeight: FontWeight.w600,
         color: widget.textColor ??
             (widget.isEnabled
-                ? context.theme.colors.contrastWhite
+                ? (widget.color == null 
+                    ? context.theme.colors.textPrimary 
+                    : context.theme.colors.contrastWhite)
                 : context.theme.colors.graySecondary),
       ),
     );

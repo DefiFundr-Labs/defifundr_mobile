@@ -170,7 +170,7 @@ class NotificationsScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.sp),
               decoration: BoxDecoration(
-                color: isLightMode ? colors.bgB0 : colors.bgB1,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Column(

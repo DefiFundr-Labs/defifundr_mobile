@@ -40,7 +40,7 @@ class _MoreTwoFaAuthCodeScreenState extends State<MoreTwoFaAuthCodeScreen> {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

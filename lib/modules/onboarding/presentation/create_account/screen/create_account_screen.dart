@@ -102,6 +102,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 SecondaryButton(
                   text: 'Sign up using Apple',
                   icon: AppAssets.appleIcon,
+                  iconColor: context.theme.colors.textPrimary,
                   onPressed: () {
                     // Handle Apple login
                   },

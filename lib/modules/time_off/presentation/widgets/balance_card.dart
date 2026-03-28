@@ -18,12 +18,13 @@ class BalanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: context.theme.colors.bgB0,
+            color: context.theme.colors.bgB1,
             borderRadius: BorderRadius.circular(8.r),
             boxShadow: [
               BoxShadow(

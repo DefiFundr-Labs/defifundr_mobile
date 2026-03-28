@@ -302,7 +302,7 @@ class _ResubmitHoursScreenState extends State<ResubmitHoursScreen> {
                     Container(
                       padding: EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
                           color: context.theme.colors.strokeSecondary,

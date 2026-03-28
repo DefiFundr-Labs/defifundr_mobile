@@ -111,7 +111,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: Stack(
         children: [
           SafeArea(
@@ -213,7 +213,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isLight ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(color: colors.strokeSecondary),
       ),

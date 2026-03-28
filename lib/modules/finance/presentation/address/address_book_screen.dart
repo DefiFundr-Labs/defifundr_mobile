@@ -137,7 +137,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
       margin: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(_borderRadius),
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
       ),
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(height: 4.sp),

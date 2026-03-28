@@ -101,7 +101,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +145,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: isLight ? colors.bgB0 : colors.bgB1,
+                        color: colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Row(
@@ -196,7 +196,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: isLight ? colors.bgB0 : colors.bgB1,
+                        color: colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: GridView.builder(

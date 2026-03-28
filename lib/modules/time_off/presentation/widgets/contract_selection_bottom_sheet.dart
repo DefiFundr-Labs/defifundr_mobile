@@ -37,7 +37,7 @@ class _ContractSelectionBottomSheetState extends State<ContractSelectionBottomSh
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),

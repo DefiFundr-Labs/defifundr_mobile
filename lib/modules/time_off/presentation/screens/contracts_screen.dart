@@ -81,7 +81,7 @@ class _TimeOffContractsScreenState extends State<TimeOffContractsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(

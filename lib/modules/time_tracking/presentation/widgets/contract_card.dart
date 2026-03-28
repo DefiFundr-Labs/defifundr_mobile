@@ -16,11 +16,12 @@ class ContractCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
-      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.only(bottom: 20.0),
+      padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(

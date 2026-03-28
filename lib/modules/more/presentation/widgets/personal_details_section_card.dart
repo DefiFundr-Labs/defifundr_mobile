@@ -23,7 +23,7 @@ class PersonalDetailsSectionCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(

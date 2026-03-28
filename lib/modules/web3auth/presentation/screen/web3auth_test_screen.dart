@@ -146,7 +146,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
                       width: 0.8.sw,
                       padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Column(
@@ -508,7 +508,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
         Container(
           padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
-            color: colors.bgB0,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: colors.bgB3),
           ),
@@ -563,7 +563,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
         // SizedBox(height: 12.h),
         // Container(
         //   decoration: BoxDecoration(
-        //     color: colors.bgB0,
+        //     color: colors.bgB1,
         //     borderRadius: BorderRadius.circular(16.r),
         //     border: Border.all(color: colors.bgB3),
         //   ),
@@ -684,7 +684,7 @@ class _Web3authTestScreenState extends State<Web3authTestScreen>
                 height: 16.h,
                 width: 150.w,
                 decoration: BoxDecoration(
-                  color: context.theme.colors.bgB0.withOpacity(0.3),
+                  color: context.theme.colors.bgB1.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(4.r),
                 ),
               )

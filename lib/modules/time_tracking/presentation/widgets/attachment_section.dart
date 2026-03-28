@@ -54,7 +54,7 @@ class AttachmentSection extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
             decoration: BoxDecoration(
-              color: context.theme.colors.bgB0,
+              color: context.theme.colors.bgB1,
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(color: Colors.grey[200]!),
             ),

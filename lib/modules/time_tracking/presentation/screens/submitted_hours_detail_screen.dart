@@ -87,7 +87,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
                         color: context.theme.colors.strokeSecondary,
@@ -246,7 +246,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
                         color: context.theme.colors.strokeSecondary,

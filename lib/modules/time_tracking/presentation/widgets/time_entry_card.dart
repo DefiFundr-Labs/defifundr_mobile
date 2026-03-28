@@ -18,11 +18,12 @@ class TimeEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       margin: EdgeInsets.only(bottom: 16.r),
       padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
-        color: context.theme.colors.fillTertiary,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(

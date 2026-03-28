@@ -35,11 +35,12 @@ class TimeRecordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       margin: EdgeInsets.only(bottom: 8.0),
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.0),
         border: Border.all(color: context.theme.colors.strokeSecondary),
       ),

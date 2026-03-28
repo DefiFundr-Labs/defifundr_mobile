@@ -69,7 +69,7 @@ class InvoiceScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
-                color: colors.bgB0,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Column(
@@ -109,7 +109,7 @@ class InvoiceScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
-                color: colors.bgB0,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Column(
@@ -139,7 +139,7 @@ class InvoiceScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
-                color: colors.bgB0,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: payment.paymentType == PaymentType.contract
@@ -178,7 +178,7 @@ class InvoiceScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 24, bottom: 24),
               decoration: BoxDecoration(
-                color: colors.bgB0,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Column(

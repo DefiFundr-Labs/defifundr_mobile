@@ -15,7 +15,7 @@ class CompletionBottomSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(

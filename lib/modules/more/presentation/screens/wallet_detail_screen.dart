@@ -79,7 +79,7 @@ class WalletDetailScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(
@@ -178,7 +178,7 @@ class WalletDetailScreen extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.r),
       child: Container(
         decoration: BoxDecoration(
-          color: isLightMode ? colors.bgB0 : colors.bgB1,
+          color: colors.bgB1,
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Padding(

@@ -172,6 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SecondaryButton(
                   text: context.l10n.logInUsingApple,
                   icon: AppAssets.appleIcon,
+                  iconColor: context.theme.colors.textPrimary,
                   onPressed: () {
                     // context.router.push(
                     //   PinCodeRoute(

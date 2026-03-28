@@ -260,7 +260,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          color: colors.bgB0,
+          color: colors.bgB1,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
@@ -298,7 +298,7 @@ class _UpcomingPaymentsScreenState extends State<UpcomingPaymentsScreen> {
                             decoration: BoxDecoration(
                               color: badgeColor,
                               border: Border.all(
-                                color: colors.bgB0,
+                                color: colors.bgB1,
                                 width: 1.0,
                               ),
                               shape: BoxShape.circle,

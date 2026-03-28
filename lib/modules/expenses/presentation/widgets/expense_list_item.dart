@@ -24,7 +24,7 @@ class ExpenseListItem extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color:
-              isLight ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+              context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(

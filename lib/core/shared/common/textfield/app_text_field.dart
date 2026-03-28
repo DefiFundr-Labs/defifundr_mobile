@@ -616,6 +616,6 @@ class _AppTextFieldState extends State<AppTextField> {
     }
 
     // Otherwise, use theme-based color
-    return isDark ? context.theme.colors.bgB1 : context.theme.colors.bgB0;
+    return context.theme.colors.bgB1;
   }
 }

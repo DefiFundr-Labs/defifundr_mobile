@@ -54,7 +54,7 @@ class UpcomingPaymentItemCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(
-          color: isLightMode ? colors.bgB0 : colors.bgB1,
+          color: colors.bgB1,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Row(

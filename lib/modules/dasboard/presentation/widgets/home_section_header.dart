@@ -84,7 +84,7 @@ class HomeEmptyState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(

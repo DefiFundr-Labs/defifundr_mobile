@@ -228,7 +228,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return Container(
       padding: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         border: Border.all(
           color: colors.strokeSecondary.withAlpha(30),
         ),
@@ -259,7 +259,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   },
                   decoration: InputDecoration(
                     hintText: context.l10n.pasteOrScanAddress,
-                    fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
+                    fillColor: colors.bgB1,
                     hintStyle: fontTheme.textBaseMedium.copyWith(
                       color: colors.textTertiary,
                     ),

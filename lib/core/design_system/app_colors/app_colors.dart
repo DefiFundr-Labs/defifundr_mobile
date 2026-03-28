@@ -70,8 +70,8 @@ class AppColors {
   static const Color pinkFill = Color(0xFFFFECF5);
 
   // Background Colors
-  static const Color bgB0 = Color(0xFFFFFFFF);
-  static const Color bgB1 = Color(0xFFF7F7F7);
+  static const Color bgB0 = Color(0xFFF7F7F8);
+  static const Color bgB1 = Color(0xFFFFFFFF);
   static const Color bgB2 = Color(0xFFEEEEEE);
   static const Color bgB3 = Color(0xFFE6E6E6);
   static const Color bgB0Base = Color(0xFFF7F7F8);

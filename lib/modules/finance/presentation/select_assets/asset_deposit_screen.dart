@@ -68,7 +68,7 @@ class AssetDepositScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(
@@ -125,7 +125,7 @@ class AssetDepositScreen extends StatelessWidget {
         vertical: 24.0,
       ),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Column(

@@ -233,7 +233,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
       decoration: BoxDecoration(
         border: Border.all(color: context.theme.colors.strokeSecondary),
         borderRadius: BorderRadius.circular(12),
-        color: isDark ? context.theme.colors.bgB1 : context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
       ),
       padding: const EdgeInsets.all(12),
       child: Row(

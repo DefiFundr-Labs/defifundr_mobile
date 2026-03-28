@@ -33,7 +33,7 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: const EdgeInsets.only(right: 16.0),
       titleSpacing: 24.sp,
       backgroundColor:
-          isDark ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+          context.theme.colors.bgB0,
       scrolledUnderElevation: 0,
       elevation: 0,
       centerTitle: centerTitle,

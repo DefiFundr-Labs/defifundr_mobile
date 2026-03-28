@@ -68,7 +68,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

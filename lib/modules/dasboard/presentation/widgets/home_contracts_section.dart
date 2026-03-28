@@ -45,7 +45,7 @@ class HomeContractsSection extends StatelessWidget {
         hasData
             ? Container(
                 decoration: BoxDecoration(
-                  color: isLightMode ? colors.bgB0 : colors.bgB1,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: ListView.separated(

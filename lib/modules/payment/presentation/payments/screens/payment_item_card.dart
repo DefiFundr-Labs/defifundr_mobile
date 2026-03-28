@@ -78,7 +78,7 @@ class PaymentItemCard extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Row(
@@ -113,7 +113,7 @@ class PaymentItemCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: badgeColor,
                         border: Border.all(
-                          color: colors.bgB0,
+                          color: colors.bgB1,
                           width: 1.0,
                         ),
                         shape: BoxShape.circle,

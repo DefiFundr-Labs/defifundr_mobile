@@ -21,7 +21,7 @@ class PinDot extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(8.r),
         border: Border.all(
           color: hasError

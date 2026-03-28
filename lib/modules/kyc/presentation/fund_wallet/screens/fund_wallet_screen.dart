@@ -95,7 +95,7 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: isLightMode ? colors.bgB0 : colors.bgB1,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: ListView.separated(

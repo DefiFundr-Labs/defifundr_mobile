@@ -195,7 +195,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
               decoration: BoxDecoration(
-                color: context.theme.colors.bgB0,
+                color: context.theme.colors.bgB1,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: context.theme.colors.strokeSecondary),
               ),

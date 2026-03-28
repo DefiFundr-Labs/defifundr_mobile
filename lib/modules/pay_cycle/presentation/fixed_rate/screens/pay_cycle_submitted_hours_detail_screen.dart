@@ -37,7 +37,7 @@ class _PayCycleSubmittedHoursDetailScreenState
     final isWeek = widget.contract.frequency == PayCycleFrequency.perWeek;
 
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -62,7 +62,7 @@ class _PayCycleSubmittedHoursDetailScreenState
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Column(
@@ -288,7 +288,7 @@ class _PayCycleSubmittedHoursDetailScreenState
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Column(

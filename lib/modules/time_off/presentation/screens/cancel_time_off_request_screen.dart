@@ -60,7 +60,7 @@ class _CancelTimeOffRequestScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -113,7 +113,7 @@ class _CancelTimeOffRequestScreenState
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Column(
