@@ -122,7 +122,7 @@ class _ReviewSignStepState extends State<ReviewSignStep> {
                           label: 'Agreement',
                           value: '${_data['agreementType']} agreement'),
                       SizedBox(height: 12.h),
-                      const AgreementFileCard(isSmall: true),
+                      const AgreementFileCard(),
                       SizedBox(height: 16.h),
                       Text('Additional terms',
                           style: context.theme.fonts.textMdRegular.copyWith(

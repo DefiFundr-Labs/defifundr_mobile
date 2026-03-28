@@ -134,9 +134,12 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/subm
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/time_tracking_screen.dart';
 // Workspace
 import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
+// Contracts
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/workspace_contracts_screen.dart';
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/view_contract_screen.dart';
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/request_termination_screen.dart';
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
-// Workspace
 import 'package:flutter/material.dart';
 
 import '../../modules/dasboard/presentation/screens/home_screen.dart';
@@ -357,6 +360,10 @@ class AppRouter extends RootStackRouter {
                   page: ExpensesTimeOffDetailsRoute.page,
                   path: 'expenses-time-off-details',
                 ),
+                AutoRoute(
+                  page: WorkspaceContractsRoute.page,
+                  path: 'workspace-contracts',
+                ),
               ],
             ),
 
@@ -569,6 +576,20 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: PayCycleSubmitHoursRoute.page,
           path: RouteConstants.payCycleSubmitHours,
+          guards: [authGuard],
+        ),
+
+        // ============================================================
+        // WORKSPACE CONTRACT ROUTES (pushed over shell)
+        // ============================================================
+        AutoRoute(
+          page: ViewContractRoute.page,
+          path: RouteConstants.viewContract,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: RequestTerminationRoute.page,
+          path: RouteConstants.requestTermination,
           guards: [authGuard],
         ),
 

@@ -23,7 +23,7 @@ class WorkspaceScreen extends StatelessWidget {
         title: context.l10n.contracts,
         description: context.l10n.contractsDesc,
         iconPath: Assets.icons.files,
-        onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
+        onTap: () => context.pushRoute(const WorkspaceContractsRoute()),
       ),
       WorkspaceCardModel(
         title: context.l10n.payCycle,

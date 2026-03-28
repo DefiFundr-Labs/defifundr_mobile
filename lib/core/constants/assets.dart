@@ -93,6 +93,7 @@ class AppAssets {
   static const copySvg = '${defifundrIconPath}Copy.svg';
   static const shareNetworkSvg = '${defifundrIconPath}ShareNetwork.svg';
   static const headsetSvg = '${defifundrIconPath}Headset.svg';
+  static const terminationSvg = '${defifundrIconPath}termination.svg';
 
   //-------------------------------------------- FLAGS -------------------------------------------- //
 

@@ -14,8 +14,8 @@ import 'package:defifundr_mobile/modules/time_tracking/data/models/milestone.dar
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/payment_milestone_step.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/steps/review_sign_step.dart';
 
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/agreement_bottom_sheet.dart';
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/review_sign_bottom_sheet.dart';
+import 'package:defifundr_mobile/core/shared/components/agreement_bottom_sheet.dart';
+import 'package:defifundr_mobile/core/shared/components/review_sign_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/completion_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

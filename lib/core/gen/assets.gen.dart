@@ -417,6 +417,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/telegram_logo.svg
   String get telegramLogo => 'assets/icons/telegram_logo.svg';
 
+  /// File path: assets/icons/termination.svg
+  String get termination => 'assets/icons/termination.svg';
+
   /// File path: assets/icons/tether.svg
   String get tether => 'assets/icons/tether.svg';
 
@@ -494,6 +497,7 @@ class $AssetsIconsGen {
     info,
     invoiceCopy,
     link,
+    listChecks,
     magnifyingGlass,
     moneyCopy,
     prohibit,
@@ -605,10 +609,10 @@ class $AssetsIconsGen {
     starknetIcon,
     steller,
     telegramLogo,
+    termination,
     tether,
     transaction,
     transactionHeadset,
-    listChecks,
     twentyFivePercent,
     unchecked,
     uploadCompliance,

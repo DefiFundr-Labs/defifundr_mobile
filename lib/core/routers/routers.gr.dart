@@ -1803,6 +1803,59 @@ class RequestChangeRouteArgs {
 }
 
 /// generated route for
+/// [RequestTerminationScreen]
+class RequestTerminationRoute
+    extends PageRouteInfo<RequestTerminationRouteArgs> {
+  RequestTerminationRoute({
+    Key? key,
+    required String clientName,
+    required String noticePeriod,
+    List<PageRouteInfo>? children,
+  }) : super(
+         RequestTerminationRoute.name,
+         args: RequestTerminationRouteArgs(
+           key: key,
+           clientName: clientName,
+           noticePeriod: noticePeriod,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'RequestTerminationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RequestTerminationRouteArgs>();
+      return RequestTerminationScreen(
+        key: args.key,
+        clientName: args.clientName,
+        noticePeriod: args.noticePeriod,
+      );
+    },
+  );
+}
+
+class RequestTerminationRouteArgs {
+  const RequestTerminationRouteArgs({
+    this.key,
+    required this.clientName,
+    required this.noticePeriod,
+  });
+
+  final Key? key;
+
+  final String clientName;
+
+  final String noticePeriod;
+
+  @override
+  String toString() {
+    return 'RequestTerminationRouteArgs{key: $key, clientName: $clientName, noticePeriod: $noticePeriod}';
+  }
+}
+
+/// generated route for
 /// [ResetPasswordScreen]
 class ResetPasswordRoute extends PageRouteInfo<void> {
   const ResetPasswordRoute({List<PageRouteInfo>? children})
@@ -2559,6 +2612,43 @@ class VerifyOtpRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ViewContractScreen]
+class ViewContractRoute extends PageRouteInfo<ViewContractRouteArgs> {
+  ViewContractRoute({
+    Key? key,
+    required TimeTrackingContract contract,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ViewContractRoute.name,
+         args: ViewContractRouteArgs(key: key, contract: contract),
+         initialChildren: children,
+       );
+
+  static const String name = 'ViewContractRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ViewContractRouteArgs>();
+      return ViewContractScreen(key: args.key, contract: args.contract);
+    },
+  );
+}
+
+class ViewContractRouteArgs {
+  const ViewContractRouteArgs({this.key, required this.contract});
+
+  final Key? key;
+
+  final TimeTrackingContract contract;
+
+  @override
+  String toString() {
+    return 'ViewContractRouteArgs{key: $key, contract: $contract}';
+  }
+}
+
+/// generated route for
 /// [WalletDetailScreen]
 class WalletDetailRoute extends PageRouteInfo<WalletDetailRouteArgs> {
   WalletDetailRoute({
@@ -2695,6 +2785,22 @@ class WithdrawRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const WithdrawScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [WorkspaceContractsScreen]
+class WorkspaceContractsRoute extends PageRouteInfo<void> {
+  const WorkspaceContractsRoute({List<PageRouteInfo>? children})
+    : super(WorkspaceContractsRoute.name, initialChildren: children);
+
+  static const String name = 'WorkspaceContractsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WorkspaceContractsScreen();
     },
   );
 }
