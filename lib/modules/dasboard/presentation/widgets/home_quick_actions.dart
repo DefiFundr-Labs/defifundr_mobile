@@ -41,7 +41,7 @@ class HomeQuickActions extends StatelessWidget {
                   icon: Assets.icons.files,
                   label: 'Contract',
                   onTap: () {
-                    context.router.push(const TimeTrackingContractsRoute());
+                    context.router.push(const WorkspaceContractsRoute());
                   },
                 ),
                 VerticalDivider(

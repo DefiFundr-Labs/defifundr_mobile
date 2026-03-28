@@ -24,11 +24,13 @@ class ContractItem {
 class HomeContractsSection extends StatelessWidget {
   final List<ContractItem> contracts;
   final bool hasData;
+  final VoidCallback? onSeeAll;
 
   const HomeContractsSection({
     super.key,
     required this.contracts,
     required this.hasData,
+    this.onSeeAll,
   });
 
   @override
@@ -38,7 +40,7 @@ class HomeContractsSection extends StatelessWidget {
 
     return Column(
       children: [
-        const HomeSectionHeader(title: 'Contracts'),
+        HomeSectionHeader(title: 'Contracts', onSeeAll: onSeeAll),
         SizedBox(height: 8.h),
         hasData
             ? Container(

@@ -236,7 +236,9 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
                     BalanceCard(
                       title: 'Unpaid time off balance',
                       days: 12,
-                      onViewDetails: () {},
+                      onViewDetails: () {
+                        context.router.push(UnpaidTimeOffBalanceRoute());
+                      },
                       onTap: () {
                         context.router.push(UnpaidTimeOffBalanceRoute());
                       },

@@ -108,6 +108,9 @@ class HomeScreen extends StatelessWidget {
               HomeContractsSection(
                 contracts: _contracts,
                 hasData: _contracts.isNotEmpty,
+                onSeeAll: () {
+                  context.router.push(const WorkspaceContractsRoute());
+                },
               ),
               SizedBox(height: 24.h),
               HomePaymentSection(
