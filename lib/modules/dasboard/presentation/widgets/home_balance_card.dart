@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,7 @@ class HomeBalanceCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Total balance',
+                  context.l10n.totalBalance,
                   style: fonts.textSmSemiBold.copyWith(
                     color: colors.textSecondary,
                     fontFamily: FontFamily.hankenGrotesk,

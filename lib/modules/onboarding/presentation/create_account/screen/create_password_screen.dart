@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
@@ -55,7 +56,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                   children: [
                     SizedBox(height: 8),
                     Text(
-                      "Create Your Password",
+                      context.l10n.createYourPassword,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: context.theme.colors.textPrimary,
@@ -64,7 +65,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      "Enter password to keep your account safe and secure.",
+                      context.l10n.enterPasswordToKeepSafe,
                       style: context.theme.textTheme.headlineMedium?.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class DialCodeSelectionScreen extends StatefulWidget {
   const DialCodeSelectionScreen({super.key});
@@ -103,8 +104,8 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
-                          const Text(
-                            'Dial code',
+                          Text(
+                            context.l10n.dialCode,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -126,7 +127,7 @@ class _DialCodeSelectionScreenState extends State<DialCodeSelectionScreen> {
                           controller: _searchController,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            hintText: 'Search',
+                            hintText: context.l10n.search,
                             hintStyle: TextStyle(color: Colors.grey[500]),
                             prefixIcon:
                                 Icon(Icons.search, color: Colors.grey[500]),

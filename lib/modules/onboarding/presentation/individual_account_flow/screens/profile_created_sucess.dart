@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ProfileCreatedSucessScreen extends StatelessWidget {
@@ -73,7 +74,7 @@ class ProfileCreatedSucessScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Your Profile has been created!',
+          context.l10n.yourProfileCreated,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineLarge?.copyWith(
             fontSize: 24.sp,
@@ -83,7 +84,7 @@ class ProfileCreatedSucessScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Text(
-          'Your PIN has been successfully created. You can now use this PIN to log in to your account securely.',
+          context.l10n.pinCreatedSuccessMessage,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineMedium?.copyWith(
             fontSize: 14.sp,
@@ -97,7 +98,7 @@ class ProfileCreatedSucessScreen extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context) {
     return PrimaryButton(
-      text: 'Proceed to login',
+      text: context.l10n.proceedToLogin,
       isEnabled: true,
       onPressed: () {
         context.router.push(LoginRoute());

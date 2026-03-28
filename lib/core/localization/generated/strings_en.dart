@@ -804,4 +804,398 @@ class StringsEn extends Strings {
 
   @override
   String get enterPin => 'Enter PIN';
+
+  @override
+  String get welcomeWithEmoji => 'Welcome! 👋🏾';
+
+  @override
+  String get quickActions => 'Quick actions';
+
+  @override
+  String get contractAction => 'Contract';
+
+  @override
+  String get invoiceAction => 'Invoice';
+
+  @override
+  String get quickpayAction => 'Quickpay';
+
+  @override
+  String get completeAccountSetup => 'Complete Account Setup';
+
+  @override
+  String get finishSetupToStart =>
+      'Finish setting up your account to start sending invoices and signing contracts.';
+
+  @override
+  String get onboardingChecklist => 'Onboarding Checklist';
+
+  @override
+  String get completeAllStepsToActivate =>
+      'You must complete all steps to fully activate your account.';
+
+  @override
+  String get createFreelancerAccount => 'Create freelancer account';
+
+  @override
+  String get verifyYourIdentity => 'Verify your identity';
+
+  @override
+  String get provideYourBvn => 'Provide your BVN';
+
+  @override
+  String get addTaxInfoForCompliance => 'Add tax info for compliance';
+
+  @override
+  String get fundWalletWithTokens => 'Fund wallet with tokens';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get noNotificationsYet => 'No notifications yet.';
+
+  @override
+  String get notificationsUpdatesReady =>
+      'Your updates will show up here when they\'re ready.';
+
+  @override
+  String get createAnAccount => 'Create An Account';
+
+  @override
+  String get enterDetailsToCreateAccount =>
+      'Enter your details below to create your account.';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get signUpUsingGoogle => 'Sign up using Google';
+
+  @override
+  String get signUpUsingApple => 'Sign up using Apple';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get createYourPassword => 'Create Your Password';
+
+  @override
+  String get enterPasswordToKeepSafe =>
+      'Enter password to keep your account safe and secure.';
+
+  @override
+  String get verifyYourEmail => 'Verify Your Email';
+
+  @override
+  String get verifyAccount => 'Verify account';
+
+  @override
+  String get byCreatingAccountYouAgree =>
+      'By creating an account, you agree to our';
+
+  @override
+  String get productTandCs => 'Product T&Cs';
+
+  @override
+  String get accountType => 'Account Type';
+
+  @override
+  String get freelancerAccount => 'Freelancer account';
+
+  @override
+  String get contractorAccount => 'Contractor account';
+
+  @override
+  String get businessCorporateAccount => 'Business/Corporate account';
+
+  @override
+  String get addressDetails => 'Address Details';
+
+  @override
+  String get provideAddressDetails =>
+      'Please provide your address details, this will be used to complete your profile.';
+
+  @override
+  String get finishSetup => 'Finish setup';
+
+  @override
+  String get yourProfileCreated => 'Your Profile has been created!';
+
+  @override
+  String get pinCreatedSuccessMessage =>
+      'Your PIN has been successfully created. You can now use this PIN to log in to your account securely.';
+
+  @override
+  String get confirmYourPinCode => 'Confirm Your PIN Code';
+
+  @override
+  String get createYourPinCode => 'Create Your PIN Code';
+
+  @override
+  String get enableFaceId => 'Enable Login Using Face ID';
+
+  @override
+  String get faceIdDescription =>
+      'Experience safe, secure and seamless login using Face ID.';
+
+  @override
+  String get enable => 'Enable';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get enableFingerprint => 'Enable Login Using Fingerprint';
+
+  @override
+  String get fingerprintDescription =>
+      'Experience safe, secure and seamless login using fingerprint.';
+
+  @override
+  String get enablePushNotifications => 'Enable Push Notifications';
+
+  @override
+  String get pushNotificationsDescription =>
+      'For instant updates, important announcements.';
+
+  @override
+  String get yourPinCreated => 'Your PIN Has Been Created!';
+
+  @override
+  String get pinCreatedLoginMessage =>
+      'Your PIN has been successfully created. You can now use this PIN to log in to your account.';
+
+  @override
+  String get changeAddressDescription =>
+      'Change or correct your address to ensure accurate records and communication.';
+
+  @override
+  String get taxIdentification => 'Tax identification';
+
+  @override
+  String get useMyProfileAddress => 'Use my profile address';
+
+  @override
+  String get facebook => 'Facebook';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedIn => 'LinkedIn';
+
+  @override
+  String get xTwitter => 'X (prv Twitter)';
+
+  @override
+  String get attachmentOptional => 'Attachment (Optional)';
+
+  @override
+  String get clickToUpload => 'Click to upload';
+
+  @override
+  String get selectCategory => 'Select category';
+
+  @override
+  String get addExpense => 'Add expense';
+
+  @override
+  String get expenseName => 'Expense name';
+
+  @override
+  String get enterExpenseName => 'Enter expense name';
+
+  @override
+  String get expenseCategory => 'Category';
+
+  @override
+  String get expenseDate => 'Expense date';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get enterAmountLabel => 'Enter amount';
+
+  @override
+  String get enterExpenseDescription => 'Enter expense description';
+
+  @override
+  String get supportedFormats => 'Supported formats:';
+
+  @override
+  String get jpgPngHeicOrPdf => 'JPG, PNG, HEIC or PDF';
+
+  @override
+  String get maxFileSizeLabel => '; Max file size:';
+
+  @override
+  String get expenseDetails => 'Expense details';
+
+  @override
+  String get expenseStatus => 'Status';
+
+  @override
+  String get expenseNameLabel => 'Name';
+
+  @override
+  String get submissionDate => 'Submission date';
+
+  @override
+  String get expenseDescription => 'Description';
+
+  @override
+  String get attachment => 'Attachment';
+
+  @override
+  String get reasonForRejection => 'Reason for rejection';
+
+  @override
+  String get contractType => 'Contract Type';
+
+  @override
+  String get expenseClient => 'Client';
+
+  @override
+  String get deleteExpense => 'Delete expense';
+
+  @override
+  String get expenseSubmitted => 'Expense submitted';
+
+  @override
+  String get expenseSubmittedDesc1 =>
+      'An email has been sent for your request to be\nreviewed.';
+
+  @override
+  String get expenseSubmittedDesc2 =>
+      'An email has been sent for your request to be reviewed.';
+
+  @override
+  String get timeOffDetails => 'Time off details';
+
+  @override
+  String get deleteTimeOffTitle => 'Delete time off?';
+
+  @override
+  String get deleteTimeOffPrompt =>
+      'Are you sure you want to delete this time off request?';
+
+  @override
+  String get deleteTimeOff => 'Delete time off';
+
+  @override
+  String get deleteExpenseTitle => 'Delete expense?';
+
+  @override
+  String get deleteExpensePrompt =>
+      'Are you sure you want to delete this expense?';
+
+  @override
+  String get noExpensesYet => 'No expenses yet';
+
+  @override
+  String get noExpensesDesc =>
+      'Keep track of your contract-related spending\nhere.';
+
+  @override
+  String get invoiceThankYouNote =>
+      'Thank you for your business. Please remit payment according to the terms outlined in this invoice. If you have any questions regarding this invoice or the payment process, do not hesitate to contact us.';
+
+  @override
+  String get invoiceOverdue => 'Invoice Overdue';
+
+  @override
+  String get billedTo => 'Billed To';
+
+  @override
+  String get billedFrom => 'Billed From';
+
+  @override
+  String get invoiceBreakdown => 'Invoice Breakdown';
+
+  @override
+  String get paymentTracker => 'Payment Tracker';
+
+  @override
+  String get paymentMemo => 'Payment Memo';
+
+  @override
+  String get invoiceCreatedSentClient => 'Invoice created and sent to client';
+
+  @override
+  String get processClientPayment => 'Process your client payment';
+
+  @override
+  String get fundsReflectedMessage =>
+      'According to your invoice, funds should be reflected in your balance on 31st May 2025.';
+
+  @override
+  String get clientPaymentConfirmed => 'Client payment confirmed';
+
+  @override
+  String get clientPaymentProcessed => 'Client payment processed';
+
+  @override
+  String get fundsReceivedInAccount => 'Funds received in your account';
+
+  @override
+  String get previewPdf => 'Preview PDF';
+
+  @override
+  String get downloadPdf => 'Download PDF';
+
+  @override
+  String get receiveCryptoInstantly =>
+      'Receive crypto payments instantly via address, QR code, or payment link.';
+
+  @override
+  String get filterBy => 'Filter by';
+
+  @override
+  String get dateLabel => 'Date';
+
+  @override
+  String get noQuickpayActivity => 'No quickpay activity yet.';
+
+  @override
+  String get quickpayActivityShowHere =>
+      'Your quickpay activity will show up here once you receive one.';
+
+  @override
+  String get clearAll => 'Clear all';
+
+  @override
+  String get showResults => 'Show results';
+
+  @override
+  String get receivePayment => 'Receive payment';
+
+  @override
+  String get titleLabel => 'Title';
+
+  @override
+  String get shareQrCode => 'Share QR code';
+
+  @override
+  String get sharePayLink => 'Share pay link';
+
+  @override
+  String get fromLabel => 'From';
+
+  @override
+  String get transactionId => 'Transaction ID';
+
+  @override
+  String get helpCentre => 'Help centre';
+
+  @override
+  String get shareReceipt => 'Share receipt';
+
+  @override
+  String get allLabel => 'All';
 }

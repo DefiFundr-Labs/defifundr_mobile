@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
@@ -24,7 +25,7 @@ class HomeHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Welcome! 👋🏾',
+              context.l10n.welcomeWithEmoji,
               style: fonts.textMdMedium.copyWith(
                 color: colors.textSecondary,
                 fontSize: 14.sp,

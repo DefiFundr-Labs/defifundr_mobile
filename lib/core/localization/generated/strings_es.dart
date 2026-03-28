@@ -809,4 +809,398 @@ class StringsEs extends Strings {
 
   @override
   String get enterPin => 'Ingresa tu PIN';
+
+  @override
+  String get welcomeWithEmoji => '¡Bienvenido! 👋🏾';
+
+  @override
+  String get quickActions => 'Acciones rápidas';
+
+  @override
+  String get contractAction => 'Contrato';
+
+  @override
+  String get invoiceAction => 'Factura';
+
+  @override
+  String get quickpayAction => 'Quickpay';
+
+  @override
+  String get completeAccountSetup => 'Completar configuración de cuenta';
+
+  @override
+  String get finishSetupToStart =>
+      'Termina de configurar tu cuenta para comenzar a enviar facturas y firmar contratos.';
+
+  @override
+  String get onboardingChecklist => 'Lista de verificación';
+
+  @override
+  String get completeAllStepsToActivate =>
+      'Debes completar todos los pasos para activar completamente tu cuenta.';
+
+  @override
+  String get createFreelancerAccount => 'Crear cuenta de freelance';
+
+  @override
+  String get verifyYourIdentity => 'Verifica tu identidad';
+
+  @override
+  String get provideYourBvn => 'Proporciona tu BVN';
+
+  @override
+  String get addTaxInfoForCompliance => 'Añadir información fiscal';
+
+  @override
+  String get fundWalletWithTokens => 'Fondear cartera con tokens';
+
+  @override
+  String get notificationsTitle => 'Notificaciones';
+
+  @override
+  String get noNotificationsYet => 'Aún no hay notificaciones.';
+
+  @override
+  String get notificationsUpdatesReady =>
+      'Tus actualizaciones aparecerán aquí cuando estén listas.';
+
+  @override
+  String get createAnAccount => 'Crear una cuenta';
+
+  @override
+  String get enterDetailsToCreateAccount =>
+      'Ingresa tus datos para crear tu cuenta.';
+
+  @override
+  String get createAccount => 'Crear cuenta';
+
+  @override
+  String get signUpUsingGoogle => 'Registrarse con Google';
+
+  @override
+  String get signUpUsingApple => 'Registrarse con Apple';
+
+  @override
+  String get alreadyHaveAccount => '¿Ya tienes una cuenta?';
+
+  @override
+  String get login => 'Iniciar sesión';
+
+  @override
+  String get createYourPassword => 'Crea tu contraseña';
+
+  @override
+  String get enterPasswordToKeepSafe =>
+      'Ingresa una contraseña para mantener tu cuenta segura.';
+
+  @override
+  String get verifyYourEmail => 'Verifica tu correo';
+
+  @override
+  String get verifyAccount => 'Verificar cuenta';
+
+  @override
+  String get byCreatingAccountYouAgree =>
+      'Al crear una cuenta, aceptas nuestros';
+
+  @override
+  String get productTandCs => 'Términos del producto';
+
+  @override
+  String get accountType => 'Tipo de cuenta';
+
+  @override
+  String get freelancerAccount => 'Cuenta de freelance';
+
+  @override
+  String get contractorAccount => 'Cuenta de contratista';
+
+  @override
+  String get businessCorporateAccount => 'Cuenta empresarial/corporativa';
+
+  @override
+  String get addressDetails => 'Datos de dirección';
+
+  @override
+  String get provideAddressDetails =>
+      'Proporciona tu dirección, esto se usará para completar tu perfil.';
+
+  @override
+  String get finishSetup => 'Finalizar configuración';
+
+  @override
+  String get yourProfileCreated => '¡Tu perfil ha sido creado!';
+
+  @override
+  String get pinCreatedSuccessMessage =>
+      'Tu PIN se ha creado correctamente. Ahora puedes usar este PIN para iniciar sesión de forma segura.';
+
+  @override
+  String get confirmYourPinCode => 'Confirma tu código PIN';
+
+  @override
+  String get createYourPinCode => 'Crea tu código PIN';
+
+  @override
+  String get enableFaceId => 'Habilitar inicio de sesión con Face ID';
+
+  @override
+  String get faceIdDescription =>
+      'Disfruta de un inicio de sesión seguro y fluido con Face ID.';
+
+  @override
+  String get enable => 'Habilitar';
+
+  @override
+  String get skip => 'Omitir';
+
+  @override
+  String get enableFingerprint => 'Habilitar inicio de sesión con huella';
+
+  @override
+  String get fingerprintDescription =>
+      'Disfruta de un inicio de sesión seguro y fluido con huella dactilar.';
+
+  @override
+  String get enablePushNotifications => 'Habilitar notificaciones push';
+
+  @override
+  String get pushNotificationsDescription =>
+      'Para actualizaciones instantáneas y anuncios importantes.';
+
+  @override
+  String get yourPinCreated => '¡Tu PIN ha sido creado!';
+
+  @override
+  String get pinCreatedLoginMessage =>
+      'Tu PIN se ha creado correctamente. Ahora puedes usar este PIN para iniciar sesión.';
+
+  @override
+  String get changeAddressDescription =>
+      'Cambia o corrige tu dirección para asegurar que los registros y las comunicaciones sean precisos.';
+
+  @override
+  String get taxIdentification => 'Identificación de impuestos';
+
+  @override
+  String get useMyProfileAddress => 'Usar la dirección de mi perfil';
+
+  @override
+  String get facebook => 'Facebook';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedIn => 'LinkedIn';
+
+  @override
+  String get xTwitter => 'X (antes Twitter)';
+
+  @override
+  String get attachmentOptional => 'Archivo adjunto (Opcional)';
+
+  @override
+  String get clickToUpload => 'Haz clic para subir';
+
+  @override
+  String get selectCategory => 'Seleccionar categoría';
+
+  @override
+  String get addExpense => 'Añadir gasto';
+
+  @override
+  String get expenseName => 'Nombre del gasto';
+
+  @override
+  String get enterExpenseName => 'Introducir nombre del gasto';
+
+  @override
+  String get expenseCategory => 'Categoría';
+
+  @override
+  String get expenseDate => 'Fecha del gasto';
+
+  @override
+  String get selectDate => 'Seleccionar fecha';
+
+  @override
+  String get enterAmountLabel => 'Introducir cantidad';
+
+  @override
+  String get enterExpenseDescription => 'Introducir descripción del gasto';
+
+  @override
+  String get supportedFormats => 'Formatos compatibles:';
+
+  @override
+  String get jpgPngHeicOrPdf => 'JPG, PNG, HEIC o PDF';
+
+  @override
+  String get maxFileSizeLabel => '; Tamaño máximo de archivo:';
+
+  @override
+  String get expenseDetails => 'Detalles del gasto';
+
+  @override
+  String get expenseStatus => 'Estado';
+
+  @override
+  String get expenseNameLabel => 'Nombre';
+
+  @override
+  String get submissionDate => 'Fecha de envío';
+
+  @override
+  String get expenseDescription => 'Descripción';
+
+  @override
+  String get attachment => 'Archivo adjunto';
+
+  @override
+  String get reasonForRejection => 'Razón del rechazo';
+
+  @override
+  String get contractType => 'Tipo de contrato';
+
+  @override
+  String get expenseClient => 'Cliente';
+
+  @override
+  String get deleteExpense => 'Eliminar gasto';
+
+  @override
+  String get expenseSubmitted => 'Gasto enviado';
+
+  @override
+  String get expenseSubmittedDesc1 =>
+      'Se ha enviado un correo electrónico para que su solicitud\nsea revisada.';
+
+  @override
+  String get expenseSubmittedDesc2 =>
+      'Se ha enviado un correo electrónico para que su solicitud sea revisada.';
+
+  @override
+  String get timeOffDetails => 'Detalles del tiempo libre';
+
+  @override
+  String get deleteTimeOffTitle => '¿Eliminar tiempo libre?';
+
+  @override
+  String get deleteTimeOffPrompt =>
+      '¿Estás seguro de que quieres eliminar esta solicitud de tiempo libre?';
+
+  @override
+  String get deleteTimeOff => 'Eliminar tiempo libre';
+
+  @override
+  String get deleteExpenseTitle => '¿Eliminar gasto?';
+
+  @override
+  String get deleteExpensePrompt =>
+      '¿Estás seguro de que quieres eliminar este gasto?';
+
+  @override
+  String get noExpensesYet => 'No hay gastos todavía';
+
+  @override
+  String get noExpensesDesc =>
+      'Mantén un registro de los gastos relacionados con tus contratos\naquí.';
+
+  @override
+  String get invoiceThankYouNote =>
+      'Gracias por su negocio. Remita el pago de acuerdo con los términos de esta factura. Si tiene preguntas, no dude en contactarnos.';
+
+  @override
+  String get invoiceOverdue => 'Factura Vencida';
+
+  @override
+  String get billedTo => 'Facturado a';
+
+  @override
+  String get billedFrom => 'Facturado desde';
+
+  @override
+  String get invoiceBreakdown => 'Desglose de Factura';
+
+  @override
+  String get paymentTracker => 'Seguimiento de Pagos';
+
+  @override
+  String get paymentMemo => 'Nota de Pago';
+
+  @override
+  String get invoiceCreatedSentClient => 'Factura creada y enviada al cliente';
+
+  @override
+  String get processClientPayment => 'Procese el pago de su cliente';
+
+  @override
+  String get fundsReflectedMessage =>
+      'Según su factura, los fondos deberían reflejarse en su saldo el 31 de mayo de 2025.';
+
+  @override
+  String get clientPaymentConfirmed => 'Pago del cliente confirmado';
+
+  @override
+  String get clientPaymentProcessed => 'Pago del cliente procesado';
+
+  @override
+  String get fundsReceivedInAccount => 'Fondos recibidos en su cuenta';
+
+  @override
+  String get previewPdf => 'Vista Previa del PDF';
+
+  @override
+  String get downloadPdf => 'Descargar PDF';
+
+  @override
+  String get receiveCryptoInstantly =>
+      'Reciba pagos en criptomonedas al instante mediante dirección, código QR o enlace de pago.';
+
+  @override
+  String get filterBy => 'Filtrar por';
+
+  @override
+  String get dateLabel => 'Fecha';
+
+  @override
+  String get noQuickpayActivity => 'Aún no hay actividad de Quickpay.';
+
+  @override
+  String get quickpayActivityShowHere =>
+      'Su actividad de quickpay aparecerá aquí una vez que reciba una.';
+
+  @override
+  String get clearAll => 'Borrar todo';
+
+  @override
+  String get showResults => 'Mostrar resultados';
+
+  @override
+  String get receivePayment => 'Recibir pago';
+
+  @override
+  String get titleLabel => 'Título';
+
+  @override
+  String get shareQrCode => 'Compartir código QR';
+
+  @override
+  String get sharePayLink => 'Compartir enlace de pago';
+
+  @override
+  String get fromLabel => 'De';
+
+  @override
+  String get transactionId => 'ID de Transacción';
+
+  @override
+  String get helpCentre => 'Centro de ayuda';
+
+  @override
+  String get shareReceipt => 'Compartir recibo';
+
+  @override
+  String get allLabel => 'Todos';
 }

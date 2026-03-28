@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 void showExpenseSubmittedBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -40,14 +41,14 @@ class ExpenseSubmittedBottomSheet extends StatelessWidget {
                   color: context.theme.colors.brandDefault)),
           SizedBox(height: 20.h),
           Text(
-            'Expense submitted',
+            context.l10n.expenseSubmitted,
             style: context.theme.fonts.heading2Bold,
           ),
           SizedBox(height: 4.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 2.0),
             child: Text(
-              'An email has been sent for your request to be reviewed.',
+              context.l10n.expenseSubmittedDesc2,
               textAlign: TextAlign.center,
               style: context.theme.fonts.textMdRegular.copyWith(
                 color: context.theme.colors.textSecondary,
@@ -56,7 +57,7 @@ class ExpenseSubmittedBottomSheet extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           PrimaryButton(
-            text: 'Done',
+            text: context.l10n.done,
             onPressed: () =>
                 context.router.popUntilRouteWithName(ExpensesRoute.name),
           ),

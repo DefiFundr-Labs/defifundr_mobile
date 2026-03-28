@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class NotificationsScreen extends StatelessWidget {
@@ -58,7 +59,7 @@ class NotificationsScreen extends StatelessWidget {
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
           centerTitle: true,
-          title: 'Notifications',
+          title: context.l10n.notificationsTitle,
           isBack: true,
           actions: [],
           textStyle: context.theme.fonts.heading3SemiBold.copyWith(
@@ -98,7 +99,7 @@ class NotificationsScreen extends StatelessWidget {
                     height: 200,
                   ),
                   Text(
-                    'No notifications yet.',
+                    context.l10n.noNotificationsYet,
                     style: fonts.textMdSemiBold.copyWith(
                       color: colors.textPrimary,
                       fontWeight: FontWeight.w600,
@@ -106,7 +107,7 @@ class NotificationsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Your updates will show up here when they\'re ready.',
+                    context.l10n.notificationsUpdatesReady,
                     textAlign: TextAlign.center,
                     style: fonts.textMdRegular.copyWith(
                       color: colors.textSecondary,

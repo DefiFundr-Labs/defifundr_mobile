@@ -15,6 +15,7 @@ import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class PersonalDetailsScreen extends StatefulWidget {
@@ -78,7 +79,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   children: [
                     const SizedBox(height: 24),
                     Text(
-                      'Personal Details',
+                      context.l10n.personalDetails,
                       style: context.theme.fonts.headerLarger.copyWith(
                         fontSize: 24.sp,
                         color: context.theme.colors.textPrimary,
@@ -87,7 +88,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Please provide your personal details, this will be used to complete your profile.',
+                      context.l10n.changePasswordSubtitle,
                       style: context.theme.fonts.headerSmall.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -96,7 +97,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     ),
                     SizedBox(height: 24.h),
                     AppTextField(
-                      labelText: 'Country of citizenship',
+                      labelText: context.l10n.countryOfCitizenship,
                       controller: _countryOfCitizenshipController,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
@@ -112,7 +113,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                       ),
                       onTap: () {
                         _showCountryBottomSheet(
-                          title: 'Country of citizenship',
+                          title: context.l10n.countryOfCitizenship,
                           showPhoneCode: false,
                           onSelect: (Country country) {
                             setState(() {
@@ -126,7 +127,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
-                      labelText: 'Gender',
+                      labelText: context.l10n.gender,
                       controller: _genderController,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
@@ -164,9 +165,9 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                                     ),
                                   ),
                                   const SizedBox(height: 16),
-                                  const Text(
-                                    'Gender',
-                                    style: TextStyle(
+                                  Text(
+                                    context.l10n.gender,
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
@@ -200,7 +201,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
-                      labelText: 'Date of birth',
+                      labelText: context.l10n.dateOfBirth,
                       controller: _dobController,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
@@ -251,7 +252,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
               ),
             ),
             PrimaryButton(
-              text: 'Continue',
+              text: context.l10n.continueText,
               onPressed: () {
                 context.router.push(AddressDetailsRoute());
               },
@@ -264,14 +265,14 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
 
   Widget _buildPhoneNumberField() {
     return AppTextField(
-      labelText: 'Phone number',
+      labelText: context.l10n.phoneNumber,
       controller: _phoneController,
       keyboardType: TextInputType.phone,
       prefixType: PrefixType.customWidget,
       prefixWidget: GestureDetector(
         onTap: () {
           _showCountryBottomSheet(
-            title: 'Dial code',
+            title: context.l10n.dialCode,
             showPhoneCode: true,
             onSelect: (Country country) {
               setState(() {
@@ -371,7 +372,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                       color: Colors.black87,
                     ),
                     inputDecoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: context.l10n.search,
                       hintStyle: TextStyle(
                         color: Colors.grey[400],
                         fontSize: 16,

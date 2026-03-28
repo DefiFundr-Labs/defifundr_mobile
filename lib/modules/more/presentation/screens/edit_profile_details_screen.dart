@@ -297,7 +297,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
               ),
               SizedBox(height: 16.h),
               Text(
-                'Gender',
+                context.l10n.gender,
                 style: fonts.textLgSemiBold.copyWith(
                   color: colors.textPrimary,
                 ),

@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 import '../../../../../core/constants/app_texts.dart';
 import '../../../../../core/design_system/theme_extension/app_theme_extension.dart';
@@ -116,7 +117,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Verify Your Email",
+          context.l10n.verifyYourEmail,
           style: context.theme.fonts.heading2Bold,
         ),
         const SizedBox(height: 4),
@@ -126,7 +127,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
           builder: (context, state) {
             return RichText(
               text: TextSpan(
-                text: "Please enter the 6 digit OTP code sent to ",
+                text: '${context.l10n.pleaseEnterThe6DigitOtpCodeSentTo} ',
                 style: context.theme.fonts.textMdRegular.copyWith(
                   color: context.theme.colors.textSecondary,
                 ),
@@ -255,7 +256,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                   style: context.theme.fonts.textMdSemiBold,
                 ),
                 Text(
-                  "Try checking your junk/spam folder, or resend the code.",
+                  context.l10n.tryCheckingYourJunkspamFolderOrResendTheCode,
                   style: context.theme.fonts.textSmRegular,
                 ),
               ],
@@ -272,7 +273,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
         if (state is ForgotPasswordSuccess) {}
       },
       child: PrimaryButton(
-        text: "Verify account",
+        text: context.l10n.verifyAccount,
         onPressed: _handleOtpVerification,
       ),
     );

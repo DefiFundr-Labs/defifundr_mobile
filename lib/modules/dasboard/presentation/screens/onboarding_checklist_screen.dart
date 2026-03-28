@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/animated_
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/onboarding_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 import '../../../onboarding/presentation/multi_factor_authentication_screen/widgets/custom_back_button.dart';
 
@@ -40,14 +41,14 @@ class _OnboardingChecklistScreenState extends State<OnboardingChecklistScreen> {
                 children: [
                   const SizedBox(height: 16),
                   Text(
-                    'Onboarding Checklist',
+                    context.l10n.onboardingChecklist,
                     style: context.theme.fonts.heading2Bold.copyWith(
                         color: context.theme.colors.textPrimary,
                         fontFamily: 'HankenGrotesk'),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                      'You must complete all steps to fully activate your account.',
+                      context.l10n.completeAllStepsToActivate,
                       style: context.theme.fonts.textMdRegular
                           .copyWith(color: context.theme.colors.textSecondary)),
                   SizedBox(height: 20),
@@ -71,25 +72,25 @@ class _OnboardingChecklistScreenState extends State<OnboardingChecklistScreen> {
                   OnboardingCard(
                       isDone: true,
                       svgAsset: AppAssets.userCircleDashed,
-                      title: "Create freelancer account"),
+                      title: context.l10n.createFreelancerAccount),
                   OnboardingCard(
                       onTap: () =>
                           context.router.push(const VerifyIdentityRoute()),
                       svgAsset: AppAssets.identityVerification,
-                      title: "Verify your identity"),
+                      title: context.l10n.verifyYourIdentity),
                   OnboardingCard(
                       onTap: () => context.router.push(const ProvideBvnRoute()),
                       svgAsset: AppAssets.bank,
-                      title: "Provide your BVN"),
+                      title: context.l10n.provideYourBvn),
                   OnboardingCard(
                       onTap: () =>
                           context.router.push(const TaxInformationRoute()),
                       svgAsset: AppAssets.scales,
-                      title: "Add tax info for compliance"),
+                      title: context.l10n.addTaxInfoForCompliance),
                   OnboardingCard(
                       onTap: () => context.router.push(const FundWalletRoute()),
                       svgAsset: AppAssets.wallet,
-                      title: "Fund wallet with tokens"),
+                      title: context.l10n.fundWalletWithTokens),
                 ],
               ),
             ),

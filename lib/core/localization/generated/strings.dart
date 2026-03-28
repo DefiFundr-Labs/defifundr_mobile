@@ -1560,6 +1560,750 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter PIN'**
   String get enterPin;
+
+  /// No description provided for @welcomeWithEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome! 👋🏾'**
+  String get welcomeWithEmoji;
+
+  /// No description provided for @quickActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick actions'**
+  String get quickActions;
+
+  /// No description provided for @contractAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract'**
+  String get contractAction;
+
+  /// No description provided for @invoiceAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice'**
+  String get invoiceAction;
+
+  /// No description provided for @quickpayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Quickpay'**
+  String get quickpayAction;
+
+  /// No description provided for @completeAccountSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Account Setup'**
+  String get completeAccountSetup;
+
+  /// No description provided for @finishSetupToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish setting up your account to start sending invoices and signing contracts.'**
+  String get finishSetupToStart;
+
+  /// No description provided for @onboardingChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding Checklist'**
+  String get onboardingChecklist;
+
+  /// No description provided for @completeAllStepsToActivate.
+  ///
+  /// In en, this message translates to:
+  /// **'You must complete all steps to fully activate your account.'**
+  String get completeAllStepsToActivate;
+
+  /// No description provided for @createFreelancerAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create freelancer account'**
+  String get createFreelancerAccount;
+
+  /// No description provided for @verifyYourIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your identity'**
+  String get verifyYourIdentity;
+
+  /// No description provided for @provideYourBvn.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide your BVN'**
+  String get provideYourBvn;
+
+  /// No description provided for @addTaxInfoForCompliance.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tax info for compliance'**
+  String get addTaxInfoForCompliance;
+
+  /// No description provided for @fundWalletWithTokens.
+  ///
+  /// In en, this message translates to:
+  /// **'Fund wallet with tokens'**
+  String get fundWalletWithTokens;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// No description provided for @noNotificationsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications yet.'**
+  String get noNotificationsYet;
+
+  /// No description provided for @notificationsUpdatesReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your updates will show up here when they\'re ready.'**
+  String get notificationsUpdatesReady;
+
+  /// No description provided for @createAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create An Account'**
+  String get createAnAccount;
+
+  /// No description provided for @enterDetailsToCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your details below to create your account.'**
+  String get enterDetailsToCreateAccount;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @signUpUsingGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up using Google'**
+  String get signUpUsingGoogle;
+
+  /// No description provided for @signUpUsingApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up using Apple'**
+  String get signUpUsingApple;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @createYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your Password'**
+  String get createYourPassword;
+
+  /// No description provided for @enterPasswordToKeepSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter password to keep your account safe and secure.'**
+  String get enterPasswordToKeepSafe;
+
+  /// No description provided for @verifyYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Your Email'**
+  String get verifyYourEmail;
+
+  /// No description provided for @verifyAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify account'**
+  String get verifyAccount;
+
+  /// No description provided for @byCreatingAccountYouAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'By creating an account, you agree to our'**
+  String get byCreatingAccountYouAgree;
+
+  /// No description provided for @productTandCs.
+  ///
+  /// In en, this message translates to:
+  /// **'Product T&Cs'**
+  String get productTandCs;
+
+  /// No description provided for @accountType.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Type'**
+  String get accountType;
+
+  /// No description provided for @freelancerAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Freelancer account'**
+  String get freelancerAccount;
+
+  /// No description provided for @contractorAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Contractor account'**
+  String get contractorAccount;
+
+  /// No description provided for @businessCorporateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Business/Corporate account'**
+  String get businessCorporateAccount;
+
+  /// No description provided for @addressDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Address Details'**
+  String get addressDetails;
+
+  /// No description provided for @provideAddressDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide your address details, this will be used to complete your profile.'**
+  String get provideAddressDetails;
+
+  /// No description provided for @finishSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish setup'**
+  String get finishSetup;
+
+  /// No description provided for @yourProfileCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Profile has been created!'**
+  String get yourProfileCreated;
+
+  /// No description provided for @pinCreatedSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PIN has been successfully created. You can now use this PIN to log in to your account securely.'**
+  String get pinCreatedSuccessMessage;
+
+  /// No description provided for @confirmYourPinCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Your PIN Code'**
+  String get confirmYourPinCode;
+
+  /// No description provided for @createYourPinCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your PIN Code'**
+  String get createYourPinCode;
+
+  /// No description provided for @enableFaceId.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Login Using Face ID'**
+  String get enableFaceId;
+
+  /// No description provided for @faceIdDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience safe, secure and seamless login using Face ID.'**
+  String get faceIdDescription;
+
+  /// No description provided for @enable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get enable;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @enableFingerprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Login Using Fingerprint'**
+  String get enableFingerprint;
+
+  /// No description provided for @fingerprintDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience safe, secure and seamless login using fingerprint.'**
+  String get fingerprintDescription;
+
+  /// No description provided for @enablePushNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Push Notifications'**
+  String get enablePushNotifications;
+
+  /// No description provided for @pushNotificationsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'For instant updates, important announcements.'**
+  String get pushNotificationsDescription;
+
+  /// No description provided for @yourPinCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PIN Has Been Created!'**
+  String get yourPinCreated;
+
+  /// No description provided for @pinCreatedLoginMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PIN has been successfully created. You can now use this PIN to log in to your account.'**
+  String get pinCreatedLoginMessage;
+
+  /// No description provided for @changeAddressDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Change or correct your address to ensure accurate records and communication.'**
+  String get changeAddressDescription;
+
+  /// No description provided for @taxIdentification.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax identification'**
+  String get taxIdentification;
+
+  /// No description provided for @useMyProfileAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my profile address'**
+  String get useMyProfileAddress;
+
+  /// No description provided for @facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// No description provided for @instagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get instagram;
+
+  /// No description provided for @linkedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get linkedIn;
+
+  /// No description provided for @xTwitter.
+  ///
+  /// In en, this message translates to:
+  /// **'X (prv Twitter)'**
+  String get xTwitter;
+
+  /// No description provided for @attachmentOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachment (Optional)'**
+  String get attachmentOptional;
+
+  /// No description provided for @clickToUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to upload'**
+  String get clickToUpload;
+
+  /// No description provided for @selectCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select category'**
+  String get selectCategory;
+
+  /// No description provided for @addExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get addExpense;
+
+  /// No description provided for @expenseName.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense name'**
+  String get expenseName;
+
+  /// No description provided for @enterExpenseName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter expense name'**
+  String get enterExpenseName;
+
+  /// No description provided for @expenseCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get expenseCategory;
+
+  /// No description provided for @expenseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense date'**
+  String get expenseDate;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @enterAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount'**
+  String get enterAmountLabel;
+
+  /// No description provided for @enterExpenseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter expense description'**
+  String get enterExpenseDescription;
+
+  /// No description provided for @supportedFormats.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported formats:'**
+  String get supportedFormats;
+
+  /// No description provided for @jpgPngHeicOrPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'JPG, PNG, HEIC or PDF'**
+  String get jpgPngHeicOrPdf;
+
+  /// No description provided for @maxFileSizeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'; Max file size:'**
+  String get maxFileSizeLabel;
+
+  /// No description provided for @expenseDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense details'**
+  String get expenseDetails;
+
+  /// No description provided for @expenseStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get expenseStatus;
+
+  /// No description provided for @expenseNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get expenseNameLabel;
+
+  /// No description provided for @submissionDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Submission date'**
+  String get submissionDate;
+
+  /// No description provided for @expenseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get expenseDescription;
+
+  /// No description provided for @attachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachment'**
+  String get attachment;
+
+  /// No description provided for @reasonForRejection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for rejection'**
+  String get reasonForRejection;
+
+  /// No description provided for @contractType.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract Type'**
+  String get contractType;
+
+  /// No description provided for @expenseClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Client'**
+  String get expenseClient;
+
+  /// No description provided for @deleteExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete expense'**
+  String get deleteExpense;
+
+  /// No description provided for @expenseSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense submitted'**
+  String get expenseSubmitted;
+
+  /// No description provided for @expenseSubmittedDesc1.
+  ///
+  /// In en, this message translates to:
+  /// **'An email has been sent for your request to be\nreviewed.'**
+  String get expenseSubmittedDesc1;
+
+  /// No description provided for @expenseSubmittedDesc2.
+  ///
+  /// In en, this message translates to:
+  /// **'An email has been sent for your request to be reviewed.'**
+  String get expenseSubmittedDesc2;
+
+  /// No description provided for @timeOffDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Time off details'**
+  String get timeOffDetails;
+
+  /// No description provided for @deleteTimeOffTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete time off?'**
+  String get deleteTimeOffTitle;
+
+  /// No description provided for @deleteTimeOffPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this time off request?'**
+  String get deleteTimeOffPrompt;
+
+  /// No description provided for @deleteTimeOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete time off'**
+  String get deleteTimeOff;
+
+  /// No description provided for @deleteExpenseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete expense?'**
+  String get deleteExpenseTitle;
+
+  /// No description provided for @deleteExpensePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this expense?'**
+  String get deleteExpensePrompt;
+
+  /// No description provided for @noExpensesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses yet'**
+  String get noExpensesYet;
+
+  /// No description provided for @noExpensesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep track of your contract-related spending\nhere.'**
+  String get noExpensesDesc;
+
+  /// No description provided for @invoiceThankYouNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your business. Please remit payment according to the terms outlined in this invoice. If you have any questions regarding this invoice or the payment process, do not hesitate to contact us.'**
+  String get invoiceThankYouNote;
+
+  /// No description provided for @invoiceOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice Overdue'**
+  String get invoiceOverdue;
+
+  /// No description provided for @billedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Billed To'**
+  String get billedTo;
+
+  /// No description provided for @billedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Billed From'**
+  String get billedFrom;
+
+  /// No description provided for @invoiceBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice Breakdown'**
+  String get invoiceBreakdown;
+
+  /// No description provided for @paymentTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Tracker'**
+  String get paymentTracker;
+
+  /// No description provided for @paymentMemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Memo'**
+  String get paymentMemo;
+
+  /// No description provided for @invoiceCreatedSentClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice created and sent to client'**
+  String get invoiceCreatedSentClient;
+
+  /// No description provided for @processClientPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Process your client payment'**
+  String get processClientPayment;
+
+  /// No description provided for @fundsReflectedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'According to your invoice, funds should be reflected in your balance on 31st May 2025.'**
+  String get fundsReflectedMessage;
+
+  /// No description provided for @clientPaymentConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Client payment confirmed'**
+  String get clientPaymentConfirmed;
+
+  /// No description provided for @clientPaymentProcessed.
+  ///
+  /// In en, this message translates to:
+  /// **'Client payment processed'**
+  String get clientPaymentProcessed;
+
+  /// No description provided for @fundsReceivedInAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Funds received in your account'**
+  String get fundsReceivedInAccount;
+
+  /// No description provided for @previewPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview PDF'**
+  String get previewPdf;
+
+  /// No description provided for @downloadPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Download PDF'**
+  String get downloadPdf;
+
+  /// No description provided for @receiveCryptoInstantly.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive crypto payments instantly via address, QR code, or payment link.'**
+  String get receiveCryptoInstantly;
+
+  /// No description provided for @filterBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by'**
+  String get filterBy;
+
+  /// No description provided for @dateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get dateLabel;
+
+  /// No description provided for @noQuickpayActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'No quickpay activity yet.'**
+  String get noQuickpayActivity;
+
+  /// No description provided for @quickpayActivityShowHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your quickpay activity will show up here once you receive one.'**
+  String get quickpayActivityShowHere;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get clearAll;
+
+  /// No description provided for @showResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get showResults;
+
+  /// No description provided for @receivePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive payment'**
+  String get receivePayment;
+
+  /// No description provided for @titleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get titleLabel;
+
+  /// No description provided for @shareQrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share QR code'**
+  String get shareQrCode;
+
+  /// No description provided for @sharePayLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Share pay link'**
+  String get sharePayLink;
+
+  /// No description provided for @fromLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get fromLabel;
+
+  /// No description provided for @transactionId.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction ID'**
+  String get transactionId;
+
+  /// No description provided for @helpCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Help centre'**
+  String get helpCentre;
+
+  /// No description provided for @shareReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Share receipt'**
+  String get shareReceipt;
+
+  /// No description provided for @allLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allLabel;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

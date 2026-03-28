@@ -152,7 +152,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                         children: [
                           Expanded(
                             child: _ThemeCard(
-                              label: 'Light',
+                              label: context.l10n.themeLight,
                               isSelected: _selectedTheme == _AppTheme.light,
                               themeType: _AppTheme.light,
                               onTap: () =>
@@ -162,7 +162,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                           SizedBox(width: 12.w),
                           Expanded(
                             child: _ThemeCard(
-                              label: 'Dark',
+                              label: context.l10n.themeDark,
                               isSelected: _selectedTheme == _AppTheme.dark,
                               themeType: _AppTheme.dark,
                               onTap: () =>
@@ -172,7 +172,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                           SizedBox(width: 12.w),
                           Expanded(
                             child: _ThemeCard(
-                              label: 'System',
+                              label: context.l10n.themeSystem,
                               isSelected: _selectedTheme == _AppTheme.system,
                               themeType: _AppTheme.system,
                               onTap: () =>

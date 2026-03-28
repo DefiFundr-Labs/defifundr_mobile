@@ -14,6 +14,7 @@ import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/t
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -114,8 +115,8 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               HomePaymentSection(
-                title: 'Transactions',
-                emptyMessage: 'Transactions will appear here',
+                title: context.l10n.transactions,
+                emptyMessage: context.l10n.transactionsEmpty,
                 payments: transactions,
                 hasData: transactions.isNotEmpty,
                 onSeeAll: () {
@@ -124,8 +125,8 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               HomePaymentSection(
-                title: 'Upcoming payments',
-                emptyMessage: 'Upcoming payments will appear here',
+                title: context.l10n.upcomingPayments,
+                emptyMessage: context.l10n.upcomingPaymentsEmpty,
                 payments: upcomingPayments,
                 hasData: upcomingPayments.isNotEmpty,
                 onSeeAll: () {

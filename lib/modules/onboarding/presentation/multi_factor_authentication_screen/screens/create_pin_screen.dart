@@ -9,6 +9,7 @@ import 'package:defifundr_mobile/core/shared/shared_services/heptics/heptic_mana
 import 'package:defifundr_mobile/modules/authentication/presentation/login/widget/pin_input_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class CreatePinScreen extends StatefulWidget {
@@ -143,7 +144,7 @@ class _CreatePinScreenState extends State<CreatePinScreen>
             children: [
               SizedBox(height: 16.h),
               Text(
-                'Create Your PIN Code',
+                context.l10n.createYourPinCode,
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 24.sp,
                   color: context.theme.colors.textPrimary,
@@ -152,7 +153,7 @@ class _CreatePinScreenState extends State<CreatePinScreen>
               ),
               SizedBox(height: 4.h),
               Text(
-                'Enter a 4 digit code you will use to log in, without entering your login credentials.',
+                context.l10n.newPINCodeSubtitle,
                 style: context.theme.textTheme.headlineMedium?.copyWith(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,

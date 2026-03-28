@@ -9,6 +9,7 @@ import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_st
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class InvoiceDetailScreen extends StatelessWidget {
@@ -156,7 +157,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildBilledToCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: 'Billed To',
+      title: context.l10n.billedTo,
       children: [
         _buildRow(context, 'Name', value: 'Adegboyega Oluwagbemiro'),
         const SizedBox(height: 24),
@@ -177,7 +178,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildBilledFromCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: 'Billed From',
+      title: context.l10n.billedFrom,
       children: [
         _buildRow(context, 'Name', value: 'Adegboyega Oluwagbemiro'),
         const SizedBox(height: 24),
@@ -198,7 +199,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildInvoiceBreakdownCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: 'Invoice Breakdown',
+      title: context.l10n.invoiceBreakdown,
       children: [
         _buildBreakdownItemRow(
             context, 'Item Name', '500 USDT', '100 unit(s) at 5 USDT'),
@@ -222,7 +223,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildPaymentTrackerCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: 'Payment Tracker',
+      title: context.l10n.paymentTracker,
       children: _buildPaymentTrackerItems(context),
     );
   }
@@ -230,10 +231,10 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildPaymentMemoCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: 'Payment Memo',
+      title: context.l10n.paymentMemo,
       children: [
         Text(
-          'Thank you for your business. Please remit payment according to the terms outlined in this invoice. If you have any questions regarding this invoice or the payment process, do not hesitate to contact us.',
+          context.l10n.invoiceThankYouNote,
           style: context.theme.fonts.textMdRegular.copyWith(
             color: context.theme.colors.textPrimary,
             height: 1.5,
@@ -412,7 +413,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Invoice Overdue',
+            context.l10n.invoiceOverdue,
             style: context.theme.fonts.textMdSemiBold.copyWith(
               color: context.theme.colors.redDefault,
             ),
@@ -437,7 +438,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: 'Invoice created and sent to client',
+            title: context.l10n.invoiceCreatedSentClient,
             subtitle: '20th April 2025, 04:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -461,7 +462,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             customIcon: DashedCircleIcon(
                 color:
                     context.theme.colors.textSecondary.withValues(alpha: 0.5)),
-            title: 'Process your client payment',
+            title: context.l10n.processClientPayment,
             isCompleted: false,
             isGreyedOut: true,
           ),
@@ -471,7 +472,7 @@ class InvoiceDetailScreen extends StatelessWidget {
                 color:
                     context.theme.colors.textSecondary.withValues(alpha: 0.5)),
             subtitle:
-                'According to your invoice, funds should be reflected in your balance on 31st May 2025.',
+                context.l10n.fundsReflectedMessage,
             isCompleted: false,
             isGreyedOut: true,
             isLast: true,
@@ -484,7 +485,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: 'Invoice created and sent to client',
+            title: context.l10n.invoiceCreatedSentClient,
             subtitle: '20th April 2025, 04:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -493,7 +494,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: 'Client payment confirmed',
+            title: context.l10n.clientPaymentConfirmed,
             subtitle: '20th April 2025, 08:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -502,7 +503,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: 'Client payment processed',
+            title: context.l10n.clientPaymentProcessed,
             subtitle: '20th April 2025, 08:45 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -511,7 +512,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: 'Funds received in your account',
+            title: context.l10n.fundsReceivedInAccount,
             subtitle: '20th April 2025, 08:45 PM',
             isCompleted: true,
             isLast: true,
@@ -611,7 +612,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         children: [
           Expanded(
             child: PrimaryButton(
-              text: 'Preview PDF',
+              text: context.l10n.previewPdf,
               iconColor: context.theme.colors.textPrimary,
               color: context.theme.colors.fillTertiary,
               textColor: context.theme.colors.textPrimary,
@@ -623,7 +624,7 @@ class InvoiceDetailScreen extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: PrimaryButton(
-              text: 'Download PDF',
+              text: context.l10n.downloadPdf,
               textColor: context.theme.colors.textPrimary,
               iconColor: context.theme.colors.textPrimary,
               icon: Assets.icons.fileArrowDown,

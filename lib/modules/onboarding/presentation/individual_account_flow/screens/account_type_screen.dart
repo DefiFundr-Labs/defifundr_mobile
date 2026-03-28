@@ -10,6 +10,7 @@ import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/onboarding/presentation/individual_account_flow/widgets/account_badge_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class AccountTypeScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                   children: [
                     const SizedBox(height: 24),
                     Text(
-                      'Account Type',
+                      context.l10n.accountType,
                       style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontSize: 24.sp,
                         color: context.theme.colors.textPrimary,
@@ -74,7 +75,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     SizedBox(height: 10.h),
                     AccountTypeCard(
                       icon: Assets.icons.userCircleSvg_,
-                      title: 'Freelancer account',
+                      title: context.l10n.freelancerAccount,
                       description:
                           'You work independently, manage your own contracts and payments directly with clients.',
                       onTap: () {
@@ -84,7 +85,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     SizedBox(height: 10.h),
                     AccountTypeCard(
                       icon: Assets.icons.briefCase,
-                      title: 'Contractor account',
+                      title: context.l10n.contractorAccount,
                       description:
                           'You\'re contracted to work for a company or organization on specific projects or terms.',
                       onTap: () {
@@ -94,7 +95,7 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
                     SizedBox(height: 10.h),
                     AccountTypeCard(
                       icon: Assets.icons.buildingOfficeSvg,
-                      title: 'Business/Corporate account',
+                      title: context.l10n.businessCorporateAccount,
                       description:
                           'You represent a business that manages contracts on behalf of multiple team members.',
                       badge: 'Coming soon',

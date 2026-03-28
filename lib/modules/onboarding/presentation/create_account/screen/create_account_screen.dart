@@ -11,6 +11,7 @@ import 'package:defifundr_mobile/modules/onboarding/presentation/create_account/
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class CreateAccountScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 AppBarHeaderWidget(),
                 SizedBox(height: 32.h),
                 Text(
-                  'Create An Account',
+                  context.l10n.createAnAccount,
                   style: context.theme.textTheme.headlineLarge?.copyWith(
                     fontSize: 24.sp,
                     color: context.theme.colors.textPrimary,
@@ -59,7 +60,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'Enter your details below to create your account.',
+                  context.l10n.enterDetailsToCreateAccount,
                   style: context.theme.textTheme.headlineMedium?.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
@@ -68,22 +69,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
                 SizedBox(height: 24.h),
                 AppTextField(
-                  labelText: 'Legal first name',
+                  labelText: context.l10n.legalFirstName,
                   controller: _firstNameController,
                 ),
                 SizedBox(height: 12.h),
                 AppTextField(
-                  labelText: 'Legal last name',
+                  labelText: context.l10n.legalLastName,
                   controller: _lastNameController,
                 ),
                 SizedBox(height: 12.h),
                 AppTextField(
-                  labelText: 'Email address',
+                  labelText: context.l10n.emailAddress,
                   controller: _emailController,
                 ),
                 SizedBox(height: 24.h),
                 PrimaryButton(
-                  text: "Create account",
+                  text: context.l10n.createAccount,
                   onPressed: () {
                     context.router.push(const CreatePasswordRoute());
                   },
@@ -92,7 +93,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ORWidget(),
                 SizedBox(height: 24.h),
                 SecondaryButton(
-                  text: 'Sign up using Google',
+                  text: context.l10n.signUpUsingGoogle,
                   icon: AppAssets.googleIcon,
                   onPressed: () {
                     // Handle Google login
@@ -100,7 +101,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
                 SizedBox(height: 16.h),
                 SecondaryButton(
-                  text: 'Sign up using Apple',
+                  text: context.l10n.signUpUsingApple,
                   icon: AppAssets.appleIcon,
                   iconColor: context.theme.colors.textPrimary,
                   onPressed: () {
@@ -112,7 +113,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account? ',
+                      '${context.l10n.alreadyHaveAccount} ',
                       style: context.theme.fonts.bodyMedium.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -129,7 +130,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'Login',
+                        context.l10n.login,
                         style: context.theme.fonts.bodyMedium.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,

@@ -15,6 +15,7 @@ import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class AddressDetailsScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                   children: [
                     const SizedBox(height: 24),
                     Text(
-                      'Address Details',
+                      context.l10n.addressDetails,
                       style: context.theme.fonts.headerLarger.copyWith(
                         fontSize: 24.sp,
                         color: context.theme.colors.textPrimary,
@@ -84,7 +85,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      'Please provide your address details, this will be used to complete your profile.',
+                      context.l10n.provideAddressDetails,
                       style: context.theme.fonts.headerSmall.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -93,7 +94,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     ),
                     SizedBox(height: 24.h),
                     AppTextField(
-                      labelText: 'Country',
+                      labelText: context.l10n.country,
                       controller: _countryController,
                       readOnly: true,
                       suffixType: SuffixType.customIcon,
@@ -109,7 +110,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       ),
                       onTap: () {
                         _showCountryBottomSheet(
-                          title: 'Country',
+                          title: context.l10n.country,
                           onSelect: (Country country) {
                             setState(() {
                               _countryController.text =
@@ -121,17 +122,17 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
-                      labelText: 'Street',
+                      labelText: context.l10n.street,
                       controller: _addressController,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
-                      labelText: 'City',
+                      labelText: context.l10n.city,
                       controller: _cityController,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
-                      labelText: 'Postal / zip code',
+                      labelText: context.l10n.postalZipCode,
                       controller: _postalCodeController,
                     ),
                   ],
@@ -139,7 +140,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
               ),
             ),
             PrimaryButton(
-              text: 'Finish setup',
+              text: context.l10n.finishSetup,
               onPressed: () {
                 context.router.push(ProfileCreatedSucessRoute());
               },
@@ -208,7 +209,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       color: Colors.black87,
                     ),
                     inputDecoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: context.l10n.search,
                       hintStyle: TextStyle(
                         color: Colors.grey[400],
                         fontSize: 16,

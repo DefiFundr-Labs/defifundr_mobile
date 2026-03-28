@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ExpenseSubmittedScreen extends StatelessWidget {
@@ -60,7 +61,7 @@ class ExpenseSubmittedScreen extends StatelessWidget {
 
                 // Title
                 Text(
-                  'Expense submitted',
+                  context.l10n.expenseSubmitted,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -72,7 +73,7 @@ class ExpenseSubmittedScreen extends StatelessWidget {
 
                 // Description
                 Text(
-                  'An email has been sent for your request to be\nreviewed.',
+                  context.l10n.expenseSubmittedDesc1,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -97,7 +98,7 @@ class ExpenseSubmittedScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Done',
+                      context.l10n.done,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,

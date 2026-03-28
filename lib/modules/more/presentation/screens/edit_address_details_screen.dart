@@ -80,7 +80,7 @@ class _EditAddressDetailsScreenState extends State<EditAddressDetailsScreen> {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      'Change or correct your address to ensure accurate records and communication.',
+                      context.l10n.changeAddressDescription,
                       style: fonts.textBaseRegular.copyWith(
                         color: colors.textSecondary,
                       ),

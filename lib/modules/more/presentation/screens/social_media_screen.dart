@@ -66,7 +66,7 @@ class SocialMediaScreen extends StatelessWidget {
                         children: [
                           _SocialItem(
                             icon: _FacebookIcon(),
-                            title: 'Facebook',
+                            title: context.l10n.facebook,
                             onTap: () => _launchUrl(
                                 'https://facebook.com/defifundr'),
                           ),
@@ -82,7 +82,7 @@ class SocialMediaScreen extends StatelessWidget {
                               assetPath: Assets.icons.instagramLogo,
                               backgroundColor: const Color(0xFFE1306C),
                             ),
-                            title: 'Instagram',
+                            title: context.l10n.instagram,
                             onTap: () => _launchUrl(
                                 'https://instagram.com/defifundr'),
                           ),
@@ -95,7 +95,7 @@ class SocialMediaScreen extends StatelessWidget {
                           ),
                           _SocialItem(
                             icon: _LinkedInIcon(),
-                            title: 'LinkedIn',
+                            title: context.l10n.linkedIn,
                             onTap: () => _launchUrl(
                                 'https://linkedin.com/company/defifundr'),
                           ),
@@ -111,7 +111,7 @@ class SocialMediaScreen extends StatelessWidget {
                               assetPath: Assets.icons.xLogo,
                               backgroundColor: const Color(0xFF000000),
                             ),
-                            title: 'X (prv Twitter)',
+                            title: context.l10n.xTwitter,
                             onTap: () =>
                                 _launchUrl('https://x.com/defifundr'),
                           ),
