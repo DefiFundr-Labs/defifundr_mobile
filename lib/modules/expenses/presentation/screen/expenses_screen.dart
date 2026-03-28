@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
@@ -115,7 +116,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3SemiBold,
           isBack: true,
-          title: 'Expenses',
+          title: context.l10n.expenses,
           actions: [],
         ),
       ),
@@ -147,7 +148,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
             padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 32.h),
             child: PrimaryButton(
               onPressed: _addExpense,
-              text: 'Add expense',
+              text: context.l10n.addExpense,
             ),
           ),
         ],

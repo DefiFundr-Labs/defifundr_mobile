@@ -8,6 +8,7 @@ import 'package:defifundr_mobile/modules/expenses/presentation/widgets/status_ch
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class DeleteExpenseSheet extends StatelessWidget {
   final Expense expense;
@@ -36,10 +37,10 @@ class DeleteExpenseSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          Text('Delete expense?', style: context.theme.fonts.heading3Bold),
+          Text(context.l10n.deleteExpenseTitle, style: context.theme.fonts.heading3Bold),
           SizedBox(height: 4.h),
           Text(
-            'Are you sure you want to delete this expense?',
+            context.l10n.deleteExpensePrompt,
             style: context.theme.fonts.textMdRegular.copyWith(
               color: context.theme.colors.textSecondary,
             ),
@@ -97,7 +98,7 @@ class DeleteExpenseSheet extends StatelessWidget {
             children: [
               Expanded(
                 child: SecondaryButton(
-                  text: 'Go back',
+                  text: context.l10n.goBack,
                   backgroundColor: context.theme.colors.fillTertiary,
                   borderColor: Colors.transparent,
                   enableShine: false,
@@ -107,7 +108,7 @@ class DeleteExpenseSheet extends StatelessWidget {
               SizedBox(width: 12.w),
               Expanded(
                 child: SecondaryButton(
-                  text: 'Delete expense',
+                  text: context.l10n.deleteExpense,
                   backgroundColor: context.theme.colors.redDefault,
                   textColor: context.theme.colors.contrastWhite,
                   enableShine: false,

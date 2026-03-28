@@ -13,6 +13,7 @@ import 'package:defifundr_mobile/modules/expenses/presentation/widgets/status_ch
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ExpensesTimeOffDetailsScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class ExpensesTimeOffDetailsScreen extends StatelessWidget {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3Bold,
           isBack: true,
-          title: 'Time off details',
+          title: context.l10n.timeOffDetails,
           actions: const [],
         ),
       ),
@@ -44,25 +45,25 @@ class ExpensesTimeOffDetailsScreen extends StatelessWidget {
                   DetailsCard(
                     children: [
                       DetailRow(
-                        label: 'Status',
+                        label: context.l10n.expenseStatus,
                         trailing: StatusChip(status: expense.status),
                       ),
-                      DetailRow(label: 'Name', value: expense.name),
-                      DetailRow(label: 'Category', value: expense.category),
+                      DetailRow(label: context.l10n.expenseNameLabel, value: expense.name),
+                      DetailRow(label: context.l10n.expenseCategory, value: expense.category),
                       DetailRow(
-                        label: 'Expense date',
+                        label: context.l10n.expenseDate,
                         value: DateFormat('dd MMM yyyy')
                             .format(expense.expenseDate),
                       ),
                       DetailRow(
-                        label: 'Submission date',
+                        label: context.l10n.submissionDate,
                         value: DateFormat('dd MMM yyyy')
                             .format(expense.submissionDate),
                       ),
                       DetailRow(
-                          label: 'Amount',
+                          label: context.l10n.amount,
                           value: '${expense.amount.toInt()} USDT'),
-                      DetailRow(label: 'Description', isDescription: true),
+                      DetailRow(label: context.l10n.expenseDescription, isDescription: true),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: Align(
@@ -77,13 +78,13 @@ class ExpensesTimeOffDetailsScreen extends StatelessWidget {
                       ),
                       if (expense.attachment != null)
                         DetailRow(
-                          label: 'Attachment',
+                          label: context.l10n.attachment,
                           trailing: AttachmentChip(name: expense.attachment!),
                         ),
                       if (expense.status == ExpenseStatus.rejected &&
                           expense.rejectionReason != null) ...[
                         DetailRow(
-                            label: 'Reason for rejection', isDescription: true),
+                            label: context.l10n.reasonForRejection, isDescription: true),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: Align(
@@ -103,13 +104,13 @@ class ExpensesTimeOffDetailsScreen extends StatelessWidget {
                   DetailsCard(
                     children: [
                       DetailRow(
-                        label: 'Contract',
+                        label: context.l10n.contractAction,
                         trailing: ContractLink(name: expense.contract),
                       ),
                       DetailRow(
-                          label: 'Contract Type',
+                          label: context.l10n.contractType,
                           value: expense.contractType ?? '-'),
-                      DetailRow(label: 'Client', value: expense.client ?? '-'),
+                      DetailRow(label: context.l10n.expenseClient, value: expense.client ?? '-'),
                     ],
                   ),
                 ],
@@ -120,7 +121,7 @@ class ExpensesTimeOffDetailsScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 32.h),
               child: SecondaryButton(
-                text: 'Delete time off',
+                text: context.l10n.deleteTimeOff,
                 textColor: context.theme.colors.redDefault,
                 borderColor: context.theme.colors.redDefault,
                 backgroundColor: Colors.transparent,

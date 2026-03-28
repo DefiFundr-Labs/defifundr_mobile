@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class ContractItem {
   final String initials;
@@ -40,7 +41,7 @@ class HomeContractsSection extends StatelessWidget {
 
     return Column(
       children: [
-        HomeSectionHeader(title: 'Contracts', onSeeAll: onSeeAll),
+        HomeSectionHeader(title: context.l10n.contracts, onSeeAll: onSeeAll),
         SizedBox(height: 8.h),
         hasData
             ? Container(
@@ -66,7 +67,7 @@ class HomeContractsSection extends StatelessWidget {
               )
             : HomeEmptyState(
                 imagePath: Assets.icons.emptyQuickpayIcon,
-                message: 'Contracts will appear here',
+                message: context.l10n.noContractsYet,
               ),
       ],
     );
