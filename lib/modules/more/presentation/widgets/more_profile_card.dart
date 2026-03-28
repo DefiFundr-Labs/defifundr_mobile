@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,30 +23,14 @@ class MoreProfileCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.r),
       child: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color(0xFF0D0D4A),
-              Color(0xFF3E3EBF),
-            ],
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Assets.images.moreBg.image().image,
+            fit: BoxFit.cover,
           ),
         ),
         child: Stack(
           children: [
-            Positioned(
-              right: -24,
-              top: -24,
-              child: Container(
-                width: 110.w,
-                height: 110.w,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0x14FFFFFF),
-                ),
-              ),
-            ),
             Padding(
               padding: EdgeInsets.all(20.w),
               child: Row(
@@ -53,15 +38,19 @@ class MoreProfileCard extends StatelessWidget {
                   Container(
                     width: 52.w,
                     height: 52.w,
-                    decoration: const BoxDecoration(
-                      color: Color(0x33B2B2FF),
+                    decoration: BoxDecoration(
+                      color: context.theme.colors.brandFill,
                       shape: BoxShape.circle,
+                      border: Border.all(
+                        color: context.theme.colors.brandDefault,
+                        width: 2.w,
+                      ),
                     ),
                     child: Center(
                       child: Text(
                         initials,
                         style: fonts.textLgBold.copyWith(
-                          color: const Color(0xFF9898FF),
+                          color: context.theme.colors.brandDefault,
                         ),
                       ),
                     ),
@@ -74,14 +63,14 @@ class MoreProfileCard extends StatelessWidget {
                         Text(
                           name,
                           style: fonts.textBaseSemiBold.copyWith(
-                            color: Colors.white,
+                            color: context.theme.colors.contrastWhite,
                           ),
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           email,
                           style: fonts.textSmRegular.copyWith(
-                            color: Colors.white.withValues(alpha: 0.75),
+                            color: context.theme.colors.contrastWhite,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),

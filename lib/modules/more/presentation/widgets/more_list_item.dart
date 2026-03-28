@@ -28,8 +28,10 @@ class MoreListItem extends StatelessWidget {
     final fonts = context.theme.fonts;
 
     return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: trailingType != MoreItemTrailingType.toggle ? onTap : null,
-      borderRadius: BorderRadius.circular(4.r),
+      borderRadius: BorderRadius.circular(8.r),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 13.h),
         child: Row(

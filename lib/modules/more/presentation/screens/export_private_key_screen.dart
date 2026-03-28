@@ -59,42 +59,33 @@ class ExportPrivateKeyScreen extends StatelessWidget {
                     SizedBox(height: 8.h),
                     Text(
                       context.l10n.exportPrivateKeySubtitle,
-                      style: fonts.textBaseRegular.copyWith(
+                      style: fonts.textMdRegular.copyWith(
                         color: colors.textSecondary,
                       ),
                     ),
                     SizedBox(height: 24.h),
                     _buildWarningCard(
                       context: context,
-                      colors: colors,
-                      fonts: fonts,
                       isLightMode: isLightMode,
-                      iconPath: Assets.icons.deviceMobile,
+                      iconPath: Assets.icons.deviceMobileSlash,
                       title: context.l10n.keepScreenPrivateTitle,
-                      description:
-                          context.l10n.keepScreenPrivateDesc,
+                      description: context.l10n.keepScreenPrivateDesc,
                     ),
                     SizedBox(height: 16.h),
                     _buildWarningCard(
                       context: context,
-                      colors: colors,
-                      fonts: fonts,
                       isLightMode: isLightMode,
-                      iconPath: Assets.icons.shieldCheckered,
+                      iconPath: Assets.icons.cloudSlash,
                       title: context.l10n.storeKeysOfflineTitle,
-                      description:
-                          context.l10n.storeKeysOfflineDesc,
+                      description: context.l10n.storeKeysOfflineDesc,
                     ),
                     SizedBox(height: 16.h),
                     _buildWarningCard(
                       context: context,
-                      colors: colors,
-                      fonts: fonts,
                       isLightMode: isLightMode,
                       iconPath: Assets.icons.key,
                       title: context.l10n.yourKeyYourWalletTitle,
-                      description:
-                          context.l10n.yourKeyYourWalletDesc,
+                      description: context.l10n.yourKeyYourWalletDesc,
                     ),
                     SizedBox(height: 24.h),
                   ],
@@ -124,13 +115,14 @@ class ExportPrivateKeyScreen extends StatelessWidget {
 
   Widget _buildWarningCard({
     required BuildContext context,
-    required dynamic colors,
-    required dynamic fonts,
     required bool isLightMode,
     required String iconPath,
     required String title,
     required String description,
   }) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
+
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -138,25 +130,15 @@ class ExportPrivateKeyScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 40.w,
-            height: 40.w,
-            decoration: BoxDecoration(
-              color: colors.brandFill,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                iconPath,
-                width: 22.w,
-                height: 22.w,
-                colorFilter: ColorFilter.mode(
-                  colors.brandDefault,
-                  BlendMode.srcIn,
-                ),
-              ),
+          SvgPicture.asset(
+            iconPath,
+            width: 22.w,
+            height: 22.w,
+            colorFilter: ColorFilter.mode(
+              colors.brandDefault,
+              BlendMode.srcIn,
             ),
           ),
           SizedBox(width: 12.w),
@@ -166,14 +148,14 @@ class ExportPrivateKeyScreen extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: fonts.textBaseSemiBold.copyWith(
+                  style: fonts.textMdSemiBold.copyWith(
                     color: colors.textPrimary,
                   ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   description,
-                  style: fonts.textSmRegular.copyWith(
+                  style: fonts.textMdRegular.copyWith(
                     color: colors.textSecondary,
                   ),
                 ),

@@ -159,13 +159,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: context.l10n.logInUsingGoogle,
                   icon: AppAssets.googleIcon,
                   onPressed: () {
-                    // context.router.push(
-                    //   PinCodeRoute(
-                    //     userName: 'Google User',
-                    //     biometricType: BiometricType.fingerprint,
-                    //   ),
-                    // );
-                    context.router.push(const SampleBottomSheetRoute());
+                    context.router.push(
+                      PinCodeRoute(
+                        userName: 'Google User',
+                        biometricType: BiometricType.fingerprint,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: 16.h),
@@ -174,13 +173,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   icon: AppAssets.appleIcon,
                   iconColor: context.theme.colors.textPrimary,
                   onPressed: () {
-                    // context.router.push(
-                    //   PinCodeRoute(
-                    //     userName: 'Apple User',
-                    //     biometricType: BiometricType.faceId,
-                    //   ),
-                    // );
-                    context.router.push(const SampleBottomSheetRoute());
+                    context.router.push(
+                      PinCodeRoute(
+                        userName: 'Apple User',
+                        biometricType: BiometricType.faceId,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: 20.h),

@@ -1,15 +1,17 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
-import 'package:defifundr_mobile/modules/more/presentation/widgets/wallet_identicon.dart';
+import 'package:defifundr_mobile/core/utils/pixeled_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 
 @RoutePage()
 class WalletDetailScreen extends StatelessWidget {
@@ -60,9 +62,9 @@ class WalletDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildWalletCard(context, colors, fonts, isLightMode),
+              _buildWalletCard(context, isLightMode),
               SizedBox(height: 16.h),
-              _buildExportKeyCard(context, colors, fonts, isLightMode),
+              _buildExportKeyCard(context, isLightMode),
             ],
           ),
         ),
@@ -70,12 +72,26 @@ class WalletDetailScreen extends StatelessWidget {
     );
   }
 
+  static const _palettes = [
+    AvatarPalettes.purplePink,
+    AvatarPalettes.yellowPurple,
+    AvatarPalettes.ocean,
+    AvatarPalettes.sunset,
+    AvatarPalettes.forest,
+    AvatarPalettes.monochrome,
+  ];
+
+  List<Color> _getPaletteForAddress(String address) {
+    final random = Random(address.hashCode);
+    return _palettes[random.nextInt(_palettes.length)];
+  }
+
   Widget _buildWalletCard(
     BuildContext context,
-    dynamic colors,
-    dynamic fonts,
     bool isLightMode,
   ) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -89,9 +105,12 @@ class WalletDetailScreen extends StatelessWidget {
             padding: EdgeInsets.all(16.w),
             child: Row(
               children: [
-                WalletIdenticon(
-                  address: walletAddress,
-                  size: 48.w,
+                PixelatedAvatar(
+                  size: 40.w,
+                  gridSize: 8,
+                  colorPalette: _getPaletteForAddress(walletAddress),
+                  seed: walletAddress,
+                  borderRadius: 8.r,
                 ),
                 SizedBox(width: 16.w),
                 RichText(
@@ -123,7 +142,7 @@ class WalletDetailScreen extends StatelessWidget {
                 Expanded(
                   child: Text(
                     walletAddress,
-                    style: fonts.textSmRegular.copyWith(
+                    style: fonts.textMdRegular.copyWith(
                       color: colors.textSecondary,
                     ),
                   ),
@@ -149,10 +168,9 @@ class WalletDetailScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Icon(
-                    Icons.copy_rounded,
+                  child: SvgPicture.asset(
+                    Assets.icons.copy,
                     color: colors.textTertiary,
-                    size: 20.w,
                   ),
                 ),
               ],
@@ -165,10 +183,10 @@ class WalletDetailScreen extends StatelessWidget {
 
   Widget _buildExportKeyCard(
     BuildContext context,
-    dynamic colors,
-    dynamic fonts,
     bool isLightMode,
   ) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
     return InkWell(
       onTap: () {
         context.router.push(
