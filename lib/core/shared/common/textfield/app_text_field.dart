@@ -1,7 +1,6 @@
 // 🎯 Dart imports:
 import 'dart:async';
 
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/custom_input_border.dart';
@@ -54,6 +53,8 @@ class AppTextField extends StatefulWidget {
     this.textInputAction = TextInputAction.next,
     this.textCapitalization = TextCapitalization.sentences,
     this.alwaysShowLabelAndHint = false,
+    this.textAlign = TextAlign.start,
+    this.contentPadding,
   })  : _controller = controller,
         super(key: key);
 
@@ -128,6 +129,8 @@ class AppTextField extends StatefulWidget {
   /// Defaults to null.
   final List<TextInputFormatter>? inputFormatters;
   final AutovalidateMode? autovalidateMode;
+  final TextAlign textAlign;
+  final EdgeInsets? contentPadding;
   final bool readOnly;
   final void Function()? onTap;
 
@@ -301,24 +304,15 @@ class _AppTextFieldState extends State<AppTextField> {
               'prefixIcon must not be null when prefixType is set to customIcon');
         }
       case PrefixType.customWidget:
-        _buildPrefixWidget();
-        return null;
+        if (widget.prefixWidget != null) {
+          return widget.prefixWidget!;
+        } else {
+          throw Exception(
+              'prefixWidget must not be null when prefixType is set to customWidget');
+        }
       //* case PrefixType.none:
       default:
         return null;
-    }
-  }
-
-  Widget? _buildPrefixWidget() {
-    if (widget.prefixType == PrefixType.customWidget) {
-      if (widget.prefixWidget != null) {
-        return widget.prefixWidget!;
-      } else {
-        throw Exception(
-            'prefixWidget must not be null when prefixType is set to customWidget');
-      }
-    } else {
-      return null;
     }
   }
 
@@ -327,41 +321,38 @@ class _AppTextFieldState extends State<AppTextField> {
       case SuffixType.defaultt:
         return Container(
           margin: const EdgeInsets.only(right: 8),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Icon(
               Iconsax.arrow_down_1,
-              color: AppColors.grayTertiary,
+              color: context.theme.colors.grayTertiary,
               size: 14,
             ),
           ),
         );
       case SuffixType.customIcon:
         if (widget.suffixIcon != null) {
-          return widget.suffixIcon;
+          return Padding(
+            padding: const EdgeInsets.all(12),
+            child: widget.suffixIcon!,
+          );
         } else {
           throw Exception(
               'sufixIcon must not be null when suffixType is set to customIcon');
         }
       case SuffixType.customWidget:
-        _buildSuffixWidget();
-        return null;
+        if (widget.suffixWidget != null) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: widget.suffixWidget!,
+          );
+        } else {
+          throw Exception(
+              'suffixWidget must not be null when suffixType is set to customWidget');
+        }
       //* case SuffixType.none:
       default:
         return null;
-    }
-  }
-
-  Widget? _buildSuffixWidget() {
-    if (widget.suffixType == SuffixType.customWidget) {
-      if (widget.suffixWidget != null) {
-        return widget.suffixWidget!;
-      } else {
-        throw Exception(
-            'suffixWidget must not be null when suffixType is set to customWidget');
-      }
-    } else {
-      return null;
     }
   }
 
@@ -476,11 +467,12 @@ class _AppTextFieldState extends State<AppTextField> {
               height: 1.3,
             ),
             textInputAction: widget.textInputAction,
-            textAlignVertical: TextAlignVertical.bottom,
+            textAlign: widget.textAlign,
+            textAlignVertical: TextAlignVertical.center,
             enabled: widget.enabled,
             decoration: InputDecoration(
               constraints: widget.constraints ?? const BoxConstraints(),
-              contentPadding:
+              contentPadding: widget.contentPadding ??
                   const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               floatingLabelStyle: context.textTheme.titleLarge?.copyWith(
                 color: hasError
@@ -568,7 +560,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 color: widget.hintColor ?? context.theme.colors.graySecondary,
               ),
               isDense: true,
-              prefix: _buildPrefixWidget(),
+              prefix: null,
               prefixIconConstraints: widget.prefixIconConstraints ??
                   const BoxConstraints(minWidth: 20),
               prefixIcon: widget.alwaysShowLabelAndHint
@@ -578,13 +570,15 @@ class _AppTextFieldState extends State<AppTextField> {
                       initialData: false,
                       builder: (context, snapshot) {
                         return Padding(
-                          padding:
-                              EdgeInsets.only(top: snapshot.data! ? 17 : 0),
+                          padding: EdgeInsets.only(
+                              top: (snapshot.data! && widget.labelText != null)
+                                  ? 17
+                                  : 0),
                           child: _buildPrefixIcon(),
                         );
                       },
                     ),
-              suffix: _buildSuffixWidget(),
+              suffix: null,
               suffixIcon: widget.alwaysShowLabelAndHint
                   ? _buildSuffixIcon() // No animation when always showing label
                   : StreamBuilder<bool>(
@@ -592,8 +586,10 @@ class _AppTextFieldState extends State<AppTextField> {
                       initialData: false,
                       builder: (context, snapshot) {
                         return Padding(
-                          padding:
-                              EdgeInsets.only(top: snapshot.data! ? 18 : 0),
+                          padding: EdgeInsets.only(
+                              top: (snapshot.data! && widget.labelText != null)
+                                  ? 18
+                                  : 0),
                           child: _buildSuffixIcon(),
                         );
                       }),
@@ -619,6 +615,6 @@ class _AppTextFieldState extends State<AppTextField> {
     }
 
     // Otherwise, use theme-based color
-    return isDark ? context.theme.colors.bgB1 : context.theme.colors.bgB0;
+    return context.theme.colors.bgB1;
   }
 }

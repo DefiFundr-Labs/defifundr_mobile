@@ -1,77 +1,80 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:flutter/material.dart';
 
 class StatusChip extends StatelessWidget {
   final TimeOffStatus status;
+  final bool isPill;
 
   const StatusChip({
     Key? key,
     required this.status,
+    this.isPill = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: _getStatusColor(),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 6,
-            height: 6,
-            decoration: BoxDecoration(
-              color: _getStatusIconColor(),
-              shape: BoxShape.circle,
-            ),
+    if (isPill) {
+      final color = _getStatusIconColor(context);
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.05),
+          border: Border.all(color: color.withValues(alpha: 0.4), width: 1.0),
+          borderRadius: BorderRadius.circular(200),
+        ),
+        child: Text(
+          _getStatusText(forPill: true),
+          style: context.theme.fonts.textXsSemiBold.copyWith(
+            color: color,
           ),
-          const SizedBox(width: 6),
-          Text(
-            _getStatusText(),
-            style: TextStyle(
-              color: _getStatusIconColor(),
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
+        ),
+      );
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _getStatusIconColor(context),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 6),
+        Flexible(
+          child: Text(
+            ellipsify(word: _getStatusText(), maxLength: 8),
+            style: context.theme.fonts.textSmMedium.copyWith(
+              color: _getStatusIconColor(context),
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 
-  Color _getStatusColor() {
+  Color _getStatusIconColor(BuildContext context) {
     switch (status) {
       case TimeOffStatus.pending:
-        return Colors.orange.shade50;
+        return context.theme.colors.orangeActive;
       case TimeOffStatus.approved:
-        return Colors.green.shade50;
+        return context.theme.colors.greenActive;
       case TimeOffStatus.rejected:
-        return Colors.red.shade50;
+        return context.theme.colors.redActive;
       case TimeOffStatus.used:
-        return Colors.blue.shade50;
+        return context.theme.colors.blueActive;
     }
   }
 
-  Color _getStatusIconColor() {
+  String _getStatusText({bool forPill = false}) {
     switch (status) {
       case TimeOffStatus.pending:
-        return Colors.orange;
-      case TimeOffStatus.approved:
-        return Colors.green;
-      case TimeOffStatus.rejected:
-        return Colors.red;
-      case TimeOffStatus.used:
-        return Colors.blue;
-    }
-  }
-
-  String _getStatusText() {
-    switch (status) {
-      case TimeOffStatus.pending:
-        return 'Pending ap...';
+        return forPill ? 'Pending' : 'Pending approval';
       case TimeOffStatus.approved:
         return 'Approved';
       case TimeOffStatus.rejected:

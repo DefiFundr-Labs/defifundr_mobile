@@ -235,7 +235,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     return Container(
       padding: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         border: Border.all(
           color: colors.strokeSecondary.withAlpha(30),
         ),
@@ -302,7 +302,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   },
                   decoration: InputDecoration(
                     hintText: '0.00',
-                    fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
+                    fillColor: colors.bgB1,
                     hintStyle: fonts.heading2Bold.copyWith(
                       color: colors.textQuaternary,
                     ),
@@ -368,7 +368,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         border: Border.all(
           color: colors.strokeSecondary.withAlpha(30),
         ),
@@ -399,7 +399,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   },
                   decoration: InputDecoration(
                     hintText: context.l10n.pasteOrScanAddress,
-                    fillColor: isLightMode ? colors.bgB0 : colors.bgB1,
+                    fillColor: colors.bgB1,
                     hintStyle: fontTheme.textBaseMedium.copyWith(
                       color: colors.textTertiary,
                     ),

@@ -33,7 +33,7 @@ class _PaymentFilterSheetState extends State<PaymentFilterSheet> {
     return Container(
       padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
-        color: colors.bgB0, // Background color from theme
+        color: colors.bgB1, // Background color from theme
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
       child: Column(

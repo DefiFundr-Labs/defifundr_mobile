@@ -1,7 +1,10 @@
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EmptyState extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String title;
   final String subtitle;
 
@@ -18,29 +21,16 @@ class EmptyState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          SvgPicture.asset(
             icon,
-            size: 80,
-            color: Colors.grey[300],
+            width: 200.w,
+            height: 200.h,
           ),
-          const SizedBox(height: 16),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
-            ),
-          ),
+          Text(title, style: context.theme.fonts.textMdSemiBold),
+          Text(subtitle,
+              textAlign: TextAlign.center,
+              style: context.theme.fonts.textMdRegular
+                  .copyWith(color: context.theme.colors.textSecondary)),
         ],
       ),
     );

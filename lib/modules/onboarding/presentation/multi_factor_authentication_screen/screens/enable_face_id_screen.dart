@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../core/shared/common/buttons/primary_button.dart';
 import '../../../../../core/shared/common/buttons/small_button.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class EnableFaceIdScreen extends StatelessWidget {
@@ -40,13 +41,13 @@ class EnableFaceIdScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                'Enable Login Using Face ID',
+                context.l10n.enableFaceId,
                 style: fonts.heading3SemiBold,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
               Text(
-                'Experience safe, secure and seamless login using Face ID.',
+                context.l10n.faceIdDescription,
                 style: fonts.textMdRegular.copyWith(
                   color: colors.textSecondary,
                 ),
@@ -54,14 +55,14 @@ class EnableFaceIdScreen extends StatelessWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                text: 'Enable',
+                text: context.l10n.enable,
                 onPressed: () {
                   context.router.pushNamed('/enable-fingerprint');
                 },
               ),
               const SizedBox(height: 12),
               SmallButton(
-                text: 'Skip',
+                text: context.l10n.skip,
                 onPressed: () {
                   context.router.pushNamed('/enable-fingerprint');
                 },

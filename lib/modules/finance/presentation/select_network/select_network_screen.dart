@@ -129,7 +129,7 @@ class SelectNetworkScreen extends StatelessWidget {
           margin: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
           ),
           child: ListView.separated(
             separatorBuilder: (context, index) => SizedBox(height: 10.sp),

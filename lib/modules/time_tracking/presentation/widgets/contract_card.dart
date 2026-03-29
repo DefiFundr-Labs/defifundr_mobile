@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,11 +16,12 @@ class ContractCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
-      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.only(bottom: 20.0),
+      padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
@@ -32,79 +34,91 @@ class ContractCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: onTap,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    contract.title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    ellipsify(word: contract.title, maxLength: 28),
                     style: context.theme.fonts.textMdSemiBold.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: context.theme.colors.textPrimary,
                     ),
                   ),
-                  SizedBox(height: 25.sp),
-                  Text(
-                    'Type',
-                    style: context.theme.fonts.textSmRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
-                    ),
-                  ),
-                  Text(
-                    contract.type,
-                    style: context.theme.fonts.textMdRegular.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+                ),
+                SizedBox(width: 8.w),
                 Container(
                   clipBehavior: Clip.antiAlias,
                   padding:
                       EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
                   decoration: BoxDecoration(
-                    color: context.theme.colors.greenFill,
+                    color: contract.status.fillColor(context),
                     borderRadius: BorderRadius.circular(20.0),
                     border: Border.all(
-                      color: context.theme.colors.greenStroke,
+                      color: contract.status.borderColor(context),
                     ),
                   ),
                   child: Text(
-                    contract.status,
+                    contract.status.titleCase,
                     style: context.theme.fonts.textXsSemiBold.copyWith(
                       fontSize: 10.sp,
-                      color: context.theme.colors.greenDefault,
+                      color: contract.status.textColor(context),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                SizedBox(height: 25.sp),
-                Text(
-                  '${contract.rate.toInt()} ${contract.currency}',
-                  style: context.theme.fonts.textMdSemiBold.copyWith(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
+              ],
+            ),
+            SizedBox(height: 16.sp),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Type',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        fontSize: 12.sp,
+                        color: context.theme.colors.textSecondary,
+                      ),
+                    ),
+                    SizedBox(height: 4.sp),
+                    Text(
+                      contract.type.titleCase,
+                      style: context.theme.fonts.textMdSemiBold.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: context.theme.colors.textPrimary,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  'Per Hour',
-                  style: context.theme.fonts.textSmRegular.copyWith(
-                    fontSize: 12.sp,
-                    color: context.theme.colors.textSecondary,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '${contract.rate.toInt()} ${contract.currency}',
+                      style: context.theme.fonts.textMdSemiBold.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: context.theme.colors.textPrimary,
+                      ),
+                    ),
+                    SizedBox(height: 4.sp),
+                    Text(
+                      'Per Hour',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        fontSize: 12.sp,
+                        color: context.theme.colors.textSecondary,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

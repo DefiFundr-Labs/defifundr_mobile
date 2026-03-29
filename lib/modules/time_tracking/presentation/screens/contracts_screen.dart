@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
-import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
-import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 
 import '../widgets/contract_card.dart';
 
@@ -19,36 +19,38 @@ class TimeTrackingContractsScreen extends StatefulWidget {
   const TimeTrackingContractsScreen({super.key});
 
   @override
-  _TimeTrackingContractsScreenState createState() => _TimeTrackingContractsScreenState();
+  _TimeTrackingContractsScreenState createState() =>
+      _TimeTrackingContractsScreenState();
 }
 
-class _TimeTrackingContractsScreenState extends State<TimeTrackingContractsScreen> {
+class _TimeTrackingContractsScreenState
+    extends State<TimeTrackingContractsScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   final List<TimeTrackingContract> contracts = [
     TimeTrackingContract(
       id: '1',
       title: 'DefiFundr Mobile & Web App Resign',
-      type: 'Pay As You Go',
+      type: ContractType.payAsYouGo,
       rate: 21,
       currency: 'USDT',
-      status: 'Active',
+      status: ContractStatus.rejected,
     ),
     TimeTrackingContract(
       id: '2',
       title: 'DefiFundr Mobile & Web App Resign',
-      type: 'Pay As You Go',
+      type: ContractType.fixedRate,
       rate: 50,
       currency: 'EURt',
-      status: 'Active',
+      status: ContractStatus.active,
     ),
     TimeTrackingContract(
       id: '3',
       title: 'BlockLayer Validator Integfration for DefiFundr',
-      type: 'Pay As You Go',
+      type: ContractType.milestone,
       rate: 20,
       currency: 'LUSD',
-      status: 'Active',
+      status: ContractStatus.pending,
     ),
   ];
 
@@ -76,17 +78,27 @@ class _TimeTrackingContractsScreenState extends State<TimeTrackingContractsScree
           _buildSearchBar(),
           // Contracts List
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: contracts.length,
-              itemBuilder: (context, index) {
-                return ContractCard(
-                  contract: contracts[index],
-                  onTap: () {
-                    context.router.push(TimeTrackingRoute(contract: contracts[index]));
-                  },
-                );
-              },
+            child: contracts.isEmpty
+                ? _buildEmptyState(context)
+                : ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    itemCount: contracts.length,
+                    itemBuilder: (context, index) {
+                      return ContractCard(
+                        contract: contracts[index],
+                        onTap: () {
+                          context.router.push(
+                              TimeTrackingRoute(contract: contracts[index]));
+                        },
+                      );
+                    },
+                  ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 32.h),
+            child: PrimaryButton(
+              onPressed: () => context.router.push(CreateContractFlowRoute()),
+              text: 'Create new contract',
             ),
           ),
         ],
@@ -95,49 +107,11 @@ class _TimeTrackingContractsScreenState extends State<TimeTrackingContractsScree
   }
 
   Widget _buildSearchBar() {
-    final isLight = Theme.of(context).brightness == Brightness.light;
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Expanded(
-            child: AppTextField(
-              controller: _searchController,
-              validate: false,
-              alwaysShowLabelAndHint: true,
-              hintText: "Search",
-              prefixType: PrefixType.customIcon,
-              prefixIcon: SvgPicture.asset(
-                Assets.icons.magnifyingGlass,
-                width: 20,
-                height: 20,
-                color: context.theme.colors.textSecondary,
-              ),
-            ),
-          ),
-          SizedBox(width: 8.w),
-          GestureDetector(
-            onTap: _showFilterBottomSheet,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isLight
-                    ? context.theme.colors.bgB0
-                    : context.theme.colors.bgB1,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: context.theme.colors.strokeSecondary.withAlpha(20),
-                ),
-              ),
-              child: SvgPicture.asset(
-                Assets.icons.filter,
-                width: 20,
-                height: 20,
-                color: context.theme.colors.textSecondary,
-              ),
-            ),
-          ),
-        ],
+      child: SearchAndFilterBar(
+        searchController: _searchController,
+        onFilterTap: _showFilterBottomSheet,
       ),
     );
   }
@@ -148,6 +122,50 @@ class _TimeTrackingContractsScreenState extends State<TimeTrackingContractsScree
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => const FilterBottomSheet(),
+    );
+  }
+
+  Widget _buildEmptyState(BuildContext context) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
+
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 50.h),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    Assets.icons.emptyState,
+                    width: 200.w,
+                    height: 200.h,
+                  ),
+                  Text(
+                    'No contracts yet',
+                    style: fonts.textMdSemiBold.copyWith(
+                      color: colors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  Text(
+                    'Create one now to get started.',
+                    textAlign: TextAlign.center,
+                    style: fonts.textMdRegular.copyWith(
+                      color: colors.textSecondary,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

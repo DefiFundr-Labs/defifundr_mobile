@@ -1,17 +1,31 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 
 import '../../data/models/contract.dart';
 import '../widgets/contract_card.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 
 @RoutePage()
-class TimeOffContractsScreen extends StatelessWidget {
+class TimeOffContractsScreen extends StatefulWidget {
+  TimeOffContractsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TimeOffContractsScreen> createState() => _TimeOffContractsScreenState();
+}
+
+class _TimeOffContractsScreenState extends State<TimeOffContractsScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   final List<TimeOffContract> contracts = [
     TimeOffContract(
       id: '1',
       title: 'DefiFundr Mobile & Web App Re...',
-      type: 'Fixed Rate',
+      type: ContractType.fixedRate,
       paymentAmount: '581 USDT',
       paymentFrequency: 'Every month',
       isActive: true,
@@ -19,7 +33,7 @@ class TimeOffContractsScreen extends StatelessWidget {
     TimeOffContract(
       id: '2',
       title: 'Quikdash Mobile & Web App Re...',
-      type: 'Milestone',
+      type: ContractType.milestone,
       paymentAmount: '581 STRK',
       paymentFrequency: '5 milestones',
       isActive: true,
@@ -27,7 +41,7 @@ class TimeOffContractsScreen extends StatelessWidget {
     TimeOffContract(
       id: '3',
       title: 'Weave Finance Mobile & Web A...',
-      type: 'Pay As You Go',
+      type: ContractType.payAsYouGo,
       paymentAmount: '50 EURt',
       paymentFrequency: 'Per Deliverable',
       isActive: true,
@@ -35,7 +49,7 @@ class TimeOffContractsScreen extends StatelessWidget {
     TimeOffContract(
       id: '4',
       title: 'BlockLayer Validator Integration...',
-      type: 'Pay As You Go',
+      type: ContractType.payAsYouGo,
       paymentAmount: '21 USDC',
       paymentFrequency: 'Per Hour',
       isActive: true,
@@ -43,7 +57,7 @@ class TimeOffContractsScreen extends StatelessWidget {
     TimeOffContract(
       id: '5',
       title: 'Legaltide Compliance Audit for...',
-      type: 'Pay As You Go',
+      type: ContractType.payAsYouGo,
       paymentAmount: '51 LUSD',
       paymentFrequency: 'Per Day',
       isActive: true,
@@ -51,62 +65,39 @@ class TimeOffContractsScreen extends StatelessWidget {
     TimeOffContract(
       id: '6',
       title: 'Snapworks Product Photograph...',
-      type: 'Pay As You Go',
+      type: ContractType.payAsYouGo,
       paymentAmount: '101 DAI',
       paymentFrequency: 'Per Week',
       isActive: true,
     ),
   ];
 
-  TimeOffContractsScreen({Key? key}) : super(key: key);
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Contracts',
+          actions: [],
         ),
-        title: const Text(
-          'Contracts',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade200),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.search, color: Colors.grey.shade400, size: 20),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                  ),
-                ),
-                Icon(Icons.tune, color: Colors.grey.shade400, size: 20),
-              ],
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: SearchAndFilterBar(
+              searchController: _searchController,
             ),
           ),
           Expanded(
@@ -117,11 +108,9 @@ class TimeOffContractsScreen extends StatelessWidget {
                 return ContractCard(
                   contract: contracts[index],
                   onTap: () {
-                    if (contracts[index].title.contains('Quikdash')) {
-                      context.router.push(TimeOffRoute(
-                        contractTitle: contracts[index].title,
-                      ));
-                    }
+                    context.router.push(TimeOffRoute(
+                      contractTitle: contracts[index].title,
+                    ));
                   },
                 );
               },

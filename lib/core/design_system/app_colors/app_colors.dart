@@ -70,8 +70,8 @@ class AppColors {
   static const Color pinkFill = Color(0xFFFFECF5);
 
   // Background Colors
-  static const Color bgB0 = Color(0xFFFFFFFF);
-  static const Color bgB1 = Color(0xFFF7F7F7);
+  static const Color bgB0 = Color(0xFFF7F7F8);
+  static const Color bgB1 = Color(0xFFFFFFFF);
   static const Color bgB2 = Color(0xFFEEEEEE);
   static const Color bgB3 = Color(0xFFE6E6E6);
   static const Color bgB0Base = Color(0xFFF7F7F8);
@@ -92,29 +92,79 @@ class AppColors {
   static const Color iconBlue = Color(0xFF0000E5);
   static const Color textHighlightBlue = Color(0xFF0000E5);
 
-  // Old Colors
+  // ---------------------------------------------------------------------------
+  // DEPRECATED — Legacy colors from the old design system.
+  // Do NOT use these in new code. Use the semantic tokens from AppColorExtension
+  // via `context.theme.colors.<token>` instead.
+  // ---------------------------------------------------------------------------
+
+  @Deprecated('Use context.theme.colors.contrastWhite instead')
   static const Color white100 = Color(0xFFFFFFFF);
+
+  @Deprecated('Use context.theme.colors.bgB1 instead')
   static const Color white200 = Color(0xFFF9F9F9);
+
+  @Deprecated('Use context.theme.colors.bgB1 instead')
   static const Color white250 = Color(0xFFFAFAFA);
+
+  @Deprecated('Use context.theme.colors.constantDefault instead')
   static const Color primaryColor = Color(0xFF000000);
+
+  @Deprecated('Use context.theme.colors.blueDefault instead')
   static const Color secondaryColor = Color(0xFF2B64E3);
+
+  @Deprecated('Use context.theme.colors.textSecondary instead')
   static const Color secondaryTextColor = Color(0xFF8E9BAE);
+
+  @Deprecated('Use context.theme.colors.grayPrimary instead')
   static const Color grey100 = Color(0xFF5C5C5C);
+
+  @Deprecated('Use context.theme.colors.grayQuaternary instead')
   static const Color grey200 = Color(0xFFE7E7E7);
+
+  @Deprecated('Use context.theme.colors.grayTertiary instead')
   static const Color grey300 = Color(0xFFAAAAAA);
+
+  @Deprecated('Use context.theme.colors.bgB2 instead')
   static const Color grey400 = Color(0xFFF5F5F5);
+
+  @Deprecated('Use context.theme.colors.grayPrimary instead')
   static const Color grey500 = Color(0xFF50555C);
+
+  @Deprecated('Use context.theme.colors.bgB0 instead')
   static const Color textfieldColor = Color(0xFFF4F8FD);
+
+  @Deprecated('Use context.theme.colors.redDefault instead')
   static const Color errorColor = Color(0xFFE02020);
+
+  @Deprecated('Use context.theme.colors.greenDefault instead')
   static const Color successColor = Color(0xFF00C853);
+
+  @Deprecated('Use context.theme.colors.constantDefault instead')
   static const Color black100 = Color(0xFF000000);
+
+  @Deprecated('Use context.theme.colors.textPrimary instead')
   static const Color black200 = Color(0xFF222222);
+
+  @Deprecated('Use context.theme.colors.redDefault instead')
   static const Color tooastErrorColor = Color(0xFFFF5353);
+
+  @Deprecated('Use context.theme.colors.strokeSecondary instead')
   static const Color borderColor = Color(0xFFE2E8F0);
+
+  @Deprecated('Use context.theme.colors.yellowDefault instead')
   static const Color warningColor = Color.fromARGB(0, 214, 203, 45);
+
+  @Deprecated('Use Colors.transparent directly instead')
   static const Color transparent = Colors.transparent;
+
+  @Deprecated('Use context.theme.colors.grayQuaternary instead')
   static const Color borderGrey = Color(0xFFBBBABB);
+
+  @Deprecated('Use context.theme.colors.brandFill instead')
   static const Color gradientColor = Color(0xFFEDEAFF);
+
+  @Deprecated('Use context.theme.colors.contrastWhite instead')
   static const Color white = Colors.white;
 
   // Miscellaneous colors
@@ -219,7 +269,7 @@ class AppColorDark {
 
   //Miscellaneous colors
   static const Color contrastBlack = Color(0xFFFFFFFF);
-  static const Color contrastWhite = Color(0xFF18181B);
+  static const Color contrastWhite = Color(0xFFFFFFFF);
   static const Color strokePrimary = Color(0x0F18181B);
   static const Color strokeSecondary = Color(0x5252525B);
   static const Color fillTertiary = Color(0x0AFFFFFF);

@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ReceivePaymentScreen extends StatefulWidget {
@@ -95,7 +96,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          'Need Help?',
+                          context.l10n.needHelp,
                           style: context.theme.textTheme.bodyMedium?.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -123,7 +124,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Receive Payment',
+                        context.l10n.receivePayment,
                         style: TextStyle(
                           fontSize: 24,
                           fontFamily: 'HankenGrotesk',
@@ -140,7 +141,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Receive crypto payments instantly via address, QR code, or payment link.',
+                        context.l10n.receiveCryptoInstantly,
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'Inter',
@@ -155,7 +156,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                     ),
                     const SizedBox(height: 8 * 3),
                     AppTextField(
-                      labelText: 'Title',
+                      labelText: context.l10n.titleLabel,
                       controller: titleController,
                     ),
                     const SizedBox(height: 8 * 3),
@@ -228,7 +229,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
                         }),
                     const SizedBox(height: 8 * 3),
                     AppTextField(
-                      labelText: 'Amount',
+                      labelText: context.l10n.amount,
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                       controller: amountController,
@@ -267,7 +268,7 @@ class _ReceivePaymentScreenState extends State<ReceivePaymentScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: BrandButton(
-                text: "Continue",
+                text: context.l10n.continueText,
                 onPressed: () {
                   if (selectedNetwork.value == null ||
                       selectedAsset.value == null ||

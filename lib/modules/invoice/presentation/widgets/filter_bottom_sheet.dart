@@ -23,7 +23,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       decoration: BoxDecoration(
-        color: isLight ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),

@@ -24,7 +24,6 @@ class SuccessBottomSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Success Icon
             Container(
               padding: const EdgeInsets.all(12.0),
               decoration: BoxDecoration(
@@ -41,42 +40,25 @@ class SuccessBottomSheet extends StatelessWidget {
                 ),
               ),
             ),
-
-            SizedBox(height: 32.0),
-
-            // Success Title
+            SizedBox(height: 16.0),
             Text(
               'Hours worked submitted',
-              style: context.theme.fonts.heading2Bold.copyWith(
-                fontSize: 24.sp,
-                fontWeight: FontWeight.w600,
-                color: context.theme.colors.textPrimary,
-              ),
+              style: context.theme.fonts.heading2Bold,
               textAlign: TextAlign.center,
             ),
-
-            // Success Message
+            SizedBox(height: 4.h),
             Text(
               'Submission now awaiting approval. An email has been sent to your client.',
               style: context.theme.fonts.textMdRegular.copyWith(
-                fontSize: 14.sp,
                 color: context.theme.colors.textSecondary,
-                fontWeight: FontWeight.w400,
-                height: 1.5,
               ),
               textAlign: TextAlign.center,
             ),
-
-            SizedBox(height: 40.0),
-
-            // OK Button
+            SizedBox(height: 24.0),
             PrimaryButton(
-              onPressed: () {
-                context.router.maybePop();
-              },
+              onPressed: () => context.router.maybePop(),
               text: 'Ok',
             ),
-
             SizedBox(height: 16.0),
           ],
         ),

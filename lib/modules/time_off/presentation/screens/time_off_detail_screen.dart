@@ -1,12 +1,18 @@
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/status_chip.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-
 class TimeOffDetailScreen extends StatelessWidget {
   final TimeOffDetail timeOffDetail;
 
@@ -18,369 +24,391 @@ class TimeOffDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Time off details',
+          actions: [],
         ),
-        title: const Text(
-          'Time off details',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Status
-                  _buildDetailRow(
-                    'Status',
-                    '',
-                    trailing: StatusChip(status: timeOffDetail.status),
-                  ),
-
-                  // Type
-                  _buildDetailRow('Type', timeOffDetail.type),
-
-                  // Reason
-                  _buildDetailRow('Reason', timeOffDetail.reason),
-
-                  // Dates
-                  _buildDetailRow('Dates', timeOffDetail.dateRange),
-
-                  // Submission date
-                  _buildDetailRow('Submission date',
-                      timeOffDetail.formatDate(timeOffDetail.submissionDate)),
-
-                  // Approval/Rejection date based on status
-                  if (timeOffDetail.status == TimeOffStatus.approved &&
-                      timeOffDetail.approvalDate != null)
-                    _buildDetailRow('Approval date',
-                        timeOffDetail.formatDate(timeOffDetail.approvalDate!)),
-
-                  if (timeOffDetail.status == TimeOffStatus.rejected &&
-                      timeOffDetail.rejectionDate != null)
-                    _buildDetailRow('Rejection date',
-                        timeOffDetail.formatDate(timeOffDetail.rejectionDate!)),
-
-                  if (timeOffDetail.status == TimeOffStatus.pending)
-                    _buildDetailRow('Approval date', '--'),
-
-                  // Total time off
-                  _buildDetailRow(
-                      'Total time off', '${timeOffDetail.totalDays} days'),
-
-                  const SizedBox(height: 24),
-
-                  // Description
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Description',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        timeOffDetail.description,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black87,
-                          height: 1.4,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Attachment
-                  if (timeOffDetail.attachmentFileName != null)
-                    _buildDetailRow(
-                      'Attachment',
-                      '',
-                      trailing: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.description_outlined,
-                                size: 16, color: Colors.grey.shade600),
-                            const SizedBox(width: 6),
-                            Text(
-                              timeOffDetail.attachmentFileName!,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey.shade700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  // Rejection reason (only for rejected status)
-                  if (timeOffDetail.status == TimeOffStatus.rejected &&
-                      timeOffDetail.rejectionReason != null) ...[
-                    const SizedBox(height: 24),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Reason for rejection',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          timeOffDetail.rejectionReason!,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.red,
-                            height: 1.4,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-
+                  _buildGeneralDetailsContainer(context),
                   const SizedBox(height: 32),
-
-                  // Contract details
-                  _buildDetailRow('Contract', timeOffDetail.contractName,
-                      trailing: Icon(Icons.open_in_new,
-                          size: 16, color: Colors.grey.shade600)),
-
-                  _buildDetailRow('Contract Type', timeOffDetail.contractType),
-
-                  _buildDetailRow('Client', timeOffDetail.clientName),
-
+                  _buildContractDetailsContainer(context),
                   const SizedBox(height: 32),
-
-                  // Status timeline
-                  _buildStatusTimeline(),
-
-                  const SizedBox(height: 100),
+                  _buildTimelineContainer(context),
                 ],
               ),
             ),
           ),
-
-          // Bottom buttons
           _buildBottomButtons(context),
         ],
       ),
     );
   }
 
-  Widget _buildDetailRow(String label, String value, {Widget? trailing}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Row(
+  Widget _buildGeneralDetailsContainer(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB1,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 120,
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey.shade600,
-              ),
+          _buildRow(context, 'Status',
+              widget: StatusChip(status: timeOffDetail.status, isPill: true)),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Type', value: timeOffDetail.type),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Reason', value: timeOffDetail.reason),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Dates', value: timeOffDetail.dateRange),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Submission date',
+              value: timeOffDetail.formatDate(timeOffDetail.submissionDate)),
+          const SizedBox(height: 24),
+          if (timeOffDetail.status == TimeOffStatus.rejected)
+            _buildRow(context, 'Rejection date',
+                value: timeOffDetail.rejectionDate != null
+                    ? timeOffDetail.formatDate(timeOffDetail.rejectionDate!)
+                    : '--')
+          else
+            _buildRow(context, 'Approval date',
+                value: timeOffDetail.status == TimeOffStatus.pending
+                    ? '--'
+                    : (timeOffDetail.approvalDate != null
+                        ? timeOffDetail.formatDate(timeOffDetail.approvalDate!)
+                        : '--')),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Total time off',
+              value: '${timeOffDetail.totalDays} days'),
+          const SizedBox(height: 24),
+          Text(
+            'Description',
+            style: context.theme.fonts.textSmRegular.copyWith(
+              color: context.theme.colors.textSecondary,
             ),
           ),
-          Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.right,
+          const SizedBox(height: 8),
+          Text(
+            timeOffDetail.description,
+            style: context.theme.fonts.textMdMedium.copyWith(
+              color: context.theme.colors.textPrimary,
+              height: 1.4,
             ),
           ),
-          if (trailing != null) ...[
-            const SizedBox(width: 8),
-            trailing,
+          if (timeOffDetail.attachmentFileName != null) ...[
+            const SizedBox(height: 24),
+            _buildRow(
+              context,
+              'Attachment',
+              widget: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: context.theme.colors.bgB1,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.description_outlined,
+                        size: 16, color: context.theme.colors.textTertiary),
+                    const SizedBox(width: 6),
+                    Text(
+                      timeOffDetail.attachmentFileName!,
+                      style: context.theme.fonts.textSmMedium.copyWith(
+                        color: context.theme.colors.textPrimary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+          if (timeOffDetail.status == TimeOffStatus.rejected && timeOffDetail.rejectionReason != null) ...[
+            const SizedBox(height: 24),
+            Text(
+              'Reason for rejection',
+              style: context.theme.fonts.textSmRegular.copyWith(
+                color: context.theme.colors.textSecondary,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              timeOffDetail.rejectionReason!,
+              style: context.theme.fonts.textMdMedium.copyWith(
+                color: context.theme.colors.redDefault,
+                height: 1.4,
+              ),
+            ),
           ],
         ],
       ),
     );
   }
 
-  Widget _buildStatusTimeline() {
-    return Column(
-      children: timeOffDetail.statusUpdates.asMap().entries.map((entry) {
-        final index = entry.key;
-        final update = entry.value;
-        final isLast = index == timeOffDetail.statusUpdates.length - 1;
-
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: _getTimelineIconColor(update.type),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    _getTimelineIcon(update.type),
-                    color: Colors.white,
-                    size: 12,
-                  ),
-                ),
-                if (!isLast)
-                  Container(
-                    width: 2,
-                    height: 40,
-                    color: Colors.grey.shade200,
-                  ),
-              ],
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    update.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    update.description,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-                  if (!isLast) const SizedBox(height: 24),
-                ],
-              ),
-            ),
-          ],
-        );
-      }).toList(),
+  Widget _buildContractDetailsContainer(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB1,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: [
+          _buildRow(context, 'Contract',
+              value: ellipsify(word: timeOffDetail.contractName, maxLength: 20),
+              showLink: true),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Contract Type',
+              value: timeOffDetail.contractType),
+          const SizedBox(height: 24),
+          _buildRow(context, 'Client', value: timeOffDetail.clientName),
+        ],
+      ),
     );
   }
 
-  Color _getTimelineIconColor(TimeOffStatusUpdateType type) {
-    switch (type) {
-      case TimeOffStatusUpdateType.created:
-      case TimeOffStatusUpdateType.approved:
-      case TimeOffStatusUpdateType.inProgress:
-      case TimeOffStatusUpdateType.completed:
-        return Colors.green;
-      case TimeOffStatusUpdateType.rejected:
-        return Colors.red;
-      case TimeOffStatusUpdateType.awaiting:
-        return Colors.orange;
-      case TimeOffStatusUpdateType.scheduledStart:
-      case TimeOffStatusUpdateType.scheduledEnd:
-        return Colors.grey;
-    }
+  Widget _buildTimelineContainer(BuildContext context) {
+    if (timeOffDetail.statusUpdates.isEmpty) return const SizedBox.shrink();
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB1,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: timeOffDetail.statusUpdates.asMap().entries.map((entry) {
+          final isLast = entry.key == timeOffDetail.statusUpdates.length - 1;
+          final update = entry.value;
+
+          bool nextIsCompleted = false;
+          if (!isLast) {
+            final next = timeOffDetail.statusUpdates[entry.key + 1];
+            if (next.type == TimeOffStatusUpdateType.created ||
+                next.type == TimeOffStatusUpdateType.approved ||
+                next.type == TimeOffStatusUpdateType.completed ||
+                next.type == TimeOffStatusUpdateType.inProgress ||
+                next.type == TimeOffStatusUpdateType.rejected) {
+              nextIsCompleted = true;
+            }
+          }
+
+          return _buildTrackerItem(context, update,
+              isLast: isLast, nextIsCompleted: nextIsCompleted);
+        }).toList(),
+      ),
+    );
   }
 
-  IconData _getTimelineIcon(TimeOffStatusUpdateType type) {
-    switch (type) {
+  Widget _buildTrackerItem(BuildContext context, TimeOffStatusUpdate update,
+      {required bool isLast, required bool nextIsCompleted}) {
+    Color? lineColor;
+    late Widget customIcon;
+    bool isGreyedOut = false;
+
+    switch (update.type) {
       case TimeOffStatusUpdateType.created:
       case TimeOffStatusUpdateType.approved:
       case TimeOffStatusUpdateType.inProgress:
       case TimeOffStatusUpdateType.completed:
-        return Icons.check;
-      case TimeOffStatusUpdateType.rejected:
-        return Icons.close;
+        customIcon = SvgPicture.asset(
+          Assets.icons.checkCircle,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(
+            context.theme.colors.greenDefault,
+            BlendMode.srcIn,
+          ),
+        );
+        if (nextIsCompleted) {
+          lineColor = context.theme.colors.greenDefault;
+        }
+        break;
       case TimeOffStatusUpdateType.awaiting:
-        return Icons.schedule;
+        customIcon = SvgPicture.asset(
+          Assets.icons.clockCountdown,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(
+            context.theme.colors.orangeDefault,
+            BlendMode.srcIn,
+          ),
+        );
+        break;
       case TimeOffStatusUpdateType.scheduledStart:
       case TimeOffStatusUpdateType.scheduledEnd:
-        return Icons.schedule;
+        customIcon = DashedCircleIcon(
+            color: context.theme.colors.textSecondary.withValues(alpha: 0.5));
+        isGreyedOut = true;
+        break;
+      case TimeOffStatusUpdateType.rejected:
+        customIcon = SvgPicture.asset(
+          Assets.icons.prohibit,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(
+            context.theme.colors.redDefault,
+            BlendMode.srcIn,
+          ),
+        );
+        lineColor = context.theme.colors.redDefault;
+        break;
     }
+
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Column(
+            children: [
+              customIcon,
+              if (!isLast)
+                Expanded(
+                  child: Container(
+                    width: 1.5,
+                    color: lineColor ??
+                        context.theme.colors.strokeSecondary
+                            .withValues(alpha: 0.3),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 2.0),
+                  child: Text(
+                    update.title,
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      fontSize: 13,
+                      color: isGreyedOut
+                          ? context.theme.colors.textSecondary
+                              .withValues(alpha: 0.5)
+                          : context.theme.colors.textPrimary,
+                    ),
+                  ),
+                ),
+                if (update.description.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    update.description,
+                    style: context.theme.fonts.textMdRegular.copyWith(
+                      fontSize: 12,
+                      color: isGreyedOut
+                          ? context.theme.colors.textSecondary
+                              .withValues(alpha: 0.5)
+                          : context.theme.colors.textSecondary,
+                    ),
+                  ),
+                ],
+                if (!isLast) const SizedBox(height: 24),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRow(BuildContext context, String label,
+      {String? value, Widget? widget, bool showLink = false}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.35,
+          child: Text(
+            label,
+            style: context.theme.fonts.textMdRegular.copyWith(
+              color: context.theme.colors.textSecondary,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (value != null)
+                Flexible(
+                  child: Text(
+                    value,
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      color: context.theme.colors.textPrimary,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              if (widget != null) widget,
+              if (showLink) ...[
+                const SizedBox(width: 6),
+                Icon(Icons.open_in_new,
+                    size: 16, color: context.theme.colors.textPrimary),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildBottomButtons(BuildContext context) {
-    if (timeOffDetail.status == TimeOffStatus.used) {
-      return const SizedBox.shrink(); // No buttons for completed requests
+    if (timeOffDetail.status == TimeOffStatus.used || timeOffDetail.status == TimeOffStatus.rejected) {
+      return const SizedBox.shrink();
     }
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.only(
+          left: 20,
+          right: 20,
+          top: 16,
+          bottom: MediaQuery.of(context).padding.bottom + 16),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB1,
+      ),
       child: Row(
         children: [
           Expanded(
-            child: OutlinedButton(
+            child: PrimaryButton(
               onPressed: () {
-                // Cancel request functionality
+                context.router.push(CancelTimeOffRequestRoute(timeOffDetail: timeOffDetail));
               },
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                side: BorderSide(color: Colors.grey.shade300),
-              ),
-              child: const Text(
-                'Cancel request',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                ),
-              ),
+              text: 'Cancel request',
+              color: context.theme.colors.fillTertiary,
+              textColor: context.theme.colors.textPrimary,
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: ElevatedButton(
+            child: PrimaryButton(
               onPressed: () {
-                // Edit or request change functionality
+                if (timeOffDetail.status == TimeOffStatus.pending) {
+                  context.router.push(EditTimeOffRequestRoute(timeOffDetail: timeOffDetail));
+                } else if (timeOffDetail.status == TimeOffStatus.approved) {
+                  context.router.push(RequestChangeRoute(timeOffDetail: timeOffDetail));
+                }
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue.shade600,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                _getActionButtonText(),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              text: _getActionButtonText(),
             ),
           ),
         ],
@@ -399,6 +427,56 @@ class TimeOffDetailScreen extends StatelessWidget {
         return 'Edit request';
     }
   }
+}
+
+class DashedCircleIcon extends StatelessWidget {
+  final Color color;
+  const DashedCircleIcon({Key? key, required this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 24,
+      height: 24,
+      child: Center(
+        child: SizedBox(
+          width: 18,
+          height: 18,
+          child: CustomPaint(
+            painter: DashedCirclePainter(color: color),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DashedCirclePainter extends CustomPainter {
+  final Color color;
+
+  DashedCirclePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.5
+      ..style = PaintingStyle.stroke;
+
+    final rect = Rect.fromCircle(
+        center: Offset(size.width / 2, size.height / 2),
+        radius: (size.width / 2) - 1);
+
+    const int dashCount = 8;
+    const double dashLength = (2 * 3.141592653589793) / (dashCount * 2);
+
+    for (int i = 0; i < dashCount; i++) {
+      canvas.drawArc(rect, i * 2 * dashLength, dashLength, false, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 // Sample data factory for testing

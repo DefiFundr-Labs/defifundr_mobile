@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -101,9 +102,9 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
-                          const Text(
-                            'Country of citizenship',
-                            style: TextStyle(
+                          Text(
+                            context.l10n.countryOfCitizenship,
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -115,7 +116,7 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: AppTextField(
-                        labelText: 'Search',
+                        hintText: context.l10n.search,
                         controller: _searchController,
                         prefixIcon: Icon(Icons.search, color: Colors.grey[500]),
                         onChanged: (value) {

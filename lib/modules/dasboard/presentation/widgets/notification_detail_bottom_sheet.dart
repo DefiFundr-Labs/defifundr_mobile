@@ -19,7 +19,7 @@ class NotificationDetailBottomSheet extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(16.r),
         ),

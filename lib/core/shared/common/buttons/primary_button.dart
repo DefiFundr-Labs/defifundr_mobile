@@ -221,7 +221,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
       colorFilter: ColorFilter.mode(
         widget.iconColor ??
             (widget.isEnabled
-                ? context.theme.colors.textPrimary
+                ? context.theme.colors.contrastWhite
                 : context.theme.colors.graySecondary),
         BlendMode.srcIn,
       ),

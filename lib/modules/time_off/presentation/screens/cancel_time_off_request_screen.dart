@@ -5,6 +5,10 @@ import '../../data/models/time_off.dart';
 import '../widgets/status_chip.dart';
 import '../widgets/success_bottom_sheet.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 
 @RoutePage()
 class CancelTimeOffRequestScreen extends StatefulWidget {
@@ -40,7 +44,12 @@ class _CancelTimeOffRequestScreenState
         isDismissible: false,
         enableDrag: false,
         backgroundColor: Colors.transparent,
-        builder: (context) => const CancellationSuccessBottomSheet(),
+        builder: (context) => SuccessBottomSheet(
+          title: 'Cancellation submitted',
+          subtitle: 'Your cancellation request has been submitted\nfor review.',
+          // icon: Icon(Icons.cancel_outlined,
+          //     size: 32, color: context.theme.colors.redDefault),
+        ),
       );
     } else {
       AppSnackbar.showError(
@@ -48,91 +57,64 @@ class _CancelTimeOffRequestScreenState
     }
   }
 
-  String get title {
-    return widget.timeOffDetail.status == TimeOffStatus.approved
-        ? 'Cancel time off request'
-        : 'Cancel time off request';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Cancel time off request',
+          actions: [],
         ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Approval needed warning (only for approved requests)
                   if (widget.timeOffDetail.status ==
                       TimeOffStatus.approved) ...[
                     Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.orange.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.orange.shade200),
+                        color: context.theme.colors.orangeFill,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                            color: context.theme.colors.orangeStroke),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Approval needed',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.orange.shade700,
+                            style: context.theme.fonts.textMdSemiBold.copyWith(
+                              color: context.theme.colors.orangeDefault,
                             ),
                           ),
-                          const SizedBox(height: 4),
                           Text(
                             'The cancellation of this time off will require approval.',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey.shade600,
+                            style: context.theme.fonts.textSmRegular.copyWith(
+                              color: context.theme.colors.textSecondary,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 20),
                   ],
-
-                  // Time off details card
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 10,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
+                      color: context.theme.colors.bgB1,
+                      borderRadius: BorderRadius.circular(4),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,54 +124,54 @@ class _CancelTimeOffRequestScreenState
                             Expanded(
                               child: Text(
                                 widget.timeOffDetail.reason,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87,
+                                style: context.theme.fonts.textBaseSemiBold
+                                    .copyWith(
+                                  color: context.theme.colors.textPrimary,
                                 ),
                               ),
                             ),
-                            StatusChip(status: widget.timeOffDetail.status),
+                            StatusChip(
+                                status: widget.timeOffDetail.status,
+                                isPill: true),
                           ],
                         ),
                         const SizedBox(height: 12),
                         Text(
                           '${widget.timeOffDetail.dateRange} • ${widget.timeOffDetail.totalDays} days holiday',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
+                          style: context.theme.fonts.textSmRegular.copyWith(
+                            color: context.theme.colors.textSecondary,
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 12),
                         Text(
                           widget.timeOffDetail.description,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade700,
-                            height: 1.4,
+                          style: context.theme.fonts.textSmRegular.copyWith(
+                            color: context.theme.colors.textSecondary,
                           ),
                         ),
                         if (widget.timeOffDetail.attachmentFileName !=
                             null) ...[
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 12),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
+                                horizontal: 12, vertical: 4),
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
+                                color: context.theme.colors.bgB1,
+                                borderRadius: BorderRadius.circular(32),
+                                border: BoxBorder.all(
+                                    color: context.theme.colors.strokePrimary)),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(Icons.description_outlined,
-                                    size: 16, color: Colors.grey.shade600),
-                                const SizedBox(width: 6),
+                                    size: 16,
+                                    color: context.theme.colors.textTertiary),
+                                const SizedBox(width: 4),
                                 Text(
                                   widget.timeOffDetail.attachmentFileName!,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey.shade700,
+                                  style:
+                                      context.theme.fonts.textSmMedium.copyWith(
+                                    color: context.theme.colors.textPrimary,
                                   ),
                                 ),
                               ],
@@ -199,69 +181,28 @@ class _CancelTimeOffRequestScreenState
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 24),
-
-                  // Reason for cancellation
-                  const Text(
+                  const SizedBox(height: 20),
+                  Text(
                     'Reason for cancellation',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: TextField(
-                      controller: _reasonController,
-                      maxLines: 4,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        height: 1.4,
-                      ),
-                    ),
+                  const SizedBox(height: 8),
+                  AppTextField(
+                    controller: _reasonController,
+                    maxLine: 5,
+                    hintText: 'Enter reason...',
                   ),
                 ],
               ),
             ),
           ),
-
-          // Submit button
           Container(
-            padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _submitCancellation,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade600,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Submit cancellation',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+            padding: EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 16),
+            child: PrimaryButton(
+              onPressed: _submitCancellation,
+              text: 'Submit cancellation',
             ),
           ),
         ],

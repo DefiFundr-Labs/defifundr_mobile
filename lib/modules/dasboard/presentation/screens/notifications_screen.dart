@@ -4,7 +4,6 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/design_system/color_extension/app_color_extension.dart';
 import 'package:defifundr_mobile/core/design_system/font_extension/font_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
-import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/modules/dasboard/data/models/notification_item.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/notification_card.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class NotificationsScreen extends StatelessWidget {
@@ -59,7 +59,7 @@ class NotificationsScreen extends StatelessWidget {
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
           centerTitle: true,
-          title: 'Notifications',
+          title: context.l10n.notificationsTitle,
           isBack: true,
           actions: [],
           textStyle: context.theme.fonts.heading3SemiBold.copyWith(
@@ -99,7 +99,7 @@ class NotificationsScreen extends StatelessWidget {
                     height: 200,
                   ),
                   Text(
-                    'No notifications yet.',
+                    context.l10n.noNotificationsYet,
                     style: fonts.textMdSemiBold.copyWith(
                       color: colors.textPrimary,
                       fontWeight: FontWeight.w600,
@@ -107,7 +107,7 @@ class NotificationsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Your updates will show up here when they\'re ready.',
+                    context.l10n.notificationsUpdatesReady,
                     textAlign: TextAlign.center,
                     style: fonts.textMdRegular.copyWith(
                       color: colors.textSecondary,
@@ -171,7 +171,7 @@ class NotificationsScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.sp),
               decoration: BoxDecoration(
-                color: isLightMode ? colors.bgB0 : colors.bgB1,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Column(

@@ -3,6 +3,7 @@ import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   final String title;
@@ -40,7 +41,7 @@ class HomeSectionHeader extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                'See all',
+                context.l10n.seeAll,
                 style: fonts.textSmSemiBold.copyWith(
                   color: colors.brandDefault,
                   fontSize: 12.sp,
@@ -84,7 +85,7 @@ class HomeEmptyState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(

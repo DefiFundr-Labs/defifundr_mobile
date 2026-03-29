@@ -137,7 +137,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
       margin: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(_borderRadius),
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
       ),
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(height: 4.sp),
@@ -165,7 +165,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               // Randomized PixelatedAvatar based on address
               PixelatedAvatar(
                 size: 40.w,
-                gridSize: 8, // Slightly smaller grid for more detailed look
+                gridSize: 8, 
                 colorPalette: _getPaletteForAddress(address),
                 seed: address.avatarSeed,
                 borderRadius: 8.r,

@@ -18,7 +18,7 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -73,11 +73,10 @@ class TwoFaSetupCompleteScreen extends StatelessWidget {
       ),
       child: Center(
         child: SvgPicture.asset(
-          Assets.icons.shieldCheckered,
+          Assets.icons.shieldCheck,
           width: 52.w,
           height: 52.w,
-          colorFilter:
-              ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
         ),
       ),
     );

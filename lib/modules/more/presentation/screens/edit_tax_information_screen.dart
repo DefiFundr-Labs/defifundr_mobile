@@ -140,7 +140,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                     ),
                     SizedBox(height: 24.h),
                     Text(
-                      'Tax identification',
+                      context.l10n.taxIdentification,
                       style: fonts.textLgSemiBold.copyWith(
                         color: colors.textPrimary,
                       ),
@@ -188,7 +188,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
           children: [
             Expanded(
               child: Text(
-                'Use my profile address',
+                context.l10n.useMyProfileAddress,
                 style: fonts.textBaseMedium.copyWith(
                   color: colors.textPrimary,
                 ),
@@ -236,7 +236,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
         return Container(
           height: MediaQuery.of(context).size.height * 0.6,
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius:
                 BorderRadius.vertical(top: Radius.circular(16.r)),
           ),
@@ -272,7 +272,7 @@ class _EditTaxInformationScreenState extends State<EditTaxInformationScreen> {
                   showPhoneCode: false,
                   countryListTheme: CountryListThemeData(
                     backgroundColor:
-                        isLightMode ? colors.bgB0 : colors.bgB1,
+                        colors.bgB1,
                     textStyle: fonts.textBaseMedium.copyWith(
                       color: colors.textPrimary,
                     ),

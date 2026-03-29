@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class OnboardingCard extends StatelessWidget {
   final String svgAsset;
@@ -77,7 +78,7 @@ class OnboardingCard extends StatelessWidget {
                                 color: context.theme.colors.greenStroke),
                             color: context.theme.colors.greenFill),
                         child: Text(
-                          "Done",
+                          context.l10n.done,
                           style: context.theme.fonts.textSmBold.copyWith(
                               color: context.theme.colors.greenDefault),
                         ),

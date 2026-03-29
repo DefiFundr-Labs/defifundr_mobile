@@ -81,7 +81,7 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
               width: 0.9.sw,
               padding: EdgeInsets.all(24.w),
               decoration: BoxDecoration(
-                color: colors.bgB0,
+                color: colors.bgB1,
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: [
                   BoxShadow(
@@ -163,7 +163,7 @@ class _BlockchainWalletLoaderState extends State<BlockchainWalletLoader>
                         width: 80.w,
                         height: 80.w,
                         decoration: BoxDecoration(
-                          color: colors.bgB0,
+                          color: colors.bgB1,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(

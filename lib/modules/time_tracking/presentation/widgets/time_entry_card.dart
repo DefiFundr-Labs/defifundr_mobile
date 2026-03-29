@@ -18,103 +18,105 @@ class TimeEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       margin: EdgeInsets.only(bottom: 16.r),
       padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
-        color: context.theme.colors.fillTertiary,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Time period',
-                    style: context.theme.fonts.textSmRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Time period',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    _formatTimeRange(timeEntry.startTime, timeEntry.endTime),
-                    style: context.theme.fonts.textBaseMedium.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: context.theme.colors.brandDefault,
-                      decoration: TextDecoration.underline,
+                    SizedBox(height: 4.h),
+                    Text(
+                      _formatTimeRange(timeEntry.startTime, timeEntry.endTime),
+                      style: context.theme.fonts.textBaseMedium.copyWith(
+                        color: context.theme.colors.brandDefault,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Total hours worked',
-                    style: context.theme.fonts.textSmRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
+              SizedBox(width: 16.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Total hours worked',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    _formatDuration(timeEntry.duration),
-                    style: context.theme.fonts.textBaseMedium.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: context.theme.colors.textPrimary,
+                    SizedBox(height: 4.h),
+                    Text(
+                      _formatDuration(timeEntry.duration),
+                      style: context.theme.fonts.textBaseMedium.copyWith(
+                        color: context.theme.colors.textPrimary,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
           SizedBox(height: 16.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Calculated amount',
-                    style: context.theme.fonts.textSmRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Calculated amount',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.0),
-                  Text(
-                    '${timeEntry.amount.toInt()} ${timeEntry.currency}',
-                    style: context.theme.fonts.textBaseMedium.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: context.theme.colors.textPrimary,
+                    SizedBox(height: 4.0),
+                    Text(
+                      '${timeEntry.amount.toInt()} ${timeEntry.currency}',
+                      style: context.theme.fonts.textBaseMedium.copyWith(
+                        color: context.theme.colors.textPrimary,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Status',
-                    style: context.theme.fonts.textSmRegular.copyWith(
-                      fontSize: 12.sp,
-                      color: context.theme.colors.textSecondary,
+              SizedBox(width: 16.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Status',
+                      style: context.theme.fonts.textSmRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.0),
-                  StatusChip(
-                    status: timeEntry.status,
-                  ),
-                ],
+                    SizedBox(height: 4.0),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: StatusChip(
+                        status: timeEntry.status,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -1,8 +1,12 @@
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/time_off_card_container.dart';
 import '../widgets/time_off_item.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 
 @RoutePage()
 class UnpaidTimeOffBalanceScreen extends StatelessWidget {
@@ -53,158 +57,101 @@ class UnpaidTimeOffBalanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Unpaid time off balance',
+          actions: [],
         ),
-        title: const Text(
-          'Unpaid time off balance',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Balance Summary Card
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
+            TimeOffCardContainer(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today_outlined,
-                        color: Colors.blue.shade600,
-                        size: 24,
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        'Balance',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey.shade600,
-                        ),
-                      ),
-                    ],
+                  SvgPicture.asset(
+                    Assets.icons.calendar,
+                    color: context.theme.colors.brandDefaultContrast,
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    '74 days',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                  const SizedBox(height: 8),
+                  Text(
+                    'Balance',
+                    style: context.theme.fonts.textMdRegular.copyWith(
+                      color: context.theme.colors.textSecondary,
                     ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '74 days',
+                    style: context.theme.fonts.heading3Bold,
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
-
-            // Stats Row
+            const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
+                  child: TimeOffCardContainer(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.calendar_month_outlined,
-                              color: Colors.blue.shade600,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Allowance',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey.shade600,
-                              ),
-                            ),
-                          ],
+                        SvgPicture.asset(
+                          Assets.icons.calendar,
+                          color: context.theme.colors.brandDefaultContrast,
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          '100 days',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                        Text(
+                          'Allowance',
+                          style: context.theme.fonts.textSmRegular.copyWith(
+                            color: context.theme.colors.textSecondary,
                           ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '100 days',
+                          style: context.theme.fonts.textLgBold,
                         ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 16),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
+                  child: TimeOffCardContainer(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green.shade600,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Used / scheduled',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey.shade600,
-                              ),
-                            ),
-                          ],
+                        Icon(
+                          Icons.event_available_outlined,
+                          color: context.theme.colors.greenDefault,
+                          size: 20,
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          '26 days',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                        Text(
+                          'Used / scheduled',
+                          style: context.theme.fonts.textSmRegular.copyWith(
+                            color: context.theme.colors.textSecondary,
                           ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '26 days',
+                          style: context.theme.fonts.textLgBold,
                         ),
                       ],
                     ),
@@ -212,38 +159,50 @@ class UnpaidTimeOffBalanceScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 32),
-
-            // Upcoming time off events
-            const Text(
-              'Upcoming time off events',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ...upcomingTimeOff.map((timeOff) => Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: TimeOffItem(timeOff: timeOff),
-                )),
             const SizedBox(height: 24),
-
-            // Past time off events
-            const Text(
-              'Past time off events',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
+            Text(
+              'Upcoming time off events',
+              style: context.theme.fonts.textMdSemiBold,
+            ),
+            const SizedBox(height: 8),
+            TimeOffCardContainer(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                children: upcomingTimeOff.asMap().entries.map((entry) {
+                  final idx = entry.key;
+                  final item = entry.value;
+                  return Column(
+                    children: [
+                      TimeOffItem(timeOff: item),
+                      if (idx != upcomingTimeOff.length - 1)
+                        const SizedBox(height: 16),
+                    ],
+                  );
+                }).toList(),
               ),
             ),
-            const SizedBox(height: 16),
-            ...pastTimeOff.map((timeOff) => Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: TimeOffItem(timeOff: timeOff),
-                )),
+            const SizedBox(height: 24),
+            Text(
+              'Past time off events',
+              style: context.theme.fonts.textMdSemiBold,
+            ),
+            const SizedBox(height: 8),
+            TimeOffCardContainer(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                children: pastTimeOff.asMap().entries.map((entry) {
+                  final idx = entry.key;
+                  final item = entry.value;
+                  return Column(
+                    children: [
+                      TimeOffItem(timeOff: item),
+                      if (idx != pastTimeOff.length - 1)
+                        const SizedBox(height: 16),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
           ],
         ),
       ),

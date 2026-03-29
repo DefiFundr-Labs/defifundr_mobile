@@ -18,6 +18,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class QuickPayHomeScreen extends StatefulWidget {
@@ -202,7 +203,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                'Need Help?',
+                                context.l10n.needHelp,
                                 style: context.theme.textTheme.bodyMedium
                                     ?.copyWith(
                                   fontSize: 12,
@@ -231,7 +232,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'Quickpay',
+                              context.l10n.quickpayAction,
                               style: TextStyle(
                                 fontSize: 24,
                                 fontFamily: 'HankenGrotesk',
@@ -248,7 +249,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'Receive crypto payments instantly via address, QR code, or payment link.',
+                              context.l10n.receiveCryptoInstantly,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Inter',
@@ -290,7 +291,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            'Filter by',
+                                            context.l10n.filterBy,
                                             style: TextStyle(
                                               fontSize: 24,
                                               fontFamily: 'HankenGrotesk',
@@ -313,7 +314,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                           ),
                                           child: ExpansionTile(
                                             title: Text(
-                                              'Status',
+                                              context.l10n.expenseStatus,
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontFamily: 'Inter',
@@ -356,7 +357,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                           ),
                                           child: ExpansionTile(
                                             title: Text(
-                                              'Date',
+                                              context.l10n.dateLabel,
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontFamily: 'Inter',
@@ -407,11 +408,11 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                                 darkColor:
                                                     AppColorDark.textPrimary,
                                               ),
-                                              text: "Clear all",
+                                              text: context.l10n.clearAll,
                                               onPressed: () {},
                                             ),
                                             SmallButton(
-                                              text: "Show results",
+                                              text: context.l10n.showResults,
                                               onPressed: () {},
                                             ),
                                           ],
@@ -448,7 +449,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                         Positioned(
                                           bottom: 0,
                                           child: Text(
-                                            'No quickpay activity yet.',
+                                            context.l10n.noQuickpayActivity,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontSize: 14,
@@ -470,7 +471,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 4),
                                       child: Text(
-                                        'Your quickpay activity will show up here once you receive one.',
+                                        context.l10n.quickpayActivityShowHere,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 14,
@@ -554,7 +555,7 @@ class _QuickPayHomeScreenState extends State<QuickPayHomeScreen> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24, vertical: 16),
                     child: BrandButton(
-                      text: "Receive payment",
+                      text: context.l10n.receivePayment,
                       onPressed: () {
                         context.router.push(ReceivePaymentRoute());
                       },

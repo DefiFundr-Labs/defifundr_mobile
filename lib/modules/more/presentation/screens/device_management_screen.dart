@@ -108,7 +108,8 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
               child: Text(
                 context.l10n.deleteDeviceConfirm,
                 textAlign: TextAlign.center,
-                style: fonts.textSmRegular.copyWith(color: colors.textSecondary),
+                style:
+                    fonts.textSmRegular.copyWith(color: colors.textSecondary),
               ),
             ),
             SizedBox(height: 20.h),
@@ -213,7 +214,8 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
               child: Text(
                 context.l10n.logOutAllDevicesConfirm,
                 textAlign: TextAlign.center,
-                style: fonts.textSmRegular.copyWith(color: colors.textSecondary),
+                style:
+                    fonts.textSmRegular.copyWith(color: colors.textSecondary),
               ),
             ),
             SizedBox(height: 32.h),
@@ -270,7 +272,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,7 +310,8 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    _buildDeviceCard(context, _currentDevice, showDelete: false),
+                    _buildDeviceCard(context, _currentDevice,
+                        showDelete: false),
                     SizedBox(height: 20.h),
                     if (_otherDevices.isNotEmpty) ...[
                       Text(
@@ -383,24 +386,16 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
       ),
       child: Row(
         children: [
-          Container(
-            width: 40.w,
-            height: 40.w,
-            decoration: BoxDecoration(
-              color: colors.brandFill,
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                device.isMobile
-                    ? Assets.icons.deviceMobile
-                    : Assets.icons.devices,
-                width: 22.w,
-                height: 22.w,
-                colorFilter: ColorFilter.mode(
-                  colors.brandDefault,
-                  BlendMode.srcIn,
-                ),
+          Center(
+            child: SvgPicture.asset(
+              device.isMobile
+                  ? Assets.icons.deviceMobile
+                  : Assets.icons.devices,
+              width: 22.w,
+              height: 22.w,
+              colorFilter: ColorFilter.mode(
+                colors.brandDefault,
+                BlendMode.srcIn,
               ),
             ),
           ),
@@ -436,10 +431,9 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
             SizedBox(width: 8.w),
             GestureDetector(
               onTap: onDelete,
-              child: Icon(
-                Icons.delete_outline_rounded,
+              child: SvgPicture.asset(
+                Assets.icons.trash,
                 color: colors.textTertiary,
-                size: 22.sp,
               ),
             ),
           ],
@@ -457,8 +451,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen> {
         child: IconButton(
           icon: SvgPicture.asset(
             Assets.icons.arrowBack,
-            colorFilter:
-                ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
             width: 24.w,
             height: 24.w,
           ),

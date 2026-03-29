@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../data/models/contract.dart';
 
-class ContractSelectionBottomSheet extends StatelessWidget {
+class ContractSelectionBottomSheet extends StatefulWidget {
   final List<TimeOffContract> contracts;
   final String selectedContractId;
   final Function(TimeOffContract) onContractSelected;
@@ -16,11 +20,25 @@ class ContractSelectionBottomSheet extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ContractSelectionBottomSheet> createState() => _ContractSelectionBottomSheetState();
+}
+
+class _ContractSelectionBottomSheetState extends State<ContractSelectionBottomSheet> {
+  late String _localSelectedContractId;
+
+  @override
+  void initState() {
+    super.initState();
+    _localSelectedContractId = widget.selectedContractId;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      decoration: BoxDecoration(
+        color: context.theme.colors.bgB1,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -33,58 +51,40 @@ class ContractSelectionBottomSheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: context.theme.colors.strokeSecondary,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Contracts',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ...contracts.map((contract) => ContractSelectionItem(
-                      contract: contract,
-                      isSelected: contract.id == selectedContractId,
-                      onTap: () {
-                        onContractSelected(contract);
-                        context.router.maybePop();
-                      },
-                    )),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => context.router.maybePop(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade600,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
+          SizedBox(height: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Contracts', style: context.theme.fonts.heading2Bold),
+              const SizedBox(height: 8),
+              ...widget.contracts.map((contract) => ContractSelectionItem(
+                    contract: contract,
+                    isSelected: contract.id == _localSelectedContractId,
+                    onTap: () {
+                      setState(() {
+                        _localSelectedContractId = contract.id;
+                      });
+                    },
+                  )),
+              const SizedBox(height: 20),
+              PrimaryButton(
+                text: 'Continue',
+                enableShine: false,
+                onPressed: () {
+                  final selectedContract = widget.contracts.firstWhere(
+                    (c) => c.id == _localSelectedContractId,
+                    orElse: () => widget.contracts.first,
+                  );
+                  widget.onContractSelected(selectedContract);
+                  context.router.maybePop();
+                },
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         ],
       ),
@@ -110,27 +110,19 @@ class ContractSelectionItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+        padding: EdgeInsets.symmetric(vertical: 4.h),
         child: Row(
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(contract.title,
+                      style: context.theme.fonts.textMdSemiBold),
                   Text(
-                    contract.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    contract.type,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade600,
+                    contract.type.title,
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                 ],
@@ -139,19 +131,23 @@ class ContractSelectionItem extends StatelessWidget {
             Container(
               width: 24,
               height: 24,
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected ? Colors.blue.shade600 : Colors.grey.shade300,
+                  color: isSelected
+                      ? context.theme.colors.blueDefault
+                      : context.theme.colors.strokeSecondary,
                   width: 2,
                 ),
-                color: isSelected ? Colors.blue.shade600 : Colors.transparent,
+                color: Colors.transparent,
               ),
               child: isSelected
-                  ? const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16,
+                  ? Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.theme.colors.blueDefault,
+                      ),
                     )
                   : null,
             ),

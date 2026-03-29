@@ -150,7 +150,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
               // Delete account
               Container(
                 decoration: BoxDecoration(
-                  color: isLightMode ? colors.bgB0 : colors.bgB1,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: InkWell(
@@ -201,7 +201,7 @@ class PersonalDetailsViewScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
       ),
       padding: EdgeInsets.all(20.w),

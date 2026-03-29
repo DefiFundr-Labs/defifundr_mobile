@@ -25,7 +25,7 @@ class MoreSection extends StatelessWidget {
           padding: EdgeInsets.only(left: 4.w, bottom: 8.h),
           child: Text(
             title,
-            style: fonts.textSmRegular.copyWith(
+            style: fonts.textMdMedium.copyWith(
               color: colors.textSecondary,
             ),
           ),
@@ -33,7 +33,7 @@ class MoreSection extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(16.r),
           ),
           child: Column(

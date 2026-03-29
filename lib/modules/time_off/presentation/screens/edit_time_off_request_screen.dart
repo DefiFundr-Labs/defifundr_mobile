@@ -1,7 +1,13 @@
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/time_off_detail.dart';
 import '../widgets/success_bottom_sheet.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class EditTimeOffRequestScreen extends StatefulWidget {
@@ -13,7 +19,8 @@ class EditTimeOffRequestScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<EditTimeOffRequestScreen> createState() => _EditTimeOffRequestScreenState();
+  State<EditTimeOffRequestScreen> createState() =>
+      _EditTimeOffRequestScreenState();
 }
 
 class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
@@ -47,7 +54,6 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
   @override
   void initState() {
     super.initState();
-    // Pre-populate with existing data
     selectedTimeOffType = widget.timeOffDetail.type;
     selectedReason = widget.timeOffDetail.reason;
     startDate = widget.timeOffDetail.startDate;
@@ -68,7 +74,8 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
   Future<void> _selectDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isStartDate ? startDate ?? DateTime.now() : endDate ?? DateTime.now(),
+      initialDate:
+          isStartDate ? startDate ?? DateTime.now() : endDate ?? DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
@@ -89,7 +96,8 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
     }
   }
 
-  void _showDropdown(BuildContext context, List<String> items, String? selectedValue, Function(String?) onChanged, String title) {
+  void _showDropdown(BuildContext context, List<String> items,
+      String? selectedValue, Function(String?) onChanged, String title) {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -112,11 +120,14 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+            Text(title, style: context.theme.fonts.heading3SemiBold),
             const SizedBox(height: 20),
             ...items.map((item) => ListTile(
-                  title: Text(item),
-                  trailing: selectedValue == item ? Icon(Icons.check, color: Colors.blue.shade600) : null,
+                  title: Text(item, style: context.theme.fonts.textMdMedium),
+                  trailing: selectedValue == item
+                      ? Icon(Icons.check,
+                          color: context.theme.colors.brandDefault)
+                      : null,
                   onTap: () {
                     onChanged(item);
                     context.router.maybePop();
@@ -134,7 +145,12 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
       isDismissible: false,
       enableDrag: false,
       backgroundColor: Colors.transparent,
-      builder: (context) => const EditSuccessBottomSheet(),
+      builder: (context) => SuccessBottomSheet(
+        title: 'Changes saved',
+        subtitle: 'Your time off request has been updated\nsuccessfully.',
+        icon: Icon(Icons.edit_outlined, size: 32, color: context.theme.colors.brandDefault),
+        iconBackgroundColor: context.theme.colors.brandFill,
+      ),
     );
   }
 
@@ -150,301 +166,199 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
 
   String _formatDate(DateTime? date) {
     if (date == null) return '';
-    const months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
-                   'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = [
+      '',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
     return '${date.day} ${months[date.month]} ${date.year}';
+  }
+
+  Widget _buildField(
+      {required String label,
+      required String value,
+      required Widget suffixIcon,
+      required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: context.theme.colors.bgB1,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+              color:
+                  context.theme.colors.strokeSecondary.withValues(alpha: 0.2)),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label,
+                      style: context.theme.fonts.textXsMedium
+                          .copyWith(color: context.theme.colors.textTertiary)),
+                  const SizedBox(height: 4),
+                  Text(value,
+                      style: context.theme.fonts.textMdMedium
+                          .copyWith(color: context.theme.colors.textPrimary)),
+                ],
+              ),
+            ),
+            suffixIcon,
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Edit time off request',
+          actions: [],
         ),
-        title: const Text(
-          'Edit time off request',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Time off type dropdown
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Time off type',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        GestureDetector(
-                          onTap: () => _showDropdown(
-                            context,
-                            timeOffTypes,
-                            selectedTimeOffType,
-                            (value) => setState(() => selectedTimeOffType = value),
-                            'Select Time Off Type',
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  selectedTimeOffType ?? 'Select type',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              Icon(Icons.keyboard_arrow_down, color: Colors.grey.shade400),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  _buildField(
+                    label: 'Time off type',
+                    value: selectedTimeOffType ?? 'Select type',
+                    suffixIcon: Icon(Icons.keyboard_arrow_down,
+                        color: context.theme.colors.textSecondary),
+                    onTap: () => _showDropdown(
+                        context,
+                        timeOffTypes,
+                        selectedTimeOffType,
+                        (val) => setState(() => selectedTimeOffType = val),
+                        'Select Time Off Type'),
                   ),
                   const SizedBox(height: 16),
-
-                  // Reason dropdown
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Reason',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        GestureDetector(
-                          onTap: () => _showDropdown(
-                            context,
-                            reasons,
-                            selectedReason,
-                            (value) => setState(() => selectedReason = value),
-                            'Select Reason',
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  selectedReason ?? 'Select reason',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              Icon(Icons.keyboard_arrow_down, color: Colors.grey.shade400),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  _buildField(
+                    label: 'Reason',
+                    value: selectedReason ?? 'Select reason',
+                    suffixIcon: Icon(Icons.keyboard_arrow_down,
+                        color: context.theme.colors.textSecondary),
+                    onTap: () => _showDropdown(
+                        context,
+                        reasons,
+                        selectedReason,
+                        (val) => setState(() => selectedReason = val),
+                        'Select Reason'),
                   ),
                   const SizedBox(height: 16),
-
-                  // Start date
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Start date',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        GestureDetector(
-                          onTap: () => _selectDate(context, true),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  _formatDate(startDate),
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              Icon(Icons.calendar_today_outlined, color: Colors.grey.shade400, size: 20),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  _buildField(
+                    label: 'Start date',
+                    value: _formatDate(startDate),
+                    suffixIcon: Icon(Icons.calendar_today_outlined,
+                        color: context.theme.colors.textSecondary, size: 20),
+                    onTap: () => _selectDate(context, true),
                   ),
                   const SizedBox(height: 16),
-
-                  // End date
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'End date',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        GestureDetector(
-                          onTap: () => _selectDate(context, false),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  _formatDate(endDate),
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              Icon(Icons.calendar_today_outlined, color: Colors.grey.shade400, size: 20),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  _buildField(
+                    label: 'End date',
+                    value: _formatDate(endDate),
+                    suffixIcon: Icon(Icons.calendar_today_outlined,
+                        color: context.theme.colors.textSecondary, size: 20),
+                    onTap: () => _selectDate(context, false),
                   ),
                   const SizedBox(height: 16),
-
-                  // Number of request days
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
+                      color: context.theme.colors.strokeSecondary
+                          .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(
-                          child: Text(
-                            'No of request days',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
+                        Text(
+                          'No of request days',
+                          style: context.theme.fonts.textSmMedium.copyWith(
+                              color: context.theme.colors.textSecondary),
                         ),
                         Text(
                           '$requestDays days',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
-                          ),
+                          style: context.theme.fonts.textSmSemiBold.copyWith(
+                              color: context.theme.colors.textPrimary),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 16),
-
-                  // Description field
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
-                    child: TextField(
-                      controller: _descriptionController,
-                      maxLines: 6,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                    ),
-                  ),
+                  AppTextField(controller: _descriptionController, maxLine: 6),
                   const SizedBox(height: 24),
-
-                  // Attachment section
-                  const Text(
+                  Text(
                     'Attachment (Optional)',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
+                    style: context.theme.fonts.textMdMedium
+                        .copyWith(color: context.theme.colors.textPrimary),
                   ),
                   const SizedBox(height: 12),
-                  if (hasAttachment) 
+                  if (hasAttachment)
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.grey.shade200),
+                        border: Border.all(
+                            color: context.theme.colors.strokeSecondary
+                                .withValues(alpha: 0.2)),
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.description, color: Colors.blue.shade600, size: 20),
+                          SvgPicture.asset(
+                            Assets.icons.file,
+                            colorFilter: ColorFilter.mode(
+                                context.theme.colors.brandDefault,
+                                BlendMode.srcIn),
+                            width: 20,
+                            height: 20,
+                          ),
                           const SizedBox(width: 12),
-                          const Expanded(
+                          Expanded(
                             child: Text(
                               'File name',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black87,
-                              ),
+                              style: context.theme.fonts.textSmMedium.copyWith(
+                                  color: context.theme.colors.textPrimary),
                             ),
                           ),
                           GestureDetector(
-                            onTap: _removeAttachment,
-                            child: Icon(Icons.delete, color: Colors.red.shade600, size: 20),
+                            onTap: () {},
+                            behavior: HitTestBehavior.opaque,
+                            child: SvgPicture.asset(
+                              Assets.icons.trash,
+                              colorFilter: ColorFilter.mode(
+                                  context.theme.colors.redDefault,
+                                  BlendMode.srcIn),
+                              width: 20,
+                              height: 20,
+                            ),
                           ),
                         ],
                       ),
@@ -453,52 +367,27 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
               ),
             ),
           ),
-          
-          // Bottom buttons
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 16,
+                bottom: MediaQuery.of(context).padding.bottom + 16),
             child: Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
+                  child: PrimaryButton(
                     onPressed: _discardChanges,
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      side: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    child: const Text(
-                      'Discard changes',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
-                      ),
-                    ),
+                    text: 'Discard changes',
+                    color: context.theme.colors.strokeSecondary,
+                    textColor: context.theme.colors.textPrimary,
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: ElevatedButton(
+                  child: PrimaryButton(
                     onPressed: _saveChanges,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade600,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Save changes',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    text: 'Save changes',
                   ),
                 ),
               ],

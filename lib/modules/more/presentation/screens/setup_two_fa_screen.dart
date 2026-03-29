@@ -19,7 +19,7 @@ class SetupTwoFaScreen extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           children: [
@@ -82,8 +82,7 @@ class SetupTwoFaScreen extends StatelessWidget {
         child: IconButton(
           icon: SvgPicture.asset(
             Assets.icons.arrowBack,
-            colorFilter:
-                ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
             width: 24.w,
             height: 24.w,
           ),
@@ -107,8 +106,7 @@ class SetupTwoFaScreen extends StatelessWidget {
           Assets.icons.shieldStar,
           width: 52.w,
           height: 52.w,
-          colorFilter:
-              ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(colors.brandDefault, BlendMode.srcIn),
         ),
       ),
     );

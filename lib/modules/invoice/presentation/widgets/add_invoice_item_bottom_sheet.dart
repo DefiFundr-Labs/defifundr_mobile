@@ -7,10 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddInvoiceItemBottomSheet extends StatefulWidget {
-  final Function(InvoiceItem) onAdd;
+  final Function(InvoiceItem)? onAdd;
+  final InvoiceItem? item;
+  final Function(InvoiceItem)? onSave;
+  final VoidCallback? onDelete;
 
-  const AddInvoiceItemBottomSheet({Key? key, required this.onAdd})
-      : super(key: key);
+  const AddInvoiceItemBottomSheet({
+    Key? key,
+    this.onAdd,
+    this.item,
+    this.onSave,
+    this.onDelete,
+  }) : super(key: key);
 
   @override
   State<AddInvoiceItemBottomSheet> createState() =>
@@ -21,6 +29,16 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.item != null) {
+      _nameController.text = widget.item!.name;
+      _quantityController.text = widget.item!.quantity.toString();
+      _priceController.text = widget.item!.price.toString();
+    }
+  }
 
   @override
   void dispose() {
@@ -36,78 +54,69 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
       child: Padding(
         padding: EdgeInsets.only(
-          left: 24,
-          right: 24,
-          top: 24,
-          bottom: 24 + MediaQuery.of(context).viewInsets.bottom,
+          left: 20,
+          right: 20,
+          top: 12,
+          bottom: 12 + MediaQuery.of(context).viewInsets.bottom,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHandle(),
-            const SizedBox(height: 24),
+            SizedBox(height: 8.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Add invoice item',
-                  textAlign: TextAlign.center,
-                  style: context.theme.fonts.textMdSemiBold.copyWith(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                    widget.item != null
+                        ? 'Edit invoice item'
+                        : 'Add invoice item',
+                    textAlign: TextAlign.center,
+                    style: context.theme.fonts.heading3Bold),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 8),
             AppTextField(
               labelText: 'Item name',
               controller: _nameController,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppTextField(
-                        labelText: 'Quantity',
-                        controller: _quantityController,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ],
+                  child: AppTextField(
+                    labelText: 'Quantity',
+                    controller: _quantityController,
+                    keyboardType: TextInputType.number,
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppTextField(
-                        labelText: 'Price',
-                        controller: _priceController,
-                        keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                      ),
-                    ],
+                  child: AppTextField(
+                    labelText: 'Price',
+                    controller: _priceController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 24),
-            PrimaryButton(
-              text: 'Add item',
-              onPressed: _addItem,
-            ),
+            if (widget.item != null)
+              _buildEditActionButtons()
+            else
+              PrimaryButton(
+                text: 'Add item',
+                onPressed: _addItem,
+              ),
           ],
         ),
       ),
@@ -117,10 +126,10 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
   Widget _buildHandle() {
     return Center(
       child: Container(
-        width: 40,
-        height: 4,
+        width: 48,
+        height: 5,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: context.theme.colors.grayTertiary.withOpacity(0.5),
           borderRadius: BorderRadius.circular(2),
         ),
       ),
@@ -136,7 +145,49 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
         quantity: int.tryParse(_quantityController.text) ?? 1,
         price: double.tryParse(_priceController.text) ?? 0.0,
       );
-      widget.onAdd(item);
+      widget.onAdd?.call(item);
+      context.router.maybePop();
+    }
+  }
+
+  Widget _buildEditActionButtons() {
+    return Row(
+      children: [
+        Expanded(
+          child: PrimaryButton(
+            text: 'Delete',
+            onPressed: () {
+              widget.onDelete?.call();
+              context.router.maybePop();
+            },
+            color: Colors.transparent,
+            textColor: context.theme.colors.redDefault,
+            borderColor: context.theme.colors.redDefault,
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          flex: 1,
+          child: PrimaryButton(
+            text: 'Save changes',
+            onPressed: _saveChanges,
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _saveChanges() {
+    if (_nameController.text.isNotEmpty &&
+        _quantityController.text.isNotEmpty &&
+        _priceController.text.isNotEmpty) {
+      final updatedItem = InvoiceItem(
+        name: _nameController.text,
+        quantity:
+            int.tryParse(_quantityController.text) ?? widget.item!.quantity,
+        price: double.tryParse(_priceController.text) ?? widget.item!.price,
+      );
+      widget.onSave?.call(updatedItem);
       context.router.maybePop();
     }
   }

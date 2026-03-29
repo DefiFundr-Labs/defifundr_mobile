@@ -2,6 +2,7 @@ import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off_detail.dart';
 import 'package:defifundr_mobile/modules/time_off/presentation/screens/time_off_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 
@@ -19,12 +20,10 @@ class TimeOffItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to detail screen based on status
         final timeOffDetail = _createTimeOffDetail();
         context.router.push(TimeOffDetailRoute(timeOffDetail: timeOffDetail));
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
         child: Row(
           children: [
             Expanded(
@@ -33,18 +32,15 @@ class TimeOffItem extends StatelessWidget {
                 children: [
                   Text(
                     timeOff.dateRange,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
+                    style: context.theme.fonts.textMdSemiBold.copyWith(
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '${timeOff.isPaid ? 'Paid' : 'Unpaid'} time off • ${timeOff.type}',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade600,
+                    style: context.theme.fonts.textSmRegular.copyWith(
+                      color: context.theme.colors.textSecondary,
                     ),
                   ),
                 ],
@@ -55,10 +51,8 @@ class TimeOffItem extends StatelessWidget {
               children: [
                 Text(
                   '${timeOff.days} day${timeOff.days > 1 ? 's' : ''}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black87,
+                  style: context.theme.fonts.textMdSemiBold.copyWith(
+                    color: context.theme.colors.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -72,7 +66,6 @@ class TimeOffItem extends StatelessWidget {
   }
 
   TimeOffDetail _createTimeOffDetail() {
-    // Create appropriate detail based on status
     switch (timeOff.status) {
       case TimeOffStatus.pending:
         return TimeOffDetailFactory.createPendingRequest();

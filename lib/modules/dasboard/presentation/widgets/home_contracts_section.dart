@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/widgets/home_section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class ContractItem {
   final String initials;
@@ -24,11 +25,13 @@ class ContractItem {
 class HomeContractsSection extends StatelessWidget {
   final List<ContractItem> contracts;
   final bool hasData;
+  final VoidCallback? onSeeAll;
 
   const HomeContractsSection({
     super.key,
     required this.contracts,
     required this.hasData,
+    this.onSeeAll,
   });
 
   @override
@@ -38,12 +41,12 @@ class HomeContractsSection extends StatelessWidget {
 
     return Column(
       children: [
-        const HomeSectionHeader(title: 'Contracts'),
+        HomeSectionHeader(title: context.l10n.contracts, onSeeAll: onSeeAll),
         SizedBox(height: 8.h),
         hasData
             ? Container(
                 decoration: BoxDecoration(
-                  color: isLightMode ? colors.bgB0 : colors.bgB1,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: ListView.separated(
@@ -64,7 +67,7 @@ class HomeContractsSection extends StatelessWidget {
               )
             : HomeEmptyState(
                 imagePath: Assets.icons.emptyQuickpayIcon,
-                message: 'Contracts will appear here',
+                message: context.l10n.noContractsYet,
               ),
       ],
     );

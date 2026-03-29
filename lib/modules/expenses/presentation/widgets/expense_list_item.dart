@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,7 @@ class ExpenseListItem extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color:
-              isLight ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+              context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -33,20 +34,12 @@ class ExpenseListItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    expense.name,
-                    style: context.theme.fonts.textMdRegular.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.sp,
-                      color: context.theme.colors.textPrimary,
-                    ),
-                  ),
+                  Text(ellipsify(word: expense.name, maxLength: 30),
+                      style: context.theme.fonts.textMdSemiBold),
                   SizedBox(height: 4.h),
                   Text(
                     'Expense Date: ${_formatDate(expense.expenseDate)}',
-                    style: context.theme.fonts.textMdRegular.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.sp,
+                    style: context.theme.fonts.textSmRegular.copyWith(
                       color: context.theme.colors.textSecondary,
                     ),
                   ),
@@ -56,14 +49,8 @@ class ExpenseListItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  '${expense.amount.toStringAsFixed(2)} USDT',
-                  style: context.theme.fonts.textMdRegular.copyWith(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.sp,
-                    color: context.theme.colors.textPrimary,
-                  ),
-                ),
+                Text('${expense.amount.toStringAsFixed(2)} USDT',
+                    style: context.theme.fonts.textMdSemiBold),
                 SizedBox(height: 4.h),
                 _buildStatusChip(context, expense.status),
               ],
@@ -77,18 +64,19 @@ class ExpenseListItem extends StatelessWidget {
   Widget _buildStatusChip(BuildContext context, ExpenseStatus status) {
     Color textColor;
     String text;
+    final colors = context.theme.colors;
 
     switch (status) {
       case ExpenseStatus.approved:
-        textColor = Colors.green[700]!;
+        textColor = colors.greenActive;
         text = 'Approved';
         break;
       case ExpenseStatus.pending:
-        textColor = Colors.orange[700]!;
-        text = 'Pending';
+        textColor = colors.orangeActive;
+        text = 'Pending approval';
         break;
       case ExpenseStatus.rejected:
-        textColor = Colors.red[700]!;
+        textColor = colors.redActive;
         text = 'Rejected';
         break;
     }
@@ -103,14 +91,10 @@ class ExpenseListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        SizedBox(width: 3.w),
+        SizedBox(width: 5.w),
         Text(
           text,
-          style: context.theme.fonts.textMdSemiBold.copyWith(
-            fontSize: 12.sp,
-            color: textColor,
-            fontWeight: FontWeight.w500,
-          ),
+          style: context.theme.fonts.textSmMedium.copyWith(color: textColor),
         ),
       ],
     );

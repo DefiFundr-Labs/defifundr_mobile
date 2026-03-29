@@ -127,19 +127,16 @@ class _PinCodeScreenState extends State<PinCodeScreen>
 
   void _onBiometricPressed() {
     HapticManager.lightImpact();
-    // Handle biometric authentication
     context.router.replaceAll([const MainShellRoute()]);
   }
 
   void _onLogout() {
     HapticManager.lightImpact();
-    // Navigate back to login screen
     context.router.push(const LoginRoute());
   }
 
   void _onForgotPin() {
     HapticManager.lightImpact();
-    // Navigate to reset password flow
     context.router.push(const ResetPasswordRoute());
   }
 

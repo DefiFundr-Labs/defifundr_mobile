@@ -3,10 +3,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class PrivateKeyScreen extends StatelessWidget {
@@ -55,11 +57,11 @@ class PrivateKeyScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 child: Column(
                   children: [
-                    _buildWarningBanner(context, colors, fonts),
+                    _buildWarningBanner(context),
                     SizedBox(height: 20.h),
-                    _buildKeyContainer(context, colors, fonts, isLightMode),
+                    _buildKeyContainer(context, isLightMode),
                     SizedBox(height: 16.h),
-                    _buildCopyButton(context, colors, fonts),
+                    _buildCopyButton(context),
                     SizedBox(height: 24.h),
                   ],
                 ),
@@ -80,9 +82,9 @@ class PrivateKeyScreen extends StatelessWidget {
 
   Widget _buildWarningBanner(
     BuildContext context,
-    dynamic colors,
-    dynamic fonts,
   ) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.w),
@@ -110,7 +112,7 @@ class PrivateKeyScreen extends StatelessWidget {
           Text(
             context.l10n.privateKeyWarning,
             textAlign: TextAlign.center,
-            style: fonts.textSmRegular.copyWith(
+            style: fonts.textMdRegular.copyWith(
               color: colors.textSecondary,
             ),
           ),
@@ -121,15 +123,15 @@ class PrivateKeyScreen extends StatelessWidget {
 
   Widget _buildKeyContainer(
     BuildContext context,
-    dynamic colors,
-    dynamic fonts,
     bool isLightMode,
   ) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: SelectableText(
@@ -144,9 +146,9 @@ class PrivateKeyScreen extends StatelessWidget {
 
   Widget _buildCopyButton(
     BuildContext context,
-    dynamic colors,
-    dynamic fonts,
   ) {
+    final colors = context.theme.colors;
+    final fonts = context.theme.fonts;
     return GestureDetector(
       onTap: () {
         Clipboard.setData(ClipboardData(text: privateKey));
@@ -170,10 +172,9 @@ class PrivateKeyScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.copy_rounded,
+          SvgPicture.asset(
+            Assets.icons.copy,
             color: colors.textTertiary,
-            size: 18.w,
           ),
           SizedBox(width: 6.w),
           Text(

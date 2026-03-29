@@ -20,9 +20,9 @@ class CalendarWeekView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 12.sp),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.sp),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: _buildWeekDays(context),
       ),
     );
@@ -49,7 +49,7 @@ class CalendarWeekView extends StatelessWidget {
               color: isSelected
                   ? context.theme.colors.brandDefault
                   : context.theme.colors.fillTertiary,
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(4.r),
               border: hasWork && !isSelected
                   ? Border.all(
                       color: context.theme.colors.brandDefault, width: 1)

@@ -69,7 +69,7 @@ class AssetDetailsScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 24.sp),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -199,7 +199,7 @@ class AssetDetailsScreen extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(16.r),
           ),
           child: Column(
@@ -282,7 +282,7 @@ class AssetDetailsScreen extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
           ),
           child: ListView.builder(
             shrinkWrap: true,

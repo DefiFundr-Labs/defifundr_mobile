@@ -96,8 +96,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
               ),
             ),
             SizedBox(
-                height:
-                    MediaQuery.systemGestureInsetsOf(context).bottom + 16),
+                height: MediaQuery.systemGestureInsetsOf(context).bottom + 16),
           ],
         ),
       ),
@@ -111,7 +110,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: Stack(
         children: [
           SafeArea(
@@ -166,8 +165,8 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
               child: Material(
                 color: Colors.transparent,
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.w, vertical: 14.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
                   decoration: BoxDecoration(
                     color: colors.textPrimary,
                     borderRadius: BorderRadius.circular(12.r),
@@ -195,8 +194,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
         child: IconButton(
           icon: SvgPicture.asset(
             Assets.icons.arrowBack,
-            colorFilter:
-                ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
             width: 24.w,
             height: 24.w,
           ),
@@ -213,7 +211,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isLight ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(color: colors.strokeSecondary),
       ),
@@ -225,69 +223,66 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
             context,
             number: 1,
             title: context.l10n.step1Title,
-            description:
-                context.l10n.step1Desc,
+            description: context.l10n.step1Desc,
             isLast: false,
           ),
+          SizedBox(height: 16.h),
           _buildStep(
             context,
             number: 2,
             title: context.l10n.step2Title,
-            description:
-                context.l10n.step2Desc,
+            description: context.l10n.step2Desc,
             isLast: false,
           ),
           // Setup key display
-          Padding(
-            padding: EdgeInsets.only(left: 36.w, bottom: 12.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _setupKey,
-                  style: fonts.heading2Bold.copyWith(
-                    color: colors.textPrimary,
-                    fontSize: 18.sp,
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _setupKey,
+                style: fonts.heading2Bold.copyWith(
+                  color: colors.textPrimary,
+                  fontSize: 18.sp,
+                ),
+              ),
+              SizedBox(height: 8.h),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: _copySetupKey,
+                    child: Text(
+                      context.l10n.copySetupKey,
+                      style: fonts.textMdMedium.copyWith(
+                        color: colors.brandDefault,
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 8.h),
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: _copySetupKey,
-                      child: Text(
-                        context.l10n.copySetupKey,
-                        style: fonts.textBaseMedium.copyWith(
-                          color: colors.brandDefault,
-                        ),
+                  Text(
+                    '  •  ',
+                    style: fonts.textBaseMedium.copyWith(
+                      color: colors.textSecondary,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: _showQrCode,
+                    child: Text(
+                      context.l10n.viewBarcodeQrCode,
+                      style: fonts.textMdMedium.copyWith(
+                        color: colors.brandDefault,
                       ),
                     ),
-                    Text(
-                      '  •  ',
-                      style: fonts.textBaseMedium.copyWith(
-                        color: colors.textSecondary,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: _showQrCode,
-                      child: Text(
-                        context.l10n.viewBarcodeQrCode,
-                        style: fonts.textBaseMedium.copyWith(
-                          color: colors.brandDefault,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
+          SizedBox(height: 16.h),
           _buildStep(
             context,
             number: 3,
             title: context.l10n.step3Title,
-            description:
-                context.l10n.step3Desc,
+            description: context.l10n.step3Desc,
             isLast: true,
           ),
         ],
@@ -311,9 +306,10 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
         children: [
           Column(
             children: [
+              SizedBox(height: 4.h),
               Container(
-                width: 28.w,
-                height: 28.w,
+                width: 20.w,
+                height: 20.w,
                 decoration: BoxDecoration(
                   color: colors.brandDefault,
                   shape: BoxShape.circle,
@@ -328,14 +324,14 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                 ),
               ),
               if (!isLast) ...[
-                SizedBox(height: 4.h),
+                SizedBox(height: 10.h),
                 Expanded(
                   child: Container(
-                    width: 2.w,
+                    width: 1.w,
                     color: colors.brandDefault,
                   ),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 10.h),
               ],
             ],
           ),
@@ -356,7 +352,7 @@ class _SetupInstructionsScreenState extends State<SetupInstructionsScreen> {
                   SizedBox(height: 4.h),
                   Text(
                     description,
-                    style: fonts.textSmRegular.copyWith(
+                    style: fonts.textMdRegular.copyWith(
                       color: colors.textSecondary,
                     ),
                   ),

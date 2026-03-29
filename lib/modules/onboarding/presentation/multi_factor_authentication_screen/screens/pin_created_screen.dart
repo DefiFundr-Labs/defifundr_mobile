@@ -7,6 +7,7 @@ import 'package:defifundr_mobile/core/shared/common/components/confetti_wrapper.
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class PinCreatedScreen extends StatelessWidget {
@@ -73,7 +74,7 @@ class PinCreatedScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Your PIN Has Been Created!',
+          context.l10n.yourPinCreated,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineLarge?.copyWith(
             fontSize: 24.sp,
@@ -83,7 +84,7 @@ class PinCreatedScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Text(
-          'Your PIN has been successfully created. You can now use this PIN to log in to your account.',
+          context.l10n.pinCreatedLoginMessage,
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineMedium?.copyWith(
             fontSize: 14.sp,
@@ -97,7 +98,7 @@ class PinCreatedScreen extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context) {
     return PrimaryButton(
-      text: 'Continue',
+      text: context.l10n.continueText,
       isEnabled: true,
       onPressed: () {
         // context.router.push(LoginRoute());

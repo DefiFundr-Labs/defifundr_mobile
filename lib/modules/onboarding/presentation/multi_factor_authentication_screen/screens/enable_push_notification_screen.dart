@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/shared/common/buttons/primary_button.dart';
 import '../../../../../core/shared/common/buttons/small_button.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class EnablePushNotificationScreen extends StatelessWidget {
@@ -41,13 +42,13 @@ class EnablePushNotificationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                'Enable Push Notifications',
+                context.l10n.enablePushNotifications,
                 style: fonts.heading3SemiBold,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
               Text(
-                'For instant updates, important announcements.',
+                context.l10n.pushNotificationsDescription,
                 style: fonts.textMdRegular.copyWith(
                   color: colors.textSecondary,
                 ),
@@ -55,14 +56,14 @@ class EnablePushNotificationScreen extends StatelessWidget {
               ),
               Spacer(),
               PrimaryButton(
-                text: 'Enable',
+                text: context.l10n.enable,
                 onPressed: () {
                  context.router.popUntilRoot();              
                 },
               ),
               const SizedBox(height: 12),
               SmallButton(
-                text: 'Skip',
+                text: context.l10n.skip,
                 onPressed: () {
                   context.router.popUntilRoot();                      
                 },

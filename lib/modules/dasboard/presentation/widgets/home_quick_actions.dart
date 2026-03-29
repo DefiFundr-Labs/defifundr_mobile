@@ -5,6 +5,7 @@ import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class HomeQuickActions extends StatelessWidget {
   const HomeQuickActions({super.key});
@@ -19,7 +20,7 @@ class HomeQuickActions extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Quick actions',
+          context.l10n.quickActions,
           style: fonts.textMdSemiBold.copyWith(
             color: colors.textPrimary,
             fontWeight: FontWeight.w600,
@@ -30,7 +31,7 @@ class HomeQuickActions extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           decoration: BoxDecoration(
-            color: isLightMode ? colors.bgB0 : colors.bgB1,
+            color: colors.bgB1,
             borderRadius: BorderRadius.circular(12),
           ),
           child: IntrinsicHeight(
@@ -39,8 +40,10 @@ class HomeQuickActions extends StatelessWidget {
                 _buildQuickActionItem(
                   context: context,
                   icon: Assets.icons.files,
-                  label: 'Contract',
-                  onTap: () => context.pushRoute(const PayCycleContractsRoute()),
+                  label: context.l10n.contractAction,
+                  onTap: () {
+                    context.router.push(const WorkspaceContractsRoute());
+                  },
                 ),
                 VerticalDivider(
                   width: 1,
@@ -50,9 +53,11 @@ class HomeQuickActions extends StatelessWidget {
                 _buildQuickActionItem(
                   context: context,
                   icon: Assets.icons.invoice,
-                  label: 'Invoice',
+                  label: context.l10n.invoiceAction,
                   iconColor: colors.orangeDefault,
-                  onTap: () => context.pushRoute(const InvoicesRoute()),
+                  onTap: () {
+                    context.router.push(const InvoicesRoute());
+                  },
                 ),
                 VerticalDivider(
                   width: 1,
@@ -62,9 +67,11 @@ class HomeQuickActions extends StatelessWidget {
                 _buildQuickActionItem(
                   context: context,
                   icon: Assets.icons.handCoins,
-                  label: 'Quickpay',
+                  label: context.l10n.quickpayAction,
                   iconColor: colors.pinkDefault,
-                  onTap: () => context.pushRoute(const QuickPayHomeRoute()),
+                  onTap: () {
+                    context.router.push(const QuickPayHomeRoute());
+                  },
                 ),
               ],
             ),

@@ -1,19 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
-import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/empty_state.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/expense_list_item.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class ExpensesScreen extends StatefulWidget {
@@ -112,88 +110,45 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     bool hasExpenses = _expenses.isNotEmpty;
 
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size(context.screenWidth(), 60),
-          child: DeFiRaiseAppBar(
-            centerTitle: true,
-            textStyle: context.theme.fonts.heading3SemiBold,
-            isBack: true,
-            title: 'Expenses',
-            actions: [],
-          ),
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: context.l10n.expenses,
+          actions: [],
         ),
-        body: Column(
-          children: [
-            // Search bar
-            _buildSearchBar(),
-            // Content
-            Expanded(
-              child: hasExpenses
-                  ? ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: _expenses.length,
-                      itemBuilder: (context, index) {
-                        return ExpenseListItem(
-                          expense: _expenses[index],
-                          onTap: () =>
-                              _navigateToExpenseDetails(_expenses[index]),
-                        );
-                      },
-                    )
-                  : EmptyState(),
-            ),
-          ],
-        ),
-        bottomNavigationBar: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-          child: PrimaryButton(
-            text: 'Add expense',
-            onPressed: _addExpense,
-          ),
-        ));
-  }
-
-  Widget _buildSearchBar() {
-    final isLight = Theme.of(context).brightness == Brightness.light;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
+      ),
+      body: Column(
         children: [
-          Expanded(
-            child: AppTextField(
-              controller: _searchController,
-              validate: false,
-              alwaysShowLabelAndHint: true,
-              hintText: "Search",
-              prefixType: PrefixType.customIcon,
-              prefixIcon: SvgPicture.asset(
-                Assets.icons.magnifyingGlass,
-                width: 20,
-                height: 20,
-                color: context.theme.colors.textSecondary,
-              ),
+          Padding(
+            padding: EdgeInsets.all(16.sp),
+            child: SearchAndFilterBar(
+              searchController: _searchController,
+              onFilterTap: _showFilterBottomSheet,
             ),
           ),
-          SizedBox(width: 8.w),
-          GestureDetector(
-            onTap: _showFilterBottomSheet,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isLight
-                    ? context.theme.colors.bgB0
-                    : context.theme.colors.bgB1,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: context.theme.colors.strokeSecondary.withAlpha(20),
-                ),
-              ),
-              child: SvgPicture.asset(
-                Assets.icons.filter,
-                width: 20,
-                height: 20,
-                color: context.theme.colors.textSecondary,
-              ),
+          Expanded(
+            child: hasExpenses
+                ? ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    itemCount: _expenses.length,
+                    itemBuilder: (context, index) {
+                      return ExpenseListItem(
+                        expense: _expenses[index],
+                        onTap: () =>
+                            _navigateToExpenseDetails(_expenses[index]),
+                      );
+                    },
+                  )
+                : EmptyState(),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 32.h),
+            child: PrimaryButton(
+              onPressed: _addExpense,
+              text: context.l10n.addExpense,
             ),
           ),
         ],

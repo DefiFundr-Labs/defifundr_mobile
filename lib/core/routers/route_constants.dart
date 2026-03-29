@@ -97,6 +97,7 @@ class RouteConstants {
   // ============================================================
   // TIME TRACKING ROUTES
   // ============================================================
+  static const String createContract = '/create-contract';
   static const String timeTracking = '/time-tracking';
   static const String timeTrackingContracts = '/time-tracking/contracts';
   static const String timeTrackingSubmitHours = '/time-tracking/submit-hours';
@@ -125,6 +126,17 @@ class RouteConstants {
   static const String payCycleContracts = '/pay-cycle/contracts';
   static const String payCycleContractDetail = '/pay-cycle/contract-detail';
   static const String payCyclePayoutDetail = '/pay-cycle/payout-detail';
+  static const String payCycleMilestoneDetail = '/pay-cycle/milestone-detail';
+  static const String payCycleSubmittedHoursDetail = '/pay-cycle/submitted-hours-detail';
+  static const String payCycleAddMilestone = '/pay-cycle/add-milestone';
+  static const String payCycleSubmitHours = '/pay-cycle/submit-hours';
+
+  // ============================================================
+  // WORKSPACE CONTRACT ROUTES
+  // ============================================================
+  static const String workspaceContracts = '/workspace/contracts';
+  static const String viewContract = '/workspace/view-contract';
+  static const String requestTermination = '/workspace/request-termination';
 
   // ============================================================
   // INVOICE ROUTES

@@ -5,6 +5,7 @@ import 'package:defifundr_mobile/core/routers/guards/auth_guard.dart';
 import 'package:defifundr_mobile/core/routers/main_shell_screen.dart';
 import 'package:defifundr_mobile/core/routers/route_constants.dart';
 import 'package:defifundr_mobile/core/routers/tab_routes.dart';
+import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/shared/widgets/sample_bottom_sheet_screen.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/new_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
@@ -16,7 +17,6 @@ import 'package:defifundr_mobile/modules/authentication/presentation/login/scree
 // Dashboard
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/onboarding_checklist_screen.dart';
 import 'package:defifundr_mobile/modules/dasboard/presentation/screens/notifications_screen.dart';
-import 'package:defifundr_mobile/modules/dasboard/data/models/notification_item.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/add_expense_screen.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/screen/expense_details_screen.dart';
@@ -97,12 +97,16 @@ import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/scree
 // Pay Cycle
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/contracts_screen.dart';
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/payout_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/milestone_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/add_milestone_screen.dart';
 // Payment
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
 import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submitted_hours_detail_screen.dart';
+import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submit_hours_screen.dart';
 // QuickPay
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/quick_pay_home_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/presentation/screens/receive_done.dart';
@@ -123,6 +127,7 @@ import 'package:defifundr_mobile/modules/time_off/presentation/screens/unpaid_ti
 import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import 'package:defifundr_mobile/modules/time_tracking/data/models/submitted_timesheet.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/contracts_screen.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/resubmit_hours_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submit_hours_screen.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/submitted_hours_detail_screen.dart';
@@ -130,10 +135,13 @@ import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/subm
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/time_tracking_screen.dart';
 // Workspace
 import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
+// Contracts
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/workspace_contracts_screen.dart';
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/view_contract_screen.dart';
+import 'package:defifundr_mobile/modules/contracts/presentation/screens/request_termination_screen.dart';
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 // Workspace
-import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../modules/dasboard/presentation/screens/home_screen.dart';
@@ -515,6 +523,11 @@ class AppRouter extends RootStackRouter {
         // PAYMENT ROUTES (pushed over shell)
         // ============================================================
         AutoRoute(
+          page: CreateContractFlowRoute.page,
+          path: RouteConstants.createContract,
+          guards: [authGuard],
+        ),
+        AutoRoute(
           page: UpcomingPaymentsRoute.page,
           path: RouteConstants.paymentsUpcoming,
           guards: [authGuard],
@@ -541,6 +554,45 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: PayoutDetailRoute.page,
           path: RouteConstants.payCyclePayoutDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PayCycleSubmittedHoursDetailRoute.page,
+          path: RouteConstants.payCycleSubmittedHoursDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: MilestoneDetailRoute.page,
+          path: RouteConstants.payCycleMilestoneDetail,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: AddMilestoneRoute.page,
+          path: RouteConstants.payCycleAddMilestone,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: PayCycleSubmitHoursRoute.page,
+          path: RouteConstants.payCycleSubmitHours,
+          guards: [authGuard],
+        ),
+
+        // ============================================================
+        // WORKSPACE CONTRACT ROUTES (pushed over shell)
+        // ============================================================
+        AutoRoute(
+          page: WorkspaceContractsRoute.page,
+          path: RouteConstants.workspaceContracts, // Will declare a proper constant path or hardcode 'workspace-contracts'
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: ViewContractRoute.page,
+          path: RouteConstants.viewContract,
+          guards: [authGuard],
+        ),
+        AutoRoute(
+          page: RequestTerminationRoute.page,
+          path: RouteConstants.requestTermination,
           guards: [authGuard],
         ),
 

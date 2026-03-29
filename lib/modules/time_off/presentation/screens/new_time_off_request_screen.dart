@@ -1,8 +1,17 @@
+import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/shared/common/snackbar/app_snackbar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/success_bottom_sheet.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
+import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class NewTimeOffRequestScreen extends StatefulWidget {
@@ -14,7 +23,12 @@ class NewTimeOffRequestScreen extends StatefulWidget {
 }
 
 class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
+  final TextEditingController _timeOffTypeController = TextEditingController();
+  final TextEditingController _reasonController = TextEditingController();
+  final TextEditingController _startDateController = TextEditingController();
+  final TextEditingController _endDateController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+
   String? selectedTimeOffType;
   String? selectedReason;
   DateTime? startDate;
@@ -58,9 +72,9 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: Colors.blue.shade600,
-              onPrimary: Colors.white,
-              onSurface: Colors.black87,
+              primary: context.theme.colors.brandDefault,
+              onPrimary: context.theme.colors.contrastWhite,
+              onSurface: context.theme.colors.textPrimary,
             ),
           ),
           child: child!,
@@ -72,12 +86,15 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
       setState(() {
         if (isStartDate) {
           startDate = picked;
+          _startDateController.text = _formatDate(startDate);
           if (endDate != null && endDate!.isBefore(picked)) {
             endDate = null;
+            _endDateController.text = '';
             requestDays = 0;
           }
         } else {
           endDate = picked;
+          _endDateController.text = _formatDate(endDate);
         }
         _calculateRequestDays();
       });
@@ -102,7 +119,7 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: context.theme.colors.strokeSecondary,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -110,17 +127,14 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
             const SizedBox(height: 20),
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
+              style: context.theme.fonts.heading3SemiBold,
             ),
             const SizedBox(height: 20),
             ...items.map((item) => ListTile(
-                  title: Text(item),
+                  title: Text(item, style: context.theme.fonts.textMdMedium),
                   trailing: selectedValue == item
-                      ? Icon(Icons.check, color: Colors.blue.shade600)
+                      ? Icon(Icons.check,
+                          color: context.theme.colors.brandDefault)
                       : null,
                   onTap: () {
                     onChanged(item);
@@ -145,7 +159,10 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
         isDismissible: false,
         enableDrag: false,
         backgroundColor: Colors.transparent,
-        builder: (context) => const SuccessBottomSheet(),
+        builder: (context) => const SuccessBottomSheet(
+          title: 'Time off requested',
+          subtitle: 'An email has been sent for your request to be reviewed.',
+        ),
       );
     } else {
       AppSnackbar.showError(context, 'Please fill in all required fields');
@@ -175,296 +192,221 @@ class _NewTimeOffRequestScreenState extends State<NewTimeOffRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'New time off request',
+          actions: [],
         ),
-        title: const Text(
-          'New time off request',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Time off type dropdown
-            GestureDetector(
-              onTap: () => _showDropdown(
-                context,
-                timeOffTypes,
-                selectedTimeOffType,
-                (value) => setState(() => selectedTimeOffType = value),
-                'Select Time Off Type',
-              ),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade200),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        selectedTimeOffType ?? 'Time off type',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: selectedTimeOffType != null
-                              ? Colors.black87
-                              : Colors.grey.shade400,
-                        ),
-                      ),
-                    ),
-                    Icon(Icons.keyboard_arrow_down,
-                        color: Colors.grey.shade400),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Reason dropdown
-            GestureDetector(
-              onTap: () => _showDropdown(
-                context,
-                reasons,
-                selectedReason,
-                (value) => setState(() => selectedReason = value),
-                'Select Reason',
-              ),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade200),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        selectedReason ?? 'Reason',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: selectedReason != null
-                              ? Colors.black87
-                              : Colors.grey.shade400,
-                        ),
-                      ),
-                    ),
-                    Icon(Icons.keyboard_arrow_down,
-                        color: Colors.grey.shade400),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Start date
-            GestureDetector(
-              onTap: () => _selectDate(context, true),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade200),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        startDate != null
-                            ? _formatDate(startDate)
-                            : 'Start date',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: startDate != null
-                              ? Colors.black87
-                              : Colors.grey.shade400,
-                        ),
-                      ),
-                    ),
-                    Icon(Icons.calendar_today_outlined,
-                        color: Colors.grey.shade400, size: 20),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // End date
-            GestureDetector(
-              onTap: () => _selectDate(context, false),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade200),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        endDate != null ? _formatDate(endDate) : 'End date',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: endDate != null
-                              ? Colors.black87
-                              : Colors.grey.shade400,
-                        ),
-                      ),
-                    ),
-                    Icon(Icons.calendar_today_outlined,
-                        color: Colors.grey.shade400, size: 20),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Number of request days
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade200),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'No of request days',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    requestDays > 0 ? '$requestDays' : '--',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Description field
-            Container(
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade200),
-              ),
-              child: TextField(
-                controller: _descriptionController,
-                maxLines: 6,
-                decoration: InputDecoration(
-                  hintText: 'Enter time off description',
-                  hintStyle: TextStyle(color: Colors.grey.shade400),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Attachment section
-            const Text(
-              'Attachment (Optional)',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 40),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade50,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.shade100),
-              ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Time off type dropdown
+                  AppTextField(
+                    controller: _timeOffTypeController,
+                    hintText: 'Time off type',
+                    readOnly: true,
+                    onTap: () => _showDropdown(
+                      context,
+                      timeOffTypes,
+                      selectedTimeOffType,
+                      (value) {
+                        setState(() {
+                          selectedTimeOffType = value;
+                          _timeOffTypeController.text = value ?? '';
+                        });
+                      },
+                      'Select Time Off Type',
+                    ),
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Icon(Icons.keyboard_arrow_down,
+                        color: context.theme.colors.textSecondary),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Reason dropdown
+                  AppTextField(
+                    controller: _reasonController,
+                    hintText: 'Reason',
+                    readOnly: true,
+                    onTap: () => _showDropdown(
+                      context,
+                      reasons,
+                      selectedReason,
+                      (value) {
+                        setState(() {
+                          selectedReason = value;
+                          _reasonController.text = value ?? '';
+                        });
+                      },
+                      'Select Reason',
+                    ),
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Icon(Icons.keyboard_arrow_down,
+                        color: context.theme.colors.textSecondary),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Start date
+                  AppTextField(
+                    controller: _startDateController,
+                    hintText: 'Start date',
+                    readOnly: true,
+                    onTap: () => _selectDate(context, true),
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: SvgPicture.asset(
+                        Assets.icons.calendar,
+                        color: context.theme.colors.textSecondary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // End date
+                  AppTextField(
+                    controller: _endDateController,
+                    hintText: 'End date',
+                    readOnly: true,
+                    onTap: () => _selectDate(context, false),
+                    suffixType: SuffixType.customIcon,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: SvgPicture.asset(
+                        Assets.icons.calendar,
+                        color: context.theme.colors.textSecondary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Number of request days
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 16),
+                    decoration: BoxDecoration(
+                      color:
+                          context.theme.colors.graySecondary.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'No of request days',
+                            style: context.theme.fonts.textMdRegular.copyWith(
+                              color: context.theme.colors.textSecondary,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          requestDays > 0 ? '$requestDays days' : '--',
+                          style: context.theme.fonts.textMdSemiBold.copyWith(
+                            color: context.theme.colors.textPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  AppTextField(
+                    controller: _descriptionController,
+                    hintText: 'Enter time off description',
+                    maxLine: 6,
+                  ),
+                  const SizedBox(height: 24),
+
                   Text(
-                    'Click to upload',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue.shade600,
-                      fontWeight: FontWeight.w500,
+                    'Attachment (Optional)',
+                    style: context.theme.fonts.textMdMedium.copyWith(
+                      color: context.theme.colors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: context.theme.colors.brandFill,
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(
+                        color: context.theme.colors.brandStroke,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Click to upload',
+                          style: context.theme.fonts.textMdMedium.copyWith(
+                            color: context.theme.colors.brandDefaultContrast,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: context.screenWidth(),
+                    child: Text.rich(
+                      TextSpan(
+                        style: context.theme.fonts.textSmRegular.copyWith(
+                            color: context.theme.colors.textSecondary),
+                        children: [
+                          TextSpan(
+                            text: 'Supported formats: ',
+                          ),
+                          TextSpan(
+                              text: 'JPG, PNG, HEIC or PDF. ',
+                              style: context.theme.fonts.textSmMedium.copyWith(
+                                  color: context.theme.colors.textPrimary)),
+                          TextSpan(
+                            text: 'Use ',
+                          ),
+                          TextSpan(
+                              text: '.ZIP',
+                              style: context.theme.fonts.textSmMedium.copyWith(
+                                  color: context.theme.colors.textPrimary)),
+                          TextSpan(
+                            text: ' to upload multiple files.',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Supported formats: PDF, JPEG or PNG; Max file size: 10MB',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey.shade600,
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: PrimaryButton(
+              onPressed: _submitRequest,
+              text: 'Submit request',
             ),
-            const SizedBox(height: 40),
-
-            // Submit button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _submitRequest,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade600,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Submit request',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   @override
   void dispose() {
+    _timeOffTypeController.dispose();
+    _reasonController.dispose();
+    _startDateController.dispose();
+    _endDateController.dispose();
     _descriptionController.dispose();
     super.dispose();
   }

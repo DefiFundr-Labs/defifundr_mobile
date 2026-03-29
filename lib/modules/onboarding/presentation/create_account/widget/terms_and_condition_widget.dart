@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class TermsAgreementText extends StatelessWidget {
   const TermsAgreementText({Key? key}) : super(key: key);
@@ -28,11 +29,11 @@ class TermsAgreementText extends StatelessWidget {
             color: context.theme.colors.textSecondary,
           ),
           children: [
-            const TextSpan(
-              text: 'By creating an account, you agree to our ',
+            TextSpan(
+              text: '${context.l10n.byCreatingAccountYouAgree} ',
             ),
             TextSpan(
-              text: 'Terms of Service',
+              text: context.l10n.termsOfService,
               style: context.theme.textTheme.headlineMedium?.copyWith(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
@@ -43,7 +44,7 @@ class TermsAgreementText extends StatelessWidget {
             ),
             const TextSpan(text: ', '),
             TextSpan(
-              text: 'Product T&Cs',
+              text: context.l10n.productTandCs,
               style: context.theme.textTheme.headlineMedium?.copyWith(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
@@ -54,7 +55,7 @@ class TermsAgreementText extends StatelessWidget {
             ),
             const TextSpan(text: ', & '),
             TextSpan(
-              text: 'Privacy Policy',
+              text: context.l10n.privacyPolicy,
               style: context.theme.textTheme.headlineMedium?.copyWith(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,

@@ -101,7 +101,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,14 +145,14 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: isLight ? colors.bgB0 : colors.bgB1,
+                        color: colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Row(
                         children: [
                           Expanded(
                             child: _ThemeCard(
-                              label: 'Light',
+                              label: context.l10n.themeLight,
                               isSelected: _selectedTheme == _AppTheme.light,
                               themeType: _AppTheme.light,
                               onTap: () =>
@@ -162,7 +162,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                           SizedBox(width: 12.w),
                           Expanded(
                             child: _ThemeCard(
-                              label: 'Dark',
+                              label: context.l10n.themeDark,
                               isSelected: _selectedTheme == _AppTheme.dark,
                               themeType: _AppTheme.dark,
                               onTap: () =>
@@ -172,7 +172,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                           SizedBox(width: 12.w),
                           Expanded(
                             child: _ThemeCard(
-                              label: 'System',
+                              label: context.l10n.themeSystem,
                               isSelected: _selectedTheme == _AppTheme.system,
                               themeType: _AppTheme.system,
                               onTap: () =>
@@ -196,7 +196,7 @@ class _AppAppearanceScreenState extends State<AppAppearanceScreen> {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: isLight ? colors.bgB0 : colors.bgB1,
+                        color: colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: GridView.builder(

@@ -58,12 +58,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
   }
 
   void _handleEditResubmit(BuildContext context) {
-    if (timesheet.status == TimeOffStatus.rejected) {
-      context.router.push(ResubmitHoursRoute(timesheet: timesheet));
-    } else {
-      // Handle edit for pending submissions
-      AppSnackbar.show(context, 'Edit functionality not implemented yet');
-    }
+    context.router.push(ResubmitHoursRoute(timesheet: timesheet));
   }
 
   @override
@@ -92,7 +87,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
                         color: context.theme.colors.strokeSecondary,
@@ -230,25 +225,11 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 12.0),
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.all(16.0),
-                                decoration: BoxDecoration(
+                              Text(
+                                "Post-optimization logs showed a spike in timeout errors, and the performance gains weren’t consistent under load.",
+                                style:
+                                    context.theme.fonts.textMdMedium.copyWith(
                                   color: context.theme.colors.redDefault,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color: context.theme.colors.redStroke,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Text(
-                                  timesheet.rejectionReason!,
-                                  style:
-                                      context.theme.fonts.textMdMedium.copyWith(
-                                    fontSize: 14.sp,
-                                    color: context.theme.colors.redDefault,
-                                    height: 1.5,
-                                  ),
                                 ),
                               ),
                             ],
@@ -265,7 +246,7 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
                         color: context.theme.colors.strokeSecondary,
@@ -367,36 +348,25 @@ class SubmittedHoursDetailScreen extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: TextButton(
+                child: PrimaryButton(
+                  text: 'Delete',
+                  color: Colors.transparent,
+                  borderColor: context.theme.colors.redDefault,
+                  textColor: context.theme.colors.redDefault,
+                  enableShine: false,
                   onPressed: () => _showDeleteConfirmation(context),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    side: BorderSide(
-                        color: context.theme.colors.redDefault, width: 2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(26),
-                    ),
-                  ),
-                  child: Text(
-                    'Delete',
-                    style: context.theme.fonts.textMdMedium.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: context.theme.colors.redDefault,
-                    ),
-                  ),
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                flex: 1,
                 child: PrimaryButton(
                   text: timesheet.status == TimeOffStatus.rejected
                       ? 'Edit & resubmit'
                       : 'Edit',
                   color: context.theme.colors.fillTertiary,
-                  onPressed: () => _handleEditResubmit(context),
                   textColor: context.theme.colors.textPrimary,
+                  enableShine: false,
+                  onPressed: () => _handleEditResubmit(context),
                 ),
               ),
             ],

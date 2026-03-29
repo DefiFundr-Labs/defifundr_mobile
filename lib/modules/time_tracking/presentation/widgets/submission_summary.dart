@@ -36,7 +36,39 @@ class SubmissionSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Total Hours Worked
+        SummaryItemContainer(
+          label: 'Total hours worked',
+          value: _formatDuration(totalHours),
+        ),
+        SummaryItemContainer(
+          label: 'Hourly rate',
+          value: '${hourlyRate.toInt()} $currency',
+        ),
+        SummaryItemContainer(
+          label: 'Calculated amount',
+          value: totalHours.inMinutes > 0
+              ? '${_calculateAmount().toInt()} $currency'
+              : '--',
+        ),
+      ],
+    );
+  }
+}
+
+class SummaryItemContainer extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const SummaryItemContainer({
+    Key? key,
+    required this.label,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         Container(
           padding: EdgeInsets.all(20.0),
           decoration: BoxDecoration(
@@ -47,96 +79,18 @@ class SubmissionSummary extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Total hours worked',
-                style: context.theme.fonts.textBaseSemiBold.copyWith(
-                  color: context.theme.colors.textSecondary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
+                label,
+                style: context.theme.fonts.textMdRegular
+                    .copyWith(color: context.theme.colors.textSecondary),
               ),
               Text(
-                _formatDuration(totalHours),
-                style: context.theme.fonts.textBaseMedium.copyWith(
-                  color: context.theme.colors.textPrimary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
+                value,
+                style: context.theme.fonts.textMdMedium,
               ),
             ],
           ),
         ),
-        SizedBox(height: 12.0),
-
-        // Hourly Rate
-
-        Container(
-          padding: EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            color: context.theme.colors.fillTertiary,
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Hourly rate',
-                style: context.theme.fonts.textBaseSemiBold.copyWith(
-                  color: context.theme.colors.textSecondary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
-              ),
-              Text(
-                '${hourlyRate.toInt()} $currency',
-                style: context.theme.fonts.textBaseMedium.copyWith(
-                  color: context.theme.colors.textPrimary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        SizedBox(height: 12.0),
-
-        // Calculated Amount
-        Container(
-          padding: EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            color: context.theme.colors.fillTertiary,
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Calculated amount',
-                style: context.theme.fonts.textBaseSemiBold.copyWith(
-                  color: context.theme.colors.textSecondary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
-              ),
-              Text(
-                totalHours.inMinutes > 0
-                    ? '${_calculateAmount().toInt()} $currency'
-                    : '--',
-                style: context.theme.fonts.textBaseMedium.copyWith(
-                  color: context.theme.colors.textPrimary,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  height: 1.43,
-                ),
-              ),
-            ],
-          ),
-        ),
+        SizedBox(height: 20.h),
       ],
     );
   }

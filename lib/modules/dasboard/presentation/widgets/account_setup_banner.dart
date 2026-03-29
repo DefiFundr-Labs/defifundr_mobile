@@ -4,6 +4,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class AccountSetupBanner extends StatelessWidget {
   final double progress;
@@ -33,7 +34,7 @@ class AccountSetupBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Complete Account Setup',
+                    context.l10n.completeAccountSetup,
                     style: fonts.textBaseSemiBold.copyWith(
                       color: isLightMode
                           ? colors.contrastWhite
@@ -44,7 +45,7 @@ class AccountSetupBanner extends StatelessWidget {
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    'Finish setting up your account to start sending invoices and signing contracts.',
+                    context.l10n.finishSetupToStart,
                     style: fonts.textSmRegular.copyWith(
                       color: isLightMode
                           ? colors.contrastWhite

@@ -8,6 +8,7 @@ import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
@@ -44,7 +45,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                   Center(
                     child: Text(
-                      'Quickpay',
+                      context.l10n.quickpayAction,
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Inter',
@@ -149,7 +150,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Status',
+                                  context.l10n.expenseStatus,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -200,7 +201,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Title',
+                                  context.l10n.titleLabel,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -237,7 +238,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Network',
+                                  context.l10n.network,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -286,7 +287,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'From',
+                                    context.l10n.fromLabel,
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'Inter',
@@ -362,7 +363,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Transaction ID',
+                                  context.l10n.transactionId,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -399,7 +400,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Date',
+                                  context.l10n.dateLabel,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -470,7 +471,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       lightColor: AppColors.textPrimary,
                       darkColor: AppColorDark.textPrimary,
                     ),
-                    text: "Help centre",
+                    text: context.l10n.helpCentre,
                     onPressed: () {},
                   ),
                   SmallButton(
@@ -480,7 +481,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       width: 20,
                       height: 20,
                     ),
-                    text: "Share receipt",
+                    text: context.l10n.shareReceipt,
                     onPressed: () {},
                   ),
                 ],

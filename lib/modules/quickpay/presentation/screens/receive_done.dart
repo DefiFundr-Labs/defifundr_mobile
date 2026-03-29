@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/utils/resolve_color.dart';
-
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
@@ -75,7 +75,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          'Need Help?',
+                          context.l10n.needHelp,
                           style: context.theme.textTheme.bodyMedium?.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -149,7 +149,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Title',
+                                  context.l10n.titleLabel,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -186,7 +186,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Network',
+                                  context.l10n.network,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -233,7 +233,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Amount',
+                                  context.l10n.amount,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
@@ -287,7 +287,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Address',
+                                context.l10n.address,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Inter',
@@ -396,7 +396,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                       lightColor: AppColors.textPrimary,
                       darkColor: AppColorDark.textPrimary,
                     ),
-                    text: "Share QR code",
+                    text: context.l10n.shareQrCode,
                     onPressed: () {},
                   ),
                   SmallButton(
@@ -414,7 +414,7 @@ class _ReceivePaymentDoneScreenState extends State<ReceivePaymentDoneScreen> {
                       width: 16,
                       height: 16,
                     ),
-                    text: "Share pay link",
+                    text: context.l10n.sharePayLink,
                     onPressed: () {},
                   ),
                 ],

@@ -3,10 +3,11 @@ import 'package:defifundr_mobile/core/design_system/color_extension/app_color_ex
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/gen/fonts.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
+import 'package:defifundr_mobile/modules/more/presentation/widgets/app_language_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/more_list_item.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/more_profile_card.dart';
-import 'package:defifundr_mobile/modules/more/presentation/widgets/app_language_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/more_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,11 +39,12 @@ class _MoreScreenState extends State<MoreScreen> {
         backgroundColor: context.theme.scaffoldBackgroundColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
+        centerTitle: false,
         title: Text(
           l10n.more,
           style: fonts.heading2Bold.copyWith(
             color: colors.textPrimary,
-            fontFamily: 'HankenGrotesk',
+            fontFamily: FontFamily.hankenGrotesk,
           ),
         ),
       ),
@@ -64,12 +66,13 @@ class _MoreScreenState extends State<MoreScreen> {
                 title: l10n.profile,
                 items: [
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.profilee, colors),
+                    icon: _buildIcon(Assets.icons.userCircleCopy, colors),
                     title: l10n.personalDetails,
-                    onTap: () => context.router.push(const PersonalDetailsViewRoute()),
+                    onTap: () =>
+                        context.router.push(const PersonalDetailsViewRoute()),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.wallet, colors),
+                    icon: _buildIcon(Assets.icons.walletCopy, colors),
                     title: l10n.manageWallet,
                     onTap: () => context.router.push(const ManageWalletRoute()),
                   ),
@@ -87,17 +90,19 @@ class _MoreScreenState extends State<MoreScreen> {
                 title: l10n.security,
                 items: [
                   MoreListItem(
-                    icon: _buildIcon('assets/icons/password.svg', colors),
+                    icon: _buildIcon(Assets.icons.password, colors),
                     title: l10n.changePassword,
-                    onTap: () => context.router.push(const ChangePasswordRoute()),
+                    onTap: () =>
+                        context.router.push(const ChangePasswordRoute()),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.lockKeyOpen, colors),
+                    icon: _buildIcon(Assets.icons.key, colors),
                     title: l10n.changePIN,
-                    onTap: () => context.router.push(const CurrentPinCodeRoute()),
+                    onTap: () =>
+                        context.router.push(const CurrentPinCodeRoute()),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.faceScan, colors),
+                    icon: _buildIcon(Assets.icons.userFocusSvg_, colors),
                     title: l10n.useFaceIdFingerprint,
                     trailingType: MoreItemTrailingType.toggle,
                     toggleValue: _useFaceId,
@@ -105,7 +110,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         setState(() => _useFaceId = value),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.lockIcon, colors),
+                    icon: _buildIcon(Assets.icons.shieldStar, colors),
                     title: l10n.twoFactorAuthentication,
                     trailingType: MoreItemTrailingType.toggle,
                     toggleValue: _twoFactorAuth,
@@ -117,9 +122,10 @@ class _MoreScreenState extends State<MoreScreen> {
                     },
                   ),
                   MoreListItem(
-                    icon: _buildIcon('assets/icons/devices.svg', colors),
+                    icon: _buildIcon(Assets.icons.deviceMobile, colors),
                     title: l10n.deviceManagement,
-                    onTap: () => context.router.push(const DeviceManagementRoute()),
+                    onTap: () =>
+                        context.router.push(const DeviceManagementRoute()),
                   ),
                 ],
               ),
@@ -130,9 +136,10 @@ class _MoreScreenState extends State<MoreScreen> {
                 title: l10n.general,
                 items: [
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.eye, colors),
+                    icon: _buildIcon(Assets.icons.deviceMobile, colors),
                     title: l10n.appAppearance,
-                    onTap: () => context.router.push(const AppAppearanceRoute()),
+                    onTap: () =>
+                        context.router.push(const AppAppearanceRoute()),
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.notification, colors),
@@ -143,12 +150,12 @@ class _MoreScreenState extends State<MoreScreen> {
                         setState(() => _pushNotifications = value),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.globe, colors),
+                    icon: _buildIcon(Assets.icons.globeHemisphereWest, colors),
                     title: l10n.appLanguage,
                     onTap: () => showAppLanguageBottomSheet(context),
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.headset, colors),
+                    icon: _buildIcon(Assets.icons.questionSvg, colors),
                     title: l10n.helpFeedback,
                     onTap: () => context.router.push(const HelpFeedbackRoute()),
                   ),
@@ -161,18 +168,18 @@ class _MoreScreenState extends State<MoreScreen> {
                 title: l10n.about,
                 items: [
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.globe, colors),
+                    icon: _buildIcon(Assets.icons.globeSimple, colors),
                     title: l10n.visitWebsite,
                     trailingType: MoreItemTrailingType.externalLink,
                     onTap: () {},
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.fileText, colors),
+                    icon: _buildIcon(Assets.icons.fileTextCopy, colors),
                     title: l10n.termsOfService,
                     onTap: () {},
                   ),
                   MoreListItem(
-                    icon: _buildIcon(Assets.icons.scales, colors),
+                    icon: _buildIcon(Assets.icons.shieldCheckered, colors),
                     title: l10n.privacyPolicy,
                     onTap: () {},
                   ),
@@ -183,7 +190,7 @@ class _MoreScreenState extends State<MoreScreen> {
               // Log out
               Container(
                 decoration: BoxDecoration(
-                  color: isLightMode ? colors.bgB0 : colors.bgB1,
+                  color: colors.bgB1,
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: InkWell(
@@ -196,13 +203,23 @@ class _MoreScreenState extends State<MoreScreen> {
                     ),
                     child: Row(
                       children: [
-                        SvgPicture.asset(
-                          Assets.icons.signOutSvg,
-                          width: 20.w,
-                          height: 20.w,
-                          colorFilter: ColorFilter.mode(
-                            colors.redDefault,
-                            BlendMode.srcIn,
+                        Container(
+                          width: 36.w,
+                          height: 36.w,
+                          decoration: BoxDecoration(
+                            color: colors.redFill,
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              Assets.icons.signOutSvg_,
+                              width: 20.w,
+                              height: 20.w,
+                              colorFilter: ColorFilter.mode(
+                                colors.redDefault,
+                                BlendMode.srcIn,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(width: 12.w),
@@ -234,11 +251,11 @@ class _MoreScreenState extends State<MoreScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildSocialIcon('assets/icons/x_logo.svg', colors),
+                  _buildSocialIcon(Assets.icons.xLogo, colors),
                   SizedBox(width: 20.w),
-                  _buildSocialIcon('assets/icons/instagram_logo.svg', colors),
+                  _buildSocialIcon(Assets.icons.instagramLogo, colors),
                   SizedBox(width: 20.w),
-                  _buildSocialIcon('assets/icons/telegram_logo.svg', colors),
+                  _buildSocialIcon(Assets.icons.telegramLogo, colors),
                 ],
               ),
               SizedBox(height: 20.h),

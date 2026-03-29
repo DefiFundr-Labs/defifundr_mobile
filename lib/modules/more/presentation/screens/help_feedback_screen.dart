@@ -25,7 +25,7 @@ class HelpFeedbackScreen extends StatelessWidget {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return Scaffold(
-      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
+      backgroundColor: colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class HelpFeedbackScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: isLight ? colors.bgB0 : colors.bgB1,
+                        color: colors.bgB1,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Column(

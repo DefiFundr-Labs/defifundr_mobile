@@ -1,8 +1,12 @@
+import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:defifundr_mobile/modules/time_off/data/models/time_off.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/time_off_card_container.dart';
 import '../widgets/time_off_item.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 
 @RoutePage()
 class TimeOffHistoryScreen extends StatefulWidget {
@@ -77,6 +81,9 @@ class _TimeOffHistoryScreenState extends State<TimeOffHistoryScreen> {
   void initState() {
     super.initState();
     filteredTimeOff = allTimeOffHistory;
+    _searchController.addListener(() {
+      _filterTimeOff(_searchController.text);
+    });
   }
 
   void _filterTimeOff(String query) {
@@ -95,64 +102,33 @@ class _TimeOffHistoryScreenState extends State<TimeOffHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-          onPressed: () => context.router.maybePop(),
+      backgroundColor: context.theme.colors.bgB0,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 60),
+        child: DeFiRaiseAppBar(
+          centerTitle: true,
+          textStyle: context.theme.fonts.heading3SemiBold,
+          isBack: true,
+          title: 'Time off history',
+          actions: [],
         ),
-        title: const Text(
-          'Time off history',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
-          // Search Bar
-          Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade200),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.search, color: Colors.grey.shade400, size: 20),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TextField(
-                    controller: _searchController,
-                    onChanged: _filterTimeOff,
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                  ),
-                ),
-                Icon(Icons.tune, color: Colors.grey.shade400, size: 20),
-              ],
-            ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            child: SearchAndFilterBar(searchController: _searchController),
           ),
-
-          // Time off history list
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: filteredTimeOff.length,
               itemBuilder: (context, index) {
-                return Container(
+                return TimeOffCardContainer(
                   margin: const EdgeInsets.only(bottom: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   child: TimeOffItem(timeOff: filteredTimeOff[index]),
                 );
               },

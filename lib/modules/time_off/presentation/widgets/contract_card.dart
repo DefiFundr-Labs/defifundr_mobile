@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
 import '../../data/models/contract.dart';
 
 class ContractCard extends StatelessWidget {
@@ -18,15 +20,9 @@ class ContractCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        border: Border.all(color: context.theme.colors.strokeSecondary),
       ),
       child: InkWell(
         onTap: onTap,
@@ -39,10 +35,8 @@ class ContractCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     contract.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                    style: context.theme.fonts.textMdSemiBold.copyWith(
+                      color: context.theme.colors.textPrimary,
                     ),
                   ),
                 ),
@@ -50,15 +44,13 @@ class ContractCard extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.green.shade50,
+                    color: context.theme.colors.greenFill,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     'Active',
-                    style: TextStyle(
-                      color: Colors.green.shade600,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                    style: context.theme.fonts.textXsMedium.copyWith(
+                      color: context.theme.colors.greenDefault,
                     ),
                   ),
                 ),
@@ -72,18 +64,15 @@ class ContractCard extends StatelessWidget {
                   children: [
                     Text(
                       'Type',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
+                      style: context.theme.fonts.textXsRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      contract.type,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                      contract.type.title,
+                      style: context.theme.fonts.textSmMedium.copyWith(
+                        color: context.theme.colors.textPrimary,
                       ),
                     ),
                   ],
@@ -94,18 +83,15 @@ class ContractCard extends StatelessWidget {
                   children: [
                     Text(
                       contract.paymentAmount,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
+                      style: context.theme.fonts.textMdSemiBold.copyWith(
+                        color: context.theme.colors.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       contract.paymentFrequency,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
+                      style: context.theme.fonts.textXsRegular.copyWith(
+                        color: context.theme.colors.textSecondary,
                       ),
                     ),
                   ],

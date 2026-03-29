@@ -16,14 +16,14 @@ class QRCodeBottomSheet extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildHandle(),
+          _buildHandle(context),
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -40,13 +40,13 @@ class QRCodeBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildHandle() {
+  Widget _buildHandle(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 12),
-      width: 40,
-      height: 4,
+      width: 48,
+      height: 5,
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: context.theme.colors.grayTertiary.withAlpha(50),
         borderRadius: BorderRadius.circular(2),
       ),
     );
@@ -86,7 +86,7 @@ class QRCodeBottomSheet extends StatelessWidget {
               AppSnackbar.show(context, 'QR code saved as image');
             },
             enableShine: false,
-            color: context.theme.colors.textSecondary.withAlpha(20),
+            color: context.theme.colors.fillTertiary,
             textColor: context.theme.colors.textPrimary,
           ),
         ),

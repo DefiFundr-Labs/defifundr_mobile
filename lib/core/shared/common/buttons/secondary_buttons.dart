@@ -14,6 +14,7 @@ class SecondaryButton extends StatefulWidget {
     this.icon,
     this.iconRtr,
     this.textColor,
+    this.iconColor,
     this.textSize = 14,
     this.borderColor,
     this.fixedSize,
@@ -31,6 +32,7 @@ class SecondaryButton extends StatefulWidget {
   final String? icon;
   final String? iconRtr;
   final Color? textColor;
+  final Color? iconColor;
   final double? textSize;
   final EdgeInsetsGeometry? padding;
   final Size? fixedSize;
@@ -168,6 +170,12 @@ class _SecondaryButtonState extends State<SecondaryButton>
                           widget.icon ?? '',
                           height: 18.sp,
                           width: 18.sp,
+                          colorFilter: widget.iconColor != null
+                              ? ColorFilter.mode(
+                                  widget.iconColor!,
+                                  BlendMode.srcIn,
+                                )
+                              : null,
                         )
                       else
                         const SizedBox(),
@@ -178,7 +186,10 @@ class _SecondaryButtonState extends State<SecondaryButton>
                           fontSize: widget.textSize,
                           fontWeight: FontWeight.w500,
                           color: widget.textColor ??
-                              context.theme.colors.textPrimary,
+                              (widget.backgroundColor ==
+                                      context.theme.colors.brandDefault
+                                  ? context.theme.colors.contrastWhite
+                                  : context.theme.colors.textPrimary),
                         ),
                       ),
                       if (widget.iconRtr != null) const SizedBox(width: 12),
@@ -187,6 +198,12 @@ class _SecondaryButtonState extends State<SecondaryButton>
                           widget.iconRtr ?? '',
                           height: 18.sp,
                           width: 18.sp,
+                          colorFilter: widget.iconColor != null
+                              ? ColorFilter.mode(
+                                  widget.iconColor!,
+                                  BlendMode.srcIn,
+                                )
+                              : null,
                         )
                       else
                         const SizedBox(),

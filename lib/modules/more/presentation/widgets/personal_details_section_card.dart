@@ -1,6 +1,7 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class PersonalDetailsSectionCard extends StatelessWidget {
   final String title;
@@ -23,7 +24,7 @@ class PersonalDetailsSectionCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(
@@ -58,7 +59,7 @@ class PersonalDetailsSectionCard extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Edit',
+                        context.l10n.edit,
                         style: fonts.textSmMedium.copyWith(
                           color: colors.textPrimary,
                         ),

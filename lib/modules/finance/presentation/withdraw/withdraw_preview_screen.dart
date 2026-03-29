@@ -109,7 +109,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
           horizontal: _containerPadding, vertical: 32.0),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(_borderRadius),
       ),
       child: Column(
@@ -151,7 +151,7 @@ class WithdrawPreviewScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(_containerPadding),
       decoration: BoxDecoration(
-        color: isLightMode ? colors.bgB0 : colors.bgB1,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(_borderRadius),
       ),
       child: Column(

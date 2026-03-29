@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final List<Widget>? actions;
@@ -14,6 +13,7 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final TextStyle? textStyle;
   final bool centerTitle;
+  final VoidCallback? onBack;
   const DeFiRaiseAppBar({
     this.title,
     this.actions,
@@ -21,6 +21,7 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.textStyle,
     this.isBack = false,
     this.leading,
+    this.onBack,
     super.key,
   });
 
@@ -32,7 +33,7 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: const EdgeInsets.only(right: 16.0),
       titleSpacing: 24.sp,
       backgroundColor:
-          isDark ? context.theme.colors.bgB0 : context.theme.colors.bgB1,
+          context.theme.colors.bgB0,
       scrolledUnderElevation: 0,
       elevation: 0,
       centerTitle: centerTitle,
@@ -79,9 +80,10 @@ class DeFiRaiseAppBar extends StatelessWidget implements PreferredSizeWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              onPressed: () {
-                context.router.maybePop();
-              },
+              onPressed: onBack ??
+                  () {
+                    context.router.maybePop();
+                  },
             )
           : leading,
     );
