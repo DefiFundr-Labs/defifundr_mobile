@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -9,7 +10,6 @@ import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_st
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class InvoiceDetailScreen extends StatelessWidget {
@@ -21,7 +21,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB0,
+
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
@@ -471,8 +471,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             customIcon: DashedCircleIcon(
                 color:
                     context.theme.colors.textSecondary.withValues(alpha: 0.5)),
-            subtitle:
-                context.l10n.fundsReflectedMessage,
+            subtitle: context.l10n.fundsReflectedMessage,
             isCompleted: false,
             isGreyedOut: true,
             isLast: true,
