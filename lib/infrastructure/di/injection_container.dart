@@ -1,7 +1,9 @@
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
-final sl = GetIt.I;
+import 'injection_container.config.dart';
 
-Future<void> registerServices() async {
-  // sl.registerLazySingleton<LetsGetToKnowYouBloc>(() => LetsGetToKnowYouBloc());
-}
+final sl = GetIt.instance;
+
+@InjectableInit()
+Future<void> configureDependencies() async => sl.init();

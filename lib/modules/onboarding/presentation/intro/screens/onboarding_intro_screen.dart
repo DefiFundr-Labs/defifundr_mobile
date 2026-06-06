@@ -4,12 +4,11 @@ import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/infrastructure/di/injection_container.dart';
 import 'package:defifundr_mobile/modules/more/presentation/widgets/app_language_bottom_sheet.dart';
+import 'package:defifundr_mobile/modules/onboarding/domain/service/onboarding_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-const _langShownKey = 'onboarding_language_sho';
 
 List<_OnboardingSlide> _buildSlides(BuildContext context) => [
       _OnboardingSlide(
@@ -63,9 +62,9 @@ class _OnboardingIntroScreenState extends State<OnboardingIntroScreen> {
   }
 
   Future<void> _showLanguageOnFirstLaunch() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool(_langShownKey) ?? false) return;
-    await prefs.setBool(_langShownKey, true);
+    final service = sl<OnboardingService>();
+    if (service.isLanguageSelectionShown) return;
+    await service.markLanguageSelectionShown();
     if (mounted) showAppLanguageBottomSheet(context);
   }
 

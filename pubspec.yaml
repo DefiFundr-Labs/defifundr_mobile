@@ -45,6 +45,7 @@ dependencies:
   confetti: ^0.8.0
   flutter_native_splash: ^2.2.16
   get_it: ^8.0.3
+  injectable: ^2.5.0
   pinput: ^5.0.1
   country_picker: ^2.0.27
   country_list_pick: ^1.0.1+6
@@ -74,6 +75,7 @@ dev_dependencies:
   freezed: ^3.0.0
   #? build_runner is a Dart package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
   build_runner: ^2.4.0
+  injectable_generator: ^2.7.0
   auto_route_generator: ^10.0.0
 
   # Testing
