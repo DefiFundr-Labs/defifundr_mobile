@@ -1,3 +1,5 @@
+import 'package:defifundr_mobile/core/retry/retryable.dart';
+
 typedef OperationCallback = Future<void> Function();
 
 class QueuedOperation {
@@ -5,17 +7,17 @@ class QueuedOperation {
     required this.id,
     required this.execute,
     this.label,
-    this.retryLimit = 3,
-  }) : _attempts = 0;
+    RetryPolicy? retryPolicy,
+  }) : retryPolicy = retryPolicy ?? RetryPolicy.exponentialBackoff(),
+       _attempts = 0;
 
   final String id;
   final OperationCallback execute;
   final String? label;
-  final int retryLimit;
+  final RetryPolicy retryPolicy;
 
   int _attempts;
   int get attempts => _attempts;
-  bool get canRetry => _attempts < retryLimit;
 
   void recordAttempt() => _attempts++;
 }

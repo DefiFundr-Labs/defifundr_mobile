@@ -1,4 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/update/app_update_guard.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
 import 'package:defifundr_mobile/core/localization/localization.dart';
 import 'package:defifundr_mobile/core/routers/app_route_observer.dart';
@@ -68,6 +69,9 @@ class _AppState extends State<App> {
                       routerConfig: _appRouter.config(
                         includePrefixMatches: true,
                         navigatorObservers: () => [_routeObserver],
+                      ),
+                      builder: (context, child) => AppUpdateGuard(
+                        child: child ?? const SizedBox.shrink(),
                       ),
                     ),
                   );

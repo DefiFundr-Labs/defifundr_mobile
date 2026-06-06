@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:defifundr_mobile/core/connectivity/connectivity_service.dart';
 import 'package:defifundr_mobile/core/connectivity/queued_operation.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus.dart';
+import 'package:defifundr_mobile/core/retry/retryable.dart';
 import 'package:logger/logger.dart';
 
 final _log = Logger();
@@ -19,19 +20,19 @@ class OperationQueue {
 
   /// Enqueue an operation.
   ///
-  /// If online: executes immediately.
-  /// If offline: stores in queue and replays on reconnect.
+  /// Online  → executes immediately with retry via [retryPolicy].
+  /// Offline → stored in queue, replayed on reconnect.
   Future<void> enqueue(
     OperationCallback execute, {
     String? id,
     String? label,
-    int retryLimit = 3,
+    RetryPolicy? retryPolicy,
   }) async {
     final operation = QueuedOperation(
       id: id ?? _nextId(),
       execute: execute,
       label: label,
-      retryLimit: retryLimit,
+      retryPolicy: retryPolicy,
     );
 
     if (ConnectivityService.instance.isOnline) {
@@ -43,7 +44,6 @@ class OperationQueue {
     }
   }
 
-  /// Called by [ConnectivityService] via EventBus when connectivity restores.
   Future<void> drain() async {
     if (_draining || _queue.isEmpty) return;
     _draining = true;
@@ -56,14 +56,11 @@ class OperationQueue {
 
       if (success) {
         _queue.removeFirst();
-      } else if (!operation.canRetry) {
-        _log.w('[Queue] Dropping "${operation.label ?? operation.id}" '
-            'after ${operation.attempts} attempts');
-        _queue.removeFirst();
-        EventBus.instance
-            .emit(QueuedOperationFailed(operationId: operation.id));
       } else {
-        break;
+        _log.w('[Queue] Dropping "${operation.label ?? operation.id}" '
+            'after ${operation.attempts} attempt(s)');
+        _queue.removeFirst();
+        EventBus.instance.emit(QueuedOperationFailed(operationId: operation.id));
       }
     }
 
@@ -71,11 +68,13 @@ class OperationQueue {
   }
 
   Future<bool> _run(QueuedOperation operation) async {
-    operation.recordAttempt();
     try {
-      await operation.execute();
-      EventBus.instance
-          .emit(QueuedOperationSucceeded(operationId: operation.id));
+      await retryable(
+        operation.execute,
+        policy: operation.retryPolicy,
+        label: operation.label ?? operation.id,
+      );
+      EventBus.instance.emit(QueuedOperationSucceeded(operationId: operation.id));
       return true;
     } catch (e) {
       _log.e('[Queue] "${operation.label ?? operation.id}" failed: $e');

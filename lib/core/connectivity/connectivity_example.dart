@@ -1,6 +1,7 @@
 // ignore_for_file: unused_element
 // This file is for documentation purposes only — not imported anywhere.
 
+import 'package:defifundr_mobile/core/cache/app_cache.dart';
 import 'package:defifundr_mobile/core/connectivity/connectivity_service.dart';
 import 'package:defifundr_mobile/core/connectivity/operation_queue.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus.dart';
@@ -8,7 +9,7 @@ import 'package:defifundr_mobile/core/event_bus/event_bus_scope.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. Check connectivity anywhere — instant, no async needed
+// 1. Check connectivity — instant, no async needed
 // ─────────────────────────────────────────────────────────────────────────────
 
 void _checkExample() {
@@ -18,62 +19,58 @@ void _checkExample() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. Enqueue a payment submission
+// 2. Enqueue a payment — uses retryableTE internally
 //
-//    Online  → executes immediately
+//    Online  → executes immediately via RetryPolicy
 //    Offline → stored, replayed automatically when internet returns
-//    Failure → retried up to 3x, then dropped with QueuedOperationFailed event
+//    Failure → retried per policy, then QueuedOperationFailed emitted
 // ─────────────────────────────────────────────────────────────────────────────
 
-Future<void> _submitPayment(String paymentId, double amount) async {
-  await OperationQueue.instance.enqueue(
-    () async {
-      // await paymentRepository.submit(paymentId, amount);
-    },
-    label: 'submit_payment_$paymentId',
-  );
-}
+Future<void> _submitPayment(String paymentId, double amount) =>
+    OperationQueue.instance.enqueue(
+      () async {
+        // await paymentRepository.submit(paymentId, amount);
+      },
+      label: 'submit_payment_$paymentId',
+      retryPolicy: RetryPolicy.decorrelatedJitter(maxAttempts: 3),
+    );
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. BLoC reacting to connectivity and queue events
 // ─────────────────────────────────────────────────────────────────────────────
 
-abstract class _PaymentEvent {}
-
+sealed class _PaymentEvent {}
 class _Refresh extends _PaymentEvent {}
-
 class _SetOffline extends _PaymentEvent {}
-
 class _SetOnline extends _PaymentEvent {}
-
 class _OperationFailed extends _PaymentEvent {
   _OperationFailed(this.operationId);
   final String operationId;
 }
 
-abstract class _PaymentState {}
-
-class _IdleState extends _PaymentState {}
+sealed class _PaymentState {}
+class _Idle extends _PaymentState {}
+class _Offline extends _PaymentState {}
+class _Failed extends _PaymentState {
+  _Failed(this.operationId);
+  final String operationId;
+}
 
 class _PaymentBloc extends Bloc<_PaymentEvent, _PaymentState>
     with EventBusScope {
-  _PaymentBloc() : super(_IdleState()) {
+  _PaymentBloc() : super(_Idle()) {
     on<_Refresh>((_, emit) {/* reload payments */});
-    on<_SetOffline>((_, emit) {/* show offline banner */});
-    on<_SetOnline>((_, emit) {/* hide banner, maybe refresh */});
-    on<_OperationFailed>((event, emit) {/* show retry prompt */});
+    on<_SetOffline>((_, emit) => emit(_Offline()));
+    on<_SetOnline>((_, emit) { emit(_Idle()); add(_Refresh()); });
+    on<_OperationFailed>((event, emit) => emit(_Failed(event.operationId)));
 
     listenTo<ConnectivityChanged>((e) {
       add(e.isOnline ? _SetOnline() : _SetOffline());
     });
 
-    listenTo<QueuedOperationSucceeded>((e) {
-      add(_Refresh());
-    });
+    listenTo<QueuedOperationSucceeded>((e) => add(_Refresh()));
 
-    listenTo<QueuedOperationFailed>((e) {
-      add(_OperationFailed(e.operationId));
-    });
+    listenTo<QueuedOperationFailed>((e) => add(_OperationFailed(e.operationId)));
   }
 
   @override
@@ -84,29 +81,74 @@ class _PaymentBloc extends Bloc<_PaymentEvent, _PaymentState>
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. Invoice submission — queued with custom retry limit
+// 4. Invoice submission — critical operation, more retries + circuit breaker
 // ─────────────────────────────────────────────────────────────────────────────
 
-Future<void> _submitInvoice(String invoiceId) async {
-  await OperationQueue.instance.enqueue(
+Future<void> _submitInvoice(String invoiceId) =>
+    OperationQueue.instance.enqueue(
+      () async {
+        // await invoiceRepository.submit(invoiceId);
+      },
+      label: 'submit_invoice_$invoiceId',
+      retryPolicy: RetryPolicy.circuitBreaker(
+        failureThreshold: 3,
+        maxAttempts: 10,
+        resetTimeout: const Duration(seconds: 30),
+      ),
+    );
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. retryableTE standalone — for one-off calls outside a repository
+// ─────────────────────────────────────────────────────────────────────────────
+
+Future<void> _standaloneExample(String userId) async {
+  final result = await retryableTE(
     () async {
-      // await invoiceRepository.submit(invoiceId);
+      // await apiClient.syncWallet(userId);
     },
-    label: 'submit_invoice_$invoiceId',
-    retryLimit: 5, // invoices are critical — retry more aggressively
+    policy: RetryPolicy.exponentialBackoff(maxAttempts: 4),
+    toFailure: (e) => NetworkFailure(cause: e),
+  ).run();
+
+  result.fold(
+    (failure) { /* log or surface failure.message */ },
+    (_) { /* sync succeeded */ },
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. Middleware — block all emissions when offline (optional hardening)
+// 6. Offline guard middleware — drop bus events when offline
 // ─────────────────────────────────────────────────────────────────────────────
 
 void _offlineGuardMiddleware() {
   EventBus.instance.addMiddleware((event) async {
-    // Always allow connectivity events through — they are the signal itself.
-    if (event is ConnectivityChanged) return event;
-
+    if (event is ConnectivityChanged) return event; // always let through
     if (!ConnectivityService.instance.isOnline) return null; // drop
     return event;
   });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. Combining connectivity + cache + fpdart
+//    Guard the fetch: only hit network if online, fall back to cache if not.
+// ─────────────────────────────────────────────────────────────────────────────
+
+TaskEither<Failure, Map<String, dynamic>> _guardedFetch(String key) {
+  if (!ConnectivityService.instance.isOnline) {
+    return AppCache.prefs.fetch(
+      key,
+      () => Future.error(NetworkFailure()),
+      policy: CachePolicy.useCache,
+    );
+  }
+
+  return AppCache.prefs.fetch(
+    key,
+    () async {
+      // await apiClient.get(key);
+      return <String, dynamic>{};
+    },
+    policy: CachePolicy.cacheFirst,
+    retryPolicy: RetryPolicy.exponentialBackoff(),
+  );
 }

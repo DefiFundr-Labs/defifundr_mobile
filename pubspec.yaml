@@ -67,6 +67,9 @@ dependencies:
   url_launcher: ^6.1.11
   auto_route: ^10.0.0
   connectivity_plus: ^6.1.4
+  fpdart: ^1.1.0
+  flutter_secure_storage: ^9.2.4
+  package_info_plus: ^9.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

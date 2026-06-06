@@ -66,6 +66,33 @@ class InvoiceStatusChanged extends AppEvent {
   String get name => 'InvoiceStatusChanged';
 }
 
+// Cache
+
+class CacheUpdated extends AppEvent {
+  const CacheUpdated({required this.key, required this.data});
+
+  final String key;
+  final dynamic data;
+
+  @override
+  String get name => 'CacheUpdated';
+}
+
+class CacheRevalidationFailed extends AppEvent {
+  const CacheRevalidationFailed({
+    required this.key,
+    required this.error,
+    required this.attempts,
+  });
+
+  final String key;
+  final Object error;
+  final int attempts;
+
+  @override
+  String get name => 'CacheRevalidationFailed';
+}
+
 // Connectivity
 
 class ConnectivityChanged extends AppEvent {
@@ -104,4 +131,30 @@ class WorkspaceSwitched extends AppEvent {
 
   @override
   String get name => 'WorkspaceSwitched';
+}
+
+// App update
+
+enum AppUpdateStatus { upToDate, softUpdate, forceUpdate }
+
+class AppUpdateRequired extends AppEvent {
+  const AppUpdateRequired({required this.status, required this.latestVersion});
+
+  final AppUpdateStatus status;
+  final String latestVersion;
+
+  @override
+  String get name => 'AppUpdateRequired';
+}
+
+// Feature flags
+
+class FlagsRefreshed extends AppEvent {
+  const FlagsRefreshed({required this.flags});
+
+  /// The full set of flag key→value pairs after refresh.
+  final Map<String, dynamic> flags;
+
+  @override
+  String get name => 'FlagsRefreshed';
 }
