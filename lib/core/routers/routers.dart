@@ -360,10 +360,6 @@ class AppRouter extends RootStackRouter {
                   page: ExpensesTimeOffDetailsRoute.page,
                   path: 'expenses-time-off-details',
                 ),
-                AutoRoute(
-                  page: WorkspaceContractsRoute.page,
-                  path: 'workspace-contracts',
-                ),
               ],
             ),
 
@@ -582,6 +578,11 @@ class AppRouter extends RootStackRouter {
         // ============================================================
         // WORKSPACE CONTRACT ROUTES (pushed over shell)
         // ============================================================
+        AutoRoute(
+          page: WorkspaceContractsRoute.page,
+          path: RouteConstants.workspaceContracts, // Will declare a proper constant path or hardcode 'workspace-contracts'
+          guards: [authGuard],
+        ),
         AutoRoute(
           page: ViewContractRoute.page,
           path: RouteConstants.viewContract,
