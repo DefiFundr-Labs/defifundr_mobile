@@ -133,6 +133,20 @@ class WorkspaceSwitched extends AppEvent {
   String get name => 'WorkspaceSwitched';
 }
 
+// App update
+
+enum AppUpdateStatus { upToDate, softUpdate, forceUpdate }
+
+class AppUpdateRequired extends AppEvent {
+  const AppUpdateRequired({required this.status, required this.latestVersion});
+
+  final AppUpdateStatus status;
+  final String latestVersion;
+
+  @override
+  String get name => 'AppUpdateRequired';
+}
+
 // Feature flags
 
 class FlagsRefreshed extends AppEvent {

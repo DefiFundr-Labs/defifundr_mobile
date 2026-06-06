@@ -33,6 +33,11 @@ abstract final class AppFlags {
   static const maintenanceBanner =
       AppFlag<String>('maintenance_banner', defaultValue: '');
 
+  /// Minimum version the app must be at — anything below is force-blocked.
   static const forceUpdateVersion =
       AppFlag<String>('force_update_version', defaultValue: '');
+
+  /// Recommended version — anything below shows a dismissible update prompt.
+  static const softUpdateVersion =
+      AppFlag<String>('soft_update_version', defaultValue: '');
 }
