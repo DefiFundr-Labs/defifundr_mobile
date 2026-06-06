@@ -23,7 +23,7 @@ class _ReviewSignBottomSheetState extends State<ReviewSignBottomSheet> {
       padding: EdgeInsets.fromLTRB(
           20, 12, 20, MediaQuery.of(context).viewInsets.bottom + 32.h),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(

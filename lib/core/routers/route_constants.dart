@@ -132,6 +132,13 @@ class RouteConstants {
   static const String payCycleSubmitHours = '/pay-cycle/submit-hours';
 
   // ============================================================
+  // WORKSPACE CONTRACT ROUTES
+  // ============================================================
+  static const String workspaceContracts = '/workspace/contracts';
+  static const String viewContract = '/workspace/view-contract';
+  static const String requestTermination = '/workspace/request-termination';
+
+  // ============================================================
   // INVOICE ROUTES
   // ============================================================
   static const String invoices = '/invoices';
