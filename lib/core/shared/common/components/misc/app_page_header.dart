@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 /// A title + optional subtitle heading block for flow/form screens.
 ///
 /// Replaces the repeated raw `Text` + `copyWith(fontSize: 24.sp, …)` pattern
-/// found on onboarding, settings, and 2FA screens. Uses design-system font
+/// found on onboarding_image, settings, and 2FA screens. Uses design-system font
 /// tokens instead of `context.theme.textTheme.*`.
 ///
 /// ```dart

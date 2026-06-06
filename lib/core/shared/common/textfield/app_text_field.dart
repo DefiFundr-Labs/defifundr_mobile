@@ -463,7 +463,7 @@ class _AppTextFieldState extends State<AppTextField> {
             readOnly: widget.readOnly,
             style: context.theme.fonts.textMdRegular.copyWith(
               color: widget.textColor ?? context.theme.colors.textPrimary,
-              fontSize: widget.hideText ? 10.sp : 12.sp,
+              fontSize: (widget.hideText ? 10.sp : 12.sp).clamp(0.001, double.infinity),
               height: 1.3,
             ),
             textInputAction: widget.textInputAction,
@@ -483,7 +483,7 @@ class _AppTextFieldState extends State<AppTextField> {
               errorStyle: const TextStyle(
                 color: Colors.transparent,
                 height: 0,
-                fontSize: 0,
+                fontSize: 0.001,
               ),
               // Normal state border
               border: CustomOutlineInputBorder(

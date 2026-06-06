@@ -44,34 +44,39 @@ class _AppState extends State<App> {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: false,
-      child: MultiBlocProvider(
-        providers: appProviders,
-        child: BlocBuilder<ThemeCubit, ThemeState>(
-          builder: (context, themeState) {
-            return BlocBuilder<LocaleBloc, LocaleState>(
-              builder: (context, localeState) {
-                return DismissKeyboard(
-                  child: MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    title: 'DeFiFundr',
-                    theme: AppTheme.light,
-                    darkTheme: AppTheme.dark,
-                    themeMode: themeState.themeMode.toThemeMode(),
-                    locale: localeState.locale,
-                    scrollBehavior: const _AppScrollBehavior(),
-                    localizationsDelegates: Localization.localizationDelegates,
-                    supportedLocales: Localization.supportedLocales,
-                    routerConfig: _appRouter.config(
-                      includePrefixMatches: true,
-                      navigatorObservers: () => [_routeObserver],
+      builder: (context, child) {
+        if (MediaQuery.sizeOf(context) == Size.zero) {
+          return const SizedBox.shrink();
+        }
+        return MultiBlocProvider(
+          providers: appProviders,
+          child: BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
+              return BlocBuilder<LocaleBloc, LocaleState>(
+                builder: (context, localeState) {
+                  return DismissKeyboard(
+                    child: MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      title: 'DeFiFundr',
+                      theme: AppTheme.light,
+                      darkTheme: AppTheme.dark,
+                      themeMode: themeState.themeMode.toThemeMode(),
+                      locale: localeState.locale,
+                      scrollBehavior: const _AppScrollBehavior(),
+                      localizationsDelegates: Localization.localizationDelegates,
+                      supportedLocales: Localization.supportedLocales,
+                      routerConfig: _appRouter.config(
+                        includePrefixMatches: true,
+                        navigatorObservers: () => [_routeObserver],
+                      ),
                     ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      ),
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

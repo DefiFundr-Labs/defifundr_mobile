@@ -14,7 +14,7 @@ part of 'routers.dart';
 /// [AccountTypeScreen]
 class AccountTypeRoute extends PageRouteInfo<void> {
   const AccountTypeRoute({List<PageRouteInfo>? children})
-    : super(AccountTypeRoute.name, initialChildren: children);
+      : super(AccountTypeRoute.name, initialChildren: children);
 
   static const String name = 'AccountTypeRoute';
 
@@ -30,7 +30,7 @@ class AccountTypeRoute extends PageRouteInfo<void> {
 /// [AddAddressScreen]
 class AddAddressRoute extends PageRouteInfo<void> {
   const AddAddressRoute({List<PageRouteInfo>? children})
-    : super(AddAddressRoute.name, initialChildren: children);
+      : super(AddAddressRoute.name, initialChildren: children);
 
   static const String name = 'AddAddressRoute';
 
@@ -46,7 +46,7 @@ class AddAddressRoute extends PageRouteInfo<void> {
 /// [AddExpenseScreen]
 class AddExpenseRoute extends PageRouteInfo<void> {
   const AddExpenseRoute({List<PageRouteInfo>? children})
-    : super(AddExpenseRoute.name, initialChildren: children);
+      : super(AddExpenseRoute.name, initialChildren: children);
 
   static const String name = 'AddExpenseRoute';
 
@@ -66,10 +66,10 @@ class AddMilestoneRoute extends PageRouteInfo<AddMilestoneRouteArgs> {
     required PayCycleContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         AddMilestoneRoute.name,
-         args: AddMilestoneRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
+          AddMilestoneRoute.name,
+          args: AddMilestoneRouteArgs(key: key, contract: contract),
+          initialChildren: children,
+        );
 
   static const String name = 'AddMilestoneRoute';
 
@@ -93,13 +93,23 @@ class AddMilestoneRouteArgs {
   String toString() {
     return 'AddMilestoneRouteArgs{key: $key, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AddMilestoneRouteArgs) return false;
+    return key == other.key && contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
 /// [AddressBookScreen]
 class AddressBookRoute extends PageRouteInfo<void> {
   const AddressBookRoute({List<PageRouteInfo>? children})
-    : super(AddressBookRoute.name, initialChildren: children);
+      : super(AddressBookRoute.name, initialChildren: children);
 
   static const String name = 'AddressBookRoute';
 
@@ -115,7 +125,7 @@ class AddressBookRoute extends PageRouteInfo<void> {
 /// [AddressDetailsScreen]
 class AddressDetailsRoute extends PageRouteInfo<void> {
   const AddressDetailsRoute({List<PageRouteInfo>? children})
-    : super(AddressDetailsRoute.name, initialChildren: children);
+      : super(AddressDetailsRoute.name, initialChildren: children);
 
   static const String name = 'AddressDetailsRoute';
 
@@ -131,7 +141,7 @@ class AddressDetailsRoute extends PageRouteInfo<void> {
 /// [AppAppearanceScreen]
 class AppAppearanceRoute extends PageRouteInfo<void> {
   const AppAppearanceRoute({List<PageRouteInfo>? children})
-    : super(AppAppearanceRoute.name, initialChildren: children);
+      : super(AppAppearanceRoute.name, initialChildren: children);
 
   static const String name = 'AppAppearanceRoute';
 
@@ -153,15 +163,15 @@ class AssetDepositRoute extends PageRouteInfo<AssetDepositRouteArgs> {
     required String address,
     List<PageRouteInfo>? children,
   }) : super(
-         AssetDepositRoute.name,
-         args: AssetDepositRouteArgs(
-           key: key,
-           asset: asset,
-           network: network,
-           address: address,
-         ),
-         initialChildren: children,
-       );
+          AssetDepositRoute.name,
+          args: AssetDepositRouteArgs(
+            key: key,
+            asset: asset,
+            network: network,
+            address: address,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'AssetDepositRoute';
 
@@ -199,6 +209,20 @@ class AssetDepositRouteArgs {
   String toString() {
     return 'AssetDepositRouteArgs{key: $key, asset: $asset, network: $network, address: $address}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AssetDepositRouteArgs) return false;
+    return key == other.key &&
+        asset == other.asset &&
+        network == other.network &&
+        address == other.address;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ asset.hashCode ^ network.hashCode ^ address.hashCode;
 }
 
 /// generated route for
@@ -210,10 +234,10 @@ class AssetDetailsRoute extends PageRouteInfo<AssetDetailsRouteArgs> {
     required Network network,
     List<PageRouteInfo>? children,
   }) : super(
-         AssetDetailsRoute.name,
-         args: AssetDetailsRouteArgs(key: key, asset: asset, network: network),
-         initialChildren: children,
-       );
+          AssetDetailsRoute.name,
+          args: AssetDetailsRouteArgs(key: key, asset: asset, network: network),
+          initialChildren: children,
+        );
 
   static const String name = 'AssetDetailsRoute';
 
@@ -247,6 +271,16 @@ class AssetDetailsRouteArgs {
   String toString() {
     return 'AssetDetailsRouteArgs{key: $key, asset: $asset, network: $network}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AssetDetailsRouteArgs) return false;
+    return key == other.key && asset == other.asset && network == other.network;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ asset.hashCode ^ network.hashCode;
 }
 
 /// generated route for
@@ -258,13 +292,13 @@ class CancelTimeOffRequestRoute
     required TimeOffDetail timeOffDetail,
     List<PageRouteInfo>? children,
   }) : super(
-         CancelTimeOffRequestRoute.name,
-         args: CancelTimeOffRequestRouteArgs(
-           key: key,
-           timeOffDetail: timeOffDetail,
-         ),
-         initialChildren: children,
-       );
+          CancelTimeOffRequestRoute.name,
+          args: CancelTimeOffRequestRouteArgs(
+            key: key,
+            timeOffDetail: timeOffDetail,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'CancelTimeOffRequestRoute';
 
@@ -291,13 +325,23 @@ class CancelTimeOffRequestRouteArgs {
   String toString() {
     return 'CancelTimeOffRequestRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CancelTimeOffRequestRouteArgs) return false;
+    return key == other.key && timeOffDetail == other.timeOffDetail;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timeOffDetail.hashCode;
 }
 
 /// generated route for
 /// [ChangePasswordScreen]
 class ChangePasswordRoute extends PageRouteInfo<void> {
   const ChangePasswordRoute({List<PageRouteInfo>? children})
-    : super(ChangePasswordRoute.name, initialChildren: children);
+      : super(ChangePasswordRoute.name, initialChildren: children);
 
   static const String name = 'ChangePasswordRoute';
 
@@ -317,10 +361,10 @@ class ConfirmNewPinCodeRoute extends PageRouteInfo<ConfirmNewPinCodeRouteArgs> {
     required String newPin,
     List<PageRouteInfo>? children,
   }) : super(
-         ConfirmNewPinCodeRoute.name,
-         args: ConfirmNewPinCodeRouteArgs(key: key, newPin: newPin),
-         initialChildren: children,
-       );
+          ConfirmNewPinCodeRoute.name,
+          args: ConfirmNewPinCodeRouteArgs(key: key, newPin: newPin),
+          initialChildren: children,
+        );
 
   static const String name = 'ConfirmNewPinCodeRoute';
 
@@ -344,6 +388,16 @@ class ConfirmNewPinCodeRouteArgs {
   String toString() {
     return 'ConfirmNewPinCodeRouteArgs{key: $key, newPin: $newPin}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ConfirmNewPinCodeRouteArgs) return false;
+    return key == other.key && newPin == other.newPin;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ newPin.hashCode;
 }
 
 /// generated route for
@@ -354,13 +408,13 @@ class ConfirmPaymentRoute extends PageRouteInfo<ConfirmPaymentRouteArgs> {
     WithdrawDetailsModel? withdrawDetails,
     List<PageRouteInfo>? children,
   }) : super(
-         ConfirmPaymentRoute.name,
-         args: ConfirmPaymentRouteArgs(
-           key: key,
-           withdrawDetails: withdrawDetails,
-         ),
-         initialChildren: children,
-       );
+          ConfirmPaymentRoute.name,
+          args: ConfirmPaymentRouteArgs(
+            key: key,
+            withdrawDetails: withdrawDetails,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'ConfirmPaymentRoute';
 
@@ -389,13 +443,23 @@ class ConfirmPaymentRouteArgs {
   String toString() {
     return 'ConfirmPaymentRouteArgs{key: $key, withdrawDetails: $withdrawDetails}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ConfirmPaymentRouteArgs) return false;
+    return key == other.key && withdrawDetails == other.withdrawDetails;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ withdrawDetails.hashCode;
 }
 
 /// generated route for
 /// [ConfirmPinScreen]
 class ConfirmPinRoute extends PageRouteInfo<void> {
   const ConfirmPinRoute({List<PageRouteInfo>? children})
-    : super(ConfirmPinRoute.name, initialChildren: children);
+      : super(ConfirmPinRoute.name, initialChildren: children);
 
   static const String name = 'ConfirmPinRoute';
 
@@ -415,10 +479,10 @@ class ContractDetailRoute extends PageRouteInfo<ContractDetailRouteArgs> {
     required PayCycleContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         ContractDetailRoute.name,
-         args: ContractDetailRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
+          ContractDetailRoute.name,
+          args: ContractDetailRouteArgs(key: key, contract: contract),
+          initialChildren: children,
+        );
 
   static const String name = 'ContractDetailRoute';
 
@@ -442,13 +506,23 @@ class ContractDetailRouteArgs {
   String toString() {
     return 'ContractDetailRouteArgs{key: $key, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ContractDetailRouteArgs) return false;
+    return key == other.key && contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
 /// [CreateAccountScreen]
 class CreateAccountRoute extends PageRouteInfo<void> {
   const CreateAccountRoute({List<PageRouteInfo>? children})
-    : super(CreateAccountRoute.name, initialChildren: children);
+      : super(CreateAccountRoute.name, initialChildren: children);
 
   static const String name = 'CreateAccountRoute';
 
@@ -464,7 +538,7 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 /// [CreateContractFlowScreen]
 class CreateContractFlowRoute extends PageRouteInfo<void> {
   const CreateContractFlowRoute({List<PageRouteInfo>? children})
-    : super(CreateContractFlowRoute.name, initialChildren: children);
+      : super(CreateContractFlowRoute.name, initialChildren: children);
 
   static const String name = 'CreateContractFlowRoute';
 
@@ -480,7 +554,7 @@ class CreateContractFlowRoute extends PageRouteInfo<void> {
 /// [CreateInvoiceFlowScreen]
 class CreateInvoiceFlowRoute extends PageRouteInfo<void> {
   const CreateInvoiceFlowRoute({List<PageRouteInfo>? children})
-    : super(CreateInvoiceFlowRoute.name, initialChildren: children);
+      : super(CreateInvoiceFlowRoute.name, initialChildren: children);
 
   static const String name = 'CreateInvoiceFlowRoute';
 
@@ -496,7 +570,7 @@ class CreateInvoiceFlowRoute extends PageRouteInfo<void> {
 /// [CreatePasswordScreen]
 class CreatePasswordRoute extends PageRouteInfo<void> {
   const CreatePasswordRoute({List<PageRouteInfo>? children})
-    : super(CreatePasswordRoute.name, initialChildren: children);
+      : super(CreatePasswordRoute.name, initialChildren: children);
 
   static const String name = 'CreatePasswordRoute';
 
@@ -512,7 +586,7 @@ class CreatePasswordRoute extends PageRouteInfo<void> {
 /// [CreatePinScreen]
 class CreatePinRoute extends PageRouteInfo<void> {
   const CreatePinRoute({List<PageRouteInfo>? children})
-    : super(CreatePinRoute.name, initialChildren: children);
+      : super(CreatePinRoute.name, initialChildren: children);
 
   static const String name = 'CreatePinRoute';
 
@@ -528,7 +602,7 @@ class CreatePinRoute extends PageRouteInfo<void> {
 /// [CurrentPinCodeScreen]
 class CurrentPinCodeRoute extends PageRouteInfo<void> {
   const CurrentPinCodeRoute({List<PageRouteInfo>? children})
-    : super(CurrentPinCodeRoute.name, initialChildren: children);
+      : super(CurrentPinCodeRoute.name, initialChildren: children);
 
   static const String name = 'CurrentPinCodeRoute';
 
@@ -544,7 +618,7 @@ class CurrentPinCodeRoute extends PageRouteInfo<void> {
 /// [DeleteAccountScreen]
 class DeleteAccountRoute extends PageRouteInfo<void> {
   const DeleteAccountRoute({List<PageRouteInfo>? children})
-    : super(DeleteAccountRoute.name, initialChildren: children);
+      : super(DeleteAccountRoute.name, initialChildren: children);
 
   static const String name = 'DeleteAccountRoute';
 
@@ -560,7 +634,7 @@ class DeleteAccountRoute extends PageRouteInfo<void> {
 /// [DeviceManagementScreen]
 class DeviceManagementRoute extends PageRouteInfo<void> {
   const DeviceManagementRoute({List<PageRouteInfo>? children})
-    : super(DeviceManagementRoute.name, initialChildren: children);
+      : super(DeviceManagementRoute.name, initialChildren: children);
 
   static const String name = 'DeviceManagementRoute';
 
@@ -576,7 +650,7 @@ class DeviceManagementRoute extends PageRouteInfo<void> {
 /// [EditAccountDetailsScreen]
 class EditAccountDetailsRoute extends PageRouteInfo<void> {
   const EditAccountDetailsRoute({List<PageRouteInfo>? children})
-    : super(EditAccountDetailsRoute.name, initialChildren: children);
+      : super(EditAccountDetailsRoute.name, initialChildren: children);
 
   static const String name = 'EditAccountDetailsRoute';
 
@@ -592,7 +666,7 @@ class EditAccountDetailsRoute extends PageRouteInfo<void> {
 /// [EditAddressDetailsScreen]
 class EditAddressDetailsRoute extends PageRouteInfo<void> {
   const EditAddressDetailsRoute({List<PageRouteInfo>? children})
-    : super(EditAddressDetailsRoute.name, initialChildren: children);
+      : super(EditAddressDetailsRoute.name, initialChildren: children);
 
   static const String name = 'EditAddressDetailsRoute';
 
@@ -608,7 +682,7 @@ class EditAddressDetailsRoute extends PageRouteInfo<void> {
 /// [EditProfileDetailsScreen]
 class EditProfileDetailsRoute extends PageRouteInfo<void> {
   const EditProfileDetailsRoute({List<PageRouteInfo>? children})
-    : super(EditProfileDetailsRoute.name, initialChildren: children);
+      : super(EditProfileDetailsRoute.name, initialChildren: children);
 
   static const String name = 'EditProfileDetailsRoute';
 
@@ -624,7 +698,7 @@ class EditProfileDetailsRoute extends PageRouteInfo<void> {
 /// [EditTaxInformationScreen]
 class EditTaxInformationRoute extends PageRouteInfo<void> {
   const EditTaxInformationRoute({List<PageRouteInfo>? children})
-    : super(EditTaxInformationRoute.name, initialChildren: children);
+      : super(EditTaxInformationRoute.name, initialChildren: children);
 
   static const String name = 'EditTaxInformationRoute';
 
@@ -645,13 +719,13 @@ class EditTimeOffRequestRoute
     required TimeOffDetail timeOffDetail,
     List<PageRouteInfo>? children,
   }) : super(
-         EditTimeOffRequestRoute.name,
-         args: EditTimeOffRequestRouteArgs(
-           key: key,
-           timeOffDetail: timeOffDetail,
-         ),
-         initialChildren: children,
-       );
+          EditTimeOffRequestRoute.name,
+          args: EditTimeOffRequestRouteArgs(
+            key: key,
+            timeOffDetail: timeOffDetail,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'EditTimeOffRequestRoute';
 
@@ -678,13 +752,23 @@ class EditTimeOffRequestRouteArgs {
   String toString() {
     return 'EditTimeOffRequestRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! EditTimeOffRequestRouteArgs) return false;
+    return key == other.key && timeOffDetail == other.timeOffDetail;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timeOffDetail.hashCode;
 }
 
 /// generated route for
 /// [EnableFaceIdScreen]
 class EnableFaceIdRoute extends PageRouteInfo<void> {
   const EnableFaceIdRoute({List<PageRouteInfo>? children})
-    : super(EnableFaceIdRoute.name, initialChildren: children);
+      : super(EnableFaceIdRoute.name, initialChildren: children);
 
   static const String name = 'EnableFaceIdRoute';
 
@@ -700,7 +784,7 @@ class EnableFaceIdRoute extends PageRouteInfo<void> {
 /// [EnableFingerprintScreen]
 class EnableFingerprintRoute extends PageRouteInfo<void> {
   const EnableFingerprintRoute({List<PageRouteInfo>? children})
-    : super(EnableFingerprintRoute.name, initialChildren: children);
+      : super(EnableFingerprintRoute.name, initialChildren: children);
 
   static const String name = 'EnableFingerprintRoute';
 
@@ -716,7 +800,7 @@ class EnableFingerprintRoute extends PageRouteInfo<void> {
 /// [EnablePushNotificationScreen]
 class EnablePushNotificationRoute extends PageRouteInfo<void> {
   const EnablePushNotificationRoute({List<PageRouteInfo>? children})
-    : super(EnablePushNotificationRoute.name, initialChildren: children);
+      : super(EnablePushNotificationRoute.name, initialChildren: children);
 
   static const String name = 'EnablePushNotificationRoute';
 
@@ -736,10 +820,10 @@ class ExpenseDetailsRoute extends PageRouteInfo<ExpenseDetailsRouteArgs> {
     required Expense expense,
     List<PageRouteInfo>? children,
   }) : super(
-         ExpenseDetailsRoute.name,
-         args: ExpenseDetailsRouteArgs(key: key, expense: expense),
-         initialChildren: children,
-       );
+          ExpenseDetailsRoute.name,
+          args: ExpenseDetailsRouteArgs(key: key, expense: expense),
+          initialChildren: children,
+        );
 
   static const String name = 'ExpenseDetailsRoute';
 
@@ -763,13 +847,23 @@ class ExpenseDetailsRouteArgs {
   String toString() {
     return 'ExpenseDetailsRouteArgs{key: $key, expense: $expense}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ExpenseDetailsRouteArgs) return false;
+    return key == other.key && expense == other.expense;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ expense.hashCode;
 }
 
 /// generated route for
 /// [ExpenseSubmittedScreen]
 class ExpenseSubmittedRoute extends PageRouteInfo<void> {
   const ExpenseSubmittedRoute({List<PageRouteInfo>? children})
-    : super(ExpenseSubmittedRoute.name, initialChildren: children);
+      : super(ExpenseSubmittedRoute.name, initialChildren: children);
 
   static const String name = 'ExpenseSubmittedRoute';
 
@@ -785,7 +879,7 @@ class ExpenseSubmittedRoute extends PageRouteInfo<void> {
 /// [ExpensesScreen]
 class ExpensesRoute extends PageRouteInfo<void> {
   const ExpensesRoute({List<PageRouteInfo>? children})
-    : super(ExpensesRoute.name, initialChildren: children);
+      : super(ExpensesRoute.name, initialChildren: children);
 
   static const String name = 'ExpensesRoute';
 
@@ -806,10 +900,10 @@ class ExpensesTimeOffDetailsRoute
     required Expense expense,
     List<PageRouteInfo>? children,
   }) : super(
-         ExpensesTimeOffDetailsRoute.name,
-         args: ExpensesTimeOffDetailsRouteArgs(key: key, expense: expense),
-         initialChildren: children,
-       );
+          ExpensesTimeOffDetailsRoute.name,
+          args: ExpensesTimeOffDetailsRouteArgs(key: key, expense: expense),
+          initialChildren: children,
+        );
 
   static const String name = 'ExpensesTimeOffDetailsRoute';
 
@@ -833,6 +927,16 @@ class ExpensesTimeOffDetailsRouteArgs {
   String toString() {
     return 'ExpensesTimeOffDetailsRouteArgs{key: $key, expense: $expense}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ExpensesTimeOffDetailsRouteArgs) return false;
+    return key == other.key && expense == other.expense;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ expense.hashCode;
 }
 
 /// generated route for
@@ -843,13 +947,13 @@ class ExportPrivateKeyRoute extends PageRouteInfo<ExportPrivateKeyRouteArgs> {
     required String walletAddress,
     List<PageRouteInfo>? children,
   }) : super(
-         ExportPrivateKeyRoute.name,
-         args: ExportPrivateKeyRouteArgs(
-           key: key,
-           walletAddress: walletAddress,
-         ),
-         initialChildren: children,
-       );
+          ExportPrivateKeyRoute.name,
+          args: ExportPrivateKeyRouteArgs(
+            key: key,
+            walletAddress: walletAddress,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'ExportPrivateKeyRoute';
 
@@ -876,13 +980,23 @@ class ExportPrivateKeyRouteArgs {
   String toString() {
     return 'ExportPrivateKeyRouteArgs{key: $key, walletAddress: $walletAddress}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ExportPrivateKeyRouteArgs) return false;
+    return key == other.key && walletAddress == other.walletAddress;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ walletAddress.hashCode;
 }
 
 /// generated route for
 /// [FinanceHomeScreen]
 class FinanceHomeRoute extends PageRouteInfo<void> {
   const FinanceHomeRoute({List<PageRouteInfo>? children})
-    : super(FinanceHomeRoute.name, initialChildren: children);
+      : super(FinanceHomeRoute.name, initialChildren: children);
 
   static const String name = 'FinanceHomeRoute';
 
@@ -898,7 +1012,7 @@ class FinanceHomeRoute extends PageRouteInfo<void> {
 /// [FinanceTabPage]
 class FinanceTabRoute extends PageRouteInfo<void> {
   const FinanceTabRoute({List<PageRouteInfo>? children})
-    : super(FinanceTabRoute.name, initialChildren: children);
+      : super(FinanceTabRoute.name, initialChildren: children);
 
   static const String name = 'FinanceTabRoute';
 
@@ -914,7 +1028,7 @@ class FinanceTabRoute extends PageRouteInfo<void> {
 /// [FundWalletScreen]
 class FundWalletRoute extends PageRouteInfo<void> {
   const FundWalletRoute({List<PageRouteInfo>? children})
-    : super(FundWalletRoute.name, initialChildren: children);
+      : super(FundWalletRoute.name, initialChildren: children);
 
   static const String name = 'FundWalletRoute';
 
@@ -930,7 +1044,7 @@ class FundWalletRoute extends PageRouteInfo<void> {
 /// [HelpFeedbackScreen]
 class HelpFeedbackRoute extends PageRouteInfo<void> {
   const HelpFeedbackRoute({List<PageRouteInfo>? children})
-    : super(HelpFeedbackRoute.name, initialChildren: children);
+      : super(HelpFeedbackRoute.name, initialChildren: children);
 
   static const String name = 'HelpFeedbackRoute';
 
@@ -946,7 +1060,7 @@ class HelpFeedbackRoute extends PageRouteInfo<void> {
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-    : super(HomeRoute.name, initialChildren: children);
+      : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -962,7 +1076,7 @@ class HomeRoute extends PageRouteInfo<void> {
 /// [HomeTabPage]
 class HomeTabRoute extends PageRouteInfo<void> {
   const HomeTabRoute({List<PageRouteInfo>? children})
-    : super(HomeTabRoute.name, initialChildren: children);
+      : super(HomeTabRoute.name, initialChildren: children);
 
   static const String name = 'HomeTabRoute';
 
@@ -982,10 +1096,10 @@ class InvoiceCompleteRoute extends PageRouteInfo<InvoiceCompleteRouteArgs> {
     required InvoiceData invoiceData,
     List<PageRouteInfo>? children,
   }) : super(
-         InvoiceCompleteRoute.name,
-         args: InvoiceCompleteRouteArgs(key: key, invoiceData: invoiceData),
-         initialChildren: children,
-       );
+          InvoiceCompleteRoute.name,
+          args: InvoiceCompleteRouteArgs(key: key, invoiceData: invoiceData),
+          initialChildren: children,
+        );
 
   static const String name = 'InvoiceCompleteRoute';
 
@@ -1012,6 +1126,16 @@ class InvoiceCompleteRouteArgs {
   String toString() {
     return 'InvoiceCompleteRouteArgs{key: $key, invoiceData: $invoiceData}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! InvoiceCompleteRouteArgs) return false;
+    return key == other.key && invoiceData == other.invoiceData;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ invoiceData.hashCode;
 }
 
 /// generated route for
@@ -1022,10 +1146,10 @@ class InvoiceDetailRoute extends PageRouteInfo<InvoiceDetailRouteArgs> {
     required Invoice invoice,
     List<PageRouteInfo>? children,
   }) : super(
-         InvoiceDetailRoute.name,
-         args: InvoiceDetailRouteArgs(key: key, invoice: invoice),
-         initialChildren: children,
-       );
+          InvoiceDetailRoute.name,
+          args: InvoiceDetailRouteArgs(key: key, invoice: invoice),
+          initialChildren: children,
+        );
 
   static const String name = 'InvoiceDetailRoute';
 
@@ -1049,13 +1173,23 @@ class InvoiceDetailRouteArgs {
   String toString() {
     return 'InvoiceDetailRouteArgs{key: $key, invoice: $invoice}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! InvoiceDetailRouteArgs) return false;
+    return key == other.key && invoice == other.invoice;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ invoice.hashCode;
 }
 
 /// generated route for
 /// [InvoicesScreen]
 class InvoicesRoute extends PageRouteInfo<void> {
   const InvoicesRoute({List<PageRouteInfo>? children})
-    : super(InvoicesRoute.name, initialChildren: children);
+      : super(InvoicesRoute.name, initialChildren: children);
 
   static const String name = 'InvoicesRoute';
 
@@ -1071,7 +1205,7 @@ class InvoicesRoute extends PageRouteInfo<void> {
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+      : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -1087,7 +1221,7 @@ class LoginRoute extends PageRouteInfo<void> {
 /// [MainShellScreen]
 class MainShellRoute extends PageRouteInfo<void> {
   const MainShellRoute({List<PageRouteInfo>? children})
-    : super(MainShellRoute.name, initialChildren: children);
+      : super(MainShellRoute.name, initialChildren: children);
 
   static const String name = 'MainShellRoute';
 
@@ -1103,7 +1237,7 @@ class MainShellRoute extends PageRouteInfo<void> {
 /// [ManageWalletScreen]
 class ManageWalletRoute extends PageRouteInfo<void> {
   const ManageWalletRoute({List<PageRouteInfo>? children})
-    : super(ManageWalletRoute.name, initialChildren: children);
+      : super(ManageWalletRoute.name, initialChildren: children);
 
   static const String name = 'ManageWalletRoute';
 
@@ -1125,15 +1259,15 @@ class MilestoneDetailRoute extends PageRouteInfo<MilestoneDetailRouteArgs> {
     String? clientName,
     List<PageRouteInfo>? children,
   }) : super(
-         MilestoneDetailRoute.name,
-         args: MilestoneDetailRouteArgs(
-           key: key,
-           milestone: milestone,
-           contractTitle: contractTitle,
-           clientName: clientName,
-         ),
-         initialChildren: children,
-       );
+          MilestoneDetailRoute.name,
+          args: MilestoneDetailRouteArgs(
+            key: key,
+            milestone: milestone,
+            contractTitle: contractTitle,
+            clientName: clientName,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'MilestoneDetailRoute';
 
@@ -1171,13 +1305,30 @@ class MilestoneDetailRouteArgs {
   String toString() {
     return 'MilestoneDetailRouteArgs{key: $key, milestone: $milestone, contractTitle: $contractTitle, clientName: $clientName}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MilestoneDetailRouteArgs) return false;
+    return key == other.key &&
+        milestone == other.milestone &&
+        contractTitle == other.contractTitle &&
+        clientName == other.clientName;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      milestone.hashCode ^
+      contractTitle.hashCode ^
+      clientName.hashCode;
 }
 
 /// generated route for
 /// [MoreScreen]
 class MoreRoute extends PageRouteInfo<void> {
   const MoreRoute({List<PageRouteInfo>? children})
-    : super(MoreRoute.name, initialChildren: children);
+      : super(MoreRoute.name, initialChildren: children);
 
   static const String name = 'MoreRoute';
 
@@ -1193,7 +1344,7 @@ class MoreRoute extends PageRouteInfo<void> {
 /// [MoreTabPage]
 class MoreTabRoute extends PageRouteInfo<void> {
   const MoreTabRoute({List<PageRouteInfo>? children})
-    : super(MoreTabRoute.name, initialChildren: children);
+      : super(MoreTabRoute.name, initialChildren: children);
 
   static const String name = 'MoreTabRoute';
 
@@ -1209,7 +1360,7 @@ class MoreTabRoute extends PageRouteInfo<void> {
 /// [MoreTwoFaAuthCodeScreen]
 class MoreTwoFaAuthCodeRoute extends PageRouteInfo<void> {
   const MoreTwoFaAuthCodeRoute({List<PageRouteInfo>? children})
-    : super(MoreTwoFaAuthCodeRoute.name, initialChildren: children);
+      : super(MoreTwoFaAuthCodeRoute.name, initialChildren: children);
 
   static const String name = 'MoreTwoFaAuthCodeRoute';
 
@@ -1225,7 +1376,7 @@ class MoreTwoFaAuthCodeRoute extends PageRouteInfo<void> {
 /// [NewPasswordScreen]
 class NewPasswordRoute extends PageRouteInfo<void> {
   const NewPasswordRoute({List<PageRouteInfo>? children})
-    : super(NewPasswordRoute.name, initialChildren: children);
+      : super(NewPasswordRoute.name, initialChildren: children);
 
   static const String name = 'NewPasswordRoute';
 
@@ -1241,7 +1392,7 @@ class NewPasswordRoute extends PageRouteInfo<void> {
 /// [NewPinCodeScreen]
 class NewPinCodeRoute extends PageRouteInfo<void> {
   const NewPinCodeRoute({List<PageRouteInfo>? children})
-    : super(NewPinCodeRoute.name, initialChildren: children);
+      : super(NewPinCodeRoute.name, initialChildren: children);
 
   static const String name = 'NewPinCodeRoute';
 
@@ -1257,7 +1408,7 @@ class NewPinCodeRoute extends PageRouteInfo<void> {
 /// [NewTimeOffRequestScreen]
 class NewTimeOffRequestRoute extends PageRouteInfo<void> {
   const NewTimeOffRequestRoute({List<PageRouteInfo>? children})
-    : super(NewTimeOffRequestRoute.name, initialChildren: children);
+      : super(NewTimeOffRequestRoute.name, initialChildren: children);
 
   static const String name = 'NewTimeOffRequestRoute';
 
@@ -1273,7 +1424,7 @@ class NewTimeOffRequestRoute extends PageRouteInfo<void> {
 /// [NotificationsScreen]
 class NotificationsRoute extends PageRouteInfo<void> {
   const NotificationsRoute({List<PageRouteInfo>? children})
-    : super(NotificationsRoute.name, initialChildren: children);
+      : super(NotificationsRoute.name, initialChildren: children);
 
   static const String name = 'NotificationsRoute';
 
@@ -1289,7 +1440,7 @@ class NotificationsRoute extends PageRouteInfo<void> {
 /// [OnboardingChecklistScreen]
 class OnboardingChecklistRoute extends PageRouteInfo<void> {
   const OnboardingChecklistRoute({List<PageRouteInfo>? children})
-    : super(OnboardingChecklistRoute.name, initialChildren: children);
+      : super(OnboardingChecklistRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingChecklistRoute';
 
@@ -1302,10 +1453,26 @@ class OnboardingChecklistRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OnboardingIntroScreen]
+class OnboardingIntroRoute extends PageRouteInfo<void> {
+  const OnboardingIntroRoute({List<PageRouteInfo>? children})
+      : super(OnboardingIntroRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingIntroRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingIntroScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [PasswordResetSuccessScreen]
 class PasswordResetSuccessRoute extends PageRouteInfo<void> {
   const PasswordResetSuccessRoute({List<PageRouteInfo>? children})
-    : super(PasswordResetSuccessRoute.name, initialChildren: children);
+      : super(PasswordResetSuccessRoute.name, initialChildren: children);
 
   static const String name = 'PasswordResetSuccessRoute';
 
@@ -1321,7 +1488,7 @@ class PasswordResetSuccessRoute extends PageRouteInfo<void> {
 /// [PayCycleContractsScreen]
 class PayCycleContractsRoute extends PageRouteInfo<void> {
   const PayCycleContractsRoute({List<PageRouteInfo>? children})
-    : super(PayCycleContractsRoute.name, initialChildren: children);
+      : super(PayCycleContractsRoute.name, initialChildren: children);
 
   static const String name = 'PayCycleContractsRoute';
 
@@ -1343,14 +1510,14 @@ class PayCycleSubmitHoursRoute
     WorkSubmission? initialSubmission,
     List<PageRouteInfo>? children,
   }) : super(
-         PayCycleSubmitHoursRoute.name,
-         args: PayCycleSubmitHoursRouteArgs(
-           key: key,
-           contract: contract,
-           initialSubmission: initialSubmission,
-         ),
-         initialChildren: children,
-       );
+          PayCycleSubmitHoursRoute.name,
+          args: PayCycleSubmitHoursRouteArgs(
+            key: key,
+            contract: contract,
+            initialSubmission: initialSubmission,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'PayCycleSubmitHoursRoute';
 
@@ -1384,6 +1551,19 @@ class PayCycleSubmitHoursRouteArgs {
   String toString() {
     return 'PayCycleSubmitHoursRouteArgs{key: $key, contract: $contract, initialSubmission: $initialSubmission}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PayCycleSubmitHoursRouteArgs) return false;
+    return key == other.key &&
+        contract == other.contract &&
+        initialSubmission == other.initialSubmission;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ contract.hashCode ^ initialSubmission.hashCode;
 }
 
 /// generated route for
@@ -1396,14 +1576,14 @@ class PayCycleSubmittedHoursDetailRoute
     required PayCycleContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         PayCycleSubmittedHoursDetailRoute.name,
-         args: PayCycleSubmittedHoursDetailRouteArgs(
-           key: key,
-           submission: submission,
-           contract: contract,
-         ),
-         initialChildren: children,
-       );
+          PayCycleSubmittedHoursDetailRoute.name,
+          args: PayCycleSubmittedHoursDetailRouteArgs(
+            key: key,
+            submission: submission,
+            contract: contract,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'PayCycleSubmittedHoursDetailRoute';
 
@@ -1437,6 +1617,18 @@ class PayCycleSubmittedHoursDetailRouteArgs {
   String toString() {
     return 'PayCycleSubmittedHoursDetailRouteArgs{key: $key, submission: $submission, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PayCycleSubmittedHoursDetailRouteArgs) return false;
+    return key == other.key &&
+        submission == other.submission &&
+        contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ submission.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
@@ -1447,10 +1639,10 @@ class PayoutDetailRoute extends PageRouteInfo<PayoutDetailRouteArgs> {
     required Payout payout,
     List<PageRouteInfo>? children,
   }) : super(
-         PayoutDetailRoute.name,
-         args: PayoutDetailRouteArgs(key: key, payout: payout),
-         initialChildren: children,
-       );
+          PayoutDetailRoute.name,
+          args: PayoutDetailRouteArgs(key: key, payout: payout),
+          initialChildren: children,
+        );
 
   static const String name = 'PayoutDetailRoute';
 
@@ -1474,13 +1666,23 @@ class PayoutDetailRouteArgs {
   String toString() {
     return 'PayoutDetailRouteArgs{key: $key, payout: $payout}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PayoutDetailRouteArgs) return false;
+    return key == other.key && payout == other.payout;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ payout.hashCode;
 }
 
 /// generated route for
 /// [PersonalDetailsScreen]
 class PersonalDetailsRoute extends PageRouteInfo<void> {
   const PersonalDetailsRoute({List<PageRouteInfo>? children})
-    : super(PersonalDetailsRoute.name, initialChildren: children);
+      : super(PersonalDetailsRoute.name, initialChildren: children);
 
   static const String name = 'PersonalDetailsRoute';
 
@@ -1496,7 +1698,7 @@ class PersonalDetailsRoute extends PageRouteInfo<void> {
 /// [PersonalDetailsViewScreen]
 class PersonalDetailsViewRoute extends PageRouteInfo<void> {
   const PersonalDetailsViewRoute({List<PageRouteInfo>? children})
-    : super(PersonalDetailsViewRoute.name, initialChildren: children);
+      : super(PersonalDetailsViewRoute.name, initialChildren: children);
 
   static const String name = 'PersonalDetailsViewRoute';
 
@@ -1517,14 +1719,14 @@ class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
     required BiometricType biometricType,
     List<PageRouteInfo>? children,
   }) : super(
-         PinCodeRoute.name,
-         args: PinCodeRouteArgs(
-           key: key,
-           userName: userName,
-           biometricType: biometricType,
-         ),
-         initialChildren: children,
-       );
+          PinCodeRoute.name,
+          args: PinCodeRouteArgs(
+            key: key,
+            userName: userName,
+            biometricType: biometricType,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'PinCodeRoute';
 
@@ -1558,13 +1760,25 @@ class PinCodeRouteArgs {
   String toString() {
     return 'PinCodeRouteArgs{key: $key, userName: $userName, biometricType: $biometricType}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PinCodeRouteArgs) return false;
+    return key == other.key &&
+        userName == other.userName &&
+        biometricType == other.biometricType;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ userName.hashCode ^ biometricType.hashCode;
 }
 
 /// generated route for
 /// [PinCreatedScreen]
 class PinCreatedRoute extends PageRouteInfo<void> {
   const PinCreatedRoute({List<PageRouteInfo>? children})
-    : super(PinCreatedRoute.name, initialChildren: children);
+      : super(PinCreatedRoute.name, initialChildren: children);
 
   static const String name = 'PinCreatedRoute';
 
@@ -1585,14 +1799,14 @@ class PrivateKeyRoute extends PageRouteInfo<PrivateKeyRouteArgs> {
     required String privateKey,
     List<PageRouteInfo>? children,
   }) : super(
-         PrivateKeyRoute.name,
-         args: PrivateKeyRouteArgs(
-           key: key,
-           walletAddress: walletAddress,
-           privateKey: privateKey,
-         ),
-         initialChildren: children,
-       );
+          PrivateKeyRoute.name,
+          args: PrivateKeyRouteArgs(
+            key: key,
+            walletAddress: walletAddress,
+            privateKey: privateKey,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'PrivateKeyRoute';
 
@@ -1626,13 +1840,26 @@ class PrivateKeyRouteArgs {
   String toString() {
     return 'PrivateKeyRouteArgs{key: $key, walletAddress: $walletAddress, privateKey: $privateKey}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PrivateKeyRouteArgs) return false;
+    return key == other.key &&
+        walletAddress == other.walletAddress &&
+        privateKey == other.privateKey;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ walletAddress.hashCode ^ privateKey.hashCode;
 }
 
 /// generated route for
 /// [ProcessingBvnRequestScreen]
 class ProcessingBvnRequestRoute extends PageRouteInfo<void> {
   const ProcessingBvnRequestRoute({List<PageRouteInfo>? children})
-    : super(ProcessingBvnRequestRoute.name, initialChildren: children);
+      : super(ProcessingBvnRequestRoute.name, initialChildren: children);
 
   static const String name = 'ProcessingBvnRequestRoute';
 
@@ -1648,7 +1875,7 @@ class ProcessingBvnRequestRoute extends PageRouteInfo<void> {
 /// [ProfileCreatedSucessScreen]
 class ProfileCreatedSucessRoute extends PageRouteInfo<void> {
   const ProfileCreatedSucessRoute({List<PageRouteInfo>? children})
-    : super(ProfileCreatedSucessRoute.name, initialChildren: children);
+      : super(ProfileCreatedSucessRoute.name, initialChildren: children);
 
   static const String name = 'ProfileCreatedSucessRoute';
 
@@ -1664,7 +1891,7 @@ class ProfileCreatedSucessRoute extends PageRouteInfo<void> {
 /// [ProvideBvnScreen]
 class ProvideBvnRoute extends PageRouteInfo<void> {
   const ProvideBvnRoute({List<PageRouteInfo>? children})
-    : super(ProvideBvnRoute.name, initialChildren: children);
+      : super(ProvideBvnRoute.name, initialChildren: children);
 
   static const String name = 'ProvideBvnRoute';
 
@@ -1680,7 +1907,7 @@ class ProvideBvnRoute extends PageRouteInfo<void> {
 /// [QuickPayHomeScreen]
 class QuickPayHomeRoute extends PageRouteInfo<void> {
   const QuickPayHomeRoute({List<PageRouteInfo>? children})
-    : super(QuickPayHomeRoute.name, initialChildren: children);
+      : super(QuickPayHomeRoute.name, initialChildren: children);
 
   static const String name = 'QuickPayHomeRoute';
 
@@ -1701,10 +1928,10 @@ class ReceivePaymentDoneRoute
     required ReceiveParams args,
     List<PageRouteInfo>? children,
   }) : super(
-         ReceivePaymentDoneRoute.name,
-         args: ReceivePaymentDoneRouteArgs(key: key, args: args),
-         initialChildren: children,
-       );
+          ReceivePaymentDoneRoute.name,
+          args: ReceivePaymentDoneRouteArgs(key: key, args: args),
+          initialChildren: children,
+        );
 
   static const String name = 'ReceivePaymentDoneRoute';
 
@@ -1728,13 +1955,23 @@ class ReceivePaymentDoneRouteArgs {
   String toString() {
     return 'ReceivePaymentDoneRouteArgs{key: $key, args: $args}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ReceivePaymentDoneRouteArgs) return false;
+    return key == other.key && args == other.args;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ args.hashCode;
 }
 
 /// generated route for
 /// [ReceivePaymentScreen]
 class ReceivePaymentRoute extends PageRouteInfo<void> {
   const ReceivePaymentRoute({List<PageRouteInfo>? children})
-    : super(ReceivePaymentRoute.name, initialChildren: children);
+      : super(ReceivePaymentRoute.name, initialChildren: children);
 
   static const String name = 'ReceivePaymentRoute';
 
@@ -1750,7 +1987,7 @@ class ReceivePaymentRoute extends PageRouteInfo<void> {
 /// [ReceiveScreen]
 class ReceiveRoute extends PageRouteInfo<void> {
   const ReceiveRoute({List<PageRouteInfo>? children})
-    : super(ReceiveRoute.name, initialChildren: children);
+      : super(ReceiveRoute.name, initialChildren: children);
 
   static const String name = 'ReceiveRoute';
 
@@ -1770,10 +2007,10 @@ class RequestChangeRoute extends PageRouteInfo<RequestChangeRouteArgs> {
     required TimeOffDetail timeOffDetail,
     List<PageRouteInfo>? children,
   }) : super(
-         RequestChangeRoute.name,
-         args: RequestChangeRouteArgs(key: key, timeOffDetail: timeOffDetail),
-         initialChildren: children,
-       );
+          RequestChangeRoute.name,
+          args: RequestChangeRouteArgs(key: key, timeOffDetail: timeOffDetail),
+          initialChildren: children,
+        );
 
   static const String name = 'RequestChangeRoute';
 
@@ -1800,6 +2037,16 @@ class RequestChangeRouteArgs {
   String toString() {
     return 'RequestChangeRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RequestChangeRouteArgs) return false;
+    return key == other.key && timeOffDetail == other.timeOffDetail;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timeOffDetail.hashCode;
 }
 
 /// generated route for
@@ -1812,14 +2059,14 @@ class RequestTerminationRoute
     required String noticePeriod,
     List<PageRouteInfo>? children,
   }) : super(
-         RequestTerminationRoute.name,
-         args: RequestTerminationRouteArgs(
-           key: key,
-           clientName: clientName,
-           noticePeriod: noticePeriod,
-         ),
-         initialChildren: children,
-       );
+          RequestTerminationRoute.name,
+          args: RequestTerminationRouteArgs(
+            key: key,
+            clientName: clientName,
+            noticePeriod: noticePeriod,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'RequestTerminationRoute';
 
@@ -1853,13 +2100,26 @@ class RequestTerminationRouteArgs {
   String toString() {
     return 'RequestTerminationRouteArgs{key: $key, clientName: $clientName, noticePeriod: $noticePeriod}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RequestTerminationRouteArgs) return false;
+    return key == other.key &&
+        clientName == other.clientName &&
+        noticePeriod == other.noticePeriod;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ clientName.hashCode ^ noticePeriod.hashCode;
 }
 
 /// generated route for
 /// [ResetPasswordScreen]
 class ResetPasswordRoute extends PageRouteInfo<void> {
   const ResetPasswordRoute({List<PageRouteInfo>? children})
-    : super(ResetPasswordRoute.name, initialChildren: children);
+      : super(ResetPasswordRoute.name, initialChildren: children);
 
   static const String name = 'ResetPasswordRoute';
 
@@ -1879,10 +2139,10 @@ class ResubmitHoursRoute extends PageRouteInfo<ResubmitHoursRouteArgs> {
     required SubmittedTimesheet timesheet,
     List<PageRouteInfo>? children,
   }) : super(
-         ResubmitHoursRoute.name,
-         args: ResubmitHoursRouteArgs(key: key, timesheet: timesheet),
-         initialChildren: children,
-       );
+          ResubmitHoursRoute.name,
+          args: ResubmitHoursRouteArgs(key: key, timesheet: timesheet),
+          initialChildren: children,
+        );
 
   static const String name = 'ResubmitHoursRoute';
 
@@ -1906,13 +2166,23 @@ class ResubmitHoursRouteArgs {
   String toString() {
     return 'ResubmitHoursRouteArgs{key: $key, timesheet: $timesheet}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ResubmitHoursRouteArgs) return false;
+    return key == other.key && timesheet == other.timesheet;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timesheet.hashCode;
 }
 
 /// generated route for
 /// [SampleBottomSheetScreen]
 class SampleBottomSheetRoute extends PageRouteInfo<void> {
   const SampleBottomSheetRoute({List<PageRouteInfo>? children})
-    : super(SampleBottomSheetRoute.name, initialChildren: children);
+      : super(SampleBottomSheetRoute.name, initialChildren: children);
 
   static const String name = 'SampleBottomSheetRoute';
 
@@ -1932,10 +2202,10 @@ class SelectAssetRoute extends PageRouteInfo<SelectAssetRouteArgs> {
     bool forReceive = false,
     List<PageRouteInfo>? children,
   }) : super(
-         SelectAssetRoute.name,
-         args: SelectAssetRouteArgs(key: key, forReceive: forReceive),
-         initialChildren: children,
-       );
+          SelectAssetRoute.name,
+          args: SelectAssetRouteArgs(key: key, forReceive: forReceive),
+          initialChildren: children,
+        );
 
   static const String name = 'SelectAssetRoute';
 
@@ -1961,13 +2231,23 @@ class SelectAssetRouteArgs {
   String toString() {
     return 'SelectAssetRouteArgs{key: $key, forReceive: $forReceive}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SelectAssetRouteArgs) return false;
+    return key == other.key && forReceive == other.forReceive;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ forReceive.hashCode;
 }
 
 /// generated route for
 /// [SelectIdCountryScreen]
 class SelectIdCountryRoute extends PageRouteInfo<void> {
   const SelectIdCountryRoute({List<PageRouteInfo>? children})
-    : super(SelectIdCountryRoute.name, initialChildren: children);
+      : super(SelectIdCountryRoute.name, initialChildren: children);
 
   static const String name = 'SelectIdCountryRoute';
 
@@ -1988,14 +2268,14 @@ class SelectNetworkRoute extends PageRouteInfo<SelectNetworkRouteArgs> {
     NetworkAsset? selectedAsset,
     List<PageRouteInfo>? children,
   }) : super(
-         SelectNetworkRoute.name,
-         args: SelectNetworkRouteArgs(
-           key: key,
-           forDeposit: forDeposit,
-           selectedAsset: selectedAsset,
-         ),
-         initialChildren: children,
-       );
+          SelectNetworkRoute.name,
+          args: SelectNetworkRouteArgs(
+            key: key,
+            forDeposit: forDeposit,
+            selectedAsset: selectedAsset,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'SelectNetworkRoute';
 
@@ -2031,13 +2311,26 @@ class SelectNetworkRouteArgs {
   String toString() {
     return 'SelectNetworkRouteArgs{key: $key, forDeposit: $forDeposit, selectedAsset: $selectedAsset}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SelectNetworkRouteArgs) return false;
+    return key == other.key &&
+        forDeposit == other.forDeposit &&
+        selectedAsset == other.selectedAsset;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ forDeposit.hashCode ^ selectedAsset.hashCode;
 }
 
 /// generated route for
 /// [SentScreen]
 class SentRoute extends PageRouteInfo<void> {
   const SentRoute({List<PageRouteInfo>? children})
-    : super(SentRoute.name, initialChildren: children);
+      : super(SentRoute.name, initialChildren: children);
 
   static const String name = 'SentRoute';
 
@@ -2053,7 +2346,7 @@ class SentRoute extends PageRouteInfo<void> {
 /// [SetupInstructionsScreen]
 class SetupInstructionsRoute extends PageRouteInfo<void> {
   const SetupInstructionsRoute({List<PageRouteInfo>? children})
-    : super(SetupInstructionsRoute.name, initialChildren: children);
+      : super(SetupInstructionsRoute.name, initialChildren: children);
 
   static const String name = 'SetupInstructionsRoute';
 
@@ -2069,7 +2362,7 @@ class SetupInstructionsRoute extends PageRouteInfo<void> {
 /// [SetupTwoFaScreen]
 class SetupTwoFaRoute extends PageRouteInfo<void> {
   const SetupTwoFaRoute({List<PageRouteInfo>? children})
-    : super(SetupTwoFaRoute.name, initialChildren: children);
+      : super(SetupTwoFaRoute.name, initialChildren: children);
 
   static const String name = 'SetupTwoFaRoute';
 
@@ -2085,7 +2378,7 @@ class SetupTwoFaRoute extends PageRouteInfo<void> {
 /// [SocialMediaScreen]
 class SocialMediaRoute extends PageRouteInfo<void> {
   const SocialMediaRoute({List<PageRouteInfo>? children})
-    : super(SocialMediaRoute.name, initialChildren: children);
+      : super(SocialMediaRoute.name, initialChildren: children);
 
   static const String name = 'SocialMediaRoute';
 
@@ -2105,10 +2398,10 @@ class SubmitHoursRoute extends PageRouteInfo<SubmitHoursRouteArgs> {
     required TimeTrackingContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         SubmitHoursRoute.name,
-         args: SubmitHoursRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
+          SubmitHoursRoute.name,
+          args: SubmitHoursRouteArgs(key: key, contract: contract),
+          initialChildren: children,
+        );
 
   static const String name = 'SubmitHoursRoute';
 
@@ -2132,6 +2425,16 @@ class SubmitHoursRouteArgs {
   String toString() {
     return 'SubmitHoursRouteArgs{key: $key, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SubmitHoursRouteArgs) return false;
+    return key == other.key && contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
@@ -2143,10 +2446,10 @@ class SubmittedHoursDetailRoute
     required SubmittedTimesheet timesheet,
     List<PageRouteInfo>? children,
   }) : super(
-         SubmittedHoursDetailRoute.name,
-         args: SubmittedHoursDetailRouteArgs(key: key, timesheet: timesheet),
-         initialChildren: children,
-       );
+          SubmittedHoursDetailRoute.name,
+          args: SubmittedHoursDetailRouteArgs(key: key, timesheet: timesheet),
+          initialChildren: children,
+        );
 
   static const String name = 'SubmittedHoursDetailRoute';
 
@@ -2173,13 +2476,23 @@ class SubmittedHoursDetailRouteArgs {
   String toString() {
     return 'SubmittedHoursDetailRouteArgs{key: $key, timesheet: $timesheet}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SubmittedHoursDetailRouteArgs) return false;
+    return key == other.key && timesheet == other.timesheet;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timesheet.hashCode;
 }
 
 /// generated route for
 /// [TaxInformationScreen]
 class TaxInformationRoute extends PageRouteInfo<void> {
   const TaxInformationRoute({List<PageRouteInfo>? children})
-    : super(TaxInformationRoute.name, initialChildren: children);
+      : super(TaxInformationRoute.name, initialChildren: children);
 
   static const String name = 'TaxInformationRoute';
 
@@ -2195,11 +2508,11 @@ class TaxInformationRoute extends PageRouteInfo<void> {
 /// [TimeOffContractsScreen]
 class TimeOffContractsRoute extends PageRouteInfo<TimeOffContractsRouteArgs> {
   TimeOffContractsRoute({Key? key, List<PageRouteInfo>? children})
-    : super(
-        TimeOffContractsRoute.name,
-        args: TimeOffContractsRouteArgs(key: key),
-        initialChildren: children,
-      );
+      : super(
+          TimeOffContractsRoute.name,
+          args: TimeOffContractsRouteArgs(key: key),
+          initialChildren: children,
+        );
 
   static const String name = 'TimeOffContractsRoute';
 
@@ -2223,6 +2536,16 @@ class TimeOffContractsRouteArgs {
   String toString() {
     return 'TimeOffContractsRouteArgs{key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TimeOffContractsRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
@@ -2233,10 +2556,10 @@ class TimeOffDetailRoute extends PageRouteInfo<TimeOffDetailRouteArgs> {
     required TimeOffDetail timeOffDetail,
     List<PageRouteInfo>? children,
   }) : super(
-         TimeOffDetailRoute.name,
-         args: TimeOffDetailRouteArgs(key: key, timeOffDetail: timeOffDetail),
-         initialChildren: children,
-       );
+          TimeOffDetailRoute.name,
+          args: TimeOffDetailRouteArgs(key: key, timeOffDetail: timeOffDetail),
+          initialChildren: children,
+        );
 
   static const String name = 'TimeOffDetailRoute';
 
@@ -2263,6 +2586,16 @@ class TimeOffDetailRouteArgs {
   String toString() {
     return 'TimeOffDetailRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TimeOffDetailRouteArgs) return false;
+    return key == other.key && timeOffDetail == other.timeOffDetail;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ timeOffDetail.hashCode;
 }
 
 /// generated route for
@@ -2273,10 +2606,10 @@ class TimeOffDetailsRoute extends PageRouteInfo<TimeOffDetailsRouteArgs> {
     required String contractTitle,
     List<PageRouteInfo>? children,
   }) : super(
-         TimeOffDetailsRoute.name,
-         args: TimeOffDetailsRouteArgs(key: key, contractTitle: contractTitle),
-         initialChildren: children,
-       );
+          TimeOffDetailsRoute.name,
+          args: TimeOffDetailsRouteArgs(key: key, contractTitle: contractTitle),
+          initialChildren: children,
+        );
 
   static const String name = 'TimeOffDetailsRoute';
 
@@ -2303,13 +2636,23 @@ class TimeOffDetailsRouteArgs {
   String toString() {
     return 'TimeOffDetailsRouteArgs{key: $key, contractTitle: $contractTitle}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TimeOffDetailsRouteArgs) return false;
+    return key == other.key && contractTitle == other.contractTitle;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contractTitle.hashCode;
 }
 
 /// generated route for
 /// [TimeOffHistoryScreen]
 class TimeOffHistoryRoute extends PageRouteInfo<void> {
   const TimeOffHistoryRoute({List<PageRouteInfo>? children})
-    : super(TimeOffHistoryRoute.name, initialChildren: children);
+      : super(TimeOffHistoryRoute.name, initialChildren: children);
 
   static const String name = 'TimeOffHistoryRoute';
 
@@ -2329,10 +2672,10 @@ class TimeOffRoute extends PageRouteInfo<TimeOffRouteArgs> {
     required String contractTitle,
     List<PageRouteInfo>? children,
   }) : super(
-         TimeOffRoute.name,
-         args: TimeOffRouteArgs(key: key, contractTitle: contractTitle),
-         initialChildren: children,
-       );
+          TimeOffRoute.name,
+          args: TimeOffRouteArgs(key: key, contractTitle: contractTitle),
+          initialChildren: children,
+        );
 
   static const String name = 'TimeOffRoute';
 
@@ -2356,13 +2699,23 @@ class TimeOffRouteArgs {
   String toString() {
     return 'TimeOffRouteArgs{key: $key, contractTitle: $contractTitle}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TimeOffRouteArgs) return false;
+    return key == other.key && contractTitle == other.contractTitle;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contractTitle.hashCode;
 }
 
 /// generated route for
 /// [TimeTrackingContractsScreen]
 class TimeTrackingContractsRoute extends PageRouteInfo<void> {
   const TimeTrackingContractsRoute({List<PageRouteInfo>? children})
-    : super(TimeTrackingContractsRoute.name, initialChildren: children);
+      : super(TimeTrackingContractsRoute.name, initialChildren: children);
 
   static const String name = 'TimeTrackingContractsRoute';
 
@@ -2382,10 +2735,10 @@ class TimeTrackingRoute extends PageRouteInfo<TimeTrackingRouteArgs> {
     required TimeTrackingContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         TimeTrackingRoute.name,
-         args: TimeTrackingRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
+          TimeTrackingRoute.name,
+          args: TimeTrackingRouteArgs(key: key, contract: contract),
+          initialChildren: children,
+        );
 
   static const String name = 'TimeTrackingRoute';
 
@@ -2409,6 +2762,16 @@ class TimeTrackingRouteArgs {
   String toString() {
     return 'TimeTrackingRouteArgs{key: $key, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TimeTrackingRouteArgs) return false;
+    return key == other.key && contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
@@ -2419,10 +2782,10 @@ class TransactionRoute extends PageRouteInfo<TransactionRouteArgs> {
     required QuickPayment args,
     List<PageRouteInfo>? children,
   }) : super(
-         TransactionRoute.name,
-         args: TransactionRouteArgs(key: key, args: args),
-         initialChildren: children,
-       );
+          TransactionRoute.name,
+          args: TransactionRouteArgs(key: key, args: args),
+          initialChildren: children,
+        );
 
   static const String name = 'TransactionRoute';
 
@@ -2446,13 +2809,23 @@ class TransactionRouteArgs {
   String toString() {
     return 'TransactionRouteArgs{key: $key, args: $args}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TransactionRouteArgs) return false;
+    return key == other.key && args == other.args;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ args.hashCode;
 }
 
 /// generated route for
 /// [TransactionsScreen]
 class TransactionsRoute extends PageRouteInfo<void> {
   const TransactionsRoute({List<PageRouteInfo>? children})
-    : super(TransactionsRoute.name, initialChildren: children);
+      : super(TransactionsRoute.name, initialChildren: children);
 
   static const String name = 'TransactionsRoute';
 
@@ -2468,7 +2841,7 @@ class TransactionsRoute extends PageRouteInfo<void> {
 /// [TwoFaAuthScreen]
 class TwoFaAuthRoute extends PageRouteInfo<void> {
   const TwoFaAuthRoute({List<PageRouteInfo>? children})
-    : super(TwoFaAuthRoute.name, initialChildren: children);
+      : super(TwoFaAuthRoute.name, initialChildren: children);
 
   static const String name = 'TwoFaAuthRoute';
 
@@ -2484,7 +2857,7 @@ class TwoFaAuthRoute extends PageRouteInfo<void> {
 /// [TwoFaSetupCompleteScreen]
 class TwoFaSetupCompleteRoute extends PageRouteInfo<void> {
   const TwoFaSetupCompleteRoute({List<PageRouteInfo>? children})
-    : super(TwoFaSetupCompleteRoute.name, initialChildren: children);
+      : super(TwoFaSetupCompleteRoute.name, initialChildren: children);
 
   static const String name = 'TwoFaSetupCompleteRoute';
 
@@ -2501,11 +2874,11 @@ class TwoFaSetupCompleteRoute extends PageRouteInfo<void> {
 class UnpaidTimeOffBalanceRoute
     extends PageRouteInfo<UnpaidTimeOffBalanceRouteArgs> {
   UnpaidTimeOffBalanceRoute({Key? key, List<PageRouteInfo>? children})
-    : super(
-        UnpaidTimeOffBalanceRoute.name,
-        args: UnpaidTimeOffBalanceRouteArgs(key: key),
-        initialChildren: children,
-      );
+      : super(
+          UnpaidTimeOffBalanceRoute.name,
+          args: UnpaidTimeOffBalanceRouteArgs(key: key),
+          initialChildren: children,
+        );
 
   static const String name = 'UnpaidTimeOffBalanceRoute';
 
@@ -2529,13 +2902,23 @@ class UnpaidTimeOffBalanceRouteArgs {
   String toString() {
     return 'UnpaidTimeOffBalanceRouteArgs{key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UnpaidTimeOffBalanceRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
 /// [UpcomingPaymentsScreen]
 class UpcomingPaymentsRoute extends PageRouteInfo<void> {
   const UpcomingPaymentsRoute({List<PageRouteInfo>? children})
-    : super(UpcomingPaymentsRoute.name, initialChildren: children);
+      : super(UpcomingPaymentsRoute.name, initialChildren: children);
 
   static const String name = 'UpcomingPaymentsRoute';
 
@@ -2551,7 +2934,7 @@ class UpcomingPaymentsRoute extends PageRouteInfo<void> {
 /// [VerificationInProgressScreen]
 class VerificationInProgressRoute extends PageRouteInfo<void> {
   const VerificationInProgressRoute({List<PageRouteInfo>? children})
-    : super(VerificationInProgressRoute.name, initialChildren: children);
+      : super(VerificationInProgressRoute.name, initialChildren: children);
 
   static const String name = 'VerificationInProgressRoute';
 
@@ -2567,7 +2950,7 @@ class VerificationInProgressRoute extends PageRouteInfo<void> {
 /// [VerifyAccountScreen]
 class VerifyAccountRoute extends PageRouteInfo<void> {
   const VerifyAccountRoute({List<PageRouteInfo>? children})
-    : super(VerifyAccountRoute.name, initialChildren: children);
+      : super(VerifyAccountRoute.name, initialChildren: children);
 
   static const String name = 'VerifyAccountRoute';
 
@@ -2583,7 +2966,7 @@ class VerifyAccountRoute extends PageRouteInfo<void> {
 /// [VerifyIdentityScreen]
 class VerifyIdentityRoute extends PageRouteInfo<void> {
   const VerifyIdentityRoute({List<PageRouteInfo>? children})
-    : super(VerifyIdentityRoute.name, initialChildren: children);
+      : super(VerifyIdentityRoute.name, initialChildren: children);
 
   static const String name = 'VerifyIdentityRoute';
 
@@ -2599,7 +2982,7 @@ class VerifyIdentityRoute extends PageRouteInfo<void> {
 /// [VerifyOtpScreen]
 class VerifyOtpRoute extends PageRouteInfo<void> {
   const VerifyOtpRoute({List<PageRouteInfo>? children})
-    : super(VerifyOtpRoute.name, initialChildren: children);
+      : super(VerifyOtpRoute.name, initialChildren: children);
 
   static const String name = 'VerifyOtpRoute';
 
@@ -2619,10 +3002,10 @@ class ViewContractRoute extends PageRouteInfo<ViewContractRouteArgs> {
     required TimeTrackingContract contract,
     List<PageRouteInfo>? children,
   }) : super(
-         ViewContractRoute.name,
-         args: ViewContractRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
+          ViewContractRoute.name,
+          args: ViewContractRouteArgs(key: key, contract: contract),
+          initialChildren: children,
+        );
 
   static const String name = 'ViewContractRoute';
 
@@ -2646,6 +3029,16 @@ class ViewContractRouteArgs {
   String toString() {
     return 'ViewContractRouteArgs{key: $key, contract: $contract}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ViewContractRouteArgs) return false;
+    return key == other.key && contract == other.contract;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ contract.hashCode;
 }
 
 /// generated route for
@@ -2659,16 +3052,16 @@ class WalletDetailRoute extends PageRouteInfo<WalletDetailRouteArgs> {
     required String balance,
     List<PageRouteInfo>? children,
   }) : super(
-         WalletDetailRoute.name,
-         args: WalletDetailRouteArgs(
-           key: key,
-           walletAddress: walletAddress,
-           shortAddress: shortAddress,
-           walletType: walletType,
-           balance: balance,
-         ),
-         initialChildren: children,
-       );
+          WalletDetailRoute.name,
+          args: WalletDetailRouteArgs(
+            key: key,
+            walletAddress: walletAddress,
+            shortAddress: shortAddress,
+            walletType: walletType,
+            balance: balance,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'WalletDetailRoute';
 
@@ -2710,13 +3103,32 @@ class WalletDetailRouteArgs {
   String toString() {
     return 'WalletDetailRouteArgs{key: $key, walletAddress: $walletAddress, shortAddress: $shortAddress, walletType: $walletType, balance: $balance}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WalletDetailRouteArgs) return false;
+    return key == other.key &&
+        walletAddress == other.walletAddress &&
+        shortAddress == other.shortAddress &&
+        walletType == other.walletType &&
+        balance == other.balance;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      walletAddress.hashCode ^
+      shortAddress.hashCode ^
+      walletType.hashCode ^
+      balance.hashCode;
 }
 
 /// generated route for
 /// [Web3authTestScreen]
 class Web3authTestRoute extends PageRouteInfo<void> {
   const Web3authTestRoute({List<PageRouteInfo>? children})
-    : super(Web3authTestRoute.name, initialChildren: children);
+      : super(Web3authTestRoute.name, initialChildren: children);
 
   static const String name = 'Web3authTestRoute';
 
@@ -2736,13 +3148,13 @@ class WithdrawPreviewRoute extends PageRouteInfo<WithdrawPreviewRouteArgs> {
     WithdrawDetailsModel? withdrawDetails,
     List<PageRouteInfo>? children,
   }) : super(
-         WithdrawPreviewRoute.name,
-         args: WithdrawPreviewRouteArgs(
-           key: key,
-           withdrawDetails: withdrawDetails,
-         ),
-         initialChildren: children,
-       );
+          WithdrawPreviewRoute.name,
+          args: WithdrawPreviewRouteArgs(
+            key: key,
+            withdrawDetails: withdrawDetails,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'WithdrawPreviewRoute';
 
@@ -2771,13 +3183,23 @@ class WithdrawPreviewRouteArgs {
   String toString() {
     return 'WithdrawPreviewRouteArgs{key: $key, withdrawDetails: $withdrawDetails}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WithdrawPreviewRouteArgs) return false;
+    return key == other.key && withdrawDetails == other.withdrawDetails;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ withdrawDetails.hashCode;
 }
 
 /// generated route for
 /// [WithdrawScreen]
 class WithdrawRoute extends PageRouteInfo<void> {
   const WithdrawRoute({List<PageRouteInfo>? children})
-    : super(WithdrawRoute.name, initialChildren: children);
+      : super(WithdrawRoute.name, initialChildren: children);
 
   static const String name = 'WithdrawRoute';
 
@@ -2793,7 +3215,7 @@ class WithdrawRoute extends PageRouteInfo<void> {
 /// [WorkspaceContractsScreen]
 class WorkspaceContractsRoute extends PageRouteInfo<void> {
   const WorkspaceContractsRoute({List<PageRouteInfo>? children})
-    : super(WorkspaceContractsRoute.name, initialChildren: children);
+      : super(WorkspaceContractsRoute.name, initialChildren: children);
 
   static const String name = 'WorkspaceContractsRoute';
 
@@ -2809,7 +3231,7 @@ class WorkspaceContractsRoute extends PageRouteInfo<void> {
 /// [WorkspaceScreen]
 class WorkspaceRoute extends PageRouteInfo<void> {
   const WorkspaceRoute({List<PageRouteInfo>? children})
-    : super(WorkspaceRoute.name, initialChildren: children);
+      : super(WorkspaceRoute.name, initialChildren: children);
 
   static const String name = 'WorkspaceRoute';
 
@@ -2825,7 +3247,7 @@ class WorkspaceRoute extends PageRouteInfo<void> {
 /// [WorkspaceTabPage]
 class WorkspaceTabRoute extends PageRouteInfo<void> {
   const WorkspaceTabRoute({List<PageRouteInfo>? children})
-    : super(WorkspaceTabRoute.name, initialChildren: children);
+      : super(WorkspaceTabRoute.name, initialChildren: children);
 
   static const String name = 'WorkspaceTabRoute';
 

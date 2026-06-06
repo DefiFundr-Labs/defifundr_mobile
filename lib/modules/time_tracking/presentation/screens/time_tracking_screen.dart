@@ -295,9 +295,9 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
       case TimeOffStatus.approved:
         return 'Completed user authentication system with OAuth integration and security improvements.';
       case TimeOffStatus.rejected:
-        return 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
+        return 'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
       case TimeOffStatus.pending:
-        return 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
+        return 'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.';
       case TimeOffStatus.used:
         return 'Work completed as per requirements.';
     }

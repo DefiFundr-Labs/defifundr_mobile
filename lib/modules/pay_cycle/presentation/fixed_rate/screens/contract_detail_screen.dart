@@ -667,7 +667,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
                           invoiceNumber: item.invoiceNumber,
                           description: isDeliverable
                               ? 'Deliverables Batch'
-                              : 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+                              : 'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
                           attachmentPath: 'File name.pdf',
                           breakdown: widget.contract.frequency ==
                                   PayCycleFrequency.perDay

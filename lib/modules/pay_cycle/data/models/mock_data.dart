@@ -219,7 +219,7 @@ class MockData {
           workDate: DateTime(2025, 5, 31),
           status: PaymentStatus.pendingApproval,
           description:
-              'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+              'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
           attachmentPath: 'File name.pdf',
           breakdown: [
             WorkBreakdownItem(
@@ -242,7 +242,7 @@ class MockData {
           workDate: DateTime(2025, 5, 31),
           status: PaymentStatus.approved,
           description:
-              'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+              'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
           attachmentPath: 'File name.pdf',
           invoiceNumber: '#INV-2025-001',
           breakdown: [
@@ -288,7 +288,7 @@ class MockData {
         workDate: DateTime(2025, 5, 31),
         status: PaymentStatus.pendingApproval,
         description:
-            'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+            'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
         attachmentPath: 'file_name.pdf',
         breakdown: [
           WorkBreakdownItem(
@@ -323,7 +323,7 @@ class MockData {
         workDate: DateTime(2025, 5, 31),
         status: PaymentStatus.approved,
         description:
-            'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+            'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
         attachmentPath: 'file_name.pdf',
         invoiceNumber: '#INV-2025-001',
         breakdown: [
@@ -361,7 +361,7 @@ class MockData {
         rejectionReason:
             'Post-optimization logs showed a spike in timeout errors, and the performance gains weren’t consistent under load.',
         description:
-            'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
+            'Refactored the user onboarding_image process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
         attachmentPath: 'file_name.pdf',
         breakdown: [
           WorkBreakdownItem(
