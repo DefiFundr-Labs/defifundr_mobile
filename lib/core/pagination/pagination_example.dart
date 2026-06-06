@@ -148,7 +148,7 @@ class _InvoiceListScreen extends StatelessWidget {
             return _InvoiceList(
               snapshot: snapshot,
               isLoadingMore: state is _LoadingMore,
-              error: state is _Error ? (state as _Error).failure.message : null,
+              error: state is _Error ? state.failure.message : null,
               onLoadMore: () => context.read<_InvoiceBloc>().add(_LoadMore()),
               onRefresh: () => context.read<_InvoiceBloc>().add(_Refresh()),
             );

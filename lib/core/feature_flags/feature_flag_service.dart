@@ -1,7 +1,6 @@
 import 'package:defifundr_mobile/core/cache/app_cache.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus.dart';
 import 'package:defifundr_mobile/core/feature_flags/app_flag.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:logger/logger.dart';
 
 export 'app_flag.dart';
