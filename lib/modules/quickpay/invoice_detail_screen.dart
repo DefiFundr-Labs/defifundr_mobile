@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
@@ -21,7 +20,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: context.theme.colors.bgB1,
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
@@ -72,7 +71,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -116,7 +115,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -157,7 +156,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildBilledToCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: context.l10n.billedTo,
+      title: 'Billed To',
       children: [
         _buildRow(context, 'Name', value: 'Adegboyega Oluwagbemiro'),
         const SizedBox(height: 24),
@@ -178,7 +177,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildBilledFromCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: context.l10n.billedFrom,
+      title: 'Billed From',
       children: [
         _buildRow(context, 'Name', value: 'Adegboyega Oluwagbemiro'),
         const SizedBox(height: 24),
@@ -199,7 +198,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildInvoiceBreakdownCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: context.l10n.invoiceBreakdown,
+      title: 'Invoice Breakdown',
       children: [
         _buildBreakdownItemRow(
             context, 'Item Name', '500 USDT', '100 unit(s) at 5 USDT'),
@@ -223,7 +222,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildPaymentTrackerCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: context.l10n.paymentTracker,
+      title: 'Payment Tracker',
       children: _buildPaymentTrackerItems(context),
     );
   }
@@ -231,10 +230,10 @@ class InvoiceDetailScreen extends StatelessWidget {
   Widget _buildPaymentMemoCard(BuildContext context) {
     return _buildSectionCard(
       context,
-      title: context.l10n.paymentMemo,
+      title: 'Payment Memo',
       children: [
         Text(
-          context.l10n.invoiceThankYouNote,
+          'Thank you for your business. Please remit payment according to the terms outlined in this invoice. If you have any questions regarding this invoice or the payment process, do not hesitate to contact us.',
           style: context.theme.fonts.textMdRegular.copyWith(
             color: context.theme.colors.textPrimary,
             height: 1.5,
@@ -249,7 +248,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -413,7 +412,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.l10n.invoiceOverdue,
+            'Invoice Overdue',
             style: context.theme.fonts.textMdSemiBold.copyWith(
               color: context.theme.colors.redDefault,
             ),
@@ -438,7 +437,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: context.l10n.invoiceCreatedSentClient,
+            title: 'Invoice created and sent to client',
             subtitle: '20th April 2025, 04:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -462,7 +461,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             customIcon: DashedCircleIcon(
                 color:
                     context.theme.colors.textSecondary.withValues(alpha: 0.5)),
-            title: context.l10n.processClientPayment,
+            title: 'Process your client payment',
             isCompleted: false,
             isGreyedOut: true,
           ),
@@ -471,7 +470,8 @@ class InvoiceDetailScreen extends StatelessWidget {
             customIcon: DashedCircleIcon(
                 color:
                     context.theme.colors.textSecondary.withValues(alpha: 0.5)),
-            subtitle: context.l10n.fundsReflectedMessage,
+            subtitle:
+                'According to your invoice, funds should be reflected in your balance on 31st May 2025.',
             isCompleted: false,
             isGreyedOut: true,
             isLast: true,
@@ -484,7 +484,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: context.l10n.invoiceCreatedSentClient,
+            title: 'Invoice created and sent to client',
             subtitle: '20th April 2025, 04:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -493,7 +493,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: context.l10n.clientPaymentConfirmed,
+            title: 'Client payment confirmed',
             subtitle: '20th April 2025, 08:40 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -502,7 +502,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: context.l10n.clientPaymentProcessed,
+            title: 'Client payment processed',
             subtitle: '20th April 2025, 08:45 PM',
             isCompleted: true,
             lineColor: context.theme.colors.greenDefault,
@@ -511,7 +511,7 @@ class InvoiceDetailScreen extends StatelessWidget {
             context,
             icon: Icons.check_circle,
             iconColor: context.theme.colors.greenDefault,
-            title: context.l10n.fundsReceivedInAccount,
+            title: 'Funds received in your account',
             subtitle: '20th April 2025, 08:45 PM',
             isCompleted: true,
             isLast: true,
@@ -611,7 +611,7 @@ class InvoiceDetailScreen extends StatelessWidget {
         children: [
           Expanded(
             child: PrimaryButton(
-              text: context.l10n.previewPdf,
+              text: 'Preview PDF',
               iconColor: context.theme.colors.textPrimary,
               color: context.theme.colors.fillTertiary,
               textColor: context.theme.colors.textPrimary,
@@ -623,9 +623,9 @@ class InvoiceDetailScreen extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: PrimaryButton(
-              text: context.l10n.downloadPdf,
-              textColor: context.theme.colors.textPrimary,
-              iconColor: context.theme.colors.textPrimary,
+              text: 'Download PDF',
+              textColor: context.theme.colors.contrastWhite,
+              iconColor: context.theme.colors.contrastWhite,
               icon: Assets.icons.fileArrowDown,
               onPressed: () {},
             ),

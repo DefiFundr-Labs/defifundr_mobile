@@ -6,6 +6,7 @@ import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart'
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
+import 'package:defifundr_mobile/modules/invoice/data/models/app_%20constants.dart';
 import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/add_invoice_item_bottom_sheet.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_item_card.dart';
@@ -57,6 +58,7 @@ class InvoiceDetailsStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppConstants.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
@@ -150,7 +152,7 @@ class InvoiceDetailsStep extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 10.sp),
           decoration: ShapeDecoration(
-            color: context.theme.colors.bgB1,
+            color: context.theme.colors.bgB0,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
@@ -232,7 +234,7 @@ class InvoiceDetailsStep extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
             decoration: BoxDecoration(
-              color: context.theme.colors.bgB1,
+              color: context.theme.colors.bgB0,
               border: Border.all(
                 color: context.theme.colors.strokeSecondary,
                 width: 1,
