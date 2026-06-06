@@ -135,14 +135,14 @@ void _offlineGuardMiddleware() {
 
 TaskEither<Failure, Map<String, dynamic>> _guardedFetch(String key) {
   if (!ConnectivityService.instance.isOnline) {
-    return AppCache.prefs.fetchTE(
+    return AppCache.prefs.fetch(
       key,
       () => Future.error(NetworkFailure()),
-      policy: CachePolicy.useCache, // only return cache, never network
+      policy: CachePolicy.useCache,
     );
   }
 
-  return AppCache.prefs.fetchTE(
+  return AppCache.prefs.fetch(
     key,
     () async {
       // await apiClient.get(key);

@@ -42,14 +42,14 @@ abstract interface class InvoiceRepository {
 class InvoiceRepositoryImpl implements InvoiceRepository {
   @override
   TaskEither<Failure, List<Invoice>> getInvoices(String workspaceId) =>
-      AppCache.prefs.fetchTE(
+      AppCache.prefs.fetch(
         'invoices_$workspaceId',
         () => _remoteGetInvoices(workspaceId),
         ttl: const Duration(minutes: 3),
         policy: CachePolicy.cacheFirst,
         retryPolicy: RetryPolicy.exponentialBackoff(maxAttempts: 3),
         fromJson: (json) => (json as List).map(Invoice.fromJson).toList(),
-        toFailure: (e) => ServerFailure(message: e.toString()),
+        onError: (e) => ServerFailure(message: e.toString()),
       );
 
   @override

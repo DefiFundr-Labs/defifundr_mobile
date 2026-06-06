@@ -22,31 +22,32 @@ class _Invoice {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. Three caches — pick the right one for the data sensitivity
+// 1. Three cache stores
 //
 //    AppCache.memory  — fast, cleared on restart.     UI state, paginated lists
 //    AppCache.prefs   — persistent, plain text.       API responses, flags
 //    AppCache.secure  — persistent, encrypted.        Tokens, wallet keys
+//
+//    AppCache.of(AppCacheType.prefs)  — dynamic/programmatic access
 // ─────────────────────────────────────────────────────────────────────────────
 
 Future<void> _basicExample() async {
-  await AppCache.prefs.set('exchange_rates', {'ETH': 3200.0},
+  await AppCache.prefs.write('exchange_rates', {'ETH': 3200.0},
       ttl: const Duration(minutes: 1));
-  await AppCache.secure.set('auth_token', 'eyJhbGci...',
+  await AppCache.secure.write('auth_token', 'eyJhbGci...',
       ttl: const Duration(hours: 1));
-  await AppCache.memory.set('invoice_page_1', ['inv-1', 'inv-2']);
+  await AppCache.memory.write('invoice_page_1', ['inv-1', 'inv-2']);
 
   await AppCache.prefs.invalidate('exchange_rates');
   await AppCache.prefs.invalidateWhere((key) => key.startsWith('invoice_'));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. Repository — Future-based (simple) vs TaskEither-based (composable)
+// 2. Repository — fetch returns TaskEither, never throws
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _InvoiceRepository {
-  // Future-based — throws on failure, simpler to read.
-  Future<List<_Invoice>> getInvoices(String workspaceId) =>
+  TaskEither<Failure, List<_Invoice>> getInvoices(String workspaceId) =>
       AppCache.prefs.fetch(
         'invoices_$workspaceId',
         () => _remote(workspaceId),
@@ -54,25 +55,14 @@ class _InvoiceRepository {
         policy: CachePolicy.cacheFirst,
         retryPolicy: RetryPolicy.exponentialBackoff(maxAttempts: 3),
         fromJson: (json) => (json as List).map(_Invoice.fromJson).toList(),
-      );
-
-  // TaskEither-based — never throws, composes with flatMap/map.
-  TaskEither<Failure, List<_Invoice>> getInvoicesTE(String workspaceId) =>
-      AppCache.prefs.fetchTE(
-        'invoices_$workspaceId',
-        () => _remote(workspaceId),
-        ttl: const Duration(minutes: 3),
-        policy: CachePolicy.cacheFirst,
-        retryPolicy: RetryPolicy.exponentialBackoff(maxAttempts: 3),
-        fromJson: (json) => (json as List).map(_Invoice.fromJson).toList(),
-        toFailure: (e) => ServerFailure(message: e.toString()),
+        onError: (e) => ServerFailure(message: e.toString()),
       );
 
   Future<List<_Invoice>> _remote(String workspaceId) async => [];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. BLoC — consuming TaskEither with fold
+// 3. BLoC — fold on TaskEither result
 // ─────────────────────────────────────────────────────────────────────────────
 
 sealed class _InvoiceEvent {}
@@ -89,7 +79,7 @@ class _InvoiceBloc extends Bloc<_InvoiceEvent, _InvoiceState>
   _InvoiceBloc(this._repo, this._workspaceId) : super(_Loading()) {
     on<_Load>((event, emit) async {
       emit(_Loading());
-      final result = await _repo.getInvoicesTE(_workspaceId).run();
+      final result = await _repo.getInvoices(_workspaceId).run();
       result.fold(
         (failure) => emit(_Error(failure)),
         (invoices) => emit(_Loaded(invoices)),
@@ -99,7 +89,6 @@ class _InvoiceBloc extends Bloc<_InvoiceEvent, _InvoiceState>
     on<_FreshData>((event, emit) => emit(_Loaded(event.invoices)));
 
     // Background revalidation finished — update UI silently.
-    // CacheUpdated is generic at runtime, so filter by key.
     listenTo<CacheUpdated>((e) {
       if (e.key == 'invoices_$_workspaceId') {
         add(_FreshData((e.data as List).cast<_Invoice>()));
@@ -128,11 +117,10 @@ class _CreateInvoiceUseCase {
   // Validate → fetch existing → return count. Short-circuits on any failure.
   TaskEither<Failure, int> countForWorkspace(String workspaceId) =>
       _validateId(workspaceId)
-          .flatMap((_) => _repo.getInvoicesTE(workspaceId))
+          .flatMap((_) => _repo.getInvoices(workspaceId))
           .map((invoices) => invoices.length);
 
-  TaskEither<Failure, Unit> _validateId(String id) =>
-      TaskEither.fromEither(
+  TaskEither<Failure, Unit> _validateId(String id) => TaskEither.fromEither(
         id.isNotEmpty
             ? right(unit)
             : left(const ValidationFailure(message: 'Workspace ID is empty')),
@@ -140,11 +128,11 @@ class _CreateInvoiceUseCase {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. Auth token lifecycle — secure cache
+// 5. Auth token lifecycle
 // ─────────────────────────────────────────────────────────────────────────────
 
 Future<void> _onLogin(String token) =>
-    AppCache.secure.set('auth_token', token, ttl: const Duration(hours: 24));
+    AppCache.secure.write('auth_token', token, ttl: const Duration(hours: 24));
 
 Future<void> _onLogout() async {
   await AppCache.secure.clear();

@@ -23,28 +23,62 @@ final _log = Logger();
 const _defaultTtl = Duration(minutes: 5);
 const _defaultPolicy = CachePolicy.cacheFirst;
 
-class AppCache {
-  AppCache(this._storage);
-
-  final CacheStorage _storage;
-
-  // ── Named instances ────────────────────────────────────────────────────────
-
+/// Which backing store the cache uses.
+enum AppCacheType {
   /// Fast, non-persistent. Cleared on app restart.
   /// Use for: computed results, paginated lists, UI state.
-  static final memory = AppCache(MemoryCacheStorage());
+  memory,
 
   /// Persistent, non-sensitive. Survives restarts.
   /// Use for: API responses, user preferences, feature flags.
-  static final prefs = AppCache(SharedPrefsCacheStorage());
+  prefs,
 
-  /// Encrypted, persistent. Survives restarts, backed by Keychain / Keystore.
+  /// Encrypted, persistent. Backed by Keychain / Keystore.
   /// Use for: auth tokens, wallet keys, private user data.
-  static final secure = AppCache(SecureCacheStorage());
+  secure,
+}
+
+class AppCache {
+  AppCache._({required this.cacheType, required CacheStorage storage})
+      : _storage = storage;
+
+  // ── Named accessors ────────────────────────────────────────────────────────
+
+  /// Fast, non-persistent. Cleared on app restart.
+  static AppCache get memory => _memory;
+
+  /// Persistent, non-sensitive. Survives restarts.
+  static AppCache get prefs => _prefs;
+
+  /// Encrypted, persistent. Backed by Keychain / Keystore.
+  static AppCache get secure => _secure;
+
+  /// Programmatic access — use when [AppCacheType] is a variable.
+  static AppCache of(AppCacheType type) => switch (type) {
+        AppCacheType.memory => _memory,
+        AppCacheType.prefs => _prefs,
+        AppCacheType.secure => _secure,
+      };
+
+  static final _memory = AppCache._(
+    cacheType: AppCacheType.memory,
+    storage: MemoryCacheStorage(),
+  );
+  static final _prefs = AppCache._(
+    cacheType: AppCacheType.prefs,
+    storage: SharedPrefsCacheStorage(),
+  );
+  static final _secure = AppCache._(
+    cacheType: AppCacheType.secure,
+    storage: SecureCacheStorage(),
+  );
+
+  final AppCacheType cacheType;
+  final CacheStorage _storage;
 
   // ── Read ───────────────────────────────────────────────────────────────────
 
-  Future<T?> get<T>(String key, {T Function(dynamic)? fromJson}) async {
+  Future<T?> read<T>(String key, {T Function(dynamic)? fromJson}) async {
     final entry = await _readEntry<T>(key, fromJson: fromJson);
     return entry?.data;
   }
@@ -64,7 +98,7 @@ class AppCache {
 
   // ── Write ──────────────────────────────────────────────────────────────────
 
-  Future<void> set<T>(
+  Future<void> write<T>(
     String key,
     T data, {
     Duration ttl = _defaultTtl,
@@ -91,47 +125,46 @@ class AppCache {
 
   // ── Fetch with policy ──────────────────────────────────────────────────────
 
-  Future<T> fetch<T>(
+  /// Fetch [key], applying [policy]. Returns [TaskEither] — never throws.
+  ///
+  /// Cache hit  → returns cached data immediately (or in background for [CachePolicy.cacheFirst]).
+  /// Cache miss → calls [fetcher], stores the result, returns it.
+  TaskEither<Failure, T> fetch<T>(
     String key,
     Future<T> Function() fetcher, {
     Duration ttl = _defaultTtl,
     CachePolicy policy = _defaultPolicy,
     RetryPolicy? retryPolicy,
     T Function(dynamic)? fromJson,
-  }) async {
-    switch (policy) {
-      case CachePolicy.noCache:
-        return _noCache(key, fetcher, ttl, retryPolicy);
-
-      case CachePolicy.useCache:
-        return _useCache(key, fetcher, ttl, fromJson, retryPolicy);
-
-      case CachePolicy.cacheFirst:
-        return _cacheFirst(key, fetcher, ttl, fromJson, retryPolicy);
-
-      case CachePolicy.networkFirst:
-        return _networkFirst(key, fetcher, ttl, fromJson, retryPolicy);
-    }
-  }
-
-  /// Same as [fetch] but returns a [TaskEither] — never throws.
-  TaskEither<Failure, T> fetchTE<T>(
-    String key,
-    Future<T> Function() fetcher, {
-    Duration ttl = _defaultTtl,
-    CachePolicy policy = _defaultPolicy,
-    RetryPolicy? retryPolicy,
-    Failure Function(Object)? toFailure,
-    T Function(dynamic)? fromJson,
+    Failure Function(Object)? onError,
   }) =>
       TaskEither.tryCatch(
-        () => fetch(key, fetcher, ttl: ttl, policy: policy, retryPolicy: retryPolicy, fromJson: fromJson),
-        (e, _) => toFailure != null ? toFailure(e) : UnknownFailure(message: e.toString(), cause: e),
+        () => _applyPolicy(key, fetcher, ttl, policy, fromJson, retryPolicy),
+        (e, _) => onError != null
+            ? onError(e)
+            : UnknownFailure(message: e.toString(), cause: e),
       );
 
   // ── Policies ───────────────────────────────────────────────────────────────
 
-  /// Always fetch. Never reads cache, but stores the result.
+  Future<T> _applyPolicy<T>(
+    String key,
+    Future<T> Function() fetcher,
+    Duration ttl,
+    CachePolicy policy,
+    T Function(dynamic)? fromJson,
+    RetryPolicy? retryPolicy,
+  ) =>
+      switch (policy) {
+        CachePolicy.noCache => _noCache(key, fetcher, ttl, retryPolicy),
+        CachePolicy.useCache =>
+          _useCache(key, fetcher, ttl, fromJson, retryPolicy),
+        CachePolicy.cacheFirst =>
+          _cacheFirst(key, fetcher, ttl, fromJson, retryPolicy),
+        CachePolicy.networkFirst =>
+          _networkFirst(key, fetcher, ttl, fromJson, retryPolicy),
+      };
+
   Future<T> _noCache<T>(
     String key,
     Future<T> Function() fetcher,
@@ -139,12 +172,15 @@ class AppCache {
     RetryPolicy? retryPolicy,
   ) async {
     _log.d('[Cache:noCache] $key');
-    final data = await retryable(fetcher, policy: retryPolicy ?? RetryPolicy.exponentialBackoff(), label: key);
-    await set(key, data, ttl: ttl);
+    final data = await retryable(
+      fetcher,
+      policy: retryPolicy ?? RetryPolicy.exponentialBackoff(),
+      label: key,
+    );
+    await write(key, data, ttl: ttl);
     return data;
   }
 
-  /// Return fresh cache immediately. If stale or missing, fetch and wait.
   Future<T> _useCache<T>(
     String key,
     Future<T> Function() fetcher,
@@ -153,18 +189,14 @@ class AppCache {
     RetryPolicy? retryPolicy,
   ) async {
     final cached = await _readEntry<T>(key, fromJson: fromJson);
-
     if (cached != null && cached.isFresh) {
       _log.d('[Cache:useCache] HIT $key (age: ${cached.age.inSeconds}s)');
       return cached.data;
     }
-
-    _log.d('[Cache:useCache] ${cached == null ? 'MISS' : 'STALE'} $key — fetching');
+    _log.d('[Cache:useCache] ${cached == null ? 'MISS' : 'STALE'} $key');
     return _fetchAndStore(key, fetcher, ttl, retryPolicy);
   }
 
-  /// Return cache immediately (even if stale), refresh in background.
-  /// Falls back to network if no cache exists yet.
   Future<T> _cacheFirst<T>(
     String key,
     Future<T> Function() fetcher,
@@ -173,24 +205,19 @@ class AppCache {
     RetryPolicy? retryPolicy,
   ) async {
     final cached = await _readEntry<T>(key, fromJson: fromJson);
-
     if (cached == null) {
-      _log.d('[Cache:cacheFirst] MISS $key — fetching');
+      _log.d('[Cache:cacheFirst] MISS $key');
       return _fetchAndStore(key, fetcher, ttl, retryPolicy);
     }
-
     if (cached.isFresh) {
       _log.d('[Cache:cacheFirst] HIT $key (age: ${cached.age.inSeconds}s)');
       return cached.data;
     }
-
-    _log.d('[Cache:cacheFirst] STALE $key — returning cached, revalidating');
+    _log.d('[Cache:cacheFirst] STALE $key — revalidating in background');
     _revalidateWithRetry(key, fetcher, ttl, retryPolicy);
     return cached.data;
   }
 
-  /// Always fetch first, cache the result.
-  /// Falls back to stale cache if the network fails.
   Future<T> _networkFirst<T>(
     String key,
     Future<T> Function() fetcher,
@@ -198,15 +225,19 @@ class AppCache {
     T Function(dynamic)? fromJson,
     RetryPolicy? retryPolicy,
   ) async {
-    _log.d('[Cache:networkFirst] $key — fetching');
+    _log.d('[Cache:networkFirst] $key');
     try {
-      final data = await retryable(fetcher, policy: retryPolicy ?? RetryPolicy.exponentialBackoff(), label: key);
-      await set(key, data, ttl: ttl);
+      final data = await retryable(
+        fetcher,
+        policy: retryPolicy ?? RetryPolicy.exponentialBackoff(),
+        label: key,
+      );
+      await write(key, data, ttl: ttl);
       return data;
     } catch (e) {
       final cached = await _readEntry<T>(key, fromJson: fromJson);
       if (cached != null) {
-        _log.w('[Cache:networkFirst] Network failed for $key — using cache '
+        _log.w('[Cache:networkFirst] Network failed — using cache '
             '(age: ${cached.age.inSeconds}s)');
         return cached.data;
       }
@@ -214,7 +245,7 @@ class AppCache {
     }
   }
 
-  // ── Revalidation with retry policy ────────────────────────────────────────
+  // ── Background revalidation ────────────────────────────────────────────────
 
   void _revalidateWithRetry<T>(
     String key,
@@ -229,11 +260,11 @@ class AppCache {
           policy: retryPolicy ?? RetryPolicy.exponentialBackoff(maxAttempts: 3),
           label: 'revalidate:$key',
         );
-        await set(key, fresh, ttl: ttl);
+        await write(key, fresh, ttl: ttl);
         _log.d('[Cache] REVALIDATED $key');
         EventBus.instance.emit(CacheUpdated(key: key, data: fresh));
       } catch (e) {
-        _log.e('[Cache] Revalidation failed for $key after retries: $e');
+        _log.e('[Cache] Revalidation failed for $key: $e');
         EventBus.instance.emit(CacheRevalidationFailed(
           key: key,
           error: e,
@@ -256,7 +287,7 @@ class AppCache {
       policy: retryPolicy ?? RetryPolicy.exponentialBackoff(),
       label: key,
     );
-    await set(key, data, ttl: ttl);
+    await write(key, data, ttl: ttl);
     return data;
   }
 
@@ -274,11 +305,7 @@ class AppCache {
       final rawData = map['data'];
       final data = fromJson != null ? fromJson(rawData) : rawData as T;
 
-      return CacheEntry<T>.fromStorage(
-        data: data,
-        cachedAt: cachedAt,
-        ttl: ttl,
-      );
+      return CacheEntry<T>.fromStorage(data: data, cachedAt: cachedAt, ttl: ttl);
     } catch (e) {
       _log.w('[Cache] Failed to read $key: $e');
       await _storage.delete(key);

@@ -28,14 +28,14 @@ class Balance {
 
 class BalanceRepository {
   TaskEither<Failure, Balance> getBalance(String userId) =>
-      AppCache.prefs.fetchTE(
+      AppCache.prefs.fetch(
         'balance_$userId',
         () => _fetchFromApi(userId),
         ttl: const Duration(minutes: 1),
         policy: CachePolicy.cacheFirst,
         retryPolicy: RetryPolicy.exponentialBackoff(maxAttempts: 3),
         fromJson: Balance.fromJson,
-        toFailure: (e) => ServerFailure(message: e.toString()),
+        onError: (e) => ServerFailure(message: e.toString()),
       );
 
   Future<Balance> _fetchFromApi(String userId) async =>
@@ -69,22 +69,16 @@ class BalanceBloc extends Bloc<BalanceEvent, BalanceState> with EventBusScope {
   BalanceBloc(this._repo, this._userId) : super(BalanceInitial()) {
     on<_LoadBalance>((_, emit) async {
       emit(BalanceLoading());
-
       final result = await _repo.getBalance(_userId).run();
-
-      // fold: left = failure, right = success — no try/catch
       result.fold(
         (failure) => emit(BalanceError(failure)),
         (balance) => emit(BalanceLoaded(balance)),
       );
     });
 
-    on<_BalanceUpdated>((event, emit) {
-      // Fresh data arrived while screen is open — update in place silently.
-      emit(BalanceLoaded(event.balance));
-    });
+    on<_BalanceUpdated>((event, emit) => emit(BalanceLoaded(event.balance)));
 
-    // Screen is open → TTL expires → background fetch completes →
+    // Screen open → TTL expires → background fetch completes →
     // CacheUpdated fires → BLoC catches it → UI updates live.
     listenTo<CacheUpdated>((e) {
       if (e.key == 'balance_$_userId') {
@@ -92,10 +86,9 @@ class BalanceBloc extends Bloc<BalanceEvent, BalanceState> with EventBusScope {
       }
     });
 
-    // Also react to revalidation failures — show stale warning.
     listenTo<CacheRevalidationFailed>((e) {
       if (e.key == 'balance_$_userId') {
-        // Keep current data on screen, surface a subtle warning.
+        // Keep current data, surface a stale warning if needed.
       }
     });
 
@@ -118,20 +111,17 @@ class BalanceBloc extends Bloc<BalanceEvent, BalanceState> with EventBusScope {
 // Timeline when screen is already open:
 //
 //   t=0s   User opens screen
-//          → BLoC calls getBalance() via TaskEither
-//          → cache hit → fold → BalanceLoaded(4250.00)
-//          → UI shows $4250.00 USDC instantly
+//          → BLoC calls getBalance() → cache hit → BalanceLoaded(4250.00)
+//          → UI shows instantly
 //
 //   t=60s  TTL expires → background fetch fires
 //          → API returns 4310.50
-//          → CacheUpdated<Balance> emitted on EventBus
-//          → BLoC listenTo catches it → BalanceLoaded(4310.50)
-//          → UI updates live — user sees balance change
+//          → CacheUpdated emitted → BLoC catches → BalanceLoaded(4310.50)
+//          → UI updates live
 //
 //   Network fails during background fetch:
 //          → retries 3x with exponential backoff
-//          → CacheRevalidationFailed emitted
-//          → BLoC can show "last updated X mins ago"
+//          → CacheRevalidationFailed emitted → show "last updated X mins ago"
 // ─────────────────────────────────────────────────────────────────────────────
 
 class BalanceScreen extends StatelessWidget {
@@ -144,15 +134,12 @@ class BalanceScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => BalanceBloc(BalanceRepository(), userId),
       child: BlocBuilder<BalanceBloc, BalanceState>(
-        builder: (context, state) {
-          return switch (state) {
-            BalanceInitial() => const SizedBox.shrink(),
-            BalanceLoading() => const CircularProgressIndicator(),
-            BalanceLoaded(:final balance) => Text(
-                '${balance.amount} ${balance.currency}',
-              ),
-            BalanceError(:final failure) => Text(failure.message),
-          };
+        builder: (context, state) => switch (state) {
+          BalanceInitial() => const SizedBox.shrink(),
+          BalanceLoading() => const CircularProgressIndicator(),
+          BalanceLoaded(:final balance) =>
+            Text('${balance.amount} ${balance.currency}'),
+          BalanceError(:final failure) => Text(failure.message),
         },
       ),
     );
