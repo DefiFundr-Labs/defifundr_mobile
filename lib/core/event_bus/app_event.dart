@@ -66,6 +66,33 @@ class InvoiceStatusChanged extends AppEvent {
   String get name => 'InvoiceStatusChanged';
 }
 
+// Cache
+
+class CacheUpdated extends AppEvent {
+  const CacheUpdated({required this.key, required this.data});
+
+  final String key;
+  final dynamic data;
+
+  @override
+  String get name => 'CacheUpdated';
+}
+
+class CacheRevalidationFailed extends AppEvent {
+  const CacheRevalidationFailed({
+    required this.key,
+    required this.error,
+    required this.attempts,
+  });
+
+  final String key;
+  final Object error;
+  final int attempts;
+
+  @override
+  String get name => 'CacheRevalidationFailed';
+}
+
 // Connectivity
 
 class ConnectivityChanged extends AppEvent {
