@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 
-enum ContractStatus { active, pending, pendingSignature, rejected }
+enum ContractStatus { active, pending, rejected }
 
 extension ContractStatusExtension on ContractStatus {
   String get titleCase {
@@ -10,8 +10,6 @@ extension ContractStatusExtension on ContractStatus {
         return 'Active';
       case ContractStatus.pending:
         return 'Pending';
-      case ContractStatus.pendingSignature:
-        return 'Pending Signature';
       case ContractStatus.rejected:
         return 'Rejected';
     }
@@ -22,7 +20,6 @@ extension ContractStatusExtension on ContractStatus {
       case ContractStatus.active:
         return context.theme.colors.greenDefault;
       case ContractStatus.pending:
-      case ContractStatus.pendingSignature:
         return context.theme.colors.orangeDefault;
       case ContractStatus.rejected:
         return context.theme.colors.redDefault;
@@ -34,7 +31,6 @@ extension ContractStatusExtension on ContractStatus {
       case ContractStatus.active:
         return context.theme.colors.greenFill;
       case ContractStatus.pending:
-      case ContractStatus.pendingSignature:
         return context.theme.colors.orangeFill;
       case ContractStatus.rejected:
         return context.theme.colors.redFill;
@@ -46,7 +42,6 @@ extension ContractStatusExtension on ContractStatus {
       case ContractStatus.active:
         return context.theme.colors.greenStroke;
       case ContractStatus.pending:
-      case ContractStatus.pendingSignature:
         return context.theme.colors.orangeStroke;
       case ContractStatus.rejected:
         return context.theme.colors.redStroke;

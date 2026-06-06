@@ -160,7 +160,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(16.0),
               child: Container(
                 padding: EdgeInsets.only(
                   top: 10.sp,
@@ -170,14 +170,14 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                 ),
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
-                  color: context.theme.colors.bgB1,
+                  color: context.theme.colors.bgB0,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       width: 0.50,
                       strokeAlign: BorderSide.strokeAlignOutside,
                       color: context.theme.colors.strokeSecondary,
                     ),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: GestureDetector(
@@ -187,27 +187,34 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                       Text(
                         'Showing for: ',
                         style: context.theme.fonts.textMdRegular.copyWith(
-                            color: context.theme.colors.textSecondary),
+                          color: context.theme.colors.textSecondary,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      SizedBox(width: 8.w),
                       Expanded(
-                        child: Text(selectedDateRange,
-                            style: context.theme.fonts.textMdMedium),
+                        child: Text(
+                          selectedDateRange,
+                          style: context.theme.fonts.textMdMedium.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                            color: context.theme.colors.textPrimary,
+                          ),
+                        ),
                       ),
-                      Icon(Icons.keyboard_arrow_down,
-                          color: context.theme.colors.graySecondary),
+                      Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
                     ],
                   ),
                 ),
               ),
             ),
             TimeTrackingSummaryCard(summary: summary),
-            SizedBox(height: 12.0),
+            SizedBox(height: 16.0),
             Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(16.0),
               child: Container(
                 decoration: ShapeDecoration(
-                  color: context.theme.colors.bgB1,
+                  color: context.theme.colors.bgB0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   shadows: [
@@ -309,7 +316,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       decoration: ShapeDecoration(
-        color: context.theme.colors.fillTertiary,
+        color: const Color(0x0A18181B) /* FILL-TERTIARY */,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: Row(
@@ -335,7 +342,13 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                       Text(
                         'You have no worked hours submitted',
                         textAlign: TextAlign.center,
-                        style: context.theme.fonts.textMdRegular,
+                        style: TextStyle(
+                          color: const Color(0xFF18181B) /* TEXT-PRIMARY */,
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          height: 1.43,
+                        ),
                       ),
                     ],
                   ),

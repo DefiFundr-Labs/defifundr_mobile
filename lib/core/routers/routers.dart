@@ -101,7 +101,6 @@ import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/scree
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/add_milestone_screen.dart';
 // Payment
 import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/upcoming_payments.dart';
-import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
 import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';

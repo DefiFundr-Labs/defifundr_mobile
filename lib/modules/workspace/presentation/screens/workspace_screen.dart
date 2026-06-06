@@ -23,7 +23,7 @@ class WorkspaceScreen extends StatelessWidget {
         title: context.l10n.contracts,
         description: context.l10n.contractsDesc,
         iconPath: Assets.icons.files,
-        onTap: () => context.pushRoute(const WorkspaceContractsRoute()),
+        onTap: () => context.pushRoute(const TimeTrackingContractsRoute()),
       ),
       WorkspaceCardModel(
         title: context.l10n.payCycle,
@@ -58,7 +58,7 @@ class WorkspaceScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: colors.bgB0,
+      backgroundColor: isLight ? colors.bgB1 : colors.bgB0,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class WorkspaceScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 8.h),
               child: Text(
-                context.l10n.workspace,
+                'Workspace',
                 style: context.theme.textTheme.headlineLarge?.copyWith(
                   fontSize: 24.sp,
                   color: colors.textPrimary,
@@ -82,7 +82,7 @@ class WorkspaceScreen extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12.w,
-                    mainAxisSpacing: 16.h,
+                    mainAxisSpacing: 12.h,
                     childAspectRatio: 1.05,
                   ),
                   itemCount: cards.length,
