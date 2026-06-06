@@ -22,7 +22,7 @@ dependencies:
   #? flutter_form_bloc is a Flutter package that helps you to easily create forms with validation.
   bloc: any
   #? google_fonts is a Flutter package that provides a set of fonts from Google Fonts.
-  google_fonts: ^5.0.0
+  google_fonts: ^6.0.0
   #?  flutter_screenutil is a Flutter package that provides a set of utilities for implementing responsive UI.
   flutter_screenutil: ^5.9.0
   #? flutter_svg is a Flutter package for drawing SVG pictures.
@@ -34,7 +34,7 @@ dependencies:
   #? The email_validator package is a lightweight and efficient Dart package for validating email addresses in Flutter and Dart applications.
   email_validator: ^3.0.0
   #? freezed_annotation is a Dart package that provides a set of utilities for generating code for the freezed package.
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^3.0.0
   #? shared_preferences is a Flutter plugin that provides a persistent store for simple data.
   shared_preferences: ^2.5.3
   #? flutter_dotenv is a Dart package that provides a way to load environment variables from a .env file.
@@ -55,7 +55,7 @@ dependencies:
   bloc_concurrency: ^0.2.5
   pin_code_fields: ^8.0.1
   web3auth_flutter: ^6.3.0
-  solana: ^0.31.2+1
+  solana: ^0.32.0
   web3dart: ^2.7.3
   hex: ^0.2.0
   logger: ^2.5.0
@@ -64,17 +64,17 @@ dependencies:
   iconsax: ^0.0.8
   mask_text_input_formatter: ^2.9.0
   url_launcher: ^6.1.11
-  auto_route: ^9.2.2
+  auto_route: ^10.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: "^0.14.3"
   very_good_analysis: ^4.0.0+1
   #? freezed is a code generation library for Dart that helps you to write immutable models with ease.
-  freezed: ^2.3.2
+  freezed: ^3.0.0
   #? build_runner is a Dart package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
-  build_runner: ^2.3.3
-  auto_route_generator: ^9.0.0
+  build_runner: ^2.4.0
+  auto_route_generator: ^10.0.0
 
   # Testing
   flutter_test:
@@ -211,7 +211,7 @@ flutter:
     - assets/icons/country_flags/
     - assets/icons/bottom_nav/
     - assets/images/app_icons/
-    - assets/shaders/glass.frag
+    - assets/images/onboarding_image/
   shaders:
     - assets/shaders/glass.frag
 

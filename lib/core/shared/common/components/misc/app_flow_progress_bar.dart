@@ -2,7 +2,7 @@ import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_ex
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// A thin horizontal step-progress bar for multi-step onboarding/flow screens.
+/// A thin horizontal step-progress bar for multi-step onboarding_image/flow screens.
 ///
 /// Renders a full-width track with a colored fill representing progress.
 /// The fill width is calculated as `currentStep / totalSteps * 100%`.

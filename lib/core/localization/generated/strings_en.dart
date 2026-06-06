@@ -1198,4 +1198,33 @@ class StringsEn extends Strings {
 
   @override
   String get allLabel => 'All';
+
+  @override
+  String get onboardingSlide1Title =>
+      'Your Crypto Back Office,\nWherever You Work';
+
+  @override
+  String get onboardingSlide1Subtitle =>
+      'Your all-in-one platform for crypto invoicing, contract tracking, and on-time payments.';
+
+  @override
+  String get onboardingSlide2Title => 'All Your Workflow Tools\nin One Place';
+
+  @override
+  String get onboardingSlide2Subtitle =>
+      'Manage contracts, payments, invoices, and others all within your organized workspace.';
+
+  @override
+  String get onboardingSlide3Title =>
+      'All Your Contract Data.\nOne Smart View.';
+
+  @override
+  String get onboardingSlide3Subtitle =>
+      'Never miss a detail. View dates, invoices, job scope, and terms in one secure view.';
+
+  @override
+  String get onboardingCreateAccount => 'Create account';
+
+  @override
+  String get onboardingLogIn => 'Log in';
 }

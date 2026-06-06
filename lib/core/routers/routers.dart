@@ -11,6 +11,8 @@ import 'package:defifundr_mobile/modules/authentication/presentation/forget_pass
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/password_reset_success.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/reset_password.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/forget_password/screens/verify_otp.dart';
+// Onboarding Intro
+import 'package:defifundr_mobile/modules/onboarding/presentation/intro/screens/onboarding_intro_screen.dart';
 // Authentication
 import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/login_screen.dart';
 import 'package:defifundr_mobile/modules/authentication/presentation/login/screens/pin_code_screen.dart';
@@ -162,9 +164,13 @@ class AppRouter extends RootStackRouter {
         // AUTHENTICATION ROUTES
         // ============================================================
         AutoRoute(
+          page: OnboardingIntroRoute.page,
+          path: '/onboarding',
+          initial: true,
+        ),
+        AutoRoute(
           page: LoginRoute.page,
           path: RouteConstants.login,
-          initial: true,
         ),
         AutoRoute(
           page: PinCodeRoute.page,

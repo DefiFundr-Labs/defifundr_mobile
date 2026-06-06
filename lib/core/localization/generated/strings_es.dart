@@ -1203,4 +1203,34 @@ class StringsEs extends Strings {
 
   @override
   String get allLabel => 'Todos';
+
+  @override
+  String get onboardingSlide1Title =>
+      'Tu Oficina Crypto,\nDonde Quiera Que Trabajes';
+
+  @override
+  String get onboardingSlide1Subtitle =>
+      'Tu plataforma todo en uno para facturación crypto, seguimiento de contratos y pagos puntuales.';
+
+  @override
+  String get onboardingSlide2Title =>
+      'Todas Tus Herramientas\nen Un Solo Lugar';
+
+  @override
+  String get onboardingSlide2Subtitle =>
+      'Gestiona contratos, pagos, facturas y más, todo dentro de tu espacio de trabajo organizado.';
+
+  @override
+  String get onboardingSlide3Title =>
+      'Todos Tus Datos de Contrato.\nUna Vista Inteligente.';
+
+  @override
+  String get onboardingSlide3Subtitle =>
+      'No pierdas ningún detalle. Consulta fechas, facturas, alcance y términos en una vista segura.';
+
+  @override
+  String get onboardingCreateAccount => 'Crear cuenta';
+
+  @override
+  String get onboardingLogIn => 'Iniciar sesión';
 }

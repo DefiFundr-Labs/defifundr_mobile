@@ -391,5 +391,13 @@
   "transactionId": "ID de Transacción",
   "helpCentre": "Centro de ayuda",
   "shareReceipt": "Compartir recibo",
-  "allLabel": "Todos"
+  "allLabel": "Todos",
+  "onboardingSlide1Title": "Tu Oficina Crypto,\nDonde Quiera Que Trabajes",
+  "onboardingSlide1Subtitle": "Tu plataforma todo en uno para facturación crypto, seguimiento de contratos y pagos puntuales.",
+  "onboardingSlide2Title": "Todas Tus Herramientas\nen Un Solo Lugar",
+  "onboardingSlide2Subtitle": "Gestiona contratos, pagos, facturas y más, todo dentro de tu espacio de trabajo organizado.",
+  "onboardingSlide3Title": "Todos Tus Datos de Contrato.\nUna Vista Inteligente.",
+  "onboardingSlide3Subtitle": "No pierdas ningún detalle. Consulta fechas, facturas, alcance y términos en una vista segura.",
+  "onboardingCreateAccount": "Crear cuenta",
+  "onboardingLogIn": "Iniciar sesión"
 }

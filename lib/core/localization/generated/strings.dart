@@ -2304,6 +2304,54 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'All'**
   String get allLabel;
+
+  /// No description provided for @onboardingSlide1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Crypto Back Office,\nWherever You Work'**
+  String get onboardingSlide1Title;
+
+  /// No description provided for @onboardingSlide1Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your all-in-one platform for crypto invoicing, contract tracking, and on-time payments.'**
+  String get onboardingSlide1Subtitle;
+
+  /// No description provided for @onboardingSlide2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'All Your Workflow Tools\nin One Place'**
+  String get onboardingSlide2Title;
+
+  /// No description provided for @onboardingSlide2Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage contracts, payments, invoices, and others all within your organized workspace.'**
+  String get onboardingSlide2Subtitle;
+
+  /// No description provided for @onboardingSlide3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'All Your Contract Data.\nOne Smart View.'**
+  String get onboardingSlide3Title;
+
+  /// No description provided for @onboardingSlide3Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a detail. View dates, invoices, job scope, and terms in one secure view.'**
+  String get onboardingSlide3Subtitle;
+
+  /// No description provided for @onboardingCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get onboardingCreateAccount;
+
+  /// No description provided for @onboardingLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get onboardingLogIn;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

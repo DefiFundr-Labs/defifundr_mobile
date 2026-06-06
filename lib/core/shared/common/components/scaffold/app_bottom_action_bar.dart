@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// A pinned bottom action bar for screens that have a primary action button
-/// at the bottom (form screens, confirmation screens, onboarding flows, etc.).
+/// at the bottom (form screens, confirmation screens, onboarding_image flows, etc.).
 ///
 /// Handles horizontal padding, bottom safe-area inset, and optional top border.
 /// Wrap the main `body` in a `Column` with `Expanded` for the scrollable content

@@ -26,8 +26,8 @@ class AppAssets {
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const defifundrImagePath = 'assets/images';
 
-  static const onBoardingBg1 = '$defifundrImagePath/onboarding-bg1.png';
-  static const onBoardingBg2 = '$defifundrImagePath/onboarding-bg2.png';
+  static const onBoardingBg1 = '$defifundrImagePath/onboarding_image-bg1.png';
+  static const onBoardingBg2 = '$defifundrImagePath/onboarding_image-bg2.png';
   static const onBoardingFrame1 = '$defifundrImagePath/frame1.png';
   static const onBoardingFrame2 = '$defifundrImagePath/frame2.png';
   static const onBoardingFrame3 = '$defifundrImagePath/frame3.png';
@@ -91,8 +91,8 @@ class AppAssets {
   static const qrCodeSvg = '${defifundrIconPath}QrCode.svg';
   static const linkSvg = '${defifundrIconPath}Link.svg';
   static const copySvg = '${defifundrIconPath}Copy.svg';
-  static const shareNetworkSvg = '${defifundrIconPath}ShareNetwork.svg';
-  static const headsetSvg = '${defifundrIconPath}Headset.svg';
+  static const shareNetworkSvg = '${defifundrIconPath}share.svg';
+  static const headsetSvg = '${defifundrIconPath}headset.svg';
   static const terminationSvg = '${defifundrIconPath}termination.svg';
 
   //-------------------------------------------- FLAGS -------------------------------------------- //

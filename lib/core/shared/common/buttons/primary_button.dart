@@ -177,7 +177,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
       decoration: _getButtonDecoration(),
       padding: _getButtonPadding(),
       height: widget.fixedSize?.height ?? 55.h,
-      width: widget.fixedSize?.width ?? context.screenWidth() - 40,
+      width: widget.fixedSize?.width ?? (context.screenWidth() - 40).clamp(0.0, double.infinity),
       child: _buildButtonContent(),
     );
   }

@@ -46,7 +46,7 @@ class RouteConstants {
   // DASHBOARD ROUTES
   // ============================================================
   static const String home = '';
-  static const String dashboard = 'onboarding-checklist';
+  static const String dashboard = 'onboarding_image-checklist';
   static const String notifications = 'notifications';
   static const String notificationDetail = 'notification-detail';
 
