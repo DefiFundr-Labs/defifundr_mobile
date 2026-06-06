@@ -66,6 +66,35 @@ class InvoiceStatusChanged extends AppEvent {
   String get name => 'InvoiceStatusChanged';
 }
 
+// Connectivity
+
+class ConnectivityChanged extends AppEvent {
+  const ConnectivityChanged({required this.isOnline});
+
+  final bool isOnline;
+
+  @override
+  String get name => 'ConnectivityChanged';
+}
+
+class QueuedOperationSucceeded extends AppEvent {
+  const QueuedOperationSucceeded({required this.operationId});
+
+  final String operationId;
+
+  @override
+  String get name => 'QueuedOperationSucceeded';
+}
+
+class QueuedOperationFailed extends AppEvent {
+  const QueuedOperationFailed({required this.operationId});
+
+  final String operationId;
+
+  @override
+  String get name => 'QueuedOperationFailed';
+}
+
 // Workspace
 
 class WorkspaceSwitched extends AppEvent {
