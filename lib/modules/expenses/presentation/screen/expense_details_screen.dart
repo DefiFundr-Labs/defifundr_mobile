@@ -13,7 +13,6 @@ import 'package:defifundr_mobile/modules/expenses/presentation/widgets/status_ch
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class ExpenseDetailsScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class ExpenseDetailsScreen extends StatelessWidget {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3Bold,
           isBack: true,
-          title: context.l10n.expenseDetails,
+          title: 'Expense details',
           actions: const [],
         ),
       ),
@@ -45,26 +44,26 @@ class ExpenseDetailsScreen extends StatelessWidget {
                   DetailsCard(
                     children: [
                       DetailRow(
-                        label: context.l10n.expenseStatus,
+                        label: 'Status',
                         trailing: StatusChip(status: expense.status),
                       ),
-                      DetailRow(label: context.l10n.expenseNameLabel, value: expense.name),
-                      DetailRow(label: context.l10n.expenseCategory, value: expense.category),
+                      DetailRow(label: 'Name', value: expense.name),
+                      DetailRow(label: 'Category', value: expense.category),
                       DetailRow(
-                        label: context.l10n.expenseDate,
+                        label: 'Expense date',
                         value: DateFormat('dd MMM yyyy')
                             .format(expense.expenseDate),
                       ),
                       DetailRow(
-                        label: context.l10n.submissionDate,
+                        label: 'Submission date',
                         value: DateFormat('dd MMM yyyy')
                             .format(expense.submissionDate),
                       ),
                       DetailRow(
-                        label: context.l10n.amount,
+                        label: 'Amount',
                         value: '${expense.amount.toInt()} USDT',
                       ),
-                      DetailRow(label: context.l10n.expenseDescription, isDescription: true),
+                      DetailRow(label: 'Description', isDescription: true),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 24),
                         child: Align(
@@ -79,13 +78,13 @@ class ExpenseDetailsScreen extends StatelessWidget {
                       ),
                       if (expense.attachment != null)
                         DetailRow(
-                          label: context.l10n.attachment,
+                          label: 'Attachment',
                           trailing: AttachmentChip(name: expense.attachment!),
                         ),
                       if (expense.status == ExpenseStatus.rejected &&
                           expense.rejectionReason != null) ...[
                         DetailRow(
-                            label: context.l10n.reasonForRejection, isDescription: true),
+                            label: 'Reason for rejection', isDescription: true),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: Align(
@@ -105,13 +104,13 @@ class ExpenseDetailsScreen extends StatelessWidget {
                   DetailsCard(
                     children: [
                       DetailRow(
-                        label: context.l10n.contractAction,
+                        label: 'Contract',
                         trailing: ContractLink(name: expense.contract),
                       ),
                       DetailRow(
-                          label: context.l10n.contractType,
+                          label: 'Contract Type',
                           value: expense.contractType ?? '-'),
-                      DetailRow(label: context.l10n.expenseClient, value: expense.client ?? '-'),
+                      DetailRow(label: 'Client', value: expense.client ?? '-'),
                     ],
                   ),
                 ],
@@ -122,7 +121,7 @@ class ExpenseDetailsScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 32.h),
               child: SecondaryButton(
-                text: context.l10n.deleteExpense,
+                text: 'Delete expense',
                 textColor: context.theme.colors.redDefault,
                 borderColor: context.theme.colors.redDefault,
                 backgroundColor: Colors.transparent,

@@ -1,17 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/routers/routers.dart';
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
 import 'package:defifundr_mobile/modules/expenses/data/model/expense_model.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/empty_state.dart';
 import 'package:defifundr_mobile/modules/expenses/presentation/widgets/expense_list_item.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class ExpensesScreen extends StatefulWidget {
@@ -116,7 +119,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3SemiBold,
           isBack: true,
-          title: context.l10n.expenses,
+          title: 'Expenses',
           actions: [],
         ),
       ),
@@ -148,7 +151,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
             padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 32.h),
             child: PrimaryButton(
               onPressed: _addExpense,
-              text: context.l10n.addExpense,
+              text: 'Add expense',
             ),
           ),
         ],

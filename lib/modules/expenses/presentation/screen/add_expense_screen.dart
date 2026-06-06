@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 @RoutePage()
 class AddExpenseScreen extends StatefulWidget {
@@ -68,7 +67,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => SelectionBottomSheet(
-        title: context.l10n.selectCategory,
+        title: 'Select category',
         items: _categories,
         onSelected: (val) {
           setState(() => _selectedCategory = val as String);
@@ -93,7 +92,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           centerTitle: true,
           textStyle: context.theme.fonts.heading3Bold,
           isBack: true,
-          title: context.l10n.addExpense,
+          title: 'Add expense',
           actions: const [],
         ),
       ),
@@ -108,16 +107,16 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 children: [
                   AppTextField(
                     controller: _nameController,
-                    labelText: context.l10n.expenseName,
-                    hintText: context.l10n.enterExpenseName,
+                    labelText: 'Expense name',
+                    hintText: 'Enter expense name',
                     errorTextOnValidation: 'Please enter expense name',
                   ),
                   SizedBox(height: 20.h),
                   AppTextField(
                     controller:
                         TextEditingController(text: _selectedCategory ?? ''),
-                    labelText: context.l10n.expenseCategory,
-                    hintText: context.l10n.selectCategory,
+                    labelText: 'Category',
+                    hintText: 'Select category',
                     suffixType: SuffixType.defaultt,
                     readOnly: true,
                     errorTextOnValidation: 'Please select a category',
@@ -126,8 +125,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   SizedBox(height: 20.h),
                   AppTextField(
                     controller: _expenseDateController,
-                    labelText: context.l10n.expenseDate,
-                    hintText: context.l10n.selectDate,
+                    labelText: 'Expense date',
+                    hintText: 'Select date',
                     suffixType: SuffixType.customIcon,
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: 16),
@@ -145,8 +144,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   SizedBox(height: 20.h),
                   AppTextField(
                     controller: _amountController,
-                    labelText: context.l10n.amount,
-                    hintText: context.l10n.enterAmountLabel,
+                    labelText: 'Amount',
+                    hintText: 'Enter amount',
                     keyboardType: TextInputType.number,
                     customValidator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter amount';
@@ -157,13 +156,13 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   SizedBox(height: 20.h),
                   AppTextField(
                     controller: _descriptionController,
-                    hintText: context.l10n.enterExpenseDescription,
+                    hintText: 'Enter expense description',
                     maxLine: 7,
                     alwaysShowLabelAndHint: true,
                     errorTextOnValidation: 'Please enter a description',
                   ),
                   SizedBox(height: 20.h),
-                  Text(context.l10n.attachmentOptional,
+                  Text('Attachment (Optional)',
                       style: context.theme.fonts.textMdMedium),
                   SizedBox(height: 8.h),
                   if (_attachmentName != null)
@@ -187,7 +186,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           ),
                         ),
                         child: Text(
-                          context.l10n.clickToUpload,
+                          'Click to upload',
                           textAlign: TextAlign.center,
                           style: context.theme.fonts.textMdMedium.copyWith(
                             color: context.theme.colors.brandDefaultContrast,
@@ -200,17 +199,17 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '${context.l10n.supportedFormats} ',
+                          text: 'Supported formats: ',
                           style: context.theme.fonts.textSmRegular.copyWith(
                             color: context.theme.colors.textSecondary,
                           ),
                         ),
                         TextSpan(
-                          text: context.l10n.jpgPngHeicOrPdf,
+                          text: 'JPG, PNG, HEIC or PDF',
                           style: context.theme.fonts.textSmMedium,
                         ),
                         TextSpan(
-                          text: '${context.l10n.maxFileSizeLabel} ',
+                          text: '; Max file size: ',
                           style: context.theme.fonts.textSmRegular.copyWith(
                             color: context.theme.colors.textSecondary,
                           ),
@@ -230,7 +229,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 32.h),
             child: PrimaryButton(
               onPressed: _submitExpense,
-              text: context.l10n.addExpense,
+              text: 'Add expense',
             ),
           ),
         ],

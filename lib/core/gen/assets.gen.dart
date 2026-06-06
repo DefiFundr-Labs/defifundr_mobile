@@ -12,12 +12,6 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/AddressBook.svg
-  String get addressBookSvg => 'assets/icons/AddressBook.svg';
-
-  /// File path: assets/icons/address_book.svg
-  String get addressBookSvg_ => 'assets/icons/address_book.svg';
-
   /// File path: assets/icons/Bank.svg
   String get bank => 'assets/icons/Bank.svg';
 
@@ -48,14 +42,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ClockUser.svg
   String get clockUser => 'assets/icons/ClockUser.svg';
 
-  /// File path: assets/icons/CloudSlash.svg
-  String get cloudSlash => 'assets/icons/CloudSlash.svg';
-
   /// File path: assets/icons/Copy.svg
   String get copy => 'assets/icons/Copy.svg';
-
-  /// File path: assets/icons/DeviceMobileSlash.svg
-  String get deviceMobileSlash => 'assets/icons/DeviceMobileSlash.svg';
 
   /// File path: assets/icons/Empty State.svg
   String get emptyState => 'assets/icons/Empty State.svg';
@@ -84,9 +72,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Link.svg
   String get link => 'assets/icons/Link.svg';
 
-  /// File path: assets/icons/ListChecks.svg
-  String get listChecks => 'assets/icons/ListChecks.svg';
-
   /// File path: assets/icons/MagnifyingGlass.svg
   String get magnifyingGlass => 'assets/icons/MagnifyingGlass.svg';
 
@@ -107,9 +92,6 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/Scales.svg
   String get scales => 'assets/icons/Scales.svg';
-
-  /// File path: assets/icons/ShieldCheck.svg
-  String get shieldCheck => 'assets/icons/ShieldCheck.svg';
 
   /// File path: assets/icons/Trash.svg
   String get trash => 'assets/icons/Trash.svg';
@@ -137,6 +119,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/Warning.svg
   String get warning => 'assets/icons/Warning.svg';
+
+  /// File path: assets/icons/address_book.svg
+  String get addressBook => 'assets/icons/address_book.svg';
 
   /// File path: assets/icons/alarmNotification.svg
   String get alarmNotification => 'assets/icons/alarmNotification.svg';
@@ -202,9 +187,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar.svg
   String get calendar => 'assets/icons/calendar.svg';
 
-  /// File path: assets/icons/calendarDot.svg
-  String get calendarDot => 'assets/icons/calendarDot.svg';
-
   /// File path: assets/icons/caretRight.svg
   String get caretRightSvg => 'assets/icons/caretRight.svg';
 
@@ -248,9 +230,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eclipse.svg
   String get eclipse => 'assets/icons/eclipse.svg';
 
-  /// File path: assets/icons/emptyInvoice.svg
-  String get emptyInvoice => 'assets/icons/emptyInvoice.svg';
-
   /// File path: assets/icons/empty_expense.svg
   String get emptyExpense => 'assets/icons/empty_expense.svg';
 
@@ -260,9 +239,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/empty_quickpay_icon_dark.svg
   String get emptyQuickpayIconDark =>
       'assets/icons/empty_quickpay_icon_dark.svg';
-
-  /// File path: assets/icons/emptyrecords.svg
-  String get emptyrecords => 'assets/icons/emptyrecords.svg';
 
   /// File path: assets/icons/ethereumIcon.svg
   String get ethereumIcon => 'assets/icons/ethereumIcon.svg';
@@ -348,9 +324,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo.svg
   String get logo => 'assets/icons/logo.svg';
 
-  /// File path: assets/icons/milestoneSvg.svg
-  String get milestoneSvg => 'assets/icons/milestoneSvg.svg';
-
   /// File path: assets/icons/money.svg
   String get money => 'assets/icons/money.svg';
 
@@ -429,9 +402,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/telegram_logo.svg
   String get telegramLogo => 'assets/icons/telegram_logo.svg';
 
-  /// File path: assets/icons/termination.svg
-  String get termination => 'assets/icons/termination.svg';
-
   /// File path: assets/icons/tether.svg
   String get tether => 'assets/icons/tether.svg';
 
@@ -489,8 +459,6 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    addressBookSvg,
-    addressBookSvg_,
     bank,
     briefcase,
     buildingOfficeSvg,
@@ -501,9 +469,7 @@ class $AssetsIconsGen {
     clock,
     clockCountdown,
     clockUser,
-    cloudSlash,
     copy,
-    deviceMobileSlash,
     emptyState,
     file,
     files,
@@ -513,7 +479,6 @@ class $AssetsIconsGen {
     info,
     invoiceCopy,
     link,
-    listChecks,
     magnifyingGlass,
     moneyCopy,
     prohibit,
@@ -521,7 +486,6 @@ class $AssetsIconsGen {
     qrCodeSvg_,
     receipt,
     scales,
-    shieldCheck,
     trash,
     userCircleSvg,
     userCircleSvg_,
@@ -531,6 +495,7 @@ class $AssetsIconsGen {
     userFocusSvg_,
     wallet,
     warning,
+    addressBook,
     alarmNotification,
     appIcon,
     appleIcon,
@@ -551,7 +516,6 @@ class $AssetsIconsGen {
     bvnProcessing,
     bvnProcessingDark,
     calendar,
-    calendarDot,
     caretRightSvg,
     caretRightSvg_,
     caretDown,
@@ -565,11 +529,9 @@ class $AssetsIconsGen {
     dollarCircle,
     download,
     eclipse,
-    emptyInvoice,
     emptyExpense,
     emptyQuickpayIcon,
     emptyQuickpayIconDark,
-    emptyrecords,
     ethereumIcon,
     eye,
     eyeIcon,
@@ -598,7 +560,6 @@ class $AssetsIconsGen {
     lockKeyOpen,
     logoWhite,
     logo,
-    milestoneSvg,
     money,
     ninSlip,
     noTransaction,
@@ -625,7 +586,6 @@ class $AssetsIconsGen {
     starknetIcon,
     steller,
     telegramLogo,
-    termination,
     tether,
     transaction,
     transactionHeadset,
@@ -767,9 +727,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/money.png
   AssetGenImage get money => const AssetGenImage('assets/images/money.png');
 
-  /// File path: assets/images/more_bg.png
-  AssetGenImage get moreBg => const AssetGenImage('assets/images/more_bg.png');
-
   /// File path: assets/images/nigeria.svg
   String get nigeria => 'assets/images/nigeria.svg';
 
@@ -860,7 +817,6 @@ class $AssetsImagesGen {
     lusd,
     matic,
     money,
-    moreBg,
     nigeria,
     onboardingBg1,
     onboardingBg2,

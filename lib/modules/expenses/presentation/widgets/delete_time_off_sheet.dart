@@ -8,7 +8,6 @@ import 'package:defifundr_mobile/modules/expenses/presentation/widgets/status_ch
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:defifundr_mobile/core/extensions/l10n_extension.dart';
 
 class DeleteTimeOffSheet extends StatelessWidget {
   final Expense expense;
@@ -37,10 +36,10 @@ class DeleteTimeOffSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          Text(context.l10n.deleteTimeOffTitle, style: context.theme.fonts.heading3Bold),
+          Text('Delete time off?', style: context.theme.fonts.heading3Bold),
           SizedBox(height: 4.h),
           Text(
-            context.l10n.deleteTimeOffPrompt,
+            'Are you sure you want to delete this time off request?',
             style: context.theme.fonts.textMdRegular.copyWith(
               color: context.theme.colors.textSecondary,
             ),
@@ -98,7 +97,7 @@ class DeleteTimeOffSheet extends StatelessWidget {
             children: [
               Expanded(
                 child: SecondaryButton(
-                  text: context.l10n.goBack,
+                  text: 'Go back',
                   backgroundColor: context.theme.colors.fillTertiary,
                   borderColor: Colors.transparent,
                   enableShine: false,
@@ -108,7 +107,7 @@ class DeleteTimeOffSheet extends StatelessWidget {
               SizedBox(width: 12.w),
               Expanded(
                 child: SecondaryButton(
-                  text: context.l10n.deleteTimeOff,
+                  text: 'Delete time off',
                   backgroundColor: context.theme.colors.redDefault,
                   textColor: context.theme.colors.contrastWhite,
                   enableShine: false,
