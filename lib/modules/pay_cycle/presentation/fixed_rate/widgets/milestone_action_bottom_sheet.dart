@@ -43,7 +43,7 @@ class _MilestoneActionBottomSheetState
     return Container(
       padding: EdgeInsets.fromLTRB(20, 12, 20, 32.h),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
       ),
       child: Column(

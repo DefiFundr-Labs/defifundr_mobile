@@ -14,20 +14,12 @@ enum PaymentStatus {
   rejected,
 }
 
-enum PayCycleFrequency {
-  perHour,
-  perDay,
-  perWeek,
-  perMonth,
-  perDeliverable,
-}
-
 class PayCycleContract {
   final String id;
   final String title;
   final ContractType type;
   final String rate;
-  final PayCycleFrequency frequency;
+  final String frequency;
   final bool isActive;
   final String? clientName;
   final List<Milestone>? milestones;
@@ -55,7 +47,6 @@ class WorkSubmission {
   final DateTime submissionDate;
   final DateTime workDate;
   final PaymentStatus status;
-  final String? title;
   final String? description;
   final String? attachmentPath;
   final String? invoiceNumber;
@@ -72,7 +63,6 @@ class WorkSubmission {
     required this.submissionDate,
     required this.workDate,
     required this.status,
-    this.title,
     this.description,
     this.attachmentPath,
     this.invoiceNumber,
@@ -148,23 +138,6 @@ class Milestone {
     this.description,
     this.attachmentPath,
   });
-}
-
-extension PayCycleFrequencyExtension on PayCycleFrequency {
-  String get displayName {
-    switch (this) {
-      case PayCycleFrequency.perHour:
-        return 'Per Hour';
-      case PayCycleFrequency.perDay:
-        return 'Per Day';
-      case PayCycleFrequency.perWeek:
-        return 'Per Week';
-      case PayCycleFrequency.perMonth:
-        return 'Every Month';
-      case PayCycleFrequency.perDeliverable:
-        return 'Per Deliverable';
-    }
-  }
 }
 
 extension ContractTypeExtension on ContractType {

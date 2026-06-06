@@ -330,6 +330,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo.svg
   String get logo => 'assets/icons/logo.svg';
 
+  /// File path: assets/icons/milestoneSvg.svg
+  String get milestoneSvg => 'assets/icons/milestoneSvg.svg';
+
   /// File path: assets/icons/money.svg
   String get money => 'assets/icons/money.svg';
 
@@ -568,6 +571,7 @@ class $AssetsIconsGen {
     lockKeyOpen,
     logoWhite,
     logo,
+    milestoneSvg,
     money,
     ninSlip,
     noTransaction,

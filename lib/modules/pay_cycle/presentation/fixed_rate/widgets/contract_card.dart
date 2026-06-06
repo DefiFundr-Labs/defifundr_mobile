@@ -19,7 +19,7 @@ class ContractCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: context.theme.colors.strokeSecondary),
       ),
@@ -95,7 +95,7 @@ class ContractCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    contract.frequency.displayName,
+                    contract.frequency,
                     style: context.theme.fonts.textSmRegular.copyWith(
                       color: context.theme.colors.textSecondary,
                     ),

@@ -55,7 +55,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB0,
+      backgroundColor: context.theme.colors.bgB1,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -90,7 +90,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
@@ -166,36 +166,21 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
   }
 
   Widget _buildMainSection(BuildContext context) {
-    final isDeliverable =
-        widget.contract.frequency == PayCycleFrequency.perDeliverable;
-    final isDay = widget.contract.frequency == PayCycleFrequency.perDay;
-    final isWeek = widget.contract.frequency == PayCycleFrequency.perWeek;
-
     final sectionTitle = isMilestone
         ? 'Milestones'
         : isPayAsYouGo
-            ? (isDeliverable
-                ? 'Deliverables'
-                : (isDay
-                    ? 'Days worked'
-                    : (isWeek ? 'Weeks worked' : 'Hours worked')))
+            ? 'Hours worked'
             : 'Payouts';
     final sectionDescription = isMilestone
         ? 'Milestones must be completed and approved before an invoice can be generated for payment.'
         : isPayAsYouGo
-            ? (isDeliverable
-                ? 'Submit your completed deliverable for client approval. It will be invoiced once approved.'
-                : (isDay
-                    ? 'Submit your days worked for client approval. It will be invoiced once approved.'
-                    : (isWeek
-                        ? 'Submit your weeks worked for client approval. It will be invoiced once approved.'
-                        : 'Submit your hours worked for client approval. It will be invoiced once approved.')))
+            ? 'Submit your hours worked for client approval. It will be invoiced once approved.'
             : 'Payout request are automatically generated based on the schedule and terms defined in the contract.';
 
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -222,13 +207,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
           if (isPayAsYouGo) ...[
             const SizedBox(height: 16),
             PrimaryButton(
-              text: isDeliverable
-                  ? 'Submit deliverable'
-                  : (isDay
-                      ? 'Submit days worked'
-                      : (isWeek
-                          ? 'Submit weeks worked'
-                          : 'Submit hours worked')),
+              text: 'Submit hours worked',
               onPressed: () => context.router
                   .push(PayCycleSubmitHoursRoute(contract: widget.contract)),
               borderRadius: BorderRadius.circular(8.r),
@@ -264,18 +243,11 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
         Tab(text: 'Approved ($approvedCount)'),
       ];
     } else if (isPayAsYouGo) {
-      final submissions = MockData.getWorkSubmissions(widget.contract.id);
-      final pendingCount =
-          submissions.where((s) => s.status == PaymentStatus.pendingApproval).length;
-      final approvedCount =
-          submissions.where((s) => s.status == PaymentStatus.approved).length;
-      final deniedCount =
-          submissions.where((s) => s.status == PaymentStatus.rejected).length;
-
+      // Mock counts for PAYG
       tabs = [
-        Tab(text: 'Pending ($pendingCount)'),
-        Tab(text: 'Approved ($approvedCount)'),
-        Tab(text: 'Denied ($deniedCount)'),
+        const Tab(text: 'Pending (0)'),
+        const Tab(text: 'Approved (2)'),
+        const Tab(text: 'Denied (1)'),
       ];
     } else {
       final pendingPayouts = _payouts
@@ -306,7 +278,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         indicator: BoxDecoration(
-          color: context.theme.colors.bgB2,
+          color: context.theme.colors.bgB0,
           borderRadius: BorderRadius.circular(4.r),
         ),
         labelColor: context.theme.colors.textPrimary,
@@ -604,26 +576,16 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-            Text(
-              isPayAsYouGo
-                  ? (widget.contract.frequency ==
-                          PayCycleFrequency.perDeliverable
-                      ? 'Deliverables history'
-                      : (widget.contract.frequency == PayCycleFrequency.perDay
-                          ? 'Days worked history'
-                          : (widget.contract.frequency ==
-                                  PayCycleFrequency.perWeek
-                              ? 'Weeks worked history'
-                              : 'Hours worked history')))
-                  : 'Payouts history',
-              style: context.theme.fonts.textBaseSemiBold,
-            ),
+          Text(
+            isPayAsYouGo ? 'Hours worked history' : 'Payouts history',
+            style: context.theme.fonts.textBaseSemiBold,
+          ),
           SizedBox(height: 20.h),
           ListView.builder(
             shrinkWrap: true,
@@ -635,97 +597,24 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
                 item: _paymentHistory[index],
                 onTap: () {
                   final item = _paymentHistory[index];
-                  if (isPayAsYouGo) {
-                    final isDeliverable = widget.contract.frequency == PayCycleFrequency.perDeliverable;
-                    context.router.push(
-                      PayCycleSubmittedHoursDetailRoute(
-                        submission: WorkSubmission(
-                          id: item.id,
-                          workDate: item.startDate,
-                          submissionDate: item.submissionDate,
-                          quantity: isDeliverable
-                              ? 2
-                              : (widget.contract.frequency ==
-                                      PayCycleFrequency.perDay
-                                  ? 4
-                                  : (widget.contract.frequency ==
-                                          PayCycleFrequency.perWeek
-                                      ? 3
-                                      : 12.35)),
-                          unit: isDeliverable
-                              ? 'deliverables'
-                              : (widget.contract.frequency ==
-                                      PayCycleFrequency.perDay
-                                  ? 'days'
-                                  : (widget.contract.frequency ==
-                                          PayCycleFrequency.perWeek
-                                      ? 'weeks'
-                                      : 'hours')),
-                          amount: item.amount,
-                          currency: item.currency,
-                          status: item.status,
-                          invoiceNumber: item.invoiceNumber,
-                          description: isDeliverable
-                              ? 'Deliverables Batch'
-                              : 'Refactored the user onboarding process to reduce friction, added progress indicators, and updated form validations for a smoother user experience.',
-                          attachmentPath: 'File name.pdf',
-                          breakdown: widget.contract.frequency ==
-                                  PayCycleFrequency.perDay
-                              ? [
-                                  WorkBreakdownItem(
-                                      label: 'Mon 12 May 2025',
-                                      timeRange: '',
-                                      duration: '1 day'),
-                                  WorkBreakdownItem(
-                                      label: 'Wed 14 May 2025',
-                                      timeRange: '',
-                                      duration: '1 day'),
-                                  WorkBreakdownItem(
-                                      label: 'Fri 16 May 2025',
-                                      timeRange: '',
-                                      duration: '1 day'),
-                                  WorkBreakdownItem(
-                                      label: 'Sat 17 May 2025',
-                                      timeRange: '',
-                                      duration: '1 day'),
-                                ]
-                              : (isDeliverable
-                                  ? []
-                                  : [
-                                      WorkBreakdownItem(
-                                          label: 'Feature Development',
-                                          timeRange: '09:00 – 13:00',
-                                          duration: '4h 00m'),
-                                      WorkBreakdownItem(
-                                          label: 'Bug Fixing',
-                                          timeRange: '14:00 – 16:30',
-                                          duration: '2h 30m'),
-                                    ]),
-                          records: [],
-                        ),
-                        contract: widget.contract,
+                  context.router.push(
+                    PayoutDetailRoute(
+                      payout: Payout(
+                        id: item.id,
+                        invoiceNumber: item.invoiceNumber,
+                        status: item.status,
+                        startDate: item.startDate,
+                        endDate: item.endDate,
+                        submissionDate: item.submissionDate,
+                        dueDate: item.endDate, // fallback
+                        amount: item.amount,
+                        currency: item.currency,
+                        contractId: widget.contract.id,
+                        contractTitle: widget.contract.title,
+                        clientName: widget.contract.clientName ?? 'Client',
                       ),
-                    );
-                  } else {
-                    context.router.push(
-                      PayoutDetailRoute(
-                        payout: Payout(
-                          id: item.id,
-                          invoiceNumber: item.invoiceNumber,
-                          status: item.status,
-                          startDate: item.startDate,
-                          endDate: item.endDate,
-                          submissionDate: item.submissionDate,
-                          dueDate: item.endDate,
-                          amount: item.amount,
-                          currency: item.currency,
-                          contractId: widget.contract.id,
-                          contractTitle: widget.contract.title,
-                          clientName: widget.contract.clientName ?? 'Client',
-                        ),
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 },
               ),
             ),
@@ -743,15 +632,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
           .where((s) => s.status == PaymentStatus.pendingApproval)
           .toList();
       if (pendingSubmissions.isEmpty) {
-        final itemLabel = widget.contract.frequency ==
-                PayCycleFrequency.perDeliverable
-            ? 'deliverable'
-            : (widget.contract.frequency == PayCycleFrequency.perDay
-                ? 'pending workday'
-                : (widget.contract.frequency == PayCycleFrequency.perWeek
-                    ? 'no pending workweek'
-                    : 'hours worked'));
-        return _buildEmptyState(context, 'No $itemLabel yet');
+        return _buildEmptyState(context, 'No pending hours worked yet');
       }
       return Column(
         children: [
@@ -917,14 +798,10 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
               children: [
                 Expanded(
                   child: Text(
-                    widget.contract.frequency == PayCycleFrequency.perDeliverable
-                        ? (submission.description ?? 'Deliverable')
-                        : '${submission.quantity.toInt()} ${submission.unit} worked',
+                    '${submission.quantity} ${submission.unit} worked',
                     style: context.theme.fonts.textMdSemiBold.copyWith(
                       color: context.theme.colors.textPrimary,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Text(

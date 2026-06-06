@@ -1,6 +1,5 @@
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common/buttons/secondary_buttons.dart';
 import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/core/utils/ellipsify.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +31,6 @@ class _WorkSubmissionActionBottomSheetState
   final _reasonController = TextEditingController();
 
   bool get isDelete => widget.actionType == WorkSubmissionActionType.delete;
-  bool get isDeliverable => widget.submission.unit.toLowerCase().contains('deliverable');
-  bool get isDay => widget.submission.unit.toLowerCase().contains('day');
-  bool get isWeek => widget.submission.unit.toLowerCase().contains('week');
 
   @override
   void dispose() {
@@ -47,7 +43,7 @@ class _WorkSubmissionActionBottomSheetState
     return Container(
       padding: EdgeInsets.fromLTRB(20, 12, 20, 32.h),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
       ),
       child: Column(
@@ -65,38 +61,14 @@ class _WorkSubmissionActionBottomSheetState
           ),
           const SizedBox(height: 16),
           Text(
-            isDelete
-                ? (isDeliverable
-                    ? 'Delete deliverable?'
-                    : (isDay
-                        ? 'Delete workdays?'
-                        : (isWeek ? 'Delete weeks worked?' : 'Delete submission?')))
-                : (isDeliverable
-                    ? 'Submit deliverable?'
-                    : (isDay
-                        ? 'Submit workdays?'
-                        : (isWeek
-                            ? 'Submit weeks worked?'
-                            : 'Submit worked hours?'))),
+            isDelete ? 'Delete submission?' : 'Submit worked hours?',
             style: context.theme.fonts.heading3Bold,
           ),
           const SizedBox(height: 8),
           Text(
             isDelete
-                ? (isDeliverable
-                    ? 'Are you sure you want to delete this deliverable?'
-                    : (isDay
-                        ? 'Are you sure you want to delete these workdays?'
-                        : (isWeek
-                            ? 'Are you sure you want to delete these weeks worked?'
-                            : 'Are you sure you want to delete this submission?')))
-                : (isDeliverable
-                    ? 'Are you sure you want to submit this deliverable?'
-                    : (isDay
-                        ? 'Are you sure you want to submit these workdays?'
-                        : (isWeek
-                            ? 'Are you sure you want to submit these weeks worked?'
-                            : 'Are you sure you want to submit these worked hours?'))),
+                ? 'Are you sure you want to delete this submission?'
+                : 'Are you sure you want to submit these worked hours?',
             textAlign: TextAlign.center,
             style: context.theme.fonts.textMdRegular.copyWith(
               color: context.theme.colors.textSecondary,
@@ -115,11 +87,7 @@ class _WorkSubmissionActionBottomSheetState
                   children: [
                     Expanded(
                       child: Text(
-                        isDeliverable
-                            ? ellipsify(
-                                word: widget.submission.description ?? '--',
-                                maxLength: 22)
-                            : '${widget.submission.quantity.toInt()} ${isDay ? 'days' : (isWeek ? 'weeks' : 'hours')} worked',
+                        '${widget.submission.quantity} ${widget.submission.unit} worked',
                         style: context.theme.fonts.textMdSemiBold,
                       ),
                     ),
@@ -181,7 +149,9 @@ class _WorkSubmissionActionBottomSheetState
           Row(
             children: [
               Expanded(
-                child: SecondaryButton(
+                child: PrimaryButton(
+                  textColor: context.theme.colors.textPrimary,
+                  color: context.theme.colors.grayTertiary.withAlpha(50),
                   text: 'Go back',
                   onPressed: () => context.router.maybePop(),
                 ),
@@ -201,20 +171,8 @@ class _WorkSubmissionActionBottomSheetState
                       backgroundColor: Colors.transparent,
                       builder: (context) => SuccessBottomSheet(
                         actionType: isDelete
-                            ? (isDeliverable
-                                ? SuccessActionType.deliverableDeleted
-                                : (isDay
-                                    ? SuccessActionType.workdayDeleted
-                                    : (isWeek
-                                        ? SuccessActionType.weeksDeleted
-                                        : SuccessActionType.workSubmissionDeleted)))
-                            : (isDeliverable
-                                ? SuccessActionType.deliverableSubmitted
-                                : (isDay
-                                    ? SuccessActionType.workdaySubmitted
-                                    : (isWeek
-                                        ? SuccessActionType.weeksSubmitted
-                                        : SuccessActionType.workSubmissionSubmitted))),
+                            ? SuccessActionType.workSubmissionDeleted
+                            : SuccessActionType.workSubmissionSubmitted,
                       ),
                     );
                   },
