@@ -104,7 +104,7 @@ import 'package:defifundr_mobile/modules/payment/presentation/upcoming_payments/
 import 'package:defifundr_mobile/modules/payment/presentation/payments/screens/transactions_screen.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/quick_payments.dart';
 import 'package:defifundr_mobile/modules/quickpay/data/model/receive_params.dart';
-import 'package:defifundr_mobile/modules/quickpay/invoice_detail_screen.dart';
+import 'package:defifundr_mobile/modules/quickpay/presentation/screens/invoice_detail_screen.dart';
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submitted_hours_detail_screen.dart';
 import 'package:defifundr_mobile/modules/pay_cycle/presentation/fixed_rate/screens/pay_cycle_submit_hours_screen.dart';
 // QuickPay

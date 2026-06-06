@@ -171,7 +171,9 @@ class _MoreScreenState extends State<MoreScreen> {
                     icon: _buildIcon(Assets.icons.globeSimple, colors),
                     title: l10n.visitWebsite,
                     trailingType: MoreItemTrailingType.externalLink,
-                    onTap: () {},
+                    onTap: () {
+                      context.router.push(Web3authTestRoute());
+                    },
                   ),
                   MoreListItem(
                     icon: _buildIcon(Assets.icons.fileTextCopy, colors),

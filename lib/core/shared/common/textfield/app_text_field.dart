@@ -249,23 +249,15 @@ class _AppTextFieldState extends State<AppTextField> {
     switch (widget.inputFormatterType) {
       case InputFormatterType.phone:
         return <TextInputFormatter>[
-          // FilteringTextInputFormatter.digitsOnly,
           MaskTextInputFormatter(
             mask: '#### ### ####',
             filter: {'#': RegExp(r'[0-9]')},
           ),
           LengthLimitingTextInputFormatter(11),
-          // TextInputFormatter.withFunction((oldValue, newValue) {
-          //   return newValue;
-          // })
         ];
       case InputFormatterType.amount:
         return <TextInputFormatter>[
           FilteringTextInputFormatter.digitsOnly,
-          // CurrencyTextInputFormatter(
-          //   name: '',
-          //   decimalDigits: 0,
-          // ),
         ];
       case InputFormatterType.custom:
         if (widget.inputFormatters != null) {
@@ -385,7 +377,6 @@ class _AppTextFieldState extends State<AppTextField> {
       textField = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Always visible label
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
@@ -609,12 +600,9 @@ class _AppTextFieldState extends State<AppTextField> {
   }
 
   Color _getFillColor(BuildContext context, bool isDark) {
-    // If custom color is provided, use it
     if (widget.bgColour != null) {
       return widget.bgColour!;
     }
-
-    // Otherwise, use theme-based color
     return context.theme.colors.bgB1;
   }
 }
