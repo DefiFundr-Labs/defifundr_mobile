@@ -142,7 +142,6 @@ import 'package:defifundr_mobile/modules/contracts/presentation/screens/request_
 // Web3Auth
 import 'package:defifundr_mobile/modules/web3auth/presentation/screen/web3auth_test_screen.dart';
 // Workspace
-import 'package:defifundr_mobile/modules/workspace/presentation/screens/workspace_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../modules/dasboard/presentation/screens/home_screen.dart';

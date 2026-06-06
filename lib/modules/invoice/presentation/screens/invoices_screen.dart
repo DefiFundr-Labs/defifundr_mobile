@@ -1,16 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/constants/size.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/routers/routers.dart'
-    show CreateInvoiceFlowRoute;
+import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
+import 'package:defifundr_mobile/core/routers/routers.dart' show InvoiceDetailRoute, CreateInvoiceFlowRoute;
 import 'package:defifundr_mobile/core/shared/common/appbar/appbar.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/components/search_and_filter_bar.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/tabs/contract_invoices_tab.dart';
-import 'package:defifundr_mobile/modules/invoice/presentation/tabs/manual_invoices_tab.dart';
+import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
+import 'package:defifundr_mobile/modules/invoice/data/models/app_%20constants.dart';
+import 'package:defifundr_mobile/modules/invoice/data/models/invoice_models.dart';
+import 'package:defifundr_mobile/core/shared/common/components/empty_state/app_empty_state.dart';
 import 'package:defifundr_mobile/modules/invoice/presentation/widgets/filter_bottom_sheet.dart';
+import 'package:defifundr_mobile/modules/invoice/presentation/widgets/invoice_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class InvoicesScreen extends StatefulWidget {
@@ -54,27 +58,11 @@ class _InvoicesScreenState extends State<InvoicesScreen>
       body: Column(
         children: [
           _buildTabBar(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: SearchAndFilterBar(
-              searchController: _searchController,
-              onFilterTap: _showFilterBottomSheet,
-            ),
-          ),
+          _buildSearchBar(),
           _buildTabBarView(),
-          Container(
-            padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 16,
-                bottom: MediaQuery.of(context).padding.bottom),
-            child: PrimaryButton(
-              text: 'Create an invoice',
-              onPressed: _navigateToCreateInvoice,
-            ),
-          ),
         ],
       ),
+      bottomNavigationBar: _buildCreateInvoiceButton(),
     );
   }
 
@@ -111,7 +99,7 @@ class _InvoicesScreenState extends State<InvoicesScreen>
           color: context.theme.colors.brandContrast,
         ),
         unselectedLabelStyle: context.theme.fonts.textMdRegular.copyWith(
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           fontSize: fontSize,
           color: context.theme.colors.brandContrast,
         ),
@@ -123,14 +111,93 @@ class _InvoicesScreenState extends State<InvoicesScreen>
     );
   }
 
+  Widget _buildSearchBar() {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          Expanded(
+            child: AppTextField(
+              controller: _searchController,
+              validate: false,
+              alwaysShowLabelAndHint: true,
+              hintText: "Search",
+              prefixType: PrefixType.customIcon,
+              prefixIcon: SvgPicture.asset(
+                Assets.icons.magnifyingGlass,
+                width: 20,
+                height: 20,
+                color: context.theme.colors.textSecondary,
+              ),
+            ),
+          ),
+          SizedBox(width: 8.w),
+          GestureDetector(
+            onTap: _showFilterBottomSheet,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: isLight
+                    ? context.theme.colors.bgB0
+                    : context.theme.colors.bgB1,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: context.theme.colors.strokeSecondary.withAlpha(20),
+                ),
+              ),
+              child: SvgPicture.asset(
+                Assets.icons.filter,
+                width: 20,
+                height: 20,
+                color: context.theme.colors.textSecondary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildTabBarView() {
     return Expanded(
       child: TabBarView(
         controller: _tabController,
-        children: const [
-          ManualInvoicesTab(),
-          ContractInvoicesTab(),
+        children: [
+          _buildInvoicesList(AppConstants.sampleManualInvoices),
+          _buildInvoicesList(AppConstants.sampleContractInvoices),
         ],
+      ),
+    );
+  }
+
+  Widget _buildInvoicesList(List<Invoice> invoices) {
+    if (invoices.isEmpty) {
+      return const AppEmptyState(
+        icon: Icons.description_outlined,
+        title: 'No invoices yet.',
+        subtitle: 'Once you create or receive one, you\'ll see it listed here.',
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: invoices.length,
+      itemBuilder: (context, index) {
+        return InvoiceCard(
+          invoice: invoices[index],
+          onTap: () => _navigateToInvoiceDetail(invoices[index]),
+        );
+      },
+    );
+  }
+
+  Widget _buildCreateInvoiceButton() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+      child: PrimaryButton(
+        text: 'Create an invoice',
+        onPressed: _navigateToCreateInvoice,
       ),
     );
   }
@@ -142,6 +209,10 @@ class _InvoicesScreenState extends State<InvoicesScreen>
       backgroundColor: Colors.transparent,
       builder: (context) => const FilterBottomSheet(),
     );
+  }
+
+  void _navigateToInvoiceDetail(Invoice invoice) {
+    context.router.push(InvoiceDetailRoute(invoice: invoice));
   }
 
   void _navigateToCreateInvoice() {
