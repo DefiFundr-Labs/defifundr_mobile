@@ -1,21 +1,23 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:defifundr_mobile/core/design_system/app_colors/app_colors.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
-import 'package:defifundr_mobile/core/enums/app_text_field_enums.dart';
 import 'package:defifundr_mobile/core/shared/common/buttons/primary_button.dart';
-import 'package:defifundr_mobile/core/shared/common/textfield/app_text_field.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/assets.dart';
 import 'package:defifundr_mobile/modules/finance/data/model/network.dart';
+import 'package:defifundr_mobile/modules/time_tracking/data/models/contract.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/first_invoice_section.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/invoice_details_section.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/payment_details_section.dart';
 import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/selection_bottom_sheet.dart';
+import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/tax_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-import 'package:defifundr_mobile/modules/time_tracking/presentation/screens/create_contract_flow/widgets/selection_pill_bar.dart';
-
 class PaymentInvoiceStep extends StatelessWidget {
+  final ContractType? contractType;
   final Network? selectedNetwork;
   final NetworkAsset? selectedAsset;
+  final String? rateUnit;
   final String? invoiceFrequency;
   final String? issueInvoiceOn;
   final String? issueSecondInvoiceOn;
@@ -31,6 +33,7 @@ class PaymentInvoiceStep extends StatelessWidget {
   final TextEditingController taxRateController;
   final ValueChanged<Network?> onNetworkChanged;
   final ValueChanged<NetworkAsset?> onAssetChanged;
+  final ValueChanged<String> onRateUnitChanged;
   final ValueChanged<String> onFrequencyChanged;
   final ValueChanged<String> onIssueOnChanged;
   final ValueChanged<String> onIssueSecondOnChanged;
@@ -43,8 +46,10 @@ class PaymentInvoiceStep extends StatelessWidget {
 
   const PaymentInvoiceStep({
     Key? key,
+    this.contractType,
     required this.selectedNetwork,
     required this.selectedAsset,
+    required this.rateUnit,
     required this.invoiceFrequency,
     required this.issueInvoiceOn,
     required this.issueSecondInvoiceOn,
@@ -60,6 +65,7 @@ class PaymentInvoiceStep extends StatelessWidget {
     required this.taxRateController,
     required this.onNetworkChanged,
     required this.onAssetChanged,
+    required this.onRateUnitChanged,
     required this.onFrequencyChanged,
     required this.onIssueOnChanged,
     required this.onIssueSecondOnChanged,
@@ -81,15 +87,18 @@ class PaymentInvoiceStep extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _PaymentDetailsSection(
+                PaymentDetailsSection(
+                  contractType: contractType,
                   selectedNetwork: selectedNetwork,
                   selectedAsset: selectedAsset,
+                  rateUnit: rateUnit,
                   paymentAmountController: paymentAmountController,
                   onSelectNetwork: () => _showNetworkPicker(context),
                   onSelectAsset: () => _showAssetPicker(context),
+                  onSelectRateUnit: () => _showRateUnitPicker(context),
                 ),
                 SizedBox(height: 20.h),
-                _InvoiceDetailsSection(
+                InvoiceDetailsSection(
                   invoiceFrequency: invoiceFrequency,
                   issueInvoiceOn: issueInvoiceOn,
                   issueSecondInvoiceOn: issueSecondInvoiceOn,
@@ -103,7 +112,8 @@ class PaymentInvoiceStep extends StatelessWidget {
                   onSelectPaymentDue: () => _showPaymentDuePicker(context),
                 ),
                 SizedBox(height: 20.h),
-                _FirstInvoiceSection(
+                FirstInvoiceSection(
+                  contractType: contractType,
                   firstInvoiceDateController: firstInvoiceDateController,
                   firstInvoiceAmountType: firstInvoiceAmountType,
                   paymentAmount: paymentAmountController.text,
@@ -113,7 +123,7 @@ class PaymentInvoiceStep extends StatelessWidget {
                   onAmountTypeChanged: onFirstInvoiceTypeChanged,
                 ),
                 SizedBox(height: 24.h),
-                _TaxSection(
+                TaxSection(
                   addInclusiveTax: addInclusiveTax,
                   taxType: taxType,
                   taxIdController: taxIdController,
@@ -136,8 +146,6 @@ class PaymentInvoiceStep extends StatelessWidget {
       ],
     );
   }
-
-  // --- Picker Dialogs ---
 
   void _showNetworkPicker(BuildContext context) {
     _showPickerBottomSheet(
@@ -170,6 +178,15 @@ class PaymentInvoiceStep extends StatelessWidget {
           Text(item.balance, style: context.theme.fonts.textMdRegular),
         ],
       ),
+    );
+  }
+
+  void _showRateUnitPicker(BuildContext context) {
+    _showPickerBottomSheet(
+      context: context,
+      title: 'Rate unit',
+      items: const ['Per Hour', 'Per Day', 'Per Week', 'Per Deliverable'],
+      onSelected: (val) => onRateUnitChanged(val as String),
     );
   }
 
@@ -313,351 +330,5 @@ class PaymentInvoiceStep extends StatelessWidget {
     if (picked != null) {
       controller.text = DateFormat('dd MMM yyyy').format(picked);
     }
-  }
-}
-
-// --- Sub-widgets for sections ---
-
-class _PaymentDetailsSection extends StatelessWidget {
-  final Network? selectedNetwork;
-  final NetworkAsset? selectedAsset;
-  final TextEditingController paymentAmountController;
-  final VoidCallback onSelectNetwork;
-  final VoidCallback onSelectAsset;
-
-  const _PaymentDetailsSection({
-    required this.selectedNetwork,
-    required this.selectedAsset,
-    required this.paymentAmountController,
-    required this.onSelectNetwork,
-    required this.onSelectAsset,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Payment details', style: context.theme.fonts.textBaseMedium),
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: TextEditingController(text: selectedNetwork?.name ?? ''),
-          labelText: 'Network',
-          hintText: 'Select network',
-          suffixType: SuffixType.defaultt,
-          readOnly: true,
-          onTap: onSelectNetwork,
-          prefixType: selectedNetwork != null
-              ? PrefixType.customWidget
-              : PrefixType.none,
-          prefixWidget: selectedNetwork != null
-              ? Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Image.asset(selectedNetwork!.iconPath,
-                      width: 24, height: 24),
-                )
-              : null,
-        ),
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: paymentAmountController,
-          hintText: 'Amount',
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.right,
-          contentPadding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
-          prefixType: PrefixType.customWidget,
-          prefixWidget: GestureDetector(
-            onTap: onSelectAsset,
-            child: Container(
-              padding: const EdgeInsets.only(left: 12, right: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (selectedAsset != null)
-                    Image.asset(selectedAsset!.iconPath, width: 24, height: 24),
-                  const SizedBox(width: 8),
-                  Text(selectedAsset?.name ?? 'USDT',
-                      style: context.theme.fonts.textMdMedium),
-                  const SizedBox(width: 4),
-                  const Icon(Icons.keyboard_arrow_down, size: 20),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 1,
-                    height: 24,
-                    color: context.theme.colors.strokeSecondary,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _InvoiceDetailsSection extends StatelessWidget {
-  final String? invoiceFrequency;
-  final String? issueInvoiceOn;
-  final String? issueSecondInvoiceOn;
-  final String monthlyInvoiceMode;
-  final String? paymentDue;
-  final VoidCallback onSelectFrequency;
-  final VoidCallback onSelectIssueOn;
-  final VoidCallback onSelectIssueSecondOn;
-  final ValueChanged<String> onMonthlyModeChanged;
-  final VoidCallback onSelectPaymentDue;
-
-  const _InvoiceDetailsSection({
-    required this.invoiceFrequency,
-    required this.issueInvoiceOn,
-    required this.issueSecondInvoiceOn,
-    required this.monthlyInvoiceMode,
-    required this.paymentDue,
-    required this.onSelectFrequency,
-    required this.onSelectIssueOn,
-    required this.onSelectIssueSecondOn,
-    required this.onMonthlyModeChanged,
-    required this.onSelectPaymentDue,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Invoice details', style: context.theme.fonts.textBaseMedium),
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: TextEditingController(text: invoiceFrequency ?? ''),
-          labelText: 'Invoice frequency',
-          hintText: 'Invoice frequency',
-          suffixType: SuffixType.defaultt,
-          readOnly: true,
-          onTap: onSelectFrequency,
-        ),
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: TextEditingController(text: issueInvoiceOn ?? ''),
-          labelText: invoiceFrequency == 'Semi-monthly'
-              ? 'Issue First Invoice On'
-              : 'Issue Invoice On',
-          hintText: 'Select date',
-          suffixType: SuffixType.defaultt,
-          readOnly: true,
-          onTap: onSelectIssueOn,
-        ),
-        if (invoiceFrequency == 'Semi-monthly') ...[
-          SizedBox(height: 20.h),
-          AppTextField(
-            controller: TextEditingController(text: issueSecondInvoiceOn ?? ''),
-            labelText: 'Issue Second Invoice On',
-            hintText: 'Select date',
-            suffixType: SuffixType.defaultt,
-            readOnly: true,
-            onTap: onSelectIssueSecondOn,
-          ),
-        ],
-        if (invoiceFrequency == 'Monthly') ...[
-          SizedBox(height: 20.h),
-          SelectionPillBar(
-            options: const ['Ends on date', 'Ends on weekday'],
-            selectedOption: monthlyInvoiceMode,
-            onChanged: onMonthlyModeChanged,
-          ),
-          if (monthlyInvoiceMode == 'Ends on date' &&
-              issueInvoiceOn == '15th of the month') ...[
-            SizedBox(height: 12.h),
-            Text(
-              'Invoice cycle runs 16th - 15th of the following month',
-              style: context.theme.fonts.textXsRegular.copyWith(
-                color: context.theme.colors.textSecondary,
-              ),
-            ),
-          ],
-        ],
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: TextEditingController(text: paymentDue ?? ''),
-          labelText: 'Payment due',
-          hintText: 'Payment due',
-          suffixType: SuffixType.defaultt,
-          readOnly: true,
-          onTap: onSelectPaymentDue,
-        ),
-      ],
-    );
-  }
-}
-
-class _FirstInvoiceSection extends StatelessWidget {
-  final TextEditingController firstInvoiceDateController;
-  final String firstInvoiceAmountType;
-  final String paymentAmount;
-  final TextEditingController customAmountController;
-  final VoidCallback onSelectDate;
-  final ValueChanged<String> onAmountTypeChanged;
-
-  const _FirstInvoiceSection({
-    required this.firstInvoiceDateController,
-    required this.firstInvoiceAmountType,
-    required this.paymentAmount,
-    required this.customAmountController,
-    required this.onSelectDate,
-    required this.onAmountTypeChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('First invoice', style: context.theme.fonts.textBaseMedium),
-        SizedBox(height: 20.h),
-        AppTextField(
-          controller: firstInvoiceDateController,
-          labelText: 'Date',
-          hintText: 'Select date',
-          suffixType: SuffixType.customWidget,
-          suffixWidget: const Icon(Icons.calendar_today_outlined,
-              size: 20, color: AppColors.grayTertiary),
-          readOnly: true,
-          onTap: onSelectDate,
-        ),
-        SizedBox(height: 16.h),
-        SelectionPillBar(
-          options: const ['Full amount', 'Custom amount'],
-          selectedOption: firstInvoiceAmountType,
-          onChanged: onAmountTypeChanged,
-          borderRadius: 12,
-          padding: 4,
-        ),
-        SizedBox(height: 8.h),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: context.theme.colors.fillTertiary,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Monthly rate',
-                  style: context.theme.fonts.textMdRegular.copyWith(
-                    color: context.theme.colors.textSecondary,
-                  )),
-              Text(paymentAmount.isEmpty ? '--' : paymentAmount,
-                  style: context.theme.fonts.textMdBold),
-            ],
-          ),
-        ),
-        if (firstInvoiceAmountType == 'Custom amount') ...[
-          SizedBox(height: 8.h),
-          AppTextField(
-            controller: customAmountController,
-            hintText: 'Amount',
-            keyboardType: TextInputType.number,
-          ),
-        ],
-        SizedBox(height: 8.h),
-        Text(
-          firstInvoiceAmountType == 'Full amount'
-              ? 'You would receive the full monthly amount for your first payment.'
-              : 'You would receive the set amount for your first payment.',
-          style: context.theme.fonts.textXsRegular.copyWith(
-            color: context.theme.colors.textSecondary,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _TaxSection extends StatelessWidget {
-  final bool addInclusiveTax;
-  final String? taxType;
-  final TextEditingController taxIdController;
-  final TextEditingController taxRateController;
-  final ValueChanged<bool> onTaxChanged;
-  final VoidCallback onSelectTaxType;
-
-  const _TaxSection({
-    required this.addInclusiveTax,
-    required this.taxType,
-    required this.taxIdController,
-    required this.taxRateController,
-    required this.onTaxChanged,
-    required this.onSelectTaxType,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: context.theme.colors.fillTertiary,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text('Add inclusive tax',
-                    style: context.theme.fonts.textMdRegular),
-              ),
-              Switch(
-                value: addInclusiveTax,
-                onChanged: onTaxChanged,
-                activeThumbColor: Colors.white,
-                activeTrackColor: context.theme.colors.brandDefault,
-              ),
-            ],
-          ),
-        ),
-        if (addInclusiveTax) ...[
-          SizedBox(height: 20.h),
-          AppTextField(
-            controller: TextEditingController(text: taxType ?? ''),
-            labelText: 'Tax type',
-            hintText: 'Select tax type',
-            suffixType: SuffixType.defaultt,
-            readOnly: true,
-            onTap: onSelectTaxType,
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            'e.g VAT, GST, HST, PST',
-            style: context.theme.fonts.textXsRegular.copyWith(
-              color: context.theme.colors.textSecondary,
-            ),
-          ),
-          SizedBox(height: 20.h),
-          AppTextField(
-            controller: taxIdController,
-            hintText: 'ID / account number',
-            keyboardType: TextInputType.text,
-          ),
-          SizedBox(height: 20.h),
-          AppTextField(
-            controller: taxRateController,
-            hintText: 'Tax rate',
-            keyboardType: TextInputType.number,
-            suffixType: SuffixType.customWidget,
-            suffixWidget: Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Text(
-                '%',
-                style: context.theme.fonts.textMdRegular.copyWith(
-                  color: context.theme.colors.textSecondary,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ],
-    );
   }
 }
