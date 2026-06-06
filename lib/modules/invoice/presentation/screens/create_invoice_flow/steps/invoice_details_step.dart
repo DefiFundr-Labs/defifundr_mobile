@@ -152,7 +152,7 @@ class InvoiceDetailsStep extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 10.sp),
           decoration: ShapeDecoration(
-            color: context.theme.colors.bgB0,
+            color: context.theme.colors.bgB1,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
@@ -234,7 +234,7 @@ class InvoiceDetailsStep extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
             decoration: BoxDecoration(
-              color: context.theme.colors.bgB0,
+              color: context.theme.colors.bgB1,
               border: Border.all(
                 color: context.theme.colors.strokeSecondary,
                 width: 1,

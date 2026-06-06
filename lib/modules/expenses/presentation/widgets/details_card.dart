@@ -13,7 +13,7 @@ class DetailsCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(

@@ -27,7 +27,7 @@ class MilestoneDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -48,7 +48,7 @@ class MilestoneDetailScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Column(
@@ -160,7 +160,7 @@ class MilestoneDetailScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: context.theme.colors.bgB0,
+                      color: context.theme.colors.bgB1,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Column(

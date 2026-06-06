@@ -18,13 +18,14 @@ class TimeOffCardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       width: width,
       margin: margin,
       padding:
           padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(

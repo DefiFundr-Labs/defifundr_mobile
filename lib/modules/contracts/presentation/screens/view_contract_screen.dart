@@ -67,7 +67,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
     final colors = context.theme.colors;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -86,7 +86,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),
-                    color: colors.bgB0,
+                    color: colors.bgB2,
                     elevation: 4,
                     onSelected: (value) {
                       switch (value) {
@@ -247,7 +247,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -405,7 +405,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       width: double.infinity,
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -504,7 +504,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       width: double.infinity,
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -675,7 +675,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       width: double.infinity,
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -721,7 +721,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       builder: (ctx) => Container(
         padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 20.h),
         decoration: BoxDecoration(
-          color: colors.bgB0,
+          color: colors.bgB1,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -817,7 +817,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       backgroundColor: Colors.transparent,
       builder: (ctx) => Container(
         decoration: BoxDecoration(
-          color: colors.bgB0,
+          color: colors.bgB1,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.r),
             topRight: Radius.circular(16.r),
@@ -891,7 +891,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
         child: Container(
           padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 20.h),
           decoration: BoxDecoration(
-            color: colors.bgB0,
+            color: colors.bgB1,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: Column(
@@ -1016,7 +1016,7 @@ class _ViewContractScreenState extends State<ViewContractScreen> {
       backgroundColor: Colors.transparent,
       builder: (ctx) => Container(
         decoration: BoxDecoration(
-          color: colors.bgB0,
+          color: colors.bgB1,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.r),
             topRight: Radius.circular(16.r),

@@ -211,7 +211,7 @@ class _SubmitHoursScreenState extends State<SubmitHoursScreen> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
                           color: context.theme.colors.strokeSecondary,

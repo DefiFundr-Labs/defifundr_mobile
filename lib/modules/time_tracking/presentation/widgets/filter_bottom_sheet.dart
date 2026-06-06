@@ -79,7 +79,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -120,7 +120,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 4.0),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
                             color: context.theme.colors.strokePrimary),
@@ -159,7 +159,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 4.0),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
                             color: context.theme.colors.strokePrimary),
@@ -285,7 +285,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               height: 20,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.theme.colors.bgB0,
+                color: context.theme.colors.bgB1,
                 border: Border.all(
                   color: isSelected
                       ? context.theme.colors.brandDefault

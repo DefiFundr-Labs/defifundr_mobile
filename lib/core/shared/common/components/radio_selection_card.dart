@@ -25,7 +25,7 @@ class RadioSelectionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected

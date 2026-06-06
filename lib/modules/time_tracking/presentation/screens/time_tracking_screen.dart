@@ -170,7 +170,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                 ),
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
-                  color: context.theme.colors.bgB0,
+                  color: context.theme.colors.bgB1,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       width: 0.50,
@@ -207,7 +207,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
               padding: EdgeInsets.all(12.0),
               child: Container(
                 decoration: ShapeDecoration(
-                  color: context.theme.colors.bgB0,
+                  color: context.theme.colors.bgB1,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   shadows: [

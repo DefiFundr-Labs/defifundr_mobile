@@ -53,10 +53,10 @@ class _RequestTerminationScreenState extends State<RequestTerminationScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: context.theme.colors.brandDefault,
-              onPrimary: context.theme.colors.contrastWhite,
-              onSurface: context.theme.colors.textPrimary,
-            ),
+                // primary: context.theme.colors.brandDefault,
+                // onPrimary: context.theme.colors.contrastBlack,
+                // onSurface: context.theme.colors.textPrimary,
+                ),
           ),
           child: child!,
         );
@@ -118,7 +118,7 @@ class _RequestTerminationScreenState extends State<RequestTerminationScreen> {
     final fonts = context.theme.fonts;
 
     return Scaffold(
-      backgroundColor: colors.bgB1,
+      backgroundColor: colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -279,6 +279,7 @@ class _RequestTerminationScreenState extends State<RequestTerminationScreen> {
             child: PrimaryButton(
               onPressed: _submitRequest,
               text: 'Request termination',
+              textColor: colors.textPrimary,
             ),
           ),
         ],
@@ -307,7 +308,7 @@ class _TerminationSuccessBottomSheet extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: colors.bgB0,
+        color: colors.bgB1,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16.r),
           topRight: Radius.circular(16.r),
@@ -348,6 +349,7 @@ class _TerminationSuccessBottomSheet extends StatelessWidget {
             PrimaryButton(
               onPressed: onDone,
               text: 'Done',
+              textColor: colors.textPrimary,
             ),
           ],
         ),

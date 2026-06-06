@@ -25,7 +25,7 @@ class DesignServicesAgreementBottomSheet extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: context.theme.colors.bgB0,
+                  color: context.theme.colors.bgB1,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(

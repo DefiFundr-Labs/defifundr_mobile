@@ -20,7 +20,7 @@ class InvoiceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(context.screenWidth(), 60),
         child: DeFiRaiseAppBar(
@@ -71,7 +71,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -115,7 +115,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -248,7 +248,7 @@ class InvoiceDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -624,8 +624,8 @@ class InvoiceDetailScreen extends StatelessWidget {
           Expanded(
             child: PrimaryButton(
               text: 'Download PDF',
-              textColor: context.theme.colors.contrastWhite,
-              iconColor: context.theme.colors.contrastWhite,
+              textColor: context.theme.colors.textPrimary,
+              iconColor: context.theme.colors.textPrimary,
               icon: Assets.icons.fileArrowDown,
               onPressed: () {},
             ),

@@ -36,7 +36,7 @@ class WorkRecordCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: context.theme.colors.strokeSecondary),
       ),

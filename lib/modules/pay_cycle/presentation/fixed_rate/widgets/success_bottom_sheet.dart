@@ -43,7 +43,7 @@ class SuccessBottomSheet extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),

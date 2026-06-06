@@ -58,10 +58,11 @@ class TimeTrackingSummaryCard extends StatelessWidget {
     required String value,
     required BuildContext context,
   }) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
     return Container(
       padding: EdgeInsets.all(16.sp),
       decoration: ShapeDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         shadows: [
           BoxShadow(

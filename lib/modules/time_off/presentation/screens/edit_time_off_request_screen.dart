@@ -195,7 +195,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
               color:
@@ -227,7 +227,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -324,7 +324,7 @@ class _EditTimeOffRequestScreenState extends State<EditTimeOffRequestScreen> {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                             color: context.theme.colors.strokeSecondary

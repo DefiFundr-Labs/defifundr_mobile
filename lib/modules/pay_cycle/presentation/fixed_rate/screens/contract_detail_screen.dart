@@ -55,7 +55,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -90,7 +90,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
@@ -195,7 +195,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -306,7 +306,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         indicator: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB2,
           borderRadius: BorderRadius.circular(4.r),
         ),
         labelColor: context.theme.colors.textPrimary,
@@ -604,7 +604,7 @@ class _ContractDetailScreenState extends State<ContractDetailScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

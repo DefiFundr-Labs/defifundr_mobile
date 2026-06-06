@@ -247,7 +247,7 @@ class _PayCycleSubmitHoursScreenState extends State<PayCycleSubmitHoursScreen> {
         : (totalDuration.inMinutes / 60) * rateValue;
 
     return Scaffold(
-      backgroundColor: context.theme.colors.bgB1,
+      backgroundColor: context.theme.colors.bgB0,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 60),
         child: DeFiRaiseAppBar(
@@ -468,7 +468,7 @@ class _PayCycleSubmitHoursScreenState extends State<PayCycleSubmitHoursScreen> {
                       Container(
                         padding: EdgeInsets.all(16.w),
                         decoration: BoxDecoration(
-                          color: context.theme.colors.bgB0,
+                          color: context.theme.colors.bgB1,
                           borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
                             color: context.theme.colors.strokeSecondary,
@@ -536,7 +536,7 @@ class _PayCycleSubmitHoursScreenState extends State<PayCycleSubmitHoursScreen> {
                     Container(
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: context.theme.colors.bgB0,
+                        color: context.theme.colors.bgB1,
                         borderRadius: BorderRadius.circular(12.r),
                         border: Border.all(
                             color: context.theme.colors.strokeSecondary),

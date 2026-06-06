@@ -22,7 +22,7 @@ class InvoiceCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(

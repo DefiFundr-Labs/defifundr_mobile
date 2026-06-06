@@ -204,7 +204,7 @@ class _AddWorkRecordBottomSheetState extends State<AddWorkRecordBottomSheet> {
 
     return Container(
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB0,
+        color: context.theme.colors.bgB1,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Padding(
@@ -382,7 +382,7 @@ class _AddWorkRecordBottomSheetState extends State<AddWorkRecordBottomSheet> {
       child: Container(
         padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
-          color: context.theme.colors.bgB0,
+          color: context.theme.colors.bgB1,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(color: context.theme.colors.strokeSecondary),
         ),
