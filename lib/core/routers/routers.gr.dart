@@ -59,43 +59,6 @@ class AddExpenseRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AddMilestoneScreen]
-class AddMilestoneRoute extends PageRouteInfo<AddMilestoneRouteArgs> {
-  AddMilestoneRoute({
-    Key? key,
-    required PayCycleContract contract,
-    List<PageRouteInfo>? children,
-  }) : super(
-         AddMilestoneRoute.name,
-         args: AddMilestoneRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
-
-  static const String name = 'AddMilestoneRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<AddMilestoneRouteArgs>();
-      return AddMilestoneScreen(key: args.key, contract: args.contract);
-    },
-  );
-}
-
-class AddMilestoneRouteArgs {
-  const AddMilestoneRouteArgs({this.key, required this.contract});
-
-  final Key? key;
-
-  final PayCycleContract contract;
-
-  @override
-  String toString() {
-    return 'AddMilestoneRouteArgs{key: $key, contract: $contract}';
-  }
-}
-
-/// generated route for
 /// [AddressBookScreen]
 class AddressBookRoute extends PageRouteInfo<void> {
   const AddressBookRoute({List<PageRouteInfo>? children})
@@ -1116,64 +1079,6 @@ class ManageWalletRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MilestoneDetailScreen]
-class MilestoneDetailRoute extends PageRouteInfo<MilestoneDetailRouteArgs> {
-  MilestoneDetailRoute({
-    Key? key,
-    required Milestone milestone,
-    required String contractTitle,
-    String? clientName,
-    List<PageRouteInfo>? children,
-  }) : super(
-         MilestoneDetailRoute.name,
-         args: MilestoneDetailRouteArgs(
-           key: key,
-           milestone: milestone,
-           contractTitle: contractTitle,
-           clientName: clientName,
-         ),
-         initialChildren: children,
-       );
-
-  static const String name = 'MilestoneDetailRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<MilestoneDetailRouteArgs>();
-      return MilestoneDetailScreen(
-        key: args.key,
-        milestone: args.milestone,
-        contractTitle: args.contractTitle,
-        clientName: args.clientName,
-      );
-    },
-  );
-}
-
-class MilestoneDetailRouteArgs {
-  const MilestoneDetailRouteArgs({
-    this.key,
-    required this.milestone,
-    required this.contractTitle,
-    this.clientName,
-  });
-
-  final Key? key;
-
-  final Milestone milestone;
-
-  final String contractTitle;
-
-  final String? clientName;
-
-  @override
-  String toString() {
-    return 'MilestoneDetailRouteArgs{key: $key, milestone: $milestone, contractTitle: $contractTitle, clientName: $clientName}';
-  }
-}
-
-/// generated route for
 /// [MoreScreen]
 class MoreRoute extends PageRouteInfo<void> {
   const MoreRoute({List<PageRouteInfo>? children})
@@ -1331,112 +1236,6 @@ class PayCycleContractsRoute extends PageRouteInfo<void> {
       return const PayCycleContractsScreen();
     },
   );
-}
-
-/// generated route for
-/// [PayCycleSubmitHoursScreen]
-class PayCycleSubmitHoursRoute
-    extends PageRouteInfo<PayCycleSubmitHoursRouteArgs> {
-  PayCycleSubmitHoursRoute({
-    Key? key,
-    required PayCycleContract contract,
-    WorkSubmission? initialSubmission,
-    List<PageRouteInfo>? children,
-  }) : super(
-         PayCycleSubmitHoursRoute.name,
-         args: PayCycleSubmitHoursRouteArgs(
-           key: key,
-           contract: contract,
-           initialSubmission: initialSubmission,
-         ),
-         initialChildren: children,
-       );
-
-  static const String name = 'PayCycleSubmitHoursRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<PayCycleSubmitHoursRouteArgs>();
-      return PayCycleSubmitHoursScreen(
-        key: args.key,
-        contract: args.contract,
-        initialSubmission: args.initialSubmission,
-      );
-    },
-  );
-}
-
-class PayCycleSubmitHoursRouteArgs {
-  const PayCycleSubmitHoursRouteArgs({
-    this.key,
-    required this.contract,
-    this.initialSubmission,
-  });
-
-  final Key? key;
-
-  final PayCycleContract contract;
-
-  final WorkSubmission? initialSubmission;
-
-  @override
-  String toString() {
-    return 'PayCycleSubmitHoursRouteArgs{key: $key, contract: $contract, initialSubmission: $initialSubmission}';
-  }
-}
-
-/// generated route for
-/// [PayCycleSubmittedHoursDetailScreen]
-class PayCycleSubmittedHoursDetailRoute
-    extends PageRouteInfo<PayCycleSubmittedHoursDetailRouteArgs> {
-  PayCycleSubmittedHoursDetailRoute({
-    Key? key,
-    required WorkSubmission submission,
-    required PayCycleContract contract,
-    List<PageRouteInfo>? children,
-  }) : super(
-         PayCycleSubmittedHoursDetailRoute.name,
-         args: PayCycleSubmittedHoursDetailRouteArgs(
-           key: key,
-           submission: submission,
-           contract: contract,
-         ),
-         initialChildren: children,
-       );
-
-  static const String name = 'PayCycleSubmittedHoursDetailRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<PayCycleSubmittedHoursDetailRouteArgs>();
-      return PayCycleSubmittedHoursDetailScreen(
-        key: args.key,
-        submission: args.submission,
-        contract: args.contract,
-      );
-    },
-  );
-}
-
-class PayCycleSubmittedHoursDetailRouteArgs {
-  const PayCycleSubmittedHoursDetailRouteArgs({
-    this.key,
-    required this.submission,
-    required this.contract,
-  });
-
-  final Key? key;
-
-  final WorkSubmission submission;
-
-  final PayCycleContract contract;
-
-  @override
-  String toString() {
-    return 'PayCycleSubmittedHoursDetailRouteArgs{key: $key, submission: $submission, contract: $contract}';
-  }
 }
 
 /// generated route for
@@ -1799,59 +1598,6 @@ class RequestChangeRouteArgs {
   @override
   String toString() {
     return 'RequestChangeRouteArgs{key: $key, timeOffDetail: $timeOffDetail}';
-  }
-}
-
-/// generated route for
-/// [RequestTerminationScreen]
-class RequestTerminationRoute
-    extends PageRouteInfo<RequestTerminationRouteArgs> {
-  RequestTerminationRoute({
-    Key? key,
-    required String clientName,
-    required String noticePeriod,
-    List<PageRouteInfo>? children,
-  }) : super(
-         RequestTerminationRoute.name,
-         args: RequestTerminationRouteArgs(
-           key: key,
-           clientName: clientName,
-           noticePeriod: noticePeriod,
-         ),
-         initialChildren: children,
-       );
-
-  static const String name = 'RequestTerminationRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<RequestTerminationRouteArgs>();
-      return RequestTerminationScreen(
-        key: args.key,
-        clientName: args.clientName,
-        noticePeriod: args.noticePeriod,
-      );
-    },
-  );
-}
-
-class RequestTerminationRouteArgs {
-  const RequestTerminationRouteArgs({
-    this.key,
-    required this.clientName,
-    required this.noticePeriod,
-  });
-
-  final Key? key;
-
-  final String clientName;
-
-  final String noticePeriod;
-
-  @override
-  String toString() {
-    return 'RequestTerminationRouteArgs{key: $key, clientName: $clientName, noticePeriod: $noticePeriod}';
   }
 }
 
@@ -2612,43 +2358,6 @@ class VerifyOtpRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ViewContractScreen]
-class ViewContractRoute extends PageRouteInfo<ViewContractRouteArgs> {
-  ViewContractRoute({
-    Key? key,
-    required TimeTrackingContract contract,
-    List<PageRouteInfo>? children,
-  }) : super(
-         ViewContractRoute.name,
-         args: ViewContractRouteArgs(key: key, contract: contract),
-         initialChildren: children,
-       );
-
-  static const String name = 'ViewContractRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ViewContractRouteArgs>();
-      return ViewContractScreen(key: args.key, contract: args.contract);
-    },
-  );
-}
-
-class ViewContractRouteArgs {
-  const ViewContractRouteArgs({this.key, required this.contract});
-
-  final Key? key;
-
-  final TimeTrackingContract contract;
-
-  @override
-  String toString() {
-    return 'ViewContractRouteArgs{key: $key, contract: $contract}';
-  }
-}
-
-/// generated route for
 /// [WalletDetailScreen]
 class WalletDetailRoute extends PageRouteInfo<WalletDetailRouteArgs> {
   WalletDetailRoute({
@@ -2785,22 +2494,6 @@ class WithdrawRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const WithdrawScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [WorkspaceContractsScreen]
-class WorkspaceContractsRoute extends PageRouteInfo<void> {
-  const WorkspaceContractsRoute({List<PageRouteInfo>? children})
-    : super(WorkspaceContractsRoute.name, initialChildren: children);
-
-  static const String name = 'WorkspaceContractsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const WorkspaceContractsScreen();
     },
   );
 }

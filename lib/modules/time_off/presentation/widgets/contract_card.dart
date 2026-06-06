@@ -20,7 +20,7 @@ class ContractCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.theme.colors.bgB1,
+        color: context.theme.colors.bgB0,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: context.theme.colors.strokeSecondary),
       ),

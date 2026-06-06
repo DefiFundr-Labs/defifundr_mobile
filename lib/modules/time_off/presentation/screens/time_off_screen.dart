@@ -195,7 +195,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
               decoration: BoxDecoration(
-                color: context.theme.colors.bgB1,
+                color: context.theme.colors.bgB0,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: context.theme.colors.strokeSecondary),
               ),
@@ -236,9 +236,7 @@ class _TimeOffScreenState extends State<TimeOffScreen> {
                     BalanceCard(
                       title: 'Unpaid time off balance',
                       days: 12,
-                      onViewDetails: () {
-                        context.router.push(UnpaidTimeOffBalanceRoute());
-                      },
+                      onViewDetails: () {},
                       onTap: () {
                         context.router.push(UnpaidTimeOffBalanceRoute());
                       },
