@@ -132,3 +132,15 @@ class WorkspaceSwitched extends AppEvent {
   @override
   String get name => 'WorkspaceSwitched';
 }
+
+// Feature flags
+
+class FlagsRefreshed extends AppEvent {
+  const FlagsRefreshed({required this.flags});
+
+  /// The full set of flag key→value pairs after refresh.
+  final Map<String, dynamic> flags;
+
+  @override
+  String get name => 'FlagsRefreshed';
+}
