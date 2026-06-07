@@ -1,8 +1,12 @@
+import 'package:defifundr_mobile/core/design_system/design_system.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus_scope.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:defifundr_mobile/core/update/app_update_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // ── BLoC ──────────────────────────────────────────────────────────────────────
 
@@ -33,8 +37,8 @@ class _UpdateBloc extends Bloc<_UpdateEvent, _UpdateState> with EventBusScope {
     on<_StatusReceived>((event, emit) {
       emit(switch (event.status) {
         AppUpdateStatus.forceUpdate => _ForceUpdate(event.latestVersion),
-        AppUpdateStatus.softUpdate => _SoftUpdate(event.latestVersion),
-        AppUpdateStatus.upToDate => _Idle(),
+        AppUpdateStatus.softUpdate  => _SoftUpdate(event.latestVersion),
+        AppUpdateStatus.upToDate    => _Idle(),
       });
     });
 
@@ -56,18 +60,6 @@ class _UpdateBloc extends Bloc<_UpdateEvent, _UpdateState> with EventBusScope {
 
 // ── Guard widget ──────────────────────────────────────────────────────────────
 
-/// Wrap around your root router widget.
-///
-/// - Force update → replaces entire UI with a blocker screen.
-/// - Soft update  → overlays a dismissible sheet above the app content.
-/// - Up to date   → renders [child] with no interference.
-///
-/// ```dart
-/// // In MaterialApp.router builder:
-/// builder: (context, child) => AppUpdateGuard(
-///   child: child ?? const SizedBox.shrink(),
-/// ),
-/// ```
 class AppUpdateGuard extends StatelessWidget {
   const AppUpdateGuard({super.key, required this.child});
 
@@ -93,8 +85,7 @@ class AppUpdateGuard extends StatelessWidget {
                     context.read<_UpdateBloc>().add(_Dismiss());
                     AppUpdateService.instance.openStore();
                   },
-                  onDismiss: () =>
-                      context.read<_UpdateBloc>().add(_Dismiss()),
+                  onDismiss: () => context.read<_UpdateBloc>().add(_Dismiss()),
                 ),
             ],
           );
@@ -104,7 +95,7 @@ class AppUpdateGuard extends StatelessWidget {
   }
 }
 
-// ── Soft update overlay ───────────────────────────────────────────────────────
+// ── Soft update overlay (animated) ───────────────────────────────────────────
 
 class _SoftUpdateOverlay extends StatefulWidget {
   const _SoftUpdateOverlay({
@@ -132,7 +123,7 @@ class _SoftUpdateOverlayState extends State<_SoftUpdateOverlay>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 320),
+      duration: const Duration(milliseconds: 340),
     );
     _slide = Tween<Offset>(
       begin: const Offset(0, 1),
@@ -159,12 +150,10 @@ class _SoftUpdateOverlayState extends State<_SoftUpdateOverlay>
       opacity: _fade,
       child: Stack(
         children: [
-          // Scrim
           GestureDetector(
             onTap: () => _dismiss(widget.onDismiss),
-            child: Container(color: Colors.black45),
+            child: Container(color: Colors.black54),
           ),
-          // Sheet
           Align(
             alignment: Alignment.bottomCenter,
             child: SlideTransition(
@@ -191,36 +180,80 @@ class _ForceUpdateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.theme.colors;
+    final fonts  = context.theme.fonts;
+
     return Scaffold(
+      backgroundColor: colors.bgB1,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.system_update_rounded, size: 72),
-              const SizedBox(height: 24),
-              Text(
-                'Update Required',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              SizedBox(height: 60.h),
+
+              // Logo
+              SvgPicture.asset(
+                context.isDarkMode
+                    ? Assets.icons.logoWhite
+                    : Assets.icons.logo,
+                height: 40.h,
               ),
-              const SizedBox(height: 12),
-              Text(
-                'Version $latestVersion is required to continue. '
-                'Please update now.',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: AppUpdateService.instance.openStore,
-                  child: const Text('Update Now'),
+
+              const Spacer(),
+
+              // Icon badge
+              Container(
+                width: 88.w,
+                height: 88.w,
+                decoration: BoxDecoration(
+                  color: colors.brandDefault.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.system_update_rounded,
+                  size: 40.w,
+                  color: colors.brandDefault,
                 ),
               ),
+
+              SizedBox(height: 24.h),
+
+              Text(
+                'Update Required',
+                style: fonts.heading2Bold.copyWith(color: colors.textPrimary),
+                textAlign: TextAlign.center,
+              ),
+
+              SizedBox(height: 12.h),
+
+              Text(
+                'Version $latestVersion is required to continue using DeFiFundr. '
+                'Please update the app to access the latest features.',
+                style: fonts.textMdRegular.copyWith(color: colors.textSecondary),
+                textAlign: TextAlign.center,
+              ),
+
+              const Spacer(),
+
+              // Update button
+              SizedBox(
+                width: double.infinity,
+                height: 52.h,
+                child: FilledButton(
+                  onPressed: AppUpdateService.instance.openStore,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: colors.brandDefault,
+                    foregroundColor: colors.brandDefaultContrast,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
+                  child: Text('Update Now', style: fonts.textMdSemiBold),
+                ),
+              ),
+
+              SizedBox(height: 40.h),
             ],
           ),
         ),
@@ -244,51 +277,96 @@ class _SoftUpdateSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.theme.colors;
+    final fonts  = context.theme.fonts;
+
     return Material(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+      color: colors.bgB0,
+      borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
+        padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 40.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Drag handle
             Container(
-              width: 40,
-              height: 4,
+              width: 40.w,
+              height: 4.h,
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
+                color: colors.textTertiary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(2.r),
               ),
             ),
-            const SizedBox(height: 24),
-            const Icon(Icons.update_rounded, size: 48),
-            const SizedBox(height: 16),
+
+            SizedBox(height: 24.h),
+
+            // Icon badge
+            Container(
+              width: 72.w,
+              height: 72.w,
+              decoration: BoxDecoration(
+                color: colors.brandDefault.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.update_rounded,
+                size: 36.w,
+                color: colors.brandDefault,
+              ),
+            ),
+
+            SizedBox(height: 16.h),
+
             Text(
               'Update Available',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: fonts.heading3Bold.copyWith(color: colors.textPrimary),
             ),
-            const SizedBox(height: 8),
+
+            SizedBox(height: 8.h),
+
             Text(
-              'Version $latestVersion is available with improvements and fixes.',
+              'Version $latestVersion is available with new features and improvements.',
+              style: fonts.textMdRegular.copyWith(color: colors.textSecondary),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            const SizedBox(height: 24),
+
+            SizedBox(height: 28.h),
+
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
-                    onPressed: onDismiss,
-                    child: const Text('Later'),
+                  child: SizedBox(
+                    height: 48.h,
+                    child: OutlinedButton(
+                      onPressed: onDismiss,
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: colors.textPrimary,
+                        side: BorderSide(color: colors.textTertiary.withValues(alpha: 0.4)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                      ),
+                      child: Text('Later', style: fonts.textMdSemiBold),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 12),
+
+                SizedBox(width: 12.w),
+
                 Expanded(
-                  child: FilledButton(
-                    onPressed: onUpdate,
-                    child: const Text('Update'),
+                  child: SizedBox(
+                    height: 48.h,
+                    child: FilledButton(
+                      onPressed: onUpdate,
+                      style: FilledButton.styleFrom(
+                        backgroundColor: colors.brandDefault,
+                        foregroundColor: colors.brandDefaultContrast,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                      ),
+                      child: Text('Update', style: fonts.textMdSemiBold),
+                    ),
                   ),
                 ),
               ],
