@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
+import 'package:defifundr_mobile/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,6 +22,7 @@ class MainShellScreen extends StatelessWidget {
         final activeTabRouter =
             tabsRouter.stackRouterOfIndex(tabsRouter.activeIndex);
         final isAtTabRoot = (activeTabRouter?.pageCount ?? 1) <= 1;
+        final bottomPadding = MediaQuery.of(context).viewPadding.bottom;
 
         return Scaffold(
           body: child,
@@ -38,8 +40,8 @@ class MainShellScreen extends StatelessWidget {
                   child: SafeArea(
                     bottom: false,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
+                      padding: EdgeInsets.only(
+                          left: 8, right: 8, top: 8, bottom: 8 + bottomPadding),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: List.generate(
@@ -75,26 +77,26 @@ class _TabDefinition {
   });
 }
 
-const _tabs = [
+ final _tabs = [
   _TabDefinition(
     label: 'Home',
-    activeIcon: 'assets/icons/bottom_nav/home_active.svg',
-    inactiveIcon: 'assets/icons/bottom_nav/home_inactive.svg',
+    activeIcon: Assets.icons.bottomNav.homeActive,
+    inactiveIcon: Assets.icons.bottomNav.homeInactive,
   ),
   _TabDefinition(
     label: 'Workspace',
-    activeIcon: 'assets/icons/bottom_nav/workspace_active.svg',
-    inactiveIcon: 'assets/icons/bottom_nav/workspace_inactive.svg',
+    activeIcon: Assets.icons.bottomNav.workspaceActive,
+    inactiveIcon: Assets.icons.bottomNav.workspaceInactive,
   ),
     _TabDefinition(
     label: 'Finance',
-    activeIcon: 'assets/icons/bottom_nav/finance_active.svg',
-    inactiveIcon: 'assets/icons/bottom_nav/finance_inactive.svg',
+    activeIcon: Assets.icons.bottomNav.financeActive,
+    inactiveIcon: Assets.icons.bottomNav.financeInactive,
   ),
   _TabDefinition(
     label: 'More',
-    activeIcon: 'assets/icons/bottom_nav/more_active.svg',
-    inactiveIcon: 'assets/icons/bottom_nav/more_inactive.svg',
+    activeIcon: Assets.icons.bottomNav.moreActive,
+    inactiveIcon: Assets.icons.bottomNav.moreInactive,
   ),
 ];
 
