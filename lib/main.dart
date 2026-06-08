@@ -5,7 +5,6 @@ import 'package:defifundr_mobile/infrastructure/di/injection_container.dart';
 import 'package:defifundr_mobile/modules/web3auth/data/service/web3auth_service.dart';
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() => _initializeImportantResources().then((_) => runApp(
@@ -22,7 +21,6 @@ void main() => _initializeImportantResources().then((_) => runApp(
 Future<void> _initializeImportantResources() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: binding);
-  await dotenv.load(fileName: ".env");
   await configureDependencies();
   await ConnectivityService.instance.init();
   await FeatureFlagService.instance.init();

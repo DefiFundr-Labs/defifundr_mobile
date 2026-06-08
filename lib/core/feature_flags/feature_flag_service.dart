@@ -1,10 +1,12 @@
 import 'package:defifundr_mobile/core/cache/app_cache.dart';
 import 'package:defifundr_mobile/core/event_bus/event_bus.dart';
 import 'package:defifundr_mobile/core/feature_flags/app_flag.dart';
+import 'package:defifundr_mobile/core/feature_flags/flavor_flag_seeds.dart';
 import 'package:logger/logger.dart';
 
 export 'app_flag.dart';
 export 'app_flags.dart';
+export 'flavor_flag_seeds.dart';
 
 const _cacheKey = 'feature_flags';
 const _cacheTtl = Duration(hours: 1);
@@ -44,14 +46,17 @@ class FeatureFlagService {
 
   /// Load cached flags into memory. Call once at startup before the first frame.
   Future<void> init() async {
+    _flags = Map<String, dynamic>.from(FlavorFlagSeeds.current);
+    _log.d('[Flags] Seeded ${_flags.length} flags from dart-define');
+
     try {
       final cached = await AppCache.prefs.read<Map<String, dynamic>>(
         _cacheKey,
         fromJson: (raw) => Map<String, dynamic>.from(raw as Map),
       );
       if (cached != null) {
-        _flags = cached;
-        _log.d('[Flags] Loaded ${_flags.length} flags from cache');
+        _flags = {..._flags, ...cached};
+        _log.d('[Flags] Overlaid ${cached.length} cached remote flags');
       }
     } catch (e) {
       _log.w('[Flags] Failed to load from cache: $e');

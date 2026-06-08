@@ -1,0 +1,4 @@
+#include "Debug.xcconfig"
+FLUTTER_TARGET=lib/main.dart
+BUNDLE_ID_SUFFIX=
+APP_DISPLAY_NAME=DefiFundr

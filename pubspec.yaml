@@ -37,8 +37,6 @@ dependencies:
   freezed_annotation: ^3.0.0
   #? shared_preferences is a Flutter plugin that provides a persistent store for simple data.
   shared_preferences: ^2.5.3
-  #? flutter_dotenv is a Dart package that provides a way to load environment variables from a .env file.
-  flutter_dotenv: null
   #?  flutter_gen is a Dart package that helps you to generate code for Flutter projects.
   flutter_gen_runner: ^5.10.0
 
@@ -211,7 +209,6 @@ flutter:
           weight: 900
           style: italic
   assets:
-    - .env
     - assets/images/
     - assets/icons/
     - assets/icons/country_flags/

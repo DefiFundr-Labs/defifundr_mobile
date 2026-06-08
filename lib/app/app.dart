@@ -1,3 +1,4 @@
+import 'package:defifundr_mobile/core/config/app_env.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/app_theme_extension.dart';
 import 'package:defifundr_mobile/core/update/app_update_guard.dart';
 import 'package:defifundr_mobile/core/design_system/theme_extension/theme_cubit.dart';
@@ -71,7 +72,9 @@ class _AppState extends State<App> {
                         navigatorObservers: () => [_routeObserver],
                       ),
                       builder: (context, child) => AppUpdateGuard(
-                        child: child ?? const SizedBox.shrink(),
+                        child: _FlavorBanner(
+                          child: child ?? const SizedBox.shrink(),
+                        ),
                       ),
                     ),
                   );
@@ -91,5 +94,23 @@ class _AppScrollBehavior extends ScrollBehavior {
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) {
     return const BouncingScrollPhysics();
+  }
+}
+
+class _FlavorBanner extends StatelessWidget {
+  const _FlavorBanner({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (AppEnv.isProd) return child;
+
+    return Banner(
+      message: AppEnv.isDev ? 'DEV' : 'STAGING',
+      location: BannerLocation.topEnd,
+      color: AppEnv.isDev ? context.theme.colors.brandDefault : Colors.orange,
+      child: child,
+    );
   }
 }
