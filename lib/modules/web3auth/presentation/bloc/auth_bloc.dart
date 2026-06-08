@@ -5,8 +5,8 @@ import 'dart:typed_data';
 import 'package:defifundr_mobile/modules/web3auth/domain/exceptions/web3auth_exception.dart';
 import 'package:defifundr_mobile/modules/web3auth/domain/interfaces/web3_wallet.dart';
 import 'package:defifundr_mobile/modules/web3auth/data/service/web3auth_service.dart';
+import 'package:defifundr_mobile/core/config/app_env.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:web3auth_flutter/enums.dart';
 
 import '../../../../core/config/web3auth_config.dart';
@@ -53,7 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         throw Exception('Unsupported platform');
       }
 
-      final String web3AuthClientID = dotenv.env['WEB3AUTH_CLIENT_ID']!;
+      const web3AuthClientID = AppEnv.web3AuthClientId;
 
       // Configure Web3Auth
       final config = Web3AuthConfig(

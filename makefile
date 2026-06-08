@@ -51,17 +51,41 @@ l10n-add-param:
 
 # ── Flutter shortcuts ────────────────────────────────────────────────────────
 
-.PHONY: run
-run:
-	flutter run
+.PHONY: run-dev
+run-dev:
+	flutter run --flavor dev -t lib/main.dart --dart-define-from-file=config/dev.json
 
-.PHONY: build-ios
-build-ios:
-	flutter build ios --release
+.PHONY: run-staging
+run-staging:
+	flutter run --flavor staging -t lib/main.dart --dart-define-from-file=config/staging.json
 
-.PHONY: build-apk
-build-apk:
-	flutter build apk --release
+.PHONY: run-prod
+run-prod:
+	flutter run --flavor prod -t lib/main.dart --dart-define-from-file=config/prod.json
+
+.PHONY: build-ios-dev
+build-ios-dev:
+	flutter build ipa --flavor dev -t lib/main.dart --dart-define-from-file=config/dev.json
+
+.PHONY: build-ios-staging
+build-ios-staging:
+	flutter build ipa --flavor staging -t lib/main.dart --dart-define-from-file=config/staging.json
+
+.PHONY: build-ios-prod
+build-ios-prod:
+	flutter build ipa --flavor prod -t lib/main.dart --dart-define-from-file=config/prod.json
+
+.PHONY: build-apk-dev
+build-apk-dev:
+	flutter build apk --flavor dev --dart-define-from-file=config/dev.json
+
+.PHONY: build-apk-staging
+build-apk-staging:
+	flutter build apk --flavor staging --dart-define-from-file=config/staging.json
+
+.PHONY: build-apk-prod
+build-apk-prod:
+	flutter build apk --flavor prod --dart-define-from-file=config/prod.json
 
 .PHONY: test
 test:
